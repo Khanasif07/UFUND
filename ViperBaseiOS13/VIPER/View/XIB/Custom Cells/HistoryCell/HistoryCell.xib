@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="lato.ttf">
+            <string>Lato-Regular</string>
+        </array>
+        <array key="lato_bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryCell" rowHeight="173" id="KGk-i7-Jjw" customClass="HistoryCell" customModule="UFUND" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="418" height="173"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="418" height="173"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7d-fl-IJu">
+                        <rect key="frame" x="20" y="2" width="378" height="151"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debited" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0n-od-nXl">
+                                <rect key="frame" x="303" y="12" width="60" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="0ve-fd-uHy"/>
+                                    <constraint firstAttribute="height" constant="21" id="Asr-zJ-ChZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apr 29,8:10 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nwE-9s-tvv">
+                                <rect key="frame" x="251" y="48" width="112" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="OOv-Tt-JAh"/>
+                                    <constraint firstAttribute="height" constant="21" id="Zeu-uS-I8O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debited" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyG-hX-q2l">
+                                <rect key="frame" x="15" y="12" width="273" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debited" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgG-Kd-XMS">
+                                <rect key="frame" x="15" y="47.5" width="228" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dfghjkljhgfrghjkjhgfdfghjkmjhgfdfgh hgfghjhgtgyh gdyudhiejreqr" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iiu-hs-dEG">
+                                <rect key="frame" x="15" y="74" width="348" height="30.5"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="secondaryColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="p0n-od-nXl" secondAttribute="trailing" constant="15" id="0E2-1d-tz9"/>
+                            <constraint firstAttribute="trailing" secondItem="nwE-9s-tvv" secondAttribute="trailing" constant="15" id="6iG-V6-DTa"/>
+                            <constraint firstItem="eyG-hX-q2l" firstAttribute="leading" secondItem="t7d-fl-IJu" secondAttribute="leading" constant="15" id="926-Y8-6te"/>
+                            <constraint firstItem="p0n-od-nXl" firstAttribute="top" secondItem="t7d-fl-IJu" secondAttribute="top" constant="12" id="Jnv-WK-Ony"/>
+                            <constraint firstAttribute="trailing" secondItem="Iiu-hs-dEG" secondAttribute="trailing" constant="15" id="Jwg-B8-uF8"/>
+                            <constraint firstItem="eyG-hX-q2l" firstAttribute="top" secondItem="t7d-fl-IJu" secondAttribute="top" constant="12" id="KfE-R0-aiB"/>
+                            <constraint firstItem="nwE-9s-tvv" firstAttribute="top" secondItem="p0n-od-nXl" secondAttribute="bottom" constant="15" id="SUs-Lk-U5i"/>
+                            <constraint firstItem="hgG-Kd-XMS" firstAttribute="leading" secondItem="t7d-fl-IJu" secondAttribute="leading" constant="15" id="Ucj-Rk-Ag0"/>
+                            <constraint firstItem="Iiu-hs-dEG" firstAttribute="top" secondItem="hgG-Kd-XMS" secondAttribute="bottom" constant="10" id="XR6-Zz-R2Q"/>
+                            <constraint firstItem="nwE-9s-tvv" firstAttribute="leading" secondItem="hgG-Kd-XMS" secondAttribute="trailing" constant="8" id="YdA-eO-aqE"/>
+                            <constraint firstItem="p0n-od-nXl" firstAttribute="leading" secondItem="eyG-hX-q2l" secondAttribute="trailing" constant="15" id="tut-xu-ovW"/>
+                            <constraint firstItem="hgG-Kd-XMS" firstAttribute="top" secondItem="eyG-hX-q2l" secondAttribute="bottom" constant="19" id="u4X-65-NPF"/>
+                            <constraint firstItem="Iiu-hs-dEG" firstAttribute="leading" secondItem="t7d-fl-IJu" secondAttribute="leading" constant="15" id="ueM-QX-7Ql"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="size" keyPath="offsetShadow">
+                                <size key="value" width="1" height="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="opacityShadow">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="radiusShadow">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="colorShadow">
+                                <color key="value" white="0.0" alpha="0.34723686729999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="t7d-fl-IJu" secondAttribute="bottom" constant="20" id="DaD-Ns-dlL"/>
+                    <constraint firstItem="t7d-fl-IJu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="VLW-19-cmg"/>
+                    <constraint firstItem="t7d-fl-IJu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="XGb-K7-Se0"/>
+                    <constraint firstAttribute="trailing" secondItem="t7d-fl-IJu" secondAttribute="trailing" constant="20" id="e73-HS-6EY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addressLbl" destination="Iiu-hs-dEG" id="y2s-u5-Sij"/>
+                <outlet property="amountLbl" destination="hgG-Kd-XMS" id="Tcc-Yy-cG0"/>
+                <outlet property="dateLbl" destination="nwE-9s-tvv" id="nsb-k3-ctV"/>
+                <outlet property="nameLbl" destination="eyG-hX-q2l" id="pRd-Mv-e93"/>
+                <outlet property="statusLbl" destination="p0n-od-nXl" id="gJU-oz-Lrc"/>
+            </connections>
+            <point key="canvasLocation" x="208.69565217391306" y="189.84375"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="secondaryColor">
+            <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

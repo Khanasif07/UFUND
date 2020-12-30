@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Coin Payments</title>
+</head>
+
+<body>
+<form action="https://www.coinpayments.net/index.php" method="post" name="simple_form">
+    <input type="hidden" name="cmd" value="_pay">
+    <input type="hidden" name="reset" value="1">
+    <input type="hidden" name="merchant" value="merchant">
+    <input type="hidden" name="item_name" value="CTC">
+    <input type="hidden" name="currency" value="USD">
+    <input type="hidden" name="amountf" value="00">
+    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="allow_quantity" value="0">
+    <input type="hidden" name="want_shipping" value="0">
+    <input type="hidden" name="success_url" value="/success">
+    <input type="hidden" name="cancel_url" value="/cancel">
+    <input type="hidden" name="allow_extra" value="0">
+</form>
+</body>
+<script>
+  window.onload = function () {
+    function fillData() {
+      document.forms['simple_form']["merchant"].value = getParameterByName("merchant");
+      document.forms['simple_form']["item_name"].value = getParameterByName("item_name");
+	  document.forms['simple_form']["currency"].value = getParameterByName("currency");
+      document.forms['simple_form']["amountf"].value = getParameterByName("amount");
+	  document.forms['simple_form']["success_url"].value = getParameterByName("base_url") + '/success';
+      document.forms['simple_form']["cancel_url"].value = getParameterByName("base_url") + '/failure';
+
+	  document.forms['simple_form'].submit()
+    }
+
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+      return results === null
+        ? ""
+        : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    fillData();
+  }
+
+</script>
+
+</html>

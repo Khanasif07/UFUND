@@ -1,0 +1,6 @@
+framework module Pods_ViperBaseiOS13_ViperBaseiOS13UITests {
+  umbrella header "Pods-ViperBaseiOS13-ViperBaseiOS13UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

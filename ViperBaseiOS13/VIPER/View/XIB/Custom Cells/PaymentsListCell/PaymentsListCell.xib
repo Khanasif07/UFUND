@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Regular.otf">
+            <string>OpenSans</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PaymentsListCell" rowHeight="73" id="KGk-i7-Jjw" customClass="PaymentsListCell" customModule="UFUND" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="73"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="335" height="73"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOT-aT-pVM">
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="73"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mp9-VH-yqQ">
+                                <rect key="frame" x="1" y="0.0" width="333" height="45"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cash" translatesAutoresizingMaskIntoConstraints="NO" id="ehP-Oc-Fow">
+                                        <rect key="frame" x="18" y="12.5" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="mmt-QT-ckX"/>
+                                            <constraint firstAttribute="width" constant="20" id="pE1-u7-b0b"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bw8-Mc-Mux">
+                                        <rect key="frame" x="56" y="22.5" width="267" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8t-AX-OYD">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="45"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="secondaryColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="1ad-n0-G9C"/>
+                                    <constraint firstAttribute="trailing" secondItem="C8t-AX-OYD" secondAttribute="trailing" id="Azc-FQ-Pvx"/>
+                                    <constraint firstItem="bw8-Mc-Mux" firstAttribute="centerY" secondItem="Mp9-VH-yqQ" secondAttribute="centerY" id="CK4-z9-2qd"/>
+                                    <constraint firstItem="ehP-Oc-Fow" firstAttribute="centerY" secondItem="Mp9-VH-yqQ" secondAttribute="centerY" id="Jsr-X6-cKH"/>
+                                    <constraint firstItem="bw8-Mc-Mux" firstAttribute="leading" secondItem="ehP-Oc-Fow" secondAttribute="trailing" constant="18" id="NTc-G1-O82"/>
+                                    <constraint firstItem="C8t-AX-OYD" firstAttribute="top" secondItem="Mp9-VH-yqQ" secondAttribute="top" id="QOO-qX-tTl"/>
+                                    <constraint firstAttribute="bottom" secondItem="C8t-AX-OYD" secondAttribute="bottom" id="Ud2-9s-sew"/>
+                                    <constraint firstAttribute="trailing" secondItem="bw8-Mc-Mux" secondAttribute="trailing" constant="10" id="VkG-ro-QaU"/>
+                                    <constraint firstItem="ehP-Oc-Fow" firstAttribute="leading" secondItem="Mp9-VH-yqQ" secondAttribute="leading" constant="18" id="i50-xj-bU9"/>
+                                    <constraint firstItem="C8t-AX-OYD" firstAttribute="leading" secondItem="Mp9-VH-yqQ" secondAttribute="leading" id="iyj-Mf-nef"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Mp9-VH-yqQ" secondAttribute="trailing" constant="1" id="1il-se-HLg"/>
+                            <constraint firstItem="Mp9-VH-yqQ" firstAttribute="leading" secondItem="OOT-aT-pVM" secondAttribute="leading" constant="1" id="8lf-gv-WGJ"/>
+                            <constraint firstItem="Mp9-VH-yqQ" firstAttribute="top" secondItem="OOT-aT-pVM" secondAttribute="top" id="Kaq-J9-Udo"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="OOT-aT-pVM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="L6F-bR-mtY"/>
+                    <constraint firstAttribute="trailing" secondItem="OOT-aT-pVM" secondAttribute="trailing" id="fXS-DL-8e8"/>
+                    <constraint firstItem="OOT-aT-pVM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gG1-8I-xyd"/>
+                    <constraint firstAttribute="bottom" secondItem="OOT-aT-pVM" secondAttribute="bottom" id="wnV-oq-ViG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="bgView" destination="Mp9-VH-yqQ" id="vyl-Ux-7zT"/>
+                <outlet property="cardNumberLbl" destination="bw8-Mc-Mux" id="ewG-cu-eg3"/>
+                <outlet property="imgView" destination="ehP-Oc-Fow" id="0gB-Gs-kv3"/>
+                <outlet property="tapButton" destination="C8t-AX-OYD" id="sGa-7i-mAt"/>
+            </connections>
+            <point key="canvasLocation" x="148.55072463768118" y="149.66517857142856"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cash" width="77" height="48"/>
+        <namedColor name="secondaryColor">
+            <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

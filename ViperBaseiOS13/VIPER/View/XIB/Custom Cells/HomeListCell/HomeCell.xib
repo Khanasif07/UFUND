@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeCell" rowHeight="71" id="KGk-i7-Jjw" customClass="HomeCell" customModule="UFUND" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="402" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="402" height="71"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SG4-lt-AOq">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="71"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="t3s-dM-nVR">
+                                <rect key="frame" x="0.0" y="0.0" width="402" height="71"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MT7-dF-16c">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="t3s-dM-nVR" firstAttribute="top" secondItem="SG4-lt-AOq" secondAttribute="top" id="EJl-Sf-EfF"/>
+                            <constraint firstAttribute="bottom" secondItem="t3s-dM-nVR" secondAttribute="bottom" id="Els-RC-kwJ"/>
+                            <constraint firstItem="t3s-dM-nVR" firstAttribute="leading" secondItem="SG4-lt-AOq" secondAttribute="leading" id="bFd-0a-k1X"/>
+                            <constraint firstAttribute="trailing" secondItem="t3s-dM-nVR" secondAttribute="trailing" id="hCx-zR-xeW"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="SG4-lt-AOq" secondAttribute="trailing" id="4rZ-mo-ngZ"/>
+                    <constraint firstItem="SG4-lt-AOq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Mpw-vz-j35"/>
+                    <constraint firstItem="SG4-lt-AOq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="y2W-kA-cfF"/>
+                    <constraint firstAttribute="bottom" secondItem="SG4-lt-AOq" secondAttribute="bottom" id="zCt-L5-xiO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="collectionView" destination="t3s-dM-nVR" id="TAm-AK-MjN"/>
+            </connections>
+            <point key="canvasLocation" x="197.10144927536234" y="151.67410714285714"/>
+        </tableViewCell>
+    </objects>
+</document>
