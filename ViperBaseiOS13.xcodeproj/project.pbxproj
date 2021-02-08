@@ -187,6 +187,11 @@
 		08E5CC1323CDA38000DCE77D /* AddAssetsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E5CC1223CDA38000DCE77D /* AddAssetsViewController+Extension.swift */; };
 		08FB487D238D2666006C18C5 /* FilterSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FB487C238D2666006C18C5 /* FilterSetViewController.swift */; };
 		2C15ACBE0468F184BFD814DF /* Pods_ViperBaseiOS13.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56E8F9E745DA9752E1A9560 /* Pods_ViperBaseiOS13.framework */; };
+		84411E8725D1044700718BD1 /* FacebookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8625D1044700718BD1 /* FacebookController.swift */; };
+		84411E8A25D1048900718BD1 /* GoogleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8925D1048900718BD1 /* GoogleController.swift */; };
+		84411E8D25D1099F00718BD1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8C25D1099F00718BD1 /* AppConstants.swift */; };
+		84B451DA25CD322F001DD54A /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */; };
+		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
 		B2DACB3B1FC2E9E285069987 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */; };
 		DCEC9E4C4E18C05651097B83 /* Pods_ViperBaseiOS13Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464373271FCE0B49B1C910A /* Pods_ViperBaseiOS13Tests.framework */; };
 /* End PBXBuildFile section */
@@ -402,6 +407,11 @@
 		08FB487C238D2666006C18C5 /* FilterSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSetViewController.swift; sourceTree = "<group>"; };
 		4E76FFC7FC9DC2381180FFD7 /* Pods-ViperBaseiOS13-ViperBaseiOS13UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13-ViperBaseiOS13UITests.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13-ViperBaseiOS13UITests/Pods-ViperBaseiOS13-ViperBaseiOS13UITests.release.xcconfig"; sourceTree = "<group>"; };
 		74D4774CDF2F10AD45DCE72C /* Pods-ViperBaseiOS13.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13/Pods-ViperBaseiOS13.release.xcconfig"; sourceTree = "<group>"; };
+		84411E8625D1044700718BD1 /* FacebookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookController.swift; sourceTree = "<group>"; };
+		84411E8925D1048900718BD1 /* GoogleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleController.swift; sourceTree = "<group>"; };
+		84411E8C25D1099F00718BD1 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
+		84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuHeaderView.xib; sourceTree = "<group>"; };
 		85623B6EAEE831F86E5BD1D3 /* Pods-ViperBaseiOS13Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.debug.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF23C120B0DB3AD60CE1CE6 /* Pods-ViperBaseiOS13Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -527,6 +537,7 @@
 		0824B0582382821600F81A9B /* VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				84B451D825CD3204001DD54A /* Xib */,
 				0824B05F2382828E00F81A9B /* View */,
 				0824B05E2382828300F81A9B /* Interactor */,
 				0824B05D2382827A00F81A9B /* Presenter */,
@@ -754,6 +765,8 @@
 		0824B06C2382842C00F81A9B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				84411E8825D1045400718BD1 /* GoogleManager */,
+				84411E8525D1040B00718BD1 /* FacebookManager */,
 				082F7C1723CD93CB001475EA /* SocialLogin */,
 				0826B7722386745900867CD5 /* Fonts */,
 				08918BB12385866700F274C2 /* SceneDelegate */,
@@ -775,6 +788,7 @@
 		0824B06D2382847600F81A9B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				84411E8B25D1098900718BD1 /* AppConstants */,
 				0824B06E2382847600F81A9B /* Cache */,
 				0824B0722382847600F81A9B /* FontHelper */,
 				0824B0742382847600F81A9B /* AVPlayer */,
@@ -1432,6 +1446,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		84411E8525D1040B00718BD1 /* FacebookManager */ = {
+			isa = PBXGroup;
+			children = (
+				84411E8625D1044700718BD1 /* FacebookController.swift */,
+			);
+			path = FacebookManager;
+			sourceTree = "<group>";
+		};
+		84411E8825D1045400718BD1 /* GoogleManager */ = {
+			isa = PBXGroup;
+			children = (
+				84411E8925D1048900718BD1 /* GoogleController.swift */,
+			);
+			path = GoogleManager;
+			sourceTree = "<group>";
+		};
+		84411E8B25D1098900718BD1 /* AppConstants */ = {
+			isa = PBXGroup;
+			children = (
+				84411E8C25D1099F00718BD1 /* AppConstants.swift */,
+			);
+			path = AppConstants;
+			sourceTree = "<group>";
+		};
+		84B451D825CD3204001DD54A /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */,
+				84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
 		89196D8F9C9E5D67BCD9FDBD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1581,6 +1628,7 @@
 				0825A05A23B4A003001BEC21 /* ProductListCell.xib in Resources */,
 				0824B032238280E800F81A9B /* Assets.xcassets in Resources */,
 				0825AB74238BD53C0083AC42 /* CategoriesCell.xib in Resources */,
+				84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */,
 				087B7B86241D0F5B0024D998 /* FundCell.xib in Resources */,
 				0870FC46238CFBD800D24B41 /* ProductsCollectionCell.xib in Resources */,
 				0824B0C62382847800F81A9B /* CountryPicker.bundle in Resources */,
@@ -1754,6 +1802,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B451DA25CD322F001DD54A /* SideMenuHeaderView.swift in Sources */,
 				0825AB85238C0B4C0083AC42 /* HeaderCell.swift in Sources */,
 				083FF1B22387DEC500400012 /* ChangeViewController.swift in Sources */,
 				08751B5323BF5DD0002FF133 /* UserProfile.swift in Sources */,
@@ -1836,6 +1885,7 @@
 				0828C38923FA698100B39256 /* ProdDetailViewController.swift in Sources */,
 				0824B1052382A12000F81A9B /* Bundle.swift in Sources */,
 				0825A05523B49C5F001BEC21 /* ProductListViewController.swift in Sources */,
+				84411E8725D1044700718BD1 /* FacebookController.swift in Sources */,
 				086F1389246EB02100EA4355 /* CampHistoryViewController.swift in Sources */,
 				0824B030238280E700F81A9B /* ViperBaseiOS13.xcdatamodeld in Sources */,
 				0824B1232382A19300F81A9B /* CommonDelegate.swift in Sources */,
@@ -1843,6 +1893,7 @@
 				089C287D23F18E8800230AB3 /* EmptyResultCell.swift in Sources */,
 				0824B0D82382847800F81A9B /* ErrorMessages.swift in Sources */,
 				0824B0D22382847800F81A9B /* MakeJson.swift in Sources */,
+				84411E8D25D1099F00718BD1 /* AppConstants.swift in Sources */,
 				0825AB68238BBF920083AC42 /* NotificationViewController.swift in Sources */,
 				0809A4B923EC596700FCA3C3 /* ApprovalModel.swift in Sources */,
 				0826B78C2386757000867CD5 /* Fonts.swift in Sources */,
@@ -1883,6 +1934,7 @@
 				0824B1062382A12000F81A9B /* Int.swift in Sources */,
 				086F1395246EF25900EA4355 /* WalletHistoryViewController.swift in Sources */,
 				08DBEF8323D3321700C41703 /* CustomRangeSeekSlider.swift in Sources */,
+				84411E8A25D1048900718BD1 /* GoogleController.swift in Sources */,
 				0824B0D62382847800F81A9B /* AppData.swift in Sources */,
 				0827A13223C4631E00EDF005 /* CollectionImageCell.swift in Sources */,
 				0824B0E1238284C600F81A9B /* Interactor.swift in Sources */,

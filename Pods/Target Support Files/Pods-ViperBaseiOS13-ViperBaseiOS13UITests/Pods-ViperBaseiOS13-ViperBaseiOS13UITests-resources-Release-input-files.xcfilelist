@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-ViperBaseiOS13-ViperBaseiOS13UITests/Pods-ViperBaseiOS13-ViperBaseiOS13UITests-resources.sh
-${PODS_ROOT}/TwitterKit5/iOS/TwitterKit.framework/TwitterKitResources.bundle
+${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle
+${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle

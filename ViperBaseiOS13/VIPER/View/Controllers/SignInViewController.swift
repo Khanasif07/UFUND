@@ -19,6 +19,7 @@ class SignInViewController: UIViewController {
     fileprivate var socialLogin = SocialLoginHelper ()
     @IBOutlet weak var twitterLbl: UILabel!
     @IBOutlet weak var facebookLbl: UILabel!
+    @IBOutlet weak var socialLoginViews1: UIStackView!
     @IBOutlet weak var socialLoginViews: UIStackView!
     @IBOutlet weak var welcomeLbl: UILabel!
     @IBOutlet weak var passwordTxtFld: UITextField!
@@ -44,15 +45,15 @@ class SignInViewController: UIViewController {
     }
     var signInModel: SignInModel?
     var loginEffect = 0 {
-        
         didSet {
             UIView.animate(withDuration: 0.1) {
-                           for view in self.socialLoginViews.subviews {
-                               
-                               view.applyShadow()
-                               
-                           }
+                for view in self.socialLoginViews.subviews {
+                    view.applyShadow()
                 }
+                for view in self.socialLoginViews1.subviews {
+                    view.applyShadow()
+                }
+            }
         }
     }
     private lazy var loader  : UIView = {
@@ -99,6 +100,15 @@ class SignInViewController: UIViewController {
           }
       }
     
+    //MARK: - Action
+    //===================
+    @IBAction func googleBtnAction(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func linkedinBtnAction(_ sender: UIButton) {
+        
+    }
     
 }
 
@@ -171,6 +181,10 @@ extension SignInViewController {
        @IBAction func redirectToFacebook(_ sender: UIButton) {
           // socialLogin.loginThroughFacebook(fromViewController: self, helperDelegate: self)
        }
+    
+    
+    
+    
 }
 
 //MARK: - Button Action

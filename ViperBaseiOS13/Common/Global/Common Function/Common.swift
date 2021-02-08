@@ -199,3 +199,13 @@ public func withRenderingMode(originalImage: UIImage, imgView: UIImageView, imgT
     imgView.image = tintedImage
     
 }
+
+
+extension UIView{
+    ///Rounds corners based on the layer
+    func roundCorners(_ corner: CACornerMask, radius: CGFloat) {
+        layer.cornerRadius = radius
+        layer.maskedCorners = corner
+        layer.masksToBounds = true
+    }
+}

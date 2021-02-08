@@ -25,6 +25,8 @@ target 'ViperBaseiOS13' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Analytics'
+    pod 'GoogleSignIn'
+    pod 'LinkedinSwift'
   
   target 'ViperBaseiOS13Tests' do
     inherit! :search_paths

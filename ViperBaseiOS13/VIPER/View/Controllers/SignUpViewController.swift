@@ -9,6 +9,7 @@
 import UIKit
 import ObjectMapper
 import TwitterKit
+import LinkedinSwift
 import AuthenticationServices
 
 enum UserType: String {
@@ -19,26 +20,29 @@ enum UserType: String {
     
 }
 class SignUpViewController: UIViewController {
-
+    
     var appleButton = ASAuthorizationAppleIDButton()
     fileprivate var socialLogin = SocialLoginHelper ()
     @IBOutlet weak var twitterLbl: UILabel!
     @IBOutlet weak var facebookLbl: UILabel!
+    @IBOutlet weak var socialLoginViews1: UIStackView!
     @IBOutlet weak var socialLoginViews: UIStackView!
     @IBOutlet weak var lastNameTxtFld: UITextField!
     @IBOutlet weak var passwordTxtFld: UITextField!
     @IBOutlet weak var phoneNumberTxtFld: UITextField!
+    @IBOutlet weak var linkedinBtn: UIButton!
     @IBOutlet weak var nameTxtFld: UITextField!
     @IBOutlet weak var attributedLbl: UILabel!
     @IBOutlet weak var faceBookButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
+    @IBOutlet weak var TwitterBtn: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var emailIdTxtFld: UITextField!
     var param = [String: AnyObject]()
     private lazy var loader  : UIView = {
-             return createActivityIndicator(self.view)
+        return createActivityIndicator(self.view)
     }()
     var signUpModel: SignUpModel?
     var viewEffect = 0 {
@@ -58,15 +62,16 @@ class SignUpViewController: UIViewController {
         
         didSet {
             UIView.animate(withDuration: 0.1) {
-                           for view in self.socialLoginViews.subviews {
-                               
-                               view.applyShadow()
-                               
-                           }
+                for view in self.socialLoginViews.subviews {
+                    view.applyShadow()
                 }
+                for view in self.socialLoginViews1.subviews {
+                    view.applyShadow()
+                }
+            }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,7 +96,62 @@ class SignUpViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        
+    }
+    
+    @IBAction func faceBookBtnAction(_ sender: UIButton) {
+        FacebookController.shared.getFacebookUserInfo(fromViewController: self, isSilentLogin: false, success: { [weak self] (model) in
+            guard let _ = self else {return}
+            print(model)
+            //            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: "facebook", phoneNo: "", profilePicture: model.picture?.description ?? "")
+            }, failure: { (error) in
+                print(error?.localizedDescription.description)
+        })
+    }
+    
+    @IBAction func twitterBtnAction(_ sender: UIButton) {
+        TWTRTwitter.sharedInstance().logIn { (session, error) in
+            if (session != nil) {
+                
+                let client = TWTRAPIClient.withCurrentUser()
+                print("session",session)
+                print("error",error)
+                print("session?.userName",session?.userName)
+                print("session?.userID",session?.userID)
+                print("session?.accessToken",session?.authToken)
+                
+                client.requestEmail { email, error in
+                    print("email",email)
+                    print("error",error)
+                    
+                    if (email != nil) {
+                        print("signed in as \(String(describing: session?.userName))");
+                        let firstName = session?.userName ?? ""   // received first name
+                        let lastName = session?.userName ?? ""  // received last name
+                        let recivedEmailID = email ?? ""   // received email
+                        
+                        
+                    }else {
+                        print("error: \(String(describing: error?.localizedDescription))");
+                    }
+                }
+            }else {
+                print("error: \(String(describing: error?.localizedDescription))");
+            }
+        }
+    }
+    
+    @IBAction func googleBtnAction(_ sender: UIButton) {
+        GoogleLoginController.shared.login(fromViewController: self, success: { [weak self] (model) in
+            guard let _ = self else {return}
+            print(model)
+            //            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: "google", phoneNo: "", profilePicture: model.image?.description ?? "")
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    @IBAction func linkedinBtnAction(_ sender: UIButton) {
+        self.linkedLogin(vc: self)
     }
     
 }
@@ -105,7 +165,7 @@ extension SignUpViewController {
         facebookLbl.text = Constants.string.facebook.localize()
         titleLbl.text = Constants.string.signUp.localize().uppercased()
         signUpButton.setGradientBackground()
-       
+        
         attributedLbl.halfTextColorChange(fullText: Constants.string.donotHaveSignInAccount.localize(), changeText: Constants.string.signIn.localize())
         signUpButton.titleLabel?.textColor = UIColor(hex: appBGColor)
         signUpButton.setTitle(Constants.string.signUp.localize().uppercased(), for: .normal)
@@ -114,11 +174,60 @@ extension SignUpViewController {
         lastNameTxtFld.applyEffectToTextField(placeHolderString: Constants.string.lastName.localize())
         phoneNumberTxtFld.applyEffectToTextField(placeHolderString: Constants.string.phoneNumber.localize())
         passwordTxtFld.applyEffectToTextField(placeHolderString: Constants.string.password.localize())
-    
+        
     }
     
     func setFont() {
         attributedLbl.textAlignment = .center
+    }
+    
+    func linkedLogin(vc: UIViewController) {
+        
+        let linkedinHelper = LinkedinSwiftHelper(
+            configuration: LinkedinSwiftConfiguration(clientId: AppConstants.linkedIn_Client_Id, clientSecret: AppConstants.linkedIn_ClientSecret, state: AppConstants.linkedIn_States, permissions: AppConstants.linkedIn_Permissions, redirectUrl: AppConstants.linkedIn_redirectUri)
+        )
+        
+        linkedinHelper.authorizeSuccess({ (lsToken) -> Void in
+            //Login success lsToken
+            
+            
+            linkedinHelper.requestURL("https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,headline,picture-url,public-profile-url)?format=json", requestType: LinkedinSwiftRequestGet, success: { (response) -> Void in
+                
+                guard let data = response.jsonObject else {return}
+                
+                if let email = data["emailAddress"] as? String, email.isEmpty {
+                    //show toast
+                    //                        AppToast.default.showToastMessage(message: LocalizedString.AllowEmailInLinkedIn.localized)
+                    linkedinHelper.logout()
+                }
+                else {
+                    //                        self.userData.authKey     = linkedinHelper.lsAccessToken?.accessToken ?? ""
+                    //                        self.userData.firstName  = data["firstName"] as? String ?? ""
+                    //                        self.userData.lastName  = data["lastName"]  as? String ?? ""
+                    //                        self.userData.id            = data["id"] as? String ?? ""
+                    //                        self.userData.service   = "linkedin_oauth2"
+                    //                        self.userData.email      =  data["emailAddress"] as? String ?? ""
+                    //                        self.userData.picture   = data["pictureUrl"] as? String ?? ""
+                    
+                    print(response)
+                    //                    completionBlock?(true)
+                    //                        self.webserviceForSocialLogin()
+                    //                        linkedinHelper.logout()
+                }
+            }) { (error) -> Void in
+                //                completionBlock?(false)
+                //Encounter error
+                print(error.localizedDescription)
+            }
+            
+        }, error: { (error) -> Void in
+            //Encounter error: error.localizedDescription
+            //            completionBlock?(false)
+            print(error.localizedDescription)
+        }, cancel: { () -> Void in
+            //User Cancelled!
+            //            completionBlock?(false)
+        })
     }
 }
 
@@ -167,31 +276,31 @@ extension SignUpViewController {
     }
     @IBAction func facebookRedirection(_ sender: UIButton) {
         
-        socialLogin.loginThroughFacebook(fromViewController: self, helperDelegate: self)
     }
+    
     @IBAction func googleRedirection(_ sender: UIButton) {
         
         TWTRTwitter.sharedInstance().logIn { (session, error) in
             if (session != nil) {
-
+                
                 let client = TWTRAPIClient.withCurrentUser()
                 print("session",session)
                 print("error",error)
                 print("session?.userName",session?.userName)
                 print("session?.userID",session?.userID)
                 print("session?.accessToken",session?.authToken)
-
+                
                 client.requestEmail { email, error in
                     print("email",email)
                     print("error",error)
-
+                    
                     if (email != nil) {
                         print("signed in as \(String(describing: session?.userName))");
                         let firstName = session?.userName ?? ""   // received first name
                         let lastName = session?.userName ?? ""  // received last name
                         let recivedEmailID = email ?? ""   // received email
-
-
+                        
+                        
                     }else {
                         print("error: \(String(describing: error?.localizedDescription))");
                     }
@@ -205,7 +314,7 @@ extension SignUpViewController {
 
 //MARK: - UITextField Delegate
 extension SignUpViewController: UITextFieldDelegate {
- 
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         view.endEditingForce()
         return true
@@ -221,13 +330,13 @@ extension SignUpViewController {
     private func validateEmail()->String? {
         
         guard let email = emailIdTxtFld.text?.trimmingCharacters(in: .whitespaces), !email.isEmpty else {
-           
+            
             ToastManager.show(title:  ErrorMessage.list.enterEmail.localize(), state: .error)
             return nil
         }
         guard Common.isValid(email: email) else {
-               ToastManager.show(title:  ErrorMessage.list.enterValidEmail.localize(), state: .error)
-           
+            ToastManager.show(title:  ErrorMessage.list.enterValidEmail.localize(), state: .error)
+            
             return nil
         }
         
@@ -245,10 +354,10 @@ extension SignUpViewController: PresenterOutputProtocol {
         switch api {
         case Base.signUp.rawValue:
             
-              self.loader.isHidden = true
-              self.signUpModel = dataDict as? SignUpModel
-              ToastManager.show(title:  SuccessMessage.string.emailVerifySuccess.localize(), state: .success)
-              self.navigationController?.popViewController(animated: true)
+            self.loader.isHidden = true
+            self.signUpModel = dataDict as? SignUpModel
+            ToastManager.show(title:  SuccessMessage.string.emailVerifySuccess.localize(), state: .success)
+            self.navigationController?.popViewController(animated: true)
             
         default:
             break
@@ -256,14 +365,14 @@ extension SignUpViewController: PresenterOutputProtocol {
     }
     
     func showError(error: CustomError) {
-         self.loader.isHidden = true
-         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }
 
 // MARK: - Social login helper delegate methods
 extension SignUpViewController : SocialLoginHelperDelegate {
-
+    
     func didReceiveFacebookLoginUser(detail: FacebookUserDetail) {
         
         print("Name: \(detail.name)")

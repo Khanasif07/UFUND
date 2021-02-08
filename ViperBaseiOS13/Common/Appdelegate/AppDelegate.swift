@@ -11,6 +11,7 @@ import CoreData
 import IQKeyboardManagerSwift
 import UserNotifications
 import Firebase
+import GoogleSignIn
 import TwitterKit
 import FirebaseMessaging
 
@@ -32,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                window?.rootViewController = navigationController
                window?.makeKeyAndVisible()
         
-        
+        GoogleLoginController.shared.configure(withClientId: AppConstants.googleId)
         setGoogleMapKey()
         setLocalization(language: Language.english)
         self.registerPush(forApp: application)
