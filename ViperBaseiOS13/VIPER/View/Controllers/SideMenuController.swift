@@ -11,17 +11,6 @@ import Foundation
 import ObjectMapper
 import SDWebImage
 
-class SideMenuCell: UITableViewCell {
-    
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var titleLbl: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-}
-
 class SideMenuController: UIViewController {
     
     @IBAction func profileRedirect(_ sender: UIButton) {
@@ -29,7 +18,7 @@ class SideMenuController: UIViewController {
         self.push(to: Storyboard.Ids.UserProfileVC)
 //        self.push(to: Storyboard.Ids.EditProfileViewController)
     }
-    
+    @IBOutlet weak var topCloseBtn: UIButton!
     @IBOutlet weak var topRoundedView: UIView!
     @IBOutlet weak var buttonContainerStackView: UIStackView!
     @IBOutlet weak var tableView: UITableView!
@@ -51,12 +40,12 @@ class SideMenuController: UIViewController {
             
             if isFromCampainer {
                 
-                menuContent = [(Constants.string.tokenRequests.localize(),[]),(Constants.string.MyProducts.localize(),[]),(Constants.string.history.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.Notification.localize(),[])]
-                sideMenuImg =   [#imageLiteral(resourceName: "sideVynil"),#imageLiteral(resourceName: "sideSoild"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "logout")]
+                menuContent = [(Constants.string.dashboard.localize(),[]),(Constants.string.myProfile.localize(),[]),(Constants.string.tokenRequests.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.history.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.Notification.localize(),[])]
+                sideMenuImg =   [#imageLiteral(resourceName: "icDashboard"),#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "sideVynil"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "logout")]
                 
             } else {
-                menuContent = [(Constants.string.allProduct.localize(),[]),(Constants.string.MyProducts.localize(),[]),(Constants.string.history.localize(),[]),(Constants.string.coinpay.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.Notification.localize(),[]),(Constants.string.security.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [#imageLiteral(resourceName: "sideSoild"),#imageLiteral(resourceName: "sideSoild"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "logout")]
+                menuContent = [(Constants.string.dashboard.localize(),[]),(Constants.string.myProfile.localize(),[]),(Constants.string.allProduct.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.history.localize(),[]),(Constants.string.coinpay.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.Notification.localize(),[]),(Constants.string.security.localize(),[]),(Constants.string.logout.localize(),[])]
+                sideMenuImg =   [#imageLiteral(resourceName: "icDashboard"),#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "sideSoild"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "icLogout")]
             }
         }
     }
@@ -88,6 +77,7 @@ class SideMenuController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtons()
+        self.tableView.registerCell(with: SideMenuTableCell.self)
         self.tableView.registerHeaderFooter(with: SideMenuHeaderView.self)
         profileImg.backgroundColor = .white
         profileName.textColor = .white
@@ -112,6 +102,7 @@ class SideMenuController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupViews()
+        topCloseBtn.setCirclerCornerRadius()
         profileImg.setCirclerCornerRadius()
         campaignerButton.setTitle(Constants.string.campaignerSide.localize(), for: .normal)
         investButton.setTitle(Constants.string.InvestorSide.localize(), for: .normal)
@@ -161,9 +152,14 @@ class SideMenuController: UIViewController {
         
         UserDefaults.standard.set(UserType.investor.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
         setUpUserType()
-//        self.drawerController?.closeSide()
-//        self.push(to: Storyboard.Ids.HomeViewController)
+        //        self.drawerController?.closeSide()
+        //        self.push(to: Storyboard.Ids.HomeViewController)
         
+    }
+    
+    @IBAction func topCloseBtnAction(_ sender: UIButton) {
+        self.drawerController?.closeSide()
+        self.push(to: Storyboard.Ids.HomeViewController)
     }
     
 }
@@ -202,9 +198,9 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.SideMenuCell, for: indexPath) as! SideMenuCell
-        cell.backgroundColor = .clear
-        cell.imageView?.image = sideMenuImg?[indexPath.section]
+        let cell = tableView.dequeueCell(with: SideMenuTableCell.self, indexPath: indexPath)
+//        cell.backgroundColor = .clear
+        cell.imgView.image = sideMenuImg?[indexPath.section]
         cell.titleLbl.text = nullStringToEmpty(string: menuContent?[indexPath.section].1[indexPath.row])
         return  cell
     }
@@ -235,8 +231,21 @@ extension  SideMenuController {
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.EditProfileViewController)
         case Constants.string.Products.localize():
-            self.drawerController?.closeSide()
-            self.push(to: Storyboard.Ids.ProductViewController)
+            if self.menuContent?[section].1.isEmpty ?? true{
+                self.menuContent?[section].1 = ["My Product","New Product","All Product"]
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.layoutIfNeeded()
+                }, completion: {res in })
+                tableView.reloadData()
+            } else {
+                self.menuContent?[section].1 = []
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.view.layoutIfNeeded()
+                }, completion: {res in })
+                tableView.reloadData()
+            }
+//            self.drawerController?.closeSide()
+//            self.push(to: Storyboard.Ids.ProductViewController)
         case Constants.string.TokenizedAssets.localize():
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.TokenizedAssetsListViewController)
@@ -300,31 +309,18 @@ extension  SideMenuController {
             self.push(to: Storyboard.Ids.TokenRequestViewController)
             
         case Constants.string.allProduct.localize():
-            if self.menuContent?[section].1.isEmpty ?? true{
-                self.menuContent?[section].1 = ["my product","New Product","All product"]
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.layoutIfNeeded()
-                }, completion: {res in })
-                tableView.reloadData()
+            self.drawerController?.closeSide()
+
+            if isFromCampainer {
+                let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as! TokenProductViewController
+                viewController.tileStr = Constants.string.all.localize()
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
             } else {
-                self.menuContent?[section].1 = []
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.layoutIfNeeded()
-                }, completion: {res in })
-                tableView.reloadData()
+                let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as! ProductListViewController
+                viewController.tileStr = Constants.string.all.localize()
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
             }
-//            self.drawerController?.closeSide()
-//
-//            if isFromCampainer {
-//                let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as! TokenProductViewController
-//                viewController.tileStr = Constants.string.all.localize()
-//                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
-//            } else {
-//                let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as! ProductListViewController
-//                viewController.tileStr = Constants.string.all.localize()
-//                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
-//            }
-//
+
             
         case Constants.string.InvestorSide.localize():
             

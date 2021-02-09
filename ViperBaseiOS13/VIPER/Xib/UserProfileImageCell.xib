@@ -19,19 +19,29 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rG-Y9-TlU">
                         <rect key="frame" x="16" y="0.0" width="294" height="152"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="lNn-6t-64P">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="account" translatesAutoresizingMaskIntoConstraints="NO" id="lNn-6t-64P">
                                 <rect key="frame" x="20" y="16" width="122" height="122"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="122" id="hQQ-2a-R0W"/>
                                     <constraint firstAttribute="width" secondItem="lNn-6t-64P" secondAttribute="height" id="z4J-Ed-hWi"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1K2-Z6-NK0">
+                                <rect key="frame" x="20" y="16" width="122" height="122"/>
+                                <connections>
+                                    <action selector="profileImgBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7IF-yd-OOZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="lNn-6t-64P" firstAttribute="top" secondItem="4rG-Y9-TlU" secondAttribute="top" constant="16" id="2KA-l1-wpb"/>
+                            <constraint firstItem="1K2-Z6-NK0" firstAttribute="leading" secondItem="lNn-6t-64P" secondAttribute="leading" id="FoJ-j0-uKv"/>
                             <constraint firstAttribute="bottom" secondItem="lNn-6t-64P" secondAttribute="bottom" constant="14" id="H9w-kc-scx"/>
                             <constraint firstItem="lNn-6t-64P" firstAttribute="leading" secondItem="4rG-Y9-TlU" secondAttribute="leading" constant="20" id="O2T-Ls-CS7"/>
+                            <constraint firstItem="1K2-Z6-NK0" firstAttribute="bottom" secondItem="lNn-6t-64P" secondAttribute="bottom" id="WC4-ym-0uh"/>
+                            <constraint firstItem="1K2-Z6-NK0" firstAttribute="top" secondItem="lNn-6t-64P" secondAttribute="top" id="dNh-c3-d2p"/>
+                            <constraint firstItem="1K2-Z6-NK0" firstAttribute="trailing" secondItem="lNn-6t-64P" secondAttribute="trailing" id="qhG-qO-d5r"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -51,6 +61,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="bg2" width="711" height="476"/>
+        <image name="account" width="22" height="22"/>
     </resources>
 </document>

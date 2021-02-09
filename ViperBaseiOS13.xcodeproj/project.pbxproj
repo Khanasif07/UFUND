@@ -206,6 +206,8 @@
 		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
 		84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */; };
 		84DD054F25D239AD003AC05C /* CountryCodeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */; };
+		84DD055225D293C6003AC05C /* SideMenuTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD055025D293C6003AC05C /* SideMenuTableCell.swift */; };
+		84DD055325D293C6003AC05C /* SideMenuTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DD055125D293C6003AC05C /* SideMenuTableCell.xib */; };
 		B2DACB3B1FC2E9E285069987 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */; };
 		DCEC9E4C4E18C05651097B83 /* Pods_ViperBaseiOS13Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464373271FCE0B49B1C910A /* Pods_ViperBaseiOS13Tests.framework */; };
 /* End PBXBuildFile section */
@@ -440,6 +442,8 @@
 		84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuHeaderView.xib; sourceTree = "<group>"; };
 		84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeTableCell.swift; sourceTree = "<group>"; };
 		84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCodeTableCell.xib; sourceTree = "<group>"; };
+		84DD055025D293C6003AC05C /* SideMenuTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableCell.swift; sourceTree = "<group>"; };
+		84DD055125D293C6003AC05C /* SideMenuTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableCell.xib; sourceTree = "<group>"; };
 		85623B6EAEE831F86E5BD1D3 /* Pods-ViperBaseiOS13Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.debug.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF23C120B0DB3AD60CE1CE6 /* Pods-ViperBaseiOS13Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1533,6 +1537,8 @@
 				84411E9E25D22B4600718BD1 /* UserProfilePhoneNoCell.xib */,
 				84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */,
 				84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */,
+				84DD055025D293C6003AC05C /* SideMenuTableCell.swift */,
+				84DD055125D293C6003AC05C /* SideMenuTableCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -1661,6 +1667,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DD055325D293C6003AC05C /* SideMenuTableCell.xib in Resources */,
 				086F139C246F12F000EA4355 /* SendTokenViewController.xib in Resources */,
 				089C287E23F18E8800230AB3 /* EmptyResultCell.xib in Resources */,
 				0825AB7D238BF2A80083AC42 /* HomeCell.xib in Resources */,
@@ -1965,6 +1972,7 @@
 				84411EA325D2307300718BD1 /* CountryPickerVC.swift in Sources */,
 				0825AB68238BBF920083AC42 /* NotificationViewController.swift in Sources */,
 				0809A4B923EC596700FCA3C3 /* ApprovalModel.swift in Sources */,
+				84DD055225D293C6003AC05C /* SideMenuTableCell.swift in Sources */,
 				0826B78C2386757000867CD5 /* Fonts.swift in Sources */,
 				0824B1202382A13200F81A9B /* Label.swift in Sources */,
 				0824B0E923828EFE00F81A9B /* WebService.swift in Sources */,

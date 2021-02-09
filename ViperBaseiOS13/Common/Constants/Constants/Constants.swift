@@ -144,6 +144,7 @@ struct Constants {
     let TokenizedAssets = "Tokenized Assets"
     let TokenizedAssetsDetail = "Tokenized Asset Details"
     let Assets = "Asset"
+    let myProfile = "My Profile"
     let tokenRequests = "Token Requests"
     let productRequests = "Product Requests"
     let totalSpent = "Total Investments"
