@@ -13,6 +13,7 @@ import UserNotifications
 import Firebase
 import GoogleSignIn
 import TwitterKit
+import LinkedinSwift
 import FirebaseMessaging
 
 
@@ -26,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
         // Override point for customization after application launch.
-        TWTRTwitter.sharedInstance().start(withConsumerKey:"hTpkPVU4pThkM0", consumerSecret:"ovEqziMzLpUOF163Qg2mj")
+        TWTRTwitter.sharedInstance().start(withConsumerKey:AppConstants.TWITTER_API_KEY, consumerSecret:AppConstants.TWITTER_API_SECRET)
         let navigationController = UINavigationController(rootViewController: Router.createModule())
                navigationController.isNavigationBarHidden = true
 
@@ -284,6 +285,17 @@ extension AppDelegate : MessagingDelegate {
         print("Received data message: \(remoteMessage.appData)")
     }
     // [END ios_10_data_message]
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if LinkedinSwiftHelper.shouldHandle(url) {
+            return LinkedinSwiftHelper.application(app, open: url, sourceApplication: nil, annotation: nil)
+        }
+        
+        return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
+    }
+    
 }
 
 

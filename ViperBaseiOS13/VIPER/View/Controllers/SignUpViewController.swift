@@ -104,7 +104,7 @@ class SignUpViewController: UIViewController {
             print(model)
             //            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: "facebook", phoneNo: "", profilePicture: model.picture?.description ?? "")
             }, failure: { (error) in
-                print(error?.localizedDescription.description)
+                print(error?.localizedDescription.description ?? "")
         })
     }
     
@@ -370,19 +370,19 @@ extension SignUpViewController: PresenterOutputProtocol {
     }
 }
 
-// MARK: - Social login helper delegate methods
-extension SignUpViewController : SocialLoginHelperDelegate {
-    
-    func didReceiveFacebookLoginUser(detail: FacebookUserDetail) {
-        
-        print("Name: \(detail.name)")
-        print("UserName: \(detail.userName)")
-        print("Email: \(detail.email)")
-        print("UserId: \(detail.userId)")
-    }
-    
-    func didReceiveFacebookLoginError(message: String) {
-        
-        print("******* didReceiveFacebookLoginError: \(message)")
-    }
-}
+//// MARK: - Social login helper delegate methods
+//extension SignUpViewController : SocialLoginHelperDelegate {
+//
+//    func didReceiveFacebookLoginUser(detail: FacebookUserDetail) {
+//
+//        print("Name: \(detail.name)")
+//        print("UserName: \(detail.userName)")
+//        print("Email: \(detail.email)")
+//        print("UserId: \(detail.userId)")
+//    }
+//
+//    func didReceiveFacebookLoginError(message: String) {
+//
+//        print("******* didReceiveFacebookLoginError: \(message)")
+//    }
+//}

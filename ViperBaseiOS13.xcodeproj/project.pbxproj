@@ -190,8 +190,22 @@
 		84411E8725D1044700718BD1 /* FacebookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8625D1044700718BD1 /* FacebookController.swift */; };
 		84411E8A25D1048900718BD1 /* GoogleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8925D1048900718BD1 /* GoogleController.swift */; };
 		84411E8D25D1099F00718BD1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8C25D1099F00718BD1 /* AppConstants.swift */; };
+		84411E9025D1449C00718BD1 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8F25D1449C00718BD1 /* UserProfileVC.swift */; };
+		84411E9225D147ED00718BD1 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E9125D147ED00718BD1 /* UserProfileHeaderView.swift */; };
+		84411E9425D1480700718BD1 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84411E9325D1480700718BD1 /* UserProfileHeaderView.xib */; };
+		84411E9725D14C0400718BD1 /* UserProfileTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E9525D14C0400718BD1 /* UserProfileTableCell.swift */; };
+		84411E9825D14C0400718BD1 /* UserProfileTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84411E9625D14C0400718BD1 /* UserProfileTableCell.xib */; };
+		84411E9B25D1577C00718BD1 /* UserProfileImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E9925D1577C00718BD1 /* UserProfileImageCell.swift */; };
+		84411E9C25D1577C00718BD1 /* UserProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84411E9A25D1577C00718BD1 /* UserProfileImageCell.xib */; };
+		84411E9F25D22B4600718BD1 /* UserProfilePhoneNoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E9D25D22B4600718BD1 /* UserProfilePhoneNoCell.swift */; };
+		84411EA025D22B4600718BD1 /* UserProfilePhoneNoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84411E9E25D22B4600718BD1 /* UserProfilePhoneNoCell.xib */; };
+		84411EA325D2307300718BD1 /* CountryPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA225D2307300718BD1 /* CountryPickerVC.swift */; };
+		84411EA525D2311500718BD1 /* CountryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA425D2311500718BD1 /* CountryVM.swift */; };
+		84411EA725D2315000718BD1 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA625D2315000718BD1 /* CountryModel.swift */; };
 		84B451DA25CD322F001DD54A /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */; };
 		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
+		84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */; };
+		84DD054F25D239AD003AC05C /* CountryCodeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */; };
 		B2DACB3B1FC2E9E285069987 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */; };
 		DCEC9E4C4E18C05651097B83 /* Pods_ViperBaseiOS13Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464373271FCE0B49B1C910A /* Pods_ViperBaseiOS13Tests.framework */; };
 /* End PBXBuildFile section */
@@ -410,8 +424,22 @@
 		84411E8625D1044700718BD1 /* FacebookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookController.swift; sourceTree = "<group>"; };
 		84411E8925D1048900718BD1 /* GoogleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleController.swift; sourceTree = "<group>"; };
 		84411E8C25D1099F00718BD1 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		84411E8F25D1449C00718BD1 /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
+		84411E9125D147ED00718BD1 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
+		84411E9325D1480700718BD1 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
+		84411E9525D14C0400718BD1 /* UserProfileTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableCell.swift; sourceTree = "<group>"; };
+		84411E9625D14C0400718BD1 /* UserProfileTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileTableCell.xib; sourceTree = "<group>"; };
+		84411E9925D1577C00718BD1 /* UserProfileImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageCell.swift; sourceTree = "<group>"; };
+		84411E9A25D1577C00718BD1 /* UserProfileImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileImageCell.xib; sourceTree = "<group>"; };
+		84411E9D25D22B4600718BD1 /* UserProfilePhoneNoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhoneNoCell.swift; sourceTree = "<group>"; };
+		84411E9E25D22B4600718BD1 /* UserProfilePhoneNoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfilePhoneNoCell.xib; sourceTree = "<group>"; };
+		84411EA225D2307300718BD1 /* CountryPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerVC.swift; sourceTree = "<group>"; };
+		84411EA425D2311500718BD1 /* CountryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryVM.swift; sourceTree = "<group>"; };
+		84411EA625D2315000718BD1 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuHeaderView.xib; sourceTree = "<group>"; };
+		84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeTableCell.swift; sourceTree = "<group>"; };
+		84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCodeTableCell.xib; sourceTree = "<group>"; };
 		85623B6EAEE831F86E5BD1D3 /* Pods-ViperBaseiOS13Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.debug.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF23C120B0DB3AD60CE1CE6 /* Pods-ViperBaseiOS13Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -581,6 +609,7 @@
 				0809A4B823EC596700FCA3C3 /* ApprovalModel.swift */,
 				084811EE23ED77A00063CC0E /* ProductModel.swift */,
 				089C287823F1884B00230AB3 /* NotificationModel.swift */,
+				84411EA625D2315000718BD1 /* CountryModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -625,6 +654,8 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				84411EA125D2305800718BD1 /* CountryPicker */,
+				84411E8E25D1447500718BD1 /* UserProfile */,
 				0828C38823FA698100B39256 /* ProdDetailViewController.swift */,
 				08B55EBD2387E5940014E660 /* BaseTabController.swift */,
 				083228A72424C56400CCFA1B /* TokenProductViewController.swift */,
@@ -1470,11 +1501,38 @@
 			path = AppConstants;
 			sourceTree = "<group>";
 		};
+		84411E8E25D1447500718BD1 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				84411E8F25D1449C00718BD1 /* UserProfileVC.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
+		84411EA125D2305800718BD1 /* CountryPicker */ = {
+			isa = PBXGroup;
+			children = (
+				84411EA225D2307300718BD1 /* CountryPickerVC.swift */,
+				84411EA425D2311500718BD1 /* CountryVM.swift */,
+			);
+			path = CountryPicker;
+			sourceTree = "<group>";
+		};
 		84B451D825CD3204001DD54A /* Xib */ = {
 			isa = PBXGroup;
 			children = (
 				84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */,
 				84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */,
+				84411E9125D147ED00718BD1 /* UserProfileHeaderView.swift */,
+				84411E9325D1480700718BD1 /* UserProfileHeaderView.xib */,
+				84411E9525D14C0400718BD1 /* UserProfileTableCell.swift */,
+				84411E9625D14C0400718BD1 /* UserProfileTableCell.xib */,
+				84411E9925D1577C00718BD1 /* UserProfileImageCell.swift */,
+				84411E9A25D1577C00718BD1 /* UserProfileImageCell.xib */,
+				84411E9D25D22B4600718BD1 /* UserProfilePhoneNoCell.swift */,
+				84411E9E25D22B4600718BD1 /* UserProfilePhoneNoCell.xib */,
+				84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */,
+				84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -1609,7 +1667,9 @@
 				0825AB82238BF61E0083AC42 /* GridCell.xib in Resources */,
 				0826B7C12386850300867CD5 /* OpenSans-Semibold.otf in Resources */,
 				08A905D023BDD77900C794F1 /* ProductDecpCell.xib in Resources */,
+				84411E9425D1480700718BD1 /* UserProfileHeaderView.xib in Resources */,
 				0820702D23DEC08C006793D8 /* OTPViewController.xib in Resources */,
+				84411EA025D22B4600718BD1 /* UserProfilePhoneNoCell.xib in Resources */,
 				085AC03424AF1EB000FFAD96 /* coin_payment.html in Resources */,
 				086F138E246EB3C100EA4355 /* HistoryCell.xib in Resources */,
 				0826B7BB238680F300867CD5 /* OpenSans-Bold.otf in Resources */,
@@ -1618,6 +1678,7 @@
 				0826B7BD238680F300867CD5 /* OpenSans-Regular.otf in Resources */,
 				0821E8F8241B8C4300263674 /* CryptoReceiveViewController.xib in Resources */,
 				0826B7C62386934700867CD5 /* WalkThroughCell.xib in Resources */,
+				84411E9C25D1577C00718BD1 /* UserProfileImageCell.xib in Resources */,
 				088E33C124CAF382001EE899 /* DatePickerViewController.xib in Resources */,
 				0824B0C52382847800F81A9B /* countryCodes.json in Resources */,
 				0825AB86238C0B4C0083AC42 /* HeaderCell.xib in Resources */,
@@ -1626,7 +1687,9 @@
 				0824B035238280E800F81A9B /* LaunchScreen.storyboard in Resources */,
 				0825AB6D238BC0940083AC42 /* NotificationCell.xib in Resources */,
 				0825A05A23B4A003001BEC21 /* ProductListCell.xib in Resources */,
+				84DD054F25D239AD003AC05C /* CountryCodeTableCell.xib in Resources */,
 				0824B032238280E800F81A9B /* Assets.xcassets in Resources */,
+				84411E9825D14C0400718BD1 /* UserProfileTableCell.xib in Resources */,
 				0825AB74238BD53C0083AC42 /* CategoriesCell.xib in Resources */,
 				84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */,
 				087B7B86241D0F5B0024D998 /* FundCell.xib in Resources */,
@@ -1820,6 +1883,7 @@
 				0825A05923B4A003001BEC21 /* ProductListCell.swift in Sources */,
 				0824B1272382B23900F81A9B /* User.swift in Sources */,
 				088E33C224CAF382001EE899 /* DatePickerViewController.swift in Sources */,
+				84411E9F25D22B4600718BD1 /* UserProfilePhoneNoCell.swift in Sources */,
 				0824B0C12382847800F81A9B /* UIAplication+RLT.swift in Sources */,
 				0824B0D72382847800F81A9B /* Colors.swift in Sources */,
 				081E32DE2386A6CE009096DD /* SignInViewController.swift in Sources */,
@@ -1836,11 +1900,13 @@
 				08918BAC23852CC300F274C2 /* ButtonExtension.swift in Sources */,
 				08DF504723B1E91700621C0E /* SecurityCell.swift in Sources */,
 				08294D76238E7856008108A2 /* ProductViewController.swift in Sources */,
+				84411E9225D147ED00718BD1 /* UserProfileHeaderView.swift in Sources */,
 				0824B0B92382847800F81A9B /* AVPlayerHelper.swift in Sources */,
 				0824B11A2382A13200F81A9B /* View.swift in Sources */,
 				083E73852387D07F00F3E90A /* ForgetViewController.swift in Sources */,
 				080FC59B238D5C000013B37D /* WalletViewController.swift in Sources */,
 				08730BD72473E27A005F9E74 /* Transactions.swift in Sources */,
+				84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */,
 				0824B0D32382847800F81A9B /* Constants.swift in Sources */,
 				0824B0C02382847800F81A9B /* UIView+Blur.swift in Sources */,
 				0826E94723C86A92000D98D3 /* PdfViewController.swift in Sources */,
@@ -1882,6 +1948,7 @@
 				0824B0D52382847800F81A9B /* Identifiers.swift in Sources */,
 				08B55EC42387ECEC0014E660 /* AccountCell.swift in Sources */,
 				0824B0DC2382847800F81A9B /* ShimmerButton.swift in Sources */,
+				84411EA725D2315000718BD1 /* CountryModel.swift in Sources */,
 				0828C38923FA698100B39256 /* ProdDetailViewController.swift in Sources */,
 				0824B1052382A12000F81A9B /* Bundle.swift in Sources */,
 				0825A05523B49C5F001BEC21 /* ProductListViewController.swift in Sources */,
@@ -1893,7 +1960,9 @@
 				089C287D23F18E8800230AB3 /* EmptyResultCell.swift in Sources */,
 				0824B0D82382847800F81A9B /* ErrorMessages.swift in Sources */,
 				0824B0D22382847800F81A9B /* MakeJson.swift in Sources */,
+				84411E9B25D1577C00718BD1 /* UserProfileImageCell.swift in Sources */,
 				84411E8D25D1099F00718BD1 /* AppConstants.swift in Sources */,
+				84411EA325D2307300718BD1 /* CountryPickerVC.swift in Sources */,
 				0825AB68238BBF920083AC42 /* NotificationViewController.swift in Sources */,
 				0809A4B923EC596700FCA3C3 /* ApprovalModel.swift in Sources */,
 				0826B78C2386757000867CD5 /* Fonts.swift in Sources */,
@@ -1901,6 +1970,7 @@
 				0824B0E923828EFE00F81A9B /* WebService.swift in Sources */,
 				082932DB23C76F3700CAA6C2 /* AssetsImgCell.swift in Sources */,
 				086F1387246EA65500EA4355 /* HistoryViewController.swift in Sources */,
+				84411EA525D2311500718BD1 /* CountryVM.swift in Sources */,
 				0824B1082382A12000F81A9B /* NavigationBar.swift in Sources */,
 				0824B0D92382847800F81A9B /* Global.swift in Sources */,
 				0824B10A2382A12000F81A9B /* Sequence.swift in Sources */,
@@ -1909,6 +1979,7 @@
 				0824B11C2382A13200F81A9B /* TextFieldEffects.swift in Sources */,
 				0824B0C22382847800F81A9B /* ParallaxHeader.swift in Sources */,
 				0824B10D2382A12000F81A9B /* ViewExtension.swift in Sources */,
+				84411E9725D14C0400718BD1 /* UserProfileTableCell.swift in Sources */,
 				0820702E23DEC08C006793D8 /* OTPViewController.swift in Sources */,
 				0824B11B2382A13200F81A9B /* HoshiTextField.swift in Sources */,
 				086F138D246EB3C100EA4355 /* HistoryCell.swift in Sources */,
@@ -1940,6 +2011,7 @@
 				0824B0E1238284C600F81A9B /* Interactor.swift in Sources */,
 				0829042423C0736E009FB489 /* AddAssetsViewController.swift in Sources */,
 				0824B0C32382847800F81A9B /* Bind.swift in Sources */,
+				84411E9025D1449C00718BD1 /* UserProfileVC.swift in Sources */,
 				0824B0BF2382847800F81A9B /* UIScrollView+ParallaxHeader.swift in Sources */,
 				086F1385246EA62100EA4355 /* SellHistory.swift in Sources */,
 				086F1397246F094C00EA4355 /* SendViewController.swift in Sources */,

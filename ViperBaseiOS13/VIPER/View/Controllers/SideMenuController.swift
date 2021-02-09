@@ -26,7 +26,8 @@ class SideMenuController: UIViewController {
     
     @IBAction func profileRedirect(_ sender: UIButton) {
         self.drawerController?.closeSide()
-        self.push(to: Storyboard.Ids.EditProfileViewController)
+        self.push(to: Storyboard.Ids.UserProfileVC)
+//        self.push(to: Storyboard.Ids.EditProfileViewController)
     }
     
     @IBOutlet weak var topRoundedView: UIView!

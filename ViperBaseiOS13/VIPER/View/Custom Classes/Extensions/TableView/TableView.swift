@@ -1,14 +1,32 @@
+
 //
-//  TableView.swift
-//  User
+//  UITableView+ UITableViewCellExtension.swift
+//  ArabianTyres
 //
-//  Created by CSS on 17/01/18.
-//  Copyright © 2018 Appoets. All rights reserved.
+//  Created by Admin on 03/09/20.
+//  Copyright © 2020 Admin. All rights reserved.
 //
 
+
+import Foundation
 import UIKit
 
+//MARK:-
 extension UITableView {
+    
+    ///Returns cell for the given item
+    func cell(forItem item: Any) -> UITableViewCell? {
+        if let indexPath = self.indexPath(forItem: item){
+            return self.cellForRow(at: indexPath)
+        }
+        return nil
+    }
+    
+    ///Returns the indexpath for the given item
+    func indexPath(forItem item: Any) -> IndexPath? {
+        let itemPosition: CGPoint = (item as AnyObject).convert(CGPoint.zero, to: self)
+        return self.indexPathForRow(at: itemPosition)
+    }
     
     ///Registers the given cell
     func registerClass(cellType:UITableViewCell.Type){
@@ -67,18 +85,30 @@ extension UITableView {
         return self.dequeueReusableHeaderFooterView(withIdentifier: "\(identifier.self)") as! T
     }
     
+    func reloadWithAnimation() {
+        UIView.transition(with: self,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          animations:
+            { () -> Void in
+                self.reloadData()
+        },completion: nil)
+    }
     
     func reloadInMainThread()
-    {
-        DispatchQueue.main.async {
-            self.reloadData()
-        }
-    }
+       {
+           DispatchQueue.main.async {
+               self.reloadData()
+           }
+       }
 }
-
 
 extension UITableViewCell {
     public static var defaultReuseIdentifier: String {
         return "\(self)"
     }
+    
+   
 }
+
+

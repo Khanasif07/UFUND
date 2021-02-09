@@ -11,6 +11,8 @@ import ObjectMapper
 import TwitterKit
 import FirebaseAnalytics
 import Firebase
+import LinkedinSwift
+import GoogleSignIn
 
 
 class SignInViewController: UIViewController {
@@ -103,17 +105,115 @@ class SignInViewController: UIViewController {
     //MARK: - Action
     //===================
     @IBAction func googleBtnAction(_ sender: UIButton) {
-        
+        GoogleLoginController.shared.login(fromViewController: self, success: { [weak self] (model) in
+            guard let _ = self else {return}
+            print(model)
+            //            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: "google", phoneNo: "", profilePicture: model.image?.description ?? "")
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     @IBAction func linkedinBtnAction(_ sender: UIButton) {
-        
+        self.linkedLogin(vc: self)
     }
+    
+    @IBAction func twiiterRedirection(_ sender: UIButton) {
+        TWTRTwitter.sharedInstance().logIn { (session, error) in
+            if (session != nil) {
+                
+                let client = TWTRAPIClient.withCurrentUser()
+                print("session",session)
+                print("error",error)
+                print("session?.userName",session?.userName)
+                print("session?.userID",session?.userID)
+                print("session?.accessToken",session?.authToken)
+                
+                client.requestEmail { email, error in
+                    print("email",email)
+                    print("error",error)
+                    
+                    if (email != nil) {
+                        print("signed in as \(String(describing: session?.userName))");
+                        let firstName = session?.userName ?? ""   // received first name
+                        let lastName = session?.userName ?? ""  // received last name
+                        let recivedEmailID = email ?? ""   // received email
+                        
+                        
+                    }else {
+                        print("error: \(String(describing: error?.localizedDescription))");
+                    }
+                }
+            }else {
+                print("error: \(String(describing: error?.localizedDescription))");
+            }
+        }
+    }
+    
+    @IBAction func redirectToFacebook(_ sender: UIButton) {
+        FacebookController.shared.getFacebookUserInfo(fromViewController: self, isSilentLogin: false, success: { [weak self] (model) in
+            guard let _ = self else {return}
+            print(model)
+            //            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: "facebook", phoneNo: "", profilePicture: model.picture?.description ?? "")
+            }, failure: { (error) in
+                print(error?.localizedDescription.description ?? "")
+        })
+    }
+    
     
 }
 
 //MARK: - Localization
 extension SignInViewController {
+    
+    func linkedLogin(vc: UIViewController) {
+           
+           let linkedinHelper = LinkedinSwiftHelper(
+               configuration: LinkedinSwiftConfiguration(clientId: AppConstants.linkedIn_Client_Id, clientSecret: AppConstants.linkedIn_ClientSecret, state: AppConstants.linkedIn_States, permissions: AppConstants.linkedIn_Permissions, redirectUrl: AppConstants.linkedIn_redirectUri)
+           )
+           
+           linkedinHelper.authorizeSuccess({ (lsToken) -> Void in
+               //Login success lsToken
+               
+               
+               linkedinHelper.requestURL("https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,headline,picture-url,public-profile-url)?format=json", requestType: LinkedinSwiftRequestGet, success: { (response) -> Void in
+                   
+                   guard let data = response.jsonObject else {return}
+                   
+                   if let email = data["emailAddress"] as? String, email.isEmpty {
+                       //show toast
+                       //                        AppToast.default.showToastMessage(message: LocalizedString.AllowEmailInLinkedIn.localized)
+                       linkedinHelper.logout()
+                   }
+                   else {
+                       //                        self.userData.authKey     = linkedinHelper.lsAccessToken?.accessToken ?? ""
+                       //                        self.userData.firstName  = data["firstName"] as? String ?? ""
+                       //                        self.userData.lastName  = data["lastName"]  as? String ?? ""
+                       //                        self.userData.id            = data["id"] as? String ?? ""
+                       //                        self.userData.service   = "linkedin_oauth2"
+                       //                        self.userData.email      =  data["emailAddress"] as? String ?? ""
+                       //                        self.userData.picture   = data["pictureUrl"] as? String ?? ""
+                       
+                       print(response)
+                       //                    completionBlock?(true)
+                       //                        self.webserviceForSocialLogin()
+                       //                        linkedinHelper.logout()
+                   }
+               }) { (error) -> Void in
+                   //                completionBlock?(false)
+                   //Encounter error
+                   print(error.localizedDescription)
+               }
+               
+           }, error: { (error) -> Void in
+               //Encounter error: error.localizedDescription
+               //            completionBlock?(false)
+               print(error.localizedDescription)
+           }, cancel: { () -> Void in
+               //User Cancelled!
+               //            completionBlock?(false)
+           })
+       }
     
     func localize() {
         
@@ -142,49 +242,6 @@ extension SignInViewController {
     func setFont() {
         attributedLbl.textAlignment = .center
     }
-}
-
-extension SignInViewController {
-    
-    @IBAction func twiiterRedirection(_ sender: UIButton) {
-           
-//          TWTRTwitter.sharedInstance().logIn { (session, error) in
-//                   if (session != nil) {
-//
-//                       let client = TWTRAPIClient.withCurrentUser()
-//                       print("session",session)
-//                       print("error",error)
-//                       print("session?.userName",session?.userName)
-//                       print("session?.userID",session?.userID)
-//                       print("session?.accessToken",session?.authToken)
-//
-//                       client.requestEmail { email, error in
-//                           print("email",email)
-//                           print("error",error)
-//
-//                           if (email != nil) {
-//                               print("signed in as \(String(describing: session?.userName))");
-//                               let firstName = session?.userName ?? ""   // received first name
-//                               let lastName = session?.userName ?? ""  // received last name
-//                               let recivedEmailID = email ?? ""   // received email
-//
-//
-//                           }else {
-//                               print("error: \(String(describing: error?.localizedDescription))");
-//                           }
-//                       }
-//                   }else {
-//                       print("error: \(String(describing: error?.localizedDescription))");
-//                   }
-//               }
-       }
-       @IBAction func redirectToFacebook(_ sender: UIButton) {
-          // socialLogin.loginThroughFacebook(fromViewController: self, helperDelegate: self)
-       }
-    
-    
-    
-    
 }
 
 //MARK: - Button Action

@@ -11,6 +11,24 @@ import UIKit
 
 extension UITextField {
     
+    // SET BUTTON TO RIGHT VIEW
+    //=========================
+    func setButtonToRightView(btn : UIButton, selectedImage : UIImage?, normalImage : UIImage?, size: CGSize?) {
+        
+        self.rightViewMode = .always
+        self.rightView = btn
+        
+        btn.isSelected = false
+        
+        if let selectedImg = selectedImage { btn.setImage(selectedImg, for: .selected) }
+        if let unselectedImg = normalImage { btn.setImage(unselectedImg, for: .normal) }
+        if let btnSize = size {
+            self.rightView?.frame.size = btnSize
+        } else {
+            self.rightView?.frame.size = CGSize(width: btn.intrinsicContentSize.width+10, height: self.frame.height)
+        }
+    }
+    
     func setLeftPaddingPoints(_ amount:CGFloat)
     {
         

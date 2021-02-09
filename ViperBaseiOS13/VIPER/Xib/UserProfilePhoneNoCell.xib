@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="NunitoSans-Bold.ttf">
+            <string>NunitoSans-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="115" id="KGk-i7-Jjw" customClass="UserProfilePhoneNoCell" customModule="UFUND" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="328" height="95"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="328" height="95"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NCo-B6-HUZ">
+                        <rect key="frame" x="16" y="0.0" width="296" height="95"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1r-tl-qkd">
+                                <rect key="frame" x="16" y="37" width="264" height="51"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Po-mi-qW5">
+                                        <rect key="frame" x="8" y="15" width="70" height="22"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfR-51-zzZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="22"/>
+                                                <state key="normal" image="dropDownButton"/>
+                                                <connections>
+                                                    <action selector="countryPickerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wXR-OS-dvS"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+91" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmz-NT-YbU">
+                                                <rect key="frame" x="46" y="0.0" width="24" height="22"/>
+                                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="qVP-Iw-rvj"/>
+                                        </constraints>
+                                    </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jdS-iQ-Ckb">
+                                        <rect key="frame" x="93" y="5" width="155" height="41"/>
+                                        <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="nil" keyPath="lineColor"/>
+                                            <userDefinedRuntimeAttribute type="nil" keyPath="placeholder"/>
+                                            <userDefinedRuntimeAttribute type="nil" keyPath="selectedLineColor"/>
+                                            <userDefinedRuntimeAttribute type="nil" keyPath="selectedTitle"/>
+                                            <userDefinedRuntimeAttribute type="nil" keyPath="placeholderColor"/>
+                                            <userDefinedRuntimeAttribute type="nil" keyPath="selectedTitleColor"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPc-UG-vQd">
+                                        <rect key="frame" x="8" y="45" width="70" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="GtZ-6H-A8X"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="jdS-iQ-Ckb" firstAttribute="leading" secondItem="3Po-mi-qW5" secondAttribute="trailing" constant="15" id="C1D-fO-LmR"/>
+                                    <constraint firstAttribute="height" constant="51" id="Ecz-wX-0Ko"/>
+                                    <constraint firstItem="jdS-iQ-Ckb" firstAttribute="top" secondItem="H1r-tl-qkd" secondAttribute="top" constant="5" id="LzE-gO-QsW"/>
+                                    <constraint firstItem="EPc-UG-vQd" firstAttribute="top" secondItem="3Po-mi-qW5" secondAttribute="bottom" constant="8" id="MGY-S9-R1m"/>
+                                    <constraint firstItem="3Po-mi-qW5" firstAttribute="leading" secondItem="H1r-tl-qkd" secondAttribute="leading" constant="8" id="TSf-Bm-Yta"/>
+                                    <constraint firstItem="EPc-UG-vQd" firstAttribute="leading" secondItem="3Po-mi-qW5" secondAttribute="leading" id="gqO-mn-iQT"/>
+                                    <constraint firstItem="EPc-UG-vQd" firstAttribute="bottom" secondItem="jdS-iQ-Ckb" secondAttribute="bottom" id="h0I-5v-Elr"/>
+                                    <constraint firstItem="EPc-UG-vQd" firstAttribute="trailing" secondItem="3Po-mi-qW5" secondAttribute="trailing" id="vhU-gy-Xx6"/>
+                                    <constraint firstAttribute="bottom" secondItem="jdS-iQ-Ckb" secondAttribute="bottom" constant="5" id="xQx-1I-g4f"/>
+                                    <constraint firstAttribute="trailing" secondItem="jdS-iQ-Ckb" secondAttribute="trailing" constant="16" id="zo1-Rn-yit"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9p-vn-TsC">
+                                <rect key="frame" x="16" y="11" width="36" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="H1r-tl-qkd" firstAttribute="leading" secondItem="NCo-B6-HUZ" secondAttribute="leading" constant="16" id="5LD-f7-Bnx"/>
+                            <constraint firstItem="p9p-vn-TsC" firstAttribute="leading" secondItem="H1r-tl-qkd" secondAttribute="leading" id="7lC-OV-MKi"/>
+                            <constraint firstItem="p9p-vn-TsC" firstAttribute="top" secondItem="NCo-B6-HUZ" secondAttribute="top" constant="11" id="YkY-UR-qnC"/>
+                            <constraint firstAttribute="bottom" secondItem="H1r-tl-qkd" secondAttribute="bottom" constant="7" id="aOI-CZ-3qg"/>
+                            <constraint firstAttribute="trailing" secondItem="H1r-tl-qkd" secondAttribute="trailing" constant="16" id="emD-Mp-U9a"/>
+                            <constraint firstItem="H1r-tl-qkd" firstAttribute="top" secondItem="p9p-vn-TsC" secondAttribute="bottom" constant="9" id="pRz-Jv-qu5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="NCo-B6-HUZ" secondAttribute="bottom" id="7r7-JY-Lip"/>
+                    <constraint firstAttribute="trailing" secondItem="NCo-B6-HUZ" secondAttribute="trailing" constant="16" id="Pa1-2r-Xkq"/>
+                    <constraint firstItem="NCo-B6-HUZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fSM-WG-jQo"/>
+                    <constraint firstItem="NCo-B6-HUZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="oob-f4-Dve"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="countryCodeLbl" destination="Qmz-NT-YbU" id="Vf1-hC-2Ut"/>
+                <outlet property="dataContainerView" destination="NCo-B6-HUZ" id="Ngt-Uo-Pn4"/>
+                <outlet property="phoneTextField" destination="jdS-iQ-Ckb" id="uwC-uP-jJR"/>
+                <outlet property="textFieldView" destination="H1r-tl-qkd" id="naR-KK-MfX"/>
+                <outlet property="titleLbl" destination="p9p-vn-TsC" id="nV6-VO-gWW"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="164.39732142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="dropDownButton" width="20" height="20"/>
+    </resources>
+</document>

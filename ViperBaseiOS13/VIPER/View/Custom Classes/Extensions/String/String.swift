@@ -10,6 +10,14 @@ import Foundation
 
 extension String {
     
+    ///Removes leading and trailing white spaces from the string
+    var byRemovingLeadingTrailingWhiteSpaces:String {
+        
+        let spaceSet = CharacterSet.whitespacesAndNewlines
+        return self.trimmingCharacters(in: spaceSet)
+    }
+    
+    
     static var Empty : String {
         return ""
     }

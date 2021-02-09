@@ -41,9 +41,11 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>li12426494</string>
+				<string>twitterkit-i9VUBLUWBBLg4tg2XBbXoTh5a</string>
 			</array>
 		</dict>
 	</array>
@@ -53,8 +55,6 @@
 	<string>1368229543515063</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>LIAppId</key>
-	<string>12426494</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
