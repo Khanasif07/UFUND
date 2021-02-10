@@ -67,7 +67,7 @@ struct Constants {
     let confirm = "Confirm"
     let newPassword = "New password"
     let confirmPassword = "Confirm password"
-    let changePassword = "Change password"
+    let changePassword = "Change Password"
     let forgotPassword = "Forgot your password ?"
     let disableTwoFactor = "Disable G2F ?"
     let enterYourOnetimePassword = "Enter your One time password"

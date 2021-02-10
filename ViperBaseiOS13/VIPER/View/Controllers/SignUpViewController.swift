@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import ObjectMapper
 import TwitterKit
 import LinkedinSwift
@@ -40,6 +41,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var emailIdTxtFld: UITextField!
+    @IBOutlet weak var socialBtnStackView: UIStackView!
+    
+    
     var param = [String: AnyObject]()
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
@@ -74,7 +78,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.addAppleLoginButtton()
         loginEffect = 0
         viewEffect = 0
         nameTxtFld.delegate = self
@@ -179,6 +183,11 @@ extension SignUpViewController {
     
     func setFont() {
         attributedLbl.textAlignment = .center
+    }
+    
+    private func addAppleLoginButtton(){
+        AppleLoginController.shared.delegate = self
+        AppleLoginController.shared.apploginButton(stackAppleLogin: self.socialBtnStackView, vc: self)
     }
     
     func linkedLogin(vc: UIViewController) {
@@ -386,3 +395,29 @@ extension SignUpViewController: PresenterOutputProtocol {
 //        print("******* didReceiveFacebookLoginError: \(message)")
 //    }
 //}
+
+
+extension SignUpViewController: AppleSignInProtocal {
+    func getAppleLoginData(loginData: [String:Any]) {
+        print(loginData)
+//        self.hitSocialLoginAPI(name: loginData[RegisterParam.keys.name] as? String ?? "", email: loginData[ApiKey.email] as? String ?? "" , socialId: loginData[ApiKey.socialId] as? String ?? "", socialType: "apple", phoneNo: "", profilePicture: "")
+    }
+    
+//    func getSocialParams(name : String , email : String , socialId : String , socialType : String ,phoneNo: String ,profilePicture : String) -> [String:Any]{
+//
+//        let dict : [String:Any] = [ApiKey.socialType: socialType,
+//                                     ApiKey.socialId: socialId,
+//                                     ApiKey.name: name,
+//                                     ApiKey.email: email ,
+//                                     ApiKey.phoneNo: phoneNo,
+//                                     ApiKey.image: profilePicture,
+//                                     ApiKey.countryCode : "",
+//                                     ApiKey.device : [ApiKey.platform: "ios", ApiKey.token: DeviceDetail.deviceToken].toJSONString() ?? ""]
+//        return dict
+//    }
+
+    func hitSocialLoginAPI(name : String , email : String , socialId : String , socialType : String ,phoneNo: String, profilePicture : String){
+//         viewModel.socailLoginApi(parameters: getSocialParams(name : name , email : email , socialId : socialId , socialType : socialType ,phoneNo: phoneNo ,profilePicture : profilePicture))
+        
+     }
+}

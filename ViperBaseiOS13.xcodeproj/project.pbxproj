@@ -203,6 +203,7 @@
 		84411EA525D2311500718BD1 /* CountryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA425D2311500718BD1 /* CountryVM.swift */; };
 		84411EA725D2315000718BD1 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA625D2315000718BD1 /* CountryModel.swift */; };
 		845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */; };
+		845B9DCE25D3FB4E009E388F /* AppleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */; };
 		84B451DA25CD322F001DD54A /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */; };
 		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
 		84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */; };
@@ -440,6 +441,7 @@
 		84411EA425D2311500718BD1 /* CountryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryVM.swift; sourceTree = "<group>"; };
 		84411EA625D2315000718BD1 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePopUpVC.swift; sourceTree = "<group>"; };
+		845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginController.swift; sourceTree = "<group>"; };
 		84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuHeaderView.xib; sourceTree = "<group>"; };
 		84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeTableCell.swift; sourceTree = "<group>"; };
@@ -803,6 +805,7 @@
 		0824B06C2382842C00F81A9B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				845B9DCC25D3FB38009E388F /* AppleManager */,
 				84411E8825D1045400718BD1 /* GoogleManager */,
 				84411E8525D1040B00718BD1 /* FacebookManager */,
 				082F7C1723CD93CB001475EA /* SocialLogin */,
@@ -1533,6 +1536,14 @@
 			path = EditProfilePopUp;
 			sourceTree = "<group>";
 		};
+		845B9DCC25D3FB38009E388F /* AppleManager */ = {
+			isa = PBXGroup;
+			children = (
+				845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */,
+			);
+			path = AppleManager;
+			sourceTree = "<group>";
+		};
 		84B451D825CD3204001DD54A /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1891,6 +1902,7 @@
 				0833AA6623D70F62005235A6 /* TokenRequestViewController.swift in Sources */,
 				085033612383D633009B76AE /* TutorialViewController.swift in Sources */,
 				08B55EC72387FB400014E660 /* HomeViewController.swift in Sources */,
+				845B9DCE25D3FB4E009E388F /* AppleLoginController.swift in Sources */,
 				0831D61A24A9C82A00813C8A /* KYCMatiViewController.swift in Sources */,
 				08730BD92473E2FC005F9E74 /* Get_token.swift in Sources */,
 				082F7C1923CD93CB001475EA /* SocialLoginHelper.swift in Sources */,

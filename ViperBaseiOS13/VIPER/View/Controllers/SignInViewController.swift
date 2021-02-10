@@ -17,6 +17,7 @@ import GoogleSignIn
 
 class SignInViewController: UIViewController {
     
+    @IBOutlet weak var socialBtnStackView: UIStackView!
     @IBOutlet weak var gFDisableButton: UIButton!
     fileprivate var socialLogin = SocialLoginHelper ()
     @IBOutlet weak var twitterLbl: UILabel!
@@ -65,6 +66,7 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addAppleLoginButtton()
         viewEffect = 0
         loginEffect = 0
         emailIdTxtFld.delegate = self
@@ -165,6 +167,11 @@ class SignInViewController: UIViewController {
 
 //MARK: - Localization
 extension SignInViewController {
+    
+    private func addAppleLoginButtton(){
+        AppleLoginController.shared.delegate = self
+        AppleLoginController.shared.apploginButton(stackAppleLogin: self.socialBtnStackView, vc: self)
+    }
     
     func linkedLogin(vc: UIViewController) {
            
@@ -359,20 +366,46 @@ extension SignInViewController {
         return email
     }
 }
+//
+//// MARK: - Social login helper delegate methods
+//extension SignInViewController : SocialLoginHelperDelegate {
+//
+//    func didReceiveFacebookLoginUser(detail: FacebookUserDetail) {
+//
+//        print("Name: \(detail.name)")
+//        print("UserName: \(detail.userName)")
+//        print("Email: \(detail.email)")
+//        print("UserId: \(detail.userId)")
+//    }
+//
+//    func didReceiveFacebookLoginError(message: String) {
+//
+//        print("******* didReceiveFacebookLoginError: \(message)")
+//    }
+//}
 
-// MARK: - Social login helper delegate methods
-extension SignInViewController : SocialLoginHelperDelegate {
 
-    func didReceiveFacebookLoginUser(detail: FacebookUserDetail) {
-        
-        print("Name: \(detail.name)")
-        print("UserName: \(detail.userName)")
-        print("Email: \(detail.email)")
-        print("UserId: \(detail.userId)")
+extension SignInViewController: AppleSignInProtocal {
+    func getAppleLoginData(loginData: [String:Any]) {
+//        self.hitSocialLoginAPI(name: loginData[ApiKey.name] as? String ?? "", email: loginData[ApiKey.email] as? String ?? "" , socialId: loginData[ApiKey.socialId] as? String ?? "", socialType: "apple", phoneNo: "", profilePicture: "")
     }
     
-    func didReceiveFacebookLoginError(message: String) {
+//    func getSocialParams(name : String , email : String , socialId : String , socialType : String ,phoneNo: String ,profilePicture : String) -> [String:Any]{
         
-        print("******* didReceiveFacebookLoginError: \(message)")
-    }
+//        let dict : [String:Any] = [ApiKey.socialType: socialType,
+//                                     ApiKey.socialId: socialId,
+//                                     ApiKey.name: name,
+//                                     ApiKey.email: email ,
+//                                     ApiKey.phoneNo: phoneNo,
+//                                     ApiKey.image: profilePicture,
+//                                     ApiKey.countryCode : "",
+//                                     ApiKey.device : [ApiKey.platform: "ios", ApiKey.token: DeviceDetail.deviceToken].toJSONString() ?? ""]
+//        return dict
+        
+//    }
+
+    func hitSocialLoginAPI(name : String , email : String , socialId : String , socialType : String ,phoneNo: String, profilePicture : String){
+//         viewModel.socailLoginApi(parameters: getSocialParams(name : name , email : email , socialId : socialId , socialType : socialType ,phoneNo: phoneNo ,profilePicture : profilePicture))
+        
+     }
 }

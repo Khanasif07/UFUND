@@ -44,8 +44,8 @@ class SideMenuController: UIViewController {
                 sideMenuImg =   [#imageLiteral(resourceName: "sideVynil"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "icLogout")]
                 
             } else {
-                menuContent = [(Constants.string.dashboard.localize(),[]),(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allInvestment.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [#imageLiteral(resourceName: "icDashboard"),#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "icCategories"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "icLogout")]
+                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allInvestment.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
+                sideMenuImg =   [#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "icCategories"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "icChnagePassword"),#imageLiteral(resourceName: "icLogout")]
             }
         }
     }
