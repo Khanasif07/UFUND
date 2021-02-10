@@ -246,7 +246,7 @@ extension ProductViewController: UICollectionViewDelegate, UICollectionViewDataS
         let url = URL.init(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         cell.webImgView.sd_setImage(with: url , placeholderImage: nil)
         cell.decriptionLbl.text = ""
-        cell.readyView.isHidden = true
+//        cell.readyView.isHidden = true
         cell.webImgView.cornerRadius = 8
         
         return cell

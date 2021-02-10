@@ -12,14 +12,12 @@ class GridCell: UICollectionViewCell {
 
     @IBOutlet weak var decriptionLbl: UILabel!
     @IBOutlet weak var readyLbl: UILabel!
-    @IBOutlet weak var readyView: UIView!
     @IBOutlet weak var webImgView: UIImageView!
    
     override func awakeFromNib() {
         super.awakeFromNib()
-        readyLbl.text =  Constants.string.ReadyForApp.localize().uppercased()
-               readyView.setCornerRadius()
-               readyView.backgroundColor = UIColor(hex: primaryColor)
+        readyLbl.text =  Constants.string.ReadyForApp.localize()
+//        readyLbl.text =  Constants.string.ReadyForApp.localize().uppercased()
     }
 
 }

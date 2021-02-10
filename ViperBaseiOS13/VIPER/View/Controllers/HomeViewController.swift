@@ -56,7 +56,7 @@ class HomeViewController: UIViewController
             {
                 
                 campainerView.isHidden = true
-                headerCount = [Constants.string.allProduct.localize(), Constants.string.profile.localize(), Constants.string.investment.localize(),Constants.string.wallet.localize(),Constants.string.MyProducts.localize(),  Constants.string.send.localize()]
+                headerCount = [Constants.string.allProduct.localize(), Constants.string.newProduct.localize(), Constants.string.categories.localize(),Constants.string.productInvestMent.localize(),Constants.string.tokenInvestMent.localize(),  Constants.string.newTokenizedAssets.localize(),Constants.string.allTokenizedAssets.localize(),Constants.string.earningInDollar.localize(),Constants.string.earningInCrypto.localize(),Constants.string.fiatCurrency.localize(),Constants.string.cryptoCurrency.localize()]
                 
             }
             
@@ -64,7 +64,8 @@ class HomeViewController: UIViewController
     }
     
     var listCollectionHeight : CGFloat = 130
-    var inversterImage :[UIImage] = [#imageLiteral(resourceName: "soild"),#imageLiteral(resourceName: "profile"),#imageLiteral(resourceName: "inverstors"),#imageLiteral(resourceName: "wallets"),#imageLiteral(resourceName: "coins"), #imageLiteral(resourceName: "wallets")]
+    var inversterImage :[UIImage] = [#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg")]
+//    var inversterImage :[UIImage] = [#imageLiteral(resourceName: "soild"),#imageLiteral(resourceName: "profile"),#imageLiteral(resourceName: "inverstors"),#imageLiteral(resourceName: "wallets"),#imageLiteral(resourceName: "coins"), #imageLiteral(resourceName: "wallets")]
     var campinerImage: [UIImage] = [#imageLiteral(resourceName: "add"),#imageLiteral(resourceName: "profile"),#imageLiteral(resourceName: "soild"), #imageLiteral(resourceName: "wallets"),#imageLiteral(resourceName: "vynil"),#imageLiteral(resourceName: "wallets")]
     var timer: Timer?
     var approvalObject : ApprovalModel?
@@ -98,7 +99,7 @@ class HomeViewController: UIViewController
         let nibPost1 = UINib(nibName: XIB.Names.ProductsCollectionCell, bundle: nil)
         collectionScrollView.register(nibPost1, forCellWithReuseIdentifier: XIB.Names.ProductsCollectionCell)
         let layout1 = UICollectionViewFlowLayout()
-        layout1.scrollDirection = .horizontal
+        layout1.scrollDirection = .vertical
         collectionScrollView.collectionViewLayout = layout1
         
         layout1.minimumInteritemSpacing = 0
@@ -111,6 +112,11 @@ class HomeViewController: UIViewController
         tableView.delegate = self
         tableView.dataSource = self
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.bgViewScroll.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 15)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -247,8 +253,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.GridCell, for: indexPath) as! GridCell
             cell.backgroundColor = .clear
             let entity = silderImage[indexPath.row]
-            let url = URL.init(string: storageUrl + nullStringToEmpty(string: entity.image))
-            cell.webImgView.sd_setImage(with: url , placeholderImage: nil)
+//            let url = URL.init(string: storageUrl + nullStringToEmpty(string: entity.image))
+            cell.webImgView.sd_setImage(with: nil , placeholderImage: #imageLiteral(resourceName: "imgBg"))
             cell.decriptionLbl.text = nullStringToEmpty(string: entity.description)
             cell.readyLbl.text = nullStringToEmpty(string: entity.title)
             return cell

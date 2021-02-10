@@ -1862,13 +1862,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hp-Dc-3MB">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYU-pE-7KO">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="517.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="521.33333333333337"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TLA-Rh-Va3">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="517.66666666666663"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="521.33333333333337"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bqx-UK-LTV">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -1888,10 +1888,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </cells>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbd-QE-7pZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="517.66666666666663"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="521.33333333333337"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Dk-cP-wSs">
-                                                        <rect key="frame" x="20" y="243.66666666666669" width="30" height="30"/>
+                                                        <rect key="frame" x="20" y="245.66666666666663" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="K5x-mX-87V"/>
                                                             <constraint firstAttribute="height" constant="30" id="c9K-eq-m4h"/>
@@ -1902,7 +1902,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncn-Uu-vTf">
-                                                        <rect key="frame" x="325" y="243.66666666666669" width="30" height="30"/>
+                                                        <rect key="frame" x="325" y="245.66666666666663" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="30" id="jeU-ml-JAw"/>
                                                             <constraint firstAttribute="height" constant="30" id="wg1-w2-ylu"/>
@@ -1922,13 +1922,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laj-Hf-nkY">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="517.66666666666663"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="521.33333333333337"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kxl-Jb-635">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="517.66666666666663"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="521.33333333333337"/>
                                                     </imageView>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I92-gO-7bu">
-                                                        <rect key="frame" x="56.333333333333343" y="80.000000000000028" width="262.33333333333326" height="417.66666666666674"/>
+                                                        <rect key="frame" x="56.333333333333343" y="114.99999999999997" width="262.33333333333326" height="386.33333333333326"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeAssetsCell" rowHeight="74" id="pLz-vk-0Nj" customClass="HomeAssetsCell" customModule="UFUND" customModuleProvider="target">
@@ -2058,48 +2058,53 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehX-Yw-vIF">
-                                        <rect key="frame" x="0.0" y="517.66666666666663" width="375" height="172.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="506.33333333333326" width="375" height="271.66666666666674"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="backgroundColorId">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-EC-CQT">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="44" width="375" height="51"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL3-Qb-06d">
-                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="51"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackMenu" translatesAutoresizingMaskIntoConstraints="NO" id="JD4-Hu-zSC">
-                                                        <rect key="frame" x="20" y="15" width="30" height="30"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icMenu" translatesAutoresizingMaskIntoConstraints="NO" id="JD4-Hu-zSC">
+                                                        <rect key="frame" x="16" y="9.6666666666666643" width="32" height="32"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="qX2-If-ZcT"/>
-                                                            <constraint firstAttribute="width" constant="30" id="tAd-O8-0oe"/>
+                                                            <constraint firstAttribute="height" constant="32" id="qX2-If-ZcT"/>
+                                                            <constraint firstAttribute="width" constant="32" id="tAd-O8-0oe"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="JD4-Hu-zSC" firstAttribute="centerY" secondItem="RL3-Qb-06d" secondAttribute="centerY" id="1ka-FQ-pZG"/>
-                                                    <constraint firstItem="JD4-Hu-zSC" firstAttribute="leading" secondItem="RL3-Qb-06d" secondAttribute="leading" constant="20" id="JuV-o9-QPn"/>
+                                                    <constraint firstItem="JD4-Hu-zSC" firstAttribute="leading" secondItem="RL3-Qb-06d" secondAttribute="leading" constant="16" id="JuV-o9-QPn"/>
                                                     <constraint firstAttribute="width" constant="60" id="vkS-IH-Oax"/>
                                                 </constraints>
                                             </view>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoText" translatesAutoresizingMaskIntoConstraints="NO" id="vN2-oN-XRe">
-                                                <rect key="frame" x="147.66666666666666" y="7.6666666666666714" width="80" height="45"/>
+                                                <rect key="frame" x="147.66666666666666" y="3" width="80" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="g4a-GO-9uf"/>
                                                     <constraint firstAttribute="height" constant="45" id="xuP-LH-TnX"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DASHBOARD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPF-Pe-egl">
-                                                <rect key="frame" x="125.33333333333334" y="18.333333333333329" width="124.33333333333334" height="23.333333333333329"/>
-                                                <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="20"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UFUND" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPF-Pe-egl">
+                                                <rect key="frame" x="159.33333333333334" y="15.999999999999998" width="56.666666666666657" height="19.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="textColor" name="primaryColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="vN2-oN-XRe" firstAttribute="centerY" secondItem="XRr-EC-CQT" secondAttribute="centerY" id="39o-uK-RkO"/>
-                                            <constraint firstAttribute="height" constant="60" id="FTN-lA-6gJ"/>
+                                            <constraint firstAttribute="height" constant="51" id="FTN-lA-6gJ"/>
                                             <constraint firstAttribute="bottom" secondItem="RL3-Qb-06d" secondAttribute="bottom" id="JrK-Oz-pf7"/>
                                             <constraint firstItem="RL3-Qb-06d" firstAttribute="leading" secondItem="XRr-EC-CQT" secondAttribute="leading" id="KD9-RP-z6y"/>
                                             <constraint firstItem="jPF-Pe-egl" firstAttribute="centerX" secondItem="XRr-EC-CQT" secondAttribute="centerX" id="Yqc-dS-iTs"/>
@@ -2109,10 +2114,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZAe-8P-st0">
-                                        <rect key="frame" x="20" y="458" width="335" height="207"/>
+                                        <rect key="frame" x="10" y="521.33333333333337" width="355" height="256.66666666666663"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="THa-qq-VQW">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="207"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="256.66666666666669"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rop-Lx-nZ5">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -2149,17 +2154,17 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstAttribute="trailing" secondItem="ehX-Yw-vIF" secondAttribute="trailing" id="Nli-es-elJ"/>
                                     <constraint firstAttribute="bottom" secondItem="ehX-Yw-vIF" secondAttribute="bottom" id="Skf-Zp-ULi"/>
                                     <constraint firstAttribute="trailing" secondItem="XRr-EC-CQT" secondAttribute="trailing" id="VFs-oJ-ydq"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZAe-8P-st0" secondAttribute="trailing" constant="20" id="VKZ-Yb-CQz"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZAe-8P-st0" secondAttribute="trailing" constant="10" id="VKZ-Yb-CQz"/>
                                     <constraint firstItem="jYU-pE-7KO" firstAttribute="leading" secondItem="7Hp-Dc-3MB" secondAttribute="leading" id="XHx-6h-eWz"/>
                                     <constraint firstItem="I92-gO-7bu" firstAttribute="centerX" secondItem="XRr-EC-CQT" secondAttribute="centerX" id="cJ2-Tf-Hmc"/>
-                                    <constraint firstItem="ZAe-8P-st0" firstAttribute="leading" secondItem="7Hp-Dc-3MB" secondAttribute="leading" constant="20" id="ckp-Lg-pV0"/>
+                                    <constraint firstItem="ZAe-8P-st0" firstAttribute="leading" secondItem="7Hp-Dc-3MB" secondAttribute="leading" constant="10" id="ckp-Lg-pV0"/>
                                     <constraint firstItem="XRr-EC-CQT" firstAttribute="leading" secondItem="7Hp-Dc-3MB" secondAttribute="leading" id="dIs-yb-UaE"/>
-                                    <constraint firstItem="ehX-Yw-vIF" firstAttribute="top" secondItem="jYU-pE-7KO" secondAttribute="bottom" id="hM4-EW-KdU"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZAe-8P-st0" secondAttribute="bottom" constant="25" id="hZO-Il-m73"/>
-                                    <constraint firstItem="jYU-pE-7KO" firstAttribute="height" secondItem="7Hp-Dc-3MB" secondAttribute="height" multiplier="0.75" id="jkp-x9-MZJ"/>
+                                    <constraint firstItem="ehX-Yw-vIF" firstAttribute="top" secondItem="jYU-pE-7KO" secondAttribute="bottom" constant="-15" id="hM4-EW-KdU"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZAe-8P-st0" secondAttribute="bottom" id="hZO-Il-m73"/>
+                                    <constraint firstItem="jYU-pE-7KO" firstAttribute="height" secondItem="7Hp-Dc-3MB" secondAttribute="height" multiplier="0.67" id="jkp-x9-MZJ"/>
                                     <constraint firstItem="I92-gO-7bu" firstAttribute="top" secondItem="XRr-EC-CQT" secondAttribute="bottom" constant="20" id="nCL-gt-reE"/>
-                                    <constraint firstItem="ZAe-8P-st0" firstAttribute="height" secondItem="7Hp-Dc-3MB" secondAttribute="height" multiplier="0.3" id="p55-91-Q1G"/>
-                                    <constraint firstItem="XRr-EC-CQT" firstAttribute="top" secondItem="7Hp-Dc-3MB" secondAttribute="top" id="znM-ID-sKb"/>
+                                    <constraint firstItem="ZAe-8P-st0" firstAttribute="height" secondItem="7Hp-Dc-3MB" secondAttribute="height" multiplier="0.33" id="p55-91-Q1G"/>
+                                    <constraint firstItem="XRr-EC-CQT" firstAttribute="top" secondItem="7Hp-Dc-3MB" secondAttribute="top" constant="44" id="znM-ID-sKb"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -2168,7 +2173,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                             <constraint firstItem="7Hp-Dc-3MB" firstAttribute="leading" secondItem="NVS-MU-Zod" secondAttribute="leading" id="Ved-3u-aIh"/>
                             <constraint firstItem="7Hp-Dc-3MB" firstAttribute="trailing" secondItem="NVS-MU-Zod" secondAttribute="trailing" id="ycL-jL-JUI"/>
                             <constraint firstItem="7Hp-Dc-3MB" firstAttribute="bottom" secondItem="NVS-MU-Zod" secondAttribute="bottom" id="z0W-X1-x9I"/>
-                            <constraint firstItem="7Hp-Dc-3MB" firstAttribute="top" secondItem="NVS-MU-Zod" secondAttribute="top" id="zr7-9P-K5A"/>
+                            <constraint firstItem="7Hp-Dc-3MB" firstAttribute="top" secondItem="OJJ-0W-oTR" secondAttribute="top" id="zr7-9P-K5A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NVS-MU-Zod"/>
                     </view>
@@ -2188,7 +2193,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBu-za-olR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9" y="2368"/>
+            <point key="canvasLocation" x="8.8000000000000007" y="2367.4876847290643"/>
         </scene>
         <!--Product List View Controller-->
         <scene sceneID="L1R-ra-74d">
@@ -6561,10 +6566,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <!--Navigation Controller-->
         <scene sceneID="l8Q-6u-yde">
             <objects>
-                <navigationController id="LkC-ca-TzZ" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="LkC-ca-TzZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="05f-G4-0Yb">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -12002,7 +12006,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="bgIcon" width="416.66665649414062" height="812"/>
         <image name="bgImg" width="376.33334350585938" height="811"/>
         <image name="blackFilter" width="19" height="20"/>
-        <image name="blackMenu" width="20" height="16"/>
         <image name="caard" width="55.666667938232422" height="40"/>
         <image name="camera" width="27.666666030883789" height="23"/>
         <image name="cash" width="51.333332061767578" height="32"/>
@@ -12022,6 +12025,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="icBackward" width="28" height="28"/>
         <image name="icClose" width="12" height="12"/>
         <image name="icEdit" width="18" height="18"/>
+        <image name="icMenu" width="32" height="32"/>
         <image name="iconfinder_ETH_1175230" width="34.666667938232422" height="55.666667938232422"/>
         <image name="imgPlaceHolder" width="63.666667938232422" height="56.333332061767578"/>
         <image name="inverstors" width="10.666666984558105" height="10"/>

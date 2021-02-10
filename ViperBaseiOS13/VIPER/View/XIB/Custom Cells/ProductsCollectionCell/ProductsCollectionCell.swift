@@ -15,12 +15,20 @@ class ProductsCollectionCell: UICollectionViewCell {
     @IBOutlet weak var shadowView: UIView!
     
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        applyShadowView(view: shadowView)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-     
-        applyShadowView(view: shadowView)
-        productNameLbl.textColor = UIColor(hex: darkTextColor)
-        
+        DispatchQueue.main.async {
+            self.productNameLbl.textColor = UIColor(hex: darkTextColor)
+            self.productImg.layer.masksToBounds = true
+            self.productImg.layer.borderWidth = 8.0
+            self.productImg.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
+            self.productImg.layer.cornerRadius = self.productImg.bounds.width / 2
+        }
     }
 
 }
