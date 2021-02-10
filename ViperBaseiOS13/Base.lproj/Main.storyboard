@@ -333,7 +333,7 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3E-Hm-33g">
-                                                                                <rect key="frame" x="60.666666666666671" y="8" width="47.666666666666671" height="17"/>
+                                                                                <rect key="frame" x="64" y="8.3333333333333126" width="41.333333333333343" height="16.333333333333329"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -373,7 +373,7 @@
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soi-au-FSA">
-                                                                                        <rect key="frame" x="53.333333333333343" y="8" width="62.333333333333343" height="17"/>
+                                                                                        <rect key="frame" x="53.333333333333343" y="8.3333333333333126" width="62.333333333333343" height="16.333333333333329"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -425,7 +425,7 @@
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JvE-s7-bn4">
-                                                                                <rect key="frame" x="62" y="8" width="45.333333333333343" height="17"/>
+                                                                                <rect key="frame" x="61.666666666666671" y="8.3333333333333126" width="45.666666666666671" height="16.333333333333329"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -465,7 +465,7 @@
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linkedin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9Q-T9-70n">
-                                                                                        <rect key="frame" x="57" y="8" width="55" height="17"/>
+                                                                                        <rect key="frame" x="58.333333333333314" y="8.3333333333333126" width="52.666666666666657" height="16.333333333333329"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -1124,7 +1124,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2na-Dn-W7f">
-                                                                <rect key="frame" x="76.666666666666671" y="11.666666666666671" width="34" height="17"/>
+                                                                <rect key="frame" x="76.666666666666671" y="11.999999999999998" width="34.333333333333329" height="16.333333333333329"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1158,7 +1158,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw4-Hw-WWF">
-                                                                <rect key="frame" x="76.666666666666657" y="11.666666666666671" width="34" height="17"/>
+                                                                <rect key="frame" x="76.333333333333343" y="11.999999999999998" width="34.333333333333343" height="16.333333333333329"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1250,7 +1250,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ub-HG-6xb">
-                                                        <rect key="frame" x="180" y="118" width="155" height="29"/>
+                                                        <rect key="frame" x="180" y="118" width="155" height="26"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="155" id="X1C-IA-oeS"/>
                                                         </constraints>
@@ -1968,13 +1968,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No of assets listed" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfe-TM-MPV">
-                                                                                            <rect key="frame" x="87.333333333333314" y="9.3333333333333357" width="165" height="17"/>
+                                                                                            <rect key="frame" x="87.333333333333314" y="9.3333333333333339" width="165" height="16.333333333333329"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yet to be approved" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-Hy-jD6">
-                                                                                            <rect key="frame" x="87.333333333333314" y="32" width="165" height="14.666666666666664"/>
+                                                                                            <rect key="frame" x="87.333333333333314" y="31.333333333333329" width="165" height="14"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
@@ -2090,7 +2090,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DASHBOARD" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPF-Pe-egl">
-                                                <rect key="frame" x="124.33333333333331" y="18" width="126.66666666666669" height="24"/>
+                                                <rect key="frame" x="125.33333333333334" y="18.333333333333329" width="124.33333333333334" height="23.333333333333329"/>
                                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="20"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -2529,13 +2529,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     <rect key="frame" x="0.0" y="0.0" width="143" height="17.666666666666668"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin symbol :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AST-Cz-9F1">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="71.666666666666671" height="17.666666666666668"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="74" height="17.666666666666668"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ek-U3-wUr">
-                                                                                            <rect key="frame" x="76.666666666666671" y="1.3333333333333277" width="22.666666666666671" height="14.666666666666664"/>
+                                                                                            <rect key="frame" x="78.999999999999986" y="1.6666666666666643" width="24" height="14"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
@@ -2730,7 +2730,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCG-fC-u67">
-                                                <rect key="frame" x="295" y="13" width="60" height="34"/>
+                                                <rect key="frame" x="295" y="14.666666666666664" width="60" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="e22-QY-gSn"/>
                                                 </constraints>
@@ -3746,7 +3746,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                     <rect key="frame" x="8" y="16.333333333333336" width="97.666666666666671" height="97.333333333333314"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Lipstick" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cju-6f-tc0">
-                                                                    <rect key="frame" x="113.66666666666667" y="16.333333333333332" width="165.33333333333331" height="16.999999999999996"/>
+                                                                    <rect key="frame" x="113.66666666666667" y="16.333333333333336" width="165.33333333333331" height="16.333333333333336"/>
                                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -3758,7 +3758,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOJ-wY-oJd">
-                                                                    <rect key="frame" x="113.66666666666667" y="42.333333333333329" width="203.33333333333331" height="43.333333333333329"/>
+                                                                    <rect key="frame" x="113.66666666666667" y="41.666666666666664" width="203.33333333333331" height="41.999999999999993"/>
                                                                     <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</string>
                                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3964,7 +3964,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="37.666666666666664"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Flavia / Hair oil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqm-KZ-Pwx">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="37.666666666666664"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="37.666666666666664"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -4478,19 +4478,19 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="McB-1N-Jtc">
-                                                                        <rect key="frame" x="20" y="45" width="16.333333333333329" height="17"/>
+                                                                        <rect key="frame" x="20" y="45" width="15.666666666666664" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3R-EK-Z8W">
-                                                                        <rect key="frame" x="159.33333333333334" y="45" width="16.333333333333343" height="17"/>
+                                                                        <rect key="frame" x="159.66666666666666" y="45" width="15.666666666666657" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8A5-zI-3um">
-                                                                        <rect key="frame" x="290.33333333333331" y="45" width="24.666666666666686" height="17"/>
+                                                                        <rect key="frame" x="291.33333333333331" y="45" width="23.666666666666686" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -5017,13 +5017,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     </state>
                                                                                 </button>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karate chop" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yjd-WY-iq7">
-                                                                                    <rect key="frame" x="82" y="20.666666666666668" width="76.333333333333314" height="17.000000000000004"/>
+                                                                                    <rect key="frame" x="82" y="20.666666666666671" width="76.666666666666686" height="16.333333333333329"/>
                                                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed 02 Dec - 11:30am" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gW-mD-PIg">
-                                                                                    <rect key="frame" x="82" y="43.666666666666664" width="151" height="14.666666666666664"/>
+                                                                                    <rect key="frame" x="82" y="43" width="151" height="14"/>
                                                                                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <nil key="highlightedColor"/>
@@ -5303,7 +5303,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0t5-zR-kn8">
-                                                                        <rect key="frame" x="62" y="8" width="45.333333333333343" height="17"/>
+                                                                        <rect key="frame" x="61.666666666666671" y="8.3333333333333695" width="45.666666666666671" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -5342,7 +5342,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linkedin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Id-ek-XsV">
-                                                                                <rect key="frame" x="57" y="8" width="55" height="17"/>
+                                                                                <rect key="frame" x="58.333333333333314" y="8.3333333333333695" width="52.666666666666657" height="16.333333333333329"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -5671,16 +5671,16 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="37.666666666666664"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Flavia / Hair oil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Mx-wi-Yih">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="270.33333333333331" height="37.666666666666664"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="266.33333333333331" height="37.666666666666664"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btq-xz-BuK">
-                                                                                        <rect key="frame" x="280.33333333333331" y="0.0" width="54.666666666666686" height="37.666666666666664"/>
+                                                                                        <rect key="frame" x="276.33333333333331" y="0.0" width="58.666666666666686" height="37.666666666666664"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" $ 25.00  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cw0-CE-2c5">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="54.666666666666664" height="37.666666666666664"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="58.666666666666664" height="37.666666666666664"/>
                                                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <nil key="highlightedColor"/>
@@ -7464,7 +7464,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 <rect key="frame" x="0.0" y="1080" width="375" height="70"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To upload more assets images " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erZ-Px-Eop">
-                                                                        <rect key="frame" x="39.999999999999986" y="26.666666666666515" width="186.66666666666663" height="17"/>
+                                                                        <rect key="frame" x="39.999999999999986" y="27" width="194.66666666666663" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -8506,7 +8506,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 <rect key="frame" x="0.0" y="940.00000000000011" width="375" height="70"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To upload more assets images " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXw-tX-WRe">
-                                                                        <rect key="frame" x="39.999999999999986" y="26.666666666666515" width="186.66666666666663" height="17"/>
+                                                                        <rect key="frame" x="39.999999999999986" y="27" width="194.66666666666663" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -8926,16 +8926,16 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="37.666666666666664"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Flavia / Hair oil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gev-C3-62Q">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="37.666666666666664"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="37.666666666666664"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHY-Sn-FPw">
-                                                                                        <rect key="frame" x="280.33333333333331" y="0.0" width="54.666666666666686" height="37.666666666666664"/>
+                                                                                        <rect key="frame" x="276.33333333333331" y="0.0" width="58.666666666666686" height="37.666666666666664"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" $ 25.00  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKX-Im-bBJ">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="54.666666666666664" height="37.666666666666664"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="58.666666666666664" height="37.666666666666664"/>
                                                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <nil key="highlightedColor"/>
@@ -9398,7 +9398,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 <rect key="frame" x="20" y="108" width="335" height="101.33333333333331"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overall Investment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Etb-fH-THz">
-                                                                        <rect key="frame" x="20" y="4" width="307" height="17"/>
+                                                                        <rect key="frame" x="20" y="4" width="307" height="16.333333333333332"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -9423,19 +9423,19 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="007-RA-xtf">
-                                                                        <rect key="frame" x="20" y="71.666666666666742" width="16.333333333333329" height="17"/>
+                                                                        <rect key="frame" x="20" y="71.666666666666742" width="15.666666666666664" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDf-Yn-o3T">
-                                                                        <rect key="frame" x="159.33333333333334" y="71.666666666666742" width="16.333333333333343" height="17"/>
+                                                                        <rect key="frame" x="159.66666666666666" y="71.666666666666742" width="15.666666666666657" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCC-Zh-ge6">
-                                                                        <rect key="frame" x="290.33333333333331" y="71.666666666666742" width="24.666666666666686" height="17"/>
+                                                                        <rect key="frame" x="291.33333333333331" y="71.666666666666742" width="23.666666666666686" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -9479,7 +9479,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 <rect key="frame" x="20" y="229.3333333333334" width="335" height="101.33333333333334"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Investment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQb-ny-pt8">
-                                                                        <rect key="frame" x="20" y="4" width="307" height="17"/>
+                                                                        <rect key="frame" x="20" y="4" width="307" height="16.333333333333332"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -9505,19 +9505,19 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip8-d9-5AN">
-                                                                        <rect key="frame" x="20" y="71.666666666666629" width="16.333333333333329" height="17"/>
+                                                                        <rect key="frame" x="20" y="71.666666666666629" width="15.666666666666664" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBX-Ty-NgM">
-                                                                        <rect key="frame" x="159.33333333333334" y="71.666666666666629" width="16.333333333333343" height="17"/>
+                                                                        <rect key="frame" x="159.66666666666666" y="71.666666666666629" width="15.666666666666657" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QU4-Ox-JW2">
-                                                                        <rect key="frame" x="290.33333333333331" y="71.666666666666629" width="24.666666666666686" height="17"/>
+                                                                        <rect key="frame" x="291.33333333333331" y="71.666666666666629" width="23.666666666666686" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -9709,12 +9709,26 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     <constraint firstAttribute="width" constant="64" id="iib-KG-YaV"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA5-H3-q5S">
-                                                <rect key="frame" x="99" y="91.666666666666657" width="266" height="0.0"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="p2J-fi-vJm">
+                                                <rect key="frame" x="99" y="64.333333333333329" width="261" height="40"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asif Khan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA5-H3-q5S">
+                                                        <rect key="frame" x="0.0" y="0.0" width="261" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                        <color key="textColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@asif" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
+                                                        <rect key="frame" x="0.0" y="25.666666666666668" width="261" height="14.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="0.85098039215686272" green="0.8666666666666667" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="ve7-Co-jCM"/>
+                                                </constraints>
+                                            </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YH-Ap-jhO">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="183.66666666666666"/>
                                                 <connections>
@@ -9745,13 +9759,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <constraints>
                                             <constraint firstItem="UU5-Qo-S0w" firstAttribute="centerY" secondItem="QKU-Fg-gW2" secondAttribute="centerY" constant="-7.5" id="6EF-Zi-PAA"/>
                                             <constraint firstAttribute="bottom" secondItem="dGu-76-syX" secondAttribute="bottom" id="COK-Gp-vOm"/>
-                                            <constraint firstItem="UA5-H3-q5S" firstAttribute="centerY" secondItem="QKU-Fg-gW2" secondAttribute="centerY" id="DEO-1A-vTD"/>
                                             <constraint firstItem="UU5-Qo-S0w" firstAttribute="leading" secondItem="QKU-Fg-gW2" secondAttribute="leading" constant="20" id="Dxo-GU-WW1"/>
                                             <constraint firstAttribute="trailing" secondItem="IC4-wI-Gfa" secondAttribute="trailing" constant="16" id="EVB-ag-dAg"/>
+                                            <constraint firstItem="p2J-fi-vJm" firstAttribute="centerY" secondItem="UU5-Qo-S0w" secondAttribute="centerY" id="Hc9-3L-3Wv"/>
                                             <constraint firstAttribute="bottom" secondItem="6YH-Ap-jhO" secondAttribute="bottom" id="MWF-gv-zsf"/>
                                             <constraint firstItem="6YH-Ap-jhO" firstAttribute="leading" secondItem="QKU-Fg-gW2" secondAttribute="leading" id="UWk-xh-Gpv"/>
-                                            <constraint firstAttribute="trailing" secondItem="UA5-H3-q5S" secondAttribute="trailing" constant="10" id="Wyn-ek-FNH"/>
-                                            <constraint firstItem="UA5-H3-q5S" firstAttribute="leading" secondItem="UU5-Qo-S0w" secondAttribute="trailing" constant="15" id="cSt-Iw-FBG"/>
+                                            <constraint firstItem="p2J-fi-vJm" firstAttribute="leading" secondItem="UU5-Qo-S0w" secondAttribute="trailing" constant="15" id="XPV-a0-P9i"/>
+                                            <constraint firstAttribute="trailing" secondItem="p2J-fi-vJm" secondAttribute="trailing" constant="15" id="dDZ-hR-aSM"/>
                                             <constraint firstItem="6YH-Ap-jhO" firstAttribute="top" secondItem="QKU-Fg-gW2" secondAttribute="top" id="icR-vq-Qc2"/>
                                             <constraint firstItem="IC4-wI-Gfa" firstAttribute="top" secondItem="QKU-Fg-gW2" secondAttribute="top" constant="10" id="kQj-GY-b4s"/>
                                             <constraint firstAttribute="trailing" secondItem="6YH-Ap-jhO" secondAttribute="trailing" id="wNp-vt-Hd5"/>
@@ -9831,7 +9845,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fkk-ld-zzA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1635" y="2246.8309859154929"/>
+            <point key="canvasLocation" x="-1636" y="2246.305418719212"/>
         </scene>
         <!--Token Product View Controller-->
         <scene sceneID="Efh-fh-723">
@@ -10142,13 +10156,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     <rect key="frame" x="0.0" y="0.0" width="143" height="17.666666666666668"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coin symbol :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9co-9C-xoq">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="71.666666666666671" height="17.666666666666668"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="74" height="17.666666666666668"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sh-pR-oiB">
-                                                                                            <rect key="frame" x="76.666666666666671" y="1.3333333333333277" width="22.666666666666671" height="14.666666666666664"/>
+                                                                                            <rect key="frame" x="78.999999999999986" y="1.6666666666666643" width="24" height="14"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
@@ -10419,7 +10433,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEd-0Z-BWC">
-                                                                <rect key="frame" x="76.666666666666657" y="11.666666666666671" width="34" height="17"/>
+                                                                <rect key="frame" x="76.333333333333343" y="11.999999999999998" width="34.333333333333343" height="16.333333333333329"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -10475,7 +10489,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="80" width="375" height="654"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History Not Found!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d22-CH-v4x">
-                                                <rect key="frame" x="123.33333333333333" y="318.66666666666669" width="128.33333333333337" height="17"/>
+                                                <rect key="frame" x="124.66666666666666" y="319" width="125.66666666666666" height="16.333333333333314"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -10611,7 +10625,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="45" width="375" height="689"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History Not Found!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoA-SS-VxB">
-                                                <rect key="frame" x="123.33333333333333" y="336" width="128.33333333333337" height="17"/>
+                                                <rect key="frame" x="124.66666666666666" y="336" width="125.66666666666666" height="17"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -10747,7 +10761,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="45" width="375" height="689"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History Not Found!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKE-IK-pUZ">
-                                                <rect key="frame" x="123.33333333333333" y="336" width="128.33333333333337" height="17"/>
+                                                <rect key="frame" x="124.66666666666666" y="336" width="125.66666666666666" height="17"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -10947,13 +10961,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH Balance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxL-XE-zIV">
-                                                        <rect key="frame" x="178" y="22.666666666666686" width="68" height="14"/>
+                                                        <rect key="frame" x="178" y="22.666666666666686" width="69.666666666666686" height="14"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH Balance" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGe-F7-mbG">
-                                                        <rect key="frame" x="178" y="39.666666666666686" width="167" height="14.666666666666664"/>
+                                                        <rect key="frame" x="178" y="39.666666666666686" width="167" height="14"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="12"/>
                                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -11276,7 +11290,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                 <rect key="frame" x="0.0" y="44" width="375" height="41"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYx-V7-Mg6">
-                                        <rect key="frame" x="12.666666666666664" y="6.6666666666666643" width="28" height="28"/>
+                                        <rect key="frame" x="12.666666666666664" y="-7.3333333333333357" width="55.999999999999993" height="56"/>
                                         <state key="normal" image="icBackward"/>
                                         <connections>
                                             <action selector="backBtnAction:" destination="gbm-Dj-gfa" eventType="touchUpInside" id="31R-jy-h0T"/>
@@ -11457,7 +11471,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="45" width="375" height="689"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="History Not Found!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Je9-N2-vnE">
-                                                <rect key="frame" x="123.33333333333333" y="336" width="128.33333333333337" height="17"/>
+                                                <rect key="frame" x="124.66666666666666" y="336" width="125.66666666666666" height="17"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -11883,7 +11897,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vy3-90-JiH">
-                                                <rect key="frame" x="16" y="4" width="53" height="36"/>
+                                                <rect key="frame" x="16" y="6" width="53" height="32"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="17"/>
                                                 <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -11895,7 +11909,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Country Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBv-bo-8YS">
-                                                <rect key="frame" x="107.33333333333333" y="10.333333333333334" width="160.66666666666669" height="23.333333333333329"/>
+                                                <rect key="frame" x="108" y="12" width="159" height="20"/>
                                                 <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -11920,7 +11934,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xg8-ZY-Fz0">
                                         <rect key="frame" x="0.0" y="45" width="375" height="82"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search country by name, code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVy-Mh-PVo" customClass="ATCTextField" customModule="Tara" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search country by name, code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BVy-Mh-PVo" customClass="ATCTextField" customModule="UFUND" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="14" width="343" height="52"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>

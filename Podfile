@@ -7,6 +7,7 @@ target 'ViperBaseiOS13' do
 
   # Pods for ViperBaseiOS13
   pod 'FBSDKLoginKit'
+  pod 'FBSDKCoreKit'
   pod 'TwitterKit'
   pod 'Alamofire', '~> 4.9.0'
   pod 'IQKeyboardManagerSwift'

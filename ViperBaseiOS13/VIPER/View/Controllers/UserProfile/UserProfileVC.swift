@@ -18,6 +18,7 @@ class UserProfileVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var param  =  [String:Any]()
     var imageData: Data?
     var profileImgUrl : URL?
     var userDetails: UserDetails?
@@ -55,10 +56,59 @@ class UserProfileVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func editProfileBtnAction(_ sender: UIButton) {
-        self.isEnableEdit = !self.isEnableEdit
-        self.mainTableView.reloadData()
+        if self.isEnableEdit {
+            self.generalInfoArray.forEach { (userData) in
+                if userData.0 == "First Name"{
+                    if  userData.1.isEmpty {
+                        ToastManager.show(title: "Please Enter First Name", state: .warning)
+                        return
+                    } else {
+                        param[ProfileUpdate.keys.name] = userData.1
+                    }
+                }else if userData.0 == "Last Name"{
+                    if  userData.1.isEmpty {
+                        ToastManager.show(title: "Please Enter Last Name", state: .warning)
+                        return
+                    } else {
+                        param[ProfileUpdate.keys.last_name] = userData.1
+                    }
+                } else if userData.0 == "Phone Number" {
+                    if  userData.1.isEmpty {
+                        ToastManager.show(title: "Please Enter Mobile Number", state: .warning)
+                        return
+                    } else {
+                        param[ProfileUpdate.keys.mobile] = userData.1
+                    }
+                }
+            }
+//            guard let firstName = self.firstNameTxtFld.text, !firstName.isEmpty else{
+//                return  ToastManager.show(title: "Please Enter First Name", state: .warning)
+//            }
+//            guard let lastName = self.lastNameTxtFld.text, !lastName.isEmpty else {
+//                return  ToastManager.show(title: "Please Enter Last Name", state: .warning)
+//            }
+//            guard let mobileNumber = self.phoneNumberTxtFld.text , !mobileNumber.isEmpty else{
+//                return  ToastManager.show(title: "Please Enter Mobile Number", state: .warning)
+//            }
+            if imageData != nil {
+//                param[ProfileUpdate.keys.name] = firstName
+//                param[ProfileUpdate.keys.mobile] = mobileNumber
+//                param[ProfileUpdate.keys.last_name] = lastName
+                var dataDic =  [String:(Data,String,String)]()
+                dataDic = [ProfileUpdate.keys.picture : (self.imageData!,"Profile.jpg",FileType.image.rawValue)]
+                self.presenter?.UploadData(api: Base.profile.rawValue, params: param, imageData: dataDic , methodType: .POST, modelClass: UserDetails.self, token: true)
+            } else {
+//                param[ProfileUpdate.keys.name] = firstName
+//                param[ProfileUpdate.keys.mobile] = mobileNumber
+//                param[ProfileUpdate.keys.last_name] = lastName
+                self.presenter?.HITAPI(api: Base.profile.rawValue, params: param, methodType: .POST, modelClass: UserDetails.self, token: true)
+            }
+        } else {
+            self.isEnableEdit = true
+            self.mainTableView.reloadData()
     }
-    
+}
+
     
     @IBAction func backBtnAction(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -175,6 +225,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                     }
                     cell.countryCodeLbl.text = self.countryCode
                     cell.phoneTextField.delegate = self
+                    cell.phoneTextField.keyboardType = .numberPad
                     cell.phoneTextField.isUserInteractionEnabled = isEnableEdit
                     cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
                     cell.phoneTextField.placeholder = self.generalInfoArray[indexPath.row - 1].0
@@ -209,56 +260,46 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
 extension UserProfileVC : UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let text = textField.text?.byRemovingLeadingTrailingWhiteSpaces ?? ""
-        let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell
-        if  let indexPath = mainTableView.indexPath(forItem: cell ?? UserProfileTableCell()){
-            if indexPath.section == 0 {
-                self.generalInfoArray[indexPath.row - 1].1 = text
-            } else {
-                self.bankInfoArray[indexPath.row].1 = text
+        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
+            if  let indexPath = mainTableView.indexPath(forItem: cell){
+                if indexPath.section == 0 {
+                    self.generalInfoArray[indexPath.row - 1].1 = text
+                } else {
+                    self.bankInfoArray[indexPath.row].1 = text
+                }
             }
         }
-        
-//        switch cell?.titleLbl.text ?? "" {
-//          case "First Name":
-//            self.generalInfoArray[0].1 = text
-//          case "Last Name":
-//            self.generalInfoArray[1].1 = text
-//          case "Email":
-//            self.generalInfoArray[2].1 = text
-//          case "Address Line1":
-//            self.generalInfoArray[3].1 = text
-//          case "Phone Number":
-//            self.generalInfoArray[3].1 = text
-//          default:
-//            self.generalInfoArray[4].1 = text
-//              print(text)
-//          }
-//
-      }
+        if let cell = mainTableView.cell(forItem: textField) as? UserProfilePhoneNoCell {
+            if  let indexPath = mainTableView.indexPath(forItem: cell){
+                self.generalInfoArray[indexPath.row - 1].1 = text
+            }
+        }
+    }
       
-      func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//          let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell
-//          let currentString: NSString = textField.text! as NSString
-//          let newString: NSString =
-//              currentString.replacingCharacters(in: range, with: string) as NSString
-          return true
-//          switch textField {
-//          case cell?.nameTxtField:
-//              return (string.checkIfValidCharaters(.name) || string.isEmpty) && newString.length <= 50
-//          case cell?.mobNoTxtField:
-//              return (string.checkIfValidCharaters(.mobileNumber) || string.isEmpty) && newString.length <= 10
-//          case cell?.emailIdTxtField:
-//              return (string.checkIfValidCharaters(.email) || string.isEmpty) && newString.length <= 50
-//          case cell?.passTxtField:
-//              return (string.checkIfValidCharaters(.password) || string.isEmpty) && newString.length <= 25
-//          case cell?.confirmPassTxtField:
-//              return (string.checkIfValidCharaters(.password) || string.isEmpty) && newString.length <= 25
-//          default:
-//              return false
-//          }
-      }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let currentString: NSString = textField.text! as NSString
+//        let newString: NSString =
+//            currentString.replacingCharacters(in: range, with: string) as NSString
+//        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
+//                if  let indexPath = mainTableView.indexPath(forItem: cell){
+//                     if indexPath.section  == 0 {
+//                    switch  self.generalInfoArray[indexPath.row - 1].0  {
+//                    case "First Name","Last Name":
+//                        return (string.checkIfValidCharaters(.name) || string.isEmpty) && newString.length <= 50
+                        //                case cell?.mobNoTxtField:
+                    //                    return (string.checkIfValidCharaters(.mobileNumber) || string.isEmpty) && newString.length <= 10
+//                    case "Email":
+//                        return (string.checkIfValidCharaters(.email) || string.isEmpty) && newString.length <= 50
+//                    default:
+//                        return false
+//                    }
+//                }
+//            }
+//        }
+         return true
+    }
 }
-
+    
 
 extension UserProfileVC : CountryDelegate{
     func sendCountryCode(code: String) {
