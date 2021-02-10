@@ -428,10 +428,10 @@ extension UIView {
     }
     
     
-    func setCornerRadius() {
+    func setCornerRadius(cornerR: Int = 8) {
         
         self.maskToBounds = true
-        self.layer.cornerRadius = 8
+        self.layer.cornerRadius = cornerR
         self.maskToBounds = true
     }
     

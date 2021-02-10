@@ -40,8 +40,8 @@ class SideMenuController: UIViewController {
             
             if isFromCampainer {
                 
-                menuContent = [(Constants.string.dashboard.localize(),[]),(Constants.string.myProfile.localize(),[]),(Constants.string.tokenRequests.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.history.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.Notification.localize(),[])]
-                sideMenuImg =   [#imageLiteral(resourceName: "icDashboard"),#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "sideVynil"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "logout")]
+                menuContent = [(Constants.string.tokenRequests.localize(),[]),(Constants.string.MyProducts.localize(),[]),(Constants.string.history.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.Notification.localize(),[]),(Constants.string.security.localize(),[]),(Constants.string.logout.localize(),[])]
+                sideMenuImg =   [#imageLiteral(resourceName: "sideVynil"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "icLogout")]
                 
             } else {
                 menuContent = [(Constants.string.dashboard.localize(),[]),(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allInvestment.localize(),[]),(Constants.string.logout.localize(),[])]
@@ -206,7 +206,17 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        switch menuContent?[indexPath.section].0 {
+        case Constants.string.Products.localize():
+            if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == "All Product"{
+                self.drawerController?.closeSide()
+                self.push(to: Storyboard.Ids.ProductViewController)
+            } else {
+                print("Do Nothing")
+            }
+        default:
+            print("Do Nothing")
+        }
     }
     
     @objc func viewSelectedList(sender: UIButton) {
@@ -227,12 +237,12 @@ extension  SideMenuController {
     func sectionTappedAction(section: Int){
 //        let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row,section: 0)) as? SideMenuCell
         switch menuContent?[section].0 {
-        case Constants.string.profile.localize():
+        case Constants.string.profile.localize(),Constants.string.myProfile.localize():
             self.drawerController?.closeSide()
-            self.push(to: Storyboard.Ids.EditProfileViewController)
+            self.push(to: Storyboard.Ids.UserProfileVC)
         case Constants.string.Products.localize():
             if self.menuContent?[section].1.isEmpty ?? true{
-                self.menuContent?[section].1 = ["My Product","New Product","All Product"]
+                self.menuContent?[section].1 = ["New Product","All Product"]
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 }, completion: {res in })

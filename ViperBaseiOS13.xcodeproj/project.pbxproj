@@ -202,6 +202,7 @@
 		84411EA325D2307300718BD1 /* CountryPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA225D2307300718BD1 /* CountryPickerVC.swift */; };
 		84411EA525D2311500718BD1 /* CountryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA425D2311500718BD1 /* CountryVM.swift */; };
 		84411EA725D2315000718BD1 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA625D2315000718BD1 /* CountryModel.swift */; };
+		845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */; };
 		84B451DA25CD322F001DD54A /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */; };
 		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
 		84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */; };
@@ -438,6 +439,7 @@
 		84411EA225D2307300718BD1 /* CountryPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerVC.swift; sourceTree = "<group>"; };
 		84411EA425D2311500718BD1 /* CountryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryVM.swift; sourceTree = "<group>"; };
 		84411EA625D2315000718BD1 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePopUpVC.swift; sourceTree = "<group>"; };
 		84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuHeaderView.xib; sourceTree = "<group>"; };
 		84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeTableCell.swift; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				845B9DC825D3F64A009E388F /* EditProfilePopUp */,
 				84411EA125D2305800718BD1 /* CountryPicker */,
 				84411E8E25D1447500718BD1 /* UserProfile */,
 				0828C38823FA698100B39256 /* ProdDetailViewController.swift */,
@@ -1522,6 +1525,14 @@
 			path = CountryPicker;
 			sourceTree = "<group>";
 		};
+		845B9DC825D3F64A009E388F /* EditProfilePopUp */ = {
+			isa = PBXGroup;
+			children = (
+				845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */,
+			);
+			path = EditProfilePopUp;
+			sourceTree = "<group>";
+		};
 		84B451D825CD3204001DD54A /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1953,6 +1964,7 @@
 				0870FC45238CFBD800D24B41 /* ProductsCollectionCell.swift in Sources */,
 				0824B11D2382A13200F81A9B /* TextField.swift in Sources */,
 				0824B0D52382847800F81A9B /* Identifiers.swift in Sources */,
+				845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */,
 				08B55EC42387ECEC0014E660 /* AccountCell.swift in Sources */,
 				0824B0DC2382847800F81A9B /* ShimmerButton.swift in Sources */,
 				84411EA725D2315000718BD1 /* CountryModel.swift in Sources */,

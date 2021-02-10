@@ -24,7 +24,7 @@ class UserProfileVC: UIViewController {
     var userDetails: UserDetails?
     var userProfile: UserProfile?
     var countryCode: String  = "+91"
-    var generalInfoArray = [("First Name","Asif Khan"),("Last Name",""),("Phone Number",""),("Email",""),("Address Line1",""),("Address Line 2",""),("ZipCode",""),("City",""),("State",""),("Country","")]
+    var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Address Line1",""),("Address Line 2",""),("ZipCode",""),("City",""),("State",""),("Country","")]
     var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Account currency",""),("Bank Address","")]
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
