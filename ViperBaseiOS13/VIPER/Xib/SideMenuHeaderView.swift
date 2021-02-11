@@ -12,6 +12,7 @@ class SideMenuHeaderView: UITableViewHeaderFooterView {
     
     var headerBtnAction: ((UIButton)->())?
 
+    @IBOutlet weak var dropdownView: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var headerBtn: UIButton!

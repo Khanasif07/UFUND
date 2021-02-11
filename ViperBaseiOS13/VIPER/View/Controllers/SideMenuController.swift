@@ -45,7 +45,7 @@ class SideMenuController: UIViewController {
                 
             } else {
                 menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allInvestment.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "icCategories"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "icChnagePassword"),#imageLiteral(resourceName: "icLogout")]
+                sideMenuImg =   [#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "icCategories"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icChnagePassword"),#imageLiteral(resourceName: "icLogout")]
             }
         }
     }
@@ -137,6 +137,13 @@ class SideMenuController: UIViewController {
         }
         tableView.reloadData()
     }
+    
+    func rotateLeft(dropdownView: UIView,left: CGFloat = -1) {
+        UIView.animate(withDuration: 1.0, animations: {
+            dropdownView.transform = CGAffineTransform(rotationAngle: ((180.0 * CGFloat(Double.pi)) / 180.0) * CGFloat(left))
+            self.view.layoutIfNeeded()
+        })
+    }
        
     
     @IBAction func campaignerButtonClickEvent(_ sender: UIButton) {
@@ -185,6 +192,19 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
         }
         view.backgroundColor = .clear
         view.imageView?.image = sideMenuImg?[section]
+        switch self.menuContent?[section].0 {
+        case Constants.string.TokenizedAssets.localize():
+            view.dropdownView?.isHidden = false
+            self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
+        case Constants.string.allInvestment.localize():
+            view.dropdownView?.isHidden = false
+            self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
+        case Constants.string.Products.localize():
+            view.dropdownView?.isHidden = false
+            self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
+        default:
+            view.dropdownView?.isHidden = true
+        }
         view.titleLbl.text = nullStringToEmpty(string: menuContent?[section].0)
         return view
     }
@@ -243,18 +263,19 @@ extension  SideMenuController {
         case Constants.string.Products.localize():
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = ["New Product","All Product"]
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.layoutIfNeeded()
-                }, completion: {res in })
-                tableView.reloadData()
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             } else {
                 self.menuContent?[section].1 = []
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.view.layoutIfNeeded()
-                }, completion: {res in })
-                tableView.reloadData()
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
-//            self.drawerController?.closeSide()
+        case Constants.string.changePassword.localize():
+            self.drawerController?.closeSide()
+            self.push(to: Storyboard.Ids.ChangeViewController)
+            
+        case Constants.string.categories.localize():
+            self.drawerController?.closeSide()
+            self.push(to: Storyboard.Ids.CategoriesVC)
+            //            self.drawerController?.closeSide()
 //            self.push(to: Storyboard.Ids.ProductViewController)
         case Constants.string.TokenizedAssets.localize():
             self.drawerController?.closeSide()

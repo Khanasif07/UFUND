@@ -55,6 +55,7 @@ struct Storyboard {
     let SendHistoryViewController = "SendHistoryViewController"
     let KYCMatiViewController = "KYCMatiViewController"
     let WebViewController = "WebViewController"
+    let CategoriesVC = "CategoriesVC"
     
 }
 

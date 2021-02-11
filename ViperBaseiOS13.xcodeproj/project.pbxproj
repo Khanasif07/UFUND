@@ -204,12 +204,18 @@
 		84411EA725D2315000718BD1 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA625D2315000718BD1 /* CountryModel.swift */; };
 		845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */; };
 		845B9DCE25D3FB4E009E388F /* AppleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */; };
+		845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DD025D50318009E388F /* CategoriesVC.swift */; };
 		84B451DA25CD322F001DD54A /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */; };
 		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
 		84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */; };
 		84DD054F25D239AD003AC05C /* CountryCodeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */; };
 		84DD055225D293C6003AC05C /* SideMenuTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD055025D293C6003AC05C /* SideMenuTableCell.swift */; };
 		84DD055325D293C6003AC05C /* SideMenuTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DD055125D293C6003AC05C /* SideMenuTableCell.xib */; };
+		84E16F0125D50861004F37FA /* CategoriesProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E16F0025D50861004F37FA /* CategoriesProductsVC.swift */; };
+		84E16F0325D5087A004F37FA /* CategoriesTokenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E16F0225D5087A004F37FA /* CategoriesTokenVC.swift */; };
+		84E16F0625D50D75004F37FA /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E16F0525D50D75004F37FA /* CollectionView.swift */; };
+		84E16F0925D5215B004F37FA /* ProductCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E16F0725D5215B004F37FA /* ProductCollectionCell.swift */; };
+		84E16F0A25D5215B004F37FA /* ProductCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E16F0825D5215B004F37FA /* ProductCollectionCell.xib */; };
 		B2DACB3B1FC2E9E285069987 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */; };
 		DCEC9E4C4E18C05651097B83 /* Pods_ViperBaseiOS13Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464373271FCE0B49B1C910A /* Pods_ViperBaseiOS13Tests.framework */; };
 /* End PBXBuildFile section */
@@ -442,12 +448,18 @@
 		84411EA625D2315000718BD1 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
 		845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePopUpVC.swift; sourceTree = "<group>"; };
 		845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginController.swift; sourceTree = "<group>"; };
+		845B9DD025D50318009E388F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuHeaderView.xib; sourceTree = "<group>"; };
 		84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeTableCell.swift; sourceTree = "<group>"; };
 		84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCodeTableCell.xib; sourceTree = "<group>"; };
 		84DD055025D293C6003AC05C /* SideMenuTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableCell.swift; sourceTree = "<group>"; };
 		84DD055125D293C6003AC05C /* SideMenuTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableCell.xib; sourceTree = "<group>"; };
+		84E16F0025D50861004F37FA /* CategoriesProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesProductsVC.swift; sourceTree = "<group>"; };
+		84E16F0225D5087A004F37FA /* CategoriesTokenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTokenVC.swift; sourceTree = "<group>"; };
+		84E16F0525D50D75004F37FA /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		84E16F0725D5215B004F37FA /* ProductCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionCell.swift; sourceTree = "<group>"; };
+		84E16F0825D5215B004F37FA /* ProductCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCollectionCell.xib; sourceTree = "<group>"; };
 		85623B6EAEE831F86E5BD1D3 /* Pods-ViperBaseiOS13Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.debug.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF23C120B0DB3AD60CE1CE6 /* Pods-ViperBaseiOS13Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -662,6 +674,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				845B9DCF25D502FC009E388F /* Categories */,
 				845B9DC825D3F64A009E388F /* EditProfilePopUp */,
 				84411EA125D2305800718BD1 /* CountryPicker */,
 				84411E8E25D1447500718BD1 /* UserProfile */,
@@ -778,6 +791,7 @@
 		0824B069238283E800F81A9B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				84E16F0425D50D61004F37FA /* CollectionView */,
 				0824B0F82382A11F00F81A9B /* Application */,
 				0824B0F02382A11F00F81A9B /* Bundle */,
 				0824B0F42382A11F00F81A9B /* Device */,
@@ -1544,6 +1558,16 @@
 			path = AppleManager;
 			sourceTree = "<group>";
 		};
+		845B9DCF25D502FC009E388F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				845B9DD025D50318009E388F /* CategoriesVC.swift */,
+				84E16F0025D50861004F37FA /* CategoriesProductsVC.swift */,
+				84E16F0225D5087A004F37FA /* CategoriesTokenVC.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		84B451D825CD3204001DD54A /* Xib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1561,8 +1585,18 @@
 				84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */,
 				84DD055025D293C6003AC05C /* SideMenuTableCell.swift */,
 				84DD055125D293C6003AC05C /* SideMenuTableCell.xib */,
+				84E16F0725D5215B004F37FA /* ProductCollectionCell.swift */,
+				84E16F0825D5215B004F37FA /* ProductCollectionCell.xib */,
 			);
 			path = Xib;
+			sourceTree = "<group>";
+		};
+		84E16F0425D50D61004F37FA /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				84E16F0525D50D75004F37FA /* CollectionView.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		89196D8F9C9E5D67BCD9FDBD /* Pods */ = {
@@ -1692,6 +1726,7 @@
 				84DD055325D293C6003AC05C /* SideMenuTableCell.xib in Resources */,
 				086F139C246F12F000EA4355 /* SendTokenViewController.xib in Resources */,
 				089C287E23F18E8800230AB3 /* EmptyResultCell.xib in Resources */,
+				84E16F0A25D5215B004F37FA /* ProductCollectionCell.xib in Resources */,
 				0825AB7D238BF2A80083AC42 /* HomeCell.xib in Resources */,
 				0825AB82238BF61E0083AC42 /* GridCell.xib in Resources */,
 				0826B7C12386850300867CD5 /* OpenSans-Semibold.otf in Resources */,
@@ -1952,6 +1987,7 @@
 				08DF504C23B2126600621C0E /* OtpController.swift in Sources */,
 				0824B1022382A12000F81A9B /* ViewController.swift in Sources */,
 				0824B0DF2382849800F81A9B /* Protocol.swift in Sources */,
+				84E16F0125D50861004F37FA /* CategoriesProductsVC.swift in Sources */,
 				087B7B85241D0F5B0024D998 /* FundCell.swift in Sources */,
 				08A905CF23BDD77900C794F1 /* ProductDecpCell.swift in Sources */,
 				08918BAF23852CE000F274C2 /* TextViewExtension.swift in Sources */,
@@ -1965,6 +2001,7 @@
 				0824B0D12382847800F81A9B /* JsonSerializing.swift in Sources */,
 				0824B026238280E700F81A9B /* AppDelegate.swift in Sources */,
 				08A905CB23BDCF1800C794F1 /* InputEntity.swift in Sources */,
+				84E16F0925D5215B004F37FA /* ProductCollectionCell.swift in Sources */,
 				0824B1072382A12000F81A9B /* File.swift in Sources */,
 				08294D73238E5CA7008108A2 /* CoinCell.swift in Sources */,
 				0827A13523C47D2400EDF005 /* Document.swift in Sources */,
@@ -1979,6 +2016,7 @@
 				845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */,
 				08B55EC42387ECEC0014E660 /* AccountCell.swift in Sources */,
 				0824B0DC2382847800F81A9B /* ShimmerButton.swift in Sources */,
+				84E16F0625D50D75004F37FA /* CollectionView.swift in Sources */,
 				84411EA725D2315000718BD1 /* CountryModel.swift in Sources */,
 				0828C38923FA698100B39256 /* ProdDetailViewController.swift in Sources */,
 				0824B1052382A12000F81A9B /* Bundle.swift in Sources */,
@@ -1993,6 +2031,7 @@
 				0824B0D22382847800F81A9B /* MakeJson.swift in Sources */,
 				84411E9B25D1577C00718BD1 /* UserProfileImageCell.swift in Sources */,
 				84411E8D25D1099F00718BD1 /* AppConstants.swift in Sources */,
+				845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */,
 				84411EA325D2307300718BD1 /* CountryPickerVC.swift in Sources */,
 				0825AB68238BBF920083AC42 /* NotificationViewController.swift in Sources */,
 				0809A4B923EC596700FCA3C3 /* ApprovalModel.swift in Sources */,
@@ -2030,6 +2069,7 @@
 				08918BA82385151100F274C2 /* ToastView.swift in Sources */,
 				0822FF90239F89AD00264C53 /* InvestmentViewController.swift in Sources */,
 				08918BB023852CE000F274C2 /* TextFieldExtension.swift in Sources */,
+				84E16F0325D5087A004F37FA /* CategoriesTokenVC.swift in Sources */,
 				082B215423C315650056FBA6 /* InvestmentListViewController.swift in Sources */,
 				0821E8F7241B8C4300263674 /* CryptoReceiveViewController.swift in Sources */,
 				082FBA5A24051DE600F45950 /* TokenAssetsAmountViewController.swift in Sources */,
