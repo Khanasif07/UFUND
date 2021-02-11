@@ -9694,6 +9694,93 @@ We do not keep any documents on the platform for safety reasons; they are all st
             </objects>
             <point key="canvasLocation" x="1333.125" y="3105.6338028169016"/>
         </scene>
+        <!--Product SortVC-->
+        <scene sceneID="ZEb-Qg-JpD">
+            <objects>
+                <viewController storyboardIdentifier="ProductSortVC" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DTM-BI-yve" customClass="ProductSortVC" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KV2-B1-ij2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ziU-hX-vD3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HQu-dW-ujp">
+                                        <rect key="frame" x="0.0" y="532" width="414" height="364"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCp-Qv-Nxf">
+                                                <rect key="frame" x="16" y="15" width="55" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btb-XD-5iX">
+                                                <rect key="frame" x="0.0" y="52" width="414" height="1"/>
+                                                <color key="backgroundColor" red="0.87450980389999999" green="0.89411764709999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="mAA-W3-EPR"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrS-CK-gIR">
+                                                <rect key="frame" x="376" y="15" width="22" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="7sF-hb-Ske"/>
+                                                    <constraint firstAttribute="width" secondItem="WrS-CK-gIR" secondAttribute="height" id="e8t-7h-Dho"/>
+                                                </constraints>
+                                                <state key="normal" image="icClose"/>
+                                                <connections>
+                                                    <action selector="crossBtnAction:" destination="DTM-BI-yve" eventType="touchUpInside" id="hUs-2w-6xM"/>
+                                                </connections>
+                                            </button>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sos-sa-7FH">
+                                                <rect key="frame" x="0.0" y="53" width="414" height="311"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="WrS-CK-gIR" firstAttribute="top" secondItem="HQu-dW-ujp" secondAttribute="top" constant="15" id="Pyj-Fx-qVt"/>
+                                            <constraint firstItem="btb-XD-5iX" firstAttribute="top" secondItem="HQu-dW-ujp" secondAttribute="top" constant="52" id="VkB-qi-Rcn"/>
+                                            <constraint firstItem="lCp-Qv-Nxf" firstAttribute="leading" secondItem="HQu-dW-ujp" secondAttribute="leading" constant="16" id="Vzc-E4-skI"/>
+                                            <constraint firstItem="lCp-Qv-Nxf" firstAttribute="top" secondItem="HQu-dW-ujp" secondAttribute="top" constant="15" id="XaO-Yo-p1b"/>
+                                            <constraint firstItem="btb-XD-5iX" firstAttribute="leading" secondItem="HQu-dW-ujp" secondAttribute="leading" id="eDv-xe-4Bt"/>
+                                            <constraint firstAttribute="trailing" secondItem="btb-XD-5iX" secondAttribute="trailing" id="gsI-WU-U4w"/>
+                                            <constraint firstAttribute="trailing" secondItem="WrS-CK-gIR" secondAttribute="trailing" constant="16" id="mqM-iu-RPj"/>
+                                            <constraint firstItem="sos-sa-7FH" firstAttribute="top" secondItem="btb-XD-5iX" secondAttribute="bottom" id="qCJ-Rp-UVp"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="HQu-dW-ujp" firstAttribute="centerX" secondItem="ziU-hX-vD3" secondAttribute="centerX" id="6e4-LH-Yla"/>
+                                    <constraint firstAttribute="trailing" secondItem="sos-sa-7FH" secondAttribute="trailing" id="OEd-1T-xgY"/>
+                                    <constraint firstAttribute="bottom" secondItem="sos-sa-7FH" secondAttribute="bottom" id="SFT-RS-V5Y"/>
+                                    <constraint firstItem="HQu-dW-ujp" firstAttribute="height" secondItem="ziU-hX-vD3" secondAttribute="height" multiplier="0.40625" id="WGq-4r-6xx"/>
+                                    <constraint firstAttribute="bottom" secondItem="HQu-dW-ujp" secondAttribute="bottom" id="Wno-LP-vdE"/>
+                                    <constraint firstItem="sos-sa-7FH" firstAttribute="leading" secondItem="ziU-hX-vD3" secondAttribute="leading" id="m1D-B8-7I2"/>
+                                    <constraint firstItem="HQu-dW-ujp" firstAttribute="leading" secondItem="ziU-hX-vD3" secondAttribute="leading" id="udM-He-aN0"/>
+                                    <constraint firstAttribute="trailing" secondItem="HQu-dW-ujp" secondAttribute="trailing" id="vkG-SD-tMV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ziU-hX-vD3" firstAttribute="trailing" secondItem="Jri-AY-mKQ" secondAttribute="trailing" id="8ad-2q-Kp2"/>
+                            <constraint firstAttribute="top" secondItem="ziU-hX-vD3" secondAttribute="top" id="EcB-0z-HBy"/>
+                            <constraint firstAttribute="bottom" secondItem="ziU-hX-vD3" secondAttribute="bottom" id="ldf-Lc-cVA"/>
+                            <constraint firstAttribute="leading" secondItem="ziU-hX-vD3" secondAttribute="leading" id="wef-h4-3UR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jri-AY-mKQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="dataContainerView" destination="HQu-dW-ujp" id="EfL-MN-Fbb"/>
+                        <outlet property="mainTableView" destination="sos-sa-7FH" id="M44-Hk-gTO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6YP-lJ-OBZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2594" y="2265"/>
+        </scene>
         <!--Side Menu Controller-->
         <scene sceneID="5kY-Tc-gfK">
             <objects>
@@ -12438,7 +12525,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="google" width="20.5" height="17"/>
         <image name="home" width="24.5" height="22"/>
         <image name="icBackward" width="28" height="28"/>
-        <image name="icClose" width="12" height="12"/>
+        <image name="icClose" width="20" height="20"/>
         <image name="icEdit" width="18" height="18"/>
         <image name="icInformation" width="86" height="86"/>
         <image name="icMenu" width="32" height="32"/>

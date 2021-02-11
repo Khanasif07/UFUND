@@ -202,6 +202,9 @@
 		84411EA325D2307300718BD1 /* CountryPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA225D2307300718BD1 /* CountryPickerVC.swift */; };
 		84411EA525D2311500718BD1 /* CountryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA425D2311500718BD1 /* CountryVM.swift */; };
 		84411EA725D2315000718BD1 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411EA625D2315000718BD1 /* CountryModel.swift */; };
+		844682D325D53CB900F44A53 /* ProductSortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844682D225D53CB900F44A53 /* ProductSortVC.swift */; };
+		844682D625D53DC900F44A53 /* ProductSortTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844682D425D53DC900F44A53 /* ProductSortTableCell.swift */; };
+		844682D725D53DC900F44A53 /* ProductSortTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844682D525D53DC900F44A53 /* ProductSortTableCell.xib */; };
 		845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */; };
 		845B9DCE25D3FB4E009E388F /* AppleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */; };
 		845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DD025D50318009E388F /* CategoriesVC.swift */; };
@@ -446,6 +449,9 @@
 		84411EA225D2307300718BD1 /* CountryPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerVC.swift; sourceTree = "<group>"; };
 		84411EA425D2311500718BD1 /* CountryVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryVM.swift; sourceTree = "<group>"; };
 		84411EA625D2315000718BD1 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		844682D225D53CB900F44A53 /* ProductSortVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSortVC.swift; sourceTree = "<group>"; };
+		844682D425D53DC900F44A53 /* ProductSortTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSortTableCell.swift; sourceTree = "<group>"; };
+		844682D525D53DC900F44A53 /* ProductSortTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductSortTableCell.xib; sourceTree = "<group>"; };
 		845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePopUpVC.swift; sourceTree = "<group>"; };
 		845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginController.swift; sourceTree = "<group>"; };
 		845B9DD025D50318009E388F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
@@ -674,6 +680,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				844682D125D53C9600F44A53 /* ProductSort */,
 				845B9DCF25D502FC009E388F /* Categories */,
 				845B9DC825D3F64A009E388F /* EditProfilePopUp */,
 				84411EA125D2305800718BD1 /* CountryPicker */,
@@ -1542,6 +1549,14 @@
 			path = CountryPicker;
 			sourceTree = "<group>";
 		};
+		844682D125D53C9600F44A53 /* ProductSort */ = {
+			isa = PBXGroup;
+			children = (
+				844682D225D53CB900F44A53 /* ProductSortVC.swift */,
+			);
+			path = ProductSort;
+			sourceTree = "<group>";
+		};
 		845B9DC825D3F64A009E388F /* EditProfilePopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1587,6 +1602,8 @@
 				84DD055125D293C6003AC05C /* SideMenuTableCell.xib */,
 				84E16F0725D5215B004F37FA /* ProductCollectionCell.swift */,
 				84E16F0825D5215B004F37FA /* ProductCollectionCell.xib */,
+				844682D425D53DC900F44A53 /* ProductSortTableCell.swift */,
+				844682D525D53DC900F44A53 /* ProductSortTableCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -1745,6 +1762,7 @@
 				84411E9C25D1577C00718BD1 /* UserProfileImageCell.xib in Resources */,
 				088E33C124CAF382001EE899 /* DatePickerViewController.xib in Resources */,
 				0824B0C52382847800F81A9B /* countryCodes.json in Resources */,
+				844682D725D53DC900F44A53 /* ProductSortTableCell.xib in Resources */,
 				0825AB86238C0B4C0083AC42 /* HeaderCell.xib in Resources */,
 				08DF504823B1E91700621C0E /* SecurityCell.xib in Resources */,
 				08B55EC52387ECEC0014E660 /* AccountCell.xib in Resources */,
@@ -2001,6 +2019,7 @@
 				0824B0D12382847800F81A9B /* JsonSerializing.swift in Sources */,
 				0824B026238280E700F81A9B /* AppDelegate.swift in Sources */,
 				08A905CB23BDCF1800C794F1 /* InputEntity.swift in Sources */,
+				844682D325D53CB900F44A53 /* ProductSortVC.swift in Sources */,
 				84E16F0925D5215B004F37FA /* ProductCollectionCell.swift in Sources */,
 				0824B1072382A12000F81A9B /* File.swift in Sources */,
 				08294D73238E5CA7008108A2 /* CoinCell.swift in Sources */,
@@ -2051,6 +2070,7 @@
 				0824B0C22382847800F81A9B /* ParallaxHeader.swift in Sources */,
 				0824B10D2382A12000F81A9B /* ViewExtension.swift in Sources */,
 				84411E9725D14C0400718BD1 /* UserProfileTableCell.swift in Sources */,
+				844682D625D53DC900F44A53 /* ProductSortTableCell.swift in Sources */,
 				0820702E23DEC08C006793D8 /* OTPViewController.swift in Sources */,
 				0824B11B2382A13200F81A9B /* HoshiTextField.swift in Sources */,
 				086F138D246EB3C100EA4355 /* HistoryCell.swift in Sources */,

@@ -26,13 +26,13 @@ class CategoriesVC: UIViewController {
             if isPruductSelected {
                 self.productBtn.setTitleColor(.white, for: .normal)
                 self.tokenBtn.setTitleColor(.darkGray, for: .normal)
-                self.productBtn.setBackGroundColor(color: UIColor.rgb(r: 255, g: 31, b: 45))
+                self.productBtn.backgroundColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
                 self.tokenBtn.setBackGroundColor(color: .clear)
             } else {
                 self.productBtn.setTitleColor(.darkGray, for: .normal)
                 self.tokenBtn.setTitleColor(.white, for: .normal)
                 self.productBtn.setBackGroundColor(color: .clear)
-                self.tokenBtn.setBackGroundColor(color:   UIColor.rgb(r: 255, g: 31, b: 45))
+                self.tokenBtn.backgroundColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
             }
         }
     }
@@ -78,6 +78,8 @@ class CategoriesVC: UIViewController {
     }
     
     @IBAction func sortBtnAction(_ sender: UIButton) {
+        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func searchBtnAction(_ sender: UIButton) {
@@ -121,10 +123,8 @@ extension CategoriesVC : UIScrollViewDelegate{
     }
     
     private func setUpFont(){
-        self.btnStackView.backgroundColor = UIColor.rgb(r: 239, g: 34, b: 34).withAlphaComponent(0.7)
+        self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
         self.btnStackView.borderLineWidth = 1.5
-        self.btnStackView.borderColor = UIColor(red: 158, green: 158, blue: 158, alpha: 0.1)
+        self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
     }
-       
-    
 }

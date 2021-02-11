@@ -219,7 +219,6 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(with: SideMenuTableCell.self, indexPath: indexPath)
-//        cell.backgroundColor = .clear
         cell.imgView.image = sideMenuImg?[indexPath.section]
         cell.titleLbl.text = nullStringToEmpty(string: menuContent?[indexPath.section].1[indexPath.row])
         return  cell

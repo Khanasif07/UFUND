@@ -39,7 +39,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8G-Mu-xgO">
                                         <rect key="frame" x="10" y="135" width="115" height="45"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Flavia / Hair oil" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-B3-Nbu">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Flavia / Hair oil" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-B3-Nbu">
                                                 <rect key="frame" x="24" y="10.5" width="67.5" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="WSY-s7-RXL"/>

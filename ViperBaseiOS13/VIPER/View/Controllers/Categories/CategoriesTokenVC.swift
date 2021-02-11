@@ -21,12 +21,12 @@ class CategoriesTokenVC: UIViewController {
     private func initialSetup(){
         self.mainCollView.delegate = self
         self.mainCollView.dataSource = self
-        self.mainCollView.registerCell(with: ProductListCell.self)
+        self.mainCollView.registerCell(with: ProductCollectionCell.self)
         let layout1 = UICollectionViewFlowLayout()
         layout1.scrollDirection = .vertical
         mainCollView.collectionViewLayout = layout1
         layout1.minimumInteritemSpacing = 0
-        layout1.minimumLineSpacing = 10
+        layout1.minimumLineSpacing = 0
     }
     
 }
@@ -43,7 +43,7 @@ extension CategoriesTokenVC: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.ProductListCell, for: indexPath) as! ProductListCell
+        let cell = collectionView.dequeueCell(with: ProductCollectionCell.self, indexPath: indexPath)
         cell.backgroundColor = .clear
         return cell
     }
