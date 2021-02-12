@@ -93,6 +93,8 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="133" height="193"/>
             <connections>
+                <outlet property="productImg" destination="dUp-h3-rC9" id="Qxh-HH-wVe"/>
+                <outlet property="productName" destination="bRa-B3-Nbu" id="3qi-Rb-wV5"/>
                 <outlet property="shadowView" destination="4Gu-0K-83b" id="TB9-1p-5Ak"/>
             </connections>
             <point key="canvasLocation" x="51" y="74"/>

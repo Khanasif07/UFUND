@@ -11,6 +11,11 @@ import UIKit
 class CategoriesTokenVC: UIViewController {
     
     @IBOutlet weak var mainCollView: UICollectionView!
+    var tokenCategories : [CategoryModel]?{
+        didSet{
+            self.mainCollView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +44,15 @@ extension CategoriesTokenVC: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.tokenCategories?.endIndex ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: ProductCollectionCell.self, indexPath: indexPath)
+        cell.productName.text = self.tokenCategories?[indexPath.row].category_name ?? ""
+        let imgEntity =  self.tokenCategories?[indexPath.row].image ?? ""
+        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        cell.productImg.sd_setImage(with: url , placeholderImage: nil)
         cell.backgroundColor = .clear
         return cell
     }

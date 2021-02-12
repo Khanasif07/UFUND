@@ -7,6 +7,10 @@
 //
 import UIKit
 
+protocol ProductSortVCDelegate:class {
+    func sortingApplied(sortType: String)
+}
+
 class ProductSortVC: UIViewController {
     
     // MARK: - IBOutlets
@@ -16,6 +20,7 @@ class ProductSortVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    weak var delegate :ProductSortVCDelegate?
     var sortArray = [("Sort by Latest",false),("Sort by Oldest",false),("Sort by Name (A-Z)",false),("Sort by Name (Z-A)",false)]
     
     // MARK: - Lifecycle
@@ -75,8 +80,10 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
         }){
            self.sortArray[indexx].1 = false
            self.sortArray[indexPath.row].1 = true
+           self.delegate?.sortingApplied(sortType: self.sortArray[indexPath.row].0)
         } else {
             self.sortArray[indexPath.row].1 = true
+            self.delegate?.sortingApplied(sortType: self.sortArray[indexPath.row].0)
         }
         self.mainTableView.reloadData()
     }

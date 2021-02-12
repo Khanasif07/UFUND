@@ -11,23 +11,12 @@ import Foundation
 extension String {
     
     ///Removes leading and trailing white spaces from the string
-    var byRemovingLeadingTrailingWhiteSpaces:String {
-        
-        let spaceSet = CharacterSet.whitespacesAndNewlines
-        return self.trimmingCharacters(in: spaceSet)
-    }
-    
-    
     static var Empty : String {
         return ""
     }
     
     static func removeNil(_ value : String?) -> String{
         return value ?? String.Empty
-    }
-    
-    var isNumber: Bool {
-        return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
     func removingWhitespaces() -> String {

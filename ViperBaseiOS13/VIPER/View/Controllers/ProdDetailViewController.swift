@@ -188,7 +188,6 @@ class ProdDetailViewController: UIViewController {
         let url = "\(Base.productDetails.rawValue)/\(id ?? 0)"
         self.presenter?.HITAPI(api: url, params: nil, methodType:.GET, modelClass: ProductModel.self, token: true)
         self.loader.isHidden = false
-
     }
 }
 

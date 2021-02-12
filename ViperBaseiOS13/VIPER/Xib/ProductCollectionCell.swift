@@ -9,10 +9,10 @@
 import UIKit
 
 class ProductCollectionCell: UICollectionViewCell {
-//    @IBOutlet weak var productImg: UIImageView!
-//    @IBOutlet weak var productNameLbl: UILabel!
-    @IBOutlet weak var shadowView: UIView!
     
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var productImg: UIImageView!
     
     override func layoutSubviews() {
         super.layoutSubviews()

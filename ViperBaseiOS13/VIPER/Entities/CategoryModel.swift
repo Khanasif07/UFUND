@@ -17,6 +17,7 @@ struct CategoryModel: Mappable {
     var created_at : String?
     var updated_at : String?
     var name : String?
+    var image : String?
 
     init?(map: Map)
     {
@@ -27,6 +28,7 @@ struct CategoryModel: Mappable {
        {
          
         id <- map["id"]
+        image <- map["image"]
         category_name <- map["category_name"]
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]

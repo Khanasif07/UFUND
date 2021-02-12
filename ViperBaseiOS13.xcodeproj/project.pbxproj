@@ -210,6 +210,8 @@
 		845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DD025D50318009E388F /* CategoriesVC.swift */; };
 		84B451DA25CD322F001DD54A /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */; };
 		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
+		84C2106B25D634F000EE3BE7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2106A25D634F000EE3BE7 /* StringExtension.swift */; };
+		84C2106D25D6351500EE3BE7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2106C25D6351500EE3BE7 /* DateExtension.swift */; };
 		84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */; };
 		84DD054F25D239AD003AC05C /* CountryCodeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */; };
 		84DD055225D293C6003AC05C /* SideMenuTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD055025D293C6003AC05C /* SideMenuTableCell.swift */; };
@@ -457,6 +459,8 @@
 		845B9DD025D50318009E388F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuHeaderView.xib; sourceTree = "<group>"; };
+		84C2106A25D634F000EE3BE7 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		84C2106C25D6351500EE3BE7 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeTableCell.swift; sourceTree = "<group>"; };
 		84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCodeTableCell.xib; sourceTree = "<group>"; };
 		84DD055025D293C6003AC05C /* SideMenuTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableCell.swift; sourceTree = "<group>"; };
@@ -826,6 +830,7 @@
 		0824B06C2382842C00F81A9B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				84C2106925D634C700EE3BE7 /* StringExtension */,
 				845B9DCC25D3FB38009E388F /* AppleManager */,
 				84411E8825D1045400718BD1 /* GoogleManager */,
 				84411E8525D1040B00718BD1 /* FacebookManager */,
@@ -1608,6 +1613,15 @@
 			path = Xib;
 			sourceTree = "<group>";
 		};
+		84C2106925D634C700EE3BE7 /* StringExtension */ = {
+			isa = PBXGroup;
+			children = (
+				84C2106A25D634F000EE3BE7 /* StringExtension.swift */,
+				84C2106C25D6351500EE3BE7 /* DateExtension.swift */,
+			);
+			path = StringExtension;
+			sourceTree = "<group>";
+		};
 		84E16F0425D50D61004F37FA /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2008,6 +2022,7 @@
 				84E16F0125D50861004F37FA /* CategoriesProductsVC.swift in Sources */,
 				087B7B85241D0F5B0024D998 /* FundCell.swift in Sources */,
 				08A905CF23BDD77900C794F1 /* ProductDecpCell.swift in Sources */,
+				84C2106D25D6351500EE3BE7 /* DateExtension.swift in Sources */,
 				08918BAF23852CE000F274C2 /* TextViewExtension.swift in Sources */,
 				08DF504A23B2013400621C0E /* GoogleTwoFactorViewController.swift in Sources */,
 				086F13A0246F212000EA4355 /* QRScannerView.swift in Sources */,
@@ -2107,6 +2122,7 @@
 				0824B0BF2382847800F81A9B /* UIScrollView+ParallaxHeader.swift in Sources */,
 				086F1385246EA62100EA4355 /* SellHistory.swift in Sources */,
 				086F1397246F094C00EA4355 /* SendViewController.swift in Sources */,
+				84C2106B25D634F000EE3BE7 /* StringExtension.swift in Sources */,
 				086F139B246F12F000EA4355 /* SendTokenViewController.swift in Sources */,
 				0831EABF241F65E800AAC527 /* CatogriesCell.swift in Sources */,
 				085AC03C24AF4C9F00FFAD96 /* TranscationHistoryCell.swift in Sources */,

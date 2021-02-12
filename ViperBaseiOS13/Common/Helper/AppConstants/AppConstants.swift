@@ -31,6 +31,9 @@ enum AppConstants {
     static let TWITTER_API_KEY = "i9VUBLUWBBLg4tg2XBbXoTh5a"
     static let TWITTER_API_SECRET = "ljpBRbkrAZvt9B8akWDzIKVewLlXAOw8ZqVzICM2kiHu4ZbIfx"
     static let TWITTER_BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAFAbMgEAAAAAhXyX8TO%2Fo9CsguJKmkGUte7DS2w%3D8cZOeaPtFFeaviDNoL257kWr7mWqhAhllZgmPBZQfE94OLLhNW"
+    
+    static var defaultDate          = "0000-00-00"
+    static var emptyString          = ""
 }
 
 
