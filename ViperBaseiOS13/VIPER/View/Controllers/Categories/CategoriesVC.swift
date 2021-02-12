@@ -91,7 +91,7 @@ class CategoriesVC: UIViewController {
     
     @IBAction func searchBtnAction(_ sender: UIButton) {
         searchTxtField.becomeFirstResponder()
-        UIView.animate(withDuration: 0.4, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.searchViewHConst.constant = 51.0
             self.view.layoutIfNeeded()
         })
@@ -183,29 +183,56 @@ extension CategoriesVC: ProductSortVCDelegate  {
             var orderType : ComparisonResult = .orderedAscending
             orderType = (sortType == "Sort by Latest") ? .orderedDescending : .orderedAscending
             if isPruductSelected {
-                let sortedProduct = self.additionalModel?.product_categories?.sorted(by: { (model1, model2) -> Bool in
+                let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
+                let sortedProduct = productsCategories?.sorted(by: { (model1, model2) -> Bool in
                     let date1 = model1.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     let date2 = model2.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     return date1?.compare(date2 ?? Date()) == orderType
                 })
-                productVC.productCategories = sortedProduct
+                if !searchText.isEmpty {
+                     productVC.searchProductCategories = sortedProduct
+                     productVC.mainCollView.reloadData()
+                } else {
+                      productVC.productCategories = sortedProduct
+                }
+              
             } else{
-                let sortedToken = self.additionalModel?.token_categories?.sorted(by: { (model1, model2) -> Bool in
+                 let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
+                let sortedToken = tokenssCategories?.sorted(by: { (model1, model2) -> Bool in
                     let date1 = model1.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     let date2 = model2.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     return date1?.compare(date2 ?? Date()) == orderType
                 })
-                tokenVC.tokenCategories = sortedToken
+                if !searchText.isEmpty {
+                    tokenVC.searchTokenCategories = sortedToken
+                    tokenVC.mainCollView.reloadData()
+                } else {
+                    tokenVC.tokenCategories = sortedToken
+                }
+                
             }
         case "Sort by Name (A-Z)","Sort by Name (Z-A)":
             var orderType : ComparisonResult = .orderedAscending
             orderType = (sortType == "Sort by Name (Z-A)") ? .orderedDescending : .orderedAscending
             if isPruductSelected {
-                let sortedProduct = self.additionalModel?.product_categories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
-                productVC.productCategories = sortedProduct
+                let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
+                let sortedProduct = productsCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
+                if !searchText.isEmpty {
+                    productVC.searchProductCategories = sortedProduct
+                    productVC.mainCollView.reloadData()
+                } else {
+                    productVC.productCategories = sortedProduct
+                }
+                
             } else{
-                let sortedToken = self.additionalModel?.token_categories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
-                tokenVC.tokenCategories = sortedToken
+                let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
+                let sortedToken = tokenssCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
+                if !searchText.isEmpty {
+                    tokenVC.searchTokenCategories = sortedToken
+                    tokenVC.mainCollView.reloadData()
+                } else {
+                    tokenVC.tokenCategories = sortedToken
+                }
             }
         default:
             print(sortType)
@@ -232,14 +259,9 @@ extension CategoriesVC: UIScrollViewDelegate{
 //========================================
 extension CategoriesVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if isPruductSelected {
-            self.searchText = searchText
-            self.productVC.searchText = searchText
-        }
-        else {
-            self.searchText = searchText
-            self.tokenVC.searchText = searchText
-        }
+        self.searchText = searchText
+        self.productVC.searchText = searchText
+        self.tokenVC.searchText = searchText
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -248,12 +270,12 @@ extension CategoriesVC: UISearchBarDelegate{
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 51.0
                 self.view.layoutIfNeeded()
             })
         }else{
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 0
                 self.view.layoutIfNeeded()
             })
@@ -268,12 +290,12 @@ extension CategoriesVC: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 51.0
                 self.view.layoutIfNeeded()
             })
         }else{
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 0
                 self.view.layoutIfNeeded()
             })

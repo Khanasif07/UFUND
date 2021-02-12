@@ -12,13 +12,14 @@ import DZNEmptyDataSet
 class CategoriesProductsVC: UIViewController {
 
     @IBOutlet weak var mainCollView: UICollectionView!
+    
+    var isSearchEnable: Bool = false
+    var searchProductCategories : [CategoryModel]? = []
     var  productCategories : [CategoryModel]?{
         didSet{
             self.mainCollView.reloadData()
         }
     }
-    var isSearchEnable: Bool = false
-    var searchProductCategories : [CategoryModel]? = []
     var searchText: String? {
            didSet{
                if let searchedText = searchText{
