@@ -9,6 +9,8 @@
 import UIKit
 
 class EditProfilePopUpVC: UIViewController {
+    
+    var editProfileSuccess: ((UIButton)->())?
 
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var cancelBtn: UIButton!
@@ -21,12 +23,18 @@ class EditProfilePopUpVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        cancelBtn.setCornerRadius(cornerR: 24)
-        self.dataContainerView.addShadow(color: UIColor.lightGray, opacity: 1, offset: CGSize(width: 0.5, height: 0.5))
+        cancelBtn.layer.cornerRadius = cancelBtn.frame.height / 2.0
+        dataContainerView.layer.cornerRadius = 10.0
+        applyShadowView(view: dataContainerView)
     }
     
     
     @IBAction func cancelBtnAction(_ sender: UIButton) {
+        self.dismiss(animated: true) {
+            if let handle = self.editProfileSuccess{
+                handle(sender)
+            }
+        }
     }
     
 }

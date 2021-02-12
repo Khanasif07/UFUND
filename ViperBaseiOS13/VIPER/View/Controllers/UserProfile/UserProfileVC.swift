@@ -134,6 +134,14 @@ extension UserProfileVC: PresenterOutputProtocol {
         }
         self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
         self.mainTableView.reloadData()
+        if isEnableEdit {
+            let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
+            popUpVC.editProfileSuccess = { [weak self] (sender) in
+                guard let selff = self else { return }
+                selff.navigationController?.popViewController(animated: true)
+            }
+            self.present(popUpVC, animated: true, completion: nil)
+        }
         
     }
     
