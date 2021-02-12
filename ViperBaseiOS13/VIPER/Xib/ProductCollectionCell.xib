@@ -6,29 +6,24 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="lato_bold.ttf">
-            <string>Lato-Bold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProductCollectionCell" customModule="UFUND" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="125"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="150" height="125"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDX-Oz-Z2k">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="125"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Gu-0K-83b">
-                                <rect key="frame" x="7.5" y="10" width="135" height="180"/>
+                                <rect key="frame" x="7.5" y="6.5" width="135" height="112.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="macbook" translatesAutoresizingMaskIntoConstraints="NO" id="dUp-h3-rC9">
-                                        <rect key="frame" x="0.0" y="0.0" width="135" height="140"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="135" height="74"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -37,14 +32,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8G-Mu-xgO">
-                                        <rect key="frame" x="10" y="135" width="115" height="45"/>
+                                        <rect key="frame" x="0.0" y="75" width="135" height="37.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Flavia / Hair oil" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bRa-B3-Nbu">
-                                                <rect key="frame" x="24" y="10.5" width="67.5" height="24"/>
+                                                <rect key="frame" x="20.5" y="6.5" width="94" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="WSY-s7-RXL"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="10"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -58,14 +53,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="E8G-Mu-xgO" firstAttribute="height" secondItem="4Gu-0K-83b" secondAttribute="height" multiplier="0.25" id="3h2-YV-ioE"/>
+                                    <constraint firstItem="E8G-Mu-xgO" firstAttribute="height" secondItem="4Gu-0K-83b" secondAttribute="height" multiplier="0.33" id="3h2-YV-ioE"/>
                                     <constraint firstAttribute="trailing" secondItem="dUp-h3-rC9" secondAttribute="trailing" id="DjG-ex-khk"/>
                                     <constraint firstItem="dUp-h3-rC9" firstAttribute="leading" secondItem="4Gu-0K-83b" secondAttribute="leading" id="IUs-q7-bAo"/>
                                     <constraint firstAttribute="bottom" secondItem="E8G-Mu-xgO" secondAttribute="bottom" id="JyA-AT-4M6"/>
-                                    <constraint firstItem="E8G-Mu-xgO" firstAttribute="leading" secondItem="4Gu-0K-83b" secondAttribute="leading" constant="10" id="l3W-nD-90J"/>
+                                    <constraint firstItem="E8G-Mu-xgO" firstAttribute="leading" secondItem="4Gu-0K-83b" secondAttribute="leading" id="l3W-nD-90J"/>
                                     <constraint firstItem="dUp-h3-rC9" firstAttribute="top" secondItem="4Gu-0K-83b" secondAttribute="top" id="ojw-TM-m2d"/>
-                                    <constraint firstItem="dUp-h3-rC9" firstAttribute="height" secondItem="4Gu-0K-83b" secondAttribute="height" multiplier="0.7" constant="14.200000000000017" id="qCN-PD-U4B"/>
-                                    <constraint firstAttribute="trailing" secondItem="E8G-Mu-xgO" secondAttribute="trailing" constant="10" id="u3B-QY-c9Q"/>
+                                    <constraint firstItem="dUp-h3-rC9" firstAttribute="height" secondItem="4Gu-0K-83b" secondAttribute="height" multiplier="0.66" id="qCN-PD-U4B"/>
+                                    <constraint firstAttribute="trailing" secondItem="E8G-Mu-xgO" secondAttribute="trailing" id="u3B-QY-c9Q"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

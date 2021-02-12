@@ -11517,8 +11517,57 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="ASG-cu-lWh" firstAttribute="centerY" secondItem="kbc-gS-H8c" secondAttribute="centerY" id="zn1-GG-g16"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tam-Ne-AgK">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WEI-H0-xsQ">
                                         <rect key="frame" x="0.0" y="95" width="414" height="51"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jwz-yP-1KM">
+                                                <rect key="frame" x="14" y="0.0" width="386" height="43.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6jS-bo-JmE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="386" height="43.5"/>
+                                                        <subviews>
+                                                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="jhZ-b1-qZX">
+                                                                <rect key="frame" x="0.0" y="0.0" width="386" height="43.5"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </searchBar>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="jhZ-b1-qZX" secondAttribute="bottom" id="TQc-s1-XrD"/>
+                                                            <constraint firstAttribute="trailing" secondItem="jhZ-b1-qZX" secondAttribute="trailing" id="VTH-kQ-pfZ"/>
+                                                            <constraint firstItem="jhZ-b1-qZX" firstAttribute="leading" secondItem="6jS-bo-JmE" secondAttribute="leading" id="aAE-vU-I0R"/>
+                                                            <constraint firstItem="jhZ-b1-qZX" firstAttribute="top" secondItem="6jS-bo-JmE" secondAttribute="top" id="hs6-eo-WIT"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="6jS-bo-JmE" secondAttribute="bottom" id="L4I-fj-CBp"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6jS-bo-JmE" secondAttribute="trailing" id="QLy-BP-dVe"/>
+                                                    <constraint firstItem="6jS-bo-JmE" firstAttribute="leading" secondItem="Jwz-yP-1KM" secondAttribute="leading" id="cTu-hl-QWO"/>
+                                                    <constraint firstItem="6jS-bo-JmE" firstAttribute="top" secondItem="Jwz-yP-1KM" secondAttribute="top" id="kyC-sX-eLa"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="3xk-tF-Zt5"/>
+                                            <constraint firstItem="jhZ-b1-qZX" firstAttribute="height" secondItem="WEI-H0-xsQ" secondAttribute="height" multiplier="0.85" id="LKZ-T5-Rwp"/>
+                                            <constraint firstAttribute="trailing" secondItem="Jwz-yP-1KM" secondAttribute="trailing" constant="14" id="LUb-bo-Kq3"/>
+                                            <constraint firstItem="Jwz-yP-1KM" firstAttribute="leading" secondItem="WEI-H0-xsQ" secondAttribute="leading" constant="14" id="qG3-ca-9Vs"/>
+                                            <constraint firstItem="Jwz-yP-1KM" firstAttribute="top" secondItem="WEI-H0-xsQ" secondAttribute="top" id="vQq-FS-lze"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tam-Ne-AgK">
+                                        <rect key="frame" x="0.0" y="146" width="414" height="51"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgf-yh-Fv2">
                                                 <rect key="frame" x="16" y="6" width="382" height="39"/>
@@ -11593,18 +11642,21 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="jgf-yh-Fv2" firstAttribute="leading" secondItem="tam-Ne-AgK" secondAttribute="leading" constant="16" id="vch-pI-VSY"/>
                                         </constraints>
                                     </view>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okU-Vx-i3n">
-                                        <rect key="frame" x="0.0" y="146" width="414" height="750"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okU-Vx-i3n">
+                                        <rect key="frame" x="0.0" y="197" width="414" height="699"/>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="okU-Vx-i3n" secondAttribute="bottom" id="5ZU-IW-jA9"/>
-                                    <constraint firstItem="tam-Ne-AgK" firstAttribute="top" secondItem="kbc-gS-H8c" secondAttribute="bottom" id="WG4-Oq-OMY"/>
+                                    <constraint firstItem="WEI-H0-xsQ" firstAttribute="top" secondItem="kbc-gS-H8c" secondAttribute="bottom" id="CCj-wc-kct"/>
+                                    <constraint firstAttribute="trailing" secondItem="WEI-H0-xsQ" secondAttribute="trailing" id="Ryo-0u-DDW"/>
+                                    <constraint firstItem="WEI-H0-xsQ" firstAttribute="leading" secondItem="Wb4-dp-WGI" secondAttribute="leading" id="UW2-Ht-a54"/>
                                     <constraint firstItem="okU-Vx-i3n" firstAttribute="top" secondItem="tam-Ne-AgK" secondAttribute="bottom" id="YXq-ur-e4k"/>
                                     <constraint firstItem="tam-Ne-AgK" firstAttribute="leading" secondItem="Wb4-dp-WGI" secondAttribute="leading" id="aS8-G4-SSC"/>
                                     <constraint firstItem="okU-Vx-i3n" firstAttribute="leading" secondItem="Wb4-dp-WGI" secondAttribute="leading" id="agG-ZY-U45"/>
                                     <constraint firstAttribute="trailing" secondItem="tam-Ne-AgK" secondAttribute="trailing" id="fei-Yn-M2e"/>
+                                    <constraint firstItem="tam-Ne-AgK" firstAttribute="top" secondItem="WEI-H0-xsQ" secondAttribute="bottom" id="kOK-Yg-8dG"/>
                                     <constraint firstAttribute="trailing" secondItem="okU-Vx-i3n" secondAttribute="trailing" id="lZX-pf-6mN"/>
                                 </constraints>
                             </view>
@@ -11659,6 +11711,8 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="btnStackView" destination="jgf-yh-Fv2" id="hzz-TX-ynC"/>
                         <outlet property="mainScrollView" destination="okU-Vx-i3n" id="6gN-tf-qRl"/>
                         <outlet property="productBtn" destination="k8x-DN-uN6" id="ycC-SW-TsZ"/>
+                        <outlet property="searchTxtField" destination="jhZ-b1-qZX" id="w6r-Dw-kGC"/>
+                        <outlet property="searchViewHConst" destination="3xk-tF-Zt5" id="r3P-n0-NW1"/>
                         <outlet property="tokenBtn" destination="rpW-eZ-lyl" id="piC-Ws-iLW"/>
                     </connections>
                 </viewController>

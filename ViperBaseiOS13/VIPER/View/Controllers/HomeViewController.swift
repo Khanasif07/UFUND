@@ -362,6 +362,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.EditProfileViewController) as? EditProfileViewController else { return }
                     self.navigationController?.pushViewController(vc, animated: true)
                     
+                case  Constants.string.categories.localize():
+                     guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.CategoriesVC) as? CategoriesVC else { return }
+                   self.navigationController?.pushViewController(vc, animated: true)
+                    
                 case Constants.string.wallet.localize():
                     guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.WalletViewController) as? WalletViewController else { return }
                     self.navigationController?.pushViewController(vc, animated: true)

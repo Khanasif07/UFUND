@@ -17,9 +17,12 @@ class CategoriesVC: UIViewController {
     @IBOutlet weak var tokenBtn: UIButton!
     @IBOutlet weak var productBtn: UIButton!
     @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var searchViewHConst: NSLayoutConstraint!
+    @IBOutlet weak var searchTxtField: UISearchBar!
     
     // MARK: - Variables
     //===========================
+    var searchText: String  = ""
     var additionalModel : AdditionsModel?
     var tokenVC : CategoriesTokenVC!
     var productVC : CategoriesProductsVC!
@@ -87,9 +90,12 @@ class CategoriesVC: UIViewController {
     }
     
     @IBAction func searchBtnAction(_ sender: UIButton) {
-    }
-    
-    
+        searchTxtField.becomeFirstResponder()
+        UIView.animate(withDuration: 0.4, animations: {
+            self.searchViewHConst.constant = 51.0
+            self.view.layoutIfNeeded()
+        })
+}
 }
 
 // MARK: - Extension For Functions
@@ -98,6 +104,7 @@ extension CategoriesVC {
     
     private func initialSetUp(){
         self.setUpFont()
+        self.setUpSearchBar()
         self.configureScrollView()
         self.instantiateViewController()
         self.isPruductSelected = true
@@ -137,6 +144,13 @@ extension CategoriesVC {
         
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
+    }
+    
+    private func setUpSearchBar(){
+        self.searchTxtField.delegate = self
+        self.searchTxtField.searchTextField.textColor = .white
+        searchViewHConst.constant = 0.0
+        self.view.layoutIfNeeded()
     }
 }
 
@@ -210,5 +224,60 @@ extension CategoriesVC: UIScrollViewDelegate{
         else {
             isPruductSelected = false
         }
+    }
+}
+
+
+//MARK:- UISearchBarDelegate
+//========================================
+extension CategoriesVC: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if isPruductSelected {
+            self.searchText = searchText
+            self.productVC.searchText = searchText
+        }
+        else {
+            self.searchText = searchText
+            self.tokenVC.searchText = searchText
+        }
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+            UIView.animate(withDuration: 0.4, animations: {
+                self.searchViewHConst.constant = 51.0
+                self.view.layoutIfNeeded()
+            })
+        }else{
+            UIView.animate(withDuration: 0.4, animations: {
+                self.searchViewHConst.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        }
+        searchBar.resignFirstResponder()
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+            UIView.animate(withDuration: 0.4, animations: {
+                self.searchViewHConst.constant = 51.0
+                self.view.layoutIfNeeded()
+            })
+        }else{
+            UIView.animate(withDuration: 0.4, animations: {
+                self.searchViewHConst.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        }
+        searchBar.resignFirstResponder()
     }
 }

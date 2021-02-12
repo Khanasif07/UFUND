@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class CategoriesProductsVC: UIViewController {
 
@@ -16,6 +17,22 @@ class CategoriesProductsVC: UIViewController {
             self.mainCollView.reloadData()
         }
     }
+    var isSearchEnable: Bool = false
+    var searchProductCategories : [CategoryModel]? = []
+    var searchText: String? {
+           didSet{
+               if let searchedText = searchText{
+                   if searchedText.isEmpty{
+                       self.isSearchEnable = false
+                       self.mainCollView.reloadData()
+                   } else {
+                       self.isSearchEnable = true
+                       self.searchProductCategories = productCategories?.filter({(($0.category_name?.lowercased().contains(s: searchedText.lowercased()))!)})
+                       self.mainCollView.reloadData()
+                   }
+               }
+           }
+       }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +43,8 @@ class CategoriesProductsVC: UIViewController {
     private func initialSetup(){
         self.mainCollView.delegate = self
         self.mainCollView.dataSource = self
+        self.mainCollView.emptyDataSetDelegate = self
+        self.mainCollView.emptyDataSetSource = self
         self.mainCollView.registerCell(with: ProductCollectionCell.self)
         let layout1 = UICollectionViewFlowLayout()
         layout1.scrollDirection = .vertical
@@ -44,13 +63,13 @@ extension CategoriesProductsVC: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.productCategories?.endIndex ?? 0
+        return isSearchEnable ?   (self.searchProductCategories?.endIndex ?? 0)   : (self.productCategories?.endIndex ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: ProductCollectionCell.self, indexPath: indexPath)
-        cell.productName.text = self.productCategories?[indexPath.row].category_name ?? ""
-        let imgEntity =  self.productCategories?[indexPath.row].image ?? ""
+        cell.productName.text =  isSearchEnable ? (self.searchProductCategories?[indexPath.row].category_name ?? "") : (self.productCategories?[indexPath.row].category_name ?? "")
+        let imgEntity =  isSearchEnable ? (self.searchProductCategories?[indexPath.row].image ?? "") : (self.productCategories?[indexPath.row].image ?? "")
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         cell.productImg.sd_setImage(with: url , placeholderImage: nil)
         cell.backgroundColor = .clear
@@ -59,5 +78,34 @@ extension CategoriesProductsVC: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.frame.width / 2), height: 34 * collectionView.frame.height / 100)
+    }
+}
+
+
+//MARK:- Tableview Empty dataset delegates
+//========================================
+extension CategoriesProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return  #imageLiteral(resourceName: "icNoData")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string:"", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return  NSAttributedString(string:"Looks Nothing Found", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
+    }
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+        return true
     }
 }

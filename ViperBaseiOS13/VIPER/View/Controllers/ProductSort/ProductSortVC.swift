@@ -86,5 +86,9 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
             self.delegate?.sortingApplied(sortType: self.sortArray[indexPath.row].0)
         }
         self.mainTableView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.popOrDismiss(animation: true)
+        }
     }
 }
+

@@ -227,10 +227,25 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch menuContent?[indexPath.section].0 {
         case Constants.string.Products.localize():
-            if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == "All Product"{
+            if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.allProduct.localize(){
                 self.drawerController?.closeSide()
-                self.push(to: Storyboard.Ids.ProductViewController)
-            } else {
+                if isFromCampainer {
+                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as! TokenProductViewController
+                    viewController.tileStr = Constants.string.all.localize()
+                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
+                } else {
+                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as! ProductListViewController
+                    viewController.tileStr = Constants.string.all.localize()
+                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
+                }
+            } else if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.newProduct.localize(){
+                print("Do Nothing")
+            }
+        case Constants.string.TokenizedAssets.localize():
+            if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.newTokenizedAssets.localize(){
+//                self.drawerController?.closeSide()
+//                self.push(to: Storyboard.Ids.ProductViewController)
+            } else if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.allTokenizedAssets.localize(){
                 print("Do Nothing")
             }
         default:
@@ -261,7 +276,7 @@ extension  SideMenuController {
             self.push(to: Storyboard.Ids.UserProfileVC)
         case Constants.string.Products.localize():
             if self.menuContent?[section].1.isEmpty ?? true{
-                self.menuContent?[section].1 = ["New Product","All Product"]
+                self.menuContent?[section].1 = [Constants.string.newProduct.localize(),Constants.string.allProduct.localize()]
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             } else {
                 self.menuContent?[section].1 = []
@@ -277,8 +292,15 @@ extension  SideMenuController {
             //            self.drawerController?.closeSide()
 //            self.push(to: Storyboard.Ids.ProductViewController)
         case Constants.string.TokenizedAssets.localize():
-            self.drawerController?.closeSide()
-            self.push(to: Storyboard.Ids.TokenizedAssetsListViewController)
+            if self.menuContent?[section].1.isEmpty ?? true{
+                self.menuContent?[section].1 = [Constants.string.newTokenizedAssets.localize(),Constants.string.allTokenizedAssets.localize()]
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            } else {
+                self.menuContent?[section].1 = []
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            }
+//            self.drawerController?.closeSide()
+//            self.push(to: Storyboard.Ids.TokenizedAssetsListViewController)
         case Constants.string.Investors.localize():
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.InvestmentViewController)
