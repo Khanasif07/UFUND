@@ -11,6 +11,10 @@ import ObjectMapper
 import DZNEmptyDataSet
 
 class AllProductsVC: UIViewController {
+    enum ProductType: String {
+        case AllProducts
+        case NewProducts
+    }
     
     // MARK: - IBOutlets
     //===========================
@@ -21,6 +25,7 @@ class AllProductsVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var productType: ProductType = .AllProducts
     var searchText : String = ""
     var productTitle: String = "All Products"
     var isSearchEnable: Bool = false

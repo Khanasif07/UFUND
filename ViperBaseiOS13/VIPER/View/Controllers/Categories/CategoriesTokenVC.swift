@@ -80,6 +80,11 @@ extension CategoriesTokenVC: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width / 2 , height: 34 * collectionView.frame.height / 100)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let selectedVC = CategoriesDetailVC.instantiate(fromAppStoryboard: .Main)
+//        self.navigationController?.pushViewController(selectedVC, animated: true)
+    }
 }
 
 

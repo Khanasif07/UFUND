@@ -1,15 +1,16 @@
 //
-//  CategoriesProductsVC.swift
+//  CategoryNewProductsVC.swift
 //  ViperBaseiOS13
 //
-//  Created by Admin on 11/02/21.
+//  Created by Admin on 15/02/21.
 //  Copyright © 2021 CSS. All rights reserved.
 //
+
 
 import UIKit
 import DZNEmptyDataSet
 
-class CategoriesProductsVC: UIViewController {
+class CategoryNewProductsVC: UIViewController {
 
     @IBOutlet weak var mainCollView: UICollectionView!
     
@@ -57,7 +58,7 @@ class CategoriesProductsVC: UIViewController {
 }
 
 //MARK: - Collection view delegate
-extension CategoriesProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension CategoryNewProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -90,7 +91,7 @@ extension CategoriesProductsVC: UICollectionViewDelegate, UICollectionViewDataSo
 
 //MARK:- Tableview Empty dataset delegates
 //========================================
-extension CategoriesProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension CategoryNewProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return  #imageLiteral(resourceName: "icNoData")
     }

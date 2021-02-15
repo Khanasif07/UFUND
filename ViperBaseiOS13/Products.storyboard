@@ -8,6 +8,104 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Category All ProductsVC-->
+        <scene sceneID="Z8W-3d-XPD">
+            <objects>
+                <viewController storyboardIdentifier="CategoryAllProductsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OHP-HI-jgh" customClass="CategoryAllProductsVC" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l6E-iw-dQQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6I-hz-gqf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v6a-H8-9IK">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YXS-l0-ShK">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="v6a-H8-9IK" secondAttribute="trailing" id="Ja8-an-fzB"/>
+                                    <constraint firstAttribute="bottom" secondItem="v6a-H8-9IK" secondAttribute="bottom" id="NxI-5O-BQS"/>
+                                    <constraint firstItem="v6a-H8-9IK" firstAttribute="top" secondItem="y6I-hz-gqf" secondAttribute="top" id="jeS-3T-hTd"/>
+                                    <constraint firstItem="v6a-H8-9IK" firstAttribute="leading" secondItem="y6I-hz-gqf" secondAttribute="leading" id="l4c-XA-NGZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="y6I-hz-gqf" secondAttribute="bottom" id="Jl5-3w-RQo"/>
+                            <constraint firstItem="y6I-hz-gqf" firstAttribute="leading" secondItem="FKN-Vc-Uz1" secondAttribute="leading" id="Yhd-zE-f53"/>
+                            <constraint firstItem="FKN-Vc-Uz1" firstAttribute="trailing" secondItem="y6I-hz-gqf" secondAttribute="trailing" id="diM-hj-53u"/>
+                            <constraint firstItem="y6I-hz-gqf" firstAttribute="top" secondItem="l6E-iw-dQQ" secondAttribute="top" id="pg4-6N-AWB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FKN-Vc-Uz1"/>
+                    </view>
+                    <connections>
+                        <outlet property="mainCollView" destination="v6a-H8-9IK" id="50f-17-nLd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WGw-X9-acb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-839" y="37"/>
+        </scene>
+        <!--Category New ProductsVC-->
+        <scene sceneID="lg1-Ug-v6K">
+            <objects>
+                <viewController storyboardIdentifier="CategoryNewProductsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7Bz-oQ-Nqa" customClass="CategoryNewProductsVC" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lJc-EM-zTB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qko-hr-JXB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Jxw-wV-D9x">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kun-06-YQ8">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Jxw-wV-D9x" secondAttribute="trailing" id="6n8-Fa-joF"/>
+                                    <constraint firstItem="Jxw-wV-D9x" firstAttribute="top" secondItem="qko-hr-JXB" secondAttribute="top" id="KU2-KN-oQz"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jxw-wV-D9x" secondAttribute="bottom" id="KX1-LQ-sgB"/>
+                                    <constraint firstItem="Jxw-wV-D9x" firstAttribute="leading" secondItem="qko-hr-JXB" secondAttribute="leading" id="L5G-gU-CRL"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="top" secondItem="qko-hr-JXB" secondAttribute="top" id="7bA-wM-xTg"/>
+                            <constraint firstItem="qko-hr-JXB" firstAttribute="leading" secondItem="ErL-Io-d1r" secondAttribute="leading" id="bm1-n9-cUW"/>
+                            <constraint firstItem="ErL-Io-d1r" firstAttribute="trailing" secondItem="qko-hr-JXB" secondAttribute="trailing" id="cNr-8D-LVB"/>
+                            <constraint firstItem="qko-hr-JXB" firstAttribute="bottom" secondItem="lJc-EM-zTB" secondAttribute="bottom" id="jyA-kt-dSd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ErL-Io-d1r"/>
+                    </view>
+                    <connections>
+                        <outlet property="mainCollView" destination="Jxw-wV-D9x" id="XJh-Gb-8B6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aBc-7t-NUf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-184" y="37"/>
+        </scene>
         <!--All ProductsVC-->
         <scene sceneID="3be-qM-6S6">
             <objects>
@@ -244,7 +342,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Mw-kQ-c93" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="312" y="117"/>
+            <point key="canvasLocation" x="494" y="37"/>
         </scene>
     </scenes>
     <resources>
