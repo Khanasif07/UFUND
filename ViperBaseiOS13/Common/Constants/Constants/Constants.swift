@@ -20,7 +20,8 @@ struct Constants {
     let send = "Send"
     let InvalidOTP = "Enter valid OTP"
     let history = "History"
-    
+    let allProducts = "All Products"
+    let newProducts = "New Products"
     let walletHistory = "Wallet History"
     let kyc = "KYC/AML"
     let Done = "Done"

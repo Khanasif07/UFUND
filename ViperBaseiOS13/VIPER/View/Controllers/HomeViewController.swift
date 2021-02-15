@@ -359,7 +359,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     self.navigationController?.pushViewController(vc, animated: true)
                     
                 case Constants.string.profile.localize():
-                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.EditProfileViewController) as? EditProfileViewController else { return }
+                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.UserProfileVC) as? UserProfileVC else { return }
                     self.navigationController?.pushViewController(vc, animated: true)
                     
                 case  Constants.string.categories.localize():

@@ -57,6 +57,7 @@ struct Storyboard {
     let WebViewController = "WebViewController"
     let CategoriesVC = "CategoriesVC"
     let ProductSortVC = "ProductSortVC"
+    let AllProductsVC = "AllProductsVC"
     
 }
 

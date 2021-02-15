@@ -234,12 +234,19 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
                     viewController.tileStr = Constants.string.all.localize()
                     (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
                 } else {
-                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as! ProductListViewController
-                    viewController.tileStr = Constants.string.all.localize()
-                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
+                    //                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as! ProductListViewController
+                    //                    viewController.tileStr = Constants.string.all.localize()
+                    //                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
+                    let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.allProducts.localize()
+                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+                    
                 }
             } else if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.newProduct.localize(){
-                print("Do Nothing")
+                self.drawerController?.closeSide()
+                let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.newProducts.localize()
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             }
         case Constants.string.TokenizedAssets.localize():
             if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.newTokenizedAssets.localize(){
