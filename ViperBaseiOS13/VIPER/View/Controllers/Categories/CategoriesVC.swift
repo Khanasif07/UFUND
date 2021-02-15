@@ -23,7 +23,6 @@ class CategoriesVC: UIViewController {
     // MARK: - Variables
     //===========================
     var searchText: String  = ""
-    var additionalModel : AdditionsModel?
     var tokenVC : CategoriesTokenVC!
     var productVC : CategoriesProductsVC!
     lazy var loader  : UIView = {
@@ -160,7 +159,6 @@ extension CategoriesVC : PresenterOutputProtocol{
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
          self.loader.isHidden = true
         if let addionalModel = dataDict as? AdditionsModel{
-            self.additionalModel = addionalModel
             tokenVC.tokenCategories = addionalModel.token_categories
             productVC.productCategories = addionalModel.product_categories
         }

@@ -11994,6 +11994,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="newProductsBtn" destination="xHW-2I-ZdP" id="7ad-ej-aeG"/>
                         <outlet property="searchTxtField" destination="qVQ-no-RR8" id="zAX-oy-fED"/>
                         <outlet property="searchViewHConst" destination="W1s-bs-Hxh" id="nLx-K6-Rrf"/>
+                        <outlet property="titleLbl" destination="8gu-bj-oHN" id="xiR-6n-7r3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbb-Nt-Ohm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

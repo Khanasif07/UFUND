@@ -14,8 +14,8 @@ class CategoryAllProductsVC: UIViewController {
     @IBOutlet weak var mainCollView: UICollectionView!
     
     var isSearchEnable: Bool = false
-    var searchProductCategories : [CategoryModel]? = []
-    var  productCategories : [CategoryModel]?{
+    var allSearchProductListing : [ProductModel]? = []
+    var  allProductListing : [ProductModel]?{
         didSet{
             self.mainCollView.reloadData()
         }
@@ -28,7 +28,7 @@ class CategoryAllProductsVC: UIViewController {
                        self.mainCollView.reloadData()
                    } else {
                        self.isSearchEnable = true
-                       self.searchProductCategories = productCategories?.filter({(($0.category_name?.lowercased().contains(s: searchedText.lowercased()))!)})
+                       self.allSearchProductListing = allProductListing?.filter({(($0.product_title?.lowercased().contains(s: searchedText.lowercased()))!)})
                        self.mainCollView.reloadData()
                    }
                }
@@ -46,7 +46,7 @@ class CategoryAllProductsVC: UIViewController {
         self.mainCollView.dataSource = self
         self.mainCollView.emptyDataSetDelegate = self
         self.mainCollView.emptyDataSetSource = self
-        self.mainCollView.registerCell(with: ProductCollectionCell.self)
+        self.mainCollView.registerCell(with: AllProductsCollCell.self)
         let layout1 = UICollectionViewFlowLayout()
         layout1.scrollDirection = .vertical
         mainCollView.collectionViewLayout = layout1
@@ -64,26 +64,23 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isSearchEnable ?   (self.searchProductCategories?.endIndex ?? 0)   : (self.productCategories?.endIndex ?? 0)
+        return isSearchEnable ?   (self.allSearchProductListing?.endIndex ?? 0)   : (self.allProductListing?.endIndex ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueCell(with: ProductCollectionCell.self, indexPath: indexPath)
-        cell.productName.text =  isSearchEnable ? (self.searchProductCategories?[indexPath.row].category_name ?? "") : (self.productCategories?[indexPath.row].category_name ?? "")
-        let imgEntity =  isSearchEnable ? (self.searchProductCategories?[indexPath.row].image ?? "") : (self.productCategories?[indexPath.row].image ?? "")
+        let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
+        cell.productNameLbl.text =  isSearchEnable ? (self.allSearchProductListing?[indexPath.row].product_title ?? "") : (self.allProductListing?[indexPath.row].product_title ?? "")
+        let imgEntity =  isSearchEnable ? (self.allSearchProductListing?[indexPath.row].product_image ?? "") : (self.allProductListing?[indexPath.row].product_image ?? "")
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        cell.productImg.sd_setImage(with: url , placeholderImage: nil)
+        cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
+        cell.productTypeLbl.text = isSearchEnable ? (self.allSearchProductListing?[indexPath.row].category?.category_name ?? "") : (self.allProductListing?[indexPath.row].category?.category_name ?? "")
+        cell.priceLbl.text = isSearchEnable ? "\((self.allSearchProductListing?[indexPath.row].total_product_value ?? 0))" : "\((self.allProductListing?[indexPath.row].total_product_value ?? 0))"
         cell.backgroundColor = .clear
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width / 2), height: 34 * collectionView.frame.height / 100)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedVC = CategoriesDetailVC.instantiate(fromAppStoryboard: .Main)
-        self.navigationController?.pushViewController(selectedVC, animated: true)
+        return CGSize(width: (collectionView.frame.width / 2), height: 35 * collectionView.frame.height / 100)
     }
 }
 

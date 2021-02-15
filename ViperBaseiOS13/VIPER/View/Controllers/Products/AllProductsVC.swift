@@ -192,7 +192,6 @@ extension AllProductsVC : PresenterOutputProtocol {
         let productModelEntity = dataDict as? ProductModelEntity
         self.investerProductList = productModelEntity?.data ?? []
         print(investerProductList)
-        
     }
     
     func showError(error: CustomError) {

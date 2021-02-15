@@ -83,6 +83,7 @@ extension CategoriesProductsVC: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedVC = CategoriesDetailVC.instantiate(fromAppStoryboard: .Main)
+        selectedVC.categoryTitle = isSearchEnable ? (self.searchProductCategories?[indexPath.row].category_name ?? "") : (self.productCategories?[indexPath.row].category_name ?? "")
         self.navigationController?.pushViewController(selectedVC, animated: true)
     }
 }

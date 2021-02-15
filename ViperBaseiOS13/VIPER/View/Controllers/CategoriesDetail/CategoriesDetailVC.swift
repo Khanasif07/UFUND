@@ -12,6 +12,7 @@ class CategoriesDetailVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var btnStackView: UIView!
     @IBOutlet weak var allProductsBtn: UIButton!
     @IBOutlet weak var newProductsBtn: UIButton!
@@ -21,6 +22,7 @@ class CategoriesDetailVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var categoryTitle:  String  = ""
     var searchText: String  = ""
     var additionalModel : AdditionsModel?
     var newProductsVC : CategoryNewProductsVC!
@@ -107,7 +109,7 @@ extension CategoriesDetailVC {
         self.configureScrollView()
         self.instantiateViewController()
         self.isAllProductsSelected = false
-//        self.getCategoryList()
+        self.getCategoryDetailData()
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -134,14 +136,15 @@ extension CategoriesDetailVC {
     }
     
     private func setUpFont(){
+        self.titleLbl.text = categoryTitle
         self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
         self.btnStackView.borderLineWidth = 1.5
         self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
     }
     
-    private func getCategoryList(){
+    private func getCategoryDetailData(){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
+        self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
     }
     
     private func setUpSearchBar(){
@@ -153,24 +156,20 @@ extension CategoriesDetailVC {
     
 }
 
-
 // MARK: - Api Success failure
 //===========================
 extension CategoriesDetailVC : PresenterOutputProtocol{
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
-        if let addionalModel = dataDict as? AdditionsModel{
-            self.additionalModel = addionalModel
-//            tokenVC.tokenCategories = addionalModel.token_categories
-//            productVC.productCategories = addionalModel.product_categories
+        if let addionalModel = dataDict as? ProductModelEntity{
+            newProductsVC.newProductListing = addionalModel.data
+            allProductsVC.allProductListing = addionalModel.data
         }
-        
     }
     
     func showError(error: CustomError) {
         self.loader.isHidden = true
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
-        
     }
     
 }
