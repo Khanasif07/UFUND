@@ -1,0 +1,188 @@
+//
+//  ProductFilterVC.swift
+//  ViperBaseiOS13
+//
+//  Created by Admin on 16/02/21.
+//  Copyright © 2021 CSS. All rights reserved.
+//
+
+import UIKit
+import Parchment
+
+protocol ProductFilterVCDelegate: class {
+    func doneButtonTapped()
+    func clearAllButtonTapped()
+    
+}
+
+
+class ProductFilterVC: UIViewController {
+    
+    // MARK: - IBOutlets
+    //===========================
+    @IBOutlet weak var applyBtn: UIButton!
+    @IBOutlet weak var clearAllButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var dataContainerView: UIView!
+    @IBOutlet weak var mainContainerViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var navigationView: UIView!
+    @IBOutlet weak var mainBackView: UIView!
+       
+    
+    // MARK: - Variables
+    //===========================
+    
+    // Parchment View
+    var filtersTabs =  [MenuItem]()
+    var parchmentView : PagingViewController?
+    var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
+    var isFilterApplied:Bool = false
+    var allChildVCs: [UIViewController] = [UIViewController]()
+    weak var delegate : ProductFilterVCDelegate?
+    
+    // MARK: - Lifecycle
+    //===========================
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initialSetup()
+        self.view.layoutIfNeeded()
+        self.dataContainerView.layoutIfNeeded()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.parchmentView?.view.frame = self.dataContainerView.bounds
+        self.parchmentView?.loadViewIfNeeded()
+        clearAllButton.setCirclerCornerRadius()
+        applyBtn.setCornerRadius(cornerR: 8)
+        closeButton.setCornerRadius(cornerR: 8)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.parchmentView?.view.frame = self.dataContainerView.bounds
+        self.parchmentView?.loadViewIfNeeded()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        delay(seconds: 0.4) { [weak self] in
+////            self?.show(animated: true)
+//        }
+    }
+    
+    // MARK: - IBActions
+    //===========================
+    @IBAction func clearAllBtnAction(_ sender: Any) {
+         delegate?.clearAllButtonTapped()
+         self.popOrDismiss(animation: true)
+    }
+    
+    @IBAction func closeBtnAction(_ sender: UIButton) {
+        delegate?.doneButtonTapped()
+        self.popOrDismiss(animation: true)
+    }
+    
+    @IBAction func applyBtnAction(_ sender: UIButton) {
+         self.popOrDismiss(animation: true)
+    }
+    
+    
+}
+
+// MARK: - Extension For Functions
+//===========================
+extension ProductFilterVC {
+    
+    private func initialSetup() {
+//        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
+//        let height = UIApplication.shared.statusBarFrame.height
+//        self.navigationViewTopConstraint.constant = CGFloat(height)
+        self.setupPagerView()
+//        self.hide(animated: false,shouldRemove: false)
+    }
+    
+    private func setupPagerView() {
+        self.allChildVCs.removeAll()
+        //        self.selectedIndex = HotelFilterVM.shared.lastSelectedIndex
+        
+        for i in 0..<ProductFilterVM.shared.allTabsStr.count {
+            if i == 0 {
+                let vc = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(vc)
+            } else if i == 1 {
+                let vc = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(vc)
+            } else if i == 2 {
+                let vc = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(vc)
+            } else if i == 3 {
+                let vc = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(vc)
+            }
+        }
+        self.view.layoutIfNeeded()
+        if let _ = self.parchmentView{
+            self.parchmentView?.view.removeFromSuperview()
+            self.parchmentView = nil
+        }
+//        self.setBadgesOnAllCategories()
+        self.initiateFilterTabs()
+        setupParchmentPageController()
+        
+    }
+    
+    // Added to replace the existing page controller, added Hitesh Soni, 28-29Jan'2020
+    private func setupParchmentPageController(){
+        
+        self.parchmentView = PagingViewController()
+        self.parchmentView?.menuItemSpacing = 10.0
+        self.parchmentView?.backgroundColor = .red
+        self.parchmentView?.menuInsets = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 0.0)
+        self.parchmentView?.menuItemSize = .sizeToFit(minWidth: 150, height: 60)
+        self.parchmentView?.borderOptions = PagingBorderOptions.visible(
+            height: 0.5,
+            zIndex: Int.max - 1,
+            insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        let nib = UINib(nibName: "MenuItemCollectionCell", bundle: nil)
+        self.parchmentView?.register(nib, for: MenuItem.self)
+        self.parchmentView?.indicatorColor = .clear
+        self.parchmentView?.selectedTextColor = .white
+        self.dataContainerView.addSubview(self.parchmentView!.view)
+        self.parchmentView?.dataSource = self
+        self.parchmentView?.delegate = self
+        self.parchmentView?.sizeDelegate = self
+        self.parchmentView?.select(index: 0)
+        self.parchmentView?.reloadData()
+        self.parchmentView?.reloadMenu()
+    }
+    
+    private func initiateFilterTabs() {
+        filtersTabs.removeAll()
+        for i in 0..<(ProductFilterVM.shared.allTabsStr.count){
+            let obj = MenuItem(title: ProductFilterVM.shared.allTabsStr[i], index: i, isSelected: ProductFilterVM.shared.allTabsStr[i] == "Category")
+            filtersTabs.append(obj)
+        }
+    }
+    
+    private func show(animated: Bool) {
+        UIView.animate(withDuration: animated ? 0.4 : 0.0, animations: {
+            self.mainContainerViewTopConstraint.constant = 0.0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    private func hide(animated: Bool, shouldRemove: Bool = true) {
+        UIView.animate(withDuration: animated ? 0.4 : 0.0, animations: {
+            self.mainContainerViewTopConstraint.constant = -(self.mainContainerView.frame.height)
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            if shouldRemove {
+                self.view.removeFromSuperview()
+                self.removeFromParent()
+            }
+        })
+    }
+}
+

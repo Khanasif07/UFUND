@@ -227,7 +227,7 @@ extension UIViewController {
 
 enum AppStoryboard : String {
     
-    case Main , Products
+    case Main , Products , Filter
 }
 
 extension AppStoryboard {

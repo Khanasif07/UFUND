@@ -77,8 +77,8 @@ class AllProductsVC: UIViewController {
     }
     
     @IBAction func filterBtnAction(_ sender: UIButton) {
+        self.showFilterVC(self)
     }
-    
 }
 
 // MARK: - Extension For Functions
@@ -115,7 +115,21 @@ extension AllProductsVC {
         self.loader.isHidden = false
     }
     
-    
+    func showFilterVC(_ vc: UIViewController, index: Int = 0) {
+        //        if let _ = UIApplication.topViewController() {
+        let ob = ProductFilterVC.instantiate(fromAppStoryboard: .Filter)
+        ob.delegate = vc as? ProductFilterVCDelegate
+        //                ob.selectedIndex = index
+        //            vc.add(childViewController: ob)
+        vc.present(ob, animated: true, completion: nil)
+        //        self.addChild(ob)
+        //        let frame = self.view.bounds
+        //        ob.view.frame = frame
+        //        self.view.addSubview(ob.view)
+        
+        //               childViewController.didMove(toParent: self)
+        //        }
+    }
 }
 
 //MARK: - Collection view delegate
@@ -249,3 +263,27 @@ extension AllProductsVC: UISearchBarDelegate{
         searchBar.resignFirstResponder()
     }
 }
+
+
+// MARK: - Hotel filter Delegate methods
+
+extension AllProductsVC: ProductFilterVCDelegate {
+    func clearAllButtonTapped() {
+        ProductFilterVM.shared.isSortingApplied = false
+//        UserInfo.hotelFilter = nil
+//        ProductFilterVM.shared.resetToDefault()
+    }
+    
+    func doneButtonTapped() {
+//        if let isUse = UserDefaults.getObject(forKey: "shouldApplyFormStars") as? Bool, isUse {
+////            UserInfo.hotelFilterApplied = UserInfo.hotelFilter
+//        }
+        
+        
+        if ProductFilterVM.shared.isFilterApplied {
+//            ProductFilterVM.shared.saveDataToUserDefaults()
+        }
+//        printDebug("done button tapped")
+    }
+}
+

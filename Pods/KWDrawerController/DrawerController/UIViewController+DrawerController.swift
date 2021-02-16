@@ -48,5 +48,24 @@ extension UIViewController {
             objc_setAssociatedObject(self, &AssociatedKeys.drawerController, newValue, .OBJC_ASSOCIATION_ASSIGN)
         }
     }
+    ///Adds Child View Controller to Parent View Controller
+   public func add(childViewController:UIViewController){
+        
+        self.addChild(childViewController)
+        let frame = self.view.bounds
+
+        childViewController.view.frame = frame
+        self.view.addSubview(childViewController.view)
+        
+        childViewController.didMove(toParent: self)
+    }
+    
+    ///Removes Child View Controller From Parent View Controller
+    public var removeFromParentVC:Void{
+        self.willMove(toParent: nil)
+        self.view.removeFromSuperview()
+        self.removeFromParent()
+    }
+    
     
 }

@@ -15,6 +15,7 @@ ${BUILT_PRODUCTS_DIR}/KWDrawerController/KWDrawerController.framework
 ${BUILT_PRODUCTS_DIR}/LinkedinSwift/LinkedinSwift.framework
 ${PODS_ROOT}/Mati-Global-ID-SDK/MatiGlobalIDSDK.framework
 ${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
+${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
 ${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework
 ${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework

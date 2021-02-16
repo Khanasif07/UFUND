@@ -29,6 +29,7 @@ target 'ViperBaseiOS13' do
     pod 'GoogleSignIn'
     pod 'LinkedinSwift'
     pod 'DZNEmptyDataSet'
+    pod 'Parchment'
   
   target 'ViperBaseiOS13Tests' do
     inherit! :search_paths
