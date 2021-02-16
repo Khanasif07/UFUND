@@ -28,13 +28,12 @@ class CategoryListTableCell: UITableViewCell {
             self.populateStatusData()
         }
     }
-
-//    var eventType: ProductType? {
-//        didSet {
-//            self.populateProductType()
-//        }
-//    }
-
+    
+    var currency: Currency? {
+        didSet {
+            self.populateCurrencyData()
+        }
+    }
     
     // MARK: - View Life cycle
     
@@ -44,19 +43,15 @@ class CategoryListTableCell: UITableViewCell {
     }
     
     private func populateData() {
-//        self.categoryImageView.image = amenitie?.icon
         self.categoryTitleLabel.text = category?.category_name
     }
     
     private func populateStatusData() {
-        //        self.categoryImageView.image = amenitie?.icon
         self.categoryTitleLabel.text = status?.title
     }
-//
-//
-    private func populateProductType() {
-//        self.amenityImageView.image = eventType?.icon
-//        self.amentityTitleLabel.text = eventType?.title
+    
+    private func populateCurrencyData() {
+        self.categoryTitleLabel.text = currency?.title
     }
     
 }

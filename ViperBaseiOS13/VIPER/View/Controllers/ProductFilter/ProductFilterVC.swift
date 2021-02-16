@@ -33,12 +33,14 @@ class ProductFilterVC: UIViewController {
     
     // MARK: - Variables
     //===========================
-    
+    var categoryListingVC : CategoryListingVC!
+    var priceRangeVC      : PriceRangeVC!
+    var statusVC          : StatusVC!
+    var currencyVC        : CurrencyVC!
     // Parchment View
     var filtersTabs =  [MenuItem]()
     var productModelEntity : ProductModelEntity?
     var parchmentView : PagingViewController?
-    var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isFilterApplied:Bool = false
     var allChildVCs: [UIViewController] = [UIViewController]()
@@ -73,16 +75,17 @@ class ProductFilterVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        delay(seconds: 0.4) { [weak self] in
-////            self?.show(animated: true)
-//        }
     }
     
     // MARK: - IBActions
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
-         delegate?.clearAllButtonTapped()
-         self.popOrDismiss(animation: true)
+        self.categoryListingVC.selectedCategoryListing = []
+        ProductFilterVM.shared.status = []
+        ProductFilterVM.shared.currency = []
+        statusVC.tableView.reloadData()
+        currencyVC.tableView.reloadData()
+        delegate?.clearAllButtonTapped()
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
@@ -110,18 +113,18 @@ extension ProductFilterVC {
         self.allChildVCs.removeAll()
         for i in 0..<ProductFilterVM.shared.allTabsStr.count {
             if i == 0 {
-                let vc = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
-                vc.categoryListing = productModelEntity?.categories
-                self.allChildVCs.append(vc)
+                self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
+                categoryListingVC.categoryListing = productModelEntity?.categories
+                self.allChildVCs.append(categoryListingVC)
             } else if i == 1 {
-                let vc = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
-                self.allChildVCs.append(vc)
+                self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(priceRangeVC)
             } else if i == 2 {
-                let vc = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
-                self.allChildVCs.append(vc)
+                self.currencyVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(currencyVC)
             } else if i == 3 {
-                let vc = StatusVC.instantiate(fromAppStoryboard: .Filter)
-                self.allChildVCs.append(vc)
+                self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(statusVC)
             }
         }
         self.view.layoutIfNeeded()
@@ -161,7 +164,7 @@ extension ProductFilterVC {
     private func initiateFilterTabs() {
         filtersTabs.removeAll()
         for i in 0..<(ProductFilterVM.shared.allTabsStr.count){
-            let obj = MenuItem(title: ProductFilterVM.shared.allTabsStr[i], index: i, isSelected: ProductFilterVM.shared.allTabsStr[i] == "Category")
+            let obj = MenuItem(title: ProductFilterVM.shared.allTabsStr[i], index: i, isSelected: ProductFilterVM.shared.allTabsStr[i] == Constants.string.category.localize())
             filtersTabs.append(obj)
         }
     }

@@ -8,17 +8,6 @@
 
 import Foundation
 
-enum SortUsing {
-    private enum CodingKeys: CodingKey {
-        case bestSellers, priceLowToHigh, tripAdvisorRatingHighToLow, starRatingHighToLow, distanceNearestFirst
-    }
-    
-    case BestSellers
-    case PriceLowToHigh
-    case TripAdvisorRatingHighToLow
-    case StartRatingHighToLow
-    case DistanceNearestFirst
-}
 
 protocol ProductFilterVMDelegate: class {
     func updateFiltersTabs()
@@ -28,66 +17,20 @@ protocol ProductFilterVMDelegate: class {
 class ProductFilterVM {
     static let shared = ProductFilterVM()
     
-    var defaultRatingCount: [Int] = [0,1,2,3,4,5]
-    var defaultTripAdvisorRatingCount: [Int] = [1,2,3,4,5]
-    var defaultIsIncludeUnrated: Bool = true
-    var defaultDistanceRange: Double = 20
-    var defaultLeftRangePrice: Double = 0.0
-    var defaultRightRangePrice: Double = 0.0
-    var defaultAmenitites: [String] = []
-    var defaultRoomMeal: [String] = []
-    var defaultRoomCancelation: [String] = []
-    var defaultRoomOther: [String] = []
-    var defaultSortUsing: SortUsing = .BestSellers
-    var defaultPriceType: Price = .Total
-    
-    var ratingCount: [Int] = [1,2,3,4,5]
-    var tripAdvisorRatingCount: [Int] = [1,2,3,4,5]
-    var isIncludeUnrated: Bool = true
-    var distanceRange: Double = 20
+    var defaultCurrency: [String] = []
     var minimumPrice: Double = 0.0
     var maximumPrice: Double = 0.0
-    var leftRangePrice: Double = 0.0
-    var rightRangePrice: Double = 0.0
-    var amenitites: [String] = []
+    var currency: [String] = []
     var status: [String] = []
-    var roomMeal: [String] = []
-    var roomCancelation: [String] = []
-    var roomOther: [String] = []
-    var sortUsing: SortUsing = .BestSellers
-    var priceType: Price = .Total
-    var totalHotelCount: Int = 0
-    var filterHotelCount: Int = 0
-    var lastSelectedIndex: Int = 0
     var isSortingApplied: Bool = false
     let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(),Constants.string.currency.localize(), Constants.string.status.localize()]
 
     weak var delegate: ProductFilterVMDelegate?
     
     var isFilterApplied: Bool {
-        return !(ProductFilterVM.shared.sortUsing == ProductFilterVM.shared.defaultSortUsing && ProductFilterVM.shared.distanceRange == ProductFilterVM.shared.defaultDistanceRange && ProductFilterVM.shared.leftRangePrice == ProductFilterVM.shared.defaultLeftRangePrice && ProductFilterVM.shared.rightRangePrice == ProductFilterVM.shared.defaultRightRangePrice && ProductFilterVM.shared.ratingCount.difference(from: ProductFilterVM.shared.defaultRatingCount).isEmpty &&  ProductFilterVM.shared.tripAdvisorRatingCount.difference(from: ProductFilterVM.shared.defaultTripAdvisorRatingCount).isEmpty && ProductFilterVM.shared.isIncludeUnrated == ProductFilterVM.shared.defaultIsIncludeUnrated && ProductFilterVM.shared.priceType == ProductFilterVM.shared.defaultPriceType && ProductFilterVM.shared.amenitites.difference(from: ProductFilterVM.shared.defaultAmenitites).isEmpty && ProductFilterVM.shared.roomMeal.difference(from: ProductFilterVM.shared.defaultRoomMeal).isEmpty && ProductFilterVM.shared.roomCancelation.difference(from: ProductFilterVM.shared.defaultRoomCancelation).isEmpty && ProductFilterVM.shared.roomOther.difference(from: ProductFilterVM.shared.defaultRoomOther).isEmpty)
+        return !(ProductFilterVM.shared.currency.difference(from: ProductFilterVM.shared.defaultCurrency).isEmpty)
     }
-    
-//    func setData(from: UserInfo.HotelFilter) {
-//        ratingCount = from.ratingCount
-//        tripAdvisorRatingCount = from.tripAdvisorRatingCount
-//        isIncludeUnrated = from.isIncludeUnrated
-//        distanceRange = from.distanceRange
-//        minimumPrice = from.minimumPrice
-//        maximumPrice = from.maximumPrice
-//        leftRangePrice = from.leftRangePrice
-//        rightRangePrice = from.rightRangePrice
-//        amenitites = from.amentities
-//        roomMeal = from.roomMeal
-//        roomCancelation = from.roomCancelation
-//        roomOther = from.roomOther
-//        sortUsing = from.sortUsing
-//        priceType = from.priceType
-//
-//        delay(seconds: 0.3) { [weak self] in
-//            self?.delegate?.updateFiltersTabs()
-//        }
-//
+
         
         
     }
@@ -183,132 +126,48 @@ class ProductFilterVM {
     }*/
 
 
-extension SortUsing: Codable {
-    enum Key: CodingKey {
-        case rawValue
-    }
-    
-    enum CodingError: Error {
-        case unknownValue
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: Key.self)
-        let rawValue = try container.decode(Int.self, forKey: .rawValue)
-        switch rawValue {
-        case 0:
-            self = .BestSellers
-        case 1:
-            self = .PriceLowToHigh
-        case 2:
-            self = .TripAdvisorRatingHighToLow
-        case 3:
-            self = .StartRatingHighToLow
-        case 4:
-            self = .DistanceNearestFirst
-        default:
-            throw CodingError.unknownValue
-        }
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: Key.self)
-        switch self {
-        case .BestSellers:
-            try container.encode(0, forKey: .rawValue)
-        case .PriceLowToHigh:
-            try container.encode(1, forKey: .rawValue)
-        case .TripAdvisorRatingHighToLow:
-            try container.encode(2, forKey: .rawValue)
-        case .StartRatingHighToLow:
-            try container.encode(3, forKey: .rawValue)
-        case .DistanceNearestFirst:
-            try container.encode(4, forKey: .rawValue)
-        }
-    }
-}
 
-extension Price: Codable {
-    enum Key: CodingKey {
-        case rawValue
-    }
-    
-    enum CodingError: Error {
-        case unknownValue
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: Key.self)
-        let rawValue = try container.decode(Int.self, forKey: .rawValue)
-        switch rawValue {
-        case 0:
-            self = .PerNight
-        case 1:
-            self = .Total
-        default:
-            throw CodingError.unknownValue
-        }
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: Key.self)
-        switch self {
-        case .PerNight:
-            try container.encode(0, forKey: .rawValue)
-        case .Total:
-            try container.encode(1, forKey: .rawValue)
-        }
-    }
-}
-
-
-enum Price {
-    case PerNight
-    case Total
-}
-
-enum ATAmenity: String, CaseIterable {
-    case AirConditioner = "1"
-    case BusinessCenter = "2"
-    case Coffee_Shop = "3"
-    case Gym = "4"
-    case Internet = "5"
-    case Pool = "6"
-    case RestaurantBar = "7"
-    case RoomService = "8"
-    case Spa = "9"
-    case Wifi = "10"
+enum Currency : String, CaseIterable {
+    case USD
+    case EUR
+    case CAD
+    case BHD
+    case BRL
+    case NHD
+    case DKK
+    case HKD
+    case IDR
+    case INR
     
     var title: String {
         switch self {
-        case .Wifi:
+        case .USD:
+            return self.rawValue
+        case .EUR:
             return self.rawValue
             
-        case .RoomService:
+        case .CAD:
             return self.rawValue
             
-        case .Internet:
+        case .BHD:
             return self.rawValue
             
-        case .AirConditioner:
+        case .BRL:
             return self.rawValue
             
-        case .RestaurantBar:
+        case .NHD:
             return self.rawValue
             
-        case .Gym:
+        case .DKK:
             return self.rawValue
             
-        case .BusinessCenter:
+        case .HKD:
             return self.rawValue
             
-        case .Pool:
+        case .IDR:
             return self.rawValue
             
-        case .Spa:
-            return self.rawValue
-            
-        case .Coffee_Shop:
+        case .INR:
             return self.rawValue
         }
     }
