@@ -23,6 +23,10 @@ struct CategoryModel: Mappable {
     {
            
      }
+    
+    init(){
+        
+    }
        
        mutating func mapping(map: Map)
        {

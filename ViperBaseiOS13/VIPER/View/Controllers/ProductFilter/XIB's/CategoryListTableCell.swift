@@ -17,7 +17,7 @@ class CategoryListTableCell: UITableViewCell {
     @IBOutlet weak var statusButton: UIButton!
     
     
-    var amenitie: ATAmenity? {
+    var category: Categories? {
         didSet {
             self.populateData()
         }
@@ -45,7 +45,7 @@ class CategoryListTableCell: UITableViewCell {
     
     private func populateData() {
 //        self.categoryImageView.image = amenitie?.icon
-        self.categoryTitleLabel.text = amenitie?.title
+        self.categoryTitleLabel.text = category?.category_name
     }
     
     private func populateStatusData() {

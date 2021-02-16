@@ -8,6 +8,7 @@
 
 import UIKit
 import Parchment
+import ObjectMapper
 
 protocol ProductFilterVCDelegate: class {
     func doneButtonTapped()
@@ -35,11 +36,16 @@ class ProductFilterVC: UIViewController {
     
     // Parchment View
     var filtersTabs =  [MenuItem]()
+    var productModelEntity : ProductModelEntity?
     var parchmentView : PagingViewController?
     var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isFilterApplied:Bool = false
     var allChildVCs: [UIViewController] = [UIViewController]()
     weak var delegate : ProductFilterVCDelegate?
+    private lazy var loader  : UIView = {
+        return createActivityIndicator(self.view)
+    }()
     
     // MARK: - Lifecycle
     //===========================
@@ -96,20 +102,16 @@ class ProductFilterVC: UIViewController {
 extension ProductFilterVC {
     
     private func initialSetup() {
-//        self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
-//        let height = UIApplication.shared.statusBarFrame.height
-//        self.navigationViewTopConstraint.constant = CGFloat(height)
         self.setupPagerView()
-//        self.hide(animated: false,shouldRemove: false)
+        self.getProductList()
     }
     
     private func setupPagerView() {
         self.allChildVCs.removeAll()
-        //        self.selectedIndex = HotelFilterVM.shared.lastSelectedIndex
-        
         for i in 0..<ProductFilterVM.shared.allTabsStr.count {
             if i == 0 {
                 let vc = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
+                vc.categoryListing = productModelEntity?.categories
                 self.allChildVCs.append(vc)
             } else if i == 1 {
                 let vc = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
@@ -127,7 +129,6 @@ extension ProductFilterVC {
             self.parchmentView?.view.removeFromSuperview()
             self.parchmentView = nil
         }
-//        self.setBadgesOnAllCategories()
         self.initiateFilterTabs()
         setupParchmentPageController()
         
@@ -135,7 +136,6 @@ extension ProductFilterVC {
     
     // Added to replace the existing page controller, added Hitesh Soni, 28-29Jan'2020
     private func setupParchmentPageController(){
-        
         self.parchmentView = PagingViewController()
         self.parchmentView?.menuItemSpacing = 10.0
         self.parchmentView?.backgroundColor = .red
@@ -184,5 +184,38 @@ extension ProductFilterVC {
             }
         })
     }
+    
+    //MARK:- PRDUCTS LIST API CALL
+    private func getProductList() {
+        switch (userType,false) {
+        case (UserType.campaigner.rawValue,false):
+            self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
+        case (UserType.investor.rawValue,false):
+            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
+        case (UserType.investor.rawValue,true):
+            self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
+        default:
+            break
+        }
+        self.loader.isHidden = false
+    }
+}
+
+
+
+extension ProductFilterVC : PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
+        self.productModelEntity = dataDict as? ProductModelEntity
+        self.setupPagerView()
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
+        
+    }
+ 
 }
 

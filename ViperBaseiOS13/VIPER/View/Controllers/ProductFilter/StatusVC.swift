@@ -21,7 +21,7 @@ class StatusVC: UIViewController {
         super.viewDidLoad()
         
         doIntitialSetup()
-        self.addFooterView()
+//        self.addFooterView()
         registerXib()
     }
     

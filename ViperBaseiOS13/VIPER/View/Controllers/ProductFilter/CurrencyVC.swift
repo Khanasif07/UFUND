@@ -11,6 +11,7 @@ class CurrencyVC: UIViewController {
     // MARK: - IB Outlet
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Variables
     
@@ -21,9 +22,7 @@ class CurrencyVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         doIntitialSetup()
-        self.addFooterView()
         registerXib()
     }
     
@@ -36,13 +35,7 @@ class CurrencyVC: UIViewController {
     }
     
     private func registerXib() {
-//        tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-    }
-    
-    private func addFooterView() {
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
-        customView.backgroundColor = .white
-        tableView.tableFooterView = customView
+        tableView.registerCell(with: CategoryListTableCell.self)
     }
 }
 
@@ -54,13 +47,14 @@ extension CurrencyVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let cell = tableView.dequeueCell(with: CategoryListTableCell.self, indexPath: indexPath)
 //        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? AmenitiesTableViewCell else {
 //            printDebug("AmenitiesTableViewCell not found")
 //            return UITableViewCell()
 //        }
 //        cell.amenitie = amentiesDetails[indexPath.row]
 //        cell.statusButton.isSelected = HotelFilterVM.shared.amenitites.contains(amentiesDetails[indexPath.row].rawValue)
-        return UITableViewCell()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

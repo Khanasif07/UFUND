@@ -7,24 +7,43 @@
 //
 
 import UIKit
+import RangeSeekSlider
 
 class PriceRangeVC: UIViewController {
-
+    
+    // MARK: - IBOutlets
+    //===========================
+    @IBOutlet weak var maxRangeField: UITextField!
+    @IBOutlet weak var priceSlider: RangeSeekSlider!
+    @IBOutlet weak var minRangeField: UITextField!
+    
+    // MARK: - Variables
+    //===========================
+    
+    // MARK: - Lifecycle
+    //===========================
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        initialSetup()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    // MARK: - IBActions
+    //===========================
+    
+    
 }
+
+// MARK: - Extension For Functions
+//===========================
+extension PriceRangeVC : RangeSeekSliderDelegate{
+    
+    func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat){
+        self.minRangeField.text = "\(minValue)"
+        self.maxRangeField.text = "\(maxValue)"
+    }
+    
+    private func initialSetup() {
+        self.priceSlider.delegate = self
+    }
+}
+

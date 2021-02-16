@@ -30,6 +30,7 @@ target 'ViperBaseiOS13' do
     pod 'LinkedinSwift'
     pod 'DZNEmptyDataSet'
     pod 'Parchment'
+    pod 'RangeSeekSlider'
   
   target 'ViperBaseiOS13Tests' do
     inherit! :search_paths
