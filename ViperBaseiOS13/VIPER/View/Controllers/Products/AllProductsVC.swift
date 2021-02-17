@@ -106,7 +106,8 @@ extension AllProductsVC {
         case (UserType.campaigner.rawValue,false):
             self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         case (UserType.investor.rawValue,false):
-            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
+//            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
+             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: nil, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,true):
             self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         default:
@@ -203,9 +204,11 @@ extension AllProductsVC : PresenterOutputProtocol {
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
-        let productModelEntity = dataDict as? ProductModelEntity
-        self.investerProductList = productModelEntity?.data ?? []
-        print(investerProductList)
+        let productModelEntity = dataDict as? ProductsModelEntity
+        if let productDict = productModelEntity?.data?.data {
+                self.investerProductList = productDict
+            print(investerProductList ?? [])
+        }
     }
     
     func showError(error: CustomError) {

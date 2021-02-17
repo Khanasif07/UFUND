@@ -40,6 +40,7 @@ class ProductFilterVC: UIViewController {
     // Parchment View
     var filtersTabs =  [MenuItem]()
     var productModelEntity : ProductModelEntity?
+    var currencyModelEntity : CurrencyModelEntity?
     var parchmentView : PagingViewController?
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isFilterApplied:Bool = false
@@ -81,14 +82,18 @@ class ProductFilterVC: UIViewController {
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
         self.categoryListingVC.selectedCategoryListing = []
+        self.currencyVC.selectedCurrencyListing = []
+        ProductFilterVM.shared.selectedCurrencyListing = []
         ProductFilterVM.shared.status = []
-        ProductFilterVM.shared.currency = []
-        statusVC.tableView.reloadData()
-        currencyVC.tableView.reloadData()
+        setupPagerView(isMenuReload: false)
         delegate?.clearAllButtonTapped()
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
+        self.categoryListingVC.selectedCategoryListing = []
+        self.currencyVC.selectedCurrencyListing = []
+        ProductFilterVM.shared.selectedCurrencyListing = []
+        ProductFilterVM.shared.status = []
         delegate?.doneButtonTapped()
         self.popOrDismiss(animation: true)
     }
@@ -109,7 +114,7 @@ extension ProductFilterVC {
         self.getProductList()
     }
     
-    private func setupPagerView() {
+    private func setupPagerView(isMenuReload:Bool = true) {
         self.allChildVCs.removeAll()
         for i in 0..<ProductFilterVM.shared.allTabsStr.count {
             if i == 0 {
@@ -121,6 +126,7 @@ extension ProductFilterVC {
                 self.allChildVCs.append(priceRangeVC)
             } else if i == 2 {
                 self.currencyVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+//                self.currencyVC.currencyListing = currencyModelEntity?.data
                 self.allChildVCs.append(currencyVC)
             } else if i == 3 {
                 self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
@@ -132,13 +138,13 @@ extension ProductFilterVC {
             self.parchmentView?.view.removeFromSuperview()
             self.parchmentView = nil
         }
-        self.initiateFilterTabs()
-        setupParchmentPageController()
+        if isMenuReload {self.initiateFilterTabs()}
+        setupParchmentPageController(isMenuReload: isMenuReload)
         
     }
     
     // Added to replace the existing page controller, added Hitesh Soni, 28-29Jan'2020
-    private func setupParchmentPageController(){
+    private func setupParchmentPageController(isMenuReload:Bool = true){
         self.parchmentView = PagingViewController()
         self.parchmentView?.menuItemSpacing = 10.0
         self.parchmentView?.backgroundColor = .red
@@ -156,9 +162,9 @@ extension ProductFilterVC {
         self.parchmentView?.dataSource = self
         self.parchmentView?.delegate = self
         self.parchmentView?.sizeDelegate = self
-        self.parchmentView?.select(index: 0)
-        self.parchmentView?.reloadData()
+        self.parchmentView?.select(index: ProductFilterVM.shared.lastSelectedIndex, animated: false)
         self.parchmentView?.reloadMenu()
+        self.parchmentView?.reloadData()
     }
     
     private func initiateFilterTabs() {
@@ -194,7 +200,8 @@ extension ProductFilterVC {
         case (UserType.campaigner.rawValue,false):
             self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         case (UserType.investor.rawValue,false):
-            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
+//            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
+            self.presenter?.HITAPI(api: Base.productsCurrencies.rawValue, params: nil, methodType: .GET, modelClass: CurrencyModelEntity.self, token: true)
         case (UserType.investor.rawValue,true):
             self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         default:
@@ -211,6 +218,8 @@ extension ProductFilterVC : PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
         self.productModelEntity = dataDict as? ProductModelEntity
+        self.currencyModelEntity = dataDict as? CurrencyModelEntity
+        ProductFilterVM.shared.currencyListing = self.currencyModelEntity?.data ?? []
         self.setupPagerView()
     }
     

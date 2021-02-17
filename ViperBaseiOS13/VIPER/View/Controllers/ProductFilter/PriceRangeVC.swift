@@ -38,8 +38,10 @@ class PriceRangeVC: UIViewController {
 extension PriceRangeVC : RangeSeekSliderDelegate{
     
     func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat){
-        self.minRangeField.text = "\(minValue)"
-        self.maxRangeField.text = "\(maxValue)"
+        var min = minValue
+        var max = maxValue
+        self.minRangeField.text = "\(min.round(to: 2))"
+        self.maxRangeField.text = "\(max.round(to: 2))"
     }
     
     private func initialSetup() {

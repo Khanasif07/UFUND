@@ -54,7 +54,7 @@ extension StatusVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(with: CategoryListTableCell.self, indexPath: indexPath)
         cell.status = statusDetails[indexPath.row]
-        cell.statusButton.isSelected = ProductFilterVM.shared.status.contains(statusDetails[indexPath.row].rawValue)
+        cell.statusButton.isSelected = ProductFilterVM.shared.status.contains(statusDetails[indexPath.row].title)
         return cell
     }
     
@@ -63,10 +63,25 @@ extension StatusVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if ProductFilterVM.shared.status.contains(statusDetails[indexPath.row].rawValue) {
-            ProductFilterVM.shared.status.remove(at: ProductFilterVM.shared.status.firstIndex(of: statusDetails[indexPath.row].rawValue)!)
+        if ProductFilterVM.shared.status.contains(statusDetails[indexPath.row].title) {
+            if statusDetails[indexPath.row].title == "All" {
+                ProductFilterVM.shared.status = []
+            } else {
+                ProductFilterVM.shared.status.remove(at: ProductFilterVM.shared.status.firstIndex(of: statusDetails[indexPath.row].title)!)
+                if ProductFilterVM.shared.status.endIndex == statusDetails.endIndex - 1 && ProductFilterVM.shared.status.contains("All"){
+                    ProductFilterVM.shared.status.remove(at: ProductFilterVM.shared.status.firstIndex(of: "All")!)
+                } else{}
+            }
         } else {
-            ProductFilterVM.shared.status.append(statusDetails[indexPath.row].rawValue)
+            if statusDetails[indexPath.row].title == "All" {
+                ProductFilterVM.shared.status = statusDetails.map({$0.title})
+            } else {
+                if ProductFilterVM.shared.status.endIndex == statusDetails.endIndex - 2{
+                    ProductFilterVM.shared.status = statusDetails.map({$0.title})
+                } else{
+                   ProductFilterVM.shared.status.append(statusDetails[indexPath.row].title)
+                }
+            }
         }
         self.tableView.reloadData()
     }

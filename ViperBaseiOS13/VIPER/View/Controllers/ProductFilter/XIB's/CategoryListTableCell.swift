@@ -29,7 +29,7 @@ class CategoryListTableCell: UITableViewCell {
         }
     }
     
-    var currency: Currency? {
+    var currency: CurrencyModel? {
         didSet {
             self.populateCurrencyData()
         }
@@ -51,7 +51,7 @@ class CategoryListTableCell: UITableViewCell {
     }
     
     private func populateCurrencyData() {
-        self.categoryTitleLabel.text = currency?.title
+        self.categoryTitleLabel.text = currency?.currency
     }
     
 }

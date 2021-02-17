@@ -24,7 +24,7 @@ class CategoriesDetailVC: UIViewController {
     //===========================
     var categoryTitle:  String  = ""
     var searchText: String  = ""
-    var additionalModel : AdditionsModel?
+    var categoryModel : CategoryModel?
     var newProductsVC : CategoryNewProductsVC!
     var allProductsVC : CategoryAllProductsVC!
     lazy var loader  : UIView = {
@@ -144,7 +144,9 @@ extension CategoriesDetailVC {
     
     private func getCategoryDetailData(){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
+//        self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
+        let params :[String:String] = ["category": "\(categoryModel?.id ?? 0)"]
+        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
     private func setUpSearchBar(){
@@ -161,9 +163,10 @@ extension CategoriesDetailVC {
 extension CategoriesDetailVC : PresenterOutputProtocol{
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
-        if let addionalModel = dataDict as? ProductModelEntity{
-            newProductsVC.newProductListing = addionalModel.data
-            allProductsVC.allProductListing = addionalModel.data
+        let productModelEntity = dataDict as? ProductsModelEntity
+        if let productDict = productModelEntity?.data?.data {
+            newProductsVC.newProductListing = productDict
+            allProductsVC.allProductListing = productDict
         }
     }
     

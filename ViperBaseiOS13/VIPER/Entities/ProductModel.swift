@@ -47,8 +47,45 @@ struct ProductModelEntity : Mappable {
         categories <- map["categories"]
         data <- map["data"]
     }
-
 }
+
+struct ProductsModelEntity : Mappable {
+    var current_page : Int?
+    var data : ProductsEntity?
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        current_page <- map["current_page"]
+        data <- map["data"]
+    }
+}
+
+struct ProductsEntity : Mappable {
+    var current_page : Int?
+    var from: Int?
+    var path : String?
+    var total:Int?
+    var next_page_url: String?
+    var prev_page_url: String?
+    var lastPage: Int?
+    var per_page: Int?
+    var last_page_url: String?
+    var first_page_url: String?
+    var data: [ProductModel]?
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        current_page <- map["current_page"]
+        data <- map["data"]
+    }
+}
+ 
+ 
+
 
 struct ProductModel: Mappable {
     var id : Int?
@@ -99,6 +136,10 @@ struct ProductModel: Mappable {
 
     init?(map: Map) {
 
+    }
+    
+    init(json: [String:Any]){
+        
     }
 
     mutating func mapping(map: Map) {

@@ -42,6 +42,7 @@ extension ProductFilterVC : PagingViewControllerDelegate, PagingViewControllerSi
     func pagingViewController(_ pagingViewController: PagingViewController, didScrollToItem pagingItem: PagingItem, startingViewController: UIViewController?, destinationViewController: UIViewController, transitionSuccessful: Bool)  {
         
         let pagingIndexItem = pagingItem as! MenuItem
+        ProductFilterVM.shared.lastSelectedIndex = pagingIndexItem.index
         if let index = filtersTabs.firstIndex(where: { (menuItem) -> Bool in
             menuItem.isSelected == true
         }){
@@ -53,6 +54,7 @@ extension ProductFilterVC : PagingViewControllerDelegate, PagingViewControllerSi
     
     func pagingViewController(_ pagingViewController: PagingViewController, willScrollToItem pagingItem: PagingItem, startingViewController: UIViewController, destinationViewController: UIViewController) {
          let pagingIndexItem = pagingItem as! MenuItem
+         ProductFilterVM.shared.lastSelectedIndex = pagingIndexItem.index
     }
 }
 

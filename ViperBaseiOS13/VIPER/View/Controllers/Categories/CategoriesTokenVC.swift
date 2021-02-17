@@ -84,6 +84,7 @@ extension CategoriesTokenVC: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedVC = CategoriesDetailVC.instantiate(fromAppStoryboard: .Main)
         selectedVC.categoryTitle = isSearchEnable ? (self.searchTokenCategories?[indexPath.row].category_name ?? "") : (self.tokenCategories?[indexPath.row].category_name ?? "")
+        selectedVC.categoryModel = isSearchEnable ? (self.searchTokenCategories?[indexPath.row]) : (self.tokenCategories?[indexPath.row])
         self.navigationController?.pushViewController(selectedVC, animated: true)
     }
 }

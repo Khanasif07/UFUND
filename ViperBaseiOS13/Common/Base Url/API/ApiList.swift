@@ -89,6 +89,10 @@ enum Base : String {
     case sendAPI = "/api/getCoin"
     case sendCoin = "/api/sendCoin"
     
+    //New APi
+    case productsCurrencies = "/api/currencies"
+    case investerProductsDefault = "/api/investor/products"
+    
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .signUp
     }

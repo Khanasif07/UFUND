@@ -17,10 +17,13 @@ protocol ProductFilterVMDelegate: class {
 class ProductFilterVM {
     static let shared = ProductFilterVM()
     
+    var lastSelectedIndex: Int  = 0
     var defaultCurrency: [String] = []
     var minimumPrice: Double = 0.0
     var maximumPrice: Double = 0.0
     var currency: [String] = []
+    var currencyListing: [CurrencyModel] = []
+    var selectedCurrencyListing: [CurrencyModel] = []
     var status: [String] = []
     var isSortingApplied: Bool = false
     let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(),Constants.string.currency.localize(), Constants.string.status.localize()]

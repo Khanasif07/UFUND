@@ -92,6 +92,7 @@ struct Categories : Mappable {
 }
 
 
+
 struct FilterDataEntity : Mappable {
     
     var categories : [Categories]?
@@ -109,4 +110,46 @@ struct FilterDataEntity : Mappable {
         range_max <- map["range_max"]
     }
 
+}
+
+struct CurrencyModelEntity : Mappable {
+    var data : [CurrencyModel]?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+
+}
+
+struct CurrencyModel : Mappable {
+    var id : Int?
+    var status: Int?
+    var currency : String?
+    var symbol : String?
+    var created_at : String?
+    var updated_at : String?
+    var symbol_position : String?
+
+    init?(map: Map) {
+
+    }
+    
+    init(){
+        
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        currency <- map["currency"]
+        status <- map["status"]
+        symbol <- map["symbol"]
+        created_at <- map["created_at"]
+        updated_at <- map["updated_at"]
+        symbol_position <- map["symbol_position"]
+    }
 }
