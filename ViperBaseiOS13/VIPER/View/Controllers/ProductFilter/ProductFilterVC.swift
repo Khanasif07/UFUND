@@ -11,7 +11,7 @@ import Parchment
 import ObjectMapper
 
 protocol ProductFilterVCDelegate: class {
-    func doneButtonTapped()
+    func filterApplied()
     func clearAllButtonTapped()
     
 }
@@ -95,11 +95,11 @@ class ProductFilterVC: UIViewController {
         ProductFilterVM.shared.selectedCurrencyListing = []
         ProductFilterVM.shared.status = []
         ProductFilterVM.shared.selectedCategoryListing = []
-        delegate?.doneButtonTapped()
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
+         delegate?.filterApplied()
          self.popOrDismiss(animation: true)
     }
     

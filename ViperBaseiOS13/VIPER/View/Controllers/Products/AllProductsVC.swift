@@ -273,20 +273,30 @@ extension AllProductsVC: UISearchBarDelegate{
 extension AllProductsVC: ProductFilterVCDelegate {
     func clearAllButtonTapped() {
         ProductFilterVM.shared.isSortingApplied = false
-//        UserInfo.hotelFilter = nil
-//        ProductFilterVM.shared.resetToDefault()
+        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: nil, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
-    func doneButtonTapped() {
-//        if let isUse = UserDefaults.getObject(forKey: "shouldApplyFormStars") as? Bool, isUse {
-////            UserInfo.hotelFilterApplied = UserInfo.hotelFilter
-//        }
-        
-        
-        if ProductFilterVM.shared.isFilterApplied {
-//            ProductFilterVM.shared.saveDataToUserDefaults()
+    func filterApplied() {
+        var params :[String:Any] = ["page": 1]
+        if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
+            let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params["category"] = category
         }
-//        printDebug("done button tapped")
+        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
+            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params["currency"] = currency
+        }
+        if ProductFilterVM.shared.status.endIndex > 0{
+//            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
+//                return String(model.id ?? 0)
+//            }.joined(separator: ",")
+//            params["currency"] = currency
+        }
+        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
 }
 

@@ -178,9 +178,9 @@ enum Currency : String, CaseIterable {
 }
 
 enum Status: String ,CaseIterable {
-    case All = "1"
-    case Live = "2"
-    case Matured = "3"
+    case All = "3"
+    case Live = "1"
+    case Matured = "2"
     var title: String {
         switch self {
         case .All:
