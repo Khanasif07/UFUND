@@ -39,7 +39,6 @@ class ProductFilterVC: UIViewController {
     var currencyVC        : CurrencyVC!
     // Parchment View
     var filtersTabs =  [MenuItem]()
-    var productModelEntity : ProductModelEntity?
     var currencyModelEntity : CurrencyModelEntity?
     var parchmentView : PagingViewController?
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
@@ -85,6 +84,7 @@ class ProductFilterVC: UIViewController {
         self.currencyVC.selectedCurrencyListing = []
         ProductFilterVM.shared.selectedCurrencyListing = []
         ProductFilterVM.shared.status = []
+        ProductFilterVM.shared.selectedCategoryListing = []
         setupPagerView(isMenuReload: false)
         delegate?.clearAllButtonTapped()
     }
@@ -94,6 +94,7 @@ class ProductFilterVC: UIViewController {
         self.currencyVC.selectedCurrencyListing = []
         ProductFilterVM.shared.selectedCurrencyListing = []
         ProductFilterVM.shared.status = []
+        ProductFilterVM.shared.selectedCategoryListing = []
         delegate?.doneButtonTapped()
         self.popOrDismiss(animation: true)
     }
@@ -111,7 +112,7 @@ extension ProductFilterVC {
     
     private func initialSetup() {
         self.setupPagerView()
-        self.getProductList()
+//        self.getProductsCurrenciesList()
     }
     
     private func setupPagerView(isMenuReload:Bool = true) {
@@ -119,14 +120,12 @@ extension ProductFilterVC {
         for i in 0..<ProductFilterVM.shared.allTabsStr.count {
             if i == 0 {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
-                categoryListingVC.categoryListing = productModelEntity?.categories
                 self.allChildVCs.append(categoryListingVC)
             } else if i == 1 {
                 self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(priceRangeVC)
             } else if i == 2 {
                 self.currencyVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
-//                self.currencyVC.currencyListing = currencyModelEntity?.data
                 self.allChildVCs.append(currencyVC)
             } else if i == 3 {
                 self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
@@ -195,39 +194,28 @@ extension ProductFilterVC {
     }
     
     //MARK:- PRDUCTS LIST API CALL
-    private func getProductList() {
-        switch (userType,false) {
-        case (UserType.campaigner.rawValue,false):
-            self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
-        case (UserType.investor.rawValue,false):
-//            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
-            self.presenter?.HITAPI(api: Base.productsCurrencies.rawValue, params: nil, methodType: .GET, modelClass: CurrencyModelEntity.self, token: true)
-        case (UserType.investor.rawValue,true):
-            self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
-        default:
-            break
-        }
-        self.loader.isHidden = false
-    }
+//    private func getProductsCurrenciesList() {
+//        self.presenter?.HITAPI(api: Base.productsCurrencies.rawValue, params: nil, methodType: .GET, modelClass: CurrencyModelEntity.self, token: true)
+//        self.loader.isHidden = false
+//    }
 }
 
 
 
-extension ProductFilterVC : PresenterOutputProtocol {
-    
-    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        self.loader.isHidden = true
-        self.productModelEntity = dataDict as? ProductModelEntity
-        self.currencyModelEntity = dataDict as? CurrencyModelEntity
-        ProductFilterVM.shared.currencyListing = self.currencyModelEntity?.data ?? []
-        self.setupPagerView()
-    }
-    
-    func showError(error: CustomError) {
-        self.loader.isHidden = true
-        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
-        
-    }
- 
-}
+//extension ProductFilterVC : PresenterOutputProtocol {
+//
+//    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+//        self.loader.isHidden = true
+//        self.currencyModelEntity = dataDict as? CurrencyModelEntity
+//        ProductFilterVM.shared.currencyListing = self.currencyModelEntity?.data ?? []
+//        self.setupPagerView()
+//    }
+//
+//    func showError(error: CustomError) {
+//        self.loader.isHidden = true
+//        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
+//
+//    }
+//
+//}
 

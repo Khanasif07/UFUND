@@ -21,7 +21,7 @@ class StatusVC: UIViewController {
         super.viewDidLoad()
         
         doIntitialSetup()
-//        self.addFooterView()
+        self.addFooterView()
         registerXib()
     }
     
@@ -39,7 +39,7 @@ class StatusVC: UIViewController {
     
     private func addFooterView() {
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
-        customView.backgroundColor = .white
+        customView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
         tableView.tableFooterView = customView
     }
 }

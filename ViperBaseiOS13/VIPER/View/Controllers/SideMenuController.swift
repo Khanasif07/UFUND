@@ -117,8 +117,8 @@ class SideMenuController: UIViewController {
         buttonArray = [investButton, campaignerButton]
         buttonArray.forEach({$0.borderLineWidth = 0.5})
         buttonArray.forEach({$0.borderColor = UIColor.red})
-        investButton.roundCorners([.layerMinXMaxYCorner, .layerMinXMinYCorner], radius: 8)
-        campaignerButton.roundCorners([.layerMaxXMaxYCorner, .layerMaxXMinYCorner], radius: 8)
+        investButton.roundCorners([.layerMaxXMaxYCorner, .layerMaxXMinYCorner], radius: 8)
+        campaignerButton.roundCorners([.layerMinXMaxYCorner, .layerMinXMinYCorner], radius: 8)
         topRoundedView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 10)
         
     }

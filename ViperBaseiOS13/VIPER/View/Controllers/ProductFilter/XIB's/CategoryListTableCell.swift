@@ -17,7 +17,7 @@ class CategoryListTableCell: UITableViewCell {
     @IBOutlet weak var statusButton: UIButton!
     
     
-    var category: Categories? {
+    var category: CategoryModel? {
         didSet {
             self.populateData()
         }

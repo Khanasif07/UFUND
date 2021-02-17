@@ -18,11 +18,11 @@ class ProductFilterVM {
     static let shared = ProductFilterVM()
     
     var lastSelectedIndex: Int  = 0
-    var defaultCurrency: [String] = []
     var minimumPrice: Double = 0.0
     var maximumPrice: Double = 0.0
-    var currency: [String] = []
+    var categoryListing: [CategoryModel] = []
     var currencyListing: [CurrencyModel] = []
+    var selectedCategoryListing: [CategoryModel] = []
     var selectedCurrencyListing: [CurrencyModel] = []
     var status: [String] = []
     var isSortingApplied: Bool = false
@@ -31,7 +31,8 @@ class ProductFilterVM {
     weak var delegate: ProductFilterVMDelegate?
     
     var isFilterApplied: Bool {
-        return !(ProductFilterVM.shared.currency.difference(from: ProductFilterVM.shared.defaultCurrency).isEmpty)
+        return true
+//        return !(ProductFilterVM.shared.currencyListing.difference(from: ProductFilterVM.shared.selectedCurrencyListing).isEmpty)
     }
 
         

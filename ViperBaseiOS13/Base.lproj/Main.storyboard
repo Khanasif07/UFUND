@@ -2736,7 +2736,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCG-fC-u67">
-                                                <rect key="frame" x="334" y="14.5" width="60" height="31"/>
+                                                <rect key="frame" x="334" y="13" width="60" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="e22-QY-gSn"/>
                                                 </constraints>
@@ -9869,8 +9869,18 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Owu-mh-lCa">
                                         <rect key="frame" x="20" y="219.5" width="374" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fct-Tg-em2">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGV-Z1-Hrx">
                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="38"/>
+                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
+                                                <state key="normal" title="Campaigner">
+                                                    <color key="titleColor" red="0.16468328239999999" green="0.16471883649999999" blue="0.16468104720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="campaignerButtonClickEvent:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="60w-7A-OTg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fct-Tg-em2">
+                                                <rect key="frame" x="187" y="0.0" width="187" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="BeF-tH-iv5"/>
                                                 </constraints>
@@ -9880,16 +9890,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </state>
                                                 <connections>
                                                     <action selector="investButtonClickEvent:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="MI9-cN-nzL"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGV-Z1-Hrx">
-                                                <rect key="frame" x="187" y="0.0" width="187" height="38"/>
-                                                <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="14"/>
-                                                <state key="normal" title="Campaigner">
-                                                    <color key="titleColor" red="0.16468328239999999" green="0.16471883649999999" blue="0.16468104720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="campaignerButtonClickEvent:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="60w-7A-OTg"/>
                                                 </connections>
                                             </button>
                                         </subviews>

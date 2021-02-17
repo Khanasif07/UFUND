@@ -10,6 +10,7 @@ import UIKit
 
 class AllProductsCollCell: UICollectionViewCell {
 
+    @IBOutlet weak var liveView: UIView!
     @IBOutlet weak var investmentLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
     @IBOutlet weak var productTypeLbl: UILabel!
@@ -19,13 +20,16 @@ class AllProductsCollCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        dataContainerView.roundCorners([.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner], radius: 10.0)
+    dataContainerView.roundCorners([.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMinYCorner,.layerMinXMaxYCorner], radius: 12.5)
+        dataContainerView.borderColor = UIColor.black16
+        dataContainerView.borderLineWidth = 1.0
+        liveView.roundCorners([.layerMaxXMaxYCorner,.layerMaxXMinYCorner], radius: liveView.frame.height / 2.0)
         
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        dataContainerView.addShadowDefault(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
+//        dataContainerView.addShadowDefault(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
               
     }
 

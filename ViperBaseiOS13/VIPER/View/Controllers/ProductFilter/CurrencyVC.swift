@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ObjectMapper
+
 class CurrencyVC: UIViewController {
     // MARK: - IB Outlet
     
@@ -38,6 +40,7 @@ class CurrencyVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         doIntitialSetup()
+        addFooterView()
         registerXib()
     }
     
@@ -48,11 +51,18 @@ class CurrencyVC: UIViewController {
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
+        getProductsCurrenciesList()
     }
     
     private func registerXib() {
         tableView.registerCell(with: CategoryListTableCell.self)
     }
+    
+    private func addFooterView() {
+             let customView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120))
+             customView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
+             tableView.tableFooterView = customView
+         }
     
     func removeSelectedPower(model : CurrencyModel) {
         if self.selectedCurrencyListing.count != 0 {
@@ -74,6 +84,11 @@ class CurrencyVC: UIViewController {
             self.selectedCurrencyListing = [model]
             ProductFilterVM.shared.selectedCurrencyListing =  [model]
         }
+    }
+    
+    //MARK:- PRDUCTS LIST API CALL
+    private func getProductsCurrenciesList() {
+        self.presenter?.HITAPI(api: Base.productsCurrencies.rawValue, params: nil, methodType: .GET, modelClass: CurrencyModelEntity.self, token: true)
     }
 }
 
@@ -148,4 +163,21 @@ extension CurrencyVC: UISearchBarDelegate{
         }
         searchBar.resignFirstResponder()
     }
+}
+
+
+extension CurrencyVC : PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        let currencyModelEntity = dataDict as? CurrencyModelEntity
+        ProductFilterVM.shared.currencyListing = currencyModelEntity?.data ?? []
+        currencyListing = currencyModelEntity?.data ?? []
+        self.tableView.reloadData()
+    }
+    
+    func showError(error: CustomError) {
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
+        
+    }
+ 
 }

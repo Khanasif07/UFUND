@@ -140,7 +140,6 @@ extension CategoriesVC {
     }
     
     private func getCategoryList(){
-        
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
     }
