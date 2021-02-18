@@ -80,6 +80,15 @@ struct ProductsEntity : Mappable {
 
     mutating func mapping(map: Map) {
         current_page <- map["current_page"]
+        from <- map["from"]
+        path <- map["path"]
+        total <- map["total"]
+        next_page_url <- map["next_page_url"]
+        prev_page_url <- map["prev_page_url"]
+        lastPage <- map["lastPage"]
+        per_page <- map["per_page"]
+        last_page_url <- map["ast_page_url"]
+        first_page_url <- map["first_page_url"]
         data <- map["data"]
     }
 }

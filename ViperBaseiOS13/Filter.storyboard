@@ -261,13 +261,13 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
-                                        <real key="value" value="10"/>
+                                        <real key="value" value="1000000"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectedMinValue">
-                                        <real key="value" value="2"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectedMaxValue">
-                                        <real key="value" value="8"/>
+                                        <real key="value" value="500000"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="hideLabels" value="YES"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="minLabelColor">
@@ -295,6 +295,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="minDistance">
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="handleImage" value="icSliderThumb"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min. Range" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gw-mD-kfB">
@@ -387,6 +388,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icSliderThumb" width="29" height="29"/>
         <namedColor name="inversterGrad2">
             <color red="0.30000001192092896" green="0.80000001192092896" blue="0.52999997138977051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

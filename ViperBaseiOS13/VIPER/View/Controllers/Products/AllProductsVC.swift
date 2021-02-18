@@ -56,6 +56,10 @@ class AllProductsVC: UIViewController {
         })
     }
     
+    deinit {
+        ProductFilterVM.shared.resetToAllFilter()
+    }
+    
     // MARK: - IBActions
     //===========================
     @IBAction func searchBtnAction(_ sender: UIButton) {
@@ -284,7 +288,6 @@ extension AllProductsVC: UISearchBarDelegate{
 
 extension AllProductsVC: ProductFilterVCDelegate {
     func clearAllButtonTapped() {
-        ProductFilterVM.shared.isSortingApplied = false
         let params :[String:Any] = ["new_products": productType == .AllProducts ? 0 : 1]
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }

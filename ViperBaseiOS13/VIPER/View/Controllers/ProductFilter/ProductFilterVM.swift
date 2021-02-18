@@ -18,6 +18,11 @@ class ProductFilterVM {
     static let shared = ProductFilterVM()
     
     var lastSelectedIndex: Int  = 0
+    var defaultMinimumPrice: Double = 0.0
+    var defaultMaximumPrice: Double = 0.0
+    var defaultSelectedCategoryListing: [CategoryModel] = []
+    var defaultSelectedCurrencyListing: [CurrencyModel] = []
+    var defaultStatus: [String] = []
     var minimumPrice: Double = 0.0
     var maximumPrice: Double = 0.0
     var categoryListing: [CategoryModel] = []
@@ -25,7 +30,8 @@ class ProductFilterVM {
     var selectedCategoryListing: [CategoryModel] = []
     var selectedCurrencyListing: [CurrencyModel] = []
     var status: [String] = []
-    var isSortingApplied: Bool = false
+    var isLocallyReset: Bool = false
+    var isFilterAppliedDefault: Bool = false
     let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(),Constants.string.currency.localize(), Constants.string.status.localize()]
 
     weak var delegate: ProductFilterVMDelegate?
@@ -43,7 +49,39 @@ class ProductFilterVM {
         self.status = []
     }
     
-    private init() {
+    
+    func resetToAllFilter() {
+        self.minimumPrice = 0.0
+        self.maximumPrice = 0.0
+        self.selectedCategoryListing  = []
+        self.selectedCurrencyListing = []
+        self.status = []
+        self.defaultMinimumPrice = 0.0
+        self.defaultMaximumPrice = 0.0
+        self.defaultSelectedCategoryListing = []
+        self.defaultSelectedCurrencyListing = []
+        self.defaultStatus = []
+    }
+    
+    func resetToLocally(isFilterApplied:Bool = false) {
+        if isFilterApplied {
+            self.isLocallyReset = false
+            self.minimumPrice =  self.defaultMinimumPrice
+            self.maximumPrice = self.defaultMaximumPrice
+            self.selectedCategoryListing  = self.defaultSelectedCategoryListing
+            self.selectedCurrencyListing = self.defaultSelectedCurrencyListing
+            self.status = self.defaultStatus
+        } else {
+            self.isLocallyReset = true
+            self.defaultMinimumPrice = minimumPrice
+            self.defaultMaximumPrice = maximumPrice
+            self.defaultSelectedCategoryListing = selectedCategoryListing
+            self.defaultSelectedCurrencyListing = selectedCurrencyListing
+            self.defaultStatus = status
+        }
+    }
+    
+    public init() {
         resetToDefault()
     }
 }

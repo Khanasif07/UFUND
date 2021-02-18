@@ -80,18 +80,32 @@ class ProductFilterVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
-        ProductFilterVM.shared.resetToDefault()
+        if ProductFilterVM.shared.isFilterApplied && ProductFilterVM.shared.isFilterAppliedDefault{
+             ProductFilterVM.shared.resetToLocally()
+             ProductFilterVM.shared.resetToDefault()
+        } else {
+             ProductFilterVM.shared.resetToAllFilter()
+        }
         setupPagerView(isMenuReload: false)
-        delegate?.clearAllButtonTapped()
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        ProductFilterVM.shared.resetToDefault()
+        if ProductFilterVM.shared.isLocallyReset && ProductFilterVM.shared.isFilterAppliedDefault{
+            ProductFilterVM.shared.resetToLocally(isFilterApplied: true)
+        }
+        if !ProductFilterVM.shared.isFilterAppliedDefault{
+            ProductFilterVM.shared.resetToDefault()
+        }
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
+         ProductFilterVM.shared.isFilterAppliedDefault = true
+         if !ProductFilterVM.shared.isFilterApplied {
+            ProductFilterVM.shared.isFilterAppliedDefault = false
+            ProductFilterVM.shared.resetToAllFilter()
+         }
          delegate?.filterApplied()
          self.popOrDismiss(animation: true)
     }
