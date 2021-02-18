@@ -80,21 +80,14 @@ class ProductFilterVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
-        self.categoryListingVC.selectedCategoryListing = []
-        self.currencyVC.selectedCurrencyListing = []
-        ProductFilterVM.shared.selectedCurrencyListing = []
-        ProductFilterVM.shared.status = []
-        ProductFilterVM.shared.selectedCategoryListing = []
+        ProductFilterVM.shared.resetToDefault()
         setupPagerView(isMenuReload: false)
         delegate?.clearAllButtonTapped()
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
-        self.categoryListingVC.selectedCategoryListing = []
-        self.currencyVC.selectedCurrencyListing = []
-        ProductFilterVM.shared.selectedCurrencyListing = []
-        ProductFilterVM.shared.status = []
-        ProductFilterVM.shared.selectedCategoryListing = []
+        ProductFilterVM.shared.lastSelectedIndex = 0
+        ProductFilterVM.shared.resetToDefault()
         self.popOrDismiss(animation: true)
     }
     
@@ -112,7 +105,6 @@ extension ProductFilterVC {
     
     private func initialSetup() {
         self.setupPagerView()
-//        self.getProductsCurrenciesList()
     }
     
     private func setupPagerView(isMenuReload:Bool = true) {
@@ -169,7 +161,7 @@ extension ProductFilterVC {
     private func initiateFilterTabs() {
         filtersTabs.removeAll()
         for i in 0..<(ProductFilterVM.shared.allTabsStr.count){
-            let obj = MenuItem(title: ProductFilterVM.shared.allTabsStr[i], index: i, isSelected: ProductFilterVM.shared.allTabsStr[i] == Constants.string.category.localize())
+            let obj = MenuItem(title: ProductFilterVM.shared.allTabsStr[i], index: i, isSelected: (ProductFilterVM.shared.lastSelectedIndex == i))
             filtersTabs.append(obj)
         }
     }

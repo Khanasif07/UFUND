@@ -112,21 +112,19 @@ extension CategoryListingVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.selectedCategoryListing.contains(where: {$0.id == (isSearchOn ? self.searchedCategoryListing[indexPath.row].id : categoryListing?[indexPath.row].id)}){
-//            self.removeSelectedPower(model: isSearchOn ? self.searchedCategoryListing[indexPath.row] : categoryListing?[indexPath.row] ?? CategoryModel())
-            if categoryListing?[indexPath.row].id == 0 {
+            if isSearchOn ? self.searchedCategoryListing[indexPath.row].id == 0 : categoryListing?[indexPath.row].id == 0  {
                 self.selectedCategoryListing = []
                 ProductFilterVM.shared.selectedCategoryListing = []
                 self.selectedCategoryListing = []
             } else {
                 self.removeSelectedPower(model: isSearchOn ? self.searchedCategoryListing[indexPath.row] : categoryListing?[indexPath.row] ?? CategoryModel())
-//                ProductFilterVM.shared.status.remove(at: ProductFilterVM.shared.status.firstIndex(of: statusDetails[indexPath.row].title)!)
                 if ProductFilterVM.shared.selectedCategoryListing.endIndex == (categoryListing?.endIndex ?? 0) - 1 && ProductFilterVM.shared.selectedCategoryListing.contains(where: {$0.id == 0}){
                     ProductFilterVM.shared.selectedCategoryListing.remove(at: ProductFilterVM.shared.selectedCategoryListing.firstIndex(where: {$0.id == 0}) ?? 0)
                     self.selectedCategoryListing.remove(at: ProductFilterVM.shared.selectedCategoryListing.firstIndex(where: {$0.id == 0}) ?? 0)
                 } else{}
             }
         } else {
-            if categoryListing?[indexPath.row].id == 0  {
+            if isSearchOn ? self.searchedCategoryListing[indexPath.row].id == 0 : categoryListing?[indexPath.row].id == 0   {
                 ProductFilterVM.shared.selectedCategoryListing = categoryListing ?? []
                 self.selectedCategoryListing = categoryListing ?? []
             } else {
@@ -134,8 +132,8 @@ extension CategoryListingVC: UITableViewDataSource, UITableViewDelegate {
                     ProductFilterVM.shared.selectedCategoryListing = categoryListing ?? []
                     self.selectedCategoryListing = categoryListing ?? []
                 } else{
-                    ProductFilterVM.shared.selectedCategoryListing.append(categoryListing?[indexPath.row] ?? CategoryModel())
-                    self.selectedCategoryListing.append(categoryListing?[indexPath.row] ??  CategoryModel())
+                    ProductFilterVM.shared.selectedCategoryListing.append(isSearchOn ? self.searchedCategoryListing[indexPath.row] : categoryListing?[indexPath.row] ?? CategoryModel())
+                    self.selectedCategoryListing.append(isSearchOn ? self.searchedCategoryListing[indexPath.row] : categoryListing?[indexPath.row] ?? CategoryModel())
                 }
             }
             //            self.setSelectedPowers(model: isSearchOn ? self.searchedCategoryListing[indexPath.row] : categoryListing?[indexPath.row] ?? CategoryModel())

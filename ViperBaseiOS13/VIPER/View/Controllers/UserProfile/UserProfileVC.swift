@@ -18,6 +18,7 @@ class UserProfileVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    let userProfileInfoo : [UserProfileAttributes] = UserProfileAttributes.allCases
     var param  =  [String:Any]()
     var imageData: Data?
     var profileImgUrl : URL?
@@ -79,28 +80,44 @@ class UserProfileVC: UIViewController {
                     } else {
                         param[ProfileUpdate.keys.mobile] = userData.1
                     }
+                } else if userData.0 == "Address Line1" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.address1] = userData.1
+                    }
+                } else if userData.0 == "Address Line2" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.address2] = userData.1
+                    }
+                }else if userData.0 == "ZipCode" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.zip_code] = userData.1
+                    }
+                } else if userData.0 == "Address Line2" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.address2] = userData.1
+                    }
+                }
+                else if userData.0 == "City" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.city] = userData.1
+                    }
+                }else if userData.0 == "State" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.state] = userData.1
+                    }
+                } else if userData.0 == "Country" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.country] = userData.1
+                    }
                 }
             }
-//            guard let firstName = self.firstNameTxtFld.text, !firstName.isEmpty else{
-//                return  ToastManager.show(title: "Please Enter First Name", state: .warning)
-//            }
-//            guard let lastName = self.lastNameTxtFld.text, !lastName.isEmpty else {
-//                return  ToastManager.show(title: "Please Enter Last Name", state: .warning)
-//            }
-//            guard let mobileNumber = self.phoneNumberTxtFld.text , !mobileNumber.isEmpty else{
-//                return  ToastManager.show(title: "Please Enter Mobile Number", state: .warning)
-//            }
             if imageData != nil {
-//                param[ProfileUpdate.keys.name] = firstName
-//                param[ProfileUpdate.keys.mobile] = mobileNumber
-//                param[ProfileUpdate.keys.last_name] = lastName
                 var dataDic =  [String:(Data,String,String)]()
                 dataDic = [ProfileUpdate.keys.picture : (self.imageData!,"Profile.jpg",FileType.image.rawValue)]
+                self.loader.isHidden = false
                 self.presenter?.UploadData(api: Base.profile.rawValue, params: param, imageData: dataDic , methodType: .POST, modelClass: UserDetails.self, token: true)
             } else {
-//                param[ProfileUpdate.keys.name] = firstName
-//                param[ProfileUpdate.keys.mobile] = mobileNumber
-//                param[ProfileUpdate.keys.last_name] = lastName
+                self.loader.isHidden = false
                 self.presenter?.HITAPI(api: Base.profile.rawValue, params: param, methodType: .POST, modelClass: UserDetails.self, token: true)
             }
         } else {
@@ -129,12 +146,17 @@ extension UserProfileVC: PresenterOutputProtocol {
         self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
         self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
         self.generalInfoArray[4].1 = self.userProfile?.address ?? ""
-        self.generalInfoArray.removeAll { (userTuple) -> Bool in
-            userTuple.1.isEmpty == true
-        }
+        self.generalInfoArray[1].1 = self.userProfile?.address ?? ""
+        self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
+        self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
+        self.generalInfoArray[4].1 = self.userProfile?.address ?? ""
+//        self.generalInfoArray.removeAll { (userTuple) -> Bool in
+//            userTuple.1.isEmpty == true
+//        }
         self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
         self.mainTableView.reloadData()
         if isEnableEdit {
+            self.loader.isHidden = true
             let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
             popUpVC.editProfileSuccess = { [weak self] (sender) in
                 guard let selff = self else { return }

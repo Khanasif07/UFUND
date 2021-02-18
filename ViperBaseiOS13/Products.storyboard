@@ -273,11 +273,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHV-Da-GL0">
                                 <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="125" translatesAutoresizingMaskIntoConstraints="NO" id="gJ4-9P-AJk">
-                                        <rect key="frame" x="69" y="25.5" width="276" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="125" translatesAutoresizingMaskIntoConstraints="NO" id="gJ4-9P-AJk">
+                                        <rect key="frame" x="65.5" y="31.5" width="283" height="18"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cR4-n6-cKI" userLabel="SORT">
-                                                <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="79" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="18" id="oZb-vG-BGd"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                 <state key="normal" title="  SORT" image="icSort">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -287,9 +290,9 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wD-c1-FYz">
-                                                <rect key="frame" x="197" y="0.0" width="79" height="30"/>
+                                                <rect key="frame" x="204" y="0.0" width="79" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                <state key="normal" title="  FILTER" image="icSort">
+                                                <state key="normal" title="  FILTER" image="icFilter">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -306,7 +309,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A39-OR-bdu">
-                                <rect key="frame" x="206.5" y="833.5" width="1" height="45"/>
+                                <rect key="frame" x="206.5" y="842.5" width="1" height="27"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="eo8-ZD-SF6"/>
@@ -347,6 +350,7 @@
     </scenes>
     <resources>
         <image name="icBackward" width="28" height="28"/>
+        <image name="icFilter" width="16" height="15"/>
         <image name="icSearch" width="16" height="16"/>
         <image name="icSort" width="16" height="15"/>
         <namedColor name="primaryColor">

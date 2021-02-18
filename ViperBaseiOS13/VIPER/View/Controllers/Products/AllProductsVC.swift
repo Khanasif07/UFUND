@@ -107,7 +107,8 @@ extension AllProductsVC {
             self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         case (UserType.investor.rawValue,false):
 //            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
-             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: nil, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            let params : [String:Int] = ["new_products": productType == .AllProducts ? 0 : 1]
+             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,true):
             self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         default:
@@ -152,6 +153,7 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
         cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
         cell.productTypeLbl.text = isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].category?.category_name ?? "") : (self.investerProductList?[indexPath.row].category?.category_name ?? "")
         cell.priceLbl.text = isSearchEnable ? "\((self.searchInvesterProductList?[indexPath.row].total_product_value ?? 0))" : "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
+        cell.liveView.isHidden = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row].status != 1)   : (self.investerProductList?[indexPath.row].status != 1)
         cell.backgroundColor = .clear
         return cell
     }
@@ -290,11 +292,15 @@ extension AllProductsVC: ProductFilterVCDelegate {
             }.joined(separator: ",")
             params["currency"] = currency
         }
+        if ProductFilterVM.shared.minimumPrice != 0{
+            params["min"] = ProductFilterVM.shared.minimumPrice
+        }
+        if ProductFilterVM.shared.maximumPrice != 0{
+            params["max"] = ProductFilterVM.shared.maximumPrice
+        }
         if ProductFilterVM.shared.status.endIndex > 0{
-//            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
-//                return String(model.id ?? 0)
-//            }.joined(separator: ",")
-//            params["currency"] = currency
+//            let currency =  ProductFilterVM.shared.status.map
+//            params["status"] = currency
         }
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }

@@ -21,6 +21,8 @@ struct UserProfile : Mappable {
 	var last_name : String?
 	var email : String?
 	var address : String?
+    var address1 : String?
+    var address2 : String?
 	var mobile : String?
 	var user_type : String?
 	var country_id : String?
@@ -47,6 +49,9 @@ struct UserProfile : Mappable {
 	var updated_at : String?
     var g2f_status : Int?
     var picture : String?
+    var city: String?
+    var state: String?
+    var country: String?
     
 
 	init?(map: Map) {
@@ -60,6 +65,8 @@ struct UserProfile : Mappable {
 		last_name <- map["last_name"]
 		email <- map["email"]
 		address <- map["address"]
+        address1 <- map["address1"]
+        address2 <- map["address2"]
 		mobile <- map["mobile"]
 		user_type <- map["user_type"]
 		country_id <- map["country_id"]
@@ -86,6 +93,9 @@ struct UserProfile : Mappable {
 		updated_at <- map["updated_at"]
         g2f_status <- map["g2f_status"]
         picture <- map["picture"]
+        city <- map["city"]
+        state <- map["state"]
+        country <- map["country"]
 	}
 
 }
