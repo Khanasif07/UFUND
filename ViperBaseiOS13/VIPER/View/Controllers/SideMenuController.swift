@@ -244,6 +244,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
                     //                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
                     let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
                     vc.productTitle = Constants.string.allProducts.localize()
+                    vc.productType = .AllProducts
                     (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
                     
                 }
@@ -251,6 +252,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
                 self.drawerController?.closeSide()
                 let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
                 vc.productTitle = Constants.string.newProducts.localize()
+                vc.productType = .NewProducts
                 (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             }
         case Constants.string.TokenizedAssets.localize():

@@ -263,13 +263,6 @@
                                     <constraint firstItem="7nB-og-Kts" firstAttribute="leading" secondItem="MuY-1k-uvY" secondAttribute="leading" id="zHF-uh-zgF"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYc-DH-9GJ">
-                                <rect key="frame" x="0.0" y="813.5" width="414" height="2"/>
-                                <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="aPj-oE-CU8"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHV-Da-GL0">
                                 <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                 <subviews>
@@ -318,7 +311,6 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="XHV-Da-GL0" firstAttribute="top" secondItem="JYc-DH-9GJ" secondAttribute="bottom" id="0Aq-Qe-FSd"/>
                             <constraint firstItem="XHV-Da-GL0" firstAttribute="bottom" secondItem="MuY-1k-uvY" secondAttribute="bottom" id="273-vN-lk0"/>
                             <constraint firstItem="EfM-0Q-itj" firstAttribute="trailing" secondItem="MuY-1k-uvY" secondAttribute="trailing" id="3D2-Dc-S5N"/>
                             <constraint firstItem="A39-OR-bdu" firstAttribute="height" secondItem="gJ4-9P-AJk" secondAttribute="height" multiplier="1.5" id="80N-UC-JST"/>
@@ -329,14 +321,13 @@
                             <constraint firstAttribute="bottom" secondItem="MuY-1k-uvY" secondAttribute="bottom" id="GGZ-sA-1IZ"/>
                             <constraint firstItem="XHV-Da-GL0" firstAttribute="leading" secondItem="MuY-1k-uvY" secondAttribute="leading" id="MBy-8x-nWb"/>
                             <constraint firstItem="XHV-Da-GL0" firstAttribute="height" secondItem="MuY-1k-uvY" secondAttribute="height" multiplier="0.0898438" id="Nh1-en-dnJ"/>
-                            <constraint firstItem="JYc-DH-9GJ" firstAttribute="trailing" secondItem="XHV-Da-GL0" secondAttribute="trailing" id="S9H-Vd-gAx"/>
                             <constraint firstItem="QkW-Zs-HQm" firstAttribute="top" secondItem="EfM-0Q-itj" secondAttribute="top" id="Vxu-fH-Och"/>
                             <constraint firstItem="MuY-1k-uvY" firstAttribute="leading" secondItem="EfM-0Q-itj" secondAttribute="leading" id="Yzj-N2-8pQ"/>
-                            <constraint firstItem="JYc-DH-9GJ" firstAttribute="leading" secondItem="XHV-Da-GL0" secondAttribute="leading" id="dlU-gv-NmS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EfM-0Q-itj"/>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="XHV-Da-GL0" id="4Qj-kS-cQo"/>
                         <outlet property="mainCollView" destination="nGb-X3-ocA" id="WNV-NC-bUZ"/>
                         <outlet property="searchBar" destination="HAl-nI-9r4" id="YMp-2e-Msq"/>
                         <outlet property="searchViewHConst" destination="ekw-dc-uYU" id="C6c-if-JHn"/>

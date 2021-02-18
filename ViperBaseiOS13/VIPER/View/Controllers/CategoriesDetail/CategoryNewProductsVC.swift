@@ -8,19 +8,26 @@
 
 
 import UIKit
+import ObjectMapper
 import DZNEmptyDataSet
 
 class CategoryNewProductsVC: UIViewController {
 
     @IBOutlet weak var mainCollView: UICollectionView!
     
+    var presenterr: PresenterInputProtocol?
+    var productType: ProductType = .NewProducts
     var isSearchEnable: Bool = false
+    var categoryModel : CategoryModel?
     var searchNewProductListing : [ProductModel]? = []
     var  newProductListing : [ProductModel]?{
         didSet{
             self.mainCollView.reloadData()
         }
     }
+    lazy var loader  : UIView = {
+        return createActivityIndicator(self.view)
+    }()
     var searchText: String? {
            didSet{
                if let searchedText = searchText{
@@ -39,6 +46,7 @@ class CategoryNewProductsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialSetup()
+        self.getCategoryDetailData()
     }
     
     
@@ -54,6 +62,13 @@ class CategoryNewProductsVC: UIViewController {
         layout1.minimumInteritemSpacing = 0
         layout1.minimumLineSpacing = 0
     }
+    
+    private func getCategoryDetailData(){
+        self.loader.isHidden = false
+        let params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products": productType == .AllProducts ? 0 : 1]
+        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+    }
+
 
 }
 
@@ -112,4 +127,24 @@ extension CategoryNewProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
     func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
         return true
     }
+}
+
+
+// MARK: - Api Success failure
+//===========================
+extension CategoryNewProductsVC : PresenterOutputProtocol{
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
+        let productModelEntity = dataDict as? ProductsModelEntity
+        if let productDict = productModelEntity?.data?.data {
+            newProductListing = productDict
+        }
+          self.mainCollView.reloadData()
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+    
 }

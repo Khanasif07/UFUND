@@ -16,7 +16,9 @@ class UserProfileTableCell: UITableViewCell {
     @IBOutlet weak var textFieldView: UIView!
     
     
-    
+    override func prepareForReuse() {
+        textFIeld.rightView = nil
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

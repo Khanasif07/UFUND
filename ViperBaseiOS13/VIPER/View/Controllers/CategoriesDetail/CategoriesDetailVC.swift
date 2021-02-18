@@ -6,12 +6,12 @@
 //  Copyright © 2021 CSS. All rights reserved.
 //
 import UIKit
-import ObjectMapper
 
 class CategoriesDetailVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var btnStackView: UIView!
     @IBOutlet weak var allProductsBtn: UIButton!
@@ -48,6 +48,7 @@ class CategoriesDetailVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        bottomView.addShadowToTopOrBottom(location: .top, color: UIColor.black16)
         btnStackView.setCornerRadius(cornerR: btnStackView.frame.height / 2.0)
         newProductsBtn.setCornerRadius(cornerR: newProductsBtn.frame.height / 2.0)
         allProductsBtn.setCornerRadius(cornerR: allProductsBtn.frame.height / 2.0)
@@ -109,7 +110,6 @@ extension CategoriesDetailVC {
         self.configureScrollView()
         self.instantiateViewController()
         self.isAllProductsSelected = false
-        self.getCategoryDetailData()
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -120,19 +120,23 @@ extension CategoriesDetailVC {
     }
     
     private func instantiateViewController() {
-        //instantiate the CategoryAllProductsVC
-        self.allProductsVC = CategoryAllProductsVC.instantiate(fromAppStoryboard: .Products)
-        self.allProductsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
-        self.mainScrollView.frame = self.allProductsVC.view.frame
-        self.mainScrollView.addSubview(self.allProductsVC.view)
-        self.addChild(self.allProductsVC)
-        
         //instantiate the CategoryNewProductsVC
         self.newProductsVC = CategoryNewProductsVC.instantiate(fromAppStoryboard: .Products)
         self.newProductsVC.view.frame.origin = CGPoint.zero
         self.mainScrollView.frame = self.newProductsVC.view.frame
         self.mainScrollView.addSubview(self.newProductsVC.view)
+        self.newProductsVC.categoryModel = categoryModel
+        self.newProductsVC.productType = .NewProducts
         self.addChild(self.newProductsVC)
+        
+        //instantiate the CategoryAllProductsVC
+        self.allProductsVC = CategoryAllProductsVC.instantiate(fromAppStoryboard: .Products)
+        self.allProductsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
+        self.mainScrollView.frame = self.allProductsVC.view.frame
+        self.mainScrollView.addSubview(self.allProductsVC.view)
+        self.allProductsVC.categoryModel = categoryModel
+        self.allProductsVC.productType = .AllProducts
+        self.addChild(self.allProductsVC)
     }
     
     private func setUpFont(){
@@ -140,13 +144,6 @@ extension CategoriesDetailVC {
         self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
         self.btnStackView.borderLineWidth = 1.5
         self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
-    }
-    
-    private func getCategoryDetailData(){
-        self.loader.isHidden = false
-//        self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
-        let params :[String:String] = ["category": "\(categoryModel?.id ?? 0)"]
-        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
     private func setUpSearchBar(){
@@ -158,88 +155,11 @@ extension CategoriesDetailVC {
     
 }
 
-// MARK: - Api Success failure
-//===========================
-extension CategoriesDetailVC : PresenterOutputProtocol{
-    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        self.loader.isHidden = true
-        let productModelEntity = dataDict as? ProductsModelEntity
-        if let productDict = productModelEntity?.data?.data {
-            newProductsVC.newProductListing = productDict
-            allProductsVC.allProductListing = productDict
-        }
-    }
-    
-    func showError(error: CustomError) {
-        self.loader.isHidden = true
-        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
-    }
-    
-}
-
 // MARK: - Sorting  Logic Implemented
 //===========================
 extension CategoriesDetailVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
-//        switch sortType {
-//        case "Sort by Latest","Sort by Oldest":
-//            var orderType : ComparisonResult = .orderedAscending
-//            orderType = (sortType == "Sort by Latest") ? .orderedDescending : .orderedAscending
-//            if isAllProductsSelected {
-//                let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
-//                let sortedProduct = productsCategories?.sorted(by: { (model1, model2) -> Bool in
-//                    let date1 = model1.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
-//                    let date2 = model2.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
-//                    return date1?.compare(date2 ?? Date()) == orderType
-//                })
-//                if !searchText.isEmpty {
-////                     newProductsVC.searchProductCategories = sortedProduct
-////                     productVC.mainCollView.reloadData()
-//                } else {
-////                      productVC.productCategories = sortedProduct
-//                }
-//
-//            } else{
-//                 let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
-//                let sortedToken = tokenssCategories?.sorted(by: { (model1, model2) -> Bool in
-//                    let date1 = model1.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
-//                    let date2 = model2.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
-//                    return date1?.compare(date2 ?? Date()) == orderType
-//                })
-//                if !searchText.isEmpty {
-//                    tokenVC.searchTokenCategories = sortedToken
-//                    tokenVC.mainCollView.reloadData()
-//                } else {
-//                    tokenVC.tokenCategories = sortedToken
-//                }
-//
-//            }
-//        case "Sort by Name (A-Z)","Sort by Name (Z-A)":
-//            var orderType : ComparisonResult = .orderedAscending
-//            orderType = (sortType == "Sort by Name (Z-A)") ? .orderedDescending : .orderedAscending
-//            if isAllProductsSelected {
-//                let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
-//                let sortedProduct = productsCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
-//                if !searchText.isEmpty {
-//                    productVC.searchProductCategories = sortedProduct
-//                    productVC.mainCollView.reloadData()
-//                } else {
-//                    productVC.productCategories = sortedProduct
-//                }
-                
-//            } else{
-//                let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
-//                let sortedToken = tokenssCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
-//                if !searchText.isEmpty {
-//                    tokenVC.searchTokenCategories = sortedToken
-//                    tokenVC.mainCollView.reloadData()
-//                } else {
-//                    tokenVC.tokenCategories = sortedToken
-//                }
-//            }
-//        default:
-//            print(sortType)
-//        }
+
     }
 }
 
@@ -263,8 +183,6 @@ extension CategoriesDetailVC: UIScrollViewDelegate{
 extension CategoriesDetailVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
-//        self.productVC.searchText = searchText
-//        self.tokenVC.searchText = searchText
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

@@ -344,8 +344,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 
                 switch nullStringToEmpty(string: cell?.productNameLbl.text) {
                 case Constants.string.allProduct.localize():
-                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as? ProductListViewController else { return }
-                    vc.tileStr = Constants.string.all.localize()
+                    let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.allProducts.localize()
+                    vc.productType = .AllProducts
+                    self.navigationController?.pushViewController(vc, animated: true)
+                case Constants.string.newProduct.localize():
+                    let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.newProducts.localize()
+                    vc.productType = .NewProducts
                     self.navigationController?.pushViewController(vc, animated: true)
                 case Constants.string.investment.localize():
                     guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.InvestmentListViewController) as? InvestmentListViewController else { return }

@@ -26,7 +26,10 @@ class UserProfileVC: UIViewController {
     var userProfile: UserProfile?
     var countryCode: String  = "+91"
     var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Address Line1",""),("Address Line 2",""),("ZipCode",""),("City",""),("State",""),("Country","")]
-    var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Account currency",""),("Bank Address","")]
+    var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Account Currency",""),("Bank Address","")]
+    var currencyListing = [CurrencyModel]()
+    var selectedCurrency = CurrencyModel()
+    var customPickerViewYear = WCCustomPickerView()
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
@@ -113,7 +116,7 @@ class UserProfileVC: UIViewController {
             }
             self.bankInfoArray.forEach { (userData) in
                 if userData.0 == "Bank Name"{
-                    if  userData.1.isEmpty {
+                    if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.bank_name] = userData.1
                     }
                 }else if userData.0 == "Account Name"{
@@ -138,7 +141,7 @@ class UserProfileVC: UIViewController {
                     }
                 } else if userData.0 == "Account Currency" {
                     if  !userData.1.isEmpty {
-                        param[ProfileUpdate.keys.account_currency] = userData.1
+                        param[ProfileUpdate.keys.account_currency] = selectedCurrency.id
                     }
                 }
                 else if userData.0 == "Bank Address" {
@@ -174,7 +177,13 @@ class UserProfileVC: UIViewController {
 //===========================
 extension UserProfileVC: PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-          self.userDetails = dataDict as? UserDetails
+        if api == Base.productsCurrencies.rawValue{
+            let currencyModelEntity = dataDict as? CurrencyModelEntity
+            currencyListing = currencyModelEntity?.data ?? []
+            self.customYearPicker()
+            return
+        }
+        self.userDetails = dataDict as? UserDetails
         self.userProfile = self.userDetails?.user
         self.loader.isHidden = true
         self.generalInfoArray[0].1 = self.userProfile?.name ?? ""
@@ -200,9 +209,14 @@ extension UserProfileVC: PresenterOutputProtocol {
 //            userTuple.1.isEmpty == true
 //        }
         User.main.picture  = self.userProfile?.picture
+        User.main.name  = self.userProfile?.name
+        User.main.mobile = self.userProfile?.mobile
+        storeInUserDefaults()
         self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
         self.mainTableView.reloadData()
+        self.getProductsCurrenciesList()
         if isEnableEdit {
+            self.getProductsCurrenciesList()
             self.loader.isHidden = true
             let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
             popUpVC.editProfileSuccess = { [weak self] (sender) in
@@ -227,7 +241,13 @@ extension UserProfileVC: PresenterOutputProtocol {
         self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        self.customYearPicker()
         self.getProfileDetails()
+    }
+    
+    //MARK:- PRDUCTS LIST API CALL
+    private func getProductsCurrenciesList() {
+        self.presenter?.HITAPI(api: Base.productsCurrencies.rawValue, params: nil, methodType: .GET, modelClass: CurrencyModelEntity.self, token: true)
     }
     
     private func present(to identifier : String) {
@@ -239,6 +259,11 @@ extension UserProfileVC: PresenterOutputProtocol {
     func getProfileDetails(){
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.profile.rawValue, params: nil, methodType: .GET, modelClass: UserDetails.self, token: true)
+    }
+    
+    private func customYearPicker(){
+        self.customPickerViewYear.delegate = self
+        self.customPickerViewYear.dataArray = currencyListing
     }
 }
 
@@ -298,7 +323,9 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                     let cell = tableView.dequeueCell(with: UserProfilePhoneNoCell.self, indexPath: indexPath)
                     cell.countryPickerTapped = { [weak self] (sender) in
                         guard let selff = self else { return }
+                        if selff.isEnableEdit {
                         selff.present(to: Storyboard.Ids.CountryPickerVC)
+                        }
                     }
                     cell.countryCodeLbl.text = self.countryCode
                     cell.phoneTextField.delegate = self
@@ -322,8 +349,11 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
             cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
-            if cell.titleLbl.text ?? "" == "Account Currency" {
+            if self.bankInfoArray[indexPath.row ].0 == "Account Currency"  {
+                cell.textFIeld.inputView = customPickerViewYear
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+            } else {
+                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
             }
             cell.textFIeld.isUserInteractionEnabled = isEnableEdit
             cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
@@ -343,6 +373,10 @@ extension UserProfileVC : UITextFieldDelegate {
                     self.generalInfoArray[indexPath.row - 1].1 = text
                 } else {
                     self.bankInfoArray[indexPath.row].1 = text
+                    if self.bankInfoArray[indexPath.row].0 == "Account Currency"{
+                        cell.textFIeld.text = selectedCurrency.currency ?? ""
+                        self.bankInfoArray[indexPath.row].1 = selectedCurrency.currency ?? ""
+                    }
                 }
             }
         }
@@ -385,8 +419,11 @@ extension UserProfileVC : CountryDelegate{
     }
 }
 
+//MARK:- WCCustomPickerViewDelegate
+//===========================
 
-
-
-
-
+extension UserProfileVC: WCCustomPickerViewDelegate {
+    func userDidSelectRow(_ text: CurrencyModel) {
+        self.selectedCurrency = text
+    }
+}

@@ -9809,13 +9809,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <rect key="frame" x="99" y="75" width="300" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asif Khan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA5-H3-q5S">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                         <color key="textColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@asif" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
-                                                        <rect key="frame" x="0.0" y="25.5" width="300" height="14.5"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.85098039215686272" green="0.8666666666666667" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -9845,7 +9845,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     <constraint firstAttribute="height" constant="32" id="A8n-u6-Cdq"/>
                                                     <constraint firstAttribute="width" secondItem="IC4-wI-Gfa" secondAttribute="height" id="Xgo-Eb-L6C"/>
                                                 </constraints>
-                                                <state key="normal" image="icClose"/>
+                                                <state key="normal" image="icCloseWhite"/>
                                                 <connections>
                                                     <action selector="topCloseBtnAction:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="e7z-DB-bWc"/>
                                                 </connections>
@@ -11663,20 +11663,16 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstAttribute="trailing" secondItem="okU-Vx-i3n" secondAttribute="trailing" id="lZX-pf-6mN"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mnd-mU-oLh">
-                                <rect key="frame" x="0.0" y="813.5" width="414" height="2"/>
-                                <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="0.10365360938698236" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="Ris-od-1nh"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHU-zR-xx6">
                                 <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JtW-ha-2Wh">
-                                        <rect key="frame" x="172.5" y="25" width="69" height="30"/>
+                                        <rect key="frame" x="171" y="31" width="72" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="eB8-6C-pvq"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                        <state key="normal" title=" SORT" image="icSort">
+                                        <state key="normal" title="  SORT" image="icSort">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -11696,12 +11692,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                             <constraint firstItem="Wb4-dp-WGI" firstAttribute="leading" secondItem="Wbn-Xl-T8k" secondAttribute="leading" id="3DV-qw-icg"/>
                             <constraint firstItem="kbc-gS-H8c" firstAttribute="leading" secondItem="LC1-5u-k4i" secondAttribute="leading" id="7Ys-jf-a79"/>
                             <constraint firstAttribute="trailing" secondItem="Wb4-dp-WGI" secondAttribute="trailing" id="AnI-2a-Qnm"/>
-                            <constraint firstItem="lHU-zR-xx6" firstAttribute="top" secondItem="mnd-mU-oLh" secondAttribute="bottom" id="DRU-jo-3Oj"/>
                             <constraint firstItem="LC1-5u-k4i" firstAttribute="trailing" secondItem="lHU-zR-xx6" secondAttribute="trailing" id="DtD-Ox-SBY"/>
-                            <constraint firstItem="mnd-mU-oLh" firstAttribute="trailing" secondItem="lHU-zR-xx6" secondAttribute="trailing" id="Fgz-mG-MPq"/>
                             <constraint firstItem="LC1-5u-k4i" firstAttribute="trailing" secondItem="kbc-gS-H8c" secondAttribute="trailing" id="I0s-3K-Jy1"/>
                             <constraint firstAttribute="bottom" secondItem="Wb4-dp-WGI" secondAttribute="bottom" id="ahv-RB-tul"/>
-                            <constraint firstItem="mnd-mU-oLh" firstAttribute="leading" secondItem="lHU-zR-xx6" secondAttribute="leading" id="dRK-IB-mXO"/>
                             <constraint firstItem="lHU-zR-xx6" firstAttribute="height" secondItem="Wbn-Xl-T8k" secondAttribute="height" multiplier="0.09" id="gJp-b0-nFe"/>
                             <constraint firstItem="kbc-gS-H8c" firstAttribute="top" secondItem="LC1-5u-k4i" secondAttribute="top" id="m0m-Rr-LP9"/>
                             <constraint firstItem="lHU-zR-xx6" firstAttribute="leading" secondItem="LC1-5u-k4i" secondAttribute="leading" id="p3g-1T-g4K"/>
@@ -11711,6 +11704,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <viewLayoutGuide key="safeArea" id="LC1-5u-k4i"/>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="lHU-zR-xx6" id="hLm-C9-A6M"/>
                         <outlet property="btnStackView" destination="jgf-yh-Fv2" id="hzz-TX-ynC"/>
                         <outlet property="mainScrollView" destination="okU-Vx-i3n" id="6gN-tf-qRl"/>
                         <outlet property="productBtn" destination="k8x-DN-uN6" id="ycC-SW-TsZ"/>
@@ -11944,20 +11938,16 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstAttribute="trailing" secondItem="awM-7g-cuP" secondAttribute="trailing" id="xla-tK-h3z"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58n-uv-PSj">
-                                <rect key="frame" x="0.0" y="813.5" width="414" height="2"/>
-                                <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="b5k-KI-hkU"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wSC-vd-Jgx">
                                 <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irU-aN-uNT">
-                                        <rect key="frame" x="172.5" y="25.5" width="69" height="30"/>
+                                        <rect key="frame" x="171" y="31" width="72" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="Uqz-N8-wxc"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                        <state key="normal" title=" SORT" image="icSort">
+                                        <state key="normal" title="  SORT" image="icSort">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -11978,11 +11968,8 @@ We do not keep any documents on the platform for safety reasons; they are all st
                             <constraint firstItem="9lw-6x-Lng" firstAttribute="trailing" secondItem="28b-VP-hxM" secondAttribute="trailing" id="26f-64-0EJ"/>
                             <constraint firstAttribute="top" secondItem="28b-VP-hxM" secondAttribute="top" id="2TQ-UK-PrK"/>
                             <constraint firstAttribute="bottom" secondItem="wSC-vd-Jgx" secondAttribute="bottom" id="8Nm-Z8-32h"/>
-                            <constraint firstItem="wSC-vd-Jgx" firstAttribute="height" secondItem="EYM-wl-4Ke" secondAttribute="height" multiplier="0.0898438" id="CWE-pA-wEj"/>
+                            <constraint firstItem="wSC-vd-Jgx" firstAttribute="height" secondItem="EYM-wl-4Ke" secondAttribute="height" multiplier="0.09" id="CWE-pA-wEj"/>
                             <constraint firstItem="fKJ-cc-Trb" firstAttribute="top" secondItem="9lw-6x-Lng" secondAttribute="top" id="HFC-Eu-gzC"/>
-                            <constraint firstItem="58n-uv-PSj" firstAttribute="trailing" secondItem="wSC-vd-Jgx" secondAttribute="trailing" id="Xkn-Pn-kb0"/>
-                            <constraint firstItem="wSC-vd-Jgx" firstAttribute="top" secondItem="58n-uv-PSj" secondAttribute="bottom" id="ZdK-Ph-U5k"/>
-                            <constraint firstItem="58n-uv-PSj" firstAttribute="leading" secondItem="wSC-vd-Jgx" secondAttribute="leading" id="egx-bS-OQY"/>
                             <constraint firstItem="wSC-vd-Jgx" firstAttribute="leading" secondItem="9lw-6x-Lng" secondAttribute="leading" id="fky-BY-F6C"/>
                             <constraint firstItem="28b-VP-hxM" firstAttribute="bottom" secondItem="EYM-wl-4Ke" secondAttribute="bottom" id="llf-Ag-j5v"/>
                             <constraint firstItem="9lw-6x-Lng" firstAttribute="leading" secondItem="28b-VP-hxM" secondAttribute="leading" id="nl4-Es-Cym"/>
@@ -11992,6 +11979,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                     </view>
                     <connections>
                         <outlet property="allProductsBtn" destination="DdL-Cw-Fkh" id="mlg-Ka-xny"/>
+                        <outlet property="bottomView" destination="wSC-vd-Jgx" id="Ndi-OT-bQz"/>
                         <outlet property="btnStackView" destination="iCJ-Kd-K51" id="PfL-wf-cZ3"/>
                         <outlet property="mainScrollView" destination="Lsw-pq-2zK" id="j0A-ut-WKZ"/>
                         <outlet property="newProductsBtn" destination="xHW-2I-ZdP" id="7ad-ej-aeG"/>
@@ -12864,6 +12852,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="home" width="24.5" height="22"/>
         <image name="icBackward" width="28" height="28"/>
         <image name="icClose" width="20" height="20"/>
+        <image name="icCloseWhite" width="12" height="12"/>
         <image name="icEdit" width="18" height="18"/>
         <image name="icInformation" width="86" height="86"/>
         <image name="icMenu" width="32" height="32"/>

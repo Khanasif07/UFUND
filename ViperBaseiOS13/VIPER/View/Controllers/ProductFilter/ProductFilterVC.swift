@@ -21,6 +21,7 @@ class ProductFilterVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var applyBtn: UIButton!
     @IBOutlet weak var clearAllButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
@@ -62,6 +63,7 @@ class ProductFilterVC: UIViewController {
         super.viewDidLayoutSubviews()
         self.parchmentView?.view.frame = self.dataContainerView.bounds
         self.parchmentView?.loadViewIfNeeded()
+        bottomView.addShadowToTopOrBottom(location: .top,color: UIColor.black16)
         clearAllButton.setCirclerCornerRadius()
         applyBtn.setCornerRadius(cornerR: 8)
         closeButton.setCornerRadius(cornerR: 8)

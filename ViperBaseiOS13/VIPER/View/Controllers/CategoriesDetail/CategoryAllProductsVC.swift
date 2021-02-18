@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import ObjectMapper
 import DZNEmptyDataSet
 
 class CategoryAllProductsVC: UIViewController {
 
     @IBOutlet weak var mainCollView: UICollectionView!
     
+    var presenterrr: PresenterInputProtocol?
+    var productType: ProductType = .AllProducts
     var isSearchEnable: Bool = false
+    var categoryModel : CategoryModel?
     var allSearchProductListing : [ProductModel]? = []
-    var  allProductListing : [ProductModel]?{
+    var allProductListing : [ProductModel]?{
         didSet{
             self.mainCollView.reloadData()
         }
@@ -38,6 +42,7 @@ class CategoryAllProductsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialSetup()
+        self.getCategoryDetailData()
     }
     
     
@@ -52,6 +57,11 @@ class CategoryAllProductsVC: UIViewController {
         mainCollView.collectionViewLayout = layout1
         layout1.minimumInteritemSpacing = 0
         layout1.minimumLineSpacing = 0
+    }
+    
+    private func getCategoryDetailData(){
+        let params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products": productType == .AllProducts ? 0 : 1]
+        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
 
 }
@@ -113,3 +123,21 @@ extension CategoryAllProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
     }
 }
 
+
+
+// MARK: - Api Success failure
+//===========================
+extension CategoryAllProductsVC : PresenterOutputProtocol{
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        let productModelEntity = dataDict as? ProductsModelEntity
+        if let productDict = productModelEntity?.data?.data {
+            allProductListing = productDict
+        }
+        self.mainCollView.reloadData()
+    }
+    
+    func showError(error: CustomError) {
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+    
+}

@@ -13,6 +13,7 @@ class CategoriesVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var btnStackView: UIView!
     @IBOutlet weak var tokenBtn: UIButton!
     @IBOutlet weak var productBtn: UIButton!
@@ -54,6 +55,7 @@ class CategoriesVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        bottomView.addShadowToTopOrBottom(location: .top, color: UIColor.black16)
         btnStackView.setCornerRadius(cornerR: btnStackView.frame.height / 2.0)
         tokenBtn.setCornerRadius(cornerR: tokenBtn.frame.height / 2.0)
         productBtn.setCornerRadius(cornerR: productBtn.frame.height / 2.0)

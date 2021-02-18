@@ -10,14 +10,18 @@ import UIKit
 import ObjectMapper
 import DZNEmptyDataSet
 
+enum ProductType: String {
+       case AllProducts
+       case NewProducts
+   }
+   
+   
+
 class AllProductsVC: UIViewController {
-    enum ProductType: String {
-        case AllProducts
-        case NewProducts
-    }
-    
+   
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var searchViewHConst: NSLayoutConstraint!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var mainCollView: UICollectionView!
@@ -44,8 +48,12 @@ class AllProductsVC: UIViewController {
     //===========================
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         initialSetup()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        bottomView.addShadowToTopOrBottom(location: .top,color: UIColor.black16)
     }
     
     override func viewWillAppear(_ animated: Bool) {

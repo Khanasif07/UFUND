@@ -140,6 +140,7 @@
                     </view>
                     <connections>
                         <outlet property="applyBtn" destination="1tf-al-2Nt" id="xXp-Lh-83O"/>
+                        <outlet property="bottomView" destination="7JR-pA-G4K" id="mVb-5O-kmn"/>
                         <outlet property="clearAllButton" destination="CEv-uS-x6z" id="Xvf-9N-C0e"/>
                         <outlet property="closeButton" destination="O2e-wx-zkU" id="qba-F5-LnE"/>
                         <outlet property="dataContainerView" destination="bhT-j6-sOe" id="U16-b0-uHz"/>
