@@ -86,6 +86,14 @@ struct ProfileUpdate  {
     let city = "city"
     let state = "state"
     let country  = "country"
+    let  bank_name = "bank_name"
+    let     account_name = "account_name"
+    let   account_number = "account_number"
+    let     routing_number = "routing_number"
+    let    iban_number = "iban_number"
+    let   swift_number = "swift_number"
+    let     account_currency = "account_currency"
+    let     bank_address = "bank_address"
 }
 
 struct TransactionParam {

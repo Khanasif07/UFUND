@@ -23,6 +23,7 @@ struct UserProfile : Mappable {
 	var address : String?
     var address1 : String?
     var address2 : String?
+    var zip_code : String?
 	var mobile : String?
 	var user_type : String?
 	var country_id : String?
@@ -52,8 +53,15 @@ struct UserProfile : Mappable {
     var city: String?
     var state: String?
     var country: String?
-    
-
+    var bank_name : String?
+    var account_name : String?
+    var account_number : String?
+    var routing_number : String?
+    var iban_number : String?
+    var swift_number : String?
+    var account_currency : String?
+    var bank_address : String?
+          
 	init?(map: Map) {
 
 	}
@@ -96,6 +104,15 @@ struct UserProfile : Mappable {
         city <- map["city"]
         state <- map["state"]
         country <- map["country"]
+        zip_code <- map["zip_code"]
+        bank_name <- map["bank_name"]
+        account_name <- map["account_name"]
+        account_number <- map["account_number"]
+        routing_number <- map["routing_number"]
+        iban_number <- map["iban_number"]
+        swift_number <- map["swift_number"]
+        account_currency <- map["account_currency"]
+        bank_address <- map["bank_address"]
 	}
 
 }

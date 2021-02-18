@@ -26,7 +26,7 @@ enum UserProfileAttributes: String,CaseIterable{
 //    case iban_number
 //    case swift_number
 //    case account_currency
-//    
+//    case bank_address
     var title :String{
         switch self {
         case .name:

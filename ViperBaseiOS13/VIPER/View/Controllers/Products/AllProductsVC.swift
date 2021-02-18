@@ -73,6 +73,7 @@ class AllProductsVC: UIViewController {
     @IBAction func sortBtnAction(_ sender: UIButton) {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
+        vc.sortArray = [("Sort by Name (A-Z)",false),("Sort by Name (Z-A)",false)]
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -197,7 +198,16 @@ extension AllProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 //===========================
 extension AllProductsVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
-        print(sortType)
+        switch sortType {
+        case "Sort by Name (A-Z)":
+            let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"ASC","sort_by":"product_title"]
+            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case "Sort by Name (Z-A)":
+            let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"DESC","sort_by":"product_title"]
+            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        default:
+            print("Noting")
+        }
     }
 }
 
@@ -275,7 +285,8 @@ extension AllProductsVC: UISearchBarDelegate{
 extension AllProductsVC: ProductFilterVCDelegate {
     func clearAllButtonTapped() {
         ProductFilterVM.shared.isSortingApplied = false
-        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: nil, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        let params :[String:Any] = ["new_products": productType == .AllProducts ? 0 : 1]
+        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
     func filterApplied() {
@@ -302,6 +313,7 @@ extension AllProductsVC: ProductFilterVCDelegate {
 //            let currency =  ProductFilterVM.shared.status.map
 //            params["status"] = currency
         }
+        params["new_products"] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
 }

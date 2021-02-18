@@ -15,6 +15,7 @@ class ProductSortVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var tableViewHConst: NSLayoutConstraint!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var dataContainerView: UIView!
     
@@ -28,6 +29,13 @@ class ProductSortVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        mainTableView.frame = CGRect(x: mainTableView.frame.origin.x, y: mainTableView.frame.origin.y, width: mainTableView.frame.size.width, height: mainTableView.contentSize.height)
+        tableViewHConst.constant = mainTableView.frame.height + 15.0
+        mainTableView.reloadData()
     }
     
     // MARK: - IBActions
@@ -71,7 +79,7 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return   (dataContainerView.frame.height  - 86.0 ) / 4
+        return   47.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -86,7 +94,7 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
             self.delegate?.sortingApplied(sortType: self.sortArray[indexPath.row].0)
         }
         self.mainTableView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.popOrDismiss(animation: true)
         }
     }

@@ -135,6 +135,11 @@ class SideMenuController: UIViewController {
                 isFromCampainer = true
             }
         }
+        let url = URL.init(string: baseUrl + "/" +  nullStringToEmpty(string: User.main.picture))
+        profileImg.sd_setImage(with: url , placeholderImage: nil)
+        profileImg.contentMode = .scaleAspectFill
+        profileImg.clipsToBounds = true
+        profileName.text = nullStringToEmpty(string: User.main.name)
         tableView.reloadData()
     }
     

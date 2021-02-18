@@ -111,6 +111,42 @@ class UserProfileVC: UIViewController {
                     }
                 }
             }
+            self.bankInfoArray.forEach { (userData) in
+                if userData.0 == "Bank Name"{
+                    if  userData.1.isEmpty {
+                        param[ProfileUpdate.keys.bank_name] = userData.1
+                    }
+                }else if userData.0 == "Account Name"{
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.account_name] = userData.1
+                    }
+                } else if userData.0 == "Account Number" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.account_number] = userData.1
+                    }
+                } else if userData.0 == "Routing Number" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.routing_number] = userData.1
+                    }
+                } else if userData.0 == "IBAN Number" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.iban_number] = userData.1
+                    }
+                }else if userData.0 == "Swift Number" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.swift_number] = userData.1
+                    }
+                } else if userData.0 == "Account Currency" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.account_currency] = userData.1
+                    }
+                }
+                else if userData.0 == "Bank Address" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.bank_address] = userData.1
+                    }
+                }
+            }
             if imageData != nil {
                 var dataDic =  [String:(Data,String,String)]()
                 dataDic = [ProfileUpdate.keys.picture : (self.imageData!,"Profile.jpg",FileType.image.rawValue)]
@@ -145,14 +181,25 @@ extension UserProfileVC: PresenterOutputProtocol {
         self.generalInfoArray[1].1 = self.userProfile?.last_name ?? ""
         self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
         self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
-        self.generalInfoArray[4].1 = self.userProfile?.address ?? ""
-        self.generalInfoArray[1].1 = self.userProfile?.address ?? ""
-        self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
-        self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
-        self.generalInfoArray[4].1 = self.userProfile?.address ?? ""
+        self.generalInfoArray[4].1 = self.userProfile?.address1 ?? ""
+        self.generalInfoArray[5].1 = self.userProfile?.address2 ?? ""
+        self.generalInfoArray[6].1 = self.userProfile?.zip_code ?? ""
+        self.generalInfoArray[7].1 = self.userProfile?.city ?? ""
+        self.generalInfoArray[8].1 = self.userProfile?.state ?? ""
+        self.generalInfoArray[9].1 = self.userProfile?.country ?? ""
+        
+        self.bankInfoArray[0].1 = self.userProfile?.bank_name ?? ""
+        self.bankInfoArray[1].1 = self.userProfile?.account_name ?? ""
+        self.bankInfoArray[2].1 = self.userProfile?.account_number ?? ""
+        self.bankInfoArray[3].1 = self.userProfile?.routing_number ?? ""
+        self.bankInfoArray[4].1 = self.userProfile?.iban_number ?? ""
+        self.bankInfoArray[5].1 = self.userProfile?.swift_number ?? ""
+        self.bankInfoArray[6].1 = self.userProfile?.account_currency ?? ""
+        self.bankInfoArray[7].1 = self.userProfile?.bank_address ?? ""
 //        self.generalInfoArray.removeAll { (userTuple) -> Bool in
 //            userTuple.1.isEmpty == true
 //        }
+        User.main.picture  = self.userProfile?.picture
         self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
         self.mainTableView.reloadData()
         if isEnableEdit {
