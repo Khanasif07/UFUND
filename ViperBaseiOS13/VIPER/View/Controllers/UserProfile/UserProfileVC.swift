@@ -181,6 +181,12 @@ extension UserProfileVC: PresenterOutputProtocol {
             let currencyModelEntity = dataDict as? CurrencyModelEntity
             currencyListing = currencyModelEntity?.data ?? []
             self.customYearPicker()
+            if let selectedIndex =  self.currencyListing.firstIndex(where: { (model) -> Bool in
+                return  "\(model.id ?? 0)" == self.userProfile?.account_currency
+            }){
+              self.selectedCurrency = self.currencyListing[selectedIndex]
+                self.bankInfoArray[6].1 =  self.selectedCurrency.currency ?? ""
+            }
             return
         }
         self.userDetails = dataDict as? UserDetails
@@ -203,8 +209,15 @@ extension UserProfileVC: PresenterOutputProtocol {
         self.bankInfoArray[3].1 = self.userProfile?.routing_number ?? ""
         self.bankInfoArray[4].1 = self.userProfile?.iban_number ?? ""
         self.bankInfoArray[5].1 = self.userProfile?.swift_number ?? ""
-        self.bankInfoArray[6].1 = self.userProfile?.account_currency ?? ""
+//        self.bankInfoArray[6].1 = self.userProfile?.account_currency ?? ""
         self.bankInfoArray[7].1 = self.userProfile?.bank_address ?? ""
+//        self.bankInfoArray[6].1 =
+        if let selectedIndex =  self.currencyListing.firstIndex(where: { (model) -> Bool in
+            return  "\(model.id ?? 0)" == self.userProfile?.account_currency
+        }){
+          self.selectedCurrency = self.currencyListing[selectedIndex]
+            self.bankInfoArray[6].1 =  self.selectedCurrency.currency ?? ""
+        }
 //        self.generalInfoArray.removeAll { (userTuple) -> Bool in
 //            userTuple.1.isEmpty == true
 //        }

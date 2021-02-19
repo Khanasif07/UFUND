@@ -321,8 +321,17 @@ extension AllProductsVC: ProductFilterVCDelegate {
             params["max"] = ProductFilterVM.shared.maximumPrice
         }
         if ProductFilterVM.shared.status.endIndex > 0{
-//            let currency =  ProductFilterVM.shared.status.map
-//            params["status"] = currency
+            if ProductFilterVM.shared.status.contains(Status.All.title){
+                params["new_products"] = productType == .AllProducts ? 0 : 1
+                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+                return
+            }
+            if ProductFilterVM.shared.status.contains(Status.Live.title){
+                params["status"] = Status.Live.rawValue
+            }
+            if ProductFilterVM.shared.status.contains(Status.Matured.title){
+                params["status"] = Status.Matured.rawValue
+            }
         }
         params["new_products"] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
