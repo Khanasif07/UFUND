@@ -53,8 +53,15 @@ extension ProductFilterVC : PagingViewControllerDelegate, PagingViewControllerSi
     }
     
     func pagingViewController(_ pagingViewController: PagingViewController, willScrollToItem pagingItem: PagingItem, startingViewController: UIViewController, destinationViewController: UIViewController) {
-         let pagingIndexItem = pagingItem as! MenuItem
-         ProductFilterVM.shared.lastSelectedIndex = pagingIndexItem.index
+        let pagingIndexItem = pagingItem as! MenuItem
+        ProductFilterVM.shared.lastSelectedIndex = pagingIndexItem.index
+        if let index = filtersTabs.firstIndex(where: { (menuItem) -> Bool in
+            menuItem.isSelected == true
+        }){
+            filtersTabs[index].isSelected = false
+        }
+        filtersTabs[pagingIndexItem.index].isSelected = true
+        self.parchmentView?.reloadMenu()
     }
 }
 
