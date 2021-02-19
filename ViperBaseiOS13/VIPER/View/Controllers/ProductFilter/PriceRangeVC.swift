@@ -24,28 +24,27 @@ class PriceRangeVC: UIViewController {
     //===========================
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialSetup()
+        self.initialSetup()
     }
-    
-    // MARK: - IBActions
-    //===========================
-    
-    
 }
 
 // MARK: - Extension For Functions
 //===========================
-extension PriceRangeVC : RangeSeekSliderDelegate{
+extension PriceRangeVC : RangeSeekSliderDelegate {
     
     func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat){
-        var min = minValue
-        var max = maxValue
+        let min = minValue
+        let max = maxValue
         self.minRangeField.text = "\(min.round(to: 2))"
+        ProductFilterVM.shared.minimumPrice = min.round(to: 2)
         self.maxRangeField.text = "\(max.round(to: 2))"
+        ProductFilterVM.shared.maximumPrice = max.round(to: 2)
     }
     
     private func initialSetup() {
         self.priceSlider.delegate = self
+        self.priceSlider.selectedMinValue = CGFloat(ProductFilterVM.shared.minimumPrice)
+        self.priceSlider.selectedMaxValue = CGFloat(ProductFilterVM.shared.maximumPrice)
     }
 }
 

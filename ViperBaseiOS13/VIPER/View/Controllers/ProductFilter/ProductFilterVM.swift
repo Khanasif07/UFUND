@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 protocol ProductFilterVMDelegate: class {
     func updateFiltersTabs()
@@ -18,13 +18,13 @@ class ProductFilterVM {
     static let shared = ProductFilterVM()
     
     var lastSelectedIndex: Int  = 0
-    var defaultMinimumPrice: Double = 0.0
-    var defaultMaximumPrice: Double = 0.0
+    var defaultMinimumPrice: CGFloat = 0.0
+    var defaultMaximumPrice: CGFloat = 0.0
     var defaultSelectedCategoryListing: [CategoryModel] = []
     var defaultSelectedCurrencyListing: [CurrencyModel] = []
     var defaultStatus: [String] = []
-    var minimumPrice: Double = 0.0
-    var maximumPrice: Double = 0.0
+    var minimumPrice: CGFloat = 0.0
+    var maximumPrice: CGFloat = 800000.0
     var categoryListing: [CategoryModel] = []
     var currencyListing: [CurrencyModel] = []
     var selectedCategoryListing: [CategoryModel] = []

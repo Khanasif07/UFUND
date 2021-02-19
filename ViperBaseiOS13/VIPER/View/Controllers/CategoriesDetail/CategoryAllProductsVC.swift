@@ -14,7 +14,6 @@ class CategoryAllProductsVC: UIViewController {
 
     @IBOutlet weak var mainCollView: UICollectionView!
     
-//    var presenterrr: PresenterInputProtocol?
     var productType: ProductType = .AllProducts
     var isSearchEnable: Bool = false
     var categoryModel : CategoryModel?
@@ -42,7 +41,7 @@ class CategoryAllProductsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialSetup()
-//        self.getCategoryDetailData()
+        self.getCategoryDetailData()
     }
     
     
