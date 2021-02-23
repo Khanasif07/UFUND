@@ -44,7 +44,7 @@ class SideMenuController: UIViewController {
                 sideMenuImg =   [#imageLiteral(resourceName: "sideVynil"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "icLogout")]
                 
             } else {
-                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allInvestment.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
+                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
                 sideMenuImg =   [#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "icCategories"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icChnagePassword"),#imageLiteral(resourceName: "icLogout")]
             }
         }
@@ -201,7 +201,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
         case Constants.string.TokenizedAssets.localize():
             view.dropdownView?.isHidden = false
             self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
-        case Constants.string.allInvestment.localize():
+        case Constants.string.allMyInvestment.localize():
             view.dropdownView?.isHidden = false
             self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
         case Constants.string.Products.localize():
@@ -315,6 +315,15 @@ extension  SideMenuController {
             }
 //            self.drawerController?.closeSide()
 //            self.push(to: Storyboard.Ids.TokenizedAssetsListViewController)
+            
+        case Constants.string.allMyInvestment.localize():
+            if self.menuContent?[section].1.isEmpty ?? true{
+                self.menuContent?[section].1 = [Constants.string.myProductInvestMents.localize(),Constants.string.myTokenInvestMents.localize()]
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            } else {
+                self.menuContent?[section].1 = []
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            }
         case Constants.string.Investors.localize():
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.InvestmentViewController)
