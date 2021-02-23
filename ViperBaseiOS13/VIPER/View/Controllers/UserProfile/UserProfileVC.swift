@@ -209,9 +209,8 @@ extension UserProfileVC: PresenterOutputProtocol {
         self.bankInfoArray[3].1 = self.userProfile?.routing_number ?? ""
         self.bankInfoArray[4].1 = self.userProfile?.iban_number ?? ""
         self.bankInfoArray[5].1 = self.userProfile?.swift_number ?? ""
-//        self.bankInfoArray[6].1 = self.userProfile?.account_currency ?? ""
         self.bankInfoArray[7].1 = self.userProfile?.bank_address ?? ""
-//        self.bankInfoArray[6].1 =
+//        self.userProfile?.account_currency
         if let selectedIndex =  self.currencyListing.firstIndex(where: { (model) -> Bool in
             return  "\(model.id ?? 0)" == self.userProfile?.account_currency
         }){

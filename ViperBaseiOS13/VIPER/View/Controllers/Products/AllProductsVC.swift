@@ -29,6 +29,7 @@ class AllProductsVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var searchTask: DispatchWorkItem?
     var productType: ProductType = .AllProducts
     var searchText : String = ""
     var productTitle: String = "All Products"
@@ -99,6 +100,7 @@ class AllProductsVC: UIViewController {
 extension AllProductsVC {
     
     private func initialSetup(){
+        self.searchBar.delegate = self
         self.titleLbl.text = productTitle
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
         self.mainCollView.delegate = self
@@ -114,13 +116,13 @@ extension AllProductsVC {
     }
     
     //MARK:- PRDUCTS LIST API CALL
-    private func getProductList() {
+    private func getProductList(page:Int = 1,search: String = "") {
         switch (userType,false) {
         case (UserType.campaigner.rawValue,false):
             self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         case (UserType.investor.rawValue,false):
 //            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
-            let params : [String:Int] = ["new_products": productType == .AllProducts ? 0 : 1]
+            let params : [String:Any] = ["page": page,"new_products": productType == .AllProducts ? 0 : 1,"search": search]
              self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,true):
             self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
@@ -145,6 +147,23 @@ extension AllProductsVC {
         //               childViewController.didMove(toParent: self)
         //        }
     }
+    
+    private func searchProducts(searchValue: String){
+        guard searchValue.count > 2 else {
+            return }
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            self?.getProductList(page: 1, search: searchValue)
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+    }
+    
+    private func getProgressPercentage(productModel: ProductModel?) -> Double{
+        let investValue =   (productModel?.investment_product_total ?? 0.0 )
+        let totalValue =  (productModel?.total_product_value ?? 0.0)
+        return (investValue / totalValue) * 100
+    }
 }
 
 //MARK: - Collection view delegate
@@ -167,12 +186,19 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
         cell.productTypeLbl.text = isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].category?.category_name ?? "") : (self.investerProductList?[indexPath.row].category?.category_name ?? "")
         cell.priceLbl.text = isSearchEnable ? "\((self.searchInvesterProductList?[indexPath.row].total_product_value ?? 0))" : "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
         cell.liveView.isHidden = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row].status != 1)   : (self.investerProductList?[indexPath.row].status != 1)
+        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
         cell.backgroundColor = .clear
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.frame.width / 2), height: 35 * collectionView.frame.height / 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let ob = ProductDetailVC.instantiate(fromAppStoryboard: .Products)
+        ob.productModel = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])
+        self.navigationController?.pushViewController(ob, animated: true)
     }
 }
 
@@ -257,6 +283,7 @@ extension AllProductsVC: UISearchBarDelegate{
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+            self.searchProducts(searchValue: text)
             UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 51.0
                 self.view.layoutIfNeeded()
@@ -301,7 +328,7 @@ extension AllProductsVC: ProductFilterVCDelegate {
     }
     
     func filterApplied() {
-        var params :[String:Any] = ["page": 1]
+        var params :[String:Any] = ["page": 1,"search": searchText]
         if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
             let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in
                 return String(model.id ?? 0)

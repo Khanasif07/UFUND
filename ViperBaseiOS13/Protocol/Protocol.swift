@@ -56,29 +56,55 @@ protocol WebServiceProtocol : class
 protocol WebServiceToInteractor : class {
     
     func responseSuccess<T: Mappable>(api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]])
+    //
+    func responseSuccessWithParams<T: Mappable>(params: [String:Any],api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]])
+    //
     func responseError(error : CustomError)
     
     /* func dictModelClass(className:Any,response:[String: Any])
      func arrayModelClass(className:Any,arrayResponse:[[String: Any]]) */
 }
+//
+extension WebServiceToInteractor {
+    func responseSuccessWithParams<T: Mappable>(params: [String:Any],api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]]){
+        
+    }
+}
+//
 
 //MARK:- INTERACTOR: [BACKWARD]
 protocol InterectorToPresenterProtocol: class {
     /*func DataFetchedArray(data: [Mappable], modelClass: Any)
      func DataFetched(data: Mappable,modelClass: Any)*/
-    
+    //
+    func dataSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?,dataDict: Mappable?, modelClass: Any)
+    //
     func dataSuccess(api: String, dataArray: [Mappable]?,dataDict: Mappable?, modelClass: Any)
     func dataError(error : CustomError)
 }
+//
+extension InterectorToPresenterProtocol {
+    func dataSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?,dataDict: Mappable?, modelClass: Any){
+        
+    }
+}
+//
 
 //MARK:- PRESENTER: [BACKWARD]  [Presenter to View]:
 protocol PresenterOutputProtocol: class{
     /*func showArrayData(data: [Mappable],modelClass: Any)
      func showData(data: Mappable,modelClass: Any)*/
+    //
+    func showSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any)
+    //
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any)
     func showError(error : CustomError)
 }
-
+//
+extension PresenterOutputProtocol{
+    func showSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){}
+}
+//
 //MARK:- ROUTER:
 protocol PresenterToRouterProtocol : class {
     //static func createModule(Identifier:String, currentController:UIViewController) -> UIViewController

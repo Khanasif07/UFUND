@@ -38,10 +38,20 @@ class CategoryAllProductsVC: UIViewController {
            }
        }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.parent?.isKind(of: CategoriesDetailVC.self) ?? false{
+            if let controller = self.parent as? CategoriesDetailVC {
+                self.categoryModel = controller.categoryModel
+                self.getCategoryDetailData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialSetup()
-        self.getCategoryDetailData()
+//        self.getCategoryDetailData()
     }
     
     
@@ -137,6 +147,10 @@ extension CategoryAllProductsVC : PresenterOutputProtocol{
 
     func showError(error: CustomError) {
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+    
+    func showSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){
+        print(params)
     }
 
 }

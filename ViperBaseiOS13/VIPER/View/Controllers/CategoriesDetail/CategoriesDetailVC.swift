@@ -126,6 +126,7 @@ extension CategoriesDetailVC {
         self.mainScrollView.frame = self.newProductsVC.view.frame
         self.mainScrollView.addSubview(self.newProductsVC.view)
         self.newProductsVC.categoryModel = categoryModel
+        self.newProductsVC.categoryModelId = categoryModel?.id ?? 0
         self.newProductsVC.productType = .NewProducts
         self.addChild(self.newProductsVC)
         
@@ -159,7 +160,7 @@ extension CategoriesDetailVC {
 //===========================
 extension CategoriesDetailVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
-
+        
     }
 }
 

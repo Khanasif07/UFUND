@@ -87,10 +87,14 @@ extension Webservice : WebServiceProtocol {
                             }
                              print("responseJSON: ",responseJSON)
                             self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
+                            
+                            self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
                         }else{ //Array:
                             if let json = response.result.value as? [[String:Any]] {
                                    print("responseJSON: ",json)
                                 self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: [:], responseArray: json)
+                                
+                                self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
                             }
                         }
                     }else{
@@ -146,9 +150,13 @@ extension Webservice : WebServiceProtocol {
                                         return
                                     }
                                     self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
+                                    
+                                    self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
                                 }else{  //Array
                                     if let json = response.result.value as? [[String:Any]] {
                                         self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: [:], responseArray: json)
+                                        
+                                        self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
                                     }
                                 }
                             }else {
@@ -406,9 +414,12 @@ extension Webservice : WebServiceProtocol {
                                                 return
                                             }
                                             self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
+                                            self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
                                         }else{  //Array
                                             if let json = response.result.value as? [[String:Any]] {
                                                 self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: [:], responseArray: json)
+                                                
+                                                self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
                                             }
                                         }
                                     }else {

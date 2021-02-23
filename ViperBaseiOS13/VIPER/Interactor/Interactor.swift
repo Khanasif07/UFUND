@@ -64,6 +64,19 @@ extension Interactor : WebServiceToInteractor {
         }
         
     }
+    
+    func responseSuccessWithParams<T: Mappable>(params: [String:Any],api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]]){
+        if(responseDict.isEmpty){  //Array
+            let details = Mapper<T>().mapArray(JSONArray: responseArray)
+            /* self.presenter?.DataFetchedArray(data: details, modelClass: className)*/
+            self.presenter?.dataSuccessWithParams(params: params,api: api, dataArray: details, dataDict: nil, modelClass: className)
+        }else{ //Dictionary:
+            let details = Mapper<T>().map(JSONObject: responseDict)
+            /* self.presenter?.DataFetchedArray(data: details, modelClass: className)*/
+            self.presenter?.dataSuccessWithParams(params: params,api: api,dataArray: nil, dataDict: details, modelClass: className)
+        }
+        
+    }
     /***************/
     /*  func dictModelClass(className:Any,response:[String: Any]){
      print("CLASS NAME---\(className)")

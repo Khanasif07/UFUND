@@ -232,4 +232,47 @@ extension UIView {
         self.layer.shadowOpacity = opacity
         self.layer.shadowRadius = radius
     }
+    
+    //Drop Shadow
+    func drawDropShadow(color : UIColor, is3DView: Bool = false) {
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 5
+        self.layer.masksToBounds = false
+        if is3DView {
+            self.layer.shadowOpacity = 0.35
+            self.layer.shadowPath = UIBezierPath(rect: CGRect(x: 10,
+                                                              y: (bounds.maxY - layer.shadowRadius) + 5,
+                                                              width: bounds.width - 20,
+                                                              height: layer.shadowRadius + 10)).cgPath
+        }
+    }
+    
+    func dropShadow(cornerRadius: CGFloat, maskedCorners: CACornerMask = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], color: UIColor, offset: CGSize, opacity: Float, shadowRadius: CGFloat) {
+//         self.layer.masksToBounds = true
+         self.layer.cornerRadius = cornerRadius
+         self.layer.maskedCorners = maskedCorners
+         self.layer.shadowColor = color.cgColor
+         self.layer.shadowOffset = offset
+         self.layer.shadowOpacity = opacity
+         self.layer.shadowRadius = shadowRadius
+     }
+    
+    func addShadowUsingBiezerPath(shadowColor: UIColor, offSet: CGSize, opacity: Float, shadowRadius: CGFloat, cornerRadius: CGFloat, corners: UIRectCorner, fillColor: UIColor = .white) {
+            
+            let shadowLayer = CAShapeLayer()
+            let size = CGSize(width: cornerRadius, height: cornerRadius)
+            let cgPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: size).cgPath //1
+            shadowLayer.path = cgPath //2
+            shadowLayer.fillColor = fillColor.cgColor //3
+            shadowLayer.shadowColor = shadowColor.cgColor //4
+            shadowLayer.shadowPath = cgPath
+            shadowLayer.shadowOffset = offSet //5
+            shadowLayer.shadowOpacity = opacity
+            shadowLayer.shadowRadius = shadowRadius
+            self.layer.addSublayer(shadowLayer)
+        }
+    
+    
 }

@@ -45,6 +45,10 @@ extension Presenter: InterectorToPresenterProtocol{
         view?.showSuccess(api: api, dataArray: dataArray, dataDict: dataDict, modelClass: modelClass)
     }
     
+    private func dataSucessWithParams(params:[String:Any],api : String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        view?.showSuccessWithParams(params: params,api: api, dataArray: dataArray, dataDict: dataDict, modelClass: modelClass)
+    }
+    
   
 }
 

@@ -19,6 +19,7 @@ class CategoryNewProductsVC: UIViewController {
     var productType: ProductType = .NewProducts
     var isSearchEnable: Bool = false
     var categoryModel : CategoryModel?
+    var categoryModelId : Int = 0
     var searchNewProductListing : [ProductModel]? = []
     var  newProductListing : [ProductModel]?{
         didSet{
@@ -43,10 +44,20 @@ class CategoryNewProductsVC: UIViewController {
            }
        }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.parent?.isKind(of: CategoriesDetailVC.self) ?? false{
+            if let controller = self.parent as? CategoriesDetailVC {
+                  self.categoryModel = controller.categoryModel
+//                 self.getCategoryDetailData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialSetup()
-        self.getCategoryDetailData()
+//        self.getCategoryDetailData()
     }
     
     
@@ -64,7 +75,7 @@ class CategoryNewProductsVC: UIViewController {
     }
     
     private func getCategoryDetailData(){
-        self.loader.isHidden = false
+//        self.loader.isHidden = false
         let params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products": productType == .AllProducts ? 0 : 1]
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }

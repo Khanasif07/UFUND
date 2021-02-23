@@ -54,10 +54,11 @@
 	<string>$(PRODUCT_NAME) need permission for access</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SFUIText-Bold</string>
-		<string>SFUIText-Semibold</string>
-		<string>SFUIText-Medium</string>
-		<string>SFUIText-Light</string>
+		<string>Poppins-SemiBold.ttf</string>
+		<string>Poppins-Black.ttf</string>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-Regular.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -86,12 +87,12 @@
 	<array>
 		<string>twitter</string>
 		<string>twitterauth</string>
-        <string>fbapi</string>
-        <string>fb-messenger-share-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
 	</array>
-    <key>FacebookAppID</key>
-    <string>1368229543515063</string>
+	<key>FacebookAppID</key>
+	<string>1368229543515063</string>
 </dict>
 </plist>

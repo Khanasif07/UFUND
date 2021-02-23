@@ -10,6 +10,7 @@ import UIKit
 
 class AllProductsCollCell: UICollectionViewCell {
 
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var liveView: UIView!
     @IBOutlet weak var investmentLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
@@ -20,24 +21,28 @@ class AllProductsCollCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    dataContainerView.roundCorners([.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMinYCorner,.layerMinXMaxYCorner], radius: 12.5)
-        dataContainerView.borderColor = UIColor.black16
-        dataContainerView.borderLineWidth = 1.0
-        liveView.roundCorners([.layerMaxXMaxYCorner,.layerMaxXMinYCorner], radius: liveView.frame.height / 2.0)
+       
         
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        dataContainerView.addShadowDefault(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
-              
+        self.productImgView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 10)
+        self.bottomView.roundCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner], radius: 10)
+        self.liveView.roundCorners([.layerMaxXMaxYCorner,.layerMaxXMinYCorner], radius: liveView.frame.height / 2.0)
+        self.dataContainerView.dropShadow(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
+        
     }
+    
 
 }
 
 
 extension UIColor{
     @nonobjc class var black16: UIColor {
-        return UIColor(white: 48.0 / 255.0, alpha: 0.16)
+        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.04113179774)
     }
 }
+
+
+   
