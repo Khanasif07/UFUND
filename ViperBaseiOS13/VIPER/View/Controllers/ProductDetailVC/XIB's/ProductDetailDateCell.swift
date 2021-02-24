@@ -12,6 +12,9 @@ class ProductDetailDateCell: UITableViewCell {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var offerEndDateTitleLbl: UILabel!
+    @IBOutlet weak var offerStartDateTitleLbl: UILabel!
+    @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var offerStartDateLbl: UILabel!
     @IBOutlet weak var maturityDateLbl: UILabel!
     @IBOutlet weak var investmentStartDateLbl: UILabel!
@@ -28,6 +31,12 @@ class ProductDetailDateCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+    }
+    
+    func setCellForAssetsDetailPage(){
+        self.bottomStackView.isHidden = true
+        self.offerEndDateTitleLbl.text = "End Date"
+        self.offerStartDateTitleLbl.text = "Start Date"
     }
     
     // MARK: - IBActions

@@ -227,7 +227,12 @@ struct Constants {
       let pendingKyc = "We are still processing your document, please be patient."
     
     let endDate = "Select End date"
-    let startDate = "Select Start date"
+    let selectStartDate = "Select Start date"
+    let byReward = "By Reward"
+    let type = "Type"
+    let price = "Price"
+    let startDate = "Start Date"
+    let closingDate = "Closing Date"
     let priceRange = "Price Range"
     let status = "Status"
     let currency = "Currency"

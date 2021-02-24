@@ -353,6 +353,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     vc.productTitle = Constants.string.newProducts.localize()
                     vc.productType = .NewProducts
                     self.navigationController?.pushViewController(vc, animated: true)
+                case Constants.string.newTokenizedAssets.localize():
+                    let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.newTokenizedAssets.localize()
+                    vc.productType = .NewAssets
+                    self.navigationController?.pushViewController(vc, animated: true)
+                case Constants.string.allTokenizedAssets.localize():
+                    let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.allTokenizedAssets.localize()
+                    vc.productType = .AllAssets
+                    self.navigationController?.pushViewController(vc, animated: true)
                 case Constants.string.investment.localize():
                     guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.InvestmentListViewController) as? InvestmentListViewController else { return }
                     self.navigationController?.pushViewController(vc, animated: true)

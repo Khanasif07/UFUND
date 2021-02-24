@@ -239,9 +239,6 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
                     viewController.tileStr = Constants.string.all.localize()
                     (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
                 } else {
-                    //                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as! ProductListViewController
-                    //                    viewController.tileStr = Constants.string.all.localize()
-                    //                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
                     let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
                     vc.productTitle = Constants.string.allProducts.localize()
                     vc.productType = .AllProducts
@@ -257,10 +254,17 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
             }
         case Constants.string.TokenizedAssets.localize():
             if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.newTokenizedAssets.localize(){
-//                self.drawerController?.closeSide()
-//                self.push(to: Storyboard.Ids.ProductViewController)
+                self.drawerController?.closeSide()
+                let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.newTokenizedAssets.localize()
+                vc.productType = .NewAssets
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             } else if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.allTokenizedAssets.localize(){
-                print("Do Nothing")
+                self.drawerController?.closeSide()
+                let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.allTokenizedAssets.localize()
+                vc.productType = .AllAssets
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             }
         default:
             print("Do Nothing")
