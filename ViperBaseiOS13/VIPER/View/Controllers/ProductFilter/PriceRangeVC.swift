@@ -45,6 +45,8 @@ extension PriceRangeVC : RangeSeekSliderDelegate {
         self.priceSlider.delegate = self
         self.priceSlider.selectedMinValue = CGFloat(ProductFilterVM.shared.minimumPrice)
         self.priceSlider.selectedMaxValue = CGFloat(ProductFilterVM.shared.maximumPrice)
+        self.minRangeField.text = "\(ProductFilterVM.shared.minimumPrice)"
+        self.maxRangeField.text = "\(ProductFilterVM.shared.maximumPrice)"
     }
 }
 

@@ -54,9 +54,9 @@ class MenuItemCollectionCell: PagingCell {
     open override func setPagingItem(_ pagingItem: PagingItem, selected: Bool, options: PagingOptions) {
          if let item = pagingItem as? MenuItem {
             self.title.text = item.title
-            self.title.textColor = item.isSelected ? .white : .black
+            self.title.textColor = selected ? .white : .black
             self.title.font = selected ? UIFont.boldSystemFont(ofSize: 12.0) : UIFont.boldSystemFont(ofSize: 11.0)
-            self.dataContainerView.backgroundColor = item.isSelected ? .red : #colorLiteral(red: 0.9568627451, green: 0.9333333333, blue: 0.937254902, alpha: 1)
+            self.dataContainerView.backgroundColor = selected ? .red : #colorLiteral(red: 0.9568627451, green: 0.9333333333, blue: 0.937254902, alpha: 1)
         }
      }
 }

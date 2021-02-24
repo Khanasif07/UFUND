@@ -39,9 +39,12 @@ class ProductFilterVC: UIViewController {
     var statusVC          : StatusVC!
     var currencyVC        : CurrencyVC!
     // Parchment View
+    var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     var filtersTabs =  [MenuItem]()
     var currencyModelEntity : CurrencyModelEntity?
     var parchmentView : PagingViewController?
+    
+    //  MARK: - Variables
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isFilterApplied:Bool = false
     var allChildVCs: [UIViewController] = [UIViewController]()

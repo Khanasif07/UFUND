@@ -25,7 +25,7 @@ class UserProfileVC: UIViewController {
     var userDetails: UserDetails?
     var userProfile: UserProfile?
     var countryCode: String  = "+91"
-    var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Address Line1",""),("Address Line 2",""),("ZipCode",""),("City",""),("State",""),("Country","")]
+    var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Address Line 1",""),("Address Line 2",""),("ZipCode",""),("City",""),("State",""),("Country","")]
     var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Account Currency",""),("Bank Address","")]
     var currencyListing = [CurrencyModel]()
     var selectedCurrency = CurrencyModel()
@@ -83,11 +83,11 @@ class UserProfileVC: UIViewController {
                     } else {
                         param[ProfileUpdate.keys.mobile] = userData.1
                     }
-                } else if userData.0 == "Address Line1" {
+                } else if userData.0 == "Address Line 1" {
                     if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.address1] = userData.1
                     }
-                } else if userData.0 == "Address Line2" {
+                } else if userData.0 == "Address Line 2" {
                     if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.address2] = userData.1
                     }
@@ -189,44 +189,7 @@ extension UserProfileVC: PresenterOutputProtocol {
             }
             return
         }
-        self.userDetails = dataDict as? UserDetails
-        self.userProfile = self.userDetails?.user
-        self.loader.isHidden = true
-        self.generalInfoArray[0].1 = self.userProfile?.name ?? ""
-        self.generalInfoArray[1].1 = self.userProfile?.last_name ?? ""
-        self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
-        self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
-        self.generalInfoArray[4].1 = self.userProfile?.address1 ?? ""
-        self.generalInfoArray[5].1 = self.userProfile?.address2 ?? ""
-        self.generalInfoArray[6].1 = self.userProfile?.zip_code ?? ""
-        self.generalInfoArray[7].1 = self.userProfile?.city ?? ""
-        self.generalInfoArray[8].1 = self.userProfile?.state ?? ""
-        self.generalInfoArray[9].1 = self.userProfile?.country ?? ""
-        
-        self.bankInfoArray[0].1 = self.userProfile?.bank_name ?? ""
-        self.bankInfoArray[1].1 = self.userProfile?.account_name ?? ""
-        self.bankInfoArray[2].1 = self.userProfile?.account_number ?? ""
-        self.bankInfoArray[3].1 = self.userProfile?.routing_number ?? ""
-        self.bankInfoArray[4].1 = self.userProfile?.iban_number ?? ""
-        self.bankInfoArray[5].1 = self.userProfile?.swift_number ?? ""
-        self.bankInfoArray[7].1 = self.userProfile?.bank_address ?? ""
-//        self.userProfile?.account_currency
-        if let selectedIndex =  self.currencyListing.firstIndex(where: { (model) -> Bool in
-            return  "\(model.id ?? 0)" == self.userProfile?.account_currency
-        }){
-          self.selectedCurrency = self.currencyListing[selectedIndex]
-            self.bankInfoArray[6].1 =  self.selectedCurrency.currency ?? ""
-        }
-//        self.generalInfoArray.removeAll { (userTuple) -> Bool in
-//            userTuple.1.isEmpty == true
-//        }
-        User.main.picture  = self.userProfile?.picture
-        User.main.name  = self.userProfile?.name
-        User.main.mobile = self.userProfile?.mobile
-        storeInUserDefaults()
-        self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
-        self.mainTableView.reloadData()
-        self.getProductsCurrenciesList()
+       
         if isEnableEdit {
             self.getProductsCurrenciesList()
             self.loader.isHidden = true
@@ -236,6 +199,41 @@ extension UserProfileVC: PresenterOutputProtocol {
                 selff.navigationController?.popViewController(animated: true)
             }
             self.present(popUpVC, animated: true, completion: nil)
+        } else {
+            self.userDetails = dataDict as? UserDetails
+            self.userProfile = self.userDetails?.user
+            self.loader.isHidden = true
+            self.generalInfoArray[0].1 = self.userProfile?.name ?? ""
+            self.generalInfoArray[1].1 = self.userProfile?.last_name ?? ""
+            self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
+            self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
+            self.generalInfoArray[4].1 = self.userProfile?.address1 ?? ""
+            self.generalInfoArray[5].1 = self.userProfile?.address2 ?? ""
+            self.generalInfoArray[6].1 = self.userProfile?.zip_code ?? ""
+            self.generalInfoArray[7].1 = self.userProfile?.city ?? ""
+            self.generalInfoArray[8].1 = self.userProfile?.state ?? ""
+            self.generalInfoArray[9].1 = self.userProfile?.country ?? ""
+            
+            self.bankInfoArray[0].1 = self.userProfile?.bank_name ?? ""
+            self.bankInfoArray[1].1 = self.userProfile?.account_name ?? ""
+            self.bankInfoArray[2].1 = self.userProfile?.account_number ?? ""
+            self.bankInfoArray[3].1 = self.userProfile?.routing_number ?? ""
+            self.bankInfoArray[4].1 = self.userProfile?.iban_number ?? ""
+            self.bankInfoArray[5].1 = self.userProfile?.swift_number ?? ""
+            self.bankInfoArray[7].1 = self.userProfile?.bank_address ?? ""
+            if let selectedIndex =  self.currencyListing.firstIndex(where: { (model) -> Bool in
+                return  "\(model.id ?? 0)" == self.userProfile?.account_currency
+            }){
+              self.selectedCurrency = self.currencyListing[selectedIndex]
+                self.bankInfoArray[6].1 =  self.selectedCurrency.currency ?? ""
+            }
+            User.main.picture  = self.userProfile?.picture
+            User.main.name  = self.userProfile?.name
+            User.main.mobile = self.userProfile?.mobile
+            storeInUserDefaults()
+            self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
+            self.mainTableView.reloadData()
+            self.getProductsCurrenciesList()
         }
         
     }
@@ -365,6 +363,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.inputView = customPickerViewYear
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
             } else {
+                 cell.textFIeld.inputView = nil
                  cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
             }
             cell.textFIeld.isUserInteractionEnabled = isEnableEdit
