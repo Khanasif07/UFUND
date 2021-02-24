@@ -37,8 +37,8 @@
                                     <constraint firstAttribute="width" constant="22" id="dT2-WS-M5D"/>
                                     <constraint firstAttribute="height" constant="22" id="giU-i4-HOq"/>
                                 </constraints>
-                                <state key="normal" image="icRadioUnselected"/>
-                                <state key="selected" image="icRadioSelected"/>
+                                <state key="normal" image="checkBoxUncheck"/>
+                                <state key="selected" image="checkBoxChecked"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -70,7 +70,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icRadioSelected" width="20" height="20"/>
-        <image name="icRadioUnselected" width="20" height="20"/>
+        <image name="checkBoxChecked" width="24" height="24"/>
+        <image name="checkBoxUncheck" width="24" height="24"/>
     </resources>
 </document>

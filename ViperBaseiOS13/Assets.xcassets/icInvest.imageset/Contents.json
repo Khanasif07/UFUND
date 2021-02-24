@@ -1,18 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "checkBoxUncheck.png",
+      "filename" : "icInvest.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "checkBoxUncheck@2x.png",
+      "filename" : "icInvest@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
       "scale" : "3x",
-      "filename" : "checkBoxUncheck@3x.png",
+      "filename" : "icInvest@3x.png",
       "idiom" : "universal"
     }
   ],

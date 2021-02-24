@@ -67,8 +67,10 @@ class CategoryListingVC: UIViewController {
     }
     
     private func getCategoryList(){
+        if categoryListing?.endIndex == 0 {
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
+        }
     }
     
     func removeSelectedPower(model : CategoryModel) {
