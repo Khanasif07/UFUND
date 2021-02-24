@@ -29,6 +29,18 @@ class CategoryListTableCell: UITableViewCell {
         }
     }
     
+    var type: AssetsType? {
+           didSet {
+               self.populateTypeData()
+           }
+       }
+    
+    var byRewards: AssetsByReward? {
+        didSet {
+            self.populatebyRewardsData()
+        }
+    }
+    
     var currency: CurrencyModel? {
         didSet {
             self.populateCurrencyData()
@@ -46,12 +58,20 @@ class CategoryListTableCell: UITableViewCell {
         self.categoryTitleLabel.text = category?.category_name
     }
     
+    private func populateTypeData(){
+         self.categoryTitleLabel.text = type?.title
+    }
+    
     private func populateStatusData() {
         self.categoryTitleLabel.text = status?.title
     }
     
     private func populateCurrencyData() {
         self.categoryTitleLabel.text = currency?.currency
+    }
+    
+    private func populatebyRewardsData(){
+         self.categoryTitleLabel.text = byRewards?.title
     }
     
 }

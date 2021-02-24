@@ -181,7 +181,7 @@ extension CategoriesVC: ProductSortVCDelegate  {
         case "Sort by Latest","Sort by Oldest":
             var orderType : ComparisonResult = .orderedAscending
             orderType = (sortType == "Sort by Latest") ? .orderedDescending : .orderedAscending
-            if isPruductSelected {
+//            if isPruductSelected {
                 let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
                 let sortedProduct = productsCategories?.sorted(by: { (model1, model2) -> Bool in
                     let date1 = model1.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
@@ -195,8 +195,8 @@ extension CategoriesVC: ProductSortVCDelegate  {
                       productVC.productCategories = sortedProduct
                 }
               
-            } else{
-                 let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
+//            } else{
+                let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
                 let sortedToken = tokenssCategories?.sorted(by: { (model1, model2) -> Bool in
                     let date1 = model1.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     let date2 = model2.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
@@ -209,30 +209,30 @@ extension CategoriesVC: ProductSortVCDelegate  {
                     tokenVC.tokenCategories = sortedToken
                 }
                 
-            }
+//            }
         case "Sort by Name (A-Z)","Sort by Name (Z-A)":
             var orderType : ComparisonResult = .orderedAscending
             orderType = (sortType == "Sort by Name (Z-A)") ? .orderedDescending : .orderedAscending
-            if isPruductSelected {
-                let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
-                let sortedProduct = productsCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
-                if !searchText.isEmpty {
-                    productVC.searchProductCategories = sortedProduct
-                    productVC.mainCollView.reloadData()
-                } else {
-                    productVC.productCategories = sortedProduct
-                }
-                
-            } else{
-                let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
-                let sortedToken = tokenssCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
-                if !searchText.isEmpty {
-                    tokenVC.searchTokenCategories = sortedToken
-                    tokenVC.mainCollView.reloadData()
-                } else {
-                    tokenVC.tokenCategories = sortedToken
-                }
+            //            if isPruductSelected {
+            let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
+            let sortedProduct = productsCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
+            if !searchText.isEmpty {
+                productVC.searchProductCategories = sortedProduct
+                productVC.mainCollView.reloadData()
+            } else {
+                productVC.productCategories = sortedProduct
             }
+            
+            //            } else{
+            let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
+            let sortedToken = tokenssCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
+            if !searchText.isEmpty {
+                tokenVC.searchTokenCategories = sortedToken
+                tokenVC.mainCollView.reloadData()
+            } else {
+                tokenVC.tokenCategories = sortedToken
+            }
+//            }
         default:
             print(sortType)
         }

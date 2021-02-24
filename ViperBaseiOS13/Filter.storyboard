@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Product FilterVC-->
         <scene sceneID="PoS-KX-WqR">
@@ -525,6 +530,89 @@
             </objects>
             <point key="canvasLocation" x="2814" y="-2146"/>
         </scene>
+        <!--Assets Filter DateVC-->
+        <scene sceneID="jJb-3R-fz0">
+            <objects>
+                <viewController storyboardIdentifier="AssetsFilterDateVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ff5-zh-eR4" customClass="AssetsFilterDateVC" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Odu-dt-uBb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUB-LQ-56p">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Xbg-n3-ndP">
+                                        <rect key="frame" x="0.0" y="60" width="414" height="175"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8NM-uE-YY0">
+                                                <rect key="frame" x="16" y="0.0" width="382" height="75.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FROM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQR-ul-nYS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40.5" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                        <color key="textColor" name="tabUnSelected"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ABP-X0-ha1">
+                                                        <rect key="frame" x="0.0" y="24.5" width="382" height="51"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="51" id="Zgz-k9-6UU"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xQX-QJ-epY">
+                                                <rect key="frame" x="16" y="99.5" width="382" height="75.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQU-Gu-Fl4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="19" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                        <color key="textColor" name="tabUnSelected"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="72q-Zl-jXt">
+                                                        <rect key="frame" x="0.0" y="24.5" width="382" height="51"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="51" id="tjX-W8-qNo"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Xbg-n3-ndP" secondAttribute="trailing" id="eKw-Gw-yiz"/>
+                                    <constraint firstItem="ABP-X0-ha1" firstAttribute="width" secondItem="LUB-LQ-56p" secondAttribute="width" constant="-32" id="l6O-Sl-Mfd"/>
+                                    <constraint firstItem="72q-Zl-jXt" firstAttribute="width" secondItem="LUB-LQ-56p" secondAttribute="width" constant="-32" id="nzl-Pz-EpB"/>
+                                    <constraint firstItem="Xbg-n3-ndP" firstAttribute="leading" secondItem="LUB-LQ-56p" secondAttribute="leading" id="q2u-S3-ZRy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ck9-5t-jTP" firstAttribute="top" secondItem="Xbg-n3-ndP" secondAttribute="top" constant="-16" id="2ba-e9-LMd"/>
+                            <constraint firstItem="ck9-5t-jTP" firstAttribute="trailing" secondItem="LUB-LQ-56p" secondAttribute="trailing" id="LYO-Fb-UiH"/>
+                            <constraint firstItem="LUB-LQ-56p" firstAttribute="top" secondItem="Odu-dt-uBb" secondAttribute="top" id="TfQ-N4-pnv"/>
+                            <constraint firstItem="LUB-LQ-56p" firstAttribute="leading" secondItem="ck9-5t-jTP" secondAttribute="leading" id="cFi-eV-MH7"/>
+                            <constraint firstAttribute="bottom" secondItem="LUB-LQ-56p" secondAttribute="bottom" id="uGK-ae-o0Z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ck9-5t-jTP"/>
+                    </view>
+                    <connections>
+                        <outlet property="fromTextField" destination="ABP-X0-ha1" id="MT7-S2-UHC"/>
+                        <outlet property="toTextField" destination="72q-Zl-jXt" id="cFR-y2-xPI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RoG-Oi-tYm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3454" y="-2146"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icSliderThumb" width="29" height="29"/>
@@ -533,6 +621,9 @@
         </namedColor>
         <namedColor name="primaryColor">
             <color red="1" green="0.11999999731779099" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabUnSelected">
+            <color red="0.69999998807907104" green="0.69999998807907104" blue="0.69999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

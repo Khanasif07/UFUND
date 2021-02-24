@@ -140,6 +140,7 @@ extension ProductFilterVC {
                 self.allChildVCs.append(currencyVC)
             } else if i == 3 {
                 self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.statusVC.statusType = .status
                 self.allChildVCs.append(statusVC)
             }
         }

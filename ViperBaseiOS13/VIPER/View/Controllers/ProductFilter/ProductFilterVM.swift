@@ -30,6 +30,8 @@ class ProductFilterVM {
     var selectedCategoryListing: [CategoryModel] = []
     var selectedCurrencyListing: [CurrencyModel] = []
     var status: [String] = []
+    var types : [String] = []
+    var byRewards : [String] = []
     var isLocallyReset: Bool = false
     var isFilterAppliedDefault: Bool = false
     let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(),Constants.string.currency.localize(), Constants.string.status.localize()]
@@ -99,6 +101,41 @@ enum Status: String ,CaseIterable {
             return "Live"
         case .Matured:
             return "Matured"
+        }
+    }
+}
+
+enum AssetsType : String ,CaseIterable {
+    case All = "3"
+    case Token = "1"
+    case Assets = "2"
+    var title: String {
+        switch self {
+        case .All:
+            return "All"
+        case .Token:
+            return "Token"
+        case .Assets:
+            return "Assets"
+        }
+    }
+}
+
+enum AssetsByReward : String ,CaseIterable {
+    case All = "4"
+    case Interest = "1"
+    case Share = "2"
+    case Goods = "3"
+    var title: String {
+        switch self {
+        case .Interest:
+            return "Interest"
+        case .Share:
+            return "Share"
+        case .Goods:
+            return "Goods"
+        case .All:
+            return "All"
         }
     }
 }

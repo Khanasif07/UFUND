@@ -32,6 +32,9 @@ class CategoryListingVC: UIViewController {
                }
            }
        }
+    private lazy var loader  : UIView = {
+        return createActivityIndicator(self.view)
+    }()
     
     
     // MARK: - View Lifecycle
@@ -64,6 +67,7 @@ class CategoryListingVC: UIViewController {
     }
     
     private func getCategoryList(){
+        self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
     }
     
@@ -182,6 +186,7 @@ extension CategoryListingVC: UISearchBarDelegate{
 extension CategoryListingVC : PresenterOutputProtocol {
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
         if let addionalModel = dataDict as? AdditionsModel{
             var category = CategoryModel()
             category.id = 0
@@ -194,6 +199,7 @@ extension CategoryListingVC : PresenterOutputProtocol {
     }
     
     func showError(error: CustomError) {
+        self.loader.isHidden = true
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
         
     }

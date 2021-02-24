@@ -428,9 +428,9 @@ extension UIView {
 
 extension UIView {
     
-    func applyEffectToView() {
+    func applyEffectToView(borderColor: UIColor = UIColor(hex: "#FF1F2D") ) {
         self.layer.masksToBounds = false
-        self.layer.borderColor = UIColor(hex: "#FF1F2D").cgColor
+        self.layer.borderColor = borderColor.cgColor
         self.layer.borderWidth = 0.5
         self.backgroundColor = .clear
         self.layer.cornerRadius = 8

@@ -32,12 +32,12 @@ class AssetsFilterVC: UIViewController {
     
     // MARK: - Variables
     //===========================
-    var categoryListingVC : CategoryListingVC!
-    var priceVC      : PriceRangeVC!
-    var typeVC          : StatusVC!
-    var startDateVC       : StatusVC!
-    var closingDateVC       : StatusVC!
-    var byRewardVC       : StatusVC!
+    var categoryListingVC   : CategoryListingVC!
+    var priceVC             : PriceRangeVC!
+    var typeVC              : StatusVC!
+    var startDateVC         : AssetsFilterDateVC!
+    var closingDateVC       : AssetsFilterDateVC!
+    var byRewardVC          : StatusVC!
     // Parchment View
     var filtersTabs =  [MenuItem]()
     var currencyModelEntity : CurrencyModelEntity?
@@ -129,20 +129,22 @@ extension AssetsFilterVC {
             if i == 0 {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(categoryListingVC)
-            } else if i == 1 {
+            } else if i == 2 {
                 self.priceVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(priceVC)
-            } else if i == 2 {
+            } else if i == 1 {
                 self.typeVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.typeVC.statusType = .type
                 self.allChildVCs.append(typeVC)
             } else if i == 3 {
-                self.startDateVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(startDateVC)
             }else if i == 4{
-                self.closingDateVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.closingDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(closingDateVC)
             }else if i == 5 {
                 self.byRewardVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.byRewardVC.statusType = .byRewards
                 self.allChildVCs.append(byRewardVC)
             }
         }

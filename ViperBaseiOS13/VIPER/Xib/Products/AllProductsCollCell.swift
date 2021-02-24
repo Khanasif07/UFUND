@@ -40,7 +40,7 @@ class AllProductsCollCell: UICollectionViewCell {
 
 extension UIColor{
     @nonobjc class var black16: UIColor {
-        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.04113179774)
+        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.07983178448)
     }
 }
 
