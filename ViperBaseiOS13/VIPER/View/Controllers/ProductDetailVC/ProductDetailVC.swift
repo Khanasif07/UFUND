@@ -53,11 +53,19 @@ class ProductDetailVC: UIViewController {
     
     // MARK: - IBActions
     //===========================
+    @IBAction func investBtnAction(_ sender: UIButton) {
+        let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
+        self.present(vc, animated: true, completion: nil)
+    }
     
     @IBAction func backBtnAction(_ sender: UIButton) {
         self.popOrDismiss(animation: true)
     }
     
+    @IBAction func buyProductBtnAction(_ sender: UIButton) {
+        let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Extension For Functions

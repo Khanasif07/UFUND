@@ -155,8 +155,8 @@ extension CategoryAllProductsVC : PresenterOutputProtocol{
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
     
-    func showSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){
-        print(params)
-    }
+//    func showSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){
+//        print(params)
+//    }
 
 }

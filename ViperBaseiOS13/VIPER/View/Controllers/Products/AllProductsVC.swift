@@ -149,8 +149,6 @@ extension AllProductsVC {
     }
     
     private func searchProducts(searchValue: String){
-        guard searchValue.count > 2 else {
-            return }
         self.searchTask?.cancel()
         let task = DispatchWorkItem { [weak self] in
             self?.getProductList(page: 1, search: searchValue)
@@ -289,6 +287,7 @@ extension AllProductsVC: UISearchBarDelegate{
                 self.view.layoutIfNeeded()
             })
         }else{
+            self.searchProducts(searchValue: "")
             UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 0
                 self.view.layoutIfNeeded()
@@ -299,6 +298,7 @@ extension AllProductsVC: UISearchBarDelegate{
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        self.searchProducts(searchValue: "")
         searchBar.resignFirstResponder()
     }
     
