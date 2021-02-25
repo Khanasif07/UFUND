@@ -29,6 +29,7 @@ class AllProductsVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var sortType : String = ""
     var searchTask: DispatchWorkItem?
     var productType: ProductType = .AllProducts
     var searchText : String = ""
@@ -87,6 +88,7 @@ class AllProductsVC: UIViewController {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
         vc.sortArray = [("Sort by Name (A-Z)",false),("Sort by Name (Z-A)",false)]
+        vc.sortTypeApplied = self.sortType
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -234,6 +236,7 @@ extension AllProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 //===========================
 extension AllProductsVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
+        self.sortType = sortType
         switch sortType {
         case "Sort by Name (A-Z)":
             let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"ASC","sort_by":"product_title"]

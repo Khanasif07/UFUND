@@ -21,6 +21,7 @@ class ProductSortVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var sortTypeApplied: String  = ""
     weak var delegate :ProductSortVCDelegate?
     var sortArray = [("Sort by Latest",false),("Sort by Oldest",false),("Sort by Name (A-Z)",false),("Sort by Name (Z-A)",false)]
     
@@ -33,6 +34,7 @@ class ProductSortVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.dataContainerView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 15.0)
         mainTableView.frame = CGRect(x: mainTableView.frame.origin.x, y: mainTableView.frame.origin.y, width: mainTableView.frame.size.width, height: mainTableView.contentSize.height)
         tableViewHConst.constant = mainTableView.frame.height + 15.0
         mainTableView.reloadData()
@@ -52,14 +54,22 @@ class ProductSortVC: UIViewController {
 extension ProductSortVC {
     
     private func initialSetup() {
+        self.setSelectedSortingData()
         self.tableViewSetup()
-        self.dataContainerView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 15.0)
     }
     
     private func tableViewSetup(){
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.registerCell(with: ProductSortTableCell.self)
+    }
+    
+    private func setSelectedSortingData(){
+        if let index =  self.sortArray.firstIndex(where: { (sortTuple) -> Bool in
+            return  sortTuple.0 == sortTypeApplied
+        }){
+            self.sortArray[index].1 =  true
+        }
     }
 }
 

@@ -40,12 +40,12 @@ class CategoryAllProductsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if self.parent?.isKind(of: CategoriesDetailVC.self) ?? false{
-            if let controller = self.parent as? CategoriesDetailVC {
-                self.categoryModel = controller.categoryModel
-                self.getCategoryDetailData()
-            }
-        }
+//        if self.parent?.isKind(of: CategoriesDetailVC.self) ?? false{
+//            if let controller = self.parent as? CategoriesDetailVC {
+//                self.categoryModel = controller.categoryModel
+//                self.getCategoryDetailData()
+//            }
+//        }
     }
     
     override func viewDidLoad() {
@@ -72,6 +72,12 @@ class CategoryAllProductsVC: UIViewController {
         let params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products": productType == .AllProducts ? 0 : 1]
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
+    
+    private func getProgressPercentage(productModel: ProductModel?) -> Double{
+           let investValue =   (productModel?.investment_product_total ?? 0.0 )
+           let totalValue =  (productModel?.total_product_value ?? 0.0)
+           return (investValue / totalValue) * 100
+       }
 
 }
 
@@ -94,6 +100,7 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
         cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
         cell.productTypeLbl.text = isSearchEnable ? (self.allSearchProductListing?[indexPath.row].category?.category_name ?? "") : (self.allProductListing?[indexPath.row].category?.category_name ?? "")
         cell.priceLbl.text = isSearchEnable ? "\((self.allSearchProductListing?[indexPath.row].total_product_value ?? 0))" : "\((self.allProductListing?[indexPath.row].total_product_value ?? 0))"
+        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: isSearchEnable ?   (self.allSearchProductListing?[indexPath.row])   : (self.allProductListing?[indexPath.row])).round(to: 1))" + "%"
         cell.backgroundColor = .clear
         return cell
     }

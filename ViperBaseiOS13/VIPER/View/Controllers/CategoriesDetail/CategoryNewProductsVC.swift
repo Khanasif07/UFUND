@@ -79,6 +79,12 @@ class CategoryNewProductsVC: UIViewController {
         let params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products": productType == .AllProducts ? 0 : 1]
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
+    
+    private func getProgressPercentage(productModel: ProductModel?) -> Double{
+        let investValue =   (productModel?.investment_product_total ?? 0.0 )
+        let totalValue =  (productModel?.total_product_value ?? 0.0)
+        return (investValue / totalValue) * 100
+    }
 
 
 }
@@ -102,6 +108,7 @@ extension CategoryNewProductsVC: UICollectionViewDelegate, UICollectionViewDataS
         cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
         cell.productTypeLbl.text = isSearchEnable ? (self.searchNewProductListing?[indexPath.row].category?.category_name ?? "") : (self.newProductListing?[indexPath.row].category?.category_name ?? "")
         cell.priceLbl.text = isSearchEnable ? "\((self.searchNewProductListing?[indexPath.row].total_product_value ?? 0))" : "\((self.newProductListing?[indexPath.row].total_product_value ?? 0))"
+        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: isSearchEnable ?   (self.searchNewProductListing?[indexPath.row])   : (self.newProductListing?[indexPath.row])).round(to: 1))" + "%"
         cell.backgroundColor = .clear
         return cell
     }
