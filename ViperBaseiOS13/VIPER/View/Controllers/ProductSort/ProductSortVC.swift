@@ -23,7 +23,7 @@ class ProductSortVC: UIViewController {
     //===========================
     var sortTypeApplied: String  = ""
     weak var delegate :ProductSortVCDelegate?
-    var sortArray = [("Sort by Latest",false),("Sort by Oldest",false),("Sort by Name (A-Z)",false),("Sort by Name (Z-A)",false)]
+    var sortArray = [(Constants.string.sort_by_latest,false),(Constants.string.sort_by_oldest,false),(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
     
     // MARK: - Lifecycle
     //===========================

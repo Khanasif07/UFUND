@@ -87,7 +87,7 @@ class AllProductsVC: UIViewController {
     @IBAction func sortBtnAction(_ sender: UIButton) {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
-        vc.sortArray = [("Sort by Name (A-Z)",false),("Sort by Name (Z-A)",false)]
+        vc.sortArray = [(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
         vc.sortTypeApplied = self.sortType
         self.present(vc, animated: true, completion: nil)
     }
@@ -238,10 +238,10 @@ extension AllProductsVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
         self.sortType = sortType
         switch sortType {
-        case "Sort by Name (A-Z)":
+        case Constants.string.sort_by_name_AZ:
             let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"ASC","sort_by":"product_title"]
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-        case "Sort by Name (Z-A)":
+        case Constants.string.sort_by_name_ZA:
             let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"DESC","sort_by":"product_title"]
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:

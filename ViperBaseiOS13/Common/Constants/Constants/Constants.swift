@@ -236,6 +236,12 @@ struct Constants {
     let priceRange = "Price Range"
     let status = "Status"
     let currency = "Currency"
+    
+    //Sort
+    let sort_by_name_AZ = "Sort by Name (A-Z)"
+    let sort_by_name_ZA = "Sort by Name (Z-A)"
+    let sort_by_latest = "Sort by Latest"
+    let sort_by_oldest = "Sort by Oldest"
 }
 
 
