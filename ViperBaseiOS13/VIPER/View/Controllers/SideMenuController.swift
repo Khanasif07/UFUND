@@ -30,7 +30,7 @@ class SideMenuController: UIViewController {
     
     
     var menuContent : [(String,[String])]?
-    var sideMenuImg: [UIImage]?
+    var sideMenuImg: [(UIImage,[UIImage])]?
     var buttonArray = [UIButton]()
     
     var isFromCampainer = false
@@ -41,11 +41,11 @@ class SideMenuController: UIViewController {
             if isFromCampainer {
                 
                 menuContent = [(Constants.string.tokenRequests.localize(),[]),(Constants.string.MyProducts.localize(),[]),(Constants.string.history.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.Notification.localize(),[]),(Constants.string.security.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [#imageLiteral(resourceName: "sideVynil"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "historyIcon"),#imageLiteral(resourceName: "sideWallet"),#imageLiteral(resourceName: "whiteNotify"),#imageLiteral(resourceName: "SideSecurity"),#imageLiteral(resourceName: "icLogout")]
+                sideMenuImg =   [(#imageLiteral(resourceName: "sideVynil"),[]),(#imageLiteral(resourceName: "icProducts"),[]),(#imageLiteral(resourceName: "historyIcon"),[]),(#imageLiteral(resourceName: "sideWallet"),[]),(#imageLiteral(resourceName: "whiteNotify"),[]),(#imageLiteral(resourceName: "SideSecurity"),[]),(#imageLiteral(resourceName: "icLogout"),[])]
                 
             } else {
                 menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [#imageLiteral(resourceName: "icProfile"),#imageLiteral(resourceName: "icCategories"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icChnagePassword"),#imageLiteral(resourceName: "icLogout")]
+                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icNewTokenizedAsset"),#imageLiteral(resourceName: "icAllTokenizedAssets")]),(#imageLiteral(resourceName: "icInvestments"),[#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icInvestments")]),(#imageLiteral(resourceName: "icChnagePassword"),[#imageLiteral(resourceName: "icChnagePassword")]),(#imageLiteral(resourceName: "icLogout"),[#imageLiteral(resourceName: "icLogout")])]
             }
         }
     }
@@ -196,7 +196,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
             selff.sectionTappedAction(section: section)
         }
         view.backgroundColor = .clear
-        view.imageView?.image = sideMenuImg?[section]
+        view.imageView?.image = sideMenuImg?[section].0
         switch self.menuContent?[section].0 {
         case Constants.string.TokenizedAssets.localize():
             view.dropdownView?.isHidden = false
@@ -224,7 +224,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(with: SideMenuTableCell.self, indexPath: indexPath)
-        cell.imgView.image = sideMenuImg?[indexPath.section]
+        cell.imgView.image = sideMenuImg?[indexPath.section].1[indexPath.row]
         cell.titleLbl.text = nullStringToEmpty(string: menuContent?[indexPath.section].1[indexPath.row])
         return  cell
     }

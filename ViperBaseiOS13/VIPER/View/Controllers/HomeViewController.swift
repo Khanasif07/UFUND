@@ -126,12 +126,11 @@ class HomeViewController: UIViewController
             {
             case UserType.investor.rawValue:
                 isFromCampainer = false
-                getInvesterSilderImage()
-     
+                getInvesterSilderImage(isLoaderHidden: true)
             default:
                 isFromCampainer = true
                 getApprovals()
-                getInvesterSilderImageCamp()
+                getInvesterSilderImageCamp(isLoaderHidden: true)
                 dispatchGroup.notify(queue: .main) {
                     
                 }
@@ -465,13 +464,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: PresenterOutputProtocol {
     
-    func getInvesterSilderImage() {
-        self.loader.isHidden = false
+    func getInvesterSilderImage(isLoaderHidden: Bool = false) {
+        self.loader.isHidden = isLoaderHidden
         self.presenter?.HITAPI(api: Base.sliderimages.rawValue, params: nil, methodType: .GET, modelClass: SilderImage.self, token: true)
     }
     
-    func getInvesterSilderImageCamp() {
-        self.loader.isHidden = false
+    func getInvesterSilderImageCamp(isLoaderHidden: Bool = false) {
+        self.loader.isHidden = isLoaderHidden
         self.presenter?.HITAPI(api: Base.sliderimagesCamp.rawValue, params: nil, methodType: .GET, modelClass: SilderImage.self, token: true)
     }
     
