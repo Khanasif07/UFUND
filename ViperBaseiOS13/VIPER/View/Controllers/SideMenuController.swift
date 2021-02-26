@@ -93,8 +93,8 @@ class SideMenuController: UIViewController {
         profileImg.contentMode = .scaleAspectFill
         profileImg.clipsToBounds = true
         profileName.text = nullStringToEmpty(string: User.main.name)
-        profileLastName.isHidden = User.main.lastName?.isEmpty ?? true
-        profileLastName.text = nullStringToEmpty(string: User.main.lastName)
+        profileLastName.isHidden = User.main.email?.isEmpty ?? true
+        profileLastName.text = nullStringToEmpty(string: User.main.email)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,6 +144,8 @@ class SideMenuController: UIViewController {
         profileImg.contentMode = .scaleAspectFill
         profileImg.clipsToBounds = true
         profileName.text = nullStringToEmpty(string: User.main.name)
+        profileLastName.isHidden = User.main.email?.isEmpty ?? true
+        profileLastName.text = nullStringToEmpty(string: User.main.email)
         tableView.reloadData()
     }
     

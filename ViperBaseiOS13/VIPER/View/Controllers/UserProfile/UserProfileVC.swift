@@ -231,7 +231,7 @@ extension UserProfileVC: PresenterOutputProtocol {
             }
             User.main.picture  = self.userProfile?.picture
             User.main.name  = self.userProfile?.name
-            User.main.lastName  = self.userProfile?.last_name
+            User.main.email  = self.userProfile?.email
             User.main.mobile = self.userProfile?.mobile
             storeInUserDefaults()
             self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))

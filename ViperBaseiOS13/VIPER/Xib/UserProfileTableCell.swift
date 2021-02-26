@@ -18,6 +18,7 @@ class UserProfileTableCell: UITableViewCell {
     
     override func prepareForReuse() {
         textFIeld.rightView = nil
+        textFIeld.inputView = nil
     }
     
     override func layoutSubviews() {
