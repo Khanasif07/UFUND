@@ -328,8 +328,6 @@ extension TokenizedAssetsVC: UISearchBarDelegate{
 
 extension TokenizedAssetsVC: ProductFilterVCDelegate {
     func clearAllButtonTapped() {
-        let params :[String:Any] = ["new_products": productType == .AllAssets ? 0 : 1]
-        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
     func filterApplied() {

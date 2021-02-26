@@ -80,6 +80,14 @@ class ChangePasswordVC: UIViewController {
         self.presenter?.HITAPI(api: Base.changePassword.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
     }
     
+    func getLogout() {
+        self.loader.isHidden = false
+        var param = [String: AnyObject]()
+        param[RegisterParam.keys.id] = User.main.id as AnyObject
+        self.presenter?.HITAPI(api: Base.logout.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
+    }
+
+    
 }
 
 // MARK: - Extension For Functions
@@ -144,14 +152,22 @@ extension ChangePasswordVC: PresenterOutputProtocol {
         case Base.changePassword.rawValue:
             self.loader.isHidden = true
             self.successDict = dataDict as? SuccessDict
-            ToastManager.show(title:  nullStringToEmpty(string: successDict?.success?.msg), state: .success)
+            let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
+            popUpVC.titleValue = "Successful Password Reset"
+            popUpVC.btnValue = "Go to Log In"
+            popUpVC.titleImgValue = #imageLiteral(resourceName: "icInformation")
+            popUpVC.descValue = "You can now use you new password to log in to your account"
+            popUpVC.editProfileSuccess = { [weak self] (sender) in
+                guard let selff = self else { return }
+                selff.getLogout()
+            }
+            self.present(popUpVC, animated: true, completion: nil)
             
-            //            let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
-            //            popUpVC.editProfileSuccess = { [weak self] (sender) in
-            //                guard let selff = self else { return }
-            //                selff.navigationController?.popViewController(animated: true)
-            //            }
-            //            self.present(popUpVC, animated: true, completion: nil)
+        case Base.logout.rawValue:
+            self.loader.isHidden = true
+            self.drawerController?.closeSide()
+            forceLogout(with: SuccessMessage.string.logoutMsg.localize())
+            
             
         default:
             break

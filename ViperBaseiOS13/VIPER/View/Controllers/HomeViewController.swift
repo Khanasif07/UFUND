@@ -276,7 +276,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         } else
         {
-            return CGSize(width: collectionView.frame.width / 3 , height: collectionView.frame.height / 2)
+            return CGSize(width: collectionView.frame.width / 3 , height: collectionView.frame.height / 4)
         }
         
     }

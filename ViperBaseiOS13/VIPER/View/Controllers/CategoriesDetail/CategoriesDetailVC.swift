@@ -94,6 +94,14 @@ class CategoriesDetailVC: UIViewController {
             vc.delegate = self
             self.present(vc, animated: true, completion: nil)
         }
+    
+    @IBAction func filterBtnAction(_ sender: UIButton) {
+        let ob = ProductFilterVC.instantiate(fromAppStoryboard: .Filter)
+        ob.isFilterWithoutCategory = true
+        ob.delegate = self
+        self.present(ob, animated: true, completion: nil)
+    }
+    
         
     @IBAction func searchBtnAction(_ sender: UIButton) {
         searchTxtField.becomeFirstResponder()
@@ -177,6 +185,32 @@ extension CategoriesDetailVC {
         if !self.sortType.isEmpty{
             params["sort_order"] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params["sort_by"] = "product_title"
+        }
+        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
+            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params["currency"] = currency
+        }
+        if ProductFilterVM.shared.minimumPrice != 0{
+            params["min"] = ProductFilterVM.shared.minimumPrice
+        }
+        if ProductFilterVM.shared.maximumPrice != 0{
+            params["max"] = ProductFilterVM.shared.maximumPrice
+            params["min"] = ProductFilterVM.shared.minimumPrice
+        }
+        if ProductFilterVM.shared.status.endIndex > 0{
+            if ProductFilterVM.shared.status.contains(Status.All.title){
+                params["new_products"] = productType == .AllProducts ? 0 : 1
+                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+                return
+            }
+            if ProductFilterVM.shared.status.contains(Status.Live.title){
+                params["status"] = Status.Live.rawValue
+            }
+            if ProductFilterVM.shared.status.contains(Status.Matured.title){
+                params["status"] = Status.Matured.rawValue
+            }
         }
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
@@ -296,3 +330,49 @@ extension CategoriesDetailVC : PresenterOutputProtocol{
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }
+
+// MARK: - Hotel filter Delegate methods
+
+extension CategoriesDetailVC: ProductFilterVCDelegate {
+    func clearAllButtonTapped() {
+    }
+    
+    func filterApplied() {
+        self.loader.isHidden = false
+        self.productType = .NewProducts
+        var params :[String:Any] = ["page": 1,"search": searchText,"category": "\(categoryModel?.id ?? 0)"]
+        if !self.sortType.isEmpty{
+            params["sort_order"] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
+            params["sort_by"] = "product_title"
+        }
+        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
+            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params["currency"] = currency
+        }
+        if ProductFilterVM.shared.minimumPrice != 0{
+            params["min"] = ProductFilterVM.shared.minimumPrice
+        }
+        if ProductFilterVM.shared.maximumPrice != 0{
+            params["max"] = ProductFilterVM.shared.maximumPrice
+            params["min"] = ProductFilterVM.shared.minimumPrice
+        }
+        if ProductFilterVM.shared.status.endIndex > 0{
+            if ProductFilterVM.shared.status.contains(Status.All.title){
+                params["new_products"] = productType == .AllProducts ? 0 : 1
+                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+                return
+            }
+            if ProductFilterVM.shared.status.contains(Status.Live.title){
+                params["status"] = Status.Live.rawValue
+            }
+            if ProductFilterVM.shared.status.contains(Status.Matured.title){
+                params["status"] = Status.Matured.rawValue
+            }
+        }
+        params["new_products"] = productType == .AllProducts ? 0 : 1
+        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+    }
+}
+

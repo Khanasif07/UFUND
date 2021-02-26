@@ -34,6 +34,7 @@ class ProductFilterVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var isFilterWithoutCategory: Bool =  false
     var categoryListingVC : CategoryListingVC!
     var priceRangeVC      : PriceRangeVC!
     var statusVC          : StatusVC!
@@ -85,22 +86,42 @@ class ProductFilterVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
-        if ProductFilterVM.shared.isFilterApplied && ProductFilterVM.shared.isFilterAppliedDefault{
-             ProductFilterVM.shared.resetToLocally()
-             ProductFilterVM.shared.resetToDefault()
+        if isFilterWithoutCategory {
+            if ProductFilterVM.shared.isFilterApplied && ProductFilterVM.shared.isFilterAppliedDefault{
+                ProductFilterVM.shared.resetToLocally()
+                ProductFilterVM.shared.resetToDefault()
+            } else {
+                ProductFilterVM.shared.resetToAllFilter()
+            }
+            setupPagerViewWithoutCategory(isMenuReload: false)
         } else {
-             ProductFilterVM.shared.resetToAllFilter()
+            if ProductFilterVM.shared.isFilterApplied && ProductFilterVM.shared.isFilterAppliedDefault{
+                ProductFilterVM.shared.resetToLocally()
+                ProductFilterVM.shared.resetToDefault()
+            } else {
+                ProductFilterVM.shared.resetToAllFilter()
+            }
+            setupPagerView(isMenuReload: false)
         }
-        setupPagerView(isMenuReload: false)
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        if ProductFilterVM.shared.isLocallyReset && ProductFilterVM.shared.isFilterAppliedDefault{
-            ProductFilterVM.shared.resetToLocally(isFilterApplied: true)
+        if isFilterWithoutCategory {
+            if ProductFilterVM.shared.isLocallyReset && ProductFilterVM.shared.isFilterAppliedDefault{
+                ProductFilterVM.shared.resetToLocally(isFilterApplied: true)
+            }
+            if !ProductFilterVM.shared.isFilterAppliedDefault{
+                ProductFilterVM.shared.resetToDefault()
+            }
         }
-        if !ProductFilterVM.shared.isFilterAppliedDefault{
-            ProductFilterVM.shared.resetToDefault()
+        else {
+            if ProductFilterVM.shared.isLocallyReset && ProductFilterVM.shared.isFilterAppliedDefault{
+                ProductFilterVM.shared.resetToLocally(isFilterApplied: true)
+            }
+            if !ProductFilterVM.shared.isFilterAppliedDefault{
+                ProductFilterVM.shared.resetToDefault()
+            }
         }
         self.popOrDismiss(animation: true)
     }
@@ -123,7 +144,11 @@ class ProductFilterVC: UIViewController {
 extension ProductFilterVC {
     
     private func initialSetup() {
-        self.setupPagerView()
+        if isFilterWithoutCategory{
+            self.setupPagerViewWithoutCategory()
+        } else {
+            self.setupPagerView()
+        }
     }
     
     private func setupPagerView(isMenuReload:Bool = true) {
@@ -150,6 +175,31 @@ extension ProductFilterVC {
             self.parchmentView = nil
         }
         if isMenuReload {self.initiateFilterTabs()}
+        setupParchmentPageController(isMenuReload: isMenuReload)
+        
+    }
+    
+    private func setupPagerViewWithoutCategory(isMenuReload:Bool = true) {
+        self.allChildVCs.removeAll()
+        for i in 0..<ProductFilterVM.shared.allTabsStrWithoutCategory.count {
+            if i == 0 {
+                self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(priceRangeVC)
+            } else if i == 1 {
+                self.currencyVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(currencyVC)
+            } else if i == 2 {
+                self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.statusVC.statusType = .status
+                self.allChildVCs.append(statusVC)
+            }
+        }
+        self.view.layoutIfNeeded()
+        if let _ = self.parchmentView{
+            self.parchmentView?.view.removeFromSuperview()
+            self.parchmentView = nil
+        }
+        if isMenuReload {self.initiateFilterTabsWithoutCategory()}
         setupParchmentPageController(isMenuReload: isMenuReload)
         
     }
@@ -186,6 +236,14 @@ extension ProductFilterVC {
         }
     }
     
+    private func initiateFilterTabsWithoutCategory() {
+        filtersTabs.removeAll()
+        for i in 0..<(ProductFilterVM.shared.allTabsStrWithoutCategory.count){
+            let obj = MenuItem(title: ProductFilterVM.shared.allTabsStrWithoutCategory[i], index: i, isSelected: (ProductFilterVM.shared.lastSelectedIndex == i))
+            filtersTabs.append(obj)
+        }
+    }
+    
     private func show(animated: Bool) {
         UIView.animate(withDuration: animated ? 0.4 : 0.0, animations: {
             self.mainContainerViewTopConstraint.constant = 0.0
@@ -204,30 +262,5 @@ extension ProductFilterVC {
             }
         })
     }
-    
-    //MARK:- PRDUCTS LIST API CALL
-//    private func getProductsCurrenciesList() {
-//        self.presenter?.HITAPI(api: Base.productsCurrencies.rawValue, params: nil, methodType: .GET, modelClass: CurrencyModelEntity.self, token: true)
-//        self.loader.isHidden = false
-//    }
 }
-
-
-
-//extension ProductFilterVC : PresenterOutputProtocol {
-//
-//    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-//        self.loader.isHidden = true
-//        self.currencyModelEntity = dataDict as? CurrencyModelEntity
-//        ProductFilterVM.shared.currencyListing = self.currencyModelEntity?.data ?? []
-//        self.setupPagerView()
-//    }
-//
-//    func showError(error: CustomError) {
-//        self.loader.isHidden = true
-//        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
-//
-//    }
-//
-//}
 

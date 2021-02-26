@@ -11,7 +11,12 @@ import UIKit
 class EditProfilePopUpVC: UIViewController {
     
     var editProfileSuccess: ((UIButton)->())?
+    var btnValue: String = "Cancel"
+    var titleImgValue : UIImage = #imageLiteral(resourceName: "icInformationProfile")
+    var titleValue : String = "Approval Waiting"
+    var descValue  : String  = "Your request has been sent to admin. Please wait for admin approval"
 
+    @IBOutlet weak var titleImgView: UIImageView!
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var dataContainerView: UIView!
@@ -21,6 +26,10 @@ class EditProfilePopUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.titleLbl.text = titleValue
+        self.descLbl.text = descValue
+        self.cancelBtn.setTitle(btnValue, for: .normal)
+        self.titleImgView.image = titleImgValue
     }
     
     override func viewDidLayoutSubviews() {
