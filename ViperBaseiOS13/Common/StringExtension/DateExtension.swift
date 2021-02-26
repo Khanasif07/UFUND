@@ -12,7 +12,6 @@ extension Date {
     // MARK:- DATE FORMAT ENUM
     //==========================
     enum DateFormat : String {
-        
         case yyyy_MM_dd = "yyyy-MM-dd"
         case dd_MM_yyyy = "dd-MM-yyyy"
         case yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss"

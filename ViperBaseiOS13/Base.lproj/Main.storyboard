@@ -1943,16 +1943,16 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                             <rect key="frame" x="0.0" y="0.0" width="290" height="74"/>
                                                                             <subviews>
                                                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7Z-ph-37S">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="64"/>
+                                                                                    <rect key="frame" x="0.0" y="10" width="290" height="54"/>
                                                                                     <subviews>
                                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTD-r7-TDr">
-                                                                                            <rect key="frame" x="20" y="6" width="52" height="52"/>
+                                                                                            <rect key="frame" x="20" y="5.5" width="52" height="43.5"/>
                                                                                             <subviews>
                                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circlered" translatesAutoresizingMaskIntoConstraints="NO" id="IYd-ST-ldK">
-                                                                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="43.5"/>
                                                                                                 </imageView>
                                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="235" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exl-3i-pmZ">
-                                                                                                    <rect key="frame" x="15.5" y="19" width="21" height="14"/>
+                                                                                                    <rect key="frame" x="15.5" y="14.5" width="21" height="14"/>
                                                                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                     <nil key="highlightedColor"/>
@@ -1969,13 +1969,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                             </constraints>
                                                                                         </view>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No of assets listed" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfe-TM-MPV">
-                                                                                            <rect key="frame" x="92" y="7" width="188" height="16.5"/>
+                                                                                            <rect key="frame" x="92" y="6.5" width="188" height="16.5"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yet to be approved" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-Hy-jD6">
-                                                                                            <rect key="frame" x="92" y="29" width="188" height="14"/>
+                                                                                            <rect key="frame" x="92" y="28.5" width="188" height="14"/>
                                                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
@@ -1991,7 +1991,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                         <constraint firstItem="Hhz-Hy-jD6" firstAttribute="top" secondItem="sfe-TM-MPV" secondAttribute="bottom" constant="5.5" id="Twr-Ot-ctS"/>
                                                                                         <constraint firstItem="QTD-r7-TDr" firstAttribute="width" secondItem="f7Z-ph-37S" secondAttribute="width" multiplier="0.18" id="Urc-eB-3bH"/>
                                                                                         <constraint firstAttribute="trailing" secondItem="sfe-TM-MPV" secondAttribute="trailing" constant="10" id="pub-qM-0zg"/>
-                                                                                        <constraint firstItem="QTD-r7-TDr" firstAttribute="height" secondItem="f7Z-ph-37S" secondAttribute="width" multiplier="0.18" id="vYi-LQ-zFs"/>
+                                                                                        <constraint firstItem="QTD-r7-TDr" firstAttribute="height" secondItem="f7Z-ph-37S" secondAttribute="width" multiplier="0.15" id="vYi-LQ-zFs"/>
                                                                                         <constraint firstItem="QTD-r7-TDr" firstAttribute="centerY" secondItem="f7Z-ph-37S" secondAttribute="centerY" id="wVO-7n-20v"/>
                                                                                     </constraints>
                                                                                     <userDefinedRuntimeAttributes>
@@ -2008,7 +2008,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                             <constraints>
                                                                                 <constraint firstAttribute="trailing" secondItem="f7Z-ph-37S" secondAttribute="trailing" id="64k-RI-ux5"/>
                                                                                 <constraint firstItem="f7Z-ph-37S" firstAttribute="leading" secondItem="VWt-TB-MPw" secondAttribute="leading" id="ZEZ-Sg-rET"/>
-                                                                                <constraint firstItem="f7Z-ph-37S" firstAttribute="top" secondItem="VWt-TB-MPw" secondAttribute="top" id="mYM-Wx-gpy"/>
+                                                                                <constraint firstItem="f7Z-ph-37S" firstAttribute="top" secondItem="VWt-TB-MPw" secondAttribute="top" constant="10" id="mYM-Wx-gpy"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="f7Z-ph-37S" secondAttribute="bottom" constant="10" id="wYR-yB-YoZ"/>
                                                                             </constraints>
                                                                         </view>
@@ -2165,13 +2165,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstItem="jYU-pE-7KO" firstAttribute="height" secondItem="7Hp-Dc-3MB" secondAttribute="height" multiplier="0.67" id="jkp-x9-MZJ"/>
                                     <constraint firstItem="I92-gO-7bu" firstAttribute="top" secondItem="XRr-EC-CQT" secondAttribute="bottom" constant="20" id="nCL-gt-reE"/>
                                     <constraint firstItem="ZAe-8P-st0" firstAttribute="height" secondItem="7Hp-Dc-3MB" secondAttribute="height" multiplier="0.33" id="p55-91-Q1G"/>
-                                    <constraint firstItem="XRr-EC-CQT" firstAttribute="top" secondItem="7Hp-Dc-3MB" secondAttribute="top" constant="44" id="znM-ID-sKb"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" name="primaryColor"/>
                         <constraints>
                             <constraint firstItem="7Hp-Dc-3MB" firstAttribute="leading" secondItem="NVS-MU-Zod" secondAttribute="leading" id="Ved-3u-aIh"/>
+                            <constraint firstItem="XRr-EC-CQT" firstAttribute="top" secondItem="NVS-MU-Zod" secondAttribute="top" id="iS3-0d-MF6"/>
                             <constraint firstItem="7Hp-Dc-3MB" firstAttribute="trailing" secondItem="NVS-MU-Zod" secondAttribute="trailing" id="ycL-jL-JUI"/>
                             <constraint firstItem="7Hp-Dc-3MB" firstAttribute="bottom" secondItem="NVS-MU-Zod" secondAttribute="bottom" id="z0W-X1-x9I"/>
                             <constraint firstItem="7Hp-Dc-3MB" firstAttribute="top" secondItem="OJJ-0W-oTR" secondAttribute="top" id="zr7-9P-K5A"/>

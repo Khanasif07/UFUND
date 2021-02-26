@@ -126,11 +126,11 @@ class HomeViewController: UIViewController
             {
             case UserType.investor.rawValue:
                 isFromCampainer = false
-                getInvesterSilderImage(isLoaderHidden: true)
+                getInvesterSilderImage(isLoaderHidden: false)
             default:
                 isFromCampainer = true
                 getApprovals()
-                getInvesterSilderImageCamp(isLoaderHidden: true)
+                getInvesterSilderImageCamp(isLoaderHidden: false)
                 dispatchGroup.notify(queue: .main) {
                     
                 }

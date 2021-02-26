@@ -39,6 +39,13 @@ class ProductDetailDateCell: UITableViewCell {
         self.offerStartDateTitleLbl.text = "Start Date"
     }
     
+    func configureCell(model: ProductModel){
+        self.offerEndDateLbl.text = model.end_date?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue).isEmpty ?? true ? "N/A" : model.end_date?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+        self.offerStartDateLbl.text = model.start_date?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue).isEmpty ?? true ? "N/A" : model.start_date?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+        self.maturityDateLbl.text = model.maturity_date?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue).isEmpty ?? true ? "N/A" : model.maturity_date?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+        self.investmentStartDateLbl.text = model.updated_at?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue).isEmpty ?? true ? "N/A" : model.updated_at?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+    }
+    
     // MARK: - IBActions
     //===========================
     

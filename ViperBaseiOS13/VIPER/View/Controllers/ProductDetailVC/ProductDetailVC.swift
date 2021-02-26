@@ -127,6 +127,7 @@ extension ProductDetailVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case ProductDetailCellType.productDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
+            cell.configureCell(model: self.productModel!)
             return cell
         default:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
