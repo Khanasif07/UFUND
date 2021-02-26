@@ -23,6 +23,7 @@ class CategoriesVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var sortType : String = ""
     var searchText: String  = ""
     var tokenVC : CategoriesTokenVC!
     var productVC : CategoriesProductsVC!
@@ -87,6 +88,7 @@ class CategoriesVC: UIViewController {
     @IBAction func sortBtnAction(_ sender: UIButton) {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
+        vc.sortTypeApplied = self.sortType
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -177,10 +179,11 @@ extension CategoriesVC : PresenterOutputProtocol{
 //===========================
 extension CategoriesVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
+        self.sortType = sortType
         switch sortType {
-        case "Sort by Latest","Sort by Oldest":
+        case Constants.string.sort_by_latest,Constants.string.sort_by_oldest:
             var orderType : ComparisonResult = .orderedAscending
-            orderType = (sortType == "Sort by Latest") ? .orderedDescending : .orderedAscending
+            orderType = (sortType == Constants.string.sort_by_latest) ? .orderedDescending : .orderedAscending
 //            if isPruductSelected {
                 let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
                 let sortedProduct = productsCategories?.sorted(by: { (model1, model2) -> Bool in
@@ -210,9 +213,9 @@ extension CategoriesVC: ProductSortVCDelegate  {
                 }
                 
 //            }
-        case "Sort by Name (A-Z)","Sort by Name (Z-A)":
+        case Constants.string.sort_by_name_AZ,Constants.string.sort_by_name_ZA:
             var orderType : ComparisonResult = .orderedAscending
-            orderType = (sortType == "Sort by Name (Z-A)") ? .orderedDescending : .orderedAscending
+            orderType = (sortType == Constants.string.sort_by_name_ZA) ? .orderedDescending : .orderedAscending
             //            if isPruductSelected {
             let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
             let sortedProduct = productsCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
