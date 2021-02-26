@@ -20,6 +20,7 @@ struct Storyboard {
     let SignUpViewController = "SignUpViewController"
     let ForgetViewController = "ForgetViewController"
     let ChangeViewController = "ChangeViewController"
+    let ChangePasswordVC = "ChangePasswordVC"
     let AccountViewController = "AccountViewController"
     let EditProfileViewController = "EditProfileViewController"
     let UserProfileVC = "UserProfileVC"

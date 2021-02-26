@@ -32,12 +32,15 @@ class ProductDetailPopUpVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.buyNowBtn.setCornerRadius(cornerR: self.buyNowBtn.frame.height / 2)
+        self.cancelBtn.setCornerRadius(cornerR: self.cancelBtn.frame.height / 2)
         self.dataContainerView.dropShadow(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
     }
     
     // MARK: - IBActions
     //===========================
     @IBAction func buyNowAction(_ sender: Any) {
+        
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -45,9 +48,11 @@ class ProductDetailPopUpVC: UIViewController {
     }
     
     @IBAction func qtyMinusAction(_ sender: UIButton) {
+        
     }
     
     @IBAction func qtyPlusAction(_ sender: Any) {
+        
     }
     
 }
@@ -59,6 +64,10 @@ extension ProductDetailPopUpVC {
     private func initialSetup() {
          button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
          paymentMethodTxtField.setButtonToRightView(btn: button, selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+        self.cancelBtn.backgroundColor = .white
+        self.cancelBtn.setTitleColor(#colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1), for: .normal)
+        self.cancelBtn.borderColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
+        self.cancelBtn.borderLineWidth = 1.0
     }
 }
 

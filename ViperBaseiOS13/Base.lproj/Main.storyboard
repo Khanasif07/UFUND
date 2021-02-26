@@ -9809,13 +9809,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <rect key="frame" x="99" y="75" width="300" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asif Khan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA5-H3-q5S">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                         <color key="textColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="0.0"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
+                                                        <rect key="frame" x="0.0" y="17" width="300" height="23"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.85098039215686272" green="0.8666666666666667" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -9933,6 +9933,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="investButton" destination="Fct-Tg-em2" id="b8r-Jx-vGG"/>
                         <outlet property="parentView" destination="QKU-Fg-gW2" id="PGs-Q3-5yQ"/>
                         <outlet property="profileImg" destination="UU5-Qo-S0w" id="viY-1H-uL4"/>
+                        <outlet property="profileLastName" destination="HgA-Xs-DVu" id="E4y-cg-l2i"/>
                         <outlet property="profileName" destination="UA5-H3-q5S" id="9hr-A7-lTh"/>
                         <outlet property="tableView" destination="WGd-gJ-sp7" id="Cks-Wb-G6L"/>
                         <outlet property="topCloseBtn" destination="IC4-wI-Gfa" id="fEz-vp-rMc"/>

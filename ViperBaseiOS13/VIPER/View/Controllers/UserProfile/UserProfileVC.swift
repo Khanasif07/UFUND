@@ -191,6 +191,7 @@ extension UserProfileVC: PresenterOutputProtocol {
         }
        
         if isEnableEdit {
+            if api == Base.profile.rawValue {
             self.getProductsCurrenciesList()
             self.loader.isHidden = true
             let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
@@ -199,6 +200,7 @@ extension UserProfileVC: PresenterOutputProtocol {
                 selff.navigationController?.popViewController(animated: true)
             }
             self.present(popUpVC, animated: true, completion: nil)
+        }
         } else {
             self.userDetails = dataDict as? UserDetails
             self.userProfile = self.userDetails?.user
@@ -229,6 +231,7 @@ extension UserProfileVC: PresenterOutputProtocol {
             }
             User.main.picture  = self.userProfile?.picture
             User.main.name  = self.userProfile?.name
+            User.main.lastName  = self.userProfile?.last_name
             User.main.mobile = self.userProfile?.mobile
             storeInUserDefaults()
             self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))

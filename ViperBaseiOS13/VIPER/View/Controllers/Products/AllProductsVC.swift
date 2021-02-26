@@ -349,6 +349,7 @@ extension AllProductsVC: ProductFilterVCDelegate {
         }
         if ProductFilterVM.shared.maximumPrice != 0{
             params["max"] = ProductFilterVM.shared.maximumPrice
+            params["min"] = ProductFilterVM.shared.minimumPrice
         }
         if ProductFilterVM.shared.status.endIndex > 0{
             if ProductFilterVM.shared.status.contains(Status.All.title){

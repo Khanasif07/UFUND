@@ -39,7 +39,7 @@ struct Constants {
     let selectSource = "Select Source"
     let camera = "Camera"
     let photoLibrary = "Photo Library"
-    let logout = "Logout"
+    let logout = "Log Out"
     let cannotMakeCallAtThisMoment = "Cannot make call at this moment"
     let couldnotOpenEmailAttheMoment = "Could not open Email at the moment."
     let areYouSureWantToLogout = "Are you want to logout?"
@@ -242,6 +242,11 @@ struct Constants {
     let sort_by_name_ZA = "Sort by Name (Z-A)"
     let sort_by_latest = "Sort by Latest"
     let sort_by_oldest = "Sort by Oldest"
+    
+    //change password vc
+    let enterOldPassWord = "Enter Old Password";
+    let enterNewPassWord = "Enter New Password";
+    let enterConfirmPassWord = "Enter Confirm Password";
 }
 
 

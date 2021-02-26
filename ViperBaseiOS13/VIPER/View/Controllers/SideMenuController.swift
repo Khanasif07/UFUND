@@ -13,6 +13,7 @@ import SDWebImage
 
 class SideMenuController: UIViewController {
     
+    @IBOutlet weak var profileLastName: UILabel!
     @IBAction func profileRedirect(_ sender: UIButton) {
         self.drawerController?.closeSide()
         self.push(to: Storyboard.Ids.UserProfileVC)
@@ -81,6 +82,7 @@ class SideMenuController: UIViewController {
         self.tableView.registerHeaderFooter(with: SideMenuHeaderView.self)
         profileImg.backgroundColor = .white
         profileName.textColor = .white
+        profileLastName.textColor = .white
         tableView.delegate = self
         tableView.dataSource = self
 //        investButton.titleEdgeInsets.left = 40
@@ -91,6 +93,8 @@ class SideMenuController: UIViewController {
         profileImg.contentMode = .scaleAspectFill
         profileImg.clipsToBounds = true
         profileName.text = nullStringToEmpty(string: User.main.name)
+        profileLastName.isHidden = User.main.lastName?.isEmpty ?? true
+        profileLastName.text = nullStringToEmpty(string: User.main.lastName)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -211,6 +215,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
             view.dropdownView?.isHidden = true
         }
         view.titleLbl.text = nullStringToEmpty(string: menuContent?[section].0)
+        view.titleLbl.textColor = (nullStringToEmpty(string: menuContent?[section].0) == Constants.string.logout.localize()) ? #colorLiteral(red: 1, green: 0.1215686277, blue: 0.1764705926, alpha: 1) :  (menuContent?[section].1.isEmpty ?? true) ?   #colorLiteral(red: 0.160784319, green: 0.160784319, blue: 0.160784319, alpha: 0.7049664456) :  #colorLiteral(red: 0.160784319, green: 0.160784319, blue: 0.160784319, alpha: 1)
         return view
     }
     
@@ -301,8 +306,11 @@ extension  SideMenuController {
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
         case Constants.string.changePassword.localize():
-            self.drawerController?.closeSide()
-            self.push(to: Storyboard.Ids.ChangeViewController)
+//            self.drawerController?.closeSide()
+//            self.push(to: Storyboard.Ids.ChangeViewController)
+              self.drawerController?.closeSide()
+              let vc = ChangePasswordVC.instantiate(fromAppStoryboard: .Products)
+              (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             
         case Constants.string.categories.localize():
             self.drawerController?.closeSide()

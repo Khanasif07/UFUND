@@ -209,6 +209,7 @@
 		845B9DCE25D3FB4E009E388F /* AppleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */; };
 		845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DD025D50318009E388F /* CategoriesVC.swift */; };
 		847297D225E7739800711CEE /* ProductDetailPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */; };
+		847297D525E8BD9200711CEE /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D425E8BD9200711CEE /* ChangePasswordVC.swift */; };
 		847C10F125DE0BF400D13A5C /* UserProfileVC+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C10F025DE0BF400D13A5C /* UserProfileVC+Enum.swift */; };
 		847C10F425DE8C2500D13A5C /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C10F325DE8C2500D13A5C /* CustomPickerView.swift */; };
 		847C10F725DF8AD600D13A5C /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C10F625DF8AD600D13A5C /* ProductDetailVC.swift */; };
@@ -496,6 +497,7 @@
 		845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginController.swift; sourceTree = "<group>"; };
 		845B9DD025D50318009E388F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailPopUpVC.swift; sourceTree = "<group>"; };
+		847297D425E8BD9200711CEE /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		847C10F025DE0BF400D13A5C /* UserProfileVC+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileVC+Enum.swift"; sourceTree = "<group>"; };
 		847C10F325DE8C2500D13A5C /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		847C10F625DF8AD600D13A5C /* ProductDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
@@ -763,6 +765,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				847297D325E8BD7E00711CEE /* ChangePasswordVC */,
 				84FA6EBB25E60A2D0053E618 /* AssetsFilterVC */,
 				84FA6EB325E5FBC90053E618 /* AssetsDetailVC */,
 				84FA6EB025E5F0C20053E618 /* TokenizedAssetsVC */,
@@ -1677,6 +1680,14 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		847297D325E8BD7E00711CEE /* ChangePasswordVC */ = {
+			isa = PBXGroup;
+			children = (
+				847297D425E8BD9200711CEE /* ChangePasswordVC.swift */,
+			);
+			path = ChangePasswordVC;
+			sourceTree = "<group>";
+		};
 		847C10F225DE8C0500D13A5C /* customPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2214,6 +2225,7 @@
 				08B55EBE2387E5940014E660 /* BaseTabController.swift in Sources */,
 				84FA6EBD25E60A560053E618 /* AssetsFilterVC.swift in Sources */,
 				0824B0DB2382847800F81A9B /* Common.swift in Sources */,
+				847297D525E8BD9200711CEE /* ChangePasswordVC.swift in Sources */,
 				0825A05923B4A003001BEC21 /* ProductListCell.swift in Sources */,
 				0824B1272382B23900F81A9B /* User.swift in Sources */,
 				088E33C224CAF382001EE899 /* DatePickerViewController.swift in Sources */,
