@@ -17,6 +17,7 @@ class CommonUserDefaults {
     
     class func storeUserData(from profile : SignInModel?) {
         User.main.name = profile?.name
+        User.main.email = profile?.email
         User.main.accessToken = profile?.access_token
         User.main.g2f_temp = profile?.g2f_status
         User.main.pin_status = profile?.app_pin_status

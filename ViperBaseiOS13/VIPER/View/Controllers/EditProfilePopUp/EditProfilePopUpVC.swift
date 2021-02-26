@@ -12,6 +12,8 @@ class EditProfilePopUpVC: UIViewController {
     
     var editProfileSuccess: ((UIButton)->())?
 
+    @IBOutlet weak var descLbl: UILabel!
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var cancelBtn: UIButton!
     

@@ -61,7 +61,7 @@ class UserProfileVC: UIViewController {
     //===========================
     @IBAction func editProfileBtnAction(_ sender: UIButton) {
         if self.isEnableEdit {
-            self.generalInfoArray.forEach { (userData) in
+            for userData in  self.generalInfoArray {
                 if userData.0 == "First Name"{
                     if  userData.1.isEmpty {
                         ToastManager.show(title: "Please Enter First Name", state: .warning)

@@ -12103,8 +12103,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <viewLayoutGuide key="safeArea" id="aF8-uv-aEK"/>
                     </view>
                     <connections>
-                        <outlet property="cancelBtn" destination="Peu-yO-vEZ" id="r1S-7h-wGY"/>
+                        <outlet property="cancelBtn" destination="Peu-yO-vEZ" id="h5l-1K-iim"/>
                         <outlet property="dataContainerView" destination="bS9-B5-DV0" id="FMT-gA-6n2"/>
+                        <outlet property="descLbl" destination="FfV-Qb-vZj" id="ZKD-0Z-NPY"/>
+                        <outlet property="titleLbl" destination="IQN-3b-LrY" id="VzU-A9-K2x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcx-MA-UyO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

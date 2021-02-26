@@ -76,7 +76,7 @@ class ChangePasswordVC: UIViewController {
         param[RegisterParam.keys.password] = nullStringToEmpty(string: newPassword) as AnyObject
         param[RegisterParam.keys.password_confirmation] = nullStringToEmpty(string: confirmPassword) as AnyObject
         print(">>>param",param)
-        self.loader.isHidden = true
+        self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.changePassword.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
     }
     
@@ -138,7 +138,6 @@ extension ChangePasswordVC : UITextFieldDelegate{
 
 
 //MARK: - PresenterOutputProtocol
-
 extension ChangePasswordVC: PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         switch api {
@@ -146,13 +145,21 @@ extension ChangePasswordVC: PresenterOutputProtocol {
             self.loader.isHidden = true
             self.successDict = dataDict as? SuccessDict
             ToastManager.show(title:  nullStringToEmpty(string: successDict?.success?.msg), state: .success)
+            
+            //            let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
+            //            popUpVC.editProfileSuccess = { [weak self] (sender) in
+            //                guard let selff = self else { return }
+            //                selff.navigationController?.popViewController(animated: true)
+            //            }
+            //            self.present(popUpVC, animated: true, completion: nil)
+            
         default:
             break
         }
     }
     
     func showError(error: CustomError) {
-         self.loader.isHidden = true
-         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }
