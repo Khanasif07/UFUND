@@ -65,6 +65,7 @@ class CategoriesDetailVC: UIViewController {
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
+        ProductFilterVM.shared.resetToAllFilter()
         super.viewDidLoad()
         self.initialSetup()
     }

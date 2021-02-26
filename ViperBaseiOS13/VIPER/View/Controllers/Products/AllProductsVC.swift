@@ -102,6 +102,7 @@ class AllProductsVC: UIViewController {
 extension AllProductsVC {
     
     private func initialSetup(){
+        ProductFilterVM.shared.resetToAllFilter()
         self.searchBar.delegate = self
         self.titleLbl.text = productTitle
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
@@ -123,7 +124,6 @@ extension AllProductsVC {
         case (UserType.campaigner.rawValue,false):
             self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         case (UserType.investor.rawValue,false):
-//            self.presenter?.HITAPI(api: Base.investorAllProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModelEntity.self, token: true)
             let params : [String:Any] = ["page": page,"new_products": productType == .AllProducts ? 0 : 1,"search": search]
              self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,true):
@@ -239,10 +239,10 @@ extension AllProductsVC: ProductSortVCDelegate  {
         self.sortType = sortType
         switch sortType {
         case Constants.string.sort_by_name_AZ:
-            let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"ASC","sort_by":"product_title"]
+            let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"ASC","sort_by":"product_title","search": self.searchText]
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
-            let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"DESC","sort_by":"product_title"]
+            let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"DESC","sort_by":"product_title","search": self.searchText]
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
@@ -276,6 +276,7 @@ extension AllProductsVC : PresenterOutputProtocol {
 extension AllProductsVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
+        self.searchProducts(searchValue: self.searchText)
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -284,13 +285,11 @@ extension AllProductsVC: UISearchBarDelegate{
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
-            self.searchProducts(searchValue: text)
             UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 51.0
                 self.view.layoutIfNeeded()
             })
         }else{
-            self.searchProducts(searchValue: "")
             UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 0
                 self.view.layoutIfNeeded()
