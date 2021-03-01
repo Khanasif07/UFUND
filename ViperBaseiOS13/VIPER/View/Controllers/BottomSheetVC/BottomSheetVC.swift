@@ -29,8 +29,8 @@ class BottomSheetVC: UIViewController {
     //================
     lazy var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(closePullUp))
     var fullView: CGFloat {
-        return 70.0 + (textContainerHeight ?? 0.0)
-//         return 70.0
+//        return 70.0 + (textContainerHeight ?? 0.0)
+        return 51.0 + UIApplication.shared.statusBarFrame.height
     }
     var textContainerHeight : CGFloat? {
         didSet{
@@ -38,30 +38,21 @@ class BottomSheetVC: UIViewController {
         }
     }
     var partialView: CGFloat {
-        return UIScreen.main.bounds.height - (265.0 + UIApplication.shared.statusBarFrame.height)
+//        return UIScreen.main.bounds.height - (265.0 + UIApplication.shared.statusBarFrame.height)
+        return 163.0 + UIApplication.shared.statusBarFrame.height
     }
-    var inversterImage :[UIImage] = [#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg")]
+    var inversterImage :[UIImage] = [#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg")]
     var campinerImage: [UIImage] = [#imageLiteral(resourceName: "add"),#imageLiteral(resourceName: "profile"),#imageLiteral(resourceName: "soild"), #imageLiteral(resourceName: "wallets"),#imageLiteral(resourceName: "vynil"),#imageLiteral(resourceName: "wallets")]
     var headerCount : [String]?
     var silderImage = [SilderImage]()
-    var isFromCampainer = false
-    {
-        didSet
-        {
-            if isFromCampainer
-            {
-                
-//                campainerView.isHidden = false
-                headerCount = [Constants.string.add.localize(), Constants.string.profile.localize(), Constants.string.MyProducts.localize(),Constants.string.wallet.localize(), Constants.string.requests.localize(), Constants.string.send.localize()]
-                
-            }else
-            {
-                
-                //                campainerView.isHidden = true
-                headerCount = [Constants.string.allProduct.localize(), Constants.string.newProduct.localize(), Constants.string.categories.localize(),Constants.string.productInvestMent.localize(),Constants.string.tokenInvestMent.localize(),  Constants.string.newTokenizedAssets.localize(),Constants.string.allTokenizedAssets.localize(),Constants.string.earningInDollar.localize(),Constants.string.earningInCrypto.localize(),Constants.string.fiatCurrency.localize(),Constants.string.cryptoCurrency.localize()]
+    var isFromCampainer = false {
+        didSet {
+            if isFromCampainer {
+            headerCount = [Constants.string.add.localize(), Constants.string.profile.localize(), Constants.string.MyProducts.localize(),Constants.string.wallet.localize(), Constants.string.requests.localize(), Constants.string.send.localize()]
+            }else{
+                headerCount = [Constants.string.categories.localize(),Constants.string.allProduct.localize(), Constants.string.newProduct.localize(),Constants.string.newTokenizedAssets.localize(),Constants.string.allTokenizedAssets.localize(),Constants.string.myProductInvestMents.localize(),Constants.string.myTokenInvestMents.localize(),  Constants.string.earningInDollar.localize(),Constants.string.earningInCrypto.localize(),Constants.string.fiatCurrency.localize(),Constants.string.cryptoCurrency.localize()]
                 
             }
-            
         }
     }
     //MARK:- VIEW LIFE CYCLE
