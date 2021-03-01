@@ -23,7 +23,6 @@ class ProductsCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         DispatchQueue.main.async {
-            self.productNameLbl.textColor = UIColor(hex: darkTextColor)
             self.productImg.layer.masksToBounds = true
             self.productImg.layer.borderWidth = 8.0
             self.productImg.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor

@@ -24,9 +24,12 @@ class HomeAssetsCell: UITableViewCell {
     }
 }
 
-class HomeViewController: UIViewController
-{
+class HomeViewController: UIViewController{
     
+    @IBOutlet weak var investorTitleLbl: UILabel!
+    @IBOutlet weak var investorDesclbl: UILabel!
+    @IBOutlet weak var investorHeaderView: UIView!
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var rightSilderButton: UIButton!
     @IBOutlet weak var leftSilderButton: UIButton!
     private lazy var loader  : UIView =
@@ -70,8 +73,14 @@ class HomeViewController: UIViewController
     var timer: Timer?
     var approvalObject : ApprovalModel?
     let dispatchGroup = DispatchGroup()
+    let bottomSheetVC = BottomSheetVC()
+    
+    
     
     @IBOutlet weak var bgViewScroll: UIView!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad() 
@@ -114,9 +123,30 @@ class HomeViewController: UIViewController
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.location(in: self.view)
+        if self.bottomSheetVC.view.frame.contains(touchLocation) {
+            self.dismiss(animated: false, completion: nil)
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.bgViewScroll.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 15)
+        bottomSheetVC.view.dropShadow(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0, height: -3), opacity: 0.16, shadowRadius: 8)
+        self.view.layoutIfNeeded()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        bottomSheetVC.closePullUp()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.addBottomSheetView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,9 +156,13 @@ class HomeViewController: UIViewController
             {
             case UserType.investor.rawValue:
                 isFromCampainer = false
+                self.bottomSheetVC.isFromCampainer = isFromCampainer
+                self.investorHeaderView.isHidden = isFromCampainer
                 getInvesterSilderImage(isLoaderHidden: false)
             default:
                 isFromCampainer = true
+                self.bottomSheetVC.isFromCampainer = isFromCampainer
+                self.investorHeaderView.isHidden = isFromCampainer
                 getApprovals()
                 getInvesterSilderImageCamp(isLoaderHidden: false)
                 dispatchGroup.notify(queue: .main) {
@@ -202,6 +236,27 @@ class HomeViewController: UIViewController
             
         }
         
+    }
+    
+    func addBottomSheetView() {
+        
+        guard !self.children.contains(bottomSheetVC) else { return }
+        self.addChild(bottomSheetVC)
+//        self.view.addSubview(bottomSheetVC.view)
+        self.view.insertSubview(bottomSheetVC.view, belowSubview: self.topView)
+//        bottomSheetVC.didMove(toParent: self)
+        
+        let height = view.frame.height
+        let width  = view.frame.width
+        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+        if UIScreen.main.bounds.size.height <= 812 {
+            bottomSheetVC.bottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom + (self.tabBarController?.tabBar.height ?? 0)
+        }
+        let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: self.tabBarController?.tabBar.frame.height ?? 30, right: 0)
+        bottomSheetVC.listingCollView.contentInset = adjustForTabbarInsets
+        bottomSheetVC.listingCollView.scrollIndicatorInsets = adjustForTabbarInsets
+        //        bottomSheetVC.listingTableView.refreshControl = refreshControl
+        self.view.layoutIfNeeded()
     }
 }
 
@@ -491,6 +546,9 @@ extension HomeViewController: PresenterOutputProtocol {
         case Base.sliderimages.rawValue:
         self.loader.isHidden = true
         self.silderImage = dataArray as? [SilderImage] ?? []
+        self.investorDesclbl.text = nullStringToEmpty(string: silderImage.first?.description)
+        self.investorTitleLbl.text = nullStringToEmpty(string: silderImage.first?.title)
+        self.bottomSheetVC.textContainerHeight = investorHeaderView.frame.height
         self.collectionGridView.reloadData()
         if self.silderImage.count == 1 || self.silderImage.count == 0 {
             rightSilderButton.isHidden = true

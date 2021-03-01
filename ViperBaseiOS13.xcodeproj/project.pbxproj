@@ -205,6 +205,8 @@
 		844682D325D53CB900F44A53 /* ProductSortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844682D225D53CB900F44A53 /* ProductSortVC.swift */; };
 		844682D625D53DC900F44A53 /* ProductSortTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844682D425D53DC900F44A53 /* ProductSortTableCell.swift */; };
 		844682D725D53DC900F44A53 /* ProductSortTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844682D525D53DC900F44A53 /* ProductSortTableCell.xib */; };
+		845ADB8425ECAEB7009392E2 /* BottomSheetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845ADB8325ECAEB7009392E2 /* BottomSheetVC.xib */; };
+		845ADB8625ECAEE7009392E2 /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845ADB8525ECAEE7009392E2 /* BottomSheetVC.swift */; };
 		845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */; };
 		845B9DCE25D3FB4E009E388F /* AppleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */; };
 		845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DD025D50318009E388F /* CategoriesVC.swift */; };
@@ -493,6 +495,8 @@
 		844682D225D53CB900F44A53 /* ProductSortVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSortVC.swift; sourceTree = "<group>"; };
 		844682D425D53DC900F44A53 /* ProductSortTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSortTableCell.swift; sourceTree = "<group>"; };
 		844682D525D53DC900F44A53 /* ProductSortTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductSortTableCell.xib; sourceTree = "<group>"; };
+		845ADB8325ECAEB7009392E2 /* BottomSheetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetVC.xib; sourceTree = "<group>"; };
+		845ADB8525ECAEE7009392E2 /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
 		845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePopUpVC.swift; sourceTree = "<group>"; };
 		845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginController.swift; sourceTree = "<group>"; };
 		845B9DD025D50318009E388F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
@@ -765,6 +769,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				845ADB8225ECAE8B009392E2 /* BottomSheetVC */,
 				847297D325E8BD7E00711CEE /* ChangePasswordVC */,
 				84FA6EBB25E60A2D0053E618 /* AssetsFilterVC */,
 				84FA6EB325E5FBC90053E618 /* AssetsDetailVC */,
@@ -1654,6 +1659,15 @@
 			path = ProductSort;
 			sourceTree = "<group>";
 		};
+		845ADB8225ECAE8B009392E2 /* BottomSheetVC */ = {
+			isa = PBXGroup;
+			children = (
+				845ADB8325ECAEB7009392E2 /* BottomSheetVC.xib */,
+				845ADB8525ECAEE7009392E2 /* BottomSheetVC.swift */,
+			);
+			path = BottomSheetVC;
+			sourceTree = "<group>";
+		};
 		845B9DC825D3F64A009E388F /* EditProfilePopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -2013,6 +2027,7 @@
 				84FA6EBA25E5FEDF0053E618 /* AssetsDetailInfoCell.xib in Resources */,
 				0826B7C62386934700867CD5 /* WalkThroughCell.xib in Resources */,
 				84411E9C25D1577C00718BD1 /* UserProfileImageCell.xib in Resources */,
+				845ADB8425ECAEB7009392E2 /* BottomSheetVC.xib in Resources */,
 				088E33C124CAF382001EE899 /* DatePickerViewController.xib in Resources */,
 				0824B0C52382847800F81A9B /* countryCodes.json in Resources */,
 				84D5660825DB9EC80047F052 /* CategoryListTableCell.xib in Resources */,
@@ -2367,6 +2382,7 @@
 				0825AB73238BD53C0083AC42 /* CategoriesCell.swift in Sources */,
 				84D565FB25DB8B500047F052 /* ProductFilterVM.swift in Sources */,
 				0824B11E2382A13200F81A9B /* ImageView.swift in Sources */,
+				845ADB8625ECAEE7009392E2 /* BottomSheetVC.swift in Sources */,
 				08918BAA23852C4000F274C2 /* LabelExtension.swift in Sources */,
 				0824B10B2382A12000F81A9B /* Error.swift in Sources */,
 				080FC598238D43560013B37D /* PaymentsListCell.swift in Sources */,
