@@ -327,9 +327,9 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                     }
                   }
                 }
-                cell.profileImgView.sd_setImage(with: self.profileImgUrl ?? nil , placeholderImage: #imageLiteral(resourceName: "profile"))
+                cell.profileImgView.sd_setImage(with: self.profileImgUrl ?? nil , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
                 cell.profileImgView.isUserInteractionEnabled = isEnableEdit
-                cell.profileImgView.backgroundColor = UIColor(hex: primaryColor)
+                cell.profileImgView.backgroundColor = .clear
                 return  cell
             default:
                 if generalInfoArray[indexPath.row - 1].0 == "Phone Number" {

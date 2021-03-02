@@ -9828,25 +9828,26 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <scene sceneID="5kY-Tc-gfK">
             <objects>
                 <viewController storyboardIdentifier="SideMenuController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wYO-Q1-aEw" customClass="SideMenuController" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eVf-4O-fpm">
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="eVf-4O-fpm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAc-KS-3Sd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-Fg-gW2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="204.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UU5-Qo-S0w">
-                                                <rect key="frame" x="20" y="63" width="64" height="64"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="UU5-Qo-S0w">
+                                                <rect key="frame" x="20" y="104" width="64" height="64"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="64" id="alm-ev-chZ"/>
                                                     <constraint firstAttribute="width" constant="64" id="iib-KG-YaV"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="p2J-fi-vJm">
-                                                <rect key="frame" x="99" y="75" width="300" height="40"/>
+                                                <rect key="frame" x="99" y="116" width="300" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asif Khan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA5-H3-q5S">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
@@ -9854,10 +9855,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         <color key="textColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
-                                                        <rect key="frame" x="0.0" y="17" width="300" height="23"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
+                                                        <rect key="frame" x="0.0" y="25.5" width="300" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" red="0.85098039215686272" green="0.8666666666666667" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -9866,20 +9867,20 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YH-Ap-jhO">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="204.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
                                                 <connections>
                                                     <action selector="profileRedirect:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="bus-Wq-PZA"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGu-76-syX">
-                                                <rect key="frame" x="0.0" y="189.5" width="414" height="15"/>
+                                                <rect key="frame" x="0.0" y="212.5" width="414" height="15"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="up1-BD-8vf"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC4-wI-Gfa">
-                                                <rect key="frame" x="366" y="10" width="32" height="32"/>
+                                                <rect key="frame" x="366" y="54" width="32" height="32"/>
                                                 <color key="backgroundColor" red="0.72549019607843135" green="0.10980392156862745" blue="0.0" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="A8n-u6-Cdq"/>
@@ -9893,24 +9894,24 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </subviews>
                                         <color key="backgroundColor" name="primaryColor"/>
                                         <constraints>
-                                            <constraint firstItem="UU5-Qo-S0w" firstAttribute="centerY" secondItem="QKU-Fg-gW2" secondAttribute="centerY" constant="-7.5" id="6EF-Zi-PAA"/>
+                                            <constraint firstItem="dGu-76-syX" firstAttribute="top" secondItem="UU5-Qo-S0w" secondAttribute="bottom" constant="44.5" id="5mo-me-SxU"/>
                                             <constraint firstAttribute="bottom" secondItem="dGu-76-syX" secondAttribute="bottom" id="COK-Gp-vOm"/>
                                             <constraint firstItem="UU5-Qo-S0w" firstAttribute="leading" secondItem="QKU-Fg-gW2" secondAttribute="leading" constant="20" id="Dxo-GU-WW1"/>
                                             <constraint firstAttribute="trailing" secondItem="IC4-wI-Gfa" secondAttribute="trailing" constant="16" id="EVB-ag-dAg"/>
-                                            <constraint firstItem="p2J-fi-vJm" firstAttribute="centerY" secondItem="UU5-Qo-S0w" secondAttribute="centerY" id="Hc9-3L-3Wv"/>
+                                            <constraint firstItem="UU5-Qo-S0w" firstAttribute="centerY" secondItem="p2J-fi-vJm" secondAttribute="centerY" id="ITR-vg-hsb"/>
                                             <constraint firstAttribute="bottom" secondItem="6YH-Ap-jhO" secondAttribute="bottom" id="MWF-gv-zsf"/>
+                                            <constraint firstItem="p2J-fi-vJm" firstAttribute="top" secondItem="IC4-wI-Gfa" secondAttribute="bottom" constant="30" id="QQF-M7-6UC"/>
                                             <constraint firstItem="6YH-Ap-jhO" firstAttribute="leading" secondItem="QKU-Fg-gW2" secondAttribute="leading" id="UWk-xh-Gpv"/>
                                             <constraint firstItem="p2J-fi-vJm" firstAttribute="leading" secondItem="UU5-Qo-S0w" secondAttribute="trailing" constant="15" id="XPV-a0-P9i"/>
                                             <constraint firstAttribute="trailing" secondItem="p2J-fi-vJm" secondAttribute="trailing" constant="15" id="dDZ-hR-aSM"/>
                                             <constraint firstItem="6YH-Ap-jhO" firstAttribute="top" secondItem="QKU-Fg-gW2" secondAttribute="top" id="icR-vq-Qc2"/>
-                                            <constraint firstItem="IC4-wI-Gfa" firstAttribute="top" secondItem="QKU-Fg-gW2" secondAttribute="top" constant="10" id="kQj-GY-b4s"/>
                                             <constraint firstAttribute="trailing" secondItem="6YH-Ap-jhO" secondAttribute="trailing" id="wNp-vt-Hd5"/>
                                             <constraint firstItem="dGu-76-syX" firstAttribute="leading" secondItem="QKU-Fg-gW2" secondAttribute="leading" id="xQG-qh-Rax"/>
                                             <constraint firstAttribute="trailing" secondItem="dGu-76-syX" secondAttribute="trailing" id="z2u-jW-Wyx"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Owu-mh-lCa">
-                                        <rect key="frame" x="20" y="219.5" width="374" height="38"/>
+                                        <rect key="frame" x="20" y="242.5" width="374" height="38"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGV-Z1-Hrx">
                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="38"/>
@@ -9938,7 +9939,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WGd-gJ-sp7">
-                                        <rect key="frame" x="20" y="272.5" width="374" height="525.5"/>
+                                        <rect key="frame" x="20" y="295.5" width="374" height="546.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -9952,7 +9953,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstAttribute="bottom" secondItem="WGd-gJ-sp7" secondAttribute="bottom" constant="20" id="SPm-VP-aUe"/>
                                     <constraint firstItem="WGd-gJ-sp7" firstAttribute="top" secondItem="Owu-mh-lCa" secondAttribute="bottom" constant="15" id="bkR-9Z-Lb3"/>
                                     <constraint firstItem="WGd-gJ-sp7" firstAttribute="leading" secondItem="oAc-KS-3Sd" secondAttribute="leading" constant="20" id="cvv-v5-y5j"/>
-                                    <constraint firstItem="QKU-Fg-gW2" firstAttribute="height" secondItem="oAc-KS-3Sd" secondAttribute="height" multiplier="0.25" id="h8n-0i-a1w"/>
                                     <constraint firstAttribute="trailing" secondItem="WGd-gJ-sp7" secondAttribute="trailing" constant="20" id="nae-2i-sX8"/>
                                     <constraint firstAttribute="trailing" secondItem="QKU-Fg-gW2" secondAttribute="trailing" id="ul3-kI-lfy"/>
                                 </constraints>
@@ -9962,8 +9962,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <constraints>
                             <constraint firstItem="oAc-KS-3Sd" firstAttribute="trailing" secondItem="Rn0-eN-zIz" secondAttribute="trailing" id="3ov-Dy-HOK"/>
                             <constraint firstItem="oAc-KS-3Sd" firstAttribute="bottom" secondItem="Rn0-eN-zIz" secondAttribute="bottom" id="IvY-gZ-PcT"/>
-                            <constraint firstItem="oAc-KS-3Sd" firstAttribute="top" secondItem="Rn0-eN-zIz" secondAttribute="top" id="Ufg-Bd-2Ze"/>
+                            <constraint firstItem="oAc-KS-3Sd" firstAttribute="top" secondItem="eVf-4O-fpm" secondAttribute="top" id="Ufg-Bd-2Ze"/>
                             <constraint firstItem="oAc-KS-3Sd" firstAttribute="leading" secondItem="Rn0-eN-zIz" secondAttribute="leading" id="Yxg-Jm-RLD"/>
+                            <constraint firstItem="Rn0-eN-zIz" firstAttribute="top" secondItem="IC4-wI-Gfa" secondAttribute="top" constant="-10" id="kgX-La-VDz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rn0-eN-zIz"/>
                     </view>
@@ -12925,6 +12926,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="icFilter" width="16" height="15"/>
         <image name="icInformation" width="86" height="86"/>
         <image name="icMenu" width="32" height="32"/>
+        <image name="icPlaceHolder" width="64" height="64"/>
         <image name="icSearch" width="16" height="16"/>
         <image name="icSort" width="16" height="15"/>
         <image name="ic_google" width="32" height="32"/>

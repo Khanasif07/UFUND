@@ -55,6 +55,7 @@ class ProductDetailVC: UIViewController {
     //===========================
     @IBAction func investBtnAction(_ sender: UIButton) {
         let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
+        vc.isForBuyproduct = false
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -64,6 +65,7 @@ class ProductDetailVC: UIViewController {
     
     @IBAction func buyProductBtnAction(_ sender: UIButton) {
         let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
+        vc.isForBuyproduct = true
         self.present(vc, animated: true, completion: nil)
     }
 }

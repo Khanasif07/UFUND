@@ -23,7 +23,6 @@ class CommonUserDefaults {
         User.main.pin_status = profile?.app_pin_status
         User.main.kyc = profile?.kyc
         User.main.picture = profile?.picture
-       
     }
 }
 

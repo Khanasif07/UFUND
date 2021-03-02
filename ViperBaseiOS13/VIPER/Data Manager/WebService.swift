@@ -77,7 +77,7 @@ extension Webservice : WebServiceProtocol {
                 case .success:
                     print("RESPONSE---\(response.result)")
                     
-                    if response.response?.statusCode == StatusCode.success.rawValue {
+                    if response.response?.statusCode == StatusCode.success.rawValue ||  response.response?.statusCode == StatusCode.successCode.rawValue {
                         
                         if(response.result.value as AnyObject).isKind(of: NSDictionary.self){ //Dictionary:
                             guard let responseJSON = response.result.value as? [String: AnyObject] else {

@@ -17,6 +17,9 @@ import GoogleSignIn
 
 class SignInViewController: UIViewController {
     
+    
+    var socialLoginType: SocialLoginType = .facebook
+    
     @IBOutlet weak var socialBtnStackView: UIStackView!
     @IBOutlet weak var gFDisableButton: UIButton!
     fileprivate var socialLogin = SocialLoginHelper ()
@@ -46,6 +49,7 @@ class SignInViewController: UIViewController {
             }
         }
     }
+    var signUpModel: SignUpModel?
     var signInModel: SignInModel?
     var loginEffect = 0 {
         didSet {
@@ -107,20 +111,23 @@ class SignInViewController: UIViewController {
     //MARK: - Action
     //===================
     @IBAction func googleBtnAction(_ sender: UIButton) {
+        socialLoginType = .google
         GoogleLoginController.shared.login(fromViewController: self, success: { [weak self] (model) in
             guard let _ = self else {return}
             print(model)
-            //            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: "google", phoneNo: "", profilePicture: model.image?.description ?? "")
+            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: self!.socialLoginType)
         }) { (error) in
             print(error.localizedDescription)
         }
     }
     
     @IBAction func linkedinBtnAction(_ sender: UIButton) {
+        socialLoginType = .linkedin
         self.linkedLogin(vc: self)
     }
     
     @IBAction func twiiterRedirection(_ sender: UIButton) {
+        socialLoginType = .twitter
         TWTRTwitter.sharedInstance().logIn { (session, error) in
             if (session != nil) {
                 
@@ -140,7 +147,7 @@ class SignInViewController: UIViewController {
                         let firstName = session?.userName ?? ""   // received first name
                         let lastName = session?.userName ?? ""  // received last name
                         let recivedEmailID = email ?? ""   // received email
-                        
+                        self.hitSocialLoginAPI(name: firstName, email: recivedEmailID, socialId: session?.userID ?? "", socialType: self.socialLoginType)
                         
                     }else {
                         print("error: \(String(describing: error?.localizedDescription))");
@@ -153,10 +160,11 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func redirectToFacebook(_ sender: UIButton) {
+        socialLoginType = .facebook
         FacebookController.shared.getFacebookUserInfo(fromViewController: self, isSilentLogin: false, success: { [weak self] (model) in
             guard let _ = self else {return}
             print(model)
-            //            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: "facebook", phoneNo: "", profilePicture: model.picture?.description ?? "")
+            self?.hitSocialLoginAPI(name: model.name, email: model.email, socialId: model.id, socialType: self!.socialLoginType)
             }, failure: { (error) in
                 print(error?.localizedDescription.description ?? "")
         })
@@ -317,8 +325,25 @@ extension SignInViewController: PresenterOutputProtocol {
                     ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                     self.push(id: Storyboard.Ids.DrawerController, animation: true)
                 }
+            
+        case Base.social_signup.rawValue:
+            self.loader.isHidden = true
+            self.signInModel = (dataDict as? SocialLoginEntity)?.user_info
+            CommonUserDefaults.storeUserData(from: self.signInModel)
+            User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
+            storeInUserDefaults()
+            if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
                 
-           // }
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
+                vc.changePINStr = "changePINStr"
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } else {
+                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+                self.push(id: Storyboard.Ids.DrawerController, animation: true)
+            }
+            
+            // }
             
             
         default:
@@ -366,46 +391,20 @@ extension SignInViewController {
         return email
     }
 }
-//
-//// MARK: - Social login helper delegate methods
-//extension SignInViewController : SocialLoginHelperDelegate {
-//
-//    func didReceiveFacebookLoginUser(detail: FacebookUserDetail) {
-//
-//        print("Name: \(detail.name)")
-//        print("UserName: \(detail.userName)")
-//        print("Email: \(detail.email)")
-//        print("UserId: \(detail.userId)")
-//    }
-//
-//    func didReceiveFacebookLoginError(message: String) {
-//
-//        print("******* didReceiveFacebookLoginError: \(message)")
-//    }
-//}
+
 
 
 extension SignInViewController: AppleSignInProtocal {
     func getAppleLoginData(loginData: [String:Any]) {
-//        self.hitSocialLoginAPI(name: loginData[ApiKey.name] as? String ?? "", email: loginData[ApiKey.email] as? String ?? "" , socialId: loginData[ApiKey.socialId] as? String ?? "", socialType: "apple", phoneNo: "", profilePicture: "")
+         socialLoginType = .apple
+         self.hitSocialLoginAPI(name: loginData[RegisterParam.keys.name] as? String ?? "", email: loginData[RegisterParam.keys.email] as? String ?? "" , socialId: loginData[RegisterParam.keys.social_id] as? String ?? "", socialType: self.socialLoginType)
     }
     
-//    func getSocialParams(name : String , email : String , socialId : String , socialType : String ,phoneNo: String ,profilePicture : String) -> [String:Any]{
+    func hitSocialLoginAPI(name : String , email : String , socialId : String , socialType :SocialLoginType){
+        self.loader.isHidden = false
+        let params: [String:Any] = [RegisterParam.keys.name: name,RegisterParam.keys.email: email,RegisterParam.keys.signup_by: socialType.rawValue,RegisterParam.keys.social_id: socialId,RegisterParam.keys.is_manual: 0,RegisterParam.keys.device_token: nullStringToEmpty(string: fcmToken) as AnyObject,
+                                    RegisterParam.keys.device_id: nullStringToEmpty(string: deviceIds) as AnyObject, RegisterParam.keys.device_type: nullStringToEmpty(string: deviceType.rawValue) as AnyObject]
+        self.presenter?.HITAPI(api: Base.social_signup.rawValue, params: params, methodType: .POST, modelClass: SocialLoginEntity.self, token: false)
         
-//        let dict : [String:Any] = [ApiKey.socialType: socialType,
-//                                     ApiKey.socialId: socialId,
-//                                     ApiKey.name: name,
-//                                     ApiKey.email: email ,
-//                                     ApiKey.phoneNo: phoneNo,
-//                                     ApiKey.image: profilePicture,
-//                                     ApiKey.countryCode : "",
-//                                     ApiKey.device : [ApiKey.platform: "ios", ApiKey.token: DeviceDetail.deviceToken].toJSONString() ?? ""]
-//        return dict
-        
-//    }
-
-    func hitSocialLoginAPI(name : String , email : String , socialId : String , socialType : String ,phoneNo: String, profilePicture : String){
-//         viewModel.socailLoginApi(parameters: getSocialParams(name : name , email : email , socialId : socialId , socialType : socialType ,phoneNo: phoneNo ,profilePicture : profilePicture))
-        
-     }
+    }
 }

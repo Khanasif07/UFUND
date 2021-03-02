@@ -80,7 +80,7 @@ class SideMenuController: UIViewController {
         setupButtons()
         self.tableView.registerCell(with: SideMenuTableCell.self)
         self.tableView.registerHeaderFooter(with: SideMenuHeaderView.self)
-        profileImg.backgroundColor = .white
+        profileImg.backgroundColor = .clear
         profileName.textColor = .white
         profileLastName.textColor = .white
         tableView.delegate = self
@@ -89,7 +89,7 @@ class SideMenuController: UIViewController {
 //        campaignerButton.titleEdgeInsets.left = 40
 //
         let url = URL.init(string: baseUrl + "/" +  nullStringToEmpty(string: User.main.picture))
-        profileImg.sd_setImage(with: url , placeholderImage: nil)
+        profileImg.sd_setImage(with: url , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
         profileImg.contentMode = .scaleAspectFill
         profileImg.clipsToBounds = true
         profileName.text = nullStringToEmpty(string: User.main.name)
@@ -140,7 +140,7 @@ class SideMenuController: UIViewController {
             }
         }
         let url = URL.init(string: baseUrl + "/" +  nullStringToEmpty(string: User.main.picture))
-        profileImg.sd_setImage(with: url , placeholderImage: nil)
+        profileImg.sd_setImage(with: url , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
         profileImg.contentMode = .scaleAspectFill
         profileImg.clipsToBounds = true
         profileName.text = nullStringToEmpty(string: User.main.name)

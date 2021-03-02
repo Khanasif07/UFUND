@@ -22,7 +22,17 @@ class ProductDetailPopUpVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var buyNowBtnTitle: String = "Buy Produc"
     var button = UIButton()
+    var isForBuyproduct = false {
+        didSet{
+            if isForBuyproduct{
+                self.buyNowBtnTitle = "Buy Product"
+            }else {
+                self.buyNowBtnTitle = "Invest"
+            }
+        }
+    }
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
@@ -32,6 +42,7 @@ class ProductDetailPopUpVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.buyNowBtn.setTitle(buyNowBtnTitle, for: .normal)
         self.buyNowBtn.setCornerRadius(cornerR: self.buyNowBtn.frame.height / 2)
         self.cancelBtn.setCornerRadius(cornerR: self.cancelBtn.frame.height / 2)
         self.dataContainerView.dropShadow(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)

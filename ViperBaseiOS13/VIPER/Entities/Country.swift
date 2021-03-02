@@ -122,6 +122,7 @@ struct SignInModel : Mappable {
     var access_token : String?
     var g2f_status: Int?
     var picture: String?
+    var token_type: String?
 
     init?(map: Map) {
 
@@ -161,6 +162,7 @@ struct SignInModel : Mappable {
         updated_at <- map["updated_at"]
         access_token <- map["access_token"]
         g2f_status <- map["g2f_status"]
+        token_type <- map["token_type"]
     }
 
 }
@@ -198,6 +200,7 @@ struct SignUpModel : Mappable {
     var device_token : String?
     var updated_at : String?
     var access_token : String?
+    var status: String?
 
     init?(map: Map) {
 
@@ -235,6 +238,23 @@ struct SignUpModel : Mappable {
         device_token <- map["device_token"]
         updated_at <- map["updated_at"]
         access_token <- map["access_token"]
+        status <- map["status"]
     }
 
+}
+
+
+struct SocialLoginEntity : Mappable {
+    var access_token : String?
+    var status : String?
+    var user_info : SignInModel?
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        status <- map["status"]
+        access_token <- map["access_token"]
+        user_info <- map["user_info"]
+    }
 }

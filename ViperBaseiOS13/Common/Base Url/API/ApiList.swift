@@ -26,6 +26,7 @@ enum StatusCode : Int {
     
     case notreachable = 0
     case success = 200
+    case successCode = 201
     case multipleResponse = 300
     case unAuthorized = 401
     case notFound = 404
@@ -40,6 +41,7 @@ enum Base : String {
     
     case signIn = "/api/login"
     case signUp = "/api/signup"
+    case social_signup = "/api/social-signup"
     case profile = "/api/profile"
     case product = "/api/product"
     case category = "/api/category"
@@ -123,4 +125,27 @@ enum AppendUrlQuery : String {
     case category = "?category="
     case min = "&min="
     case max = "&max="
+}
+
+enum SocialLoginType: Int {
+    case facebook = 1
+    case google = 2
+    case linkedin = 3
+    case twitter = 4
+    case apple = 5
+    
+    var title: String {
+        switch self {
+        case .facebook:
+            return "facebbok"
+        case .google:
+            return "google"
+        case .linkedin:
+            return  "linkedin"
+        case .twitter:
+            return "twitter"
+        default:
+            return "aaple"
+        }
+    }
 }
