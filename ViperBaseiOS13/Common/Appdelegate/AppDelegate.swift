@@ -290,7 +290,7 @@ extension AppDelegate : MessagingDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         if LinkedinSwiftHelper.shouldHandle(url) {
-            return LinkedinSwiftHelper.application(app, open: url, sourceApplication: nil, annotation: nil)
+            return LinkedinSwiftHelper.application(app, open: url, sourceApplication:  options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
         }
         
         return TWTRTwitter.sharedInstance().application(app, open: url, options: options)

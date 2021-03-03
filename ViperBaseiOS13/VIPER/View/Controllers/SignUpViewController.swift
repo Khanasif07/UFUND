@@ -28,6 +28,7 @@ class SignUpViewController: UIViewController {
     var socialLoginType: SocialLoginType = .facebook
     var appleButton = ASAuthorizationAppleIDButton()
     fileprivate var socialLogin = SocialLoginHelper ()
+    var signInModel: SignInModel?
     
     
     
@@ -226,7 +227,7 @@ extension SignUpViewController {
             //Login success lsToken
             
             
-            linkedinHelper.requestURL("https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,headline,picture-url,public-profile-url)?format=json", requestType: LinkedinSwiftRequestGet, success: { (response) -> Void in
+            linkedinHelper.requestURL("https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))", requestType: LinkedinSwiftRequestGet, success: { (response) -> Void in
                 
                 guard let data = response.jsonObject else {return}
                 
@@ -360,7 +361,26 @@ extension SignUpViewController: PresenterOutputProtocol {
             self.navigationController?.popViewController(animated: true)
             
         case Base.social_signup.rawValue:
-            ToastManager.show(title:  SuccessMessage.string.emailVerifySuccess.localize(), state: .success)
+            self.loader.isHidden = true
+            self.signInModel = (dataDict as? SocialLoginEntity)?.user_info
+            CommonUserDefaults.storeUserData(from: self.signInModel)
+            User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
+            storeInUserDefaults()
+            if self.signInModel?.kyc == 0 {
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
+                    
+                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
+                    vc.changePINStr = "changePINStr"
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                } else {
+                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+                    self.push(id: Storyboard.Ids.DrawerController, animation: true)
+                }
+            }
             
         default:
             break

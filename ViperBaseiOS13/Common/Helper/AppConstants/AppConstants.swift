@@ -24,7 +24,7 @@ enum AppConstants {
     static let linkedIn_Client_Id = "78bm410fe1zr9i"
     static let linkedIn_ClientSecret = "cB6mIrb4NmN0qhvE"
     static let linkedIn_States = "linkedin\(Int(NSDate().timeIntervalSince1970))"
-    static let linkedIn_Permissions = ["r_basicprofile", "r_emailaddress"]
+    static let linkedIn_Permissions = ["r_liteprofile", "r_emailaddress"]
     static let linkedIn_redirectUri = "http://ufund.linkedin.com/redirect"
     
     static let TWITTER_APP_ID = "20061008"

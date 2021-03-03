@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="NunitoSans-Bold.ttf">
+            <string>NunitoSans-Bold</string>
+        </array>
         <array key="Poppins-Medium.ttf">
             <string>Poppins-Medium</string>
         </array>
@@ -1458,6 +1461,105 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ial-N5-bUB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4285" y="36"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="X6i-OG-iyS">
+            <objects>
+                <viewController id="N1F-3A-dxV" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RBX-7T-U8d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cyf-Ce-VDS">
+                                <rect key="frame" x="16" y="240" width="382" height="416"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icInformation" translatesAutoresizingMaskIntoConstraints="NO" id="wb8-wY-5rV">
+                                        <rect key="frame" x="137" y="35" width="108" height="108"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="wb8-wY-5rV" secondAttribute="height" id="2Nc-78-g4e"/>
+                                            <constraint firstAttribute="height" constant="108" id="37Y-yv-HkP"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Approval Waiting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7y-3W-z9d">
+                                        <rect key="frame" x="45" y="185" width="292" height="20"/>
+                                        <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="17"/>
+                                        <color key="textColor" red="0.10980392160000001" green="0.1137254902" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCi-Uy-1N9">
+                                        <rect key="frame" x="45" y="212" width="292" height="1"/>
+                                        <color key="backgroundColor" red="0.87450980389999999" green="0.89411764709999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="5l5-YW-mwr"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your request has been sent to admin. Please wait for his/her approval" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEm-74-rQK">
+                                        <rect key="frame" x="45" y="225" width="292" height="35"/>
+                                        <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="15"/>
+                                        <color key="textColor" red="0.3294117647" green="0.33725490200000002" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="haW-3t-CTm">
+                                        <rect key="frame" x="130" y="340" width="122" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJi-iZ-mpD">
+                                                <rect key="frame" x="0.0" y="0.0" width="122" height="48"/>
+                                                <color key="backgroundColor" name="primaryColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="122" id="ZNL-3B-3Eh"/>
+                                                    <constraint firstAttribute="height" constant="48" id="bNi-Xt-7iz"/>
+                                                </constraints>
+                                                <state key="normal" title="Sign In">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.090196078430000007" green="0.1450980392" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="bCi-Uy-1N9" firstAttribute="top" secondItem="A7y-3W-z9d" secondAttribute="bottom" constant="7" id="2SL-NY-Owx"/>
+                                    <constraint firstItem="haW-3t-CTm" firstAttribute="centerX" secondItem="Cyf-Ce-VDS" secondAttribute="centerX" id="5bH-H6-EH5"/>
+                                    <constraint firstItem="haW-3t-CTm" firstAttribute="top" secondItem="sEm-74-rQK" secondAttribute="bottom" constant="80" id="Bvg-L4-80s"/>
+                                    <constraint firstItem="wb8-wY-5rV" firstAttribute="centerX" secondItem="Cyf-Ce-VDS" secondAttribute="centerX" id="C4m-fH-80N"/>
+                                    <constraint firstItem="A7y-3W-z9d" firstAttribute="top" secondItem="wb8-wY-5rV" secondAttribute="bottom" constant="42" id="FgK-VS-6ar"/>
+                                    <constraint firstItem="wb8-wY-5rV" firstAttribute="top" secondItem="Cyf-Ce-VDS" secondAttribute="top" constant="35" id="Gl2-pg-5p9"/>
+                                    <constraint firstItem="sEm-74-rQK" firstAttribute="leading" secondItem="Cyf-Ce-VDS" secondAttribute="leading" constant="45" id="IRH-uN-emW"/>
+                                    <constraint firstItem="A7y-3W-z9d" firstAttribute="centerX" secondItem="Cyf-Ce-VDS" secondAttribute="centerX" id="Kcy-33-U15"/>
+                                    <constraint firstItem="bCi-Uy-1N9" firstAttribute="trailing" secondItem="A7y-3W-z9d" secondAttribute="trailing" id="QtB-oK-DRF"/>
+                                    <constraint firstItem="sEm-74-rQK" firstAttribute="leading" secondItem="bCi-Uy-1N9" secondAttribute="leading" id="a0t-hs-OTc"/>
+                                    <constraint firstItem="sEm-74-rQK" firstAttribute="trailing" secondItem="bCi-Uy-1N9" secondAttribute="trailing" id="bYF-ry-pxd"/>
+                                    <constraint firstItem="sEm-74-rQK" firstAttribute="top" secondItem="bCi-Uy-1N9" secondAttribute="bottom" constant="12" id="ke5-CH-l0q"/>
+                                    <constraint firstAttribute="bottom" secondItem="haW-3t-CTm" secondAttribute="bottom" constant="28" id="nXz-Yg-YRg"/>
+                                    <constraint firstItem="bCi-Uy-1N9" firstAttribute="leading" secondItem="A7y-3W-z9d" secondAttribute="leading" id="q12-bU-Ccw"/>
+                                    <constraint firstAttribute="trailing" secondItem="sEm-74-rQK" secondAttribute="trailing" constant="45" id="uEw-eQ-opP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Cyf-Ce-VDS" firstAttribute="leading" secondItem="RBX-7T-U8d" secondAttribute="leading" constant="16" id="4IT-8m-34I"/>
+                            <constraint firstItem="Cyf-Ce-VDS" firstAttribute="centerY" secondItem="RBX-7T-U8d" secondAttribute="centerY" id="94P-ZH-IIK"/>
+                            <constraint firstAttribute="trailing" secondItem="Cyf-Ce-VDS" secondAttribute="trailing" constant="16" id="HZR-ue-mSo"/>
+                            <constraint firstItem="Cyf-Ce-VDS" firstAttribute="centerX" secondItem="RBX-7T-U8d" secondAttribute="centerX" id="fTz-TC-OzH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="b0V-nw-Mn0"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n1d-hT-JLi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5109" y="37"/>
         </scene>
     </scenes>
     <resources>

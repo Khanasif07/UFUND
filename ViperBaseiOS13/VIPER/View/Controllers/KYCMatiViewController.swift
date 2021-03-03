@@ -11,12 +11,13 @@
 
 
 import UIKit
-import MatiGlobalIDSDK
+//import MatiGlobalIDSDK
 import ObjectMapper
 
-class KYCMatiViewController: UIViewController, MFKYCDelegate {
-    
+//class KYCMatiViewController: UIViewController, MFKYCDelegate {
+class KYCMatiViewController: UIViewController {
    
+    @IBOutlet weak var verifyMeBtn: UIButton!
     @IBOutlet weak var verifiedView: UIView!
     @IBOutlet weak var statusLbl: UILabel!
     @IBAction func goBack(_ sender: UIButton) {
@@ -27,7 +28,7 @@ class KYCMatiViewController: UIViewController, MFKYCDelegate {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
-    let matiButton = MFKYCButton()
+//    let matiButton = MFKYCButton()
     
     @IBOutlet weak var imgBack: UIImageView!
     @IBOutlet weak var buttonView: UIView!
@@ -36,10 +37,10 @@ class KYCMatiViewController: UIViewController, MFKYCDelegate {
         super.viewDidLoad()
        
        
-        MFKYC.register(clientId: MFKYC_CLIENTID)
-        matiButton.frame = CGRect(x: 0, y:0, width: buttonView.frame.width, height: buttonView.frame.height)
-        self.buttonView.addSubview(matiButton)
-        MFKYC.instance.delegate = self
+//        MFKYC.register(clientId: MFKYC_CLIENTID)
+//        matiButton.frame = CGRect(x: 0, y:0, width: buttonView.frame.width, height: buttonView.frame.height)
+//        self.buttonView.addSubview(matiButton)
+//        MFKYC.instance.delegate = self
     }
     
     override func viewWillLayoutSubviews() {
@@ -56,6 +57,11 @@ class KYCMatiViewController: UIViewController, MFKYCDelegate {
         
         self.loadProfileDetails()
         
+    }
+    
+    @IBAction func verifyMeBtnAction(_ sender: UIButton) {
+        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: MFKYCDelegate
@@ -118,7 +124,7 @@ extension KYCMatiViewController: PresenterOutputProtocol {
                  statusLbl.text = Constants.string.pendingKyc.localize()
                  verifiedView.backgroundColor = UIColor(hex: "#FBFBE4")
             } else {
-                
+                verifyMeBtn.isHidden = false
                 buttonView.isHidden = false
                 verifiedView.isHidden = true
                

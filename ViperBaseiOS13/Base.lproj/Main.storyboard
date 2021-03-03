@@ -1555,7 +1555,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <!--View Controller-->
         <scene sceneID="5Ug-vS-hAP">
             <objects>
-                <viewController storyboardIdentifier="KYCViewController" id="XdR-MS-G1a" customClass="KYCViewController" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KYCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XdR-MS-G1a" customClass="KYCViewController" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Ak-qc-Wws">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -12559,6 +12559,21 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obh-2M-nWL">
+                                                <rect key="frame" x="82" y="694" width="250" height="39"/>
+                                                <color key="backgroundColor" name="facebookColor"/>
+                                                <state key="normal" title="Verify me">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="verifyMeBtnAction:" destination="syy-hX-1BZ" eventType="touchUpInside" id="cSa-ra-KIh"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -12566,13 +12581,17 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="mtm-Kd-vwK" firstAttribute="centerX" secondItem="Pv9-p2-yQk" secondAttribute="centerX" id="Cfg-lu-hma"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="top" secondItem="Pv9-p2-yQk" secondAttribute="top" id="Con-a3-dzx"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="width" secondItem="Pv9-p2-yQk" secondAttribute="width" multiplier="0.3" id="JOe-yP-P39"/>
+                                            <constraint firstItem="obh-2M-nWL" firstAttribute="trailing" secondItem="BbP-Yt-KCZ" secondAttribute="trailing" id="KAK-xG-Rh0"/>
                                             <constraint firstAttribute="trailing" secondItem="osd-Mc-Dvh" secondAttribute="trailing" constant="25" id="Kv2-lE-rug"/>
+                                            <constraint firstItem="obh-2M-nWL" firstAttribute="bottom" secondItem="BbP-Yt-KCZ" secondAttribute="bottom" id="Tli-AC-D5W"/>
                                             <constraint firstItem="BbP-Yt-KCZ" firstAttribute="width" secondItem="mtm-Kd-vwK" secondAttribute="width" id="U05-0b-j7J"/>
                                             <constraint firstAttribute="bottom" secondItem="mtm-Kd-vwK" secondAttribute="bottom" constant="25" id="ZiE-Ml-00e"/>
                                             <constraint firstItem="BbP-Yt-KCZ" firstAttribute="height" secondItem="mtm-Kd-vwK" secondAttribute="height" multiplier="0.866667" id="Zvq-vh-6e7"/>
                                             <constraint firstItem="BbP-Yt-KCZ" firstAttribute="centerX" secondItem="mtm-Kd-vwK" secondAttribute="centerX" id="aDt-07-gPh"/>
+                                            <constraint firstItem="obh-2M-nWL" firstAttribute="centerX" secondItem="BbP-Yt-KCZ" secondAttribute="centerX" id="eLR-wM-Dpx"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="centerX" secondItem="Pv9-p2-yQk" secondAttribute="centerX" id="hZL-8g-Zv4"/>
                                             <constraint firstItem="osd-Mc-Dvh" firstAttribute="top" secondItem="eKA-Da-6Sz" secondAttribute="bottom" constant="20" id="kxE-Ok-IVJ"/>
+                                            <constraint firstItem="obh-2M-nWL" firstAttribute="top" secondItem="BbP-Yt-KCZ" secondAttribute="top" id="l3H-3M-ZuB"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="height" secondItem="Pv9-p2-yQk" secondAttribute="height" multiplier="0.3" id="sws-Fn-76y"/>
                                             <constraint firstItem="osd-Mc-Dvh" firstAttribute="leading" secondItem="Pv9-p2-yQk" secondAttribute="leading" constant="25" id="uCy-Tw-W0G"/>
                                         </constraints>
@@ -12606,6 +12625,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="imgBack" destination="E9S-Yg-nc2" id="3Sw-2m-byE"/>
                         <outlet property="statusLbl" destination="JPf-Yr-fz1" id="pQp-7M-Ukv"/>
                         <outlet property="verifiedView" destination="BbP-Yt-KCZ" id="sLM-vk-98g"/>
+                        <outlet property="verifyMeBtn" destination="obh-2M-nWL" id="EcD-Yz-5O5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zvr-40-4cY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -12955,6 +12975,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
         </namedColor>
         <namedColor name="availableGrad1">
             <color red="0.99000000953674316" green="0.50999999046325684" blue="0.40999999642372131" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="facebookColor">
+            <color red="0.23000000417232513" green="0.34999999403953552" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="googleColor">
             <color red="0.92000001668930054" green="0.25999999046325684" blue="0.20999999344348907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

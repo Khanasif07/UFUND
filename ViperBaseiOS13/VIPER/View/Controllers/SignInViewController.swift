@@ -150,6 +150,9 @@ class SignInViewController: UIViewController {
                         self.hitSocialLoginAPI(name: firstName, email: recivedEmailID, socialId: session?.userID ?? "", socialType: self.socialLoginType)
                         
                     }else {
+                        let firstName = session?.userName ?? ""   // received first name
+                        let recivedEmailID = email ?? ""   // received email
+                        self.hitSocialLoginAPI(name: firstName, email: recivedEmailID, socialId: session?.userID ?? "", socialType: self.socialLoginType)
                         print("error: \(String(describing: error?.localizedDescription))");
                     }
                 }
@@ -187,33 +190,40 @@ extension SignInViewController {
                configuration: LinkedinSwiftConfiguration(clientId: AppConstants.linkedIn_Client_Id, clientSecret: AppConstants.linkedIn_ClientSecret, state: AppConstants.linkedIn_States, permissions: AppConstants.linkedIn_Permissions, redirectUrl: AppConstants.linkedIn_redirectUri)
            )
            
-           linkedinHelper.authorizeSuccess({ (lsToken) -> Void in
+           linkedinHelper.authorizeSuccess({ [weak self] (lsToken)  -> Void in
                //Login success lsToken
-               
-               
-               linkedinHelper.requestURL("https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,headline,picture-url,public-profile-url)?format=json", requestType: LinkedinSwiftRequestGet, success: { (response) -> Void in
-                   
-                   guard let data = response.jsonObject else {return}
-                   
-                   if let email = data["emailAddress"] as? String, email.isEmpty {
-                       //show toast
-                       //                        AppToast.default.showToastMessage(message: LocalizedString.AllowEmailInLinkedIn.localized)
-                       linkedinHelper.logout()
-                   }
-                   else {
-                       //                        self.userData.authKey     = linkedinHelper.lsAccessToken?.accessToken ?? ""
-                       //                        self.userData.firstName  = data["firstName"] as? String ?? ""
-                       //                        self.userData.lastName  = data["lastName"]  as? String ?? ""
-                       //                        self.userData.id            = data["id"] as? String ?? ""
-                       //                        self.userData.service   = "linkedin_oauth2"
-                       //                        self.userData.email      =  data["emailAddress"] as? String ?? ""
-                       //                        self.userData.picture   = data["pictureUrl"] as? String ?? ""
-                       
-                       print(response)
-                       //                    completionBlock?(true)
-                       //                        self.webserviceForSocialLogin()
-                       //                        linkedinHelper.logout()
-                   }
+               //https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))
+            //https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))
+            
+            guard let _ = self else { return }
+            linkedinHelper.requestURL("https://api.linkedin.com/v2/me?projection=(id,firstName,lastName)", requestType: LinkedinSwiftRequestGet, success: { [weak self] (response) -> Void in
+                guard let _ = self else { return }
+                guard let data = response.jsonObject else {return}
+                if  let linkedinId = data["id"] as? String{
+                    if  let firstNameDict = data["firstName"] as? [String:Any]{
+                        if let firstName = firstNameDict["localized"] as?  [String:Any]{
+                            let name = firstName["en_US"] as? String
+                            print(name ?? "")
+                            linkedinHelper.requestURL("https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))", requestType: LinkedinSwiftRequestGet, success: { [weak self] (responsee) -> Void in
+                                guard let _ = self else { return }
+                                guard let data = responsee.jsonObject else {return}
+                                if  let emailAddresDictArray = data["elements"] as? [[String:Any]]{
+                                    if let emailAddresDict = emailAddresDictArray.first {
+                                        if let emailAdress = emailAddresDict["handle~"] as? [String:Any]{
+                                            let email = emailAdress["emailAddress"] as? String
+                                            self?.hitSocialLoginAPI(name: name ?? "", email: email ?? "", socialId: linkedinId, socialType: self!.socialLoginType)
+                                            print(email ?? "")
+                                        }
+                                    }
+                                }
+                            }) { (error) -> Void in
+                                print(error.localizedDescription)
+                            }
+                        }
+                    }
+                }
+                print(response)
+//                linkedinHelper.logout()
                }) { (error) -> Void in
                    //                completionBlock?(false)
                    //Encounter error
@@ -310,10 +320,10 @@ extension SignInViewController: PresenterOutputProtocol {
             CommonUserDefaults.storeUserData(from: self.signInModel)
             storeInUserDefaults()
             
-//            if self.signInModel?.kyc == 0 {
-//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            } else {
+            if self.signInModel?.kyc == 0 {
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
+                self.navigationController?.pushViewController(vc, animated: true)
+            } else {
                 
                 if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
 
@@ -325,6 +335,7 @@ extension SignInViewController: PresenterOutputProtocol {
                     ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                     self.push(id: Storyboard.Ids.DrawerController, animation: true)
                 }
+            }
             
         case Base.social_signup.rawValue:
             self.loader.isHidden = true
@@ -332,17 +343,21 @@ extension SignInViewController: PresenterOutputProtocol {
             CommonUserDefaults.storeUserData(from: self.signInModel)
             User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
             storeInUserDefaults()
-            if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
-                
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
-                vc.changePINStr = "changePINStr"
+            if self.signInModel?.kyc == 0 {
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
-                
             } else {
-                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-                self.push(id: Storyboard.Ids.DrawerController, animation: true)
+                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
+                    
+                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
+                    vc.changePINStr = "changePINStr"
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                } else {
+                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+                    self.push(id: Storyboard.Ids.DrawerController, animation: true)
+                }
             }
-            
             // }
             
             
@@ -397,7 +412,7 @@ extension SignInViewController {
 extension SignInViewController: AppleSignInProtocal {
     func getAppleLoginData(loginData: [String:Any]) {
          socialLoginType = .apple
-         self.hitSocialLoginAPI(name: loginData[RegisterParam.keys.name] as? String ?? "", email: loginData[RegisterParam.keys.email] as? String ?? "" , socialId: loginData[RegisterParam.keys.social_id] as? String ?? "", socialType: self.socialLoginType)
+         self.hitSocialLoginAPI(name: loginData[RegisterParam.keys.name] as? String ?? "", email: loginData[RegisterParam.keys.email] as? String ?? "" , socialId: loginData[RegisterParam.keys.socialId] as? String ?? "", socialType: self.socialLoginType)
     }
     
     func hitSocialLoginAPI(name : String , email : String , socialId : String , socialType :SocialLoginType){
