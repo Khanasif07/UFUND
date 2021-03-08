@@ -66,6 +66,7 @@ class SignInViewController: UIViewController {
     private lazy var loader  : UIView = {
           return createActivityIndicator(self.view)
     }()
+    var socialLoginParams : [String:Any] = [:]
 
     
     override func viewDidLoad() {
@@ -343,10 +344,10 @@ extension SignInViewController: PresenterOutputProtocol {
             CommonUserDefaults.storeUserData(from: self.signInModel)
             User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
             storeInUserDefaults()
-            if self.signInModel?.kyc == 0 {
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
+//            if self.signInModel?.kyc == 0 {
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            } else {
                 if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
                     
                     guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
@@ -357,7 +358,7 @@ extension SignInViewController: PresenterOutputProtocol {
                     ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                     self.push(id: Storyboard.Ids.DrawerController, animation: true)
                 }
-            }
+//            }
             // }
             
             
@@ -366,9 +367,42 @@ extension SignInViewController: PresenterOutputProtocol {
         }
     }
     
+    func showSuccessWithParams(statusCode: Int, params: [String : Any], api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        if statusCode == StatusCode.socialSignupSuccessCode.rawValue {
+            let vc = LoginWithEmailVC.instantiate(fromAppStoryboard: .Products)
+            vc.socialLoginType = socialLoginType
+            vc.name = params[RegisterParam.keys.name] as? String ?? ""
+            vc.email = params[RegisterParam.keys.email] as? String ?? ""
+            vc.socialId = params[RegisterParam.keys.social_id] as? String ?? ""
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
     func showError(error: CustomError) {
-         self.loader.isHidden = true
-         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+        self.loader.isHidden = true
+        if error.statusCode == StatusCode.socialSignupSuccessCode.rawValue {
+            let vc = LoginWithEmailVC.instantiate(fromAppStoryboard: .Products)
+            vc.socialLoginSuccess = { [weak self] in
+                guard let selff = self else { return }
+                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
+                    
+                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
+                    vc.changePINStr = "changePINStr"
+                    selff.navigationController?.pushViewController(vc, animated: true)
+                    
+                } else {
+                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+                    selff.push(id: Storyboard.Ids.DrawerController, animation: true)
+                }
+            }
+            vc.socialLoginType = socialLoginType
+            vc.name = socialLoginParams[RegisterParam.keys.name] as? String ?? ""
+            vc.email = socialLoginParams[RegisterParam.keys.email] as? String ?? ""
+            vc.socialId = socialLoginParams[RegisterParam.keys.social_id] as? String ?? ""
+            self.present(vc, animated: true, completion: nil)
+            return
+        }
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }
 
@@ -417,8 +451,9 @@ extension SignInViewController: AppleSignInProtocal {
     
     func hitSocialLoginAPI(name : String , email : String , socialId : String , socialType :SocialLoginType){
         self.loader.isHidden = false
-        let params: [String:Any] = [RegisterParam.keys.name: name,RegisterParam.keys.email: email,RegisterParam.keys.signup_by: socialType.rawValue,RegisterParam.keys.social_id: socialId,RegisterParam.keys.is_manual: 0,RegisterParam.keys.device_token: nullStringToEmpty(string: fcmToken) as AnyObject,
+        let params: [String:Any] = [RegisterParam.keys.name: name,RegisterParam.keys.email: "",RegisterParam.keys.signup_by: socialType.rawValue,RegisterParam.keys.social_id: socialId,RegisterParam.keys.is_manual: 0,RegisterParam.keys.device_token: nullStringToEmpty(string: fcmToken) as AnyObject,
                                     RegisterParam.keys.device_id: nullStringToEmpty(string: deviceIds) as AnyObject, RegisterParam.keys.device_type: nullStringToEmpty(string: deviceType.rawValue) as AnyObject]
+        self.socialLoginParams = params
         self.presenter?.HITAPI(api: Base.social_signup.rawValue, params: params, methodType: .POST, modelClass: SocialLoginEntity.self, token: false)
         
     }

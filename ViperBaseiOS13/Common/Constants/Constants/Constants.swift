@@ -176,6 +176,7 @@ struct Constants {
     let activate = "Activate"
     let PleasePIN = "Please enter new PIN"
     let pleaseEnterProductName = "Please Enter Product Name"
+    let pleaseEnterEmailAddress = "Please Enter your email ID"
     let enterBrand = "Please Enter Brand"
     let enterProductValue = "Please Enter Product Value"
     let enterEAN = "Please Enter EAN/UPC Code"

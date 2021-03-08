@@ -88,13 +88,13 @@ extension Webservice : WebServiceProtocol {
                              print("responseJSON: ",responseJSON)
                             self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
                             
-                            self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
+                            self.interactor?.responseSuccessWithParams(statusCode:response.response?.statusCode ?? 0,params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
                         }else{ //Array:
                             if let json = response.result.value as? [[String:Any]] {
                                    print("responseJSON: ",json)
                                 self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: [:], responseArray: json)
                                 
-                                self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
+                                self.interactor?.responseSuccessWithParams(statusCode:response.response?.statusCode ?? 0,params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
                             }
                         }
                     }else{
@@ -143,7 +143,7 @@ extension Webservice : WebServiceProtocol {
                         case .success(let val):
                             print("IMAGE POST RESPONSE---\(val)")
                              print("IMAGE POST RESPONSE TEST---",val)
-                            if response.response?.statusCode == StatusCode.success.rawValue {
+                            if response.response?.statusCode == StatusCode.success.rawValue || response.response?.statusCode == StatusCode.successCode.rawValue  {
                                 if(response.result.value as AnyObject).isKind(of: NSDictionary.self){  //Dictionary
                                     guard let responseJSON = response.result.value as? [String: AnyObject] else {
                                         print("Error reading response")
@@ -151,12 +151,12 @@ extension Webservice : WebServiceProtocol {
                                     }
                                     self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
                                     
-                                    self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
+                                    self.interactor?.responseSuccessWithParams(statusCode: response.response?.statusCode ?? 0, params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
                                 }else{  //Array
                                     if let json = response.result.value as? [[String:Any]] {
                                         self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: [:], responseArray: json)
                                         
-                                        self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
+                                        self.interactor?.responseSuccessWithParams(statusCode: response.response?.statusCode ?? 0, params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
                                     }
                                 }
                             }else {
@@ -407,19 +407,19 @@ extension Webservice : WebServiceProtocol {
                                 case .success(let val):
                                     print("IMAGE POST RESPONSE---\(val)")
                                      print("IMAGE POST RESPONSE TEST---",val)
-                                    if response.response?.statusCode == StatusCode.success.rawValue {
+                                    if response.response?.statusCode == StatusCode.success.rawValue || response.response?.statusCode == StatusCode.successCode.rawValue {
                                         if(response.result.value as AnyObject).isKind(of: NSDictionary.self){  //Dictionary
                                             guard let responseJSON = response.result.value as? [String: AnyObject] else {
                                                 print("Error reading response")
                                                 return
                                             }
                                             self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
-                                            self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
+                                            self.interactor?.responseSuccessWithParams(statusCode: response.response?.statusCode ?? 0, params: params ?? [:],api: api, className: modelClass, responseDict: responseJSON, responseArray: [])
                                         }else{  //Array
                                             if let json = response.result.value as? [[String:Any]] {
                                                 self.interactor?.responseSuccess(api: api, className: modelClass, responseDict: [:], responseArray: json)
                                                 
-                                                self.interactor?.responseSuccessWithParams(params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
+                                                self.interactor?.responseSuccessWithParams(statusCode: response.response?.statusCode ?? 0, params: params ?? [:],api: api, className: modelClass, responseDict: [:], responseArray: json)
                                             }
                                         }
                                     }else {

@@ -35,7 +35,7 @@ class AllProductsVC: UIViewController {
     var searchText : String = ""
     var productTitle: String = "All Products"
     var isSearchEnable: Bool = false
-    var searchInvesterProductList : [ProductModel]? = []
+    var searchInvesterProductList : [ProductModel]?
     var investerProductList : [ProductModel]?{
         didSet{
             self.mainCollView.reloadData()
@@ -46,6 +46,15 @@ class AllProductsVC: UIViewController {
        }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     
+    //Pagination
+    var hideLoader: Bool = false
+    var nextPageAvailable = true
+    var isRequestinApi = false
+    var showPaginationLoader: Bool {
+        return  hideLoader ? false : nextPageAvailable
+    }
+    var currentPage: Int = 0
+    var lastPage: Int  = 0
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
@@ -150,10 +159,10 @@ extension AllProductsVC {
         //        }
     }
     
-    private func searchProducts(searchValue: String){
+    private func searchProducts(searchValue: String,page:Int = 1){
         self.searchTask?.cancel()
         let task = DispatchWorkItem { [weak self] in
-            self?.getProductList(page: 1, search: searchValue)
+            self?.getProductList(page: page, search: searchValue)
         }
         self.searchTask = task
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
@@ -199,6 +208,16 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
         let ob = ProductDetailVC.instantiate(fromAppStoryboard: .Products)
         ob.productModel = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])
         self.navigationController?.pushViewController(ob, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if true {
+            guard nextPageAvailable, !isRequestinApi else { return }
+        } else {
+            guard !isRequestinApi else { return }
+        }
+        isRequestinApi = true
+        self.searchProducts(searchValue: self.searchText,page: self.currentPage)
     }
 }
 
@@ -256,10 +275,23 @@ extension AllProductsVC : PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
         let productModelEntity = dataDict as? ProductsModelEntity
+        self.currentPage = productModelEntity?.data?.current_page ?? 0
+        self.lastPage = productModelEntity?.data?.lastPage ?? 0
+        isRequestinApi = false
+        nextPageAvailable = self.lastPage > self.currentPage
         if let productDict = productModelEntity?.data?.data {
+            if self.currentPage == 1 {
                 self.investerProductList = productDict
-            print(investerProductList ?? [])
+            } else {
+                self.investerProductList?.append(contentsOf: productDict)
+            }
         }
+        self.currentPage += 1
+    }
+    
+    func showSuccessWithParams(statusCode:Int,params: [String : Any], api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        print(api)
+        print(statusCode)
     }
     
     func showError(error: CustomError) {

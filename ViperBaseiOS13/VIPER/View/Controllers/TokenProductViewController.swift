@@ -51,7 +51,7 @@ class TokenProductViewController: UIViewController {
     var productsList : ProductListModel?
     var assetList : ProductListModel?
     var toInvestesrAllProducts = false
-    var investerProductList : [ProductModel]?
+    var investerProductList : [ProductModel]? = []
     var investerTokenList : [TokenRequestModel]?
     var tileStr: String?
     private lazy var loader  : UIView = {

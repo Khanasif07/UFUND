@@ -205,6 +205,7 @@
 		844682D325D53CB900F44A53 /* ProductSortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844682D225D53CB900F44A53 /* ProductSortVC.swift */; };
 		844682D625D53DC900F44A53 /* ProductSortTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844682D425D53DC900F44A53 /* ProductSortTableCell.swift */; };
 		844682D725D53DC900F44A53 /* ProductSortTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844682D525D53DC900F44A53 /* ProductSortTableCell.xib */; };
+		845A9FAE25F081530066CE6B /* LoginWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A9FAD25F081530066CE6B /* LoginWithEmailVC.swift */; };
 		845ADB8425ECAEB7009392E2 /* BottomSheetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845ADB8325ECAEB7009392E2 /* BottomSheetVC.xib */; };
 		845ADB8625ECAEE7009392E2 /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845ADB8525ECAEE7009392E2 /* BottomSheetVC.swift */; };
 		845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */; };
@@ -495,6 +496,7 @@
 		844682D225D53CB900F44A53 /* ProductSortVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSortVC.swift; sourceTree = "<group>"; };
 		844682D425D53DC900F44A53 /* ProductSortTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSortTableCell.swift; sourceTree = "<group>"; };
 		844682D525D53DC900F44A53 /* ProductSortTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductSortTableCell.xib; sourceTree = "<group>"; };
+		845A9FAD25F081530066CE6B /* LoginWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailVC.swift; sourceTree = "<group>"; };
 		845ADB8325ECAEB7009392E2 /* BottomSheetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetVC.xib; sourceTree = "<group>"; };
 		845ADB8525ECAEE7009392E2 /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
 		845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePopUpVC.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				845A9FAC25F081390066CE6B /* LoginWithEmailVC */,
 				845ADB8225ECAE8B009392E2 /* BottomSheetVC */,
 				847297D325E8BD7E00711CEE /* ChangePasswordVC */,
 				84FA6EBB25E60A2D0053E618 /* AssetsFilterVC */,
@@ -1659,6 +1662,14 @@
 			path = ProductSort;
 			sourceTree = "<group>";
 		};
+		845A9FAC25F081390066CE6B /* LoginWithEmailVC */ = {
+			isa = PBXGroup;
+			children = (
+				845A9FAD25F081530066CE6B /* LoginWithEmailVC.swift */,
+			);
+			path = LoginWithEmailVC;
+			sourceTree = "<group>";
+		};
 		845ADB8225ECAE8B009392E2 /* BottomSheetVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -2410,6 +2421,7 @@
 				0824B0C32382847800F81A9B /* Bind.swift in Sources */,
 				84411E9025D1449C00718BD1 /* UserProfileVC.swift in Sources */,
 				0824B0BF2382847800F81A9B /* UIScrollView+ParallaxHeader.swift in Sources */,
+				845A9FAE25F081530066CE6B /* LoginWithEmailVC.swift in Sources */,
 				086F1385246EA62100EA4355 /* SellHistory.swift in Sources */,
 				086F1397246F094C00EA4355 /* SendViewController.swift in Sources */,
 				84FA6EB525E5FBEC0053E618 /* AssetsDetailVC.swift in Sources */,

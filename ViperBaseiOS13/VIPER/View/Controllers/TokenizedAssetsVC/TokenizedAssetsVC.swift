@@ -123,8 +123,8 @@ extension TokenizedAssetsVC {
         case (UserType.campaigner.rawValue,false):
             self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         case (UserType.investor.rawValue,false):
-            let params : [String:Any] = ["page": page,"new_products": productType == .AllAssets ? 0 : 1,"search": search]
-             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            let params : [String:Any] = ["page": page,"category": 1 ,"search": search]
+             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,true):
             self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         default:

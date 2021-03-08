@@ -57,7 +57,7 @@ protocol WebServiceToInteractor : class {
     
     func responseSuccess<T: Mappable>(api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]])
     //
-    func responseSuccessWithParams<T: Mappable>(params: [String:Any],api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]])
+    func responseSuccessWithParams<T: Mappable>(statusCode:Int,params: [String:Any],api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]])
     //
     func responseError(error : CustomError)
     
@@ -66,7 +66,7 @@ protocol WebServiceToInteractor : class {
 }
 //
 extension WebServiceToInteractor {
-    func responseSuccessWithParams<T: Mappable>(params: [String:Any],api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]]){
+    func responseSuccessWithParams<T: Mappable>(statusCode:Int,params: [String:Any],api : String, className:T.Type, responseDict:[String: Any], responseArray: [[String: Any]]){
         
     }
 }
@@ -77,17 +77,17 @@ protocol InterectorToPresenterProtocol: class {
     /*func DataFetchedArray(data: [Mappable], modelClass: Any)
      func DataFetched(data: Mappable,modelClass: Any)*/
     //
-    func dataSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?,dataDict: Mappable?, modelClass: Any)
+    func dataSuccessWithParams(statusCode:Int,params: [String:Any],api: String, dataArray: [Mappable]?,dataDict: Mappable?, modelClass: Any)
     //
     func dataSuccess(api: String, dataArray: [Mappable]?,dataDict: Mappable?, modelClass: Any)
     func dataError(error : CustomError)
 }
 //
-extension InterectorToPresenterProtocol {
-    func dataSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?,dataDict: Mappable?, modelClass: Any){
-        
-    }
-}
+//extension InterectorToPresenterProtocol {
+//    func dataSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?,dataDict: Mappable?, modelClass: Any){
+//
+//    }
+//}
 //
 
 //MARK:- PRESENTER: [BACKWARD]  [Presenter to View]:
@@ -95,14 +95,14 @@ protocol PresenterOutputProtocol: class{
     /*func showArrayData(data: [Mappable],modelClass: Any)
      func showData(data: Mappable,modelClass: Any)*/
     //
-    func showSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any)
+    func showSuccessWithParams(statusCode: Int,params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any)
     //
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any)
     func showError(error : CustomError)
 }
 //
 extension PresenterOutputProtocol{
-    func showSuccessWithParams(params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){}
+    func showSuccessWithParams(statusCode: Int,params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){}
 }
 //
 //MARK:- ROUTER:

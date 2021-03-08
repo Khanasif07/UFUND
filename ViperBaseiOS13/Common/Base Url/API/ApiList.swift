@@ -27,6 +27,7 @@ enum StatusCode : Int {
     case notreachable = 0
     case success = 200
     case successCode = 201
+    case socialSignupSuccessCode = 422
     case multipleResponse = 300
     case unAuthorized = 401
     case notFound = 404
@@ -94,6 +95,7 @@ enum Base : String {
     //New APi
     case productsCurrencies = "/api/currencies"
     case investerProductsDefault = "/api/investor/products"
+    case tokenized_asset = "/api/get-tokenized-asset-list"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .signUp

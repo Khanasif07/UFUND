@@ -50,14 +50,12 @@ struct ProductModelEntity : Mappable {
 }
 
 struct ProductsModelEntity : Mappable {
-    var current_page : Int?
     var data : ProductsEntity?
     init?(map: Map) {
 
     }
 
     mutating func mapping(map: Map) {
-        current_page <- map["current_page"]
         data <- map["data"]
     }
 }

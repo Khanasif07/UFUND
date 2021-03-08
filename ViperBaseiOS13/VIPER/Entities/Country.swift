@@ -246,6 +246,7 @@ struct SignUpModel : Mappable {
 
 struct SocialLoginEntity : Mappable {
     var access_token : String?
+    var message: String?
     var status : String?
     var user_info : SignInModel?
     init?(map: Map) {
@@ -253,6 +254,7 @@ struct SocialLoginEntity : Mappable {
     }
 
     mutating func mapping(map: Map) {
+        message <- map["message"]
         status <- map["status"]
         access_token <- map["access_token"]
         user_info <- map["user_info"]

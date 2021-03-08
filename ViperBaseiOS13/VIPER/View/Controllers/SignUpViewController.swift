@@ -366,10 +366,10 @@ extension SignUpViewController: PresenterOutputProtocol {
             CommonUserDefaults.storeUserData(from: self.signInModel)
             User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
             storeInUserDefaults()
-            if self.signInModel?.kyc == 0 {
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
+//            if self.signInModel?.kyc == 0 {
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            } else {
                 if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
                     
                     guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
@@ -380,10 +380,21 @@ extension SignUpViewController: PresenterOutputProtocol {
                     ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                     self.push(id: Storyboard.Ids.DrawerController, animation: true)
                 }
-            }
+//            }
             
         default:
             break
+        }
+    }
+    
+    func showSuccessWithParams(statusCode: Int, params: [String : Any], api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        if statusCode == StatusCode.socialSignupSuccessCode.rawValue {
+            let vc = LoginWithEmailVC.instantiate(fromAppStoryboard: .Products)
+            vc.socialLoginType = socialLoginType
+            vc.name = params[RegisterParam.keys.name] as? String ?? ""
+            vc.email = params[RegisterParam.keys.email] as? String ?? ""
+            vc.socialId = params[RegisterParam.keys.social_id] as? String ?? ""
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
@@ -404,7 +415,7 @@ extension SignUpViewController: AppleSignInProtocal {
     }
     
     func hitSocialLoginAPI(name : String , email : String , socialId : String , socialType : SocialLoginType){
-        let params: [String:Any] = [RegisterParam.keys.name: name,RegisterParam.keys.email: email,RegisterParam.keys.signup_by: socialType.rawValue,RegisterParam.keys.social_id: socialId,RegisterParam.keys.is_manual: 0,RegisterParam.keys.device_token: nullStringToEmpty(string: fcmToken) as AnyObject,
+        let params: [String:Any] = [RegisterParam.keys.name: name,RegisterParam.keys.email: "",RegisterParam.keys.signup_by: socialType.rawValue,RegisterParam.keys.social_id: socialId,RegisterParam.keys.is_manual: 0,RegisterParam.keys.device_token: nullStringToEmpty(string: fcmToken) as AnyObject,
                                     RegisterParam.keys.device_id: nullStringToEmpty(string: deviceIds) as AnyObject, RegisterParam.keys.device_type: nullStringToEmpty(string: deviceType.rawValue) as AnyObject]
         self.presenter?.HITAPI(api: Base.social_signup.rawValue, params: params, methodType: .POST, modelClass: SignUpModel.self, token: false)
         
