@@ -1,22 +1,22 @@
 //
-//  AssetsDetailVC.swift
+//  MyInvestmentsDetailVC.swift
 //  ViperBaseiOS13
 //
-//  Created by Admin on 24/02/21.
+//  Created by Admin on 08/03/21.
 //  Copyright © 2021 CSS. All rights reserved.
-//
-
 
 import UIKit
 
-class AssetsDetailVC: UIViewController {
+class MyInvestmentsDetailVC: UIViewController {
     
-    enum AssetsDetailCellType: String{
-        case assetsInfoCell
-        case assetsDescCell
-        case assetsDateCell
-        case assetsInvestmentCell
+    enum ProductDetailCellType: String{
+        case productImageCell
+        case productDescCell
+        case productDateCell
+        case productInvestmentCell
     }
+    
+    
     
     // MARK: - IBOutlets
     //===========================
@@ -29,7 +29,7 @@ class AssetsDetailVC: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     
-    var cellTypes = [AssetsDetailCellType.assetsDescCell,AssetsDetailCellType.assetsInfoCell,AssetsDetailCellType.assetsDateCell,AssetsDetailCellType.assetsInvestmentCell]
+    var cellTypes = [ProductDetailCellType.productDescCell,ProductDetailCellType.productDateCell,ProductDetailCellType.productInvestmentCell]
     
     // MARK: - Variables
     //===========================
@@ -52,15 +52,26 @@ class AssetsDetailVC: UIViewController {
     
     // MARK: - IBActions
     //===========================
+    @IBAction func investBtnAction(_ sender: UIButton) {
+        let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
+        vc.isForBuyproduct = false
+        self.present(vc, animated: true, completion: nil)
+    }
     
     @IBAction func backBtnAction(_ sender: UIButton) {
-        self.popOrDismiss(animation: true)    }
+        self.popOrDismiss(animation: true)
+    }
     
+    @IBAction func buyProductBtnAction(_ sender: UIButton) {
+        let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
+        vc.isForBuyproduct = true
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Extension For Functions
 //===========================
-extension AssetsDetailVC {
+extension MyInvestmentsDetailVC {
     
     private func initialSetup() {
         self.setFont()
@@ -68,11 +79,10 @@ extension AssetsDetailVC {
         self.mainTableView.registerCell(with: ProductDetailDescriptionCell.self)
         self.mainTableView.registerCell(with: ProductDetailDateCell.self)
         self.mainTableView.registerCell(with: ProductDetailInvestmentCell.self)
-        self.mainTableView.registerCell(with: AssetsDetailInfoCell.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.tableHeaderView = headerView
-        let imgEntity =  productModel?.token_image ?? ""
+        let imgEntity =  productModel?.product_image ?? ""
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
     }
@@ -94,15 +104,15 @@ extension AssetsDetailVC {
     }
     
     private func getProgressPercentage() -> Double{
-        let investValue =   (productModel?.tokenvalue ?? 0 )
-        let totalValue =  (productModel?.tokenvalue ?? 0)
-        return Double((investValue / totalValue) * 100)
+        let investValue =   (productModel?.investment_product_total ?? 0.0 )
+        let totalValue =  (productModel?.total_product_value ?? 0.0)
+        return (investValue / totalValue) * 100
     }
 }
 
 // MARK: - Extension For TableView
 //===========================
-extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
+extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellTypes.endIndex
@@ -110,25 +120,21 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch cellTypes[indexPath.row] {
-        case AssetsDetailCellType.assetsDescCell:
+        case ProductDetailCellType.productDescCell:
             let cell = tableView.dequeueCell(with: ProductDetailDescriptionCell.self, indexPath: indexPath)
-            cell.productTitleLbl.text = productModel?.tokenname ?? ""
-            cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
+            cell.productTitleLbl.text = productModel?.product_title ?? ""
+            cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
             cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
             return cell
-        case AssetsDetailCellType.assetsDateCell:
+        case ProductDetailCellType.productDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
-            cell.setCellForAssetsDetailPage()
-            return cell
-        case AssetsDetailCellType.assetsInfoCell:
-            let cell = tableView.dequeueCell(with: AssetsDetailInfoCell.self, indexPath: indexPath)
-            cell.configureCell(model: productModel ?? ProductModel(json: [:]))
+            cell.configureCell(model: self.productModel!)
             return cell
         default:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
-            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
-//            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
-//            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
+            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
+            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
             return cell
         }
     }

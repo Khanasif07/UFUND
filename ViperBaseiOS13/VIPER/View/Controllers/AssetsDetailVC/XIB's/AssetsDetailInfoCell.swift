@@ -34,17 +34,23 @@ class AssetsDetailInfoCell: UITableViewCell {
         // Initialization code
     }
     
-    func configureCell(){
-        self.tokenDecimnalLbl.text = "N/A"
+    func configureCell(model:ProductModel){
+//        self.tokenDecimnalLbl.text = "N/A"
         self.coinLbl.text = "N/A"
-        self.typeLbl.text = "N/A"
+//        self.typeLbl.text = "N/A"
         self.rewardsLbl.text = "N/A"
-        self.totalSupplyLbl.text = "N/A"
-        self.tokenTypeLbl.text = "N/A"
-        self.contractAddressLbl.text = "N/A"
+//        self.totalSupplyLbl.text = "N/A"
+//        self.tokenTypeLbl.text = "N/A"
+//        self.contractAddressLbl.text = "N/A"
         self.backedAssetsLbl.text = "N/A"
         self.auditorsLbl.text = "N/A"
-        self.categorylbl.text = "N/A"
+//        self.categorylbl.text = "N/A"
+        self.tokenTypeLbl.text = "\(model.token_type ?? 0)"
+        self.contractAddressLbl.text = model.contract_address ?? ""
+        self.typeLbl.text = model.tokentype ?? ""
+        self.tokenDecimnalLbl.text = "\(model.decimal ?? 0)"
+        self.categorylbl.text = model.tokenrequest?.asset?.category?.category_name ?? ""
+        self.totalSupplyLbl.text = "\(model.tokensupply ?? 0)"
     }
     
     override func layoutSubviews() {

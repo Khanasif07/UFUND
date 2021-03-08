@@ -84,7 +84,7 @@ class AssetsFilterVC: UIViewController {
     @IBAction func clearAllBtnAction(_ sender: Any) {
         if ProductFilterVM.shared.isFilterApplied && ProductFilterVM.shared.isFilterAppliedDefault{
             ProductFilterVM.shared.resetToLocally()
-             ProductFilterVM.shared.resetToDefault()
+            ProductFilterVM.shared.resetToDefault()
         } else {
              ProductFilterVM.shared.resetToAllFilter()
         }
@@ -103,7 +103,7 @@ class AssetsFilterVC: UIViewController {
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
-         ProductFilterVM.shared.isFilterAppliedDefault = true
+        ProductFilterVM.shared.isFilterAppliedDefault = true
         if !ProductFilterVM.shared.isFilterApplied {
             ProductFilterVM.shared.isFilterAppliedDefault = false
             ProductFilterVM.shared.resetToAllFilter()

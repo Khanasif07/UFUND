@@ -23,6 +23,8 @@ class ProductFilterVM {
     var defaultSelectedCategoryListing: [CategoryModel] = []
     var defaultSelectedCurrencyListing: [CurrencyModel] = []
     var defaultStatus: [String] = []
+    var defaultByRewards : [String] = []
+    var defaultTypes: [String] = []
     var minimumPrice: CGFloat = 0.0
     var maximumPrice: CGFloat = 800000.0
     var categoryListing: [CategoryModel] = []
@@ -51,6 +53,9 @@ class ProductFilterVM {
         self.selectedCategoryListing  = []
         self.selectedCurrencyListing = []
         self.status = []
+        //Assets
+        self.byRewards = []
+        self.types = []
     }
     
     
@@ -65,6 +70,9 @@ class ProductFilterVM {
         self.defaultSelectedCategoryListing = []
         self.defaultSelectedCurrencyListing = []
         self.defaultStatus = []
+        //Assets
+        self.byRewards = []
+        self.types = []
     }
     
     func resetToLocally(isFilterApplied:Bool = false) {
@@ -75,6 +83,9 @@ class ProductFilterVM {
             self.selectedCategoryListing  = self.defaultSelectedCategoryListing
             self.selectedCurrencyListing = self.defaultSelectedCurrencyListing
             self.status = self.defaultStatus
+            //Assets
+            self.byRewards = self.defaultByRewards
+            self.types = self.defaultTypes
         } else {
             self.isLocallyReset = true
             self.defaultMinimumPrice = minimumPrice
@@ -82,6 +93,9 @@ class ProductFilterVM {
             self.defaultSelectedCategoryListing = selectedCategoryListing
             self.defaultSelectedCurrencyListing = selectedCurrencyListing
             self.defaultStatus = status
+            //Assets
+            self.defaultByRewards = byRewards
+            self.defaultTypes = types
         }
     }
     

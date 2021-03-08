@@ -130,15 +130,21 @@ struct ProductModel: Mappable {
     var earnings: Double?
     var product_investment_count: Int?
     var payment_method_type : [Payment_method_type]?
-    
     var end_date : String?
     var start_date: String?
-    
-       var maturity_date : String?
+    var maturity_date : String?
     var maturity_count : String?
-   
-    
-        var move_to_sale : String?
+    //TokenizedAssets Key
+    var tokenrequest : Tokenrequest?
+    var tokenname: String?
+    var tokensupply: Int?
+    var move_to_sale : String?
+    var tokensymbol: String?
+    var tokenvalue: Int?
+    var user: UserProfile?
+    var decimal: Int?
+    var contract_address: String?
+    var token_type: Int?
    
 
     init?(map: Map) {
@@ -183,6 +189,15 @@ struct ProductModel: Mappable {
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
         investment_product_total <- map["investment_product_total"]
+        tokenrequest <- map["tokenrequest"]
+        tokenname <- map["tokenname"]
+        tokensupply <- map["tokensupply"]
+        tokensymbol <- map["tokensymbol"]
+        tokenvalue <- map["tokenvalue"]
+        user <- map["user"]
+        decimal <- map["decimal"]
+        contract_address <- map["contract_address"]
+        token_type <- map["token_type"]
         
         if investment_product_total == nil {
             

@@ -31,12 +31,11 @@ class TokenizedAssetsVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var sortType: String  = ""
     var searchTask: DispatchWorkItem?
     var productType: TokenizedAssetsType = .AllAssets
     var searchText : String = ""
     var productTitle: String = "New Tokenized Assest"
-    var isSearchEnable: Bool = false
-    var searchInvesterProductList : [ProductModel]? = []
     var investerProductList : [ProductModel]?{
         didSet{
             self.mainCollView.reloadData()
@@ -89,6 +88,7 @@ class TokenizedAssetsVC: UIViewController {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
         vc.sortArray = [("Sort by Name (A-Z)",false),("Sort by Name (Z-A)",false)]
+        vc.sortTypeApplied = self.sortType
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -114,33 +114,15 @@ extension TokenizedAssetsVC {
         mainCollView.collectionViewLayout = layout1
         layout1.minimumInteritemSpacing = 0
         layout1.minimumLineSpacing = 0
-        self.getAssetsList()
+        self.getTokenizedAssets()
     }
     
     //MARK:- PRDUCTS LIST API CALL
-    private func getAssetsList(page:Int = 1,search: String = "") {
-        switch (userType,false) {
-        case (UserType.campaigner.rawValue,false):
-            self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
-        case (UserType.investor.rawValue,false):
-            let params : [String:Any] = ["page": page,"category": 1 ,"search": search]
-             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-        case (UserType.investor.rawValue,true):
-            self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
-        default:
-            break
-        }
-        self.loader.isHidden = false
-    }
-    
     private func getTokenizedAssets(page:Int = 1,search: String = "") {
+        let params : [String:Any] = ["search": search]
         switch (userType,true) {
-        case (UserType.campaigner.rawValue,false):
-            self.presenter?.HITAPI(api: Base.tokenizedAssestList.rawValue, params: nil, methodType: .GET, modelClass: TokenRequestModel.self, token: true)
-        case (UserType.investor.rawValue,false):
-            self.presenter?.HITAPI(api: Base.investorAllTokens.rawValue, params: nil, methodType: .GET, modelClass: TokenAssetsNewEntity.self, token: true)
         case (UserType.investor.rawValue,true):
-            self.presenter?.HITAPI(api: Base.investorAssets.rawValue, params: nil, methodType: .GET, modelClass: TokenRequestModel.self, token: true)
+            self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
         }
@@ -153,9 +135,7 @@ extension TokenizedAssetsVC {
         vc.present(ob, animated: true, completion: nil)
     }
     
-    private func searchProducts(searchValue: String){
-        guard searchValue.count > 2 else {
-            return }
+    private func searchTokenizedAssets(searchValue: String){
         self.searchTask?.cancel()
         let task = DispatchWorkItem { [weak self] in
             self?.getTokenizedAssets(page: 1, search: searchValue)
@@ -179,19 +159,19 @@ extension TokenizedAssetsVC: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isSearchEnable ?   (self.searchInvesterProductList?.endIndex ?? 0)   : (self.investerProductList?.endIndex ?? 0)
+        return (self.investerProductList?.endIndex ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
-        cell.productNameLbl.text =  isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].product_title ?? "") : (self.investerProductList?[indexPath.row].product_title ?? "")
-        let imgEntity =  isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].product_image ?? "") : (self.investerProductList?[indexPath.row].product_image ?? "")
+        cell.productNameLbl.text =   (self.investerProductList?[indexPath.row].tokenname ?? "")
+        let imgEntity =   (self.investerProductList?[indexPath.row].token_image ?? "")
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-        cell.productTypeLbl.text = isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].category?.category_name ?? "") : (self.investerProductList?[indexPath.row].category?.category_name ?? "")
-        cell.priceLbl.text = "$" + (isSearchEnable ? "\((self.searchInvesterProductList?[indexPath.row].total_product_value ?? 0))" : "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))")
-        cell.liveView.isHidden = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row].status != 1)   : (self.investerProductList?[indexPath.row].status != 1)
-        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
+        cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
+        cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenvalue ?? 0))")
+        cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
+        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
         cell.backgroundColor = .clear
         return cell
     }
@@ -202,7 +182,7 @@ extension TokenizedAssetsVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ob = AssetsDetailVC.instantiate(fromAppStoryboard: .Products)
-        ob.productModel = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])
+        ob.productModel =  (self.investerProductList?[indexPath.row])
         self.navigationController?.pushViewController(ob, animated: true)
     }
 }
@@ -241,13 +221,14 @@ extension TokenizedAssetsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 //===========================
 extension TokenizedAssetsVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
+        self.sortType = sortType
         switch sortType {
         case "Sort by Name (A-Z)":
             let params :[String:Any] = ["new_products":  productType == .AllAssets ? 0 : 1,"sort_order":"ASC","sort_by":"product_title"]
-            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case "Sort by Name (Z-A)":
             let params :[String:Any] = ["new_products":  productType == .AllAssets ? 0 : 1,"sort_order":"DESC","sort_by":"product_title"]
-            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
         }
@@ -280,6 +261,7 @@ extension TokenizedAssetsVC : PresenterOutputProtocol {
 extension TokenizedAssetsVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
+        self.searchTokenizedAssets(searchValue: searchText)
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -288,7 +270,6 @@ extension TokenizedAssetsVC: UISearchBarDelegate{
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
-            self.searchProducts(searchValue: text)
             UIView.animate(withDuration: 0.3, animations: {
                 self.searchViewHConst.constant = 51.0
                 self.view.layoutIfNeeded()
@@ -304,6 +285,7 @@ extension TokenizedAssetsVC: UISearchBarDelegate{
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        self.searchTokenizedAssets(searchValue: "")
         searchBar.resignFirstResponder()
     }
     
@@ -338,32 +320,33 @@ extension TokenizedAssetsVC: ProductFilterVCDelegate {
             }.joined(separator: ",")
             params["category"] = category
         }
-        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
-            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params["currency"] = currency
-        }
         if ProductFilterVM.shared.minimumPrice != 0{
             params["min"] = ProductFilterVM.shared.minimumPrice
         }
         if ProductFilterVM.shared.maximumPrice != 0{
             params["max"] = ProductFilterVM.shared.maximumPrice
         }
-        if ProductFilterVM.shared.status.endIndex > 0{
-            if ProductFilterVM.shared.status.contains(Status.All.title){
-                params["new_products"] = productType == .AllAssets ? 0 : 1
-                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-                return
+        if ProductFilterVM.shared.types.endIndex > 0{
+            if ProductFilterVM.shared.types.contains(AssetsType.All.title){
             }
-            if ProductFilterVM.shared.status.contains(Status.Live.title){
-                params["status"] = Status.Live.rawValue
+           else if ProductFilterVM.shared.types.contains(AssetsType.Token.title){
+                params["token_type"] = Status.Live.rawValue
             }
-            if ProductFilterVM.shared.status.contains(Status.Matured.title){
-                params["status"] = Status.Matured.rawValue
+            else if ProductFilterVM.shared.types.contains(AssetsType.Assets.title){
+                params["token_type"] = Status.Matured.rawValue
             }
         }
-        params["new_products"] = productType == .AllAssets ? 0 : 1
+        if ProductFilterVM.shared.byRewards.endIndex > 0{
+            if ProductFilterVM.shared.types.contains(AssetsByReward.All.title){
+            }
+            else{
+                let byRewards =  ProductFilterVM.shared.byRewards.map { (model) -> String in
+                    return model
+                }.joined(separator: ",")
+                params["reward_by"] = byRewards
+            }
+        }
+        params["type"] = productType == .AllAssets ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
 }
