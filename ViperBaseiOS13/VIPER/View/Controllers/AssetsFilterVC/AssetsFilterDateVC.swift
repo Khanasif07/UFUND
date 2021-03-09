@@ -11,6 +11,11 @@ import UIKit
 
 class AssetsFilterDateVC: UIViewController {
     
+    enum FilterDateType {
+           case startDate
+           case closeDate
+       }
+    
     // MARK: - IBOutlets
     //===========================
     @IBOutlet weak var fromTextField: UITextField!
@@ -18,6 +23,7 @@ class AssetsFilterDateVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var filterDateType: FilterDateType = .startDate
     var  buttonView = UIButton()
     var  buttonView1 = UIButton()
     var tempTextField: UITextField?
@@ -43,7 +49,7 @@ class AssetsFilterDateVC: UIViewController {
     private let datePicker : UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
-        picker.maximumDate = Date().adjustedDate(.year, offset: 0)
+        picker.maximumDate = Date().adjustedDate(.year, offset: 50)
         return picker
     }()
     
@@ -80,6 +86,18 @@ extension AssetsFilterDateVC {
         [fromTextField,toTextField].forEach({$0?.borderColor = #colorLiteral(red: 0.8823529412, green: 0.8823529412, blue: 0.8823529412, alpha: 1)})
         [fromTextField,toTextField].forEach({$0?.placeholder = "Select date"})
         [fromTextField,toTextField].forEach({$0?.applyEffectToView(borderColor: #colorLiteral(red: 0.8823529412, green: 0.8823529412, blue: 0.8823529412, alpha: 1))})
+        self.prefilledDateSetUp()
+    }
+    
+    private func prefilledDateSetUp(){
+        switch filterDateType {
+        case .startDate:
+            self.fromTextField.text = ProductFilterVM.shared.start_from
+            self.toTextField.text = ProductFilterVM.shared.start_to
+        case .closeDate:
+            self.fromTextField.text = ProductFilterVM.shared.close_from
+            self.toTextField.text = ProductFilterVM.shared.close_to
+        }
     }
     
     private func getDateString(selectDate : Date)-> String {
@@ -88,12 +106,31 @@ extension AssetsFilterDateVC {
         return date
     }
     
+    private func getDateFormatForBackened(selectDate : Date)-> String {
+        Date.dateFormatter.dateFormat = Date.DateFormat.yyyy_MM_dd.rawValue
+        let date = Date.dateFormatter.string(from: selectDate)
+        return date
+    }
+    
     @objc func handleDatePicker(_ sender: UIDatePicker) {
         tempTextField?.text = getDateString(selectDate: datePicker.date)
-        if tempTextField == fromTextField {
-            fromDate = datePicker.date
-        }else {
-            toDate = datePicker.date
+        switch filterDateType {
+        case .startDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.start_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.start_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        case .closeDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.close_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.close_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
         }
         
     }
@@ -126,7 +163,25 @@ extension AssetsFilterDateVC :UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        txtFieldData?(fromDate,toDate)
+        tempTextField?.text = getDateString(selectDate: datePicker.date)
+        switch filterDateType {
+        case .startDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.start_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.start_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        case .closeDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.close_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.close_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        }
     }
 }
 

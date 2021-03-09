@@ -137,7 +137,7 @@ extension AllProductsVC {
         case (UserType.campaigner.rawValue,false):
             self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         case (UserType.investor.rawValue,false):
-            let params : [String:Any] = ["page": page,"new_products": productType == .AllProducts ? 0 : 1,"search": search]
+            let params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.new_products: productType == .AllProducts ? 0 : 1,ProductCreate.keys.search: search]
              self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,true):
             self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
@@ -262,10 +262,10 @@ extension AllProductsVC: ProductSortVCDelegate  {
         self.sortType = sortType
         switch sortType {
         case Constants.string.sort_by_name_AZ:
-            let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"ASC","sort_by":"product_title","search": self.searchText]
+            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
-            let params :[String:Any] = ["new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"DESC","sort_by":"product_title","search": self.searchText]
+            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
@@ -406,40 +406,37 @@ extension AllProductsVC: ProductFilterVCDelegate {
             self.selectedMaxPrice = (0.0,false)
         }
         //
-        var params :[String:Any] = ["page": 1,"search": searchText]
+        var params :[String:Any] = [ProductCreate.keys.page: 1,ProductCreate.keys.search: searchText]
         if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
             let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in
                 return String(model.id ?? 0)
             }.joined(separator: ",")
-            params["category"] = category
+            params[ProductCreate.keys.category] = category
         }
         if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
             let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
                 return String(model.id ?? 0)
             }.joined(separator: ",")
-            params["currency"] = currency
+            params[ProductCreate.keys.currency] = currency
         }
         if ProductFilterVM.shared.minimumPrice != 0{
-            params["min"] = ProductFilterVM.shared.minimumPrice
+            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
         }
         if ProductFilterVM.shared.maximumPrice != 0{
-            params["max"] = ProductFilterVM.shared.maximumPrice
-            params["min"] = ProductFilterVM.shared.minimumPrice
+            params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
+            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
         }
         if ProductFilterVM.shared.status.endIndex > 0{
             if ProductFilterVM.shared.status.contains(Status.All.title){
-                params["new_products"] = productType == .AllProducts ? 0 : 1
-                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-                return
             }
             if ProductFilterVM.shared.status.contains(Status.Live.title){
-                params["status"] = Status.Live.rawValue
+                params[ProductCreate.keys.status] = Status.Live.rawValue
             }
             if ProductFilterVM.shared.status.contains(Status.Matured.title){
-                params["status"] = Status.Matured.rawValue
+                params[ProductCreate.keys.status] = Status.Matured.rawValue
             }
         }
-        params["new_products"] = productType == .AllProducts ? 0 : 1
+        params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
 }

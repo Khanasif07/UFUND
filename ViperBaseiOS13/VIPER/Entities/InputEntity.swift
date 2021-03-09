@@ -72,6 +72,24 @@ struct ProductCreate {
     let products = "products"
     let token_type = "token_type"
     
+    //
+    let category = "category"
+    let search = "search"
+    let min = "min"
+    let max = "max"
+    let new_products = "new_products"
+    let sort_order = "sort_order"
+    let sort_by = "sort_by"
+    let reward_by = "reward_by"
+    let currency = "currency"
+    let page = "page"
+    let start_from = "start_from"
+    let start_to = "start_to"
+    let close_from  = "close_from"
+    let close_to = "close_to"
+    let status = "status"
+    let type = "type"
+    
 
 }
 

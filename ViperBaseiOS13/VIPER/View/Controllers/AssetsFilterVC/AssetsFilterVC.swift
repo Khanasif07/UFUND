@@ -11,8 +11,8 @@ import Parchment
 import ObjectMapper
 
 protocol AssetsFilterVCDelegate: class {
-    func filterApplied(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
+    func filterApplied(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool))
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool))
     
 }
 
@@ -40,7 +40,6 @@ class AssetsFilterVC: UIViewController {
     var byRewardVC          : StatusVC!
     // Parchment View
     var filtersTabs =  [MenuItem]()
-    var currencyModelEntity : CurrencyModelEntity?
     var parchmentView : PagingViewController?
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isFilterApplied:Bool = false
@@ -88,13 +87,12 @@ class AssetsFilterVC: UIViewController {
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.types, false), (ProductFilterVM.shared.byRewards, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
+        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.types, false), (ProductFilterVM.shared.byRewards, false), (ProductFilterVM.shared.minimumPrice , false), (ProductFilterVM.shared.maximumPrice , false),(ProductFilterVM.shared.start_from,false),(ProductFilterVM.shared.start_to,false),(ProductFilterVM.shared.close_from,false),(ProductFilterVM.shared.close_to,false))
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
-        ProductFilterVM.shared.isFilterAppliedDefault = true
-        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.types, !ProductFilterVM.shared.types.isEmpty), (ProductFilterVM.shared.byRewards, !ProductFilterVM.shared.byRewards.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
+        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.types, !ProductFilterVM.shared.types.isEmpty), (ProductFilterVM.shared.byRewards, !ProductFilterVM.shared.byRewards.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true),(ProductFilterVM.shared.start_from,!ProductFilterVM.shared.start_from.isEmpty),(ProductFilterVM.shared.start_to,!ProductFilterVM.shared.start_to.isEmpty),(ProductFilterVM.shared.close_from,!ProductFilterVM.shared.close_from.isEmpty),(ProductFilterVM.shared.close_to,!ProductFilterVM.shared.close_to.isEmpty))
         self.popOrDismiss(animation: true)
     }
     
@@ -124,9 +122,11 @@ extension AssetsFilterVC {
                 self.allChildVCs.append(typeVC)
             } else if i == 3 {
                 self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.startDateVC.filterDateType = .startDate
                 self.allChildVCs.append(startDateVC)
             }else if i == 4{
                 self.closingDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.closingDateVC.filterDateType = .closeDate
                 self.allChildVCs.append(closingDateVC)
             }else if i == 5 {
                 self.byRewardVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
