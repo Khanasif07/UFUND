@@ -151,9 +151,6 @@ extension AllProductsVC {
         //        if let _ = UIApplication.topViewController() {
         let ob = ProductFilterVC.instantiate(fromAppStoryboard: .Filter)
         ob.delegate = vc as? ProductFilterVCDelegate
-        ob.selectedCategory = self.selectedCategory
-        ob.selectedCurrency = self.selectedCurrency
-        ob.selectedStatus = self.selectedStatus
         vc.present(ob, animated: true, completion: nil)
         //                ob.selectedIndex = index
         //            vc.add(childViewController: ob)
@@ -363,7 +360,7 @@ extension AllProductsVC: UISearchBarDelegate{
 // MARK: - Hotel filter Delegate methods
 
 extension AllProductsVC: ProductFilterVCDelegate {
-    func filterData(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
         ProductFilterVM.shared.selectedCurrencyListing = self.selectedCurrency.0
         ProductFilterVM.shared.status = self.selectedStatus.0

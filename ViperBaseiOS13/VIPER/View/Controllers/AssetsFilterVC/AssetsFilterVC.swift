@@ -11,8 +11,8 @@ import Parchment
 import ObjectMapper
 
 protocol AssetsFilterVCDelegate: class {
-    func filterApplied()
-    func clearAllButtonTapped()
+    func filterApplied(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
     
 }
 
@@ -45,7 +45,7 @@ class AssetsFilterVC: UIViewController {
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isFilterApplied:Bool = false
     var allChildVCs: [UIViewController] = [UIViewController]()
-    weak var delegate : ProductFilterVCDelegate?
+    weak var delegate : AssetsFilterVCDelegate?
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
@@ -82,34 +82,20 @@ class AssetsFilterVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
-        if ProductFilterVM.shared.isFilterApplied && ProductFilterVM.shared.isFilterAppliedDefault{
-            ProductFilterVM.shared.resetToLocally()
-            ProductFilterVM.shared.resetToDefault()
-        } else {
-             ProductFilterVM.shared.resetToAllFilter()
-        }
+        ProductFilterVM.shared.resetToAllFilter()
         setupPagerView(isMenuReload: false)
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        if ProductFilterVM.shared.isLocallyReset && ProductFilterVM.shared.isFilterAppliedDefault{
-            ProductFilterVM.shared.resetToLocally(isFilterApplied: true)
-        }
-        if !ProductFilterVM.shared.isFilterAppliedDefault{
-            ProductFilterVM.shared.resetToDefault()
-        }
+        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.types, false), (ProductFilterVM.shared.byRewards, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.isFilterAppliedDefault = true
-        if !ProductFilterVM.shared.isFilterApplied {
-            ProductFilterVM.shared.isFilterAppliedDefault = false
-            ProductFilterVM.shared.resetToAllFilter()
-         }
-//         delegate?.filterApplied()
-         self.popOrDismiss(animation: true)
+        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.types, !ProductFilterVM.shared.types.isEmpty), (ProductFilterVM.shared.byRewards, !ProductFilterVM.shared.byRewards.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
+        self.popOrDismiss(animation: true)
     }
     
     

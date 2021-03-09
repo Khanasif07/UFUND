@@ -18,13 +18,6 @@ class ProductFilterVM {
     static let shared = ProductFilterVM()
     
     var lastSelectedIndex: Int  = 0
-    var defaultMinimumPrice: CGFloat = 0.0
-    var defaultMaximumPrice: CGFloat = 0.0
-    var defaultSelectedCategoryListing: [CategoryModel] = []
-    var defaultSelectedCurrencyListing: [CurrencyModel] = []
-    var defaultStatus: [String] = []
-    var defaultByRewards : [String] = []
-    var defaultTypes: [String] = []
     var minimumPrice: CGFloat = 0.0
     var maximumPrice: CGFloat = 800000.0
     var categoryListing: [CategoryModel] = []
@@ -46,61 +39,19 @@ class ProductFilterVM {
         return !(selectedCategoryListing.endIndex == 0 && selectedCurrencyListing.endIndex == 0 && status.endIndex == 0)
     }
 
-
-    func resetToDefault() {
-        self.minimumPrice = 0.0
-        self.maximumPrice = 0.0
-        self.selectedCategoryListing  = []
-        self.selectedCurrencyListing = []
-        self.status = []
-        //Assets
-        self.byRewards = []
-        self.types = []
-    }
-    
-    
     func resetToAllFilter() {
         self.minimumPrice = 0.0
         self.maximumPrice = 0.0
         self.selectedCategoryListing  = []
         self.selectedCurrencyListing = []
         self.status = []
-        self.defaultMinimumPrice = 0.0
-        self.defaultMaximumPrice = 0.0
-        self.defaultSelectedCategoryListing = []
-        self.defaultSelectedCurrencyListing = []
-        self.defaultStatus = []
         //Assets
         self.byRewards = []
         self.types = []
     }
     
-    func resetToLocally(isFilterApplied:Bool = false) {
-        if isFilterApplied {
-            self.isLocallyReset = false
-            self.minimumPrice =  self.defaultMinimumPrice
-            self.maximumPrice = self.defaultMaximumPrice
-            self.selectedCategoryListing  = self.defaultSelectedCategoryListing
-            self.selectedCurrencyListing = self.defaultSelectedCurrencyListing
-            self.status = self.defaultStatus
-            //Assets
-            self.byRewards = self.defaultByRewards
-            self.types = self.defaultTypes
-        } else {
-            self.isLocallyReset = true
-            self.defaultMinimumPrice = minimumPrice
-            self.defaultMaximumPrice = maximumPrice
-            self.defaultSelectedCategoryListing = selectedCategoryListing
-            self.defaultSelectedCurrencyListing = selectedCurrencyListing
-            self.defaultStatus = status
-            //Assets
-            self.defaultByRewards = byRewards
-            self.defaultTypes = types
-        }
-    }
-    
     public init() {
-        resetToDefault()
+        resetToAllFilter()
     }
 }
    

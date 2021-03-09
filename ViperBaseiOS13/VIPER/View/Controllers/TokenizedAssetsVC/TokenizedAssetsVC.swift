@@ -11,17 +11,17 @@ import ObjectMapper
 import DZNEmptyDataSet
 
 enum TokenizedAssetsType: String {
-       case AllAssets
-       case NewAssets
-   }
-   
-   
+    case AllAssets
+    case NewAssets
+}
+
+
 
 class TokenizedAssetsVC: UIViewController {
-   
+    
     // MARK: - IBOutlets
     //===========================
-   
+    
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var searchViewHConst: NSLayoutConstraint!
     @IBOutlet weak var titleLbl: UILabel!
@@ -42,9 +42,14 @@ class TokenizedAssetsVC: UIViewController {
         }
     }
     private lazy var loader  : UIView = {
-           return createActivityIndicator(self.view)
-       }()
+        return createActivityIndicator(self.view)
+    }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
+    var selectedCategory : (([CategoryModel],Bool)) = ([],false)
+    var selectedTypes : (([String],Bool)) = ([],false)
+    var selectedByRewards: (([String],Bool)) = ([],false)
+    var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
+    var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
     
     // MARK: - Lifecycle
     //===========================
@@ -131,7 +136,7 @@ extension TokenizedAssetsVC {
     
     func showFilterVC(_ vc: UIViewController, index: Int = 0) {
         let ob = AssetsFilterVC.instantiate(fromAppStoryboard: .Filter)
-        ob.delegate = vc as? ProductFilterVCDelegate
+        ob.delegate = vc as? AssetsFilterVCDelegate
         vc.present(ob, animated: true, completion: nil)
     }
     
@@ -153,7 +158,7 @@ extension TokenizedAssetsVC {
 
 //MARK: - Collection view delegate
 extension TokenizedAssetsVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-   
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -242,7 +247,7 @@ extension TokenizedAssetsVC : PresenterOutputProtocol {
         self.loader.isHidden = true
         let productModelEntity = dataDict as? ProductsModelEntity
         if let productDict = productModelEntity?.data?.data {
-                self.investerProductList = productDict
+            self.investerProductList = productDict
             print(investerProductList ?? [])
         }
     }
@@ -252,7 +257,7 @@ extension TokenizedAssetsVC : PresenterOutputProtocol {
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
         
     }
- 
+    
 }
 
 
@@ -308,11 +313,45 @@ extension TokenizedAssetsVC: UISearchBarDelegate{
 
 // MARK: - Hotel filter Delegate methods
 
-extension TokenizedAssetsVC: ProductFilterVCDelegate {
-    func clearAllButtonTapped() {
-    }
-    
-    func filterApplied() {
+extension TokenizedAssetsVC: AssetsFilterVCDelegate {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+        //
+        if category.1 {
+            ProductFilterVM.shared.selectedCategoryListing = category.0
+            self.selectedCategory = category
+        }else {
+            ProductFilterVM.shared.selectedCategoryListing = []
+            self.selectedCategory = ([],false)
+        }
+        if types.1 {
+            ProductFilterVM.shared.types = types.0
+            self.selectedTypes = types
+        }else{
+            ProductFilterVM.shared.types = []
+            self.selectedTypes = ([],false)
+        }
+        if byRewards.1 {
+            ProductFilterVM.shared.byRewards = byRewards.0
+            self.selectedByRewards = byRewards
+        } else {
+            ProductFilterVM.shared.byRewards = []
+            self.selectedByRewards = ([],false)
+        }
+        if min.1 {
+            ProductFilterVM.shared.minimumPrice = min.0
+            self.selectedMinPrice = min
+        } else {
+            ProductFilterVM.shared.minimumPrice = 0.0
+            self.selectedMinPrice = (0.0,false)
+        }
+        if max.1 {
+            ProductFilterVM.shared.maximumPrice = max.0
+            self.selectedMaxPrice = max
+        } else {
+            ProductFilterVM.shared.maximumPrice = 0.0
+            self.selectedMaxPrice = (0.0,false)
+        }
+        //
         var params :[String:Any] = ["page": 1,"search": searchText]
         if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
             let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in
@@ -329,7 +368,7 @@ extension TokenizedAssetsVC: ProductFilterVCDelegate {
         if ProductFilterVM.shared.types.endIndex > 0{
             if ProductFilterVM.shared.types.contains(AssetsType.All.title){
             }
-           else if ProductFilterVM.shared.types.contains(AssetsType.Token.title){
+            else if ProductFilterVM.shared.types.contains(AssetsType.Token.title){
                 params["token_type"] = Status.Live.rawValue
             }
             else if ProductFilterVM.shared.types.contains(AssetsType.Assets.title){
@@ -337,9 +376,7 @@ extension TokenizedAssetsVC: ProductFilterVCDelegate {
             }
         }
         if ProductFilterVM.shared.byRewards.endIndex > 0{
-            if ProductFilterVM.shared.types.contains(AssetsByReward.All.title){
-            }
-            else{
+            if !ProductFilterVM.shared.types.contains(AssetsByReward.All.title){
                 let byRewards =  ProductFilterVM.shared.byRewards.map { (model) -> String in
                     return model
                 }.joined(separator: ",")
@@ -347,7 +384,16 @@ extension TokenizedAssetsVC: ProductFilterVCDelegate {
             }
         }
         params["type"] = productType == .AllAssets ? 0 : 1
-        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
+    
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+        ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
+        ProductFilterVM.shared.types = self.selectedTypes.0
+        ProductFilterVM.shared.byRewards = self.selectedByRewards.0
+        ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
+        ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
+    }
+    
 }
 

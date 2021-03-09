@@ -12,12 +12,12 @@ import ObjectMapper
 
 protocol ProductFilterVCDelegate: class {
     func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
-    func filterData(_ category: ([CategoryModel],Bool),_ currency:  ([CurrencyModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  )
+    func filterDataWithoutFilter(_ category: ([CategoryModel],Bool),_ currency:  ([CurrencyModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  )
     
 }
 
 extension ProductFilterVCDelegate{
-    func filterData(_ category: ([CategoryModel],Bool),_ currency:  ([CurrencyModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  ){}
+    func filterDataWithoutFilter(_ category: ([CategoryModel],Bool),_ currency:  ([CurrencyModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  ){}
     
     func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)){}
        
@@ -59,11 +59,6 @@ class ProductFilterVC: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
-    
-    //
-    var selectedCategory : (([CategoryModel],Bool)) = ([],false)
-    var selectedCurrency : (([CurrencyModel],Bool)) = ([],false)
-    var selectedStatus: (([String],Bool)) = ([],false)
     
     // MARK: - Lifecycle
     //===========================
@@ -107,7 +102,7 @@ class ProductFilterVC: UIViewController {
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        delegate?.filterData((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.selectedCurrencyListing, false), (ProductFilterVM.shared.status, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
+        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.selectedCurrencyListing, false), (ProductFilterVM.shared.status, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
         self.popOrDismiss(animation: true)
     }
     
