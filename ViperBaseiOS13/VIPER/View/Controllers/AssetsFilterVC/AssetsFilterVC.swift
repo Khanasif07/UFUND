@@ -108,7 +108,7 @@ class AssetsFilterVC: UIViewController {
             ProductFilterVM.shared.isFilterAppliedDefault = false
             ProductFilterVM.shared.resetToAllFilter()
          }
-         delegate?.filterApplied()
+//         delegate?.filterApplied()
          self.popOrDismiss(animation: true)
     }
     

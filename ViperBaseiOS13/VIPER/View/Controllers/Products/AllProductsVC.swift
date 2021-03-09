@@ -45,7 +45,11 @@ class AllProductsVC: UIViewController {
            return createActivityIndicator(self.view)
        }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-    
+    var selectedCategory : (([CategoryModel],Bool)) = ([],false)
+    var selectedCurrency : (([CurrencyModel],Bool)) = ([],false)
+    var selectedStatus: (([String],Bool)) = ([],false)
+    var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
+    var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
     //Pagination
     var hideLoader: Bool = false
     var nextPageAvailable = true
@@ -147,9 +151,12 @@ extension AllProductsVC {
         //        if let _ = UIApplication.topViewController() {
         let ob = ProductFilterVC.instantiate(fromAppStoryboard: .Filter)
         ob.delegate = vc as? ProductFilterVCDelegate
+        ob.selectedCategory = self.selectedCategory
+        ob.selectedCurrency = self.selectedCurrency
+        ob.selectedStatus = self.selectedStatus
+        vc.present(ob, animated: true, completion: nil)
         //                ob.selectedIndex = index
         //            vc.add(childViewController: ob)
-        vc.present(ob, animated: true, completion: nil)
         //        self.addChild(ob)
         //        let frame = self.view.bounds
         //        ob.view.frame = frame
@@ -356,10 +363,52 @@ extension AllProductsVC: UISearchBarDelegate{
 // MARK: - Hotel filter Delegate methods
 
 extension AllProductsVC: ProductFilterVCDelegate {
-    func clearAllButtonTapped() {
+    func filterData(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+        ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
+        ProductFilterVM.shared.selectedCurrencyListing = self.selectedCurrency.0
+        ProductFilterVM.shared.status = self.selectedStatus.0
+        ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
+        ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
     }
     
-    func filterApplied() {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+        //
+        if category.1 {
+            ProductFilterVM.shared.selectedCategoryListing = category.0
+            self.selectedCategory = category
+        }else {
+            ProductFilterVM.shared.selectedCategoryListing = []
+            self.selectedCategory = ([],false)
+        }
+        if currency.1 {
+            ProductFilterVM.shared.selectedCurrencyListing = currency.0
+            self.selectedCurrency = currency
+        }else{
+            ProductFilterVM.shared.selectedCurrencyListing = []
+            self.selectedCurrency = ([],false)
+        }
+        if status.1 {
+            ProductFilterVM.shared.status = status.0
+            self.selectedStatus = status
+        } else {
+            ProductFilterVM.shared.status = []
+            self.selectedStatus = ([],false)
+        }
+        if min.1 {
+            ProductFilterVM.shared.minimumPrice = min.0
+            self.selectedMinPrice = min
+        } else {
+            ProductFilterVM.shared.minimumPrice = 0.0
+            self.selectedMinPrice = (0.0,false)
+        }
+        if max.1 {
+            ProductFilterVM.shared.maximumPrice = max.0
+            self.selectedMaxPrice = max
+        } else {
+            ProductFilterVM.shared.maximumPrice = 0.0
+            self.selectedMaxPrice = (0.0,false)
+        }
+        //
         var params :[String:Any] = ["page": 1,"search": searchText]
         if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
             let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in

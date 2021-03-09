@@ -11,11 +11,17 @@ import Parchment
 import ObjectMapper
 
 protocol ProductFilterVCDelegate: class {
-    func filterApplied()
-    func clearAllButtonTapped()
+    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
+    func filterData(_ category: ([CategoryModel],Bool),_ currency:  ([CurrencyModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  )
     
 }
 
+extension ProductFilterVCDelegate{
+    func filterData(_ category: ([CategoryModel],Bool),_ currency:  ([CurrencyModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  ){}
+    
+    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)){}
+       
+}
 
 class ProductFilterVC: UIViewController {
     
@@ -54,6 +60,11 @@ class ProductFilterVC: UIViewController {
         return createActivityIndicator(self.view)
     }()
     
+    //
+    var selectedCategory : (([CategoryModel],Bool)) = ([],false)
+    var selectedCurrency : (([CurrencyModel],Bool)) = ([],false)
+    var selectedStatus: (([String],Bool)) = ([],false)
+    
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
@@ -86,57 +97,24 @@ class ProductFilterVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
+        ProductFilterVM.shared.resetToAllFilter()
         if isFilterWithoutCategory {
-            if ProductFilterVM.shared.isFilterApplied && ProductFilterVM.shared.isFilterAppliedDefault{
-                ProductFilterVM.shared.resetToLocally()
-                ProductFilterVM.shared.resetToDefault()
-            } else {
-                ProductFilterVM.shared.resetToAllFilter()
-            }
             setupPagerViewWithoutCategory(isMenuReload: false)
         } else {
-            if ProductFilterVM.shared.isFilterApplied && ProductFilterVM.shared.isFilterAppliedDefault{
-                ProductFilterVM.shared.resetToLocally()
-                ProductFilterVM.shared.resetToDefault()
-            } else {
-                ProductFilterVM.shared.resetToAllFilter()
-            }
             setupPagerView(isMenuReload: false)
         }
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        if isFilterWithoutCategory {
-            if ProductFilterVM.shared.isLocallyReset && ProductFilterVM.shared.isFilterAppliedDefault{
-                ProductFilterVM.shared.resetToLocally(isFilterApplied: true)
-            }
-            if !ProductFilterVM.shared.isFilterAppliedDefault{
-                ProductFilterVM.shared.resetToDefault()
-            }
-        }
-        else {
-            if ProductFilterVM.shared.isLocallyReset && ProductFilterVM.shared.isFilterAppliedDefault{
-                ProductFilterVM.shared.resetToLocally(isFilterApplied: true)
-            }
-            if !ProductFilterVM.shared.isFilterAppliedDefault{
-                ProductFilterVM.shared.resetToDefault()
-            }
-        }
+        delegate?.filterData((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.selectedCurrencyListing, false), (ProductFilterVM.shared.status, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
-         ProductFilterVM.shared.isFilterAppliedDefault = true
-         if !ProductFilterVM.shared.isFilterApplied {
-            ProductFilterVM.shared.isFilterAppliedDefault = false
-            ProductFilterVM.shared.resetToAllFilter()
-         }
-         delegate?.filterApplied()
+        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.selectedCurrencyListing, !ProductFilterVM.shared.selectedCurrencyListing.isEmpty), (ProductFilterVM.shared.status, !ProductFilterVM.shared.status.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
          self.popOrDismiss(animation: true)
     }
-    
-    
 }
 
 // MARK: - Extension For Functions
