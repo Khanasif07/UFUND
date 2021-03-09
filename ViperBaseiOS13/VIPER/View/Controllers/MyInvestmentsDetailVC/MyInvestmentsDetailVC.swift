@@ -9,11 +9,12 @@ import UIKit
 
 class MyInvestmentsDetailVC: UIViewController {
     
-    enum ProductDetailCellType: String{
+    enum MyInvestmentsDetailCellType: String{
         case productImageCell
         case productDescCell
         case productDateCell
         case productInvestmentCell
+        case InvestmentsProfitCell
     }
     
     
@@ -29,7 +30,7 @@ class MyInvestmentsDetailVC: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     
-    var cellTypes = [ProductDetailCellType.productDescCell,ProductDetailCellType.productDateCell,ProductDetailCellType.productInvestmentCell]
+    var cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell,MyInvestmentsDetailCellType.InvestmentsProfitCell]
     
     // MARK: - Variables
     //===========================
@@ -79,6 +80,7 @@ extension MyInvestmentsDetailVC {
         self.mainTableView.registerCell(with: ProductDetailDescriptionCell.self)
         self.mainTableView.registerCell(with: ProductDetailDateCell.self)
         self.mainTableView.registerCell(with: ProductDetailInvestmentCell.self)
+        self.mainTableView.registerCell(with: InvestmentsProfitTableCell.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.tableHeaderView = headerView
@@ -120,21 +122,27 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch cellTypes[indexPath.row] {
-        case ProductDetailCellType.productDescCell:
+        case MyInvestmentsDetailCellType.productDescCell:
             let cell = tableView.dequeueCell(with: ProductDetailDescriptionCell.self, indexPath: indexPath)
             cell.productTitleLbl.text = productModel?.product_title ?? ""
             cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
             cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
             return cell
-        case ProductDetailCellType.productDateCell:
+        case MyInvestmentsDetailCellType.productDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
             cell.configureCell(model: self.productModel!)
             return cell
-        default:
+        case MyInvestmentsDetailCellType.productInvestmentCell:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
-            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
-            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
-            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+//            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
+//            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
+//            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+            return cell
+        default:
+            let cell = tableView.dequeueCell(with: InvestmentsProfitTableCell.self, indexPath: indexPath)
+//            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
+//            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
+//            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
             return cell
         }
     }

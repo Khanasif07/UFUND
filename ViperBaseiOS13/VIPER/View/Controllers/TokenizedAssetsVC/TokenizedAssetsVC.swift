@@ -233,10 +233,10 @@ extension TokenizedAssetsVC: ProductSortVCDelegate  {
         self.sortType = sortType
         switch sortType {
         case "Sort by Name (A-Z)":
-            let params :[String:Any] = ["new_products":  productType == .AllAssets ? 0 : 1,"sort_order":"ASC","sort_by":"product_title"]
+            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllAssets ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case "Sort by Name (Z-A)":
-            let params :[String:Any] = ["new_products":  productType == .AllAssets ? 0 : 1,"sort_order":"DESC","sort_by":"product_title"]
+            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllAssets ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")

@@ -161,6 +161,15 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="netProfitValueLbl" destination="8kA-1Q-jle" id="cyL-aL-ccB"/>
+                <outlet property="newProfitPercentageLbl" destination="OPs-p1-XoJ" id="x53-dJ-VYW"/>
+                <outlet property="progressValue" destination="9Z5-Ct-gXM" id="4Bu-ss-Asf"/>
+                <outlet property="progressView" destination="wvm-tc-Z3i" id="cKM-oN-LwT"/>
+                <outlet property="yourEarnedValueLbl" destination="qm3-qO-y3v" id="ZsU-Tc-5bQ"/>
+                <outlet property="yourInvestmentPercentageLbl" destination="nJH-hJ-s4c" id="9Xy-9A-ZQK"/>
+                <outlet property="yourInvestmentValueLbl" destination="TFX-kh-mTE" id="qJ4-uC-mtt"/>
+            </connections>
             <point key="canvasLocation" x="129.71014492753625" y="193.19196428571428"/>
         </tableViewCell>
     </objects>

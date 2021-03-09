@@ -17,7 +17,7 @@ class ProductDetailInvestmentCell: UITableViewCell {
     
     // MARK: - Variables
     //===========================
-    var progressPercentageValue: Double = 0.0
+    var progressPercentageValue: Double = 80.0
     
     // MARK: - Lifecycle
     //===========================
