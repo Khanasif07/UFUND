@@ -23,7 +23,7 @@ class CategoryTokensDetailVC: UIViewController {
     
     // MARK: - Variables
     //===========================
-    var productType: ProductType = .NewProducts
+    var productType: TokenizedAssetsType = .NewAssets
     var categoryTitle:  String  = ""
     var sortType : String = ""
     var searchText: String  = ""
@@ -179,8 +179,8 @@ extension CategoryTokensDetailVC {
     
     private func getNewProductsData(){
         self.loader.isHidden = false
-        self.productType = .NewProducts
-        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products: 1]
+        self.productType = .NewAssets
+        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.type: productType == .AllAssets ? 0 : 1]
         if !self.sortType.isEmpty{
             params[ProductCreate.keys.sort_order] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
@@ -189,8 +189,8 @@ extension CategoryTokensDetailVC {
     }
     
     private func getAllProductsData(){
-        self.productType = .AllProducts
-        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  0]
+        self.productType = .AllAssets
+        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.type: productType == .AllAssets ? 0 : 1]
         if !self.sortType.isEmpty{
             params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
@@ -235,13 +235,13 @@ extension CategoryTokensDetailVC: ProductSortVCDelegate  {
         switch sortType {
         case Constants.string.sort_by_name_AZ:
             self.loader.isHidden = false
-            self.productType = .NewProducts
-            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
+            self.productType = .NewAssets
+            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllAssets ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
             self.loader.isHidden = false
-            self.productType = .NewProducts
-            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
+            self.productType = .NewAssets
+            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllAssets ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
@@ -318,13 +318,13 @@ extension CategoryTokensDetailVC : PresenterOutputProtocol{
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
         let productModelEntity = dataDict as? ProductsModelEntity
-        if self.productType == .NewProducts {
+        if self.productType == .NewAssets {
             if let productDict = productModelEntity?.data?.data {
                 newProductsVC.newProductListing = productDict
                 self.getAllProductsData()
             }
         }
-        if self.productType == .AllProducts {
+        if self.productType == .AllAssets {
             if let productDict = productModelEntity?.data?.data {
                 allProductsVC.allProductListing = productDict
             }
@@ -392,7 +392,7 @@ extension CategoryTokensDetailVC: AssetsFilterVCDelegate {
         if !close_from.1{self.selectedClose_from = ("",false) }
         if !close_to.1{self.selectedClose_to = ("",false) }
         //
-        self.productType = .NewProducts
+        self.productType = .NewAssets
         var params :[String:Any] = [ProductCreate.keys.page: 1,ProductCreate.keys.search: searchText]
         if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
             let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in
@@ -428,7 +428,7 @@ extension CategoryTokensDetailVC: AssetsFilterVCDelegate {
         if !ProductFilterVM.shared.start_to.isEmpty{ params[ProductCreate.keys.start_to] = ProductFilterVM.shared.start_to }
         if !ProductFilterVM.shared.close_from.isEmpty{ params[ProductCreate.keys.close_from] = ProductFilterVM.shared.close_from }
         if !ProductFilterVM.shared.close_to.isEmpty{ params[ProductCreate.keys.close_to] = ProductFilterVM.shared.close_to }
-//        params[ProductCreate.keys.type] = category == .AllAssets ? 0 : 1
+        params[ProductCreate.keys.type] = productType == .AllAssets ? 0 : 1
         self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
 }

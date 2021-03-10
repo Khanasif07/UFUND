@@ -51,7 +51,7 @@ class ProductDetailPopUpVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func buyNowAction(_ sender: Any) {
-        
+        showAlert(message: "Under Development")
     }
     
     @IBAction func cancelAction(_ sender: Any) {

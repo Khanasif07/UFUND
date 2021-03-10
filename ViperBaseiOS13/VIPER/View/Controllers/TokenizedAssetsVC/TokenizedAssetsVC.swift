@@ -21,7 +21,6 @@ class TokenizedAssetsVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
-    
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var searchViewHConst: NSLayoutConstraint!
     @IBOutlet weak var titleLbl: UILabel!
@@ -128,7 +127,7 @@ extension TokenizedAssetsVC {
     
     //MARK:- PRDUCTS LIST API CALL
     private func getTokenizedAssets(page:Int = 1,search: String = "") {
-        let params : [String:Any] = ["search": search]
+        let params : [String:Any] = ["search": search,ProductCreate.keys.type: productType == .AllAssets ? 0 : 1 ]
         switch (userType,true) {
         case (UserType.investor.rawValue,true):
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
@@ -233,10 +232,10 @@ extension TokenizedAssetsVC: ProductSortVCDelegate  {
         self.sortType = sortType
         switch sortType {
         case "Sort by Name (A-Z)":
-            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllAssets ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
+            let params :[String:Any] = [ProductCreate.keys.type: productType == .AllAssets ? 0 : 1 ,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case "Sort by Name (Z-A)":
-            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllAssets ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
+            let params :[String:Any] = [ProductCreate.keys.type: productType == .AllAssets ? 0 : 1 ,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
