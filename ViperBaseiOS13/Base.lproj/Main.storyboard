@@ -11759,10 +11759,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
             </objects>
             <point key="canvasLocation" x="-2038" y="454"/>
         </scene>
-        <!--Categories DetailVC-->
+        <!--Categories Products DetailVC-->
         <scene sceneID="3OA-oz-Ntn">
             <objects>
-                <viewController storyboardIdentifier="CategoriesDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9YN-nF-XvG" customClass="CategoriesDetailVC" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoriesProductsDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9YN-nF-XvG" customClass="CategoriesProductsDetailVC" customModule="UFUND" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EYM-wl-4Ke">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

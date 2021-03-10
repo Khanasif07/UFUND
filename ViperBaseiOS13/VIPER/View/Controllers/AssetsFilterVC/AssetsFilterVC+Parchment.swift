@@ -14,14 +14,14 @@ extension AssetsFilterVC: PagingViewControllerDataSource {
 
     func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
         
-        return MenuItem(title: ProductFilterVM.shared.allTabsStrForAssets[index], index: index, isSelected: filtersTabs[index].isSelected )
+        return isFilterWithoutCategory ?  MenuItem(title: ProductFilterVM.shared.allTabsStrForAssetsWithoutCategory[index], index: index, isSelected: filtersTabs[index].isSelected ) : MenuItem(title: ProductFilterVM.shared.allTabsStrForAssets[index], index: index, isSelected: filtersTabs[index].isSelected )
     }
 
     func pagingViewController(_ pagingViewController: PagingViewController, viewControllerAt index: Int) -> UIViewController {
         return self.allChildVCs[index]
     }
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
-        return ProductFilterVM.shared.allTabsStrForAssets.count
+        return  isFilterWithoutCategory ? ProductFilterVM.shared.allTabsStrForAssetsWithoutCategory.count : ProductFilterVM.shared.allTabsStrForAssets.count
     }
 }
 

@@ -35,6 +35,7 @@ class ProductFilterVM {
     let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(),Constants.string.currency.localize(), Constants.string.status.localize()]
     let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(),Constants.string.currency.localize(), Constants.string.status.localize()]
     let allTabsStrForAssets: [String] = [Constants.string.category.localize(), Constants.string.type.localize(),Constants.string.price.localize(), Constants.string.startDate.localize(),Constants.string.closingDate.localize(),Constants.string.byReward.localize()]
+    let allTabsStrForAssetsWithoutCategory: [String] = [Constants.string.type.localize(),Constants.string.price.localize(), Constants.string.startDate.localize(),Constants.string.closingDate.localize(),Constants.string.byReward.localize()]
 
     weak var delegate: ProductFilterVMDelegate?
     

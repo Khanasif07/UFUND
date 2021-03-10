@@ -48,6 +48,7 @@ class AssetsFilterVC: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
+    var isFilterWithoutCategory: Bool = false
     
     // MARK: - Lifecycle
     //===========================
@@ -82,7 +83,11 @@ class AssetsFilterVC: UIViewController {
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
         ProductFilterVM.shared.resetToAllFilter()
-        setupPagerView(isMenuReload: false)
+        if isFilterWithoutCategory {
+            setupPagerViewWithoutCategory(isMenuReload: false)
+        } else {
+            setupPagerView(isMenuReload: false)
+        }
     }
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
@@ -104,7 +109,11 @@ class AssetsFilterVC: UIViewController {
 extension AssetsFilterVC {
     
     private func initialSetup() {
-        self.setupPagerView()
+        if isFilterWithoutCategory{
+            self.setupPagerViewWithoutCategory()
+        } else {
+            self.setupPagerView()
+        }
     }
     
     private func setupPagerView(isMenuReload:Bool = true) {
@@ -144,6 +153,40 @@ extension AssetsFilterVC {
         
     }
     
+    private func setupPagerViewWithoutCategory(isMenuReload:Bool = true) {
+           self.allChildVCs.removeAll()
+           for i in 0..<ProductFilterVM.shared.allTabsStrForAssetsWithoutCategory.count {
+             if i == 1 {
+                   self.priceVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
+                   self.allChildVCs.append(priceVC)
+               } else if i == 0 {
+                   self.typeVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                   self.typeVC.statusType = .type
+                   self.allChildVCs.append(typeVC)
+               } else if i == 2 {
+                   self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                   self.startDateVC.filterDateType = .startDate
+                   self.allChildVCs.append(startDateVC)
+               }else if i == 3{
+                   self.closingDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                   self.closingDateVC.filterDateType = .closeDate
+                   self.allChildVCs.append(closingDateVC)
+               }else if i == 4 {
+                   self.byRewardVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                   self.byRewardVC.statusType = .byRewards
+                   self.allChildVCs.append(byRewardVC)
+               }
+           }
+           self.view.layoutIfNeeded()
+           if let _ = self.parchmentView{
+               self.parchmentView?.view.removeFromSuperview()
+               self.parchmentView = nil
+           }
+           if isMenuReload {self.initiateFilterTabsWithoutCategory()}
+           setupParchmentPageController(isMenuReload: isMenuReload)
+           
+       }
+    
     // Added to replace the existing page controller, added Hitesh Soni, 28-29Jan'2020
     private func setupParchmentPageController(isMenuReload:Bool = true){
         self.parchmentView = PagingViewController()
@@ -175,4 +218,13 @@ extension AssetsFilterVC {
             filtersTabs.append(obj)
         }
     }
+    
+    private func initiateFilterTabsWithoutCategory() {
+        filtersTabs.removeAll()
+        for i in 0..<(ProductFilterVM.shared.allTabsStrForAssetsWithoutCategory.count){
+            let obj = MenuItem(title: ProductFilterVM.shared.allTabsStrForAssetsWithoutCategory[i], index: i, isSelected: (ProductFilterVM.shared.lastSelectedIndex == i))
+            filtersTabs.append(obj)
+        }
+    }
+    
 }

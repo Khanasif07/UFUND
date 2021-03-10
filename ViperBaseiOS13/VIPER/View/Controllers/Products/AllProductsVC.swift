@@ -11,9 +11,14 @@ import ObjectMapper
 import DZNEmptyDataSet
 
 enum ProductType: String {
-       case AllProducts
-       case NewProducts
-   }
+    case AllProducts
+    case NewProducts
+}
+
+enum CategoryType: String{
+    case Products
+    case TokenzedAssets
+}
    
    
 

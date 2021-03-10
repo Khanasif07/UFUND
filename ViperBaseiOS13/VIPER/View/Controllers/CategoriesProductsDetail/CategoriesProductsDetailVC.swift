@@ -8,7 +8,7 @@
 import UIKit
 import ObjectMapper
 
-class CategoriesDetailVC: UIViewController {
+class CategoriesProductsDetailVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
@@ -48,6 +48,10 @@ class CategoriesDetailVC: UIViewController {
             }
         }
     }
+    var selectedCurrency : (([CurrencyModel],Bool)) = ([],false)
+    var selectedStatus: (([String],Bool)) = ([],false)
+    var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
+    var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -116,7 +120,7 @@ class CategoriesDetailVC: UIViewController {
 
 // MARK: - Extension For Function
 //=========================
-extension CategoriesDetailVC {
+extension CategoriesProductsDetailVC {
     
     private func initialSetup(){
         self.setUpFont()
@@ -142,7 +146,7 @@ extension CategoriesDetailVC {
         self.mainScrollView.addSubview(self.newProductsVC.view)
         self.newProductsVC.categoryModel = categoryModel
         self.newProductsVC.categoryModelId = categoryModel?.id ?? 0
-        self.newProductsVC.productType = .NewProducts
+        self.newProductsVC.categoryType = .Products
         self.addChild(self.newProductsVC)
         
         //instantiate the CategoryAllProductsVC
@@ -151,7 +155,7 @@ extension CategoriesDetailVC {
         self.mainScrollView.frame = self.allProductsVC.view.frame
         self.mainScrollView.addSubview(self.allProductsVC.view)
         self.allProductsVC.categoryModel = categoryModel
-        self.allProductsVC.productType = .AllProducts
+        self.allProductsVC.categoryType = .Products
         self.addChild(self.allProductsVC)
     }
     
@@ -172,45 +176,45 @@ extension CategoriesDetailVC {
     private func getNewProductsData(){
         self.loader.isHidden = false
         self.productType = .NewProducts
-        var params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products": 1]
+        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products: 1]
         if !self.sortType.isEmpty{
-            params["sort_order"] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
-            params["sort_by"] = "product_title"
+            params[ProductCreate.keys.sort_order] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
         }
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
     private func getAllProductsData(){
         self.productType = .AllProducts
-        var params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products":  0]
+        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  0]
         if !self.sortType.isEmpty{
-            params["sort_order"] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
-            params["sort_by"] = "product_title"
+            params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
         }
         if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
             let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
                 return String(model.id ?? 0)
             }.joined(separator: ",")
-            params["currency"] = currency
+            params[ProductCreate.keys.currency] = currency
         }
         if ProductFilterVM.shared.minimumPrice != 0{
-            params["min"] = ProductFilterVM.shared.minimumPrice
+            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
         }
         if ProductFilterVM.shared.maximumPrice != 0{
-            params["max"] = ProductFilterVM.shared.maximumPrice
-            params["min"] = ProductFilterVM.shared.minimumPrice
+            params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
+            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
         }
         if ProductFilterVM.shared.status.endIndex > 0{
             if ProductFilterVM.shared.status.contains(Status.All.title){
-                params["new_products"] = productType == .AllProducts ? 0 : 1
+                params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
                 self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
                 return
             }
             if ProductFilterVM.shared.status.contains(Status.Live.title){
-                params["status"] = Status.Live.rawValue
+                params[ProductCreate.keys.status] = Status.Live.rawValue
             }
             if ProductFilterVM.shared.status.contains(Status.Matured.title){
-                params["status"] = Status.Matured.rawValue
+                params[ProductCreate.keys.status] = Status.Matured.rawValue
             }
         }
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
@@ -224,19 +228,19 @@ extension CategoriesDetailVC {
 
 // MARK: - Sorting  Logic Implemented
 //===========================
-extension CategoriesDetailVC: ProductSortVCDelegate  {
+extension CategoriesProductsDetailVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
         self.sortType = sortType
         switch sortType {
         case Constants.string.sort_by_name_AZ:
             self.loader.isHidden = false
             self.productType = .NewProducts
-            let params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"ASC","sort_by":"product_title"]
+            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
             self.loader.isHidden = false
             self.productType = .NewProducts
-            let params :[String:Any] = ["category": "\(categoryModel?.id ?? 0)","new_products":  productType == .AllProducts ? 0 : 1,"sort_order":"DESC","sort_by":"product_title"]
+            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
@@ -247,7 +251,7 @@ extension CategoriesDetailVC: ProductSortVCDelegate  {
 
 //    MARK:- ScrollView delegate
 //    ==========================
-extension CategoriesDetailVC: UIScrollViewDelegate{
+extension CategoriesProductsDetailVC: UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.mainScrollView.contentOffset.x <= UIScreen.main.bounds.width / 2 {
             isAllProductsSelected = false
@@ -261,7 +265,7 @@ extension CategoriesDetailVC: UIScrollViewDelegate{
 
 //MARK:- UISearchBarDelegate
 //========================================
-extension CategoriesDetailVC: UISearchBarDelegate{
+extension CategoriesProductsDetailVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
     }
@@ -309,7 +313,7 @@ extension CategoriesDetailVC: UISearchBarDelegate{
 
 // MARK: - Api Success failure
 //===========================
-extension CategoriesDetailVC : PresenterOutputProtocol{
+extension CategoriesProductsDetailVC : PresenterOutputProtocol{
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
         let productModelEntity = dataDict as? ProductsModelEntity
@@ -334,45 +338,76 @@ extension CategoriesDetailVC : PresenterOutputProtocol{
 
 // MARK: - Hotel filter Delegate methods
 
-extension CategoriesDetailVC: ProductFilterVCDelegate {
-    func clearAllButtonTapped() {
+extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+        ProductFilterVM.shared.selectedCurrencyListing = self.selectedCurrency.0
+        ProductFilterVM.shared.status = self.selectedStatus.0
+        ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
+        ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
     }
     
-    func filterApplied() {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
         self.loader.isHidden = false
+        //
+        if currency.1 {
+            ProductFilterVM.shared.selectedCurrencyListing = currency.0
+            self.selectedCurrency = currency
+        }else{
+            ProductFilterVM.shared.selectedCurrencyListing = []
+            self.selectedCurrency = ([],false)
+        }
+        if status.1 {
+            ProductFilterVM.shared.status = status.0
+            self.selectedStatus = status
+        } else {
+            ProductFilterVM.shared.status = []
+            self.selectedStatus = ([],false)
+        }
+        if min.1 {
+            ProductFilterVM.shared.minimumPrice = min.0
+            self.selectedMinPrice = min
+        } else {
+            ProductFilterVM.shared.minimumPrice = 0.0
+            self.selectedMinPrice = (0.0,false)
+        }
+        if max.1 {
+            ProductFilterVM.shared.maximumPrice = max.0
+            self.selectedMaxPrice = max
+        } else {
+            ProductFilterVM.shared.maximumPrice = 0.0
+            self.selectedMaxPrice = (0.0,false)
+        }
+        //
         self.productType = .NewProducts
-        var params :[String:Any] = ["page": 1,"search": searchText,"category": "\(categoryModel?.id ?? 0)"]
+        var params :[String:Any] = [ProductCreate.keys.page: 1,ProductCreate.keys.search: searchText,ProductCreate.keys.category: "\(categoryModel?.id ?? 0)"]
         if !self.sortType.isEmpty{
-            params["sort_order"] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
-            params["sort_by"] = "product_title"
+            params[ProductCreate.keys.sort_order] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
         }
         if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
             let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
                 return String(model.id ?? 0)
             }.joined(separator: ",")
-            params["currency"] = currency
+            params[ProductCreate.keys.currency] = currency
         }
         if ProductFilterVM.shared.minimumPrice != 0{
-            params["min"] = ProductFilterVM.shared.minimumPrice
+            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
         }
         if ProductFilterVM.shared.maximumPrice != 0{
-            params["max"] = ProductFilterVM.shared.maximumPrice
-            params["min"] = ProductFilterVM.shared.minimumPrice
+            params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
+            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
         }
         if ProductFilterVM.shared.status.endIndex > 0{
             if ProductFilterVM.shared.status.contains(Status.All.title){
-                params["new_products"] = productType == .AllProducts ? 0 : 1
-                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-                return
             }
             if ProductFilterVM.shared.status.contains(Status.Live.title){
-                params["status"] = Status.Live.rawValue
+                params[ProductCreate.keys.status] = Status.Live.rawValue
             }
             if ProductFilterVM.shared.status.contains(Status.Matured.title){
-                params["status"] = Status.Matured.rawValue
+                params[ProductCreate.keys.status] = Status.Matured.rawValue
             }
         }
-        params["new_products"] = productType == .AllProducts ? 0 : 1
+        params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
 }
