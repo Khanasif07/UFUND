@@ -273,6 +273,21 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
                 vc.productType = .AllAssets
                 (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             }
+            
+        case Constants.string.allMyInvestment.localize():
+            if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.myTokenInvestMents.localize(){
+                self.drawerController?.closeSide()
+                let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
+                vc.investmentType = .MyTokenInvestment
+                vc.productTitle = Constants.string.myTokenInvestMents.localize()
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            } else if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.myProductInvestMents.localize(){
+                self.drawerController?.closeSide()
+                let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
+                vc.investmentType = .MyProductInvestment
+                vc.productTitle = Constants.string.myProductInvestMents.localize()
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            }
         default:
             print("Do Nothing")
         }

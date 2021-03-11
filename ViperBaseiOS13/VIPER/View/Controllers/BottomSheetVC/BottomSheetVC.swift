@@ -267,7 +267,16 @@ extension BottomSheetVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
             case Constants.string.investment.localize():
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.InvestmentListViewController) as? InvestmentListViewController else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
-                
+            case Constants.string.myProductInvestMents.localize():
+                let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
+                vc.investmentType = .MyProductInvestment
+                vc.productTitle = Constants.string.myProductInvestMents.localize()
+                self.navigationController?.pushViewController(vc, animated: true)
+            case Constants.string.myTokenInvestMents.localize():
+                let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
+                vc.investmentType = .MyTokenInvestment
+                vc.productTitle = Constants.string.myTokenInvestMents.localize()
+                self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.MyProducts.localize():
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
                 vc.tileStr = Constants.string.my.localize()

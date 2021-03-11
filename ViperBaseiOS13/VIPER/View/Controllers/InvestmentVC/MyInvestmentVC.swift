@@ -1,44 +1,34 @@
 //
-//  AllProductsVC.swift
+//  MyInvestmentVC.swift
 //  ViperBaseiOS13
 //
-//  Created by Admin on 15/02/21.
+//  Created by Admin on 10/03/21.
 //  Copyright © 2021 CSS. All rights reserved.
 //
-
 import UIKit
 import ObjectMapper
 import DZNEmptyDataSet
 
-enum ProductType: String {
-    case AllProducts
-    case NewProducts
+enum MyInvestmentType: String {
+    case MyProductInvestment
+    case MyTokenInvestment
 }
-
-enum CategoryType: String{
-    case Products
-    case TokenzedAssets
-}
-   
-   
-
-class AllProductsVC: UIViewController {
+class MyInvestmentVC: UIViewController {
    
     // MARK: - IBOutlets
     //===========================
-    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var searchViewHConst: NSLayoutConstraint!
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var mainCollView: UICollectionView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     // MARK: - Variables
     //===========================
     var sortType : String = ""
     var searchTask: DispatchWorkItem?
-    var productType: ProductType = .AllProducts
+    var investmentType: MyInvestmentType = .MyProductInvestment
     var searchText : String = ""
-    var productTitle: String = "All Products"
+    var productTitle: String = ""
     var isSearchEnable: Bool = false
     var searchInvesterProductList : [ProductModel]?
     var investerProductList : [ProductModel]?{
@@ -51,10 +41,18 @@ class AllProductsVC: UIViewController {
        }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
-    var selectedCurrency : (([CurrencyModel],Bool)) = ([],false)
-    var selectedStatus: (([String],Bool)) = ([],false)
+    var selectedInvestorStart_from : (String,Bool) = ("",false)
+    var selectedInvestorStart_to : (String,Bool) = ("",false)
+    var selectedInvestorClose_from : (String,Bool) = ("",false)
+    var selectedInvestorClose_to : (String,Bool) = ("",false)
+    var selectedInvestorMature_from : (String,Bool) = ("",false)
+    var selectedInvestorMature_to : (String,Bool) = ("",false)
+    var selectedInvestorYield_from : (CGFloat,Bool) = (0.0,false)
+    var selectedInvestorYield_to : (CGFloat,Bool) = (0.0,false)
     var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
     var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
+    var selectedMinimumEarning : (CGFloat,Bool) = (0.0,false)
+    var selectedMaximumEarning : (CGFloat,Bool) = (0.0,false)
     //Pagination
     var hideLoader: Bool = false
     var nextPageAvailable = true
@@ -90,14 +88,6 @@ class AllProductsVC: UIViewController {
     
     // MARK: - IBActions
     //===========================
-    @IBAction func searchBtnAction(_ sender: UIButton) {
-        searchBar.becomeFirstResponder()
-        UIView.animate(withDuration: 0.3, animations: {
-            self.searchViewHConst.constant = 51.0
-            self.view.layoutIfNeeded()
-        })
-    }
-    
     @IBAction func backBtnAction(_ sender: UIButton) {
         self.popOrDismiss(animation: true)
     }
@@ -117,11 +107,9 @@ class AllProductsVC: UIViewController {
 
 // MARK: - Extension For Functions
 //===========================
-extension AllProductsVC {
-    
+extension MyInvestmentVC {
     private func initialSetup(){
         ProductFilterVM.shared.resetToAllFilter()
-        self.searchBar.delegate = self
         self.titleLbl.text = productTitle
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
         self.mainCollView.delegate = self
@@ -137,41 +125,27 @@ extension AllProductsVC {
     }
     
     //MARK:- PRDUCTS LIST API CALL
-    private func getProductList(page:Int = 1,search: String = "") {
+    private func getProductList(page:Int = 1,search: String = "",loader:Bool = false) {
         switch (userType,false) {
-        case (UserType.campaigner.rawValue,false):
-            self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         case (UserType.investor.rawValue,false):
-            let params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.new_products: productType == .AllProducts ? 0 : 1,ProductCreate.keys.search: search]
-             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-        case (UserType.investor.rawValue,true):
-            self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
+            let params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.new_products: investmentType == .MyTokenInvestment ? 0 : 1,ProductCreate.keys.search: search]
+             self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
         }
-        self.loader.isHidden = false
+        self.loader.isHidden = loader
     }
     
     func showFilterVC(_ vc: UIViewController, index: Int = 0) {
-        //        if let _ = UIApplication.topViewController() {
-        let ob = ProductFilterVC.instantiate(fromAppStoryboard: .Filter)
-        ob.delegate = vc as? ProductFilterVCDelegate
+        let ob = InvestmentFilterVC.instantiate(fromAppStoryboard: .Filter)
+        ob.delegate = vc as? InvestmentFilterVCDelegate
         vc.present(ob, animated: true, completion: nil)
-        //                ob.selectedIndex = index
-        //            vc.add(childViewController: ob)
-        //        self.addChild(ob)
-        //        let frame = self.view.bounds
-        //        ob.view.frame = frame
-        //        self.view.addSubview(ob.view)
-        
-        //               childViewController.didMove(toParent: self)
-        //        }
     }
     
-    private func searchProducts(searchValue: String,page:Int = 1){
+    private func searchProducts(searchValue: String,page:Int = 1,loader: Bool = false){
         self.searchTask?.cancel()
         let task = DispatchWorkItem { [weak self] in
-            self?.getProductList(page: page, search: searchValue)
+            self?.getProductList(page: page, search: searchValue,loader: loader)
         }
         self.searchTask = task
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
@@ -185,7 +159,7 @@ extension AllProductsVC {
 }
 
 //MARK: - Collection view delegate
-extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -214,8 +188,9 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let ob = ProductDetailVC.instantiate(fromAppStoryboard: .Products)
+        let ob = MyInvestmentsDetailVC.instantiate(fromAppStoryboard: .Products)
         ob.productModel = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])
+        ob.investmentType = investmentType
         self.navigationController?.pushViewController(ob, animated: true)
     }
     
@@ -226,14 +201,14 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
             guard !isRequestinApi else { return }
         }
         isRequestinApi = true
-        self.searchProducts(searchValue: self.searchText,page: self.currentPage)
+        self.searchProducts(searchValue: self.searchText,page: self.currentPage,loader: true)
     }
 }
 
 
 //MARK:- Tableview Empty dataset delegates
 //========================================
-extension AllProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension MyInvestmentVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         return  #imageLiteral(resourceName: "icNoData")
     }
@@ -262,16 +237,16 @@ extension AllProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
 // MARK: - Sorting  Logic Implemented
 //===========================
-extension AllProductsVC: ProductSortVCDelegate  {
+extension MyInvestmentVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
         self.sortType = sortType
         switch sortType {
         case Constants.string.sort_by_name_AZ:
-            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
-            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            let params :[String:Any] = [ProductCreate.keys.new_products:  investmentType == .MyTokenInvestment ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText,ProductCreate.keys.page: 1]
+            self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
-            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
-            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            let params :[String:Any] = [ProductCreate.keys.new_products:  investmentType == .MyTokenInvestment ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText,ProductCreate.keys.page: 1]
+            self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
         }
@@ -279,13 +254,13 @@ extension AllProductsVC: ProductSortVCDelegate  {
 }
 
 
-extension AllProductsVC : PresenterOutputProtocol {
+extension MyInvestmentVC : PresenterOutputProtocol {
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
         let productModelEntity = dataDict as? ProductsModelEntity
         self.currentPage = productModelEntity?.data?.current_page ?? 0
-        self.lastPage = productModelEntity?.data?.lastPage ?? 0
+        self.lastPage = productModelEntity?.data?.last_page ?? 0
         isRequestinApi = false
         nextPageAvailable = self.lastPage > self.currentPage
         if let productDict = productModelEntity?.data?.data {
@@ -311,69 +286,26 @@ extension AllProductsVC : PresenterOutputProtocol {
  
 }
 
-
-//MARK:- UISearchBarDelegate
-//========================================
-extension AllProductsVC: UISearchBarDelegate{
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchText = searchText
-        self.searchProducts(searchValue: self.searchText)
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        return true
-    }
-    
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
-            UIView.animate(withDuration: 0.3, animations: {
-                self.searchViewHConst.constant = 51.0
-                self.view.layoutIfNeeded()
-            })
-        }else{
-            UIView.animate(withDuration: 0.3, animations: {
-                self.searchViewHConst.constant = 0
-                self.view.layoutIfNeeded()
-            })
-        }
-        searchBar.resignFirstResponder()
-        return true
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
-        self.searchProducts(searchValue: "")
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
-            UIView.animate(withDuration: 0.3, animations: {
-                self.searchViewHConst.constant = 51.0
-                self.view.layoutIfNeeded()
-            })
-        }else{
-            UIView.animate(withDuration: 0.3, animations: {
-                self.searchViewHConst.constant = 0
-                self.view.layoutIfNeeded()
-            })
-        }
-        searchBar.resignFirstResponder()
-    }
-}
-
-
 // MARK: - Hotel filter Delegate methods
 
-extension AllProductsVC: ProductFilterVCDelegate {
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+extension MyInvestmentVC: InvestmentFilterVCDelegate {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool)) {
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
-        ProductFilterVM.shared.selectedCurrencyListing = self.selectedCurrency.0
-        ProductFilterVM.shared.status = self.selectedStatus.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
+        ProductFilterVM.shared.investmentStart_from = self.selectedInvestorStart_from.0
+        ProductFilterVM.shared.investmentStart_to = self.selectedInvestorStart_to.0
+        ProductFilterVM.shared.investmentClose_from =  self.selectedInvestorClose_from.0
+        ProductFilterVM.shared.investmentClose_to = self.selectedInvestorClose_to.0
+        ProductFilterVM.shared.investmentMaturity_from = self.selectedInvestorMature_from.0
+        ProductFilterVM.shared.investmentMaturity_to = self.selectedInvestorMature_to.0
+        ProductFilterVM.shared.minimumEarning = self.selectedMinimumEarning.0
+        ProductFilterVM.shared.maximumEarning = self.selectedMaximumEarning.0
+        ProductFilterVM.shared.minimumYield = self.selectedInvestorYield_from.0
+        ProductFilterVM.shared.maximumYield = self.selectedInvestorYield_to.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool)) {
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0
@@ -381,20 +313,6 @@ extension AllProductsVC: ProductFilterVCDelegate {
         }else {
             ProductFilterVM.shared.selectedCategoryListing = []
             self.selectedCategory = ([],false)
-        }
-        if currency.1 {
-            ProductFilterVM.shared.selectedCurrencyListing = currency.0
-            self.selectedCurrency = currency
-        }else{
-            ProductFilterVM.shared.selectedCurrencyListing = []
-            self.selectedCurrency = ([],false)
-        }
-        if status.1 {
-            ProductFilterVM.shared.status = status.0
-            self.selectedStatus = status
-        } else {
-            ProductFilterVM.shared.status = []
-            self.selectedStatus = ([],false)
         }
         if min.1 {
             ProductFilterVM.shared.minimumPrice = min.0
@@ -410,39 +328,37 @@ extension AllProductsVC: ProductFilterVCDelegate {
             ProductFilterVM.shared.maximumPrice = 0.0
             self.selectedMaxPrice = (0.0,false)
         }
+        if min_earning.1 {
+            ProductFilterVM.shared.minimumEarning = min_earning.0
+            self.selectedMinimumEarning = min_earning
+        } else {
+            ProductFilterVM.shared.minimumEarning = 0.0
+            self.selectedMinimumEarning = (0.0,false)
+        }
+        if max_earning.1 {
+            ProductFilterVM.shared.maximumEarning = max_earning.0
+            self.selectedMaximumEarning = max_earning
+        } else {
+            ProductFilterVM.shared.maximumEarning = 0.0
+            self.selectedMaximumEarning = (0.0,false)
+        }
+        ProductFilterVM.shared.investmentMaturity_from = maturity_from.1 ? maturity_from.0 : ""
+        ProductFilterVM.shared.investmentMaturity_to = maturity_to.1 ? maturity_to.0 : ""
+        ProductFilterVM.shared.investmentStart_from = start_from.1 ? start_from.0 : ""
+        ProductFilterVM.shared.investmentStart_to = start_to.1 ? start_to.0 : ""
+        ProductFilterVM.shared.investmentClose_from = close_from.1 ? close_from.0 : ""
+        ProductFilterVM.shared.investmentClose_to = close_to.1 ? close_to.0 : ""
+        if !start_from.1{self.selectedInvestorStart_from = ("",false) }
+        if !start_to.1{self.selectedInvestorStart_to = ("",false) }
+        if !close_from.1{self.selectedInvestorClose_from = ("",false) }
+        if !close_to.1{self.selectedInvestorClose_to = ("",false) }
+        if !maturity_from.1{self.selectedInvestorMature_from = ("",false) }
+        if !maturity_to.1{self.selectedInvestorMature_to = ("",false) }
         //
-        var params :[String:Any] = [ProductCreate.keys.page: 1,ProductCreate.keys.search: searchText]
-        if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
-            let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params[ProductCreate.keys.category] = category
-        }
-        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
-            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params[ProductCreate.keys.currency] = currency
-        }
-        if ProductFilterVM.shared.minimumPrice != 0{
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
-        }
-        if ProductFilterVM.shared.maximumPrice != 0{
-            params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
-        }
-        if ProductFilterVM.shared.status.endIndex > 0{
-            if ProductFilterVM.shared.status.contains(Status.All.title){
-            }
-            if ProductFilterVM.shared.status.contains(Status.Live.title){
-                params[ProductCreate.keys.status] = Status.Live.rawValue
-            }
-            if ProductFilterVM.shared.status.contains(Status.Matured.title){
-                params[ProductCreate.keys.status] = Status.Matured.rawValue
-            }
-        }
-        params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
-        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        var params :[String:Any] = ProductFilterVM.shared.paramsDictForInvestment
+        params[ProductCreate.keys.page] = 1
+        params[ProductCreate.keys.new_products] = investmentType == .MyTokenInvestment ? 0 : 1
+        self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
 }
 

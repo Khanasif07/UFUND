@@ -12,9 +12,12 @@ import UIKit
 class AssetsFilterDateVC: UIViewController {
     
     enum FilterDateType {
-           case startDate
-           case closeDate
-       }
+        case startDate
+        case closeDate
+        case investmentStartDate
+        case investmentEndDate
+        case investmentMaturityDate
+    }
     
     // MARK: - IBOutlets
     //===========================
@@ -92,11 +95,20 @@ extension AssetsFilterDateVC {
     private func prefilledDateSetUp(){
         switch filterDateType {
         case .startDate:
-            self.fromTextField.text = ProductFilterVM.shared.start_from
-            self.toTextField.text = ProductFilterVM.shared.start_to
+            self.fromTextField.text = ProductFilterVM.shared.start_from.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
+            self.toTextField.text = ProductFilterVM.shared.start_to.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
         case .closeDate:
-            self.fromTextField.text = ProductFilterVM.shared.close_from
-            self.toTextField.text = ProductFilterVM.shared.close_to
+            self.fromTextField.text = ProductFilterVM.shared.close_from.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
+            self.toTextField.text = ProductFilterVM.shared.close_to.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
+        case .investmentStartDate:
+            self.fromTextField.text = ProductFilterVM.shared.investmentStart_from.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
+            self.toTextField.text = ProductFilterVM.shared.investmentStart_to.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
+        case .investmentEndDate:
+            self.fromTextField.text = ProductFilterVM.shared.investmentClose_from.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
+            self.toTextField.text = ProductFilterVM.shared.investmentClose_to.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
+        case .investmentMaturityDate:
+            self.fromTextField.text = ProductFilterVM.shared.investmentMaturity_from.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
+            self.toTextField.text = ProductFilterVM.shared.investmentMaturity_to.breakCompletDate(outPutFormat: Date.DateFormat.dMMMyyyy.rawValue, inputFormat: Date.DateFormat.yyyy_MM_dd.rawValue)
         }
     }
     
@@ -130,6 +142,30 @@ extension AssetsFilterDateVC {
             }else {
                 toDate = datePicker.date
                 ProductFilterVM.shared.close_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        case .investmentStartDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.investmentStart_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.investmentStart_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        case .investmentEndDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.investmentClose_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.investmentClose_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        case .investmentMaturityDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.investmentMaturity_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.investmentMaturity_to = getDateFormatForBackened(selectDate: datePicker.date)
             }
         }
         
@@ -180,6 +216,30 @@ extension AssetsFilterDateVC :UITextFieldDelegate{
             }else {
                 toDate = datePicker.date
                 ProductFilterVM.shared.close_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        case .investmentStartDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.investmentStart_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.investmentStart_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        case .investmentEndDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.investmentClose_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.investmentClose_to = getDateFormatForBackened(selectDate: datePicker.date)
+            }
+        case .investmentMaturityDate:
+            if tempTextField == fromTextField {
+                fromDate = datePicker.date
+                ProductFilterVM.shared.investmentMaturity_from = getDateFormatForBackened(selectDate: datePicker.date)
+            }else {
+                toDate = datePicker.date
+                ProductFilterVM.shared.investmentMaturity_to = getDateFormatForBackened(selectDate: datePicker.date)
             }
         }
     }

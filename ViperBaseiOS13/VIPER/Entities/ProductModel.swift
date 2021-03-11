@@ -67,7 +67,7 @@ struct ProductsEntity : Mappable {
     var total:Int?
     var next_page_url: String?
     var prev_page_url: String?
-    var lastPage: Int?
+    var last_page: Int?
     var per_page: Int?
     var last_page_url: String?
     var first_page_url: String?
@@ -83,7 +83,7 @@ struct ProductsEntity : Mappable {
         total <- map["total"]
         next_page_url <- map["next_page_url"]
         prev_page_url <- map["prev_page_url"]
-        lastPage <- map["lastPage"]
+        last_page <- map["last_page"]
         per_page <- map["per_page"]
         last_page_url <- map["ast_page_url"]
         first_page_url <- map["first_page_url"]

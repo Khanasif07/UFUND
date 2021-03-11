@@ -31,6 +31,15 @@ class InvestmentsProfitTableCell: UITableViewCell {
         self.setupProgressView()
     }
     
+    func configureCell(model: ProductModel){
+        self.progressValue.text = "N/A"
+        self.yourInvestmentValueLbl.text = "N/A"
+        self.yourEarnedValueLbl.text = "N/A"
+        self.yourInvestmentPercentageLbl.text = "N/A"
+        self.newProfitPercentageLbl.text = "N/A"
+        self.netProfitValueLbl.text = "N/A"
+    }
+    
     private func setupProgressView(){
         self.progressView.safePercent     = 100
         self.progressView.backgroundColor = .clear

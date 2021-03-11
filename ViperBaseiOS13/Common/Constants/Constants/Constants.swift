@@ -235,6 +235,9 @@ struct Constants {
     let startDate = "Start Date"
     let closingDate = "Closing Date"
     let priceRange = "Price Range"
+    let maturityDate = "Maturity Date"
+    let earning = "Earning"
+    let yield = "Yield"
     let status = "Status"
     let currency = "Currency"
     

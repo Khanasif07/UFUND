@@ -143,6 +143,7 @@
             <connections>
                 <outlet property="bottomStackView" destination="pZJ-px-hS0" id="9AG-zK-IYF"/>
                 <outlet property="investmentStartDateLbl" destination="PMk-ia-ErG" id="PmY-wb-ihI"/>
+                <outlet property="investmentStartStackView" destination="gr7-eD-M7z" id="Ab8-RL-zy1"/>
                 <outlet property="maturityDateLbl" destination="twX-BZ-itA" id="sZt-wD-ePl"/>
                 <outlet property="offerEndDateLbl" destination="iKQ-DB-yI2" id="CcY-SW-huw"/>
                 <outlet property="offerEndDateTitleLbl" destination="Cwp-Jv-R7o" id="NJX-iB-kRP"/>

@@ -87,8 +87,16 @@ struct ProductCreate {
     let start_to = "start_to"
     let close_from  = "close_from"
     let close_to = "close_to"
+    let end_from = "end_from"
+    let end_to = "end_to"
     let status = "status"
     let type = "type"
+    let min_percentage = "min_percentage"
+    let max_percentage = "max_percentage"
+    let min_earning = "min_earning"
+    let max_earning = "max_earning"
+    let maturity_from = "maturity_from"
+    let maturity_to = "maturity_to"
     
 
 }

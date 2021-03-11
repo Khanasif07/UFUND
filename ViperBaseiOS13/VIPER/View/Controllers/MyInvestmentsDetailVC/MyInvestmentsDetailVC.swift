@@ -13,6 +13,7 @@ class MyInvestmentsDetailVC: UIViewController {
         case productImageCell
         case productDescCell
         case productDateCell
+        case assetDetailInfoCell
         case productInvestmentCell
         case InvestmentsProfitCell
     }
@@ -30,6 +31,7 @@ class MyInvestmentsDetailVC: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     
+    var investmentType: MyInvestmentType = .MyProductInvestment
     var cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell,MyInvestmentsDetailCellType.InvestmentsProfitCell]
     
     // MARK: - Variables
@@ -75,18 +77,28 @@ class MyInvestmentsDetailVC: UIViewController {
 extension MyInvestmentsDetailVC {
     
     private func initialSetup() {
+        self.setUpForProductAndTokenPage()
         self.setFont()
         self.setFooterView()
         self.mainTableView.registerCell(with: ProductDetailDescriptionCell.self)
         self.mainTableView.registerCell(with: ProductDetailDateCell.self)
         self.mainTableView.registerCell(with: ProductDetailInvestmentCell.self)
         self.mainTableView.registerCell(with: InvestmentsProfitTableCell.self)
+        self.mainTableView.registerCell(with: AssetsDetailInfoCell.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.tableHeaderView = headerView
         let imgEntity =  productModel?.product_image ?? ""
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
+    }
+    
+    private func setUpForProductAndTokenPage(){
+        if investmentType == .MyProductInvestment {
+            self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell,MyInvestmentsDetailCellType.InvestmentsProfitCell]
+        } else {
+            self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.assetDetailInfoCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell,MyInvestmentsDetailCellType.InvestmentsProfitCell]
+        }
     }
     
     private func setFont(){
@@ -128,21 +140,24 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
             cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
             return cell
+        case MyInvestmentsDetailCellType.assetDetailInfoCell:
+            let cell = tableView.dequeueCell(with: AssetsDetailInfoCell.self, indexPath: indexPath)
+            cell.configureCell(model: productModel ?? ProductModel(json: [:]))
+            return cell
         case MyInvestmentsDetailCellType.productDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
+            cell.setCellForInvestmentDetailPage()
             cell.configureCell(model: self.productModel!)
             return cell
         case MyInvestmentsDetailCellType.productInvestmentCell:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
-//            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
-//            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
-//            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
+            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
+            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
             return cell
         default:
             let cell = tableView.dequeueCell(with: InvestmentsProfitTableCell.self, indexPath: indexPath)
-//            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
-//            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
-//            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+            cell.configureCell(model: productModel ?? ProductModel(json: [:]))
             return cell
         }
     }
