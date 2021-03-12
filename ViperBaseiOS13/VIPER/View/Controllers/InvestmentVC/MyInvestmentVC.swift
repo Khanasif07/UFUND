@@ -95,7 +95,6 @@ class MyInvestmentVC: UIViewController {
     @IBAction func sortBtnAction(_ sender: UIButton) {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
-        vc.sortArray = [(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
         vc.sortTypeApplied = self.sortType
         self.present(vc, animated: true, completion: nil)
     }
@@ -138,10 +137,16 @@ extension MyInvestmentVC {
             case  Constants.string.sort_by_name_ZA:
                 params[ProductCreate.keys.sort_order] = "DESC"
                 params[ProductCreate.keys.sort_by] = "product_title"
+            case  Constants.string.sort_by_latest:
+                params[ProductCreate.keys.sort_order] = "ASC"
+                params[ProductCreate.keys.sort_by]  = "created_at"
+            case  Constants.string.sort_by_oldest:
+                params[ProductCreate.keys.sort_order] = "DESC"
+                params[ProductCreate.keys.sort_by]  = "created_at"
             default:
                 print("Add Nothing")
             }
-             self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
         }
@@ -251,25 +256,28 @@ extension MyInvestmentVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 //===========================
 extension MyInvestmentVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
+        var params :[String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
+        params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
+        params[ProductCreate.keys.page] = 1
         self.sortType = sortType
         switch sortType {
         case Constants.string.sort_by_name_AZ:
-            var params :[String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
-            params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
-            params[ProductCreate.keys.sort_order] = "ASC"
             params[ProductCreate.keys.sort_by]  = "product_title"
-            params[ProductCreate.keys.page] = 1
-            self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            params[ProductCreate.keys.sort_order] = "ASC"
         case Constants.string.sort_by_name_ZA:
-             var params :[String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
-             params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
-             params[ProductCreate.keys.sort_order] = "DESC"
-             params[ProductCreate.keys.sort_by]  = "product_title"
-             params[ProductCreate.keys.page] = 1
-            self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            params[ProductCreate.keys.sort_by]  = "product_title"
+            params[ProductCreate.keys.sort_order] = "DESC"
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
         default:
-            print("Noting")
+            print("Add nothing")
         }
+        self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        self.loader.isHidden = false
     }
 }
 
@@ -384,11 +392,18 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         case  Constants.string.sort_by_name_ZA:
             params[ProductCreate.keys.sort_order] = "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
         default:
             print("Add Nothing")
         }
         params[ProductCreate.keys.new_products] = investmentType == .MyTokenInvestment ? 0 : 1
         self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        self.loader.isHidden = false
     }
 }
 

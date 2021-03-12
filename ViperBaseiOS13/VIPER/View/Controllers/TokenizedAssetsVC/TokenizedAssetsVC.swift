@@ -95,7 +95,7 @@ class TokenizedAssetsVC: UIViewController {
     @IBAction func sortBtnAction(_ sender: UIButton) {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
-        vc.sortArray = [("Sort by Name (A-Z)",false),("Sort by Name (Z-A)",false)]
+        vc.sortArray = [(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
         vc.sortTypeApplied = self.sortType
         self.present(vc, animated: true, completion: nil)
     }
@@ -368,6 +368,7 @@ extension TokenizedAssetsVC: AssetsFilterVCDelegate {
         params[ProductCreate.keys.search] = searchText
         params[ProductCreate.keys.type] = productType == .AllAssets ? 0 : 1
         self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        self.loader.isHidden = false
     }
     
     func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {

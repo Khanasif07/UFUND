@@ -443,6 +443,7 @@ extension AllProductsVC: ProductFilterVCDelegate {
         }
         params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        self.loader.isHidden = false
     }
 }
 
