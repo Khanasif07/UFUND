@@ -29,8 +29,6 @@ class MyInvestmentVC: UIViewController {
     var investmentType: MyInvestmentType = .MyProductInvestment
     var searchText : String = ""
     var productTitle: String = ""
-    var isSearchEnable: Bool = false
-    var searchInvesterProductList : [ProductModel]?
     var investerProductList : [ProductModel]?{
         didSet{
             self.mainCollView.reloadData()
@@ -129,7 +127,6 @@ extension MyInvestmentVC {
         case (UserType.investor.rawValue,false):
             var params : [String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
             params[ProductCreate.keys.page] =  page
-            params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
             switch sortType {
             case Constants.string.sort_by_name_AZ:
                 params[ProductCreate.keys.sort_order] = "ASC"
@@ -146,7 +143,13 @@ extension MyInvestmentVC {
             default:
                 print("Add Nothing")
             }
-            self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            if investmentType == .MyProductInvestment {
+                self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            } else {
+                self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            }
+//             params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
+//            self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
         }
@@ -183,19 +186,19 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isSearchEnable ?   (self.searchInvesterProductList?.endIndex ?? 0)   : (self.investerProductList?.endIndex ?? 0)
+        return  (self.investerProductList?.endIndex ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
-        cell.productNameLbl.text =  isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].product_title ?? "") : (self.investerProductList?[indexPath.row].product_title ?? "")
-        let imgEntity =  isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].product_image ?? "") : (self.investerProductList?[indexPath.row].product_image ?? "")
+        cell.productNameLbl.text =  (self.investerProductList?[indexPath.row].product_title ?? "")
+        let imgEntity =   (self.investerProductList?[indexPath.row].product_image ?? "")
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-        cell.productTypeLbl.text = isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].category?.category_name ?? "") : (self.investerProductList?[indexPath.row].category?.category_name ?? "")
-        cell.priceLbl.text = "$" + (isSearchEnable ? "\((self.searchInvesterProductList?[indexPath.row].total_product_value ?? 0))" : "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))")
-        cell.liveView.isHidden = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row].status != 1)   : (self.investerProductList?[indexPath.row].status != 1)
-        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
+        cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].category?.category_name ?? "")
+        cell.priceLbl.text = "$" +  "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
+        cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
+        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
         cell.backgroundColor = .clear
         return cell
     }
@@ -206,7 +209,7 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ob = MyInvestmentsDetailVC.instantiate(fromAppStoryboard: .Products)
-        ob.productModel = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])
+        ob.productModel =  (self.investerProductList?[indexPath.row])
         ob.investmentType = investmentType
         self.navigationController?.pushViewController(ob, animated: true)
     }
@@ -257,7 +260,6 @@ extension MyInvestmentVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 extension MyInvestmentVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
         var params :[String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
-        params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
         params[ProductCreate.keys.page] = 1
         self.sortType = sortType
         switch sortType {
@@ -276,7 +278,13 @@ extension MyInvestmentVC: ProductSortVCDelegate  {
         default:
             print("Add nothing")
         }
-        self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        if investmentType == .MyProductInvestment {
+            self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        } else {
+            self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        }
+//         params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
+//        self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         self.loader.isHidden = false
     }
 }
@@ -401,8 +409,12 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         default:
             print("Add Nothing")
         }
-        params[ProductCreate.keys.new_products] = investmentType == .MyTokenInvestment ? 0 : 1
-        self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+//        params[ProductCreate.keys.new_products] = investmentType == .MyTokenInvestment ? 0 : 1
+        if investmentType == .MyProductInvestment {
+            self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        } else {
+            self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        }
         self.loader.isHidden = false
     }
 }

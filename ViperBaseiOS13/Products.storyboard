@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -1970,23 +1971,35 @@
                                             <constraint firstItem="SX6-xr-L1B" firstAttribute="centerY" secondItem="jjt-AP-got" secondAttribute="centerY" id="yaA-dB-Yfv"/>
                                         </constraints>
                                     </view>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ani-dB-gVj">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Plg-GW-G4c">
                                         <rect key="frame" x="0.0" y="197" width="414" height="699"/>
-                                    </scrollView>
+                                        <subviews>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ani-dB-gVj">
+                                                <rect key="frame" x="8" y="0.0" width="398" height="699"/>
+                                            </scrollView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="ani-dB-gVj" firstAttribute="top" secondItem="Plg-GW-G4c" secondAttribute="top" id="2Xc-jC-6PC"/>
+                                            <constraint firstAttribute="bottom" secondItem="ani-dB-gVj" secondAttribute="bottom" id="IrL-xN-CHh"/>
+                                            <constraint firstItem="ani-dB-gVj" firstAttribute="leading" secondItem="Plg-GW-G4c" secondAttribute="leading" constant="8" id="ZRN-VG-OvU"/>
+                                            <constraint firstAttribute="trailing" secondItem="ani-dB-gVj" secondAttribute="trailing" constant="8" id="vLx-3C-QQg"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="YIT-dO-NVg" secondAttribute="trailing" id="06d-66-MWv"/>
                                     <constraint firstItem="tQ0-hi-y9q" firstAttribute="trailing" secondItem="YIT-dO-NVg" secondAttribute="trailing" id="1Vh-jO-nfZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Plg-GW-G4c" secondAttribute="trailing" id="2rM-JL-DWK"/>
                                     <constraint firstItem="jjt-AP-got" firstAttribute="leading" secondItem="kRl-tj-tyb" secondAttribute="leading" id="8gi-Ea-Id5"/>
-                                    <constraint firstItem="ani-dB-gVj" firstAttribute="leading" secondItem="kRl-tj-tyb" secondAttribute="leading" id="9LR-yH-U2L"/>
+                                    <constraint firstItem="Plg-GW-G4c" firstAttribute="top" secondItem="jjt-AP-got" secondAttribute="bottom" id="9Hp-Wk-9Ap"/>
                                     <constraint firstItem="YIT-dO-NVg" firstAttribute="top" secondItem="tQ0-hi-y9q" secondAttribute="bottom" id="D88-MB-qFL"/>
+                                    <constraint firstAttribute="bottom" secondItem="Plg-GW-G4c" secondAttribute="bottom" id="DgH-Yd-RMK"/>
                                     <constraint firstItem="jjt-AP-got" firstAttribute="top" secondItem="YIT-dO-NVg" secondAttribute="bottom" id="Ic7-kJ-Bkv"/>
-                                    <constraint firstAttribute="bottom" secondItem="ani-dB-gVj" secondAttribute="bottom" id="NeG-rk-YcC"/>
                                     <constraint firstItem="YIT-dO-NVg" firstAttribute="leading" secondItem="kRl-tj-tyb" secondAttribute="leading" id="Oef-54-az0"/>
-                                    <constraint firstItem="ani-dB-gVj" firstAttribute="top" secondItem="jjt-AP-got" secondAttribute="bottom" id="P60-5M-qjq"/>
+                                    <constraint firstItem="Plg-GW-G4c" firstAttribute="leading" secondItem="kRl-tj-tyb" secondAttribute="leading" id="QJm-q3-pBH"/>
                                     <constraint firstAttribute="trailing" secondItem="jjt-AP-got" secondAttribute="trailing" id="RV6-NG-PEO"/>
-                                    <constraint firstAttribute="trailing" secondItem="ani-dB-gVj" secondAttribute="trailing" id="bVt-ah-Qsm"/>
                                     <constraint firstItem="tQ0-hi-y9q" firstAttribute="leading" secondItem="YIT-dO-NVg" secondAttribute="leading" id="q6p-Pb-nyg"/>
                                 </constraints>
                             </view>

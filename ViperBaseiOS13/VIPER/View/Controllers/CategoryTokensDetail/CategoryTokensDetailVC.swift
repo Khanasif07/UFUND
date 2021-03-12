@@ -23,6 +23,7 @@ class CategoryTokensDetailVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var searchTask: DispatchWorkItem?
     var productType: TokenizedAssetsType = .NewAssets
     var categoryTitle:  String  = ""
     var sortType : String = ""
@@ -177,10 +178,10 @@ extension CategoryTokensDetailVC {
         self.view.layoutIfNeeded()
     }
     
-    private func getNewProductsData(){
+    private func getNewProductsData(page: Int = 1, search: String){
         self.loader.isHidden = false
         self.productType = .NewAssets
-        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.type: productType == .AllAssets ? 0 : 1]
+        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.type: productType == .AllAssets ? 0 : 1,ProductCreate.keys.search: search]
         if !self.sortType.isEmpty{
             params[ProductCreate.keys.sort_order] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
@@ -190,7 +191,7 @@ extension CategoryTokensDetailVC {
     
     private func getAllProductsData(){
         self.productType = .AllAssets
-        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.type: productType == .AllAssets ? 0 : 1]
+        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.type: productType == .AllAssets ? 0 : 1,ProductCreate.keys.search: searchText]
         if !self.sortType.isEmpty{
             params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
@@ -221,8 +222,17 @@ extension CategoryTokensDetailVC {
         self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
+    private func searchProducts(searchValue: String,page:Int = 1){
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            self?.getNewProductsData(page: page, search: searchValue)
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+    }
+    
     private  func getApiData(){
-        self.getNewProductsData()
+        self.getNewProductsData(search: searchText)
     }
     
 }
@@ -269,6 +279,7 @@ extension CategoryTokensDetailVC: UIScrollViewDelegate{
 extension CategoryTokensDetailVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
+        self.searchProducts(searchValue: self.searchText)
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

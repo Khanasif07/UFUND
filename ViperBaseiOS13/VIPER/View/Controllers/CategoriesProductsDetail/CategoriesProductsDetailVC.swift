@@ -23,6 +23,7 @@ class CategoriesProductsDetailVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var searchTask: DispatchWorkItem?
     var productType: ProductType = .NewProducts
     var categoryTitle:  String  = ""
     var sortType : String = ""
@@ -173,10 +174,10 @@ extension CategoriesProductsDetailVC {
         self.view.layoutIfNeeded()
     }
     
-    private func getNewProductsData(){
+    private func getNewProductsData(page:Int = 1,search: String){
         self.loader.isHidden = false
         self.productType = .NewProducts
-        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products: 1]
+        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products: 1,ProductCreate.keys.search: search]
         if !self.sortType.isEmpty{
             params[ProductCreate.keys.sort_order] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
@@ -186,7 +187,7 @@ extension CategoriesProductsDetailVC {
     
     private func getAllProductsData(){
         self.productType = .AllProducts
-        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  0]
+        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  0,ProductCreate.keys.search: searchText]
         if !self.sortType.isEmpty{
             params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
@@ -206,9 +207,6 @@ extension CategoriesProductsDetailVC {
         }
         if ProductFilterVM.shared.status.endIndex > 0{
             if ProductFilterVM.shared.status.contains(Status.All.title){
-                params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
-                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-                return
             }
             if ProductFilterVM.shared.status.contains(Status.Live.title){
                 params[ProductCreate.keys.status] = Status.Live.rawValue
@@ -217,12 +215,23 @@ extension CategoriesProductsDetailVC {
                 params[ProductCreate.keys.status] = Status.Matured.rawValue
             }
         }
+        params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
    private  func getApiData(){
-        self.getNewProductsData()
+    self.getNewProductsData(search: searchText)
     }
+    
+    private func searchProducts(searchValue: String,page:Int = 1){
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            self?.getNewProductsData(page: page, search: searchValue)
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+    }
+       
     
 }
 
@@ -268,6 +277,7 @@ extension CategoriesProductsDetailVC: UIScrollViewDelegate{
 extension CategoriesProductsDetailVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
+        self.searchProducts(searchValue: self.searchText)
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

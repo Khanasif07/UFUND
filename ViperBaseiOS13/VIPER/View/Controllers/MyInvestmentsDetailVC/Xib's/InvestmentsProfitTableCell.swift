@@ -33,7 +33,7 @@ class InvestmentsProfitTableCell: UITableViewCell {
     
     func configureCell(model: ProductModel){
         self.progressValue.text = "N/A"
-        self.yourInvestmentValueLbl.text = "N/A"
+        self.yourInvestmentValueLbl.text = "\(model.invested_amount ?? 0.0)"
         self.yourEarnedValueLbl.text = "N/A"
         self.yourInvestmentPercentageLbl.text = "N/A"
         self.newProfitPercentageLbl.text = "N/A"
