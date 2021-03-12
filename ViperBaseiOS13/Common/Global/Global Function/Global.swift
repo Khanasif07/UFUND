@@ -45,7 +45,11 @@ internal func createActivityIndicator(_ uiView : UIView)->UIView{
     let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
     actInd.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
     actInd.clipsToBounds = true
-    actInd.style = .large
+    if #available(iOS 13.0, *) {
+        actInd.style = .large
+    } else {
+        // Fallback on earlier versions
+    }
     actInd.assignColor(UIColor.init(hex: primaryColor))
     
     actInd.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
@@ -188,7 +192,11 @@ func vibrate(sound: defaultSystemSound) {
 
 extension UIActivityIndicatorView {
     func assignColor(_ color: UIColor) {
-        style = .large
+        if #available(iOS 13.0, *) {
+            style = .large
+        } else {
+            // Fallback on earlier versions
+        }
         self.color = color
     }
 }

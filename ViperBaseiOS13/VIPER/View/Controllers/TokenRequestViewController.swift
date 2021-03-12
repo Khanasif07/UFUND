@@ -87,7 +87,11 @@ class TokenRequestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         
         titleLbl.text = Constants.string.requests.localize().uppercased()
         tableView.delegate = self

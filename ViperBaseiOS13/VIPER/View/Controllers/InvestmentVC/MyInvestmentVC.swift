@@ -125,10 +125,22 @@ extension MyInvestmentVC {
     }
     
     //MARK:- PRDUCTS LIST API CALL
-    private func getProductList(page:Int = 1,search: String = "",loader:Bool = false) {
+    private func getProductList(page:Int = 1,loader:Bool = false) {
         switch (userType,false) {
         case (UserType.investor.rawValue,false):
-            let params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.new_products: investmentType == .MyTokenInvestment ? 0 : 1,ProductCreate.keys.search: search]
+            var params : [String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
+            params[ProductCreate.keys.page] =  page
+            params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
+            switch sortType {
+            case Constants.string.sort_by_name_AZ:
+                params[ProductCreate.keys.sort_order] = "ASC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+            case  Constants.string.sort_by_name_ZA:
+                params[ProductCreate.keys.sort_order] = "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+            default:
+                print("Add Nothing")
+            }
              self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
@@ -142,10 +154,10 @@ extension MyInvestmentVC {
         vc.present(ob, animated: true, completion: nil)
     }
     
-    private func searchProducts(searchValue: String,page:Int = 1,loader: Bool = false){
+    private func searchProducts(page:Int = 1,loader: Bool = false){
         self.searchTask?.cancel()
         let task = DispatchWorkItem { [weak self] in
-            self?.getProductList(page: page, search: searchValue,loader: loader)
+            self?.getProductList(page: page,loader: loader)
         }
         self.searchTask = task
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
@@ -201,7 +213,7 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             guard !isRequestinApi else { return }
         }
         isRequestinApi = true
-        self.searchProducts(searchValue: self.searchText,page: self.currentPage,loader: true)
+        self.searchProducts(page: self.currentPage,loader: true)
     }
 }
 
@@ -242,10 +254,18 @@ extension MyInvestmentVC: ProductSortVCDelegate  {
         self.sortType = sortType
         switch sortType {
         case Constants.string.sort_by_name_AZ:
-            let params :[String:Any] = [ProductCreate.keys.new_products:  investmentType == .MyTokenInvestment ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText,ProductCreate.keys.page: 1]
+            var params :[String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
+            params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "product_title"
+            params[ProductCreate.keys.page] = 1
             self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
-            let params :[String:Any] = [ProductCreate.keys.new_products:  investmentType == .MyTokenInvestment ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText,ProductCreate.keys.page: 1]
+             var params :[String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
+             params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
+             params[ProductCreate.keys.sort_order] = "DESC"
+             params[ProductCreate.keys.sort_by]  = "product_title"
+             params[ProductCreate.keys.page] = 1
             self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
@@ -357,6 +377,16 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         //
         var params :[String:Any] = ProductFilterVM.shared.paramsDictForInvestment
         params[ProductCreate.keys.page] = 1
+        switch sortType {
+        case Constants.string.sort_by_name_AZ:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_name_ZA:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        default:
+            print("Add Nothing")
+        }
         params[ProductCreate.keys.new_products] = investmentType == .MyTokenInvestment ? 0 : 1
         self.presenter?.HITAPI(api: Base.myInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }

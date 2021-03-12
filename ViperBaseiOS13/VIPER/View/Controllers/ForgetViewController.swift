@@ -25,7 +25,11 @@ class ForgetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .light 
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        } 
         emailIdView.applyEffectToView()
         emailIdTxtFld.applyEffectToTextField(placeHolderString: Constants.string.email.localize())
         forgotPwButton.setGradientBackground()

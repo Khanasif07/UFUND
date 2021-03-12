@@ -78,7 +78,11 @@ class SignInViewController: UIViewController {
         passwordTxtFld.delegate = self
         passwordTxtFld.isSecureTextEntry = true
         emailIdTxtFld.keyboardType = .emailAddress
-        overrideUserInterfaceStyle = .light 
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     override func viewDidLayoutSubviews() {

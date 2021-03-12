@@ -74,7 +74,11 @@ class InvestmentViewController: UIViewController {
         
         titleLbl.text = Constants.string.investment.uppercased().localize()
         
-        overrideUserInterfaceStyle = .light 
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        } 
         
         inversterPrice.textColor = UIColor(hex: primaryColor)
         vynilPrice.textColor = UIColor(hex: primaryColor)

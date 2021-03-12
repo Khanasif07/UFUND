@@ -41,7 +41,11 @@ class FilterSetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getFilterData()
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         filterTxtFld.didSelect{(selectedText , index ,id) in
             
             self.filterTxtFld.text = selectedText

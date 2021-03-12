@@ -72,7 +72,11 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         isSelectProfile = true
         titleLbl.text = Constants.string.history.localize().uppercased()
         profileLbl.text = Constants.string.buy.localize().uppercased()

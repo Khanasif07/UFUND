@@ -86,7 +86,11 @@ class OtpController: UIViewController {
         // Do any additional setup after loading the view.
         initalLoads()
         themeAppearence()
-        overrideUserInterfaceStyle = .light 
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        } 
     }
     
     func themeAppearence() {

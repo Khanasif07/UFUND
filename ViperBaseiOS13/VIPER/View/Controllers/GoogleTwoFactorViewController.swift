@@ -52,7 +52,11 @@ class GoogleTwoFactorViewController: UIViewController {
         gAuthTxtFld.isUserInteractionEnabled = true
         gAuthTxtFld.keyboardType = .decimalPad
         gAuthTxtFld.delegate = self
-        overrideUserInterfaceStyle = .light 
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        } 
     }
     
     @IBAction func goBack(_ sender: UIButton) {

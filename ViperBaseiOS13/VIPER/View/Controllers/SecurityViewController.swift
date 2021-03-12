@@ -29,7 +29,11 @@ class SecurityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         self.tableView.register(UINib.init(nibName: XIB.Names.SecurityCell, bundle: nil), forCellReuseIdentifier: XIB.Names.SecurityCell)
         
     }

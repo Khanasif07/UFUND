@@ -26,7 +26,7 @@ class SignUpViewController: UIViewController {
      
     var fcmToken: String?
     var socialLoginType: SocialLoginType = .facebook
-    var appleButton = ASAuthorizationAppleIDButton()
+//    var appleButton = ASAuthorizationAppleIDButton()
     fileprivate var socialLogin = SocialLoginHelper ()
     var signInModel: SignInModel?
     
@@ -97,7 +97,11 @@ class SignUpViewController: UIViewController {
         passwordTxtFld.isSecureTextEntry = true
         emailIdTxtFld.keyboardType = .emailAddress
         phoneNumberTxtFld.keyboardType = .numberPad
-        overrideUserInterfaceStyle = .light 
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -227,7 +227,8 @@ struct Constants {
       let failedKyc = "Verification Failed. Please try again."
       let pendingKyc = "We are still processing your document, please be patient."
     
-    let endDate = "Select End date"
+    let selectEndDate = "Select End date"
+    let endDate = "End Date"
     let selectStartDate = "Select Start date"
     let byReward = "By Reward"
     let type = "Type"

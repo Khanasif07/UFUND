@@ -85,7 +85,11 @@ class HomeViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad() 
         
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         
         self.viewSideMenu.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.sideMenuAction)))
         self.viewSideMenu.makeRoundedCorner()
@@ -387,8 +391,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     
                 case Constants.string.requests.localize():
                     
-                    guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    if #available(iOS 13.0, *) {
+                        guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
+                         self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        // Fallback on earlier versions\
+                        let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
+                         self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                   
                     
                 default:
                     break
@@ -445,8 +456,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     
                 case Constants.string.tokenRequests.localize():
                     
-                    guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    if #available(iOS 13.0, *) {
+                        guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
+                         self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        // Fallback on earlier versions
+                        let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
+                         self.navigationController?.pushViewController(vc, animated: true)
+                    }
                     
                 default:
                     break

@@ -91,7 +91,11 @@ class ProductViewController: UIViewController {
         collectionView.dataSource = self
         price.addBackground(color: UIColor(hex: primaryColor))
         
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         
     }
     

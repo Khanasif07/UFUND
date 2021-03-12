@@ -27,7 +27,11 @@ class SendHistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
        tableView.delegate = self
              tableView.dataSource = self
              self.tableView.register(UINib.init(nibName: XIB.Names.HistoryCell, bundle: nil), forCellReuseIdentifier: XIB.Names.HistoryCell)

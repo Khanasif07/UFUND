@@ -234,8 +234,15 @@ extension BottomSheetVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
                 
             case Constants.string.requests.localize():
                 
-                guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
+                if #available(iOS 13.0, *) {
+                    guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
+                       self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
+                       self.navigationController?.pushViewController(vc, animated: true)
+                    // Fallback on earlier versions
+                }
+             
                 
             default:
                 break
@@ -301,8 +308,15 @@ extension BottomSheetVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
                 
             case Constants.string.tokenRequests.localize():
                 
-                guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
+                if #available(iOS 13.0, *) {
+                    guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
+                     self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    // Fallback on earlier versions
+                    let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
+                     self.navigationController?.pushViewController(vc, animated: true)
+                }
+               
                 
             default:
                 break

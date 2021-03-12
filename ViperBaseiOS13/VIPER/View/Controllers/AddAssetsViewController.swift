@@ -195,7 +195,11 @@ class AddAssetsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         
         isClickTokenAssets = true
         let nibPost = UINib(nibName: XIB.Names.AssetsImgCell, bundle: nil)

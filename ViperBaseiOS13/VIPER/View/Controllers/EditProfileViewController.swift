@@ -159,7 +159,11 @@ class EditProfileViewController: UIViewController, MFKYCDelegate {
         self.buttonView.addSubview(matiButton)
        // MFKYC.instance.delegate = self
         
-        overrideUserInterfaceStyle = .light
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
         
         kycOutterView.setGradientBackgroundForView()
         outerProfileView.setGradientBackgroundForView()
