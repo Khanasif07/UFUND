@@ -216,6 +216,8 @@
 		845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */; };
 		845B9DCE25D3FB4E009E388F /* AppleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */; };
 		845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DD025D50318009E388F /* CategoriesVC.swift */; };
+		845C131625FF53970018A1E1 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845C131525FF53970018A1E1 /* Wallet.storyboard */; };
+		845C131825FF53F90018A1E1 /* MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131725FF53F90018A1E1 /* MyWalletVC.swift */; };
 		847297D225E7739800711CEE /* ProductDetailPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */; };
 		847297D525E8BD9200711CEE /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D425E8BD9200711CEE /* ChangePasswordVC.swift */; };
 		847C10F125DE0BF400D13A5C /* UserProfileVC+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C10F025DE0BF400D13A5C /* UserProfileVC+Enum.swift */; };
@@ -514,6 +516,8 @@
 		845B9DC925D3F676009E388F /* EditProfilePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePopUpVC.swift; sourceTree = "<group>"; };
 		845B9DCD25D3FB4E009E388F /* AppleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginController.swift; sourceTree = "<group>"; };
 		845B9DD025D50318009E388F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
+		845C131525FF53970018A1E1 /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
+		845C131725FF53F90018A1E1 /* MyWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletVC.swift; sourceTree = "<group>"; };
 		847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailPopUpVC.swift; sourceTree = "<group>"; };
 		847297D425E8BD9200711CEE /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		847C10F025DE0BF400D13A5C /* UserProfileVC+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileVC+Enum.swift"; sourceTree = "<group>"; };
@@ -665,6 +669,7 @@
 				0824B0582382821600F81A9B /* VIPER */,
 				84FA6EAB25E4BE440053E618 /* Resources */,
 				0824B02B238280E700F81A9B /* Main.storyboard */,
+				845C131525FF53970018A1E1 /* Wallet.storyboard */,
 				84D565EB25DB68C20047F052 /* Filter.storyboard */,
 				84A6C31A25DA3A3A00C00EB1 /* Products.storyboard */,
 				0824B031238280E800F81A9B /* Assets.xcassets */,
@@ -785,6 +790,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				845C131425FF537F0018A1E1 /* Wallet */,
 				845A9FAC25F081390066CE6B /* LoginWithEmailVC */,
 				845ADB8225ECAE8B009392E2 /* BottomSheetVC */,
 				847297D325E8BD7E00711CEE /* ChangePasswordVC */,
@@ -1750,6 +1756,14 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		845C131425FF537F0018A1E1 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				845C131725FF53F90018A1E1 /* MyWalletVC.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
 		847297D325E8BD7E00711CEE /* ChangePasswordVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -2133,6 +2147,7 @@
 				84FA6EAA25E4BDC30053E618 /* Fonts in Resources */,
 				080FC599238D43560013B37D /* PaymentsListCell.xib in Resources */,
 				0824B02D238280E700F81A9B /* Main.storyboard in Resources */,
+				845C131625FF53970018A1E1 /* Wallet.storyboard in Resources */,
 				0827A13323C4631E00EDF005 /* CollectionImageCell.xib in Resources */,
 				082932DC23C76F3700CAA6C2 /* AssetsImgCell.xib in Resources */,
 			);
@@ -2393,6 +2408,7 @@
 				0824B0BE2382847800F81A9B /* ParallaxHeaderMode.swift in Sources */,
 				085AC03824AF492600FFAD96 /* PayClearHistoryViewController.swift in Sources */,
 				0824B0B82382847800F81A9B /* FontHelper.swift in Sources */,
+				845C131825FF53F90018A1E1 /* MyWalletVC.swift in Sources */,
 				080FC594238D300F0013B37D /* PaymentsViewController.swift in Sources */,
 				0870FC45238CFBD800D24B41 /* ProductsCollectionCell.swift in Sources */,
 				84FA6EBF25E60C810053E618 /* AssetsFilterVC+Parchment.swift in Sources */,

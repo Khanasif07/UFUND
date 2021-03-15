@@ -45,8 +45,8 @@ class SideMenuController: UIViewController {
                 sideMenuImg =   [(#imageLiteral(resourceName: "sideVynil"),[]),(#imageLiteral(resourceName: "icProducts"),[]),(#imageLiteral(resourceName: "historyIcon"),[]),(#imageLiteral(resourceName: "sideWallet"),[]),(#imageLiteral(resourceName: "whiteNotify"),[]),(#imageLiteral(resourceName: "SideSecurity"),[]),(#imageLiteral(resourceName: "icLogout"),[])]
                 
             } else {
-                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icInvestments"),[#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icInvestments")]),(#imageLiteral(resourceName: "icChnagePassword"),[#imageLiteral(resourceName: "icChnagePassword")]),(#imageLiteral(resourceName: "icLogout"),[#imageLiteral(resourceName: "icLogout")])]
+                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.logout.localize(),[])]
+                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icInvestments"),[#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icInvestments")]),(#imageLiteral(resourceName: "icChnagePassword"),[#imageLiteral(resourceName: "icChnagePassword")]),(#imageLiteral(resourceName: "icLogout"),[#imageLiteral(resourceName: "icLogout")]),(#imageLiteral(resourceName: "icLogout"),[#imageLiteral(resourceName: "icLogout")])]
             }
         }
     }
@@ -323,12 +323,15 @@ extension  SideMenuController {
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
         case Constants.string.changePassword.localize():
-//            self.drawerController?.closeSide()
-//            self.push(to: Storyboard.Ids.ChangeViewController)
-              self.drawerController?.closeSide()
-              let vc = ChangePasswordVC.instantiate(fromAppStoryboard: .Products)
-              (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
-            
+            //            self.drawerController?.closeSide()
+            //            self.push(to: Storyboard.Ids.ChangeViewController)
+            self.drawerController?.closeSide()
+            let vc = ChangePasswordVC.instantiate(fromAppStoryboard: .Products)
+            (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+        case Constants.string.wallet.localize():
+            self.drawerController?.closeSide()
+            let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+            (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
         case Constants.string.categories.localize():
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.CategoriesVC)

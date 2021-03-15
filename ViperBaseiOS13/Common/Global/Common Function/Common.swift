@@ -233,6 +233,15 @@ extension UIView {
         self.layer.shadowRadius = radius
     }
     
+    func addShadowRounded(cornerRadius: CGFloat, maskedCorners: CACornerMask = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner], color: UIColor, offset: CGSize, opacity: Float, shadowRadius: CGFloat) {
+           self.layer.cornerRadius = cornerRadius
+           self.layer.maskedCorners = maskedCorners
+           self.layer.shadowColor = color.cgColor
+           self.layer.shadowOffset = offset
+           self.layer.shadowOpacity = opacity
+           self.layer.shadowRadius = shadowRadius
+       }
+    
     //Drop Shadow
     func drawDropShadow(color : UIColor, is3DView: Bool = false) {
         self.layer.shadowOffset = CGSize(width: 0, height: 1)
