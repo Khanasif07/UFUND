@@ -51,6 +51,7 @@ class MyInvestmentVC: UIViewController {
     var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
     var selectedMinimumEarning : (CGFloat,Bool) = (0.0,false)
     var selectedMaximumEarning : (CGFloat,Bool) = (0.0,false)
+    var selectedByRewards : (([String],Bool)) = ([],false)
     //Pagination
     var hideLoader: Bool = false
     var nextPageAvailable = true
@@ -148,8 +149,6 @@ extension MyInvestmentVC {
             } else {
                 self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             }
-//             params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
-//            self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
         }
@@ -159,6 +158,7 @@ extension MyInvestmentVC {
     func showFilterVC(_ vc: UIViewController, index: Int = 0) {
         let ob = InvestmentFilterVC.instantiate(fromAppStoryboard: .Filter)
         ob.delegate = vc as? InvestmentFilterVCDelegate
+        ob.investmentType = investmentType
         vc.present(ob, animated: true, completion: nil)
     }
     
@@ -191,15 +191,28 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
-        cell.productNameLbl.text =  (self.investerProductList?[indexPath.row].product_title ?? "")
-        let imgEntity =   (self.investerProductList?[indexPath.row].product_image ?? "")
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-        cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].category?.category_name ?? "")
-        cell.priceLbl.text = "$" +  "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
-        cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
-        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
-        cell.backgroundColor = .clear
+        switch investmentType {
+        case .MyProductInvestment:
+            cell.productNameLbl.text =  (self.investerProductList?[indexPath.row].product_title ?? "")
+            let imgEntity =   (self.investerProductList?[indexPath.row].product_image ?? "")
+            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+            cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
+            cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].category?.category_name ?? "")
+            cell.priceLbl.text = "$" +  "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
+            cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
+            cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
+            cell.backgroundColor = .clear
+        default:
+            cell.productNameLbl.text =   (self.investerProductList?[indexPath.row].tokenname ?? "")
+            let imgEntity =   (self.investerProductList?[indexPath.row].token_image ?? "")
+            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+            cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
+            cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
+            cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenvalue ?? 0))")
+            cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
+            cell.investmentLbl.text = "N/A"
+//            cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
+        }
         return cell
     }
     
@@ -325,7 +338,8 @@ extension MyInvestmentVC : PresenterOutputProtocol {
 // MARK: - Hotel filter Delegate methods
 
 extension MyInvestmentVC: InvestmentFilterVCDelegate {
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool)) {
+    
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool), _ byRewards: ([String], Bool)) {
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
@@ -339,9 +353,10 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         ProductFilterVM.shared.maximumEarning = self.selectedMaximumEarning.0
         ProductFilterVM.shared.minimumYield = self.selectedInvestorYield_from.0
         ProductFilterVM.shared.maximumYield = self.selectedInvestorYield_to.0
+        ProductFilterVM.shared.byRewards = self.selectedByRewards.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool), _ byRewards: ([String], Bool)) {
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0
@@ -377,6 +392,13 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         } else {
             ProductFilterVM.shared.maximumEarning = 0.0
             self.selectedMaximumEarning = (0.0,false)
+        }
+        if byRewards.1 {
+            ProductFilterVM.shared.byRewards = byRewards.0
+            self.selectedByRewards = byRewards
+        } else {
+            ProductFilterVM.shared.byRewards = []
+            self.selectedByRewards = ([],false)
         }
         ProductFilterVM.shared.investmentMaturity_from = maturity_from.1 ? maturity_from.0 : ""
         ProductFilterVM.shared.investmentMaturity_to = maturity_to.1 ? maturity_to.0 : ""

@@ -27,7 +27,6 @@ class StatusVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         doIntitialSetup()
         self.addFooterView()
         registerXib()

@@ -110,6 +110,7 @@ class TokenizedAssetsVC: UIViewController {
 extension TokenizedAssetsVC {
     
     private func initialSetup(){
+        ProductFilterVM.shared.resetToAllFilter()
         self.searchBar.delegate = self
         self.titleLbl.text = productTitle
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
@@ -179,7 +180,8 @@ extension TokenizedAssetsVC: UICollectionViewDelegate, UICollectionViewDataSourc
         cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
         cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenvalue ?? 0))")
         cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
-        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
+        cell.investmentLbl.text = "N/A"
+//        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
         cell.backgroundColor = .clear
         return cell
     }

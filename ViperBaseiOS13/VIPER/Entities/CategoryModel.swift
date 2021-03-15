@@ -17,6 +17,7 @@ struct CategoryModel: Mappable {
     var created_at : String?
     var updated_at : String?
     var name : String?
+    var type: String?
     var image : String?
 
     init?(map: Map)
@@ -46,7 +47,7 @@ struct AdditionsModel : Mappable {
     
 
     var token_categories : [CategoryModel]?
-    var  product_categories : [CategoryModel]?
+    var product_categories : [CategoryModel]?
     var token_type :[CategoryModel]?
     var asset_type : [CategoryModel]?
     var maturity_count : [String]?
@@ -100,4 +101,20 @@ struct SuccessMsg : Mappable {
         
     }
     
+}
+
+
+struct CategoriesModel : Mappable {
+
+    var data : [CategoryModel]?
+
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+    
+
 }

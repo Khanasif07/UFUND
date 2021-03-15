@@ -32,7 +32,7 @@ class MyInvestmentsDetailVC: UIViewController {
     
     
     var investmentType: MyInvestmentType = .MyProductInvestment
-    var cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell,MyInvestmentsDetailCellType.InvestmentsProfitCell]
+    var cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
     
     // MARK: - Variables
     //===========================
@@ -88,16 +88,16 @@ extension MyInvestmentsDetailVC {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.tableHeaderView = headerView
-        let imgEntity =  productModel?.product_image ?? ""
+        let imgEntity = investmentType == .MyProductInvestment ?  productModel?.product_image ?? "" : productModel?.token_image ?? "" 
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
     }
     
     private func setUpForProductAndTokenPage(){
         if investmentType == .MyProductInvestment {
-            self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell,MyInvestmentsDetailCellType.InvestmentsProfitCell]
+            self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
         } else {
-            self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.assetDetailInfoCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell,MyInvestmentsDetailCellType.InvestmentsProfitCell]
+            self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.assetDetailInfoCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
         }
     }
     
@@ -151,9 +151,14 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case MyInvestmentsDetailCellType.productInvestmentCell:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
-            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
-            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
-            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+            switch investmentType {
+            case .MyProductInvestment:
+                cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
+                cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
+                cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+            default:
+                cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
+            }
             return cell
         default:
             let cell = tableView.dequeueCell(with: InvestmentsProfitTableCell.self, indexPath: indexPath)

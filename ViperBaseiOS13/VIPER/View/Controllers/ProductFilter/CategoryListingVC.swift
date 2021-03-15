@@ -17,6 +17,7 @@ class CategoryListingVC: UIViewController {
     
     // MARK: - Variables
     var isSearchOn: Bool  =  false
+    var categoryType: CategoryType = .Products
     var searchedCategoryListing = [CategoryModel]()
     var selectedCategoryListing : [CategoryModel] = ProductFilterVM.shared.selectedCategoryListing
     var categoryListing: [CategoryModel]? = ProductFilterVM.shared.categoryListing
@@ -68,8 +69,13 @@ class CategoryListingVC: UIViewController {
     
     private func getCategoryList(){
         if categoryListing?.endIndex == 0 {
-        self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
+            self.loader.isHidden = false
+            if categoryType == .Products {
+                self.presenter?.HITAPI(api: Base.categories.rawValue, params: [ProductCreate.keys.category_type: 1], methodType: .GET, modelClass: CategoriesModel.self, token: true)
+            } else {
+                self.presenter?.HITAPI(api: Base.categories.rawValue, params: [ProductCreate.keys.category_type: 2], methodType: .GET, modelClass: CategoriesModel.self, token: true)
+            }
+            //        self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
         }
     }
     
@@ -142,7 +148,6 @@ extension CategoryListingVC: UITableViewDataSource, UITableViewDelegate {
                     self.selectedCategoryListing.append(isSearchOn ? self.searchedCategoryListing[indexPath.row] : categoryListing?[indexPath.row] ?? CategoryModel())
                 }
             }
-            //            self.setSelectedPowers(model: isSearchOn ? self.searchedCategoryListing[indexPath.row] : categoryListing?[indexPath.row] ?? CategoryModel())
         }
         self.tableView.reloadData()
     }
@@ -189,11 +194,11 @@ extension CategoryListingVC : PresenterOutputProtocol {
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
-        if let addionalModel = dataDict as? AdditionsModel{
+        if let addionalModel = dataDict as? CategoriesModel{
             var category = CategoryModel()
             category.id = 0
             category.category_name = "All"
-            categoryListing = addionalModel.product_categories
+            categoryListing = addionalModel.data
             categoryListing?.insert(category, at: 0)
             ProductFilterVM.shared.categoryListing = categoryListing ?? []
         }

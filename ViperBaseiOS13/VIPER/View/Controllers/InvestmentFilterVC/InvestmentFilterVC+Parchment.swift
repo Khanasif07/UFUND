@@ -14,14 +14,14 @@ extension InvestmentFilterVC: PagingViewControllerDataSource {
 
     func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
         
-        return MenuItem(title: ProductFilterVM.shared.allTabsStrForInvestments[index], index: index, isSelected: filtersTabs[index].isSelected )
+        return MenuItem(title: investmentType == .MyProductInvestment ? ProductFilterVM.shared.allTabsStrForMyPrductInvestments[index] : ProductFilterVM.shared.allTabsStrForMyTokenInvestments[index]  , index: index, isSelected: filtersTabs[index].isSelected )
     }
 
     func pagingViewController(_ pagingViewController: PagingViewController, viewControllerAt index: Int) -> UIViewController {
         return self.allChildVCs[index]
     }
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
-        return   ProductFilterVM.shared.allTabsStrForInvestments.count
+        return   investmentType == .MyProductInvestment ? ProductFilterVM.shared.allTabsStrForMyPrductInvestments.count : ProductFilterVM.shared.allTabsStrForMyTokenInvestments.count
     }
 }
 

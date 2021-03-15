@@ -121,6 +121,7 @@ extension AssetsFilterVC {
         for i in 0..<ProductFilterVM.shared.allTabsStrForAssets.count {
             if i == 0 {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
+                self.categoryListingVC.categoryType = .TokenzedAssets
                 self.allChildVCs.append(categoryListingVC)
             } else if i == 2 {
                 self.priceVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)

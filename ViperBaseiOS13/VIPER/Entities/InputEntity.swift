@@ -78,6 +78,7 @@ struct ProductCreate {
     let min = "min"
     let max = "max"
     let new_products = "new_products"
+    let category_type = "category_type"
     let sort_order = "sort_order"
     let sort_by = "sort_by"
     let reward_by = "reward_by"

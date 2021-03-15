@@ -49,7 +49,8 @@ class ProductFilterVM {
     var maximumEarning: CGFloat = 0.0
     var minimumYield: CGFloat = 0.0
     var maximumYield: CGFloat = 0.0
-    let allTabsStrForInvestments: [String] = [Constants.string.category.localize(), Constants.string.startDate.localize(),Constants.string.priceRange.localize(), Constants.string.earning.localize(),Constants.string.yield.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
+    let allTabsStrForMyPrductInvestments: [String] = [Constants.string.category.localize(), Constants.string.startDate.localize(),Constants.string.priceRange.localize(), Constants.string.earning.localize(),Constants.string.yield.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
+    let allTabsStrForMyTokenInvestments: [String] = [Constants.string.category.localize() ,Constants.string.priceRange.localize(),Constants.string.startDate.localize(), Constants.string.endDate.localize(),Constants.string.maturityDate.localize(),Constants.string.byReward.localize(),Constants.string.yield.localize(),]
 
     weak var delegate: ProductFilterVMDelegate?
     
@@ -62,6 +63,7 @@ class ProductFilterVM {
         self.minimumPrice = 0.0
         self.maximumPrice = 0.0
         self.selectedCategoryListing  = []
+        self.categoryListing  = []
         self.selectedCurrencyListing = []
         self.status = []
         //Assets
