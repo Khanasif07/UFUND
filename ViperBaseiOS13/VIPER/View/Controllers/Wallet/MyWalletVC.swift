@@ -30,6 +30,7 @@ class MyWalletVC: UIViewController {
     @IBOutlet weak var walletBalanceView: UIView!
     // MARK: - Variables
     //===========================
+    let bottomSheetVC = MyWalletSheetVC()
     
     // MARK: - Lifecycle
     //===========================
@@ -38,14 +39,35 @@ class MyWalletVC: UIViewController {
         initialSetup()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.location(in: self.view)
+        if self.bottomSheetVC.view.frame.contains(touchLocation) {
+            self.dismiss(animated: false, completion: nil)
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        bottomSheetVC.closePullUp()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.addBottomSheetView()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         depositView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
-         withdrawlView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
+        withdrawlView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
         walletBalanceView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
-         topView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
+        topView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
         middleView.subviews.forEach { (innerView) in
             innerView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
+            bottomSheetVC.view.dropShadow(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0, height: -3), opacity: 0.16, shadowRadius: 8)
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -85,6 +107,27 @@ extension MyWalletVC {
         dropdownView?.layer.cornerRadius = 4.0
         
         
+    }
+    
+    func addBottomSheetView() {
+        
+        guard !self.children.contains(bottomSheetVC) else { return }
+        self.addChild(bottomSheetVC)
+        //        self.view.addSubview(bottomSheetVC.view)
+        self.view.insertSubview(bottomSheetVC.view, belowSubview: self.topView)
+        //        bottomSheetVC.didMove(toParent: self)
+        
+        let height = view.frame.height
+        let width  = view.frame.width
+        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+        if UIScreen.main.bounds.size.height <= 812 {
+            bottomSheetVC.bottomLayoutConstraint.constant = self.view.safeAreaInsets.bottom + (self.tabBarController?.tabBar.height ?? 0)
+        }
+        let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: self.tabBarController?.tabBar.frame.height ?? 30, right: 0)
+        bottomSheetVC.mainTableView.contentInset = adjustForTabbarInsets
+        bottomSheetVC.mainTableView.scrollIndicatorInsets = adjustForTabbarInsets
+        //        bottomSheetVC.listingTableView.refreshControl = refreshControl
+        self.view.layoutIfNeeded()
     }
 }
 

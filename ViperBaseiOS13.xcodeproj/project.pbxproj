@@ -218,6 +218,8 @@
 		845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845B9DD025D50318009E388F /* CategoriesVC.swift */; };
 		845C131625FF53970018A1E1 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845C131525FF53970018A1E1 /* Wallet.storyboard */; };
 		845C131825FF53F90018A1E1 /* MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131725FF53F90018A1E1 /* MyWalletVC.swift */; };
+		845C131A25FF8A320018A1E1 /* MyWalletSheetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */; };
+		845C131C25FF8A940018A1E1 /* MyWalletSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */; };
 		847297D225E7739800711CEE /* ProductDetailPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */; };
 		847297D525E8BD9200711CEE /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D425E8BD9200711CEE /* ChangePasswordVC.swift */; };
 		847C10F125DE0BF400D13A5C /* UserProfileVC+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C10F025DE0BF400D13A5C /* UserProfileVC+Enum.swift */; };
@@ -518,6 +520,8 @@
 		845B9DD025D50318009E388F /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		845C131525FF53970018A1E1 /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		845C131725FF53F90018A1E1 /* MyWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletVC.swift; sourceTree = "<group>"; };
+		845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletSheetVC.xib; sourceTree = "<group>"; };
+		845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletSheetVC.swift; sourceTree = "<group>"; };
 		847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailPopUpVC.swift; sourceTree = "<group>"; };
 		847297D425E8BD9200711CEE /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		847C10F025DE0BF400D13A5C /* UserProfileVC+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileVC+Enum.swift"; sourceTree = "<group>"; };
@@ -1760,6 +1764,8 @@
 			isa = PBXGroup;
 			children = (
 				845C131725FF53F90018A1E1 /* MyWalletVC.swift */,
+				845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */,
+				845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -2132,6 +2138,7 @@
 				84DD054F25D239AD003AC05C /* CountryCodeTableCell.xib in Resources */,
 				0824B032238280E800F81A9B /* Assets.xcassets in Resources */,
 				84411E9825D14C0400718BD1 /* UserProfileTableCell.xib in Resources */,
+				845C131A25FF8A320018A1E1 /* MyWalletSheetVC.xib in Resources */,
 				0825AB74238BD53C0083AC42 /* CategoriesCell.xib in Resources */,
 				84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */,
 				087B7B86241D0F5B0024D998 /* FundCell.xib in Resources */,
@@ -2412,6 +2419,7 @@
 				080FC594238D300F0013B37D /* PaymentsViewController.swift in Sources */,
 				0870FC45238CFBD800D24B41 /* ProductsCollectionCell.swift in Sources */,
 				84FA6EBF25E60C810053E618 /* AssetsFilterVC+Parchment.swift in Sources */,
+				845C131C25FF8A940018A1E1 /* MyWalletSheetVC.swift in Sources */,
 				0824B11D2382A13200F81A9B /* TextField.swift in Sources */,
 				0824B0D52382847800F81A9B /* Identifiers.swift in Sources */,
 				845B9DCA25D3F676009E388F /* EditProfilePopUpVC.swift in Sources */,

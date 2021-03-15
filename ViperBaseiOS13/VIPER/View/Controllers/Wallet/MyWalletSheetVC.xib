@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyWalletSheetVC" customModule="UFUND" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomLayoutConstraint" destination="WMK-bn-qQt" id="LpG-uC-Gbh"/>
+                <outlet property="mainTableView" destination="e5r-9b-BBo" id="XZA-e8-oeV"/>
+                <outlet property="view" destination="iN0-l3-epB" id="SLf-DP-CH8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebb-mw-JeH">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e5r-9b-BBo">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="e5r-9b-BBo" firstAttribute="leading" secondItem="ebb-mw-JeH" secondAttribute="leading" id="1ph-2g-wlE"/>
+                        <constraint firstItem="e5r-9b-BBo" firstAttribute="top" secondItem="ebb-mw-JeH" secondAttribute="top" id="FSU-ZE-bK2"/>
+                        <constraint firstAttribute="bottom" secondItem="e5r-9b-BBo" secondAttribute="bottom" id="WMK-bn-qQt"/>
+                        <constraint firstAttribute="trailing" secondItem="e5r-9b-BBo" secondAttribute="trailing" id="uRE-gd-nfC"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" name="primaryColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ebb-mw-JeH" secondAttribute="trailing" id="2eE-Pc-2v2"/>
+                <constraint firstItem="ebb-mw-JeH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2nR-DX-7dE"/>
+                <constraint firstAttribute="bottom" secondItem="ebb-mw-JeH" secondAttribute="bottom" id="Vdx-Wx-hxb"/>
+                <constraint firstItem="ebb-mw-JeH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Z4R-gb-5ea"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="125"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="primaryColor">
+            <color red="1" green="0.11999999731779099" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
