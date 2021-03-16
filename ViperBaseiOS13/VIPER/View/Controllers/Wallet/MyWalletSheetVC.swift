@@ -13,11 +13,13 @@ class MyWalletSheetVC: UIViewController {
     // holdView can be UIImageView instead
     //MARK:- OUTLETS
     //==============
+    @IBOutlet weak var mainCotainerView: UIView!
     @IBOutlet weak var bottomLayoutConstraint : NSLayoutConstraint!
     @IBOutlet weak var mainTableView: UITableView!
     
     //MARK:- VARIABLE
     //================
+     var menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
     lazy var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(closePullUp))
     var fullView: CGFloat {
         return 70.0
@@ -54,6 +56,8 @@ class MyWalletSheetVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        mainCotainerView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 15)
+        mainCotainerView.addShadowToTopOrBottom(location: .top, color: UIColor.black.withAlphaComponent(0.5))
     }
     
     override func didReceiveMemoryWarning() {
@@ -121,16 +125,11 @@ extension MyWalletSheetVC {
     }
     
     private func setupTableView() {
-        self.mainTableView.isUserInteractionEnabled = false
-//        let nibPost = UINib(nibName: XIB.Names.ProductsCollectionCell, bundle: nil)
-//        listingCollView.register(nibPost, forCellWithReuseIdentifier: XIB.Names.ProductsCollectionCell)
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .vertical
-//        listingCollView.collectionViewLayout = layout
-//        layout.minimumInteritemSpacing = 0
-//        layout.minimumLineSpacing = 0
-//        listingCollView.alwaysBounceHorizontal = false
-//        listingCollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.mainTableView.isUserInteractionEnabled = true
+        self.mainTableView.delegate = self
+        self.mainTableView.dataSource = self
+        self.mainTableView.registerCell(with: MyWalletTableCell.self)
+        self.mainTableView.registerHeaderFooter(with: MyWalletSectionView.self)
     }
     
     private func setupSwipeGesture() {
@@ -146,9 +145,59 @@ extension MyWalletSheetVC {
 //            self.holdView.alpha = 1.0
         })
     }
+    
+    func rotateLeft(dropdownView: UIView,left: CGFloat = -1) {
+        UIView.animate(withDuration: 1.0, animations: {
+            dropdownView.transform = CGAffineTransform(rotationAngle: ((180.0 * CGFloat(Double.pi)) / 180.0) * CGFloat(left))
+            self.view.layoutIfNeeded()
+        })
+    }
+          
 }
 
-
+//MARK:- UITableViewDelegate
+//========================
+extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return  self.menuContent[section].1.endIndex
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueCell(with: MyWalletTableCell.self, indexPath: indexPath)
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.menuContent.endIndex
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
+        view.sectionTappedAction = { [weak self] (sender) in
+            guard let selff = self else { return }
+            if selff.menuContent[section].1.endIndex == 0 {
+                selff.menuContent[section].1 = ["1","2","3","4","5","6"]
+            } else {
+                 selff.menuContent[section].1 = []
+            }
+            tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+        }
+        self.rotateLeft(dropdownView: view.dropdownBtn,left : (self.menuContent[section].1.isEmpty ) ? 0 : -1)
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 48.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
 
 //MARK:- Gesture Delegates
 //========================

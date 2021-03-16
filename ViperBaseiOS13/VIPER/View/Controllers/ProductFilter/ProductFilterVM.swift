@@ -58,12 +58,12 @@ class ProductFilterVM {
         return !(selectedCategoryListing.endIndex == 0 && selectedCurrencyListing.endIndex == 0 && status.endIndex == 0 && self.types.endIndex == 0 && self.byRewards.endIndex == 0 && self.start_from.isEmpty && self.start_to.isEmpty && self.close_from.isEmpty && self.close_to.isEmpty && self.investmentStart_from.isEmpty && self.investmentStart_to.isEmpty && self.investmentClose_from.isEmpty && self.investmentClose_to.isEmpty && self.investmentMaturity_from.isEmpty && self.investmentMaturity_to.isEmpty && self.minimumPrice == 0.0 && self.maximumPrice == 0.0)
     }
 
-    func resetToAllFilter() {
+    func resetToAllFilter(isCategorySelected: Bool = true) {
         //Product
         self.minimumPrice = 0.0
         self.maximumPrice = 0.0
         self.selectedCategoryListing  = []
-        self.categoryListing  = []
+        self.categoryListing  = isCategorySelected ? [] : self.categoryListing
         self.selectedCurrencyListing = []
         self.status = []
         //Assets

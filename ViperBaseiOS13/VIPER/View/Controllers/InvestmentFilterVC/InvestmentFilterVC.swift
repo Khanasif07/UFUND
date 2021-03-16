@@ -85,7 +85,7 @@ class InvestmentFilterVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func clearAllBtnAction(_ sender: Any) {
-        ProductFilterVM.shared.resetToAllFilter()
+        ProductFilterVM.shared.resetToAllFilter(isCategorySelected: false)
         self.initialSetup()
     }
     

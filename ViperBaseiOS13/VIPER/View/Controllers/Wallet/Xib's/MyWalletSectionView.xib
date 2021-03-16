@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MyWalletSectionView" customModule="UFUND" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUY-ME-dh9">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jTe-5v-INI">
+                            <rect key="frame" x="16" y="14" width="342.5" height="20"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vS8-m4-v5l">
+                                    <rect key="frame" x="0.0" y="0.0" width="94" height="20"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnO-uR-Rl3">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="9XM-Fh-vzF"/>
+                                                <constraint firstAttribute="width" secondItem="pnO-uR-Rl3" secondAttribute="height" id="Wfh-rD-Qyf"/>
+                                            </constraints>
+                                            <state key="normal" image="arrowBottom"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car wash " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oof-75-Ku2">
+                                            <rect key="frame" x="28" y="0.0" width="66" height="20"/>
+                                            <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="O2E-Cu-s1R">
+                                    <rect key="frame" x="155" y="0.0" width="187.5" height="20"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFW-Mh-MQo">
+                                            <rect key="frame" x="0.0" y="0.0" width="38.5" height="20"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 16, 2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81M-vR-SXc">
+                                            <rect key="frame" x="113.5" y="0.0" width="74" height="20"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJ6-ur-3CE">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                            <connections>
+                                <action selector="sectionBtnTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="P8l-Vg-aBC"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="jTe-5v-INI" firstAttribute="leading" secondItem="ZUY-ME-dh9" secondAttribute="leading" constant="16" id="GWk-pr-Xap"/>
+                        <constraint firstAttribute="bottom" secondItem="QJ6-ur-3CE" secondAttribute="bottom" id="OZi-kd-gSV"/>
+                        <constraint firstItem="jTe-5v-INI" firstAttribute="centerY" secondItem="ZUY-ME-dh9" secondAttribute="centerY" id="QEO-Ab-tUM"/>
+                        <constraint firstItem="QJ6-ur-3CE" firstAttribute="leading" secondItem="ZUY-ME-dh9" secondAttribute="leading" id="T0g-d3-Wiy"/>
+                        <constraint firstAttribute="trailing" secondItem="jTe-5v-INI" secondAttribute="trailing" constant="16.5" id="Tj9-by-fha"/>
+                        <constraint firstAttribute="trailing" secondItem="QJ6-ur-3CE" secondAttribute="trailing" id="VK8-wc-zER"/>
+                        <constraint firstItem="QJ6-ur-3CE" firstAttribute="top" secondItem="ZUY-ME-dh9" secondAttribute="top" id="aSw-Ov-bL4"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ZUY-ME-dh9" secondAttribute="bottom" id="5nG-Rk-xPT"/>
+                <constraint firstItem="ZUY-ME-dh9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7sR-9k-Sbm"/>
+                <constraint firstItem="ZUY-ME-dh9" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="SqO-97-tnn"/>
+                <constraint firstItem="ZUY-ME-dh9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="enX-WT-E0O"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="dataContainerView" destination="ZUY-ME-dh9" id="hzk-of-EQq"/>
+                <outlet property="dateLbl" destination="81M-vR-SXc" id="8Sr-i2-S1n"/>
+                <outlet property="dropdownBtn" destination="pnO-uR-Rl3" id="awn-vt-fxi"/>
+                <outlet property="sectionMiddleLbl" destination="nFW-Mh-MQo" id="Muq-xJ-TvH"/>
+                <outlet property="sectionTitleLbl" destination="Oof-75-Ku2" id="QVe-hY-M2a"/>
+            </connections>
+            <point key="canvasLocation" x="81.884057971014499" y="257.47767857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrowBottom" width="20" height="20"/>
+    </resources>
+</document>

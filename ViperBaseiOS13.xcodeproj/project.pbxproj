@@ -265,6 +265,10 @@
 		84E16F0625D50D75004F37FA /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E16F0525D50D75004F37FA /* CollectionView.swift */; };
 		84E16F0925D5215B004F37FA /* ProductCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E16F0725D5215B004F37FA /* ProductCollectionCell.swift */; };
 		84E16F0A25D5215B004F37FA /* ProductCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E16F0825D5215B004F37FA /* ProductCollectionCell.xib */; };
+		84E1F2D92600746B002B0062 /* MyWalletSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1F2D82600746B002B0062 /* MyWalletSectionView.swift */; };
+		84E1F2DB26007483002B0062 /* MyWalletSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E1F2DA26007483002B0062 /* MyWalletSectionView.xib */; };
+		84E1F2DE26007DA4002B0062 /* MyWalletTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1F2DC26007DA4002B0062 /* MyWalletTableCell.swift */; };
+		84E1F2DF26007DA4002B0062 /* MyWalletTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E1F2DD26007DA4002B0062 /* MyWalletTableCell.xib */; };
 		84FA6EAA25E4BDC30053E618 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 84FA6EA925E4BDC30053E618 /* Fonts */; };
 		84FA6EAE25E4CA330053E618 /* CustomCircularBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EAD25E4CA330053E618 /* CustomCircularBar.swift */; };
 		84FA6EB225E5F0F40053E618 /* TokenizedAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EB125E5F0F40053E618 /* TokenizedAssetsVC.swift */; };
@@ -567,6 +571,10 @@
 		84E16F0525D50D75004F37FA /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		84E16F0725D5215B004F37FA /* ProductCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionCell.swift; sourceTree = "<group>"; };
 		84E16F0825D5215B004F37FA /* ProductCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCollectionCell.xib; sourceTree = "<group>"; };
+		84E1F2D82600746B002B0062 /* MyWalletSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletSectionView.swift; sourceTree = "<group>"; };
+		84E1F2DA26007483002B0062 /* MyWalletSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletSectionView.xib; sourceTree = "<group>"; };
+		84E1F2DC26007DA4002B0062 /* MyWalletTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletTableCell.swift; sourceTree = "<group>"; };
+		84E1F2DD26007DA4002B0062 /* MyWalletTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletTableCell.xib; sourceTree = "<group>"; };
 		84FA6EA925E4BDC30053E618 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		84FA6EAD25E4CA330053E618 /* CustomCircularBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircularBar.swift; sourceTree = "<group>"; };
 		84FA6EB125E5F0F40053E618 /* TokenizedAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedAssetsVC.swift; sourceTree = "<group>"; };
@@ -1763,6 +1771,7 @@
 		845C131425FF537F0018A1E1 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				84E1F2D5260073DF002B0062 /* Xib's */,
 				845C131725FF53F90018A1E1 /* MyWalletVC.swift */,
 				845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */,
 				845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */,
@@ -1919,6 +1928,17 @@
 				84E16F0525D50D75004F37FA /* CollectionView.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		84E1F2D5260073DF002B0062 /* Xib's */ = {
+			isa = PBXGroup;
+			children = (
+				84E1F2D82600746B002B0062 /* MyWalletSectionView.swift */,
+				84E1F2DA26007483002B0062 /* MyWalletSectionView.xib */,
+				84E1F2DC26007DA4002B0062 /* MyWalletTableCell.swift */,
+				84E1F2DD26007DA4002B0062 /* MyWalletTableCell.xib */,
+			);
+			path = "Xib's";
 			sourceTree = "<group>";
 		};
 		84FA6EAB25E4BE440053E618 /* Resources */ = {
@@ -2118,11 +2138,13 @@
 				0821E8F8241B8C4300263674 /* CryptoReceiveViewController.xib in Resources */,
 				84FA6EBA25E5FEDF0053E618 /* AssetsDetailInfoCell.xib in Resources */,
 				0826B7C62386934700867CD5 /* WalkThroughCell.xib in Resources */,
+				84E1F2DF26007DA4002B0062 /* MyWalletTableCell.xib in Resources */,
 				84411E9C25D1577C00718BD1 /* UserProfileImageCell.xib in Resources */,
 				845ADB8425ECAEB7009392E2 /* BottomSheetVC.xib in Resources */,
 				088E33C124CAF382001EE899 /* DatePickerViewController.xib in Resources */,
 				0824B0C52382847800F81A9B /* countryCodes.json in Resources */,
 				84D5660825DB9EC80047F052 /* CategoryListTableCell.xib in Resources */,
+				84E1F2DB26007483002B0062 /* MyWalletSectionView.xib in Resources */,
 				844682D725D53DC900F44A53 /* ProductSortTableCell.xib in Resources */,
 				0825AB86238C0B4C0083AC42 /* HeaderCell.xib in Resources */,
 				847C110025DF968300D13A5C /* ProductDetailDateCell.xib in Resources */,
@@ -2360,6 +2382,7 @@
 				08918BAC23852CC300F274C2 /* ButtonExtension.swift in Sources */,
 				08DF504723B1E91700621C0E /* SecurityCell.swift in Sources */,
 				08294D76238E7856008108A2 /* ProductViewController.swift in Sources */,
+				84E1F2D92600746B002B0062 /* MyWalletSectionView.swift in Sources */,
 				84D565F325DB84790047F052 /* PriceRangeVC.swift in Sources */,
 				84411E9225D147ED00718BD1 /* UserProfileHeaderView.swift in Sources */,
 				0824B0B92382847800F81A9B /* AVPlayerHelper.swift in Sources */,
@@ -2434,6 +2457,7 @@
 				0825A05523B49C5F001BEC21 /* ProductListViewController.swift in Sources */,
 				84411E8725D1044700718BD1 /* FacebookController.swift in Sources */,
 				086F1389246EB02100EA4355 /* CampHistoryViewController.swift in Sources */,
+				84E1F2DE26007DA4002B0062 /* MyWalletTableCell.swift in Sources */,
 				0824B030238280E700F81A9B /* ViperBaseiOS13.xcdatamodeld in Sources */,
 				0824B1232382A19300F81A9B /* CommonDelegate.swift in Sources */,
 				08268C5723D97AE300FA111F /* SilderImage.swift in Sources */,
