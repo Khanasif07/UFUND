@@ -196,13 +196,14 @@
                 <outlet property="bottomView" destination="OHA-Ik-OZf" id="mA5-Qo-LQp"/>
                 <outlet property="dataContainerView" destination="mnr-1c-hRR" id="vtr-pQ-U0Q"/>
                 <outlet property="investmentLbl" destination="WEK-yQ-dsT" id="GhW-h3-Td6"/>
+                <outlet property="investmentView" destination="9tK-OL-YTk" id="d8b-ZN-xXo"/>
                 <outlet property="liveView" destination="c8t-gO-ya4" id="5LS-sY-bCU"/>
                 <outlet property="priceLbl" destination="WGA-ut-hog" id="PNI-0i-aMP"/>
                 <outlet property="productImgView" destination="HGI-ut-5HK" id="XAT-Zn-Q5U"/>
                 <outlet property="productNameLbl" destination="NuF-OB-Cpa" id="za3-Vw-XcQ"/>
                 <outlet property="productTypeLbl" destination="lXh-71-mFV" id="xJM-RD-q2G"/>
             </connections>
-            <point key="canvasLocation" x="138.40579710144928" y="150"/>
+            <point key="canvasLocation" x="108" y="112"/>
         </collectionViewCell>
     </objects>
     <resources>

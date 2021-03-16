@@ -181,6 +181,7 @@ extension TokenizedAssetsVC: UICollectionViewDelegate, UICollectionViewDataSourc
         cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenvalue ?? 0))")
         cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
         cell.investmentLbl.text = "N/A"
+        cell.investmentView.isHidden = true
 //        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
         cell.backgroundColor = .clear
         return cell

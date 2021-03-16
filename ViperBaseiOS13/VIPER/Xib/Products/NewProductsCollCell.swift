@@ -1,21 +1,19 @@
 //
-//  AllProductsCollCell.swift
+//  NewProductsCollCell.swift
 //  ViperBaseiOS13
 //
-//  Created by Admin on 15/02/21.
+//  Created by Admin on 16/03/21.
 //  Copyright © 2021 CSS. All rights reserved.
 //
 
 import UIKit
 
-class AllProductsCollCell: UICollectionViewCell {
+class NewProductsCollCell: UICollectionViewCell {
 
-    @IBOutlet weak var investmentView: UIStackView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var liveView: UIView!
-    @IBOutlet weak var investmentLbl: UILabel!
     @IBOutlet weak var priceLbl: UILabel!
-    @IBOutlet weak var productTypeLbl: UILabel!
+    @IBOutlet weak var categoryLbl: UILabel!
     @IBOutlet weak var productNameLbl: UILabel!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var productImgView: UIImageView!
@@ -35,13 +33,3 @@ class AllProductsCollCell: UICollectionViewCell {
     
 
 }
-
-
-extension UIColor{
-    @nonobjc class var black16: UIColor {
-        return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.07983178448)
-    }
-}
-
-
-   
