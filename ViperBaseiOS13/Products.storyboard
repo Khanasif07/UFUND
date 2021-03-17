@@ -844,8 +844,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s1n-Q9-c2u">
                                                         <rect key="frame" x="16" y="21" width="384" height="43"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMb-lD-eYZ" userLabel="SORT">
-                                                                <rect key="frame" x="0.0" y="0.0" width="188" height="43"/>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMb-lD-eYZ" userLabel="SORT">
+                                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="43" id="bjS-1c-W6M"/>
                                                                 </constraints>
@@ -858,7 +858,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbU-ef-Ult">
-                                                                <rect key="frame" x="196" y="0.0" width="188" height="43"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="384" height="43"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <state key="normal" title="  Buy Products" image="icFilter">
                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

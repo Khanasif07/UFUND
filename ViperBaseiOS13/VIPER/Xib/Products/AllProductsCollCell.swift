@@ -10,6 +10,7 @@ import UIKit
 
 class AllProductsCollCell: UICollectionViewCell {
 
+    @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var investmentView: UIStackView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var liveView: UIView!

@@ -155,7 +155,7 @@
                                             <constraint firstItem="zih-c5-NF0" firstAttribute="centerY" secondItem="c8t-gO-ya4" secondAttribute="centerY" id="X2x-Tb-QTr"/>
                                             <constraint firstItem="NbZ-7m-vvQ" firstAttribute="centerY" secondItem="c8t-gO-ya4" secondAttribute="centerY" id="jHd-Yj-AyV"/>
                                             <constraint firstItem="zih-c5-NF0" firstAttribute="leading" secondItem="c8t-gO-ya4" secondAttribute="leading" constant="8" id="noh-eg-Mev"/>
-                                            <constraint firstAttribute="width" constant="54" id="o4W-xK-mQz"/>
+                                            <constraint firstItem="NbZ-7m-vvQ" firstAttribute="leading" secondItem="zih-c5-NF0" secondAttribute="trailing" constant="5" id="sIn-ut-sYT"/>
                                             <constraint firstAttribute="trailing" secondItem="NbZ-7m-vvQ" secondAttribute="trailing" constant="10" id="yjC-bZ-gkI"/>
                                         </constraints>
                                     </view>
@@ -202,6 +202,7 @@
                 <outlet property="productImgView" destination="HGI-ut-5HK" id="XAT-Zn-Q5U"/>
                 <outlet property="productNameLbl" destination="NuF-OB-Cpa" id="za3-Vw-XcQ"/>
                 <outlet property="productTypeLbl" destination="lXh-71-mFV" id="xJM-RD-q2G"/>
+                <outlet property="statusLbl" destination="NbZ-7m-vvQ" id="Nzo-Py-7NC"/>
             </connections>
             <point key="canvasLocation" x="108" y="112"/>
         </collectionViewCell>

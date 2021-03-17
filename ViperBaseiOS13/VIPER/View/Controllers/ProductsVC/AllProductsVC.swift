@@ -156,6 +156,7 @@ extension AllProductsVC {
         //        if let _ = UIApplication.topViewController() {
         let ob = ProductFilterVC.instantiate(fromAppStoryboard: .Filter)
         ob.delegate = vc as? ProductFilterVCDelegate
+        ob.productType = productType
         vc.present(ob, animated: true, completion: nil)
         //                ob.selectedIndex = index
         //            vc.add(childViewController: ob)
@@ -367,7 +368,6 @@ extension AllProductsVC: UISearchBarDelegate{
 extension AllProductsVC: ProductFilterVCDelegate {
     func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
-        ProductFilterVM.shared.selectedCurrencyListing = self.selectedCurrency.0
         ProductFilterVM.shared.status = self.selectedStatus.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
@@ -381,13 +381,6 @@ extension AllProductsVC: ProductFilterVCDelegate {
         }else {
             ProductFilterVM.shared.selectedCategoryListing = []
             self.selectedCategory = ([],false)
-        }
-        if currency.1 {
-            ProductFilterVM.shared.selectedCurrencyListing = currency.0
-            self.selectedCurrency = currency
-        }else{
-            ProductFilterVM.shared.selectedCurrencyListing = []
-            self.selectedCurrency = ([],false)
         }
         if status.1 {
             ProductFilterVM.shared.status = status.0
@@ -417,12 +410,6 @@ extension AllProductsVC: ProductFilterVCDelegate {
                 return String(model.id ?? 0)
             }.joined(separator: ",")
             params[ProductCreate.keys.category] = category
-        }
-        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
-            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params[ProductCreate.keys.currency] = currency
         }
         if ProductFilterVM.shared.minimumPrice != 0{
             params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice

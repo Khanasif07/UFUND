@@ -110,6 +110,7 @@ extension MyInvestmentVC {
         ProductFilterVM.shared.resetToAllFilter()
         self.titleLbl.text = productTitle
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
+        self.mainCollView.registerCell(with: NewProductsCollCell.self)
         self.mainCollView.delegate = self
         self.mainCollView.dataSource = self
         self.mainCollView.emptyDataSetDelegate = self
@@ -190,30 +191,33 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
         switch investmentType {
         case .MyProductInvestment:
+            let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
             cell.productNameLbl.text =  (self.investerProductList?[indexPath.row].product_title ?? "")
             let imgEntity =   (self.investerProductList?[indexPath.row].product_image ?? "")
             let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
             cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].category?.category_name ?? "")
             cell.priceLbl.text = "$" +  "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
-            cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
+            cell.statusLbl.text = (self.investerProductList?[indexPath.row].product_status == 1) ? "Live" : (self.investerProductList?[indexPath.row].status == 2) ? "Closed" : "Matured"
+            cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status == nil)
             cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
             cell.backgroundColor = .clear
+            return cell
         default:
+            let cell = collectionView.dequeueCell(with: NewProductsCollCell.self, indexPath: indexPath)
             cell.productNameLbl.text =   (self.investerProductList?[indexPath.row].tokenname ?? "")
             let imgEntity =   (self.investerProductList?[indexPath.row].token_image ?? "")
             let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-            cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
+            cell.categoryLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
             cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenvalue ?? 0))")
-            cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status != 1)
-            cell.investmentLbl.text = "N/A"
-//            cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
+            cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status == nil)
+            cell.statusLbl.text = (self.investerProductList?[indexPath.row].token_status == 1) ? "Live" : "Closed"
+            return cell
         }
-        return cell
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

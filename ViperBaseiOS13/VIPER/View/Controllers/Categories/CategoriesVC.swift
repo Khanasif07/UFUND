@@ -24,7 +24,8 @@ class CategoriesVC: UIViewController {
     // MARK: - Variables
     //===========================
     var sortType : String = ""
-    var searchText: String  = ""
+    var searchTextForProduct: String  = ""
+    var searchTextForToken : String  = ""
     var tokenVC : CategoriesTokenVC!
     var productVC : CategoriesProductsVC!
     lazy var loader  : UIView = {
@@ -37,11 +38,15 @@ class CategoriesVC: UIViewController {
                 self.tokenBtn.setTitleColor(.darkGray, for: .normal)
                 self.productBtn.backgroundColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
                 self.tokenBtn.setBackGroundColor(color: .clear)
+                self.searchTxtField.text = searchTextForProduct
+                self.searchBarSearchButtonClicked(searchTxtField)
             } else {
                 self.productBtn.setTitleColor(.darkGray, for: .normal)
                 self.tokenBtn.setTitleColor(.white, for: .normal)
                 self.productBtn.setBackGroundColor(color: .clear)
                 self.tokenBtn.backgroundColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
+                self.searchTxtField.text = searchTextForToken
+                self.searchBarSearchButtonClicked(searchTxtField)
             }
         }
     }
@@ -184,58 +189,58 @@ extension CategoriesVC: ProductSortVCDelegate  {
         case Constants.string.sort_by_latest,Constants.string.sort_by_oldest:
             var orderType : ComparisonResult = .orderedAscending
             orderType = (sortType == Constants.string.sort_by_latest) ? .orderedDescending : .orderedAscending
-//            if isPruductSelected {
-                let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
+            if isPruductSelected {
+                let productsCategories = searchTextForProduct.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
                 let sortedProduct = productsCategories?.sorted(by: { (model1, model2) -> Bool in
                     let date1 = model1.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     let date2 = model2.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     return date1?.compare(date2 ?? Date()) == orderType
                 })
-                if !searchText.isEmpty {
+                if !searchTextForProduct.isEmpty {
                      productVC.searchProductCategories = sortedProduct
                      productVC.mainCollView.reloadData()
                 } else {
                       productVC.productCategories = sortedProduct
                 }
               
-//            } else{
-                let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
+            } else{
+                let tokenssCategories = searchTextForToken.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
                 let sortedToken = tokenssCategories?.sorted(by: { (model1, model2) -> Bool in
                     let date1 = model1.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     let date2 = model2.created_at?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue)
                     return date1?.compare(date2 ?? Date()) == orderType
                 })
-                if !searchText.isEmpty {
+                if !searchTextForToken.isEmpty {
                     tokenVC.searchTokenCategories = sortedToken
                     tokenVC.mainCollView.reloadData()
                 } else {
                     tokenVC.tokenCategories = sortedToken
                 }
                 
-//            }
+            }
         case Constants.string.sort_by_name_AZ,Constants.string.sort_by_name_ZA:
             var orderType : ComparisonResult = .orderedAscending
             orderType = (sortType == Constants.string.sort_by_name_ZA) ? .orderedDescending : .orderedAscending
-            //            if isPruductSelected {
-            let productsCategories = searchText.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
+                        if isPruductSelected {
+            let productsCategories = searchTextForProduct.isEmpty ? productVC.productCategories :  productVC.searchProductCategories
             let sortedProduct = productsCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
-            if !searchText.isEmpty {
+            if !searchTextForProduct.isEmpty {
                 productVC.searchProductCategories = sortedProduct
                 productVC.mainCollView.reloadData()
             } else {
                 productVC.productCategories = sortedProduct
             }
             
-            //            } else{
-            let tokenssCategories = searchText.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
+                        } else{
+            let tokenssCategories = searchTextForToken.isEmpty ? tokenVC.tokenCategories :  tokenVC.searchTokenCategories
             let sortedToken = tokenssCategories?.sorted{$0.category_name?.localizedCompare($1.category_name ?? "") == orderType}
-            if !searchText.isEmpty {
+            if !searchTextForToken.isEmpty {
                 tokenVC.searchTokenCategories = sortedToken
                 tokenVC.mainCollView.reloadData()
             } else {
                 tokenVC.tokenCategories = sortedToken
             }
-//            }
+            }
         default:
             print(sortType)
         }
@@ -261,9 +266,13 @@ extension CategoriesVC: UIScrollViewDelegate{
 //========================================
 extension CategoriesVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchText = searchText
-        self.productVC.searchText = searchText
-        self.tokenVC.searchText = searchText
+        if isPruductSelected {
+                self.searchTextForProduct = searchText
+                self.productVC.searchText = searchText
+        } else {
+                self.searchTextForToken = searchText
+                self.tokenVC.searchText = searchText
+        }
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

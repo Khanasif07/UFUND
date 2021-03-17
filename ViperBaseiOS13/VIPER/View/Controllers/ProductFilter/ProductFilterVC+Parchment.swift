@@ -13,14 +13,22 @@ import Parchment
 extension ProductFilterVC: PagingViewControllerDataSource {
 
     func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
-        return isFilterWithoutCategory  ? MenuItem(title: ProductFilterVM.shared.allTabsStrWithoutCategory[index], index: index, isSelected: filtersTabs[index].isSelected ) : MenuItem(title: ProductFilterVM.shared.allTabsStr[index], index: index, isSelected: filtersTabs[index].isSelected )
+        if isFilterWithoutCategory {
+          return  MenuItem(title: ProductFilterVM.shared.allTabsStrWithoutCategory[index], index: index, isSelected: filtersTabs[index].isSelected )
+        } else {
+            if (productType == .AllProducts){
+              return  MenuItem(title: ProductFilterVM.shared.allTabsStr[index], index: index, isSelected: filtersTabs[index].isSelected )
+            } else{
+                return  MenuItem(title: ProductFilterVM.shared.allTabsStrWithoutStatus[index], index: index, isSelected: filtersTabs[index].isSelected)
+            }
+        }
     }
 
     func pagingViewController(_ pagingViewController: PagingViewController, viewControllerAt index: Int) -> UIViewController {
         return self.allChildVCs[index]
     }
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
-        return isFilterWithoutCategory ? ProductFilterVM.shared.allTabsStrWithoutCategory.count : ProductFilterVM.shared.allTabsStr.count
+        return isFilterWithoutCategory ? ProductFilterVM.shared.allTabsStrWithoutCategory.count : productType == .AllProducts ? ProductFilterVM.shared.allTabsStr.count : ProductFilterVM.shared.allTabsStrWithoutStatus.count
     }
 }
 

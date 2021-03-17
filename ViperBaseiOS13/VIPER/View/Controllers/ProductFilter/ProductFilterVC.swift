@@ -40,11 +40,11 @@ class ProductFilterVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var productType: ProductType = .AllProducts
     var isFilterWithoutCategory: Bool =  false
     var categoryListingVC : CategoryListingVC!
     var priceRangeVC      : PriceRangeVC!
     var statusVC          : StatusVC!
-    var currencyVC        : CurrencyVC!
     // Parchment View
     var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     var filtersTabs =  [MenuItem]()
@@ -53,7 +53,6 @@ class ProductFilterVC: UIViewController {
     
     //  MARK: - Variables
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-    var isFilterApplied:Bool = false
     var allChildVCs: [UIViewController] = [UIViewController]()
     weak var delegate : ProductFilterVCDelegate?
     private lazy var loader  : UIView = {
@@ -102,12 +101,12 @@ class ProductFilterVC: UIViewController {
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.selectedCurrencyListing, false), (ProductFilterVM.shared.status, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
+        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), ([], false), (ProductFilterVM.shared.status, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
-        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.selectedCurrencyListing, !ProductFilterVM.shared.selectedCurrencyListing.isEmpty), (ProductFilterVM.shared.status, !ProductFilterVM.shared.status.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
+        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), ([], false), (ProductFilterVM.shared.status, !ProductFilterVM.shared.status.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
          self.popOrDismiss(animation: true)
     }
 }
@@ -120,7 +119,11 @@ extension ProductFilterVC {
         if isFilterWithoutCategory{
             self.setupPagerViewWithoutCategory()
         } else {
-            self.setupPagerView()
+            if productType == .NewProducts {
+                self.setupPagerViewWithoutStatus()
+            } else {
+                self.setupPagerView()
+            }
         }
     }
     
@@ -134,9 +137,6 @@ extension ProductFilterVC {
                 self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(priceRangeVC)
             } else if i == 2 {
-                self.currencyVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
-                self.allChildVCs.append(currencyVC)
-            } else if i == 3 {
                 self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
                 self.statusVC.statusType = .status
                 self.allChildVCs.append(statusVC)
@@ -152,6 +152,28 @@ extension ProductFilterVC {
         
     }
     
+    private func setupPagerViewWithoutStatus(isMenuReload:Bool = true) {
+        self.allChildVCs.removeAll()
+        for i in 0..<ProductFilterVM.shared.allTabsStrWithoutStatus.count {
+            if i == 0 {
+                self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(categoryListingVC)
+            } else if i == 1 {
+                self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
+                self.allChildVCs.append(priceRangeVC)
+            }
+        }
+        self.view.layoutIfNeeded()
+        if let _ = self.parchmentView{
+            self.parchmentView?.view.removeFromSuperview()
+            self.parchmentView = nil
+        }
+        if isMenuReload {self.initiateFilterTabsWithoutStatus()}
+        setupParchmentPageController(isMenuReload: isMenuReload)
+        
+    }
+       
+    
     private func setupPagerViewWithoutCategory(isMenuReload:Bool = true) {
         self.allChildVCs.removeAll()
         for i in 0..<ProductFilterVM.shared.allTabsStrWithoutCategory.count {
@@ -159,9 +181,6 @@ extension ProductFilterVC {
                 self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(priceRangeVC)
             } else if i == 1 {
-                self.currencyVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
-                self.allChildVCs.append(currencyVC)
-            } else if i == 2 {
                 self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
                 self.statusVC.statusType = .status
                 self.allChildVCs.append(statusVC)
@@ -208,6 +227,15 @@ extension ProductFilterVC {
             filtersTabs.append(obj)
         }
     }
+    
+    private func initiateFilterTabsWithoutStatus() {
+           filtersTabs.removeAll()
+           for i in 0..<(ProductFilterVM.shared.allTabsStrWithoutStatus.count){
+               let obj = MenuItem(title: ProductFilterVM.shared.allTabsStrWithoutStatus[i], index: i, isSelected: (ProductFilterVM.shared.lastSelectedIndex == i))
+               filtersTabs.append(obj)
+           }
+       }
+       
     
     private func initiateFilterTabsWithoutCategory() {
         filtersTabs.removeAll()

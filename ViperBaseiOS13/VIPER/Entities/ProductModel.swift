@@ -145,6 +145,8 @@ struct ProductModel: Mappable {
     var decimal: Int?
     var contract_address: String?
     var token_type: Int?
+    var product_status: Int?
+    var token_status: Int?
    
 
     init?(map: Map) {
@@ -214,6 +216,8 @@ struct ProductModel: Mappable {
         invested_amount <- map["invested_amount"]
         earnings <- map ["earnings"]
         product_investment_count <- map["product_investment_count"]
+        product_status <- map["product_status"]
+        token_status <- map["token_status"]
       
     }
 

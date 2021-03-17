@@ -196,12 +196,6 @@ extension CategoryTokensDetailVC {
             params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
         }
-        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
-            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params[ProductCreate.keys.currency] = currency
-        }
         if ProductFilterVM.shared.minimumPrice != 0{
             params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
         }

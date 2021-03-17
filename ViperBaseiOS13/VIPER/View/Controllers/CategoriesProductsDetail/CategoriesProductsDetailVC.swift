@@ -192,12 +192,6 @@ extension CategoriesProductsDetailVC {
             params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
         }
-        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
-            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params[ProductCreate.keys.currency] = currency
-        }
         if ProductFilterVM.shared.minimumPrice != 0{
             params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
         }
@@ -350,7 +344,6 @@ extension CategoriesProductsDetailVC : PresenterOutputProtocol{
 
 extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
     func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
-        ProductFilterVM.shared.selectedCurrencyListing = self.selectedCurrency.0
         ProductFilterVM.shared.status = self.selectedStatus.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
@@ -359,13 +352,6 @@ extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
     func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
         self.loader.isHidden = false
         //
-        if currency.1 {
-            ProductFilterVM.shared.selectedCurrencyListing = currency.0
-            self.selectedCurrency = currency
-        }else{
-            ProductFilterVM.shared.selectedCurrencyListing = []
-            self.selectedCurrency = ([],false)
-        }
         if status.1 {
             ProductFilterVM.shared.status = status.0
             self.selectedStatus = status
@@ -393,12 +379,6 @@ extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
         if !self.sortType.isEmpty{
             params[ProductCreate.keys.sort_order] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
-        }
-        if ProductFilterVM.shared.selectedCurrencyListing.endIndex > 0{
-            let currency =  ProductFilterVM.shared.selectedCurrencyListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params[ProductCreate.keys.currency] = currency
         }
         if ProductFilterVM.shared.minimumPrice != 0{
             params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice

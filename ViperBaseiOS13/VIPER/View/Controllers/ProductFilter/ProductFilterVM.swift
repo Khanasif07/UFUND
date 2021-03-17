@@ -23,12 +23,11 @@ class ProductFilterVM {
     var minimumPrice: CGFloat = 0.0
     var maximumPrice: CGFloat = 800000.0
     var categoryListing: [CategoryModel] = []
-    var currencyListing: [CurrencyModel] = []
     var selectedCategoryListing: [CategoryModel] = []
-    var selectedCurrencyListing: [CurrencyModel] = []
     var status: [String] = []
-    let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(),Constants.string.currency.localize(), Constants.string.status.localize()]
-    let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(),Constants.string.currency.localize(), Constants.string.status.localize()]
+    let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(), Constants.string.status.localize()]
+    let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(), Constants.string.status.localize()]
+     let allTabsStrWithoutStatus: [String] = [Constants.string.category.localize(),Constants.string.priceRange.localize()]
     //Assets
     var start_from : String = ""
     var start_to : String = ""
@@ -49,13 +48,13 @@ class ProductFilterVM {
     var maximumEarning: CGFloat = 0.0
     var minimumYield: CGFloat = 0.0
     var maximumYield: CGFloat = 0.0
-    let allTabsStrForMyPrductInvestments: [String] = [Constants.string.category.localize(), Constants.string.startDate.localize(),Constants.string.priceRange.localize(), Constants.string.earning.localize(),Constants.string.yield.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
-    let allTabsStrForMyTokenInvestments: [String] = [Constants.string.category.localize() ,Constants.string.priceRange.localize(),Constants.string.startDate.localize(), Constants.string.endDate.localize(),Constants.string.maturityDate.localize(),Constants.string.byReward.localize(),Constants.string.yield.localize(),]
+    let allTabsStrForMyPrductInvestments: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(), Constants.string.earning.localize(),Constants.string.yield.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
+    let allTabsStrForMyTokenInvestments: [String] = [Constants.string.category.localize() ,Constants.string.priceRange.localize(),Constants.string.yield.localize(),Constants.string.byReward.localize(),Constants.string.startDate.localize(), Constants.string.endDate.localize()]
 
     weak var delegate: ProductFilterVMDelegate?
     
     var isFilterApplied: Bool {
-        return !(selectedCategoryListing.endIndex == 0 && selectedCurrencyListing.endIndex == 0 && status.endIndex == 0 && self.types.endIndex == 0 && self.byRewards.endIndex == 0 && self.start_from.isEmpty && self.start_to.isEmpty && self.close_from.isEmpty && self.close_to.isEmpty && self.investmentStart_from.isEmpty && self.investmentStart_to.isEmpty && self.investmentClose_from.isEmpty && self.investmentClose_to.isEmpty && self.investmentMaturity_from.isEmpty && self.investmentMaturity_to.isEmpty && self.minimumPrice == 0.0 && self.maximumPrice == 0.0)
+        return !(selectedCategoryListing.endIndex == 0  && status.endIndex == 0 && self.types.endIndex == 0 && self.byRewards.endIndex == 0 && self.start_from.isEmpty && self.start_to.isEmpty && self.close_from.isEmpty && self.close_to.isEmpty && self.investmentStart_from.isEmpty && self.investmentStart_to.isEmpty && self.investmentClose_from.isEmpty && self.investmentClose_to.isEmpty && self.investmentMaturity_from.isEmpty && self.investmentMaturity_to.isEmpty && self.minimumPrice == 0.0 && self.maximumPrice == 0.0)
     }
 
     func resetToAllFilter(isCategorySelected: Bool = true) {
@@ -64,7 +63,6 @@ class ProductFilterVM {
         self.maximumPrice = 0.0
         self.selectedCategoryListing  = []
         self.categoryListing  = isCategorySelected ? [] : self.categoryListing
-        self.selectedCurrencyListing = []
         self.status = []
         //Assets
         self.byRewards = []

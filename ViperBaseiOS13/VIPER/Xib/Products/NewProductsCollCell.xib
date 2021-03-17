@@ -131,9 +131,9 @@
                                         <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="agf-So-F02"/>
+                                            <constraint firstItem="YwX-u5-UdS" firstAttribute="leading" secondItem="9iQ-NU-e1K" secondAttribute="trailing" constant="5" id="c80-MI-IHR"/>
                                             <constraint firstItem="YwX-u5-UdS" firstAttribute="centerY" secondItem="Pe8-XM-eIh" secondAttribute="centerY" id="dJx-rF-Ip1"/>
                                             <constraint firstAttribute="trailing" secondItem="YwX-u5-UdS" secondAttribute="trailing" constant="10" id="fMo-Xy-Xjf"/>
-                                            <constraint firstAttribute="width" constant="54" id="n9C-eP-3Rk"/>
                                             <constraint firstItem="9iQ-NU-e1K" firstAttribute="leading" secondItem="Pe8-XM-eIh" secondAttribute="leading" constant="8" id="nIZ-zz-yzu"/>
                                             <constraint firstItem="9iQ-NU-e1K" firstAttribute="centerY" secondItem="Pe8-XM-eIh" secondAttribute="centerY" id="tYh-06-jWE"/>
                                         </constraints>
@@ -173,12 +173,13 @@
             <size key="customSize" width="150" height="161"/>
             <connections>
                 <outlet property="bottomView" destination="JwK-NY-W0m" id="NAH-Vx-vqB"/>
-                <outlet property="categoryLbl" destination="SLs-QB-L7H" id="BsT-Us-cfn"/>
+                <outlet property="categoryLbl" destination="mYq-A0-U2w" id="PkZ-jU-uar"/>
                 <outlet property="dataContainerView" destination="IwK-Oa-Z2S" id="ark-3h-ryU"/>
-                <outlet property="liveView" destination="YwX-u5-UdS" id="PV5-yP-JD7"/>
+                <outlet property="liveView" destination="Pe8-XM-eIh" id="TKG-KY-DU4"/>
                 <outlet property="priceLbl" destination="V31-mS-u3O" id="wHC-sq-dLg"/>
                 <outlet property="productImgView" destination="i9K-4j-q9f" id="Ntr-5E-4pj"/>
                 <outlet property="productNameLbl" destination="9cn-0c-uUf" id="TRf-fU-iTE"/>
+                <outlet property="statusLbl" destination="YwX-u5-UdS" id="4a9-xe-tt0"/>
             </connections>
             <point key="canvasLocation" x="108" y="112"/>
         </collectionViewCell>

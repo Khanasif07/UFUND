@@ -10,6 +10,7 @@ import UIKit
 
 class NewProductsCollCell: UICollectionViewCell {
 
+    @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var liveView: UIView!
     @IBOutlet weak var priceLbl: UILabel!
@@ -17,6 +18,7 @@ class NewProductsCollCell: UICollectionViewCell {
     @IBOutlet weak var productNameLbl: UILabel!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var productImgView: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

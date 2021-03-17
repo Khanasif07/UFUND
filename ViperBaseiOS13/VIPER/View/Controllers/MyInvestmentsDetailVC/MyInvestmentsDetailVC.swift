@@ -95,8 +95,10 @@ extension MyInvestmentsDetailVC {
     
     private func setUpForProductAndTokenPage(){
         if investmentType == .MyProductInvestment {
+            investBtn.isHidden = false
             self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
         } else {
+            investBtn.isHidden = true
             self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.assetDetailInfoCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
         }
     }

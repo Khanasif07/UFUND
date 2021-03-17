@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,7 +34,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Products" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf5-eG-nmU">
-                                                <rect key="frame" x="10" y="72" width="69" height="29"/>
+                                                <rect key="frame" x="7.5" y="86.5" width="74" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -42,11 +43,11 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="r0H-pk-kK9" firstAttribute="width" secondItem="qDW-X6-fy5" secondAttribute="width" multiplier="0.5" id="Gvj-B8-pxx"/>
-                                            <constraint firstAttribute="trailing" secondItem="wf5-eG-nmU" secondAttribute="trailing" constant="10" id="Ndb-PB-rHO"/>
+                                            <constraint firstAttribute="trailing" secondItem="wf5-eG-nmU" secondAttribute="trailing" constant="7.5" id="Ndb-PB-rHO"/>
                                             <constraint firstItem="r0H-pk-kK9" firstAttribute="centerX" secondItem="qDW-X6-fy5" secondAttribute="centerX" id="cHp-pE-6Xl"/>
                                             <constraint firstAttribute="bottom" secondItem="wf5-eG-nmU" secondAttribute="bottom" constant="10" id="ejd-WF-f1I"/>
                                             <constraint firstItem="r0H-pk-kK9" firstAttribute="centerY" secondItem="qDW-X6-fy5" secondAttribute="centerY" constant="-15" id="y5D-UK-ZLr"/>
-                                            <constraint firstItem="wf5-eG-nmU" firstAttribute="leading" secondItem="qDW-X6-fy5" secondAttribute="leading" constant="10" id="zRz-kK-mB7"/>
+                                            <constraint firstItem="wf5-eG-nmU" firstAttribute="leading" secondItem="qDW-X6-fy5" secondAttribute="leading" constant="7.5" id="zRz-kK-mB7"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

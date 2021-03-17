@@ -121,19 +121,19 @@ extension InvestmentFilterVC {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
                 self.categoryListingVC.categoryType = investmentType  == .MyProductInvestment ? .Products : .TokenzedAssets
                 self.allChildVCs.append(categoryListingVC)
-            } else if i == 1 {
+            } else if i == 4 {
                 self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.startDateVC.filterDateType = .investmentStartDate
                 self.allChildVCs.append(startDateVC)
-            } else if i == 2 {
+            } else if i == 1 {
                 self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.priceRangeVC.filterPriceType = .priceRange
                 self.allChildVCs.append(priceRangeVC)
-            } else if i == 3 {
+            } else if i == 2 {
                 self.earningVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.earningVC.filterPriceType = .earning
                 self.allChildVCs.append(earningVC)
-            } else if i == 4 {
+            } else if i == 3 {
                 self.yieldVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.yieldVC.filterPriceType = .yield
                 self.allChildVCs.append(yieldVC)
@@ -164,7 +164,7 @@ extension InvestmentFilterVC {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
                 self.categoryListingVC.categoryType = investmentType  == .MyProductInvestment ? .Products : .TokenzedAssets
                 self.allChildVCs.append(categoryListingVC)
-            } else if i == 2 {
+            } else if i == 4 {
                 self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.startDateVC.filterDateType = .investmentStartDate
                 self.allChildVCs.append(startDateVC)
@@ -172,22 +172,18 @@ extension InvestmentFilterVC {
                 self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.priceRangeVC.filterPriceType = .priceRange
                 self.allChildVCs.append(priceRangeVC)
-            } else if i == 5 {
+            } else if i == 3 {
                 self.byRewardsVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
                 self.byRewardsVC.statusType = .byRewards
                 self.allChildVCs.append(byRewardsVC)
-            } else if i == 6 {
+            } else if i == 2 {
                 self.yieldVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.yieldVC.filterPriceType = .yield
                 self.allChildVCs.append(yieldVC)
-            } else if i == 3 {
+            } else if i == 5 {
                 self.endDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.endDateVC.filterDateType = .investmentEndDate
                 self.allChildVCs.append(endDateVC)
-            } else if i == 4{
-                self.maturityDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
-                self.maturityDateVC.filterDateType = .investmentMaturityDate
-                self.allChildVCs.append(maturityDateVC)
             }
         }
         self.view.layoutIfNeeded()
