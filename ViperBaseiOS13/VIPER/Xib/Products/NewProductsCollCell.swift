@@ -10,6 +10,7 @@ import UIKit
 
 class NewProductsCollCell: UICollectionViewCell {
 
+    @IBOutlet weak var statusRadioImgView: UIImageView!
     @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var liveView: UIView!

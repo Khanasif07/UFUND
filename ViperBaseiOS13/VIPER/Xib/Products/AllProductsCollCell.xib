@@ -203,6 +203,7 @@
                 <outlet property="productNameLbl" destination="NuF-OB-Cpa" id="za3-Vw-XcQ"/>
                 <outlet property="productTypeLbl" destination="lXh-71-mFV" id="xJM-RD-q2G"/>
                 <outlet property="statusLbl" destination="NbZ-7m-vvQ" id="Nzo-Py-7NC"/>
+                <outlet property="statusRadioImgView" destination="zih-c5-NF0" id="TYs-cu-nJC"/>
             </connections>
             <point key="canvasLocation" x="108" y="112"/>
         </collectionViewCell>

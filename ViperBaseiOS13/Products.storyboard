@@ -429,7 +429,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5r-v4-i5g">
                                                                 <rect key="frame" x="195" y="0.0" width="187" height="43"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                                <state key="normal" title="  Buy Products" image="buyProduct">
+                                                                <state key="normal" title="  Buy Products" image="icbuyproduct">
                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
@@ -490,6 +490,8 @@
                         <outlet property="investBtn" destination="DuP-qw-k1B" id="KaN-kf-GEn"/>
                         <outlet property="liveView" destination="GwU-Nb-yUb" id="9XK-kb-V2v"/>
                         <outlet property="mainTableView" destination="vfL-iM-I5K" id="ffI-To-UVN"/>
+                        <outlet property="statusLbl" destination="jbv-xX-pus" id="qzY-Fc-hHz"/>
+                        <outlet property="statusRadioImgView" destination="bLb-lf-faf" id="r1w-iX-tcX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABx-JY-obc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -523,9 +525,9 @@
                                     <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="jbv-xX-pus" secondAttribute="trailing" constant="16" id="1kE-Sh-7We"/>
+                                        <constraint firstItem="jbv-xX-pus" firstAttribute="leading" secondItem="bLb-lf-faf" secondAttribute="trailing" constant="11.5" id="Dpb-Mr-mq9"/>
                                         <constraint firstItem="bLb-lf-faf" firstAttribute="centerY" secondItem="GwU-Nb-yUb" secondAttribute="centerY" id="jNe-Zl-Yyx"/>
                                         <constraint firstItem="bLb-lf-faf" firstAttribute="leading" secondItem="GwU-Nb-yUb" secondAttribute="leading" constant="8" id="nD6-TV-vJq"/>
-                                        <constraint firstAttribute="width" constant="76" id="okp-tt-ri7"/>
                                         <constraint firstAttribute="height" constant="36" id="peL-mA-RkV"/>
                                         <constraint firstItem="jbv-xX-pus" firstAttribute="centerY" secondItem="GwU-Nb-yUb" secondAttribute="centerY" id="sLF-eI-TIp"/>
                                     </constraints>
@@ -859,8 +861,9 @@
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mbU-ef-Ult">
                                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="43"/>
+                                                                <color key="backgroundColor" name="primaryColor"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                                <state key="normal" title="  Buy Products" image="icFilter">
+                                                                <state key="normal" title="  Buy Products" image="icbuyproduct">
                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
@@ -921,6 +924,8 @@
                         <outlet property="investBtn" destination="vMb-lD-eYZ" id="7D6-9a-Pl1"/>
                         <outlet property="liveView" destination="laY-Du-M3H" id="Wuf-un-2bA"/>
                         <outlet property="mainTableView" destination="47x-o1-ou1" id="UX3-Zl-5kK"/>
+                        <outlet property="statusLbl" destination="IUK-jE-Jt6" id="8KI-8O-dZq"/>
+                        <outlet property="statusRadioImgView" destination="cIr-39-ree" id="gvH-a1-h0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnn-gr-KO4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -954,11 +959,11 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="76" id="49f-1C-Shx"/>
                                         <constraint firstItem="cIr-39-ree" firstAttribute="centerY" secondItem="laY-Du-M3H" secondAttribute="centerY" id="ADZ-7D-hsX"/>
                                         <constraint firstAttribute="height" constant="36" id="GXB-ux-b1c"/>
                                         <constraint firstItem="IUK-jE-Jt6" firstAttribute="centerY" secondItem="laY-Du-M3H" secondAttribute="centerY" id="NQm-lA-NIf"/>
                                         <constraint firstAttribute="trailing" secondItem="IUK-jE-Jt6" secondAttribute="trailing" constant="16" id="b0H-8f-9Xs"/>
+                                        <constraint firstItem="IUK-jE-Jt6" firstAttribute="leading" secondItem="cIr-39-ree" secondAttribute="trailing" constant="11.5" id="g18-f6-Qpg"/>
                                         <constraint firstItem="cIr-39-ree" firstAttribute="leading" secondItem="laY-Du-M3H" secondAttribute="leading" constant="8" id="jXB-bs-LoZ"/>
                                     </constraints>
                                     <viewLayoutGuide key="safeArea" id="L9m-8o-lyo"/>
@@ -1651,7 +1656,8 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-KC-h3M">
                                                                 <rect key="frame" x="195" y="0.0" width="187" height="43"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                                                <state key="normal" title="  Buy Products" image="icFilter">
+                                                                <color key="tintColor" red="0.86666666670000003" green="0.16078431369999999" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <state key="normal" title="  Buy Products" image="icbuyproduct">
                                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                                 <connections>
@@ -1712,6 +1718,8 @@
                         <outlet property="investBtn" destination="b76-Pf-NPu" id="PFU-zm-Kmm"/>
                         <outlet property="liveView" destination="Fdt-6F-Qvl" id="gnJ-6F-1qf"/>
                         <outlet property="mainTableView" destination="TRj-SL-t3Y" id="CJz-a7-Uym"/>
+                        <outlet property="statusLbl" destination="qsm-pF-ipC" id="TgF-9e-cvE"/>
+                        <outlet property="statusRadioImgView" destination="Fo3-uo-rkV" id="mjH-1X-mzC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWR-P2-zCz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1747,9 +1755,9 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="qsm-pF-ipC" secondAttribute="trailing" constant="16" id="OLf-mR-Fw4"/>
                                         <constraint firstItem="qsm-pF-ipC" firstAttribute="centerY" secondItem="Fdt-6F-Qvl" secondAttribute="centerY" id="TVo-Ie-a1V"/>
-                                        <constraint firstAttribute="width" constant="76" id="VLa-iO-qjV"/>
                                         <constraint firstAttribute="height" constant="36" id="Xzd-6s-47a"/>
                                         <constraint firstItem="Fo3-uo-rkV" firstAttribute="leading" secondItem="Fdt-6F-Qvl" secondAttribute="leading" constant="8" id="hQG-nO-f6H"/>
+                                        <constraint firstItem="qsm-pF-ipC" firstAttribute="leading" secondItem="Fo3-uo-rkV" secondAttribute="trailing" constant="11.5" id="lhg-iU-ydY"/>
                                         <constraint firstItem="Fo3-uo-rkV" firstAttribute="centerY" secondItem="Fdt-6F-Qvl" secondAttribute="centerY" id="wfp-NS-Zdc"/>
                                     </constraints>
                                     <viewLayoutGuide key="safeArea" id="lDa-Yy-96I"/>
@@ -2313,7 +2321,6 @@
     <resources>
         <image name="add" width="16.5" height="13"/>
         <image name="bg2" width="711" height="476"/>
-        <image name="buyProduct" width="18.5" height="18"/>
         <image name="icBackward" width="28" height="28"/>
         <image name="icFilter" width="16" height="15"/>
         <image name="icInformation" width="86" height="86"/>
@@ -2321,6 +2328,7 @@
         <image name="icRadioSelected" width="20" height="20"/>
         <image name="icSearch" width="16" height="16"/>
         <image name="icSort" width="16" height="15"/>
+        <image name="icbuyproduct" width="18.5" height="18"/>
         <namedColor name="inversterGrad2">
             <color red="0.30000001192092896" green="0.80000001192092896" blue="0.52999997138977051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

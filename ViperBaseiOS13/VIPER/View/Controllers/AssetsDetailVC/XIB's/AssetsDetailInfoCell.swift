@@ -36,7 +36,7 @@ class AssetsDetailInfoCell: UITableViewCell {
     
     func configureCell(model:ProductModel){
         self.coinLbl.text = model.tokensymbol ?? ""
-        self.rewardsLbl.text = "N/A"
+        self.rewardsLbl.text = (model.tokenrequest?.asset?.reward == 1 ) ? "Goods" : (model.tokenrequest?.asset?.reward == 2 ) ? "Interest" : "Share"
         self.backedAssetsLbl.text = model.tokenrequest?.asset?.asset_title ?? ""
         self.auditorsLbl.text = model.user?.name ?? ""
         self.tokenTypeLbl.text = "\(model.token_type ?? 0)"

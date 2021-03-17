@@ -180,6 +180,7 @@
                 <outlet property="productImgView" destination="i9K-4j-q9f" id="Ntr-5E-4pj"/>
                 <outlet property="productNameLbl" destination="9cn-0c-uUf" id="TRf-fU-iTE"/>
                 <outlet property="statusLbl" destination="YwX-u5-UdS" id="4a9-xe-tt0"/>
+                <outlet property="statusRadioImgView" destination="9iQ-NU-e1K" id="C0I-Wl-s6x"/>
             </connections>
             <point key="canvasLocation" x="108" y="112"/>
         </collectionViewCell>

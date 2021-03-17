@@ -21,6 +21,8 @@ class ProductDetailVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var statusRadioImgView: UIImageView!
+    @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var buyProductBtn: UIButton!
     @IBOutlet weak var investBtn: UIButton!
     @IBOutlet weak var bottomView: UIView!
@@ -89,6 +91,9 @@ extension ProductDetailVC {
     }
     
     private func setFont(){
+        self.liveView.backgroundColor = (productModel?.product_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.product_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
+        self.statusRadioImgView.image = (productModel?.product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.product_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
+        self.statusLbl.text = (productModel?.product_status == 1) ? "Live" : (productModel?.product_status == 2) ? "Closed" : "Matured"
         self.investBtn.borderColor = UIColor.rgb(r: 255, g: 31, b: 45)
         self.investBtn.borderLineWidth = 1.0
         self.buyProductBtn.setTitleColor(.white, for: .normal)

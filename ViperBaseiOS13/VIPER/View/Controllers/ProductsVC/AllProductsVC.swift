@@ -39,8 +39,6 @@ class AllProductsVC: UIViewController {
     var productType: ProductType = .AllProducts
     var searchText : String = ""
     var productTitle: String = "All Products"
-    var isSearchEnable: Bool = false
-    var searchInvesterProductList : [ProductModel]?
     var investerProductList : [ProductModel]?{
         didSet{
             self.mainCollView.reloadData()
@@ -193,19 +191,22 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isSearchEnable ?   (self.searchInvesterProductList?.endIndex ?? 0)   : (self.investerProductList?.endIndex ?? 0)
+        return  (self.investerProductList?.endIndex ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
-        cell.productNameLbl.text =  isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].product_title ?? "") : (self.investerProductList?[indexPath.row].product_title ?? "")
-        let imgEntity =  isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].product_image ?? "") : (self.investerProductList?[indexPath.row].product_image ?? "")
+        cell.productNameLbl.text =   (self.investerProductList?[indexPath.row].product_title ?? "")
+        let imgEntity =   (self.investerProductList?[indexPath.row].product_image ?? "")
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-        cell.productTypeLbl.text = isSearchEnable ? (self.searchInvesterProductList?[indexPath.row].category?.category_name ?? "") : (self.investerProductList?[indexPath.row].category?.category_name ?? "")
-        cell.priceLbl.text = "$" + (isSearchEnable ? "\((self.searchInvesterProductList?[indexPath.row].total_product_value ?? 0))" : "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))")
-        cell.liveView.isHidden = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row].status != 1)   : (self.investerProductList?[indexPath.row].status != 1)
-        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
+        cell.productTypeLbl.text = (self.investerProductList?[indexPath.row].category?.category_name ?? "")
+        cell.priceLbl.text = "$" +  "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
+        cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status == nil)
+        cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
+        cell.statusLbl.text = (self.investerProductList?[indexPath.row].product_status == 1) ? "Live" : (self.investerProductList?[indexPath.row].status == 2) ? "Closed" : "Matured"
+        cell.liveView.backgroundColor = (self.investerProductList?[indexPath.row].product_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (self.investerProductList?[indexPath.row].status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
+        cell.statusRadioImgView.image = (self.investerProductList?[indexPath.row].product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (self.investerProductList?[indexPath.row].product_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
         cell.backgroundColor = .clear
         return cell
     }
@@ -216,7 +217,7 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ob = ProductDetailVC.instantiate(fromAppStoryboard: .Products)
-        ob.productModel = isSearchEnable ?   (self.searchInvesterProductList?[indexPath.row])   : (self.investerProductList?[indexPath.row])
+        ob.productModel =  (self.investerProductList?[indexPath.row])
         self.navigationController?.pushViewController(ob, animated: true)
     }
     

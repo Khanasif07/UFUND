@@ -22,6 +22,8 @@ class MyInvestmentsDetailVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var statusRadioImgView: UIImageView!
+    @IBOutlet weak var statusLbl: UILabel!
     @IBOutlet weak var buyProductBtn: UIButton!
     @IBOutlet weak var investBtn: UIButton!
     @IBOutlet weak var bottomView: UIView!
@@ -96,9 +98,15 @@ extension MyInvestmentsDetailVC {
     private func setUpForProductAndTokenPage(){
         if investmentType == .MyProductInvestment {
             investBtn.isHidden = false
+            self.liveView.backgroundColor = (productModel?.product_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.product_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
+            self.statusRadioImgView.image = (productModel?.product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.product_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
+            self.statusLbl.text = (productModel?.product_status == 1) ? "Live" : (productModel?.status == 2) ? "Closed" : "Matured"
             self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
         } else {
             investBtn.isHidden = true
+            self.liveView.backgroundColor = (productModel?.token_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.token_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
+            self.statusRadioImgView.image = (productModel?.token_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.token_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
+            self.statusLbl.text = (productModel?.token_status == 1) ? "Live" : "Closed"
             self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.assetDetailInfoCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
         }
     }
@@ -109,6 +117,10 @@ extension MyInvestmentsDetailVC {
         self.buyProductBtn.setTitleColor(.white, for: .normal)
         self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
         : UIColor.rgb(r: 255, g: 31, b: 45)
+//        self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
+//               : UIColor.rgb(r: 255, g: 31, b: 45)
+//               self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
+//               : true
         self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
         : true
     }

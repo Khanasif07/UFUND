@@ -15,29 +15,12 @@ class CategoryAllProductsVC: UIViewController {
     @IBOutlet weak var mainCollView: UICollectionView!
     
     var categoryType: CategoryType = .Products
-    var isSearchEnable: Bool = false
     var categoryModel : CategoryModel?
-    var allSearchProductListing : [ProductModel]? = []
     var allProductListing : [ProductModel]?{
         didSet{
             self.mainCollView.reloadData()
         }
     }
-    var searchText: String? {
-           didSet{
-               if let searchedText = searchText{
-                   if searchedText.isEmpty{
-                       self.isSearchEnable = false
-                       self.mainCollView.reloadData()
-                   } else {
-                       self.isSearchEnable = true
-                       self.allSearchProductListing = allProductListing?.filter({(($0.product_title?.lowercased().contains(s: searchedText.lowercased()))!)})
-                       self.mainCollView.reloadData()
-                   }
-               }
-           }
-       }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -54,6 +37,7 @@ class CategoryAllProductsVC: UIViewController {
         self.mainCollView.emptyDataSetDelegate = self
         self.mainCollView.emptyDataSetSource = self
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
+        self.mainCollView.registerCell(with: NewProductsCollCell.self)
         let layout1 = UICollectionViewFlowLayout()
         layout1.scrollDirection = .vertical
         mainCollView.collectionViewLayout = layout1
@@ -77,32 +61,34 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isSearchEnable ?   (self.allSearchProductListing?.endIndex ?? 0)   : (self.allProductListing?.endIndex ?? 0)
+        return (self.allProductListing?.endIndex ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
         switch categoryType {
         case .Products:
-            cell.productNameLbl.text =  isSearchEnable ? (self.allSearchProductListing?[indexPath.row].product_title ?? "") : (self.allProductListing?[indexPath.row].product_title ?? "")
-            let imgEntity =  isSearchEnable ? (self.allSearchProductListing?[indexPath.row].product_image ?? "") : (self.allProductListing?[indexPath.row].product_image ?? "")
+            let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
+            cell.productNameLbl.text =   (self.allProductListing?[indexPath.row].product_title ?? "")
+            let imgEntity =   (self.allProductListing?[indexPath.row].product_image ?? "")
             let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-            cell.productTypeLbl.text = isSearchEnable ? (self.allSearchProductListing?[indexPath.row].category?.category_name ?? "") : (self.allProductListing?[indexPath.row].category?.category_name ?? "")
-            cell.priceLbl.text = isSearchEnable ? "\((self.allSearchProductListing?[indexPath.row].total_product_value ?? 0))" : "\((self.allProductListing?[indexPath.row].total_product_value ?? 0))"
-            cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: isSearchEnable ?   (self.allSearchProductListing?[indexPath.row])   : (self.allProductListing?[indexPath.row])).round(to: 1))" + "%"
+            cell.productTypeLbl.text =  (self.allProductListing?[indexPath.row].category?.category_name ?? "")
+            cell.priceLbl.text =  "\((self.allProductListing?[indexPath.row].total_product_value ?? 0))"
+            cell.investmentLbl.text =  "\(self.getProgressPercentage(productModel: (self.allProductListing?[indexPath.row])).round(to: 1))" + "%"
+            cell.statusLbl.text = (self.allProductListing?[indexPath.row].product_status == 1) ? "Live" : (self.allProductListing?[indexPath.row].status == 2) ? "Closed" : "Matured"
+            return cell
         default:
-            cell.productNameLbl.text =   isSearchEnable ? (self.allSearchProductListing?[indexPath.row].tokenname ?? "") : (self.allProductListing?[indexPath.row].tokenname ?? "")
-            let imgEntity =   isSearchEnable ? (self.allSearchProductListing?[indexPath.row].token_image ?? "") : (self.allProductListing?[indexPath.row].token_image ?? "")
+            let cell = collectionView.dequeueCell(with: NewProductsCollCell.self, indexPath: indexPath)
+            cell.productNameLbl.text =   (self.allProductListing?[indexPath.row].tokenname ?? "")
+            let imgEntity =    (self.allProductListing?[indexPath.row].token_image ?? "")
              let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-            cell.productTypeLbl.text = isSearchEnable ? (self.allSearchProductListing?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "") : (self.allProductListing?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
-            cell.priceLbl.text = isSearchEnable ? "\((self.allSearchProductListing?[indexPath.row].tokenvalue ?? 0))" : "\((self.allProductListing?[indexPath.row].tokenvalue ?? 0))"
-//            cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: isSearchEnable ?   (self.allSearchProductListing?[indexPath.row])   : (self.allProductListing?[indexPath.row])).round(to: 1))" + "%"
+            cell.categoryLbl.text = (self.allProductListing?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
+            cell.priceLbl.text =  "\((self.allProductListing?[indexPath.row].tokenvalue ?? 0))"
+            cell.statusLbl.text = (self.allProductListing?[indexPath.row].token_status == 1) ? "Live" : "Closed"
+            cell.backgroundColor = .clear
+                   return cell
         }
-        
-        cell.backgroundColor = .clear
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -113,11 +99,11 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
         switch categoryType {
         case .Products:
             let ob = ProductDetailVC.instantiate(fromAppStoryboard: .Products)
-            ob.productModel = isSearchEnable ?   (self.allSearchProductListing?[indexPath.row])   : (self.allProductListing?[indexPath.row])
+            ob.productModel =  (self.allProductListing?[indexPath.row])
             self.navigationController?.pushViewController(ob, animated: true)
         default:
             let ob = AssetsDetailVC.instantiate(fromAppStoryboard: .Products)
-            ob.productModel = isSearchEnable ?   (self.allSearchProductListing?[indexPath.row])   : (self.allProductListing?[indexPath.row])
+            ob.productModel =  (self.allProductListing?[indexPath.row])
             self.navigationController?.pushViewController(ob, animated: true)
         }
     }

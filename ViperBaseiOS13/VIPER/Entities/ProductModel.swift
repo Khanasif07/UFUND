@@ -505,6 +505,7 @@ struct Asset : Mappable {
     var updated_at : String?
     var category : Category?
     var asset_child_image : [AssetChildImage]?
+    var reward: Int?
 
     init?(map: Map) {
 
@@ -527,6 +528,7 @@ struct Asset : Mappable {
         updated_at <- map["updated_at"]
         category <- map["category"]
         asset_child_image <- map["asset_child_image"]
+        reward <- map["reward"]
     }
 
 }
