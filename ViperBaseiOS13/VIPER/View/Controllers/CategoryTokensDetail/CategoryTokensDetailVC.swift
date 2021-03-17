@@ -49,7 +49,8 @@ class CategoryTokensDetailVC: UIViewController {
             }
         }
     }
-    var selectedTypes : (([String],Bool)) = ([],false)
+    var selectedAssetsListing : (([AssetTokenTypeModel],Bool)) = ([],false)
+    var selectedTokenListing : (([AssetTokenTypeModel],Bool)) = ([],false)
     var selectedByRewards: (([String],Bool)) = ([],false)
     var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
     var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
@@ -346,8 +347,8 @@ extension CategoryTokensDetailVC : PresenterOutputProtocol{
 
 extension CategoryTokensDetailVC: AssetsFilterVCDelegate {
     
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
-        ProductFilterVM.shared.types = self.selectedTypes.0
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) { ProductFilterVM.shared.selectedTokenListing = self.selectedTokenListing.0
+        ProductFilterVM.shared.selectedAssetsListing = self.selectedAssetsListing.0
         ProductFilterVM.shared.byRewards = self.selectedByRewards.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
@@ -357,16 +358,9 @@ extension CategoryTokensDetailVC: AssetsFilterVCDelegate {
         ProductFilterVM.shared.close_to = self.selectedClose_to.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
         self.loader.isHidden = false
         //
-        if types.1 {
-            ProductFilterVM.shared.types = types.0
-            self.selectedTypes = types
-        }else{
-            ProductFilterVM.shared.types = []
-            self.selectedTypes = ([],false)
-        }
         if byRewards.1 {
             ProductFilterVM.shared.byRewards = byRewards.0
             self.selectedByRewards = byRewards
@@ -410,16 +404,6 @@ extension CategoryTokensDetailVC: AssetsFilterVCDelegate {
         }
         if ProductFilterVM.shared.maximumPrice != 0{
             params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
-        }
-        if ProductFilterVM.shared.types.endIndex > 0{
-            if ProductFilterVM.shared.types.contains(AssetsType.All.title){
-            }
-            else if ProductFilterVM.shared.types.contains(AssetsType.Token.title){
-                params[ProductCreate.keys.token_type] = AssetsType.Token.rawValue
-            }
-            else if ProductFilterVM.shared.types.contains(AssetsType.Assets.title){
-                params[ProductCreate.keys.token_type] = AssetsType.Assets.rawValue
-            }
         }
         if ProductFilterVM.shared.byRewards.endIndex > 0{
             if !ProductFilterVM.shared.types.contains(AssetsByReward.All.title){

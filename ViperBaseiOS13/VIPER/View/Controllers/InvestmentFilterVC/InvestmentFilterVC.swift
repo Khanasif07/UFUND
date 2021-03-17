@@ -41,7 +41,7 @@ class InvestmentFilterVC: UIViewController {
     // Parchment View
     var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     var filtersTabs =  [MenuItem]()
-    var currencyModelEntity : CurrencyModelEntity?
+//    var currencyModelEntity : CurrencyModelEntity?
     var parchmentView : PagingViewController?
     
     //  MARK: - Variables

@@ -11,8 +11,8 @@ import Parchment
 import ObjectMapper
 
 protocol AssetsFilterVCDelegate: class {
-    func filterApplied(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool))
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool))
+    func filterApplied(_ category: ([CategoryModel], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool))
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool))
     
 }
 
@@ -34,7 +34,8 @@ class AssetsFilterVC: UIViewController {
     //===========================
     var categoryListingVC   : CategoryListingVC!
     var priceVC             : PriceRangeVC!
-    var typeVC              : StatusVC!
+    var assetTypeVC              : CurrencyVC!
+    var tokenTypeVC              : CurrencyVC!
     var startDateVC         : AssetsFilterDateVC!
     var closingDateVC       : AssetsFilterDateVC!
     var byRewardVC          : StatusVC!
@@ -92,12 +93,12 @@ class AssetsFilterVC: UIViewController {
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.types, false), (ProductFilterVM.shared.byRewards, false), (ProductFilterVM.shared.minimumPrice , false), (ProductFilterVM.shared.maximumPrice , false),(ProductFilterVM.shared.start_from,false),(ProductFilterVM.shared.start_to,false),(ProductFilterVM.shared.close_from,false),(ProductFilterVM.shared.close_to,false))
+        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.selectedAssetsListing, false),(ProductFilterVM.shared.selectedTokenListing, false), (ProductFilterVM.shared.byRewards, false), (ProductFilterVM.shared.minimumPrice , false), (ProductFilterVM.shared.maximumPrice , false),(ProductFilterVM.shared.start_from,false),(ProductFilterVM.shared.start_to,false),(ProductFilterVM.shared.close_from,false),(ProductFilterVM.shared.close_to,false))
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
-        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.types, !ProductFilterVM.shared.types.isEmpty), (ProductFilterVM.shared.byRewards, !ProductFilterVM.shared.byRewards.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true),(ProductFilterVM.shared.start_from,!ProductFilterVM.shared.start_from.isEmpty),(ProductFilterVM.shared.start_to,!ProductFilterVM.shared.start_to.isEmpty),(ProductFilterVM.shared.close_from,!ProductFilterVM.shared.close_from.isEmpty),(ProductFilterVM.shared.close_to,!ProductFilterVM.shared.close_to.isEmpty))
+        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.selectedAssetsListing, !ProductFilterVM.shared.selectedAssetsListing.isEmpty),(ProductFilterVM.shared.selectedTokenListing, !ProductFilterVM.shared.selectedTokenListing.isEmpty), (ProductFilterVM.shared.byRewards, !ProductFilterVM.shared.byRewards.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true),(ProductFilterVM.shared.start_from,!ProductFilterVM.shared.start_from.isEmpty),(ProductFilterVM.shared.start_to,!ProductFilterVM.shared.start_to.isEmpty),(ProductFilterVM.shared.close_from,!ProductFilterVM.shared.close_from.isEmpty),(ProductFilterVM.shared.close_to,!ProductFilterVM.shared.close_to.isEmpty))
         self.popOrDismiss(animation: true)
     }
     
@@ -123,22 +124,26 @@ extension AssetsFilterVC {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
                 self.categoryListingVC.categoryType = .TokenzedAssets
                 self.allChildVCs.append(categoryListingVC)
-            } else if i == 2 {
+            } else if i == 1 {
                 self.priceVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(priceVC)
-            } else if i == 1 {
-                self.typeVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
-                self.typeVC.statusType = .type
-                self.allChildVCs.append(typeVC)
-            } else if i == 3 {
+            } else if i == 2 {
+                self.assetTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                self.assetTypeVC.tokenType = .Asset
+                self.allChildVCs.append(assetTypeVC)
+            }else if i == 3 {
+                self.tokenTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                self.tokenTypeVC.tokenType = .Token
+                self.allChildVCs.append(tokenTypeVC)
+            }else if i == 4 {
                 self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.startDateVC.filterDateType = .startDate
                 self.allChildVCs.append(startDateVC)
-            }else if i == 4{
+            }else if i == 5{
                 self.closingDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.closingDateVC.filterDateType = .closeDate
                 self.allChildVCs.append(closingDateVC)
-            }else if i == 5 {
+            }else if i == 6 {
                 self.byRewardVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
                 self.byRewardVC.statusType = .byRewards
                 self.allChildVCs.append(byRewardVC)
@@ -157,22 +162,26 @@ extension AssetsFilterVC {
     private func setupPagerViewWithoutCategory(isMenuReload:Bool = true) {
            self.allChildVCs.removeAll()
            for i in 0..<ProductFilterVM.shared.allTabsStrForAssetsWithoutCategory.count {
-             if i == 1 {
+             if i == 0 {
                    self.priceVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                    self.allChildVCs.append(priceVC)
-               } else if i == 0 {
-                   self.typeVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
-                   self.typeVC.statusType = .type
-                   self.allChildVCs.append(typeVC)
-               } else if i == 2 {
+               } else if i == 1 {
+                   self.assetTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                   self.assetTypeVC.tokenType = .Asset
+                   self.allChildVCs.append(assetTypeVC)
+               }else if i == 2 {
+                   self.tokenTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                   self.tokenTypeVC.tokenType = .Token
+                   self.allChildVCs.append(tokenTypeVC)
+               } else if i == 3 {
                    self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                    self.startDateVC.filterDateType = .startDate
                    self.allChildVCs.append(startDateVC)
-               }else if i == 3{
+               }else if i == 4{
                    self.closingDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                    self.closingDateVC.filterDateType = .closeDate
                    self.allChildVCs.append(closingDateVC)
-               }else if i == 4 {
+               }else if i == 5 {
                    self.byRewardVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
                    self.byRewardVC.statusType = .byRewards
                    self.allChildVCs.append(byRewardVC)

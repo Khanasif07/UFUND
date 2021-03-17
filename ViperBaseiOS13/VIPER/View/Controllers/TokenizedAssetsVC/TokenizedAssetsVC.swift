@@ -45,7 +45,8 @@ class TokenizedAssetsVC: UIViewController {
     }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
-    var selectedTypes : (([String],Bool)) = ([],false)
+    var selectedAssetsListing : (([AssetTokenTypeModel],Bool)) = ([],false)
+    var selectedTokenListing : (([AssetTokenTypeModel],Bool)) = ([],false)
     var selectedByRewards: (([String],Bool)) = ([],false)
     var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
     var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
@@ -317,7 +318,7 @@ extension TokenizedAssetsVC: UISearchBarDelegate{
 // MARK: - Hotel filter Delegate methods
 
 extension TokenizedAssetsVC: AssetsFilterVCDelegate {
-    func filterApplied(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool),_ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0
@@ -326,12 +327,19 @@ extension TokenizedAssetsVC: AssetsFilterVCDelegate {
             ProductFilterVM.shared.selectedCategoryListing = []
             self.selectedCategory = ([],false)
         }
-        if types.1 {
-            ProductFilterVM.shared.types = types.0
-            self.selectedTypes = types
-        }else{
-            ProductFilterVM.shared.types = []
-            self.selectedTypes = ([],false)
+        if asset_types.1 {
+            ProductFilterVM.shared.selectedAssetsListing = asset_types.0
+            self.selectedAssetsListing = asset_types
+        }else {
+            ProductFilterVM.shared.selectedAssetsListing = []
+            self.selectedAssetsListing = ([],false)
+        }
+        if token_types.1 {
+            ProductFilterVM.shared.selectedTokenListing = token_types.0
+            self.selectedTokenListing = token_types
+        }else {
+            ProductFilterVM.shared.selectedTokenListing = []
+            self.selectedTokenListing = ([],false)
         }
         if byRewards.1 {
             ProductFilterVM.shared.byRewards = byRewards.0
@@ -371,9 +379,10 @@ extension TokenizedAssetsVC: AssetsFilterVCDelegate {
         self.loader.isHidden = false
     }
     
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ types: ([String], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool),_ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
-        ProductFilterVM.shared.types = self.selectedTypes.0
+        ProductFilterVM.shared.selectedTokenListing = self.selectedTokenListing.0
+        ProductFilterVM.shared.selectedAssetsListing = self.selectedAssetsListing.0
         ProductFilterVM.shared.byRewards = self.selectedByRewards.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0

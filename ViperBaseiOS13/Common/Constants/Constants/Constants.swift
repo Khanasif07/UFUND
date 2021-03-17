@@ -232,6 +232,8 @@ struct Constants {
     let selectStartDate = "Select Start date"
     let byReward = "By Reward"
     let type = "Type"
+    let asset_type = "Asset Type"
+    let token_type = "Token Type"
     let price = "Price"
     let startDate = "Start Date"
     let closingDate = "Closing Date"

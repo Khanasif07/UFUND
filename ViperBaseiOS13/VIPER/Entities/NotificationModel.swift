@@ -112,8 +112,10 @@ struct FilterDataEntity : Mappable {
 
 }
 
-struct CurrencyModelEntity : Mappable {
-    var data : [CurrencyModel]?
+struct AssetTokenTypeEntity : Mappable {
+    var data : [AssetTokenTypeModel]?
+    var message: String?
+    var code : Int?
 
     init?(map: Map) {
 
@@ -121,19 +123,19 @@ struct CurrencyModelEntity : Mappable {
 
     mutating func mapping(map: Map) {
         data <- map["data"]
+        message <- map["message"]
+        code <- map["code"]
     }
 
 }
 
-struct CurrencyModel : Mappable {
+struct AssetTokenTypeModel : Mappable {
     var id : Int?
-    var status: Int?
-    var currency : String?
-    var symbol : String?
+    var type : String?
     var created_at : String?
     var updated_at : String?
-    var symbol_position : String?
-
+    var name : String?
+    
     init?(map: Map) {
 
     }
@@ -145,11 +147,9 @@ struct CurrencyModel : Mappable {
     mutating func mapping(map: Map) {
 
         id <- map["id"]
-        currency <- map["currency"]
-        status <- map["status"]
-        symbol <- map["symbol"]
+        type <- map["type"]
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
-        symbol_position <- map["symbol_position"]
+        name <- map["name"]
     }
 }

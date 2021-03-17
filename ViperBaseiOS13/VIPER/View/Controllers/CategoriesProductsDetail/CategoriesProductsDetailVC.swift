@@ -49,7 +49,7 @@ class CategoriesProductsDetailVC: UIViewController {
             }
         }
     }
-    var selectedCurrency : (([CurrencyModel],Bool)) = ([],false)
+    var selectedCurrency : (([AssetTokenTypeModel],Bool)) = ([],false)
     var selectedStatus: (([String],Bool)) = ([],false)
     var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
     var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
@@ -343,13 +343,13 @@ extension CategoriesProductsDetailVC : PresenterOutputProtocol{
 // MARK: - Hotel filter Delegate methods
 
 extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
         ProductFilterVM.shared.status = self.selectedStatus.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
         self.loader.isHidden = false
         //
         if status.1 {

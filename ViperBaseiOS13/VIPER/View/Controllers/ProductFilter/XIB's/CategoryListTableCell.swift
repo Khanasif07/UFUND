@@ -41,7 +41,7 @@ class CategoryListTableCell: UITableViewCell {
         }
     }
     
-    var currency: CurrencyModel? {
+    var currency: AssetTokenTypeModel? {
         didSet {
             self.populateCurrencyData()
         }
@@ -67,7 +67,7 @@ class CategoryListTableCell: UITableViewCell {
     }
     
     private func populateCurrencyData() {
-        self.categoryTitleLabel.text = currency?.currency
+        self.categoryTitleLabel.text = currency?.name
     }
     
     private func populatebyRewardsData(){

@@ -51,7 +51,7 @@ class AllProductsVC: UIViewController {
        }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
-    var selectedCurrency : (([CurrencyModel],Bool)) = ([],false)
+    var selectedCurrency : (([AssetTokenTypeModel],Bool)) = ([],false)
     var selectedStatus: (([String],Bool)) = ([],false)
     var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
     var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
@@ -366,14 +366,14 @@ extension AllProductsVC: UISearchBarDelegate{
 // MARK: - Hotel filter Delegate methods
 
 extension AllProductsVC: ProductFilterVCDelegate {
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
         ProductFilterVM.shared.status = self.selectedStatus.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0

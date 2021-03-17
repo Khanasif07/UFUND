@@ -11,15 +11,15 @@ import Parchment
 import ObjectMapper
 
 protocol ProductFilterVCDelegate: class {
-    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
-    func filterDataWithoutFilter(_ category: ([CategoryModel],Bool),_ currency:  ([CurrencyModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  )
+    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
+    func filterDataWithoutFilter(_ category: ([CategoryModel],Bool),_ currency:  ([AssetTokenTypeModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  )
     
 }
 
 extension ProductFilterVCDelegate{
-    func filterDataWithoutFilter(_ category: ([CategoryModel],Bool),_ currency:  ([CurrencyModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  ){}
+    func filterDataWithoutFilter(_ category: ([CategoryModel],Bool),_ currency:  ([AssetTokenTypeModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  ){}
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([CurrencyModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)){}
+    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)){}
        
 }
 
@@ -48,7 +48,6 @@ class ProductFilterVC: UIViewController {
     // Parchment View
     var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     var filtersTabs =  [MenuItem]()
-    var currencyModelEntity : CurrencyModelEntity?
     var parchmentView : PagingViewController?
     
     //  MARK: - Variables

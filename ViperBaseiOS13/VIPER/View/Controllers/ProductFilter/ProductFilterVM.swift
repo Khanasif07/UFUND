@@ -29,14 +29,18 @@ class ProductFilterVM {
     let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(), Constants.string.status.localize()]
      let allTabsStrWithoutStatus: [String] = [Constants.string.category.localize(),Constants.string.priceRange.localize()]
     //Assets
+    var selectedAssetsListing = [AssetTokenTypeModel]()
+    var selectedTokenListing = [AssetTokenTypeModel]()
+    var assetsListing = [AssetTokenTypeModel]()
+    var tokenListing = [AssetTokenTypeModel]()
     var start_from : String = ""
     var start_to : String = ""
     var close_from : String = ""
     var close_to : String = ""
     var types : [String] = []
     var byRewards : [String] = []
-    let allTabsStrForAssets: [String] = [Constants.string.category.localize(), Constants.string.type.localize(),Constants.string.price.localize(), Constants.string.startDate.localize(),Constants.string.closingDate.localize(),Constants.string.byReward.localize()]
-    let allTabsStrForAssetsWithoutCategory: [String] = [Constants.string.type.localize(),Constants.string.price.localize(), Constants.string.startDate.localize(),Constants.string.closingDate.localize(),Constants.string.byReward.localize()]
+    let allTabsStrForAssets: [String] = [Constants.string.category.localize(),Constants.string.price.localize(),Constants.string.asset_type.localize(),Constants.string.token_type.localize(), Constants.string.startDate.localize(),Constants.string.closingDate.localize(),Constants.string.byReward.localize()]
+    let allTabsStrForAssetsWithoutCategory: [String] = [Constants.string.price.localize(),Constants.string.asset_type.localize(),Constants.string.token_type.localize(), Constants.string.startDate.localize(),Constants.string.closingDate.localize(),Constants.string.byReward.localize()]
     //Investment
     var investmentStart_from = ""
     var investmentStart_to = ""
@@ -62,7 +66,11 @@ class ProductFilterVM {
         self.minimumPrice = 0.0
         self.maximumPrice = 0.0
         self.selectedCategoryListing  = []
+        self.selectedTokenListing = []
+        self.selectedAssetsListing = []
         self.categoryListing  = isCategorySelected ? [] : self.categoryListing
+        self.tokenListing  = isCategorySelected ? [] : self.tokenListing
+        self.assetsListing  = isCategorySelected ? [] : self.assetsListing
         self.status = []
         //Assets
         self.byRewards = []
@@ -141,6 +149,18 @@ class ProductFilterVM {
                 return String(model.id ?? 0)
             }.joined(separator: ",")
             params[ProductCreate.keys.category] = category
+        }
+        if self.selectedAssetsListing.endIndex > 0{
+            let assets =  self.selectedAssetsListing.map { (model) -> String in
+                return String(model.id ?? 0)
+                }.joined(separator: ",")
+            params[ProductCreate.keys.asset_type] = assets
+        }
+        if self.selectedTokenListing.endIndex > 0{
+            let tokens =  self.selectedTokenListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params[ProductCreate.keys.token_type] = tokens
         }
         if self.minimumPrice != 0{
             params[ProductCreate.keys.min] = self.minimumPrice
