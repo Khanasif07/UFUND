@@ -13,6 +13,7 @@ class MyWalletVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var dropdownView: UIView!
     @IBOutlet weak var currencyControl: UISegmentedControl!
     @IBOutlet weak var middleView: UIStackView!
@@ -66,7 +67,7 @@ class MyWalletVC: UIViewController {
         topView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
         middleView.subviews.forEach { (innerView) in
             innerView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
-            bottomSheetVC.view.dropShadow(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0, height: -3), opacity: 0.16, shadowRadius: 8)
+        bottomSheetVC.view.dropShadow(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0, height: -3), opacity: 0.16, shadowRadius: 8)
             self.view.layoutIfNeeded()
         }
     }
@@ -95,18 +96,18 @@ extension MyWalletVC {
     }
     
     private func setUpBorder(){
-        [userInvestmentImgView,totalAssetsImgView,totalProductImgView].forEach { (imgView) in
-            imgView?.layer.masksToBounds = true
-            imgView?.layer.borderWidth = 8.0
-            imgView?.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
-            imgView?.layer.cornerRadius = (imgView?.bounds.width ?? 0.0) / 2
+        DispatchQueue.main.async {
+            [self.userInvestmentImgView,self.totalAssetsImgView,self.totalProductImgView].forEach { (imgView) in
+                imgView?.layer.masksToBounds = true
+                imgView?.layer.borderWidth = 8.0
+                imgView?.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
+                imgView?.layer.cornerRadius = (imgView?.bounds.width ?? 0.0) / 2
+            }
         }
         dropdownView?.layer.masksToBounds = true
         dropdownView?.layer.borderWidth = 2.0
         dropdownView?.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
         dropdownView?.layer.cornerRadius = 4.0
-        
-        
     }
     
     func addBottomSheetView() {
@@ -126,7 +127,8 @@ extension MyWalletVC {
         let adjustForTabbarInsets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: self.tabBarController?.tabBar.frame.height ?? 30, right: 0)
         bottomSheetVC.mainTableView.contentInset = adjustForTabbarInsets
         bottomSheetVC.mainTableView.scrollIndicatorInsets = adjustForTabbarInsets
-        //        bottomSheetVC.listingTableView.refreshControl = refreshControl
+        let globalPoint = bottomStackView.superview?.convert(bottomStackView.frame.origin, to: nil)
+        bottomSheetVC.textContainerHeight = (globalPoint?.y ?? 0.0)
         self.view.layoutIfNeeded()
     }
 }

@@ -30,8 +30,8 @@ class MyWalletSheetVC: UIViewController {
         }
     }
     var partialView: CGFloat {
-        return UIScreen.main.bounds.height - (2 * UIApplication.shared.statusBarFrame.height)
-//        return 163.0 + UIApplication.shared.statusBarFrame.height
+//        return UIScreen.main.bounds.height - (UIApplication.shared.statusBarFrame.height) - (textContainerHeight ?? 0.0)
+        return (textContainerHeight ?? 0.0) + UIApplication.shared.statusBarFrame.height + 64.0
     }
     //MARK:- VIEW LIFE CYCLE
     //======================
