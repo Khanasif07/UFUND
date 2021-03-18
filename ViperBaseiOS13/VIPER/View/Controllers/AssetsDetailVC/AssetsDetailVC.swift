@@ -131,7 +131,7 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueCell(with: ProductDetailDescriptionCell.self, indexPath: indexPath)
             cell.productTitleLbl.text = productModel?.tokenname ?? ""
             cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
-            cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
+            cell.productDescLbl.text = "\(productModel?.tokenrequest?.description ?? "")"
             return cell
         case AssetsDetailCellType.assetsDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)

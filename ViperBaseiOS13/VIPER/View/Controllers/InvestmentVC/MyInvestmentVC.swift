@@ -17,6 +17,7 @@ class MyInvestmentVC: UIViewController {
    
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchViewHConst: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
@@ -98,6 +99,14 @@ class MyInvestmentVC: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     
+    @IBAction func searchBtnTapped(_ sender: UIButton) {
+        searchBar.becomeFirstResponder()
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchViewHConst.constant = 51.0
+            self.view.layoutIfNeeded()
+        })
+    }
+    
     @IBAction func filterBtnAction(_ sender: UIButton) {
         self.showFilterVC(self)
     }
@@ -109,6 +118,7 @@ extension MyInvestmentVC {
     private func initialSetup(){
         ProductFilterVM.shared.resetToAllFilter()
         self.titleLbl.text = productTitle
+        self.searchBar.delegate = self
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
         self.mainCollView.registerCell(with: NewProductsCollCell.self)
         self.mainCollView.delegate = self
@@ -124,11 +134,12 @@ extension MyInvestmentVC {
     }
     
     //MARK:- PRDUCTS LIST API CALL
-    private func getProductList(page:Int = 1,loader:Bool = false) {
+    private func getProductList(page:Int = 1,loader:Bool = false,searchValue:String = "") {
         switch (userType,false) {
         case (UserType.investor.rawValue,false):
             var params : [String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
             params[ProductCreate.keys.page] =  page
+            params[ProductCreate.keys.search] =  searchValue
             switch sortType {
             case Constants.string.sort_by_name_AZ:
                 params[ProductCreate.keys.sort_order] = "ASC"
@@ -163,10 +174,10 @@ extension MyInvestmentVC {
         vc.present(ob, animated: true, completion: nil)
     }
     
-    private func searchProducts(page:Int = 1,loader: Bool = false){
+    private func searchProducts(page:Int = 1,loader: Bool = false,searchValue: String){
         self.searchTask?.cancel()
         let task = DispatchWorkItem { [weak self] in
-            self?.getProductList(page: page,loader: loader)
+            self?.getProductList(page: page,loader: loader,searchValue: self?.searchText ?? "")
         }
         self.searchTask = task
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
@@ -242,7 +253,7 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             guard !isRequestinApi else { return }
         }
         isRequestinApi = true
-        self.searchProducts(page: self.currentPage,loader: true)
+        self.searchProducts(page: self.currentPage,loader: true, searchValue: self.searchText)
     }
 }
 
@@ -282,6 +293,7 @@ extension MyInvestmentVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
         var params :[String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
         params[ProductCreate.keys.page] = 1
+        params[ProductCreate.keys.search] = self.searchText
         self.sortType = sortType
         switch sortType {
         case Constants.string.sort_by_name_AZ:
@@ -304,8 +316,6 @@ extension MyInvestmentVC: ProductSortVCDelegate  {
         } else {
             self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         }
-//         params[ProductCreate.keys.new_products] =  investmentType == .MyTokenInvestment ? 0 : 1
-//        self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         self.loader.isHidden = false
     }
 }
@@ -343,7 +353,7 @@ extension MyInvestmentVC : PresenterOutputProtocol {
  
 }
 
-// MARK: - Hotel filter Delegate methods
+// MARK: - Product filter Delegate methods
 
 extension MyInvestmentVC: InvestmentFilterVCDelegate {
     
@@ -439,7 +449,7 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         default:
             print("Add Nothing")
         }
-//        params[ProductCreate.keys.new_products] = investmentType == .MyTokenInvestment ? 0 : 1
+        params[ProductCreate.keys.search] = self.searchText
         if investmentType == .MyProductInvestment {
             self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         } else {
@@ -449,3 +459,52 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
     }
 }
 
+
+//MARK:- UISearchBarDelegate
+//========================================
+extension MyInvestmentVC: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
+        self.searchProducts(searchValue: self.searchText)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchViewHConst.constant = 51.0
+                self.view.layoutIfNeeded()
+            })
+        }else{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchViewHConst.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        }
+        searchBar.resignFirstResponder()
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        self.searchProducts(searchValue: "")
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchViewHConst.constant = 51.0
+                self.view.layoutIfNeeded()
+            })
+        }else{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchViewHConst.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        }
+        searchBar.resignFirstResponder()
+    }
+}

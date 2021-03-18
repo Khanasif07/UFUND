@@ -452,6 +452,7 @@ struct Tokenrequest : Mappable {
     var trade_locked : Int?
     var trade_burn : Int?
     var status : Int?
+    var description : String?
     var request_deploy : Int?
     var created_at : String?
     var updated_at : String?
@@ -484,6 +485,7 @@ struct Tokenrequest : Mappable {
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
         asset <- map["asset"]
+        description <- map["description"]
     }
 
 }

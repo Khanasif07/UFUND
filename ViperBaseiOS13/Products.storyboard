@@ -2131,7 +2131,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0y-tE-8iy">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0y-tE-8iy">
                                                 <rect key="frame" x="366" y="9.5" width="32" height="32"/>
                                                 <state key="normal" image="icSearch">
                                                     <color key="titleColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -2144,6 +2144,9 @@
                                                         <color key="value" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="searchBtnTapped:" destination="ajP-HP-8jC" eventType="touchUpInside" id="V32-zz-qBb"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2309,6 +2312,7 @@
                     <connections>
                         <outlet property="bottomView" destination="Lm6-lM-xRt" id="3du-Rg-FIR"/>
                         <outlet property="mainCollView" destination="40N-2H-0s6" id="jNJ-OQ-7yG"/>
+                        <outlet property="searchBar" destination="D4T-5z-uvd" id="7yb-xs-I8D"/>
                         <outlet property="searchViewHConst" destination="XHd-RC-IGx" id="s5G-kk-Keq"/>
                         <outlet property="titleLbl" destination="I3j-zO-BMN" id="9Nq-JC-goJ"/>
                     </connections>

@@ -150,9 +150,16 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
         switch cellTypes[indexPath.row] {
         case MyInvestmentsDetailCellType.productDescCell:
             let cell = tableView.dequeueCell(with: ProductDetailDescriptionCell.self, indexPath: indexPath)
-            cell.productTitleLbl.text = productModel?.product_title ?? ""
-            cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
-            cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
+            switch investmentType {
+            case .MyProductInvestment:
+                cell.productTitleLbl.text = productModel?.product_title ?? ""
+                cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
+                cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
+            default:
+                cell.productTitleLbl.text = productModel?.tokenname ?? ""
+                cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
+                cell.productDescLbl.text = "\(productModel?.tokenrequest?.description ?? "")"
+            }
             return cell
         case MyInvestmentsDetailCellType.assetDetailInfoCell:
             let cell = tableView.dequeueCell(with: AssetsDetailInfoCell.self, indexPath: indexPath)
@@ -171,7 +178,7 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
                 cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
                 cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
             default:
-                cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
+                cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
             }
             return cell
         default:
