@@ -41,7 +41,7 @@ class AssetsDetailInfoCell: UITableViewCell {
         self.auditorsLbl.text = model.user?.name ?? ""
         self.tokenTypeLbl.text = "\(model.token_type ?? 0)"
         self.contractAddressLbl.text = model.contract_address ?? ""
-        self.typeLbl.text = model.tokenrequest?.tokensymbol ?? ""
+        self.typeLbl.text = model.tokenrequest?.asset?.asset_type?.name ?? ""
         self.tokenDecimnalLbl.text = "\(model.decimal ?? 0)"
         self.categorylbl.text = model.tokenrequest?.asset?.category?.category_name ?? ""
         self.totalSupplyLbl.text = "\(model.tokensupply ?? 0)"
