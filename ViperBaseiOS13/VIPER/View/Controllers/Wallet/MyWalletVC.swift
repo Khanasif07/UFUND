@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import iOSDropDown
 
 
 class MyWalletVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var currencyTextField: DropDown!
     @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var dropdownView: UIView!
     @IBOutlet weak var currencyControl: UISegmentedControl!
@@ -32,7 +34,7 @@ class MyWalletVC: UIViewController {
     // MARK: - Variables
     //===========================
     let bottomSheetVC = MyWalletSheetVC()
-    
+    var  buttonView = UIButton()
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
@@ -75,10 +77,35 @@ class MyWalletVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func withdrawlBtnAction(_ sender: UIButton) {
-    }
-    @IBAction func depositBtnAction(_ sender: UIButton) {
+        let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
+        self.present(vc, animated: true, completion: nil)
     }
     
+    @IBAction func depositBtnAction(_ sender: UIButton) {
+        let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func overAllUserInvestmentBtnAction(_ sender: UIButton) {
+        let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+        vc.productTitle = Constants.string.overall_user_investment.localize()
+        vc.productType = .AllProducts
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func totalProductsBtnAction(_ sender: UIButton) {
+        let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+        vc.productTitle = Constants.string.totalProducts.localize()
+        vc.productType = .AllProducts
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func totalAssetsBtnAction(_ sender: UIButton) {
+        let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+        vc.productTitle = Constants.string.myToken_and_assets.localize()
+        vc.productType = .AllProducts
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     @IBAction func backBtnAction(_ sender: UIButton) {
         self.popOrDismiss(animation: true)
@@ -108,6 +135,27 @@ extension MyWalletVC {
         dropdownView?.layer.borderWidth = 2.0
         dropdownView?.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
         dropdownView?.layer.cornerRadius = 4.0
+        currencyControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        self.currencyTextField.delegate = self
+        buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
+        currencyTextField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
+        currencyTextField.optionArray = ["ETH","BTC"]
+        currencyTextField.optionIds = [0,1]
+        currencyTextField.arrowColor = .clear
+        currencyTextField.didSelect { (categoryName, index,id)  in
+            print(categoryName)
+            print(index)
+            print(id)
+        }
+        
+    }
+    
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            currencyTextField.isHidden = false
+        } else {
+             currencyTextField.isHidden = true
+        }
     }
     
     func addBottomSheetView() {
@@ -145,3 +193,27 @@ extension MyWalletVC : UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 }
+
+
+extension MyWalletVC : UITextFieldDelegate {
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if  textField == currencyTextField {
+            self.view.endEditingForce()
+            currencyTextField.showList()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        view.endEditingForce()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditingForce()
+        return true
+    }
+}
+
+

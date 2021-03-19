@@ -17,7 +17,7 @@ class SideMenuController: UIViewController {
     @IBAction func profileRedirect(_ sender: UIButton) {
         self.drawerController?.closeSide()
         self.push(to: Storyboard.Ids.UserProfileVC)
-//        self.push(to: Storyboard.Ids.EditProfileViewController)
+        //        self.push(to: Storyboard.Ids.EditProfileViewController)
     }
     @IBOutlet weak var topCloseBtn: UIButton!
     @IBOutlet weak var topRoundedView: UIView!
@@ -41,8 +41,8 @@ class SideMenuController: UIViewController {
             
             if isFromCampainer {
                 
-                menuContent = [(Constants.string.tokenRequests.localize(),[]),(Constants.string.MyProducts.localize(),[]),(Constants.string.history.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.Notification.localize(),[]),(Constants.string.security.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [(#imageLiteral(resourceName: "sideVynil"),[]),(#imageLiteral(resourceName: "icProducts"),[]),(#imageLiteral(resourceName: "historyIcon"),[]),(#imageLiteral(resourceName: "sideWallet"),[]),(#imageLiteral(resourceName: "whiteNotify"),[]),(#imageLiteral(resourceName: "SideSecurity"),[]),(#imageLiteral(resourceName: "icLogout"),[])]
+                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.submit_assets.localize(),[]),(Constants.string.allMyProduct.localize(),[]),(Constants.string.allMyTokenizedAssets.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
+                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icSubmitAssets"),[#imageLiteral(resourceName: "icSubmitAssets")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icWallet"),[#imageLiteral(resourceName: "icWallet")]),(#imageLiteral(resourceName: "icChnagePassword"),[]),(#imageLiteral(resourceName: "icLogout"),[])]
                 
             } else {
                 menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
@@ -85,9 +85,9 @@ class SideMenuController: UIViewController {
         profileLastName.textColor = .white
         tableView.delegate = self
         tableView.dataSource = self
-//        investButton.titleEdgeInsets.left = 40
-//        campaignerButton.titleEdgeInsets.left = 40
-//
+        //        investButton.titleEdgeInsets.left = 40
+        //        campaignerButton.titleEdgeInsets.left = 40
+        //
         let url = URL.init(string: baseUrl + "/" +  nullStringToEmpty(string: User.main.picture))
         profileImg.sd_setImage(with: url , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
         profileImg.contentMode = .scaleAspectFill
@@ -116,7 +116,7 @@ class SideMenuController: UIViewController {
     private func setupViews() {
         buttonContainerStackView.layer.cornerRadius = 10.0
     }
-       
+    
     private func setupButtons() {
         buttonArray = [investButton, campaignerButton]
         buttonArray.forEach({$0.borderLineWidth = 0.5})
@@ -155,14 +155,14 @@ class SideMenuController: UIViewController {
             self.view.layoutIfNeeded()
         })
     }
-       
+    
     
     @IBAction func campaignerButtonClickEvent(_ sender: UIButton) {
         
         UserDefaults.standard.set(UserType.campaigner.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
         setUpUserType()
-//        self.drawerController?.closeSide()
-//        self.push(to: Storyboard.Ids.HomeViewController)
+        //        self.drawerController?.closeSide()
+        //        self.push(to: Storyboard.Ids.HomeViewController)
         
     }
     
@@ -211,6 +211,12 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
             view.dropdownView?.isHidden = false
             self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
         case Constants.string.Products.localize():
+            view.dropdownView?.isHidden = false
+            self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
+        case Constants.string.allMyProduct.localize():
+            view.dropdownView?.isHidden = false
+            self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
+        case Constants.string.allMyTokenizedAssets.localize():
             view.dropdownView?.isHidden = false
             self.rotateLeft(dropdownView: view.dropdownView,left : (self.menuContent?[section].1.isEmpty ?? true) ? 0 : -1)
         default:
@@ -309,7 +315,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
 extension  SideMenuController {
     
     func sectionTappedAction(section: Int){
-//        let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row,section: 0)) as? SideMenuCell
+        //        let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row,section: 0)) as? SideMenuCell
         switch menuContent?[section].0 {
         case Constants.string.profile.localize(),Constants.string.myProfile.localize():
             self.drawerController?.closeSide()
@@ -323,8 +329,6 @@ extension  SideMenuController {
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
         case Constants.string.changePassword.localize():
-            //            self.drawerController?.closeSide()
-            //            self.push(to: Storyboard.Ids.ChangeViewController)
             self.drawerController?.closeSide()
             let vc = ChangePasswordVC.instantiate(fromAppStoryboard: .Products)
             (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
@@ -336,7 +340,7 @@ extension  SideMenuController {
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.CategoriesVC)
             //            self.drawerController?.closeSide()
-//            self.push(to: Storyboard.Ids.ProductViewController)
+        //            self.push(to: Storyboard.Ids.ProductViewController)
         case Constants.string.TokenizedAssets.localize():
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.newTokenizedAssets.localize(),Constants.string.allTokenizedAssets.localize()]
@@ -345,12 +349,29 @@ extension  SideMenuController {
                 self.menuContent?[section].1 = []
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
-//            self.drawerController?.closeSide()
-//            self.push(to: Storyboard.Ids.TokenizedAssetsListViewController)
+            //            self.drawerController?.closeSide()
+            //            self.push(to: Storyboard.Ids.TokenizedAssetsListViewController)
             
         case Constants.string.allMyInvestment.localize():
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.myProductInvestMents.localize(),Constants.string.myTokenInvestMents.localize()]
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            } else {
+                self.menuContent?[section].1 = []
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            }
+            
+        case Constants.string.allMyProduct.localize():
+            if self.menuContent?[section].1.isEmpty ?? true{
+                self.menuContent?[section].1 = [Constants.string.allProduct.localize(),Constants.string.liveProduct.localize(),Constants.string.pendingProduct.localize(),Constants.string.soldProduct.localize(),Constants.string.rejectedProduct.localize()]
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            } else {
+                self.menuContent?[section].1 = []
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            }
+        case Constants.string.allMyTokenizedAssets.localize():
+            if self.menuContent?[section].1.isEmpty ?? true{
+                self.menuContent?[section].1 = [Constants.string.allTokens.localize(),Constants.string.liveTokens.localize(),Constants.string.pendingTokens.localize(),Constants.string.soldTokens.localize(),Constants.string.rejectedTokens.localize()]
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             } else {
                 self.menuContent?[section].1 = []
@@ -417,7 +438,7 @@ extension  SideMenuController {
             
         case Constants.string.allProduct.localize():
             self.drawerController?.closeSide()
-
+            
             if isFromCampainer {
                 let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as! TokenProductViewController
                 viewController.tileStr = Constants.string.all.localize()
@@ -427,7 +448,7 @@ extension  SideMenuController {
                 viewController.tileStr = Constants.string.all.localize()
                 (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
             }
-
+            
             
         case Constants.string.InvestorSide.localize():
             

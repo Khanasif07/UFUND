@@ -22,7 +22,7 @@ class ProductDetailPopUpVC: UIViewController {
     
     // MARK: - Variables
     //===========================
-    var buyNowBtnTitle: String = "Buy Produc"
+    var buyNowBtnTitle: String = "Buy Product"
     var button = UIButton()
     var isForBuyproduct = false {
         didSet{

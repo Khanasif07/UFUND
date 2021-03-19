@@ -246,6 +246,7 @@
 		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
 		84C2106B25D634F000EE3BE7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2106A25D634F000EE3BE7 /* StringExtension.swift */; };
 		84C2106D25D6351500EE3BE7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2106C25D6351500EE3BE7 /* DateExtension.swift */; };
+		84C775022604B4DE00473E19 /* MyWalletDepositVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C775012604B4DE00473E19 /* MyWalletDepositVC.swift */; };
 		84D565EC25DB68C20047F052 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D565EB25DB68C20047F052 /* Filter.storyboard */; };
 		84D565EF25DB69380047F052 /* ProductFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D565EE25DB69380047F052 /* ProductFilterVC.swift */; };
 		84D565F125DB84670047F052 /* CategoryListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D565F025DB84670047F052 /* CategoryListingVC.swift */; };
@@ -554,6 +555,7 @@
 		84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuHeaderView.xib; sourceTree = "<group>"; };
 		84C2106A25D634F000EE3BE7 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		84C2106C25D6351500EE3BE7 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		84C775012604B4DE00473E19 /* MyWalletDepositVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletDepositVC.swift; sourceTree = "<group>"; };
 		84D565EB25DB68C20047F052 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		84D565EE25DB69380047F052 /* ProductFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFilterVC.swift; sourceTree = "<group>"; };
 		84D565F025DB84670047F052 /* CategoryListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListingVC.swift; sourceTree = "<group>"; };
@@ -1779,6 +1781,7 @@
 				845C131725FF53F90018A1E1 /* MyWalletVC.swift */,
 				845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */,
 				845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */,
+				84C775012604B4DE00473E19 /* MyWalletDepositVC.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -2461,6 +2464,7 @@
 				0828C38923FA698100B39256 /* ProdDetailViewController.swift in Sources */,
 				0824B1052382A12000F81A9B /* Bundle.swift in Sources */,
 				847C110325DFC7EF00D13A5C /* ProductDetailInvestmentCell.swift in Sources */,
+				84C775022604B4DE00473E19 /* MyWalletDepositVC.swift in Sources */,
 				0825A05523B49C5F001BEC21 /* ProductListViewController.swift in Sources */,
 				84411E8725D1044700718BD1 /* FacebookController.swift in Sources */,
 				086F1389246EB02100EA4355 /* CampHistoryViewController.swift in Sources */,
