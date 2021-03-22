@@ -32,12 +32,14 @@ class InvestmentsProfitTableCell: UITableViewCell {
     }
     
     func configureCell(model: ProductModel){
-        self.progressValue.text = "N/A"
-        self.yourInvestmentValueLbl.text = "\(model.invested_amount ?? 0.0)"
+        self.yourInvestmentValueLbl.text = "\(model.investment_product_total ?? 0.0)"
         self.yourEarnedValueLbl.text = "N/A"
         self.yourInvestmentPercentageLbl.text = "N/A"
-        self.newProfitPercentageLbl.text = "N/A"
-        self.netProfitValueLbl.text = "N/A"
+        let netProfitPercentage = (model.investment_product_total ?? 0.0) * 100 / (model.total_product_value ?? 0.0)
+//        self.progressValue.text = "\(netProfitPercentage)"
+        self.progressPercentageValue = netProfitPercentage
+        self.newProfitPercentageLbl.text =  "\(netProfitPercentage.round(to: 1))" + "%"
+        self.netProfitValueLbl.text = "\((model.total_product_value ?? 0.0) * netProfitPercentage / 100)"
     }
     
     private func setupProgressView(){
