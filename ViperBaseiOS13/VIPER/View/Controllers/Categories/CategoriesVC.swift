@@ -155,7 +155,11 @@ extension CategoriesVC {
     
     private func setUpSearchBar(){
         self.searchTxtField.delegate = self
-        self.searchTxtField.searchTextField.textColor = .white
+        if #available(iOS 13.0, *) {
+            self.searchTxtField.searchTextField.textColor = .white
+        } else {
+            // Fallback on earlier versions
+        }
         searchViewHConst.constant = 0.0
         self.view.layoutIfNeeded()
     }
