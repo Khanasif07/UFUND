@@ -23,7 +23,7 @@ class HomeViewController: UIViewController{
     
     
     
-    var headerCount : [String]?
+    var headerCount : [(String,UIColor)]?
     var silderImage = [SilderImage]()
     private lazy var loader  : UIView =
         {
@@ -34,10 +34,9 @@ class HomeViewController: UIViewController{
     var isFromCampainer = false {
         didSet {
             if isFromCampainer {
-            headerCount = [Constants.string.add.localize(), Constants.string.profile.localize(), Constants.string.MyProducts.localize(),Constants.string.wallet.localize(), Constants.string.requests.localize(), Constants.string.send.localize()]
+                self.headerCount = [(Constants.string.send.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.add.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.profile.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.MyProducts.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.wallet.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.requests.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]
             }else{
-                headerCount = [Constants.string.categories.localize(),Constants.string.allProduct.localize(), Constants.string.newProduct.localize(),Constants.string.newTokenizedAssets.localize(),Constants.string.allTokenizedAssets.localize(),Constants.string.myProductInvestMents.localize(),Constants.string.myTokenInvestMents.localize(),  Constants.string.earningInDollar.localize(),Constants.string.earningInCrypto.localize(),Constants.string.fiatCurrency.localize(),Constants.string.cryptoCurrency.localize()]
-                
+                self.headerCount = [(Constants.string.categories.localize(),#colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)),(Constants.string.allProduct.localize(),#colorLiteral(red: 0.4140953777, green: 0.6343216272, blue: 1, alpha: 1)), (Constants.string.newProduct.localize(),#colorLiteral(red: 0.4140953777, green: 0.6343216272, blue: 1, alpha: 1)),(Constants.string.newTokenizedAssets.localize(),#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)),(Constants.string.allTokenizedAssets.localize(),#colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)),(Constants.string.myProductInvestMents.localize(),#colorLiteral(red: 0.753563848, green: 1, blue: 0.9789182867, alpha: 1)),(Constants.string.myTokenInvestMents.localize(),#colorLiteral(red: 0.753563848, green: 1, blue: 0.9789182867, alpha: 1)),  (Constants.string.earningInDollar.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.earningInCrypto.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.fiatCurrency.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.cryptoCurrency.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]
             }
         }
     }
@@ -83,11 +82,11 @@ class HomeViewController: UIViewController{
             {
             case UserType.investor.rawValue:
                 isFromCampainer = false
-                getInvesterSilderImage(isLoaderHidden: false)
+                getInvesterSilderImage(isLoaderHidden: true)
             default:
                 isFromCampainer = true
                 getApprovals()
-                getInvesterSilderImageCamp(isLoaderHidden: false)
+                getInvesterSilderImageCamp(isLoaderHidden: true)
                 dispatchGroup.notify(queue: .main) {
                     
                 }
@@ -96,8 +95,8 @@ class HomeViewController: UIViewController{
     }
     
     @IBAction func menuOpener(_ sender: UIButton){
-        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SideMenuController) as? SideMenuController else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.drawerController?.openSide(.left)
+        self.viewSideMenu.addPressAnimation()
     }
     
     private func setupTableView() {
@@ -135,12 +134,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.ProductsCollectionCell, for: indexPath) as! ProductsCollectionCell
         cell.productImg.image = isFromCampainer ?  campinerImage[indexPath.row] : inversterImage[indexPath.row]
-        cell.productNameLbl.text = isFromCampainer ? nullStringToEmpty(string: headerCount?[indexPath.row]) : nullStringToEmpty(string: headerCount?[indexPath.row])
+        cell.productNameLbl.text = isFromCampainer ? nullStringToEmpty(string: headerCount?[indexPath.row].0) : nullStringToEmpty(string: headerCount?[indexPath.row].0)
+        cell.dataContainerView.backgroundColor = isFromCampainer ?  headerCount?[indexPath.row].1 : headerCount?[indexPath.row].1
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width / 2 , height: 175.0)
+        return CGSize(width: collectionView.frame.width / 2 , height: 200.0)
         
     }
     

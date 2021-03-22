@@ -101,6 +101,7 @@
             </constraints>
             <size key="customSize" width="216" height="87"/>
             <connections>
+                <outlet property="dataContainerView" destination="qDW-X6-fy5" id="V0g-6w-ao1"/>
                 <outlet property="productImg" destination="r0H-pk-kK9" id="tLj-kf-2Jg"/>
                 <outlet property="productNameLbl" destination="wf5-eG-nmU" id="5FX-xE-yDr"/>
                 <outlet property="shadowView" destination="J5P-la-ve8" id="8eK-Pz-cuF"/>

@@ -1901,6 +1901,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WB3-0w-ceM" secondAttribute="trailing" constant="16" id="zWI-kR-QEA"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JX9-rz-9op">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
+                                        <color key="backgroundColor" name="primaryColor"/>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-EC-CQT">
                                         <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                         <subviews>
@@ -1909,6 +1913,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icMenu" translatesAutoresizingMaskIntoConstraints="NO" id="JD4-Hu-zSC">
                                                         <rect key="frame" x="16" y="9.5" width="32" height="32"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="32" id="qX2-If-ZcT"/>
                                                             <constraint firstAttribute="width" constant="32" id="tAd-O8-0oe"/>
@@ -1932,7 +1937,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UFUND" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPF-Pe-egl">
                                                 <rect key="frame" x="178.5" y="16" width="57" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                <color key="textColor" name="primaryColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1973,13 +1978,17 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstItem="mNE-rH-sAf" firstAttribute="top" secondItem="XRr-EC-CQT" secondAttribute="bottom" id="Hig-nV-yel"/>
                                     <constraint firstItem="DdY-rh-1yG" firstAttribute="leading" secondItem="RL3-Qb-06d" secondAttribute="leading" id="NA9-7c-BOX"/>
                                     <constraint firstItem="DdY-rh-1yG" firstAttribute="top" secondItem="RL3-Qb-06d" secondAttribute="top" id="TEa-NO-Pqw"/>
+                                    <constraint firstItem="JX9-rz-9op" firstAttribute="bottom" secondItem="XRr-EC-CQT" secondAttribute="bottom" id="VEL-Fg-mNJ"/>
                                     <constraint firstAttribute="trailing" secondItem="XRr-EC-CQT" secondAttribute="trailing" id="VFs-oJ-ydq"/>
                                     <constraint firstAttribute="bottom" secondItem="3Do-n5-web" secondAttribute="bottom" id="ViY-eG-45D"/>
                                     <constraint firstItem="3Do-n5-web" firstAttribute="leading" secondItem="7Hp-Dc-3MB" secondAttribute="leading" constant="8" id="Wey-0v-vLU"/>
+                                    <constraint firstAttribute="trailing" secondItem="JX9-rz-9op" secondAttribute="trailing" id="XmY-JT-5oX"/>
                                     <constraint firstAttribute="trailing" secondItem="mNE-rH-sAf" secondAttribute="trailing" id="bpX-Ng-p1G"/>
                                     <constraint firstItem="XRr-EC-CQT" firstAttribute="leading" secondItem="7Hp-Dc-3MB" secondAttribute="leading" id="dIs-yb-UaE"/>
                                     <constraint firstAttribute="trailing" secondItem="3Do-n5-web" secondAttribute="trailing" constant="8" id="fU0-Uj-ccc"/>
                                     <constraint firstItem="DdY-rh-1yG" firstAttribute="bottom" secondItem="RL3-Qb-06d" secondAttribute="bottom" id="o5I-bW-EYa"/>
+                                    <constraint firstItem="JX9-rz-9op" firstAttribute="top" secondItem="7Hp-Dc-3MB" secondAttribute="top" id="sJC-ai-Nb3"/>
+                                    <constraint firstItem="JX9-rz-9op" firstAttribute="leading" secondItem="7Hp-Dc-3MB" secondAttribute="leading" id="ywW-4V-6zM"/>
                                 </constraints>
                             </view>
                         </subviews>
