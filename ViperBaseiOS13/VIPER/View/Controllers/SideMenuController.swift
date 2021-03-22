@@ -329,9 +329,10 @@ extension  SideMenuController {
             let vc = ChangePasswordVC.instantiate(fromAppStoryboard: .Products)
             (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
         case Constants.string.wallet.localize():
-            self.drawerController?.closeSide()
-            let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
-            (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            showAlert(message: "Under Development")
+//            self.drawerController?.closeSide()
+//            let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+//            (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
         case Constants.string.categories.localize():
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.CategoriesVC)
