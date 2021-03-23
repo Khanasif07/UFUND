@@ -27,14 +27,14 @@
                                         <rect key="frame" x="8.5" y="8.5" width="157" height="157"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r0H-pk-kK9">
-                                                <rect key="frame" x="43.5" y="23.5" width="70" height="70"/>
+                                                <rect key="frame" x="43.5" y="23.5" width="70" height="70.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="r0H-pk-kK9" secondAttribute="height" id="27Y-Uh-jYI"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Products" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf5-eG-nmU">
-                                                <rect key="frame" x="7.5" y="122.5" width="142" height="14.5"/>
+                                                <rect key="frame" x="7.5" y="122" width="142" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                 <color key="textColor" systemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -44,9 +44,9 @@
                                         <constraints>
                                             <constraint firstItem="r0H-pk-kK9" firstAttribute="width" secondItem="qDW-X6-fy5" secondAttribute="width" multiplier="0.45" id="Gvj-B8-pxx"/>
                                             <constraint firstAttribute="trailing" secondItem="wf5-eG-nmU" secondAttribute="trailing" constant="7.5" id="Ndb-PB-rHO"/>
+                                            <constraint firstItem="wf5-eG-nmU" firstAttribute="centerY" secondItem="qDW-X6-fy5" secondAttribute="centerY" multiplier="1.65" id="OqO-Lf-ba2"/>
                                             <constraint firstItem="r0H-pk-kK9" firstAttribute="centerX" secondItem="qDW-X6-fy5" secondAttribute="centerX" id="cHp-pE-6Xl"/>
-                                            <constraint firstAttribute="bottom" secondItem="wf5-eG-nmU" secondAttribute="bottom" constant="20" id="ejd-WF-f1I"/>
-                                            <constraint firstItem="r0H-pk-kK9" firstAttribute="centerY" secondItem="qDW-X6-fy5" secondAttribute="centerY" constant="-20" id="y5D-UK-ZLr"/>
+                                            <constraint firstItem="r0H-pk-kK9" firstAttribute="centerY" secondItem="qDW-X6-fy5" secondAttribute="centerY" multiplier="0.75" id="y5D-UK-ZLr"/>
                                             <constraint firstItem="wf5-eG-nmU" firstAttribute="leading" secondItem="qDW-X6-fy5" secondAttribute="leading" constant="7.5" id="zRz-kK-mB7"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -106,7 +106,7 @@
                 <outlet property="productNameLbl" destination="wf5-eG-nmU" id="5FX-xE-yDr"/>
                 <outlet property="shadowView" destination="J5P-la-ve8" id="8eK-Pz-cuF"/>
             </connections>
-            <point key="canvasLocation" x="257.97101449275362" y="124.55357142857142"/>
+            <point key="canvasLocation" x="47" y="29"/>
         </collectionViewCell>
     </objects>
     <resources>

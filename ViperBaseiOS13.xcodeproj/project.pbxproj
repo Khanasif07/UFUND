@@ -187,6 +187,14 @@
 		08E5CC1323CDA38000DCE77D /* AddAssetsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E5CC1223CDA38000DCE77D /* AddAssetsViewController+Extension.swift */; };
 		08FB487D238D2666006C18C5 /* FilterSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FB487C238D2666006C18C5 /* FilterSetViewController.swift */; };
 		2C15ACBE0468F184BFD814DF /* Pods_ViperBaseiOS13.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56E8F9E745DA9752E1A9560 /* Pods_ViperBaseiOS13.framework */; };
+		841A917F2609A620008AA0A3 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A917E2609A620008AA0A3 /* DashboardVC.swift */; };
+		841A918E2609A8FF008AA0A3 /* AlignmentFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A918D2609A8FF008AA0A3 /* AlignmentFlowLayout.swift */; };
+		841A91972609A9FE008AA0A3 /* DashboardTabsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A91952609A9FE008AA0A3 /* DashboardTabsTableCell.swift */; };
+		841A91982609A9FE008AA0A3 /* DashboardTabsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841A91962609A9FE008AA0A3 /* DashboardTabsTableCell.xib */; };
+		841A919E2609B2AF008AA0A3 /* DashboardBarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A919C2609B2AF008AA0A3 /* DashboardBarChartCell.swift */; };
+		841A919F2609B2AF008AA0A3 /* DashboardBarChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841A919D2609B2AF008AA0A3 /* DashboardBarChartCell.xib */; };
+		841A91A52609C223008AA0A3 /* DashboardInvestmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A91A32609C223008AA0A3 /* DashboardInvestmentCell.swift */; };
+		841A91A62609C223008AA0A3 /* DashboardInvestmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841A91A42609C223008AA0A3 /* DashboardInvestmentCell.xib */; };
 		8438C67125F5F72F00200270 /* MyInvestmentsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438C67025F5F72F00200270 /* MyInvestmentsDetailVC.swift */; };
 		8438C67525F5F7C300200270 /* InvestmentsProfitTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438C67325F5F7C300200270 /* InvestmentsProfitTableCell.swift */; };
 		8438C67625F5F7C300200270 /* InvestmentsProfitTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8438C67425F5F7C300200270 /* InvestmentsProfitTableCell.xib */; };
@@ -496,6 +504,14 @@
 		08FB487C238D2666006C18C5 /* FilterSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSetViewController.swift; sourceTree = "<group>"; };
 		4E76FFC7FC9DC2381180FFD7 /* Pods-ViperBaseiOS13-ViperBaseiOS13UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13-ViperBaseiOS13UITests.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13-ViperBaseiOS13UITests/Pods-ViperBaseiOS13-ViperBaseiOS13UITests.release.xcconfig"; sourceTree = "<group>"; };
 		74D4774CDF2F10AD45DCE72C /* Pods-ViperBaseiOS13.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13/Pods-ViperBaseiOS13.release.xcconfig"; sourceTree = "<group>"; };
+		841A917E2609A620008AA0A3 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
+		841A918D2609A8FF008AA0A3 /* AlignmentFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentFlowLayout.swift; sourceTree = "<group>"; };
+		841A91952609A9FE008AA0A3 /* DashboardTabsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTabsTableCell.swift; sourceTree = "<group>"; };
+		841A91962609A9FE008AA0A3 /* DashboardTabsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardTabsTableCell.xib; sourceTree = "<group>"; };
+		841A919C2609B2AF008AA0A3 /* DashboardBarChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardBarChartCell.swift; sourceTree = "<group>"; };
+		841A919D2609B2AF008AA0A3 /* DashboardBarChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardBarChartCell.xib; sourceTree = "<group>"; };
+		841A91A32609C223008AA0A3 /* DashboardInvestmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvestmentCell.swift; sourceTree = "<group>"; };
+		841A91A42609C223008AA0A3 /* DashboardInvestmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardInvestmentCell.xib; sourceTree = "<group>"; };
 		8438C67025F5F72F00200270 /* MyInvestmentsDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvestmentsDetailVC.swift; sourceTree = "<group>"; };
 		8438C67325F5F7C300200270 /* InvestmentsProfitTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsProfitTableCell.swift; sourceTree = "<group>"; };
 		8438C67425F5F7C300200270 /* InvestmentsProfitTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentsProfitTableCell.xib; sourceTree = "<group>"; };
@@ -808,6 +824,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				841A917D2609A600008AA0A3 /* DashboardVC */,
 				845C131425FF537F0018A1E1 /* Wallet */,
 				845A9FAC25F081390066CE6B /* LoginWithEmailVC */,
 				845ADB8225ECAE8B009392E2 /* BottomSheetVC */,
@@ -971,6 +988,7 @@
 		0824B06C2382842C00F81A9B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				841A918C2609A8DF008AA0A3 /* AlignmentFlowLayout */,
 				84C2106925D634C700EE3BE7 /* StringExtension */,
 				845B9DCC25D3FB38009E388F /* AppleManager */,
 				84411E8825D1045400718BD1 /* GoogleManager */,
@@ -1654,6 +1672,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		841A917D2609A600008AA0A3 /* DashboardVC */ = {
+			isa = PBXGroup;
+			children = (
+				841A917E2609A620008AA0A3 /* DashboardVC.swift */,
+			);
+			path = DashboardVC;
+			sourceTree = "<group>";
+		};
+		841A91862609A809008AA0A3 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				841A91952609A9FE008AA0A3 /* DashboardTabsTableCell.swift */,
+				841A91962609A9FE008AA0A3 /* DashboardTabsTableCell.xib */,
+				841A919C2609B2AF008AA0A3 /* DashboardBarChartCell.swift */,
+				841A919D2609B2AF008AA0A3 /* DashboardBarChartCell.xib */,
+				841A91A32609C223008AA0A3 /* DashboardInvestmentCell.swift */,
+				841A91A42609C223008AA0A3 /* DashboardInvestmentCell.xib */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		841A918C2609A8DF008AA0A3 /* AlignmentFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				841A918D2609A8FF008AA0A3 /* AlignmentFlowLayout.swift */,
+			);
+			path = AlignmentFlowLayout;
+			sourceTree = "<group>";
+		};
 		8438C66F25F5F6E200200270 /* MyInvestmentsDetailVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1873,6 +1920,7 @@
 		84B451D825CD3204001DD54A /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				841A91862609A809008AA0A3 /* Dashboard */,
 				84A6C31C25DA47CA00C00EB1 /* Products */,
 				84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */,
 				84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */,
@@ -2131,9 +2179,11 @@
 				089C287E23F18E8800230AB3 /* EmptyResultCell.xib in Resources */,
 				84E16F0A25D5215B004F37FA /* ProductCollectionCell.xib in Resources */,
 				0825AB7D238BF2A80083AC42 /* HomeCell.xib in Resources */,
+				841A91982609A9FE008AA0A3 /* DashboardTabsTableCell.xib in Resources */,
 				0825AB82238BF61E0083AC42 /* GridCell.xib in Resources */,
 				0826B7C12386850300867CD5 /* OpenSans-Semibold.otf in Resources */,
 				08A905D023BDD77900C794F1 /* ProductDecpCell.xib in Resources */,
+				841A91A62609C223008AA0A3 /* DashboardInvestmentCell.xib in Resources */,
 				84411E9425D1480700718BD1 /* UserProfileHeaderView.xib in Resources */,
 				0820702D23DEC08C006793D8 /* OTPViewController.xib in Resources */,
 				84411EA025D22B4600718BD1 /* UserProfilePhoneNoCell.xib in Resources */,
@@ -2168,6 +2218,7 @@
 				0825A05A23B4A003001BEC21 /* ProductListCell.xib in Resources */,
 				84DD054F25D239AD003AC05C /* CountryCodeTableCell.xib in Resources */,
 				0824B032238280E800F81A9B /* Assets.xcassets in Resources */,
+				841A919F2609B2AF008AA0A3 /* DashboardBarChartCell.xib in Resources */,
 				84411E9825D14C0400718BD1 /* UserProfileTableCell.xib in Resources */,
 				845C131A25FF8A320018A1E1 /* MyWalletSheetVC.xib in Resources */,
 				0825AB74238BD53C0083AC42 /* CategoriesCell.xib in Resources */,
@@ -2356,6 +2407,7 @@
 				08751B5323BF5DD0002FF133 /* UserProfile.swift in Sources */,
 				0824B0E723828ECD00F81A9B /* Router.swift in Sources */,
 				0833AA6623D70F62005235A6 /* TokenRequestViewController.swift in Sources */,
+				841A91A52609C223008AA0A3 /* DashboardInvestmentCell.swift in Sources */,
 				085033612383D633009B76AE /* TutorialViewController.swift in Sources */,
 				08B55EC72387FB400014E660 /* HomeViewController.swift in Sources */,
 				845B9DCE25D3FB4E009E388F /* AppleLoginController.swift in Sources */,
@@ -2488,6 +2540,7 @@
 				0826B78C2386757000867CD5 /* Fonts.swift in Sources */,
 				0824B1202382A13200F81A9B /* Label.swift in Sources */,
 				0824B0E923828EFE00F81A9B /* WebService.swift in Sources */,
+				841A918E2609A8FF008AA0A3 /* AlignmentFlowLayout.swift in Sources */,
 				847C10F425DE8C2500D13A5C /* CustomPickerView.swift in Sources */,
 				082932DB23C76F3700CAA6C2 /* AssetsImgCell.swift in Sources */,
 				84FA6EAE25E4CA330053E618 /* CustomCircularBar.swift in Sources */,
@@ -2502,6 +2555,7 @@
 				8438C67525F5F7C300200270 /* InvestmentsProfitTableCell.swift in Sources */,
 				847C10F125DE0BF400D13A5C /* UserProfileVC+Enum.swift in Sources */,
 				0824B11C2382A13200F81A9B /* TextFieldEffects.swift in Sources */,
+				841A919E2609B2AF008AA0A3 /* DashboardBarChartCell.swift in Sources */,
 				0824B0C22382847800F81A9B /* ParallaxHeader.swift in Sources */,
 				0824B10D2382A12000F81A9B /* ViewExtension.swift in Sources */,
 				84411E9725D14C0400718BD1 /* UserProfileTableCell.swift in Sources */,
@@ -2530,6 +2584,7 @@
 				84FA6EC125E630940053E618 /* AssetsFilterDateVC.swift in Sources */,
 				08918BB023852CE000F274C2 /* TextFieldExtension.swift in Sources */,
 				84E16F0325D5087A004F37FA /* CategoriesTokenVC.swift in Sources */,
+				841A917F2609A620008AA0A3 /* DashboardVC.swift in Sources */,
 				082B215423C315650056FBA6 /* InvestmentListViewController.swift in Sources */,
 				0821E8F7241B8C4300263674 /* CryptoReceiveViewController.swift in Sources */,
 				082FBA5A24051DE600F45950 /* TokenAssetsAmountViewController.swift in Sources */,
@@ -2548,6 +2603,7 @@
 				84AB1E2225F8E302004AED01 /* MyInvestmentVC.swift in Sources */,
 				0824B0C32382847800F81A9B /* Bind.swift in Sources */,
 				84411E9025D1449C00718BD1 /* UserProfileVC.swift in Sources */,
+				841A91972609A9FE008AA0A3 /* DashboardTabsTableCell.swift in Sources */,
 				0824B0BF2382847800F81A9B /* UIScrollView+ParallaxHeader.swift in Sources */,
 				845A9FAE25F081530066CE6B /* LoginWithEmailVC.swift in Sources */,
 				086F1385246EA62100EA4355 /* SellHistory.swift in Sources */,
