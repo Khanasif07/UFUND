@@ -58,9 +58,9 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rby-0z-VOK">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rby-0z-VOK" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="16" y="102" width="327" height="216"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="216" id="emr-yy-Diq"/>
                                 </constraints>
@@ -89,6 +89,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="barChartView" destination="Rby-0z-VOK" id="i82-ED-xw7"/>
                 <outlet property="buyHistoryTxtField" destination="PS6-aW-Xfs" id="rgG-Hv-D9y"/>
                 <outlet property="buyMonthlyTxtField" destination="Xbk-OQ-2LR" id="Ivr-xF-pd7"/>
                 <outlet property="dataContainerView" destination="0Co-FU-zFd" id="Aep-6G-XMY"/>
@@ -99,9 +100,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
