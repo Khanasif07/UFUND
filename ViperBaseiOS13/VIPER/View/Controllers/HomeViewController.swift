@@ -13,10 +13,7 @@ import ObjectMapper
 
 
 class HomeViewController: UIViewController{
-    
-    @IBOutlet weak var investorTitleLbl: UILabel!
-    @IBOutlet weak var investorDesclbl: UILabel!
-    @IBOutlet weak var investorHeaderView: UIView!
+
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var viewSideMenu: UIView!
     @IBOutlet weak var collectionGridView: UICollectionView!
@@ -41,6 +38,7 @@ class HomeViewController: UIViewController{
         }
     }
     
+    
     var listCollectionHeight : CGFloat = 130
     var timer: Timer?
     var approvalObject : ApprovalModel?
@@ -63,6 +61,7 @@ class HomeViewController: UIViewController{
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        self.addCustomView()
         self.view.layoutIfNeeded()
     }
     
@@ -72,7 +71,6 @@ class HomeViewController: UIViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //        self.addBottomSheetView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +110,17 @@ class HomeViewController: UIViewController{
         collectionGridView.alwaysBounceHorizontal = false
         collectionGridView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
+    
+    private func addCustomView(){
+        let view = UIView()
+        let outerView = UIView()
+//        view.frame = self.collectionGridView.bounds
+        outerView.frame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: self.view.frame.width, height: 190.0))
+        outerView.backgroundColor = .red
+        view.addSubview(outerView)
+//        self.collectionGridView.celli
+        
+    }
 }
 
 extension HomeViewController {
@@ -133,10 +142,32 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.ProductsCollectionCell, for: indexPath) as! ProductsCollectionCell
+        cell.configureCell(indexPath: indexPath)
+        cell.redBackgroundView.isHidden = !(indexPath.row == 0 || indexPath.row == 1)
         cell.productImg.image = isFromCampainer ?  campinerImage[indexPath.row] : inversterImage[indexPath.row]
         cell.productNameLbl.text = isFromCampainer ? nullStringToEmpty(string: headerCount?[indexPath.row].0) : nullStringToEmpty(string: headerCount?[indexPath.row].0)
         cell.dataContainerView.backgroundColor = isFromCampainer ?  headerCount?[indexPath.row].1 : headerCount?[indexPath.row].1
         return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (kind == UICollectionView.elementKindSectionHeader) {
+        guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FooterView", for: indexPath) as? FooterView else {return UICollectionReusableView() }
+//        footerView.investorDesclbl.text = nullStringToEmpty(string: silderImage.first?.description)
+//        footerView.investorTitleLbl.text = nullStringToEmpty(string: silderImage.first?.title)
+        return footerView
+        }
+        fatalError()
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+            return .init(width: collectionView.frame.width, height: 0.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: collectionView.frame.width, height: 115.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -305,8 +336,8 @@ extension HomeViewController: PresenterOutputProtocol {
         case Base.sliderimages.rawValue:
             self.loader.isHidden = true
             self.silderImage = dataArray as? [SilderImage] ?? []
-            self.investorDesclbl.text = nullStringToEmpty(string: silderImage.first?.description)
-            self.investorTitleLbl.text = nullStringToEmpty(string: silderImage.first?.title)
+//            self.investorDesclbl.text = nullStringToEmpty(string: silderImage.first?.description)
+//            self.investorTitleLbl.text = nullStringToEmpty(string: silderImage.first?.title)
 //            self.bottomSheetVC.textContainerHeight = investorHeaderView.frame.height
             //        self.collectionGridView.reloadData()
             if self.silderImage.count == 1 || self.silderImage.count == 0 {
@@ -341,4 +372,25 @@ extension HomeViewController: PresenterOutputProtocol {
         self.loader.isHidden = true
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
+}
+
+
+class FooterView : UICollectionReusableView {
+    
+    //MARK:- Variables
+    
+    //MARK:- IBOutlets
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var investorTitleLbl: UILabel!
+    @IBOutlet weak var investorDesclbl: UILabel!
+    
+    //MARK:- LifeCycle
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        initialSetup()
+    }
+    
+    func initialSetup() {
+    }
+    
 }
