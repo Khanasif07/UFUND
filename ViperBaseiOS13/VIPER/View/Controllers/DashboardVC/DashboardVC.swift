@@ -11,6 +11,14 @@ import ObjectMapper
 
 class DashboardVC: UIViewController {
     
+    enum DashboardCellType: String{
+        case DashboardTabsTableCell
+        case DashboardBarChartCell
+        case DashboardInvestmentCell
+        case DashboardSubmittedProductsCell
+        case DashboardSubmittedAsssetsCell
+    }
+    
     // MARK: - IBOutlets
     //===========================
     @IBOutlet weak var mainTableView: UITableView!
@@ -18,6 +26,7 @@ class DashboardVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var cellTypes : [DashboardCellType] = [.DashboardTabsTableCell,.DashboardBarChartCell,.DashboardInvestmentCell]
     var investorDashboardData : DashboardEntity?
     var isBuyHistoryTabSelected: Bool = false
     var sortTypeForMonthly: String = ""
@@ -58,7 +67,18 @@ class DashboardVC: UIViewController {
 extension DashboardVC {
     
     private func initialSetup() {
+        self.dashboardTypeSetUp()
         self.tableViewSetUp()
+    }
+    
+    private func dashboardTypeSetUp(){
+        if userType == UserType.investor.rawValue{
+            self.cellTypes = [.DashboardTabsTableCell,.DashboardBarChartCell,.DashboardInvestmentCell]
+            self.hitInvestorDashboardAPI()
+            self.hitInvestorDashboardGraphsAPI()
+        } else {
+            self.cellTypes = [.DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell]
+        }
     }
     
     private func tableViewSetUp(){
@@ -67,8 +87,7 @@ extension DashboardVC {
         self.mainTableView.registerCell(with: DashboardTabsTableCell.self)
         self.mainTableView.registerCell(with: DashboardBarChartCell.self)
         self.mainTableView.registerCell(with: DashboardInvestmentCell.self)
-        self.hitInvestorDashboardAPI()
-        self.hitInvestorDashboardGraphsAPI()
+        self.mainTableView.registerCell(with: DashboardSubmittedProductsCell.self)
     }
     
     private func hitInvestorDashboardAPI(){
@@ -89,18 +108,18 @@ extension DashboardVC {
 extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.cellTypes.endIndex
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        switch cellTypes[indexPath.row] {
+        case .DashboardTabsTableCell:
             let cell = tableView.dequeueCell(with: DashboardTabsTableCell.self, indexPath: indexPath)
             cell.isFromCampainer = userType == UserType.investor.rawValue ? false : true
             cell.investorDashboardData = investorDashboardData
             cell.tabsCollView.layoutIfNeeded()
             return cell
-        case 1:
+        case .DashboardBarChartCell:
             let cell = tableView.dequeueCell(with: DashboardBarChartCell.self, indexPath: indexPath)
             cell.buyMonthlyBtnTapped = { [weak self] (sender) in
                 guard let sself = self else {return }
@@ -121,8 +140,14 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
                 sself.present(vc, animated: true, completion: nil)
             }
             return cell
-        default:
+        case .DashboardInvestmentCell:
             let cell = tableView.dequeueCell(with: DashboardInvestmentCell.self, indexPath: indexPath)
+            return cell
+        case .DashboardSubmittedProductsCell:
+            let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
+            return cell
+        case .DashboardSubmittedAsssetsCell:
+            let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
             return cell
         }
         

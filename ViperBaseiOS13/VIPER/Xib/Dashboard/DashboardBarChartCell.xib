@@ -24,10 +24,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Co-FU-zFd">
-                        <rect key="frame" x="8" y="8" width="359" height="334"/>
+                        <rect key="frame" x="16" y="8" width="343" height="334"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="FCY-nB-gAN">
-                                <rect key="frame" x="16" y="16" width="327" height="34"/>
+                                <rect key="frame" x="16" y="16" width="311" height="34"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Buy Histrory (P/C)" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PS6-aW-Xfs">
                                         <rect key="frame" x="0.0" y="0.0" width="144" height="34"/>
@@ -35,7 +35,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Buy Monthly" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xbk-OQ-2LR">
-                                        <rect key="frame" x="218" y="0.0" width="109" height="34"/>
+                                        <rect key="frame" x="207" y="0.0" width="104" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -59,7 +59,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rby-0z-VOK" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="102" width="327" height="216"/>
+                                <rect key="frame" x="16" y="102" width="311" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="216" id="emr-yy-Diq"/>
@@ -72,7 +72,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Rp-wg-b7I">
-                                <rect key="frame" x="234" y="16" width="109" height="34"/>
+                                <rect key="frame" x="223" y="16" width="104" height="34"/>
                                 <connections>
                                     <action selector="buyMonthlyBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="A1v-ia-mpR"/>
                                 </connections>
@@ -102,9 +102,9 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="0Co-FU-zFd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="6qB-vP-VvA"/>
+                    <constraint firstItem="0Co-FU-zFd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="6qB-vP-VvA"/>
                     <constraint firstAttribute="bottom" secondItem="0Co-FU-zFd" secondAttribute="bottom" constant="8" id="B8b-UI-zUf"/>
-                    <constraint firstAttribute="trailing" secondItem="0Co-FU-zFd" secondAttribute="trailing" constant="8" id="KTM-pA-xk6"/>
+                    <constraint firstAttribute="trailing" secondItem="0Co-FU-zFd" secondAttribute="trailing" constant="16" id="KTM-pA-xk6"/>
                     <constraint firstItem="0Co-FU-zFd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="boB-EB-DXm"/>
                 </constraints>
             </tableViewCellContentView>
