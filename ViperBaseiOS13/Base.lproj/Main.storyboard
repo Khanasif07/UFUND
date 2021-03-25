@@ -1944,7 +1944,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJP-ar-D0e">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmH-1f-oga">
                                                                     <rect key="frame" x="20" y="41" width="377" height="42"/>
@@ -1965,7 +1965,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xjN-KP-60a" secondAttribute="trailing" constant="16" id="0OX-zU-adH"/>
                                                                 <constraint firstItem="xjN-KP-60a" firstAttribute="leading" secondItem="xJP-ar-D0e" secondAttribute="leading" constant="20" id="98L-YF-0Dl"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OmH-1f-oga" secondAttribute="trailing" constant="16" id="X3U-AR-ErC"/>
-                                                                <constraint firstAttribute="bottom" secondItem="OmH-1f-oga" secondAttribute="bottom" constant="19" id="Zcd-rr-8y8"/>
+                                                                <constraint firstAttribute="bottom" secondItem="OmH-1f-oga" secondAttribute="bottom" constant="8" id="Zcd-rr-8y8"/>
                                                                 <constraint firstItem="OmH-1f-oga" firstAttribute="top" secondItem="xjN-KP-60a" secondAttribute="bottom" constant="4" id="dFp-vq-jQl"/>
                                                                 <constraint firstItem="xjN-KP-60a" firstAttribute="top" secondItem="xJP-ar-D0e" secondAttribute="top" constant="16" id="gIM-54-Lgt"/>
                                                                 <constraint firstItem="OmH-1f-oga" firstAttribute="leading" secondItem="xjN-KP-60a" secondAttribute="leading" id="znc-8X-Hra"/>
@@ -2566,7 +2566,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCG-fC-u67">
-                                                <rect key="frame" x="334" y="14.5" width="60" height="31"/>
+                                                <rect key="frame" x="334" y="13" width="60" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="e22-QY-gSn"/>
                                                 </constraints>
@@ -12830,6 +12830,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
             <point key="canvasLocation" x="5698" y="729"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="WRm-9F-7lC">
+            <size key="intrinsicContentSize" width="-1" height="65"/>
+        </designable>
+    </designables>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="back" width="57.5" height="41"/>

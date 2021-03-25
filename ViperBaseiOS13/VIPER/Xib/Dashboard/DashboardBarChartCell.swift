@@ -28,6 +28,8 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     //===========================
     var buttonView = UIButton()
     var buttonView1 = UIButton()
+    var buyHistoryBtnTapped: ((UIButton)->())?
+    var buyMonthlyBtnTapped: ((UIButton)->())?
     
     // MARK: - Lifecycle
     //===========================
@@ -43,6 +45,18 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
         dataContainerView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
+    }
+    
+    @IBAction func buyMonthlyBtnAction(_ sender: UIButton) {
+        if let handle = buyMonthlyBtnTapped{
+            handle(sender)
+        }
+    }
+    
+    @IBAction func buyHistoryBtnAction(_ sender: UIButton) {
+        if let handle = buyHistoryBtnTapped{
+            handle(sender)
+        }
     }
     
 //    override func updateChartData() {
@@ -80,7 +94,7 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
             
             let data = BarChartData(dataSet: set1)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
-        data.barWidth = 0.5
+            data.barWidth = 0.5
             barChartView.data = data
 //        }
         

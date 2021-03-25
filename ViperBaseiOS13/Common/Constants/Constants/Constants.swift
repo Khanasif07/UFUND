@@ -260,6 +260,14 @@ struct Constants {
     let currency = "Currency"
     
     //Sort
+    let monthly = "Monthly"
+    let weekly = "Weekly"
+    let yearly = "Yearly"
+    
+    let buyHistory = "Buy History (Products per Currency)"
+    let investHistory = "Invest History (Products per Currency)"
+    let investHistoryPerCrypto = "Invest History (Per Token & Crypto )"
+    
     let sort_by_name_AZ = "Sort by Name (A-Z)"
     let sort_by_name_ZA = "Sort by Name (Z-A)"
     let sort_by_latest = "Sort by Latest"

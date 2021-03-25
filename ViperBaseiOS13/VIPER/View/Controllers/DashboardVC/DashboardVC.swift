@@ -7,6 +7,7 @@
 //
 import Charts
 import UIKit
+import ObjectMapper
 
 class DashboardVC: UIViewController {
     
@@ -17,7 +18,13 @@ class DashboardVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var isBuyHistoryTabSelected: Bool = false
+    var sortTypeForMonthly: String = ""
+    var sortTypeForHistory : String = ""
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
+    private lazy var loader  : UIView = {
+          return createActivityIndicator(self.view)
+      }()
     
     // MARK: - Lifecycle
     //===========================
@@ -59,6 +66,13 @@ extension DashboardVC {
         self.mainTableView.registerCell(with: DashboardTabsTableCell.self)
         self.mainTableView.registerCell(with: DashboardBarChartCell.self)
         self.mainTableView.registerCell(with: DashboardInvestmentCell.self)
+        self.hitInvestorDashboardAPI()
+    }
+    
+    private func hitInvestorDashboardAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.social_signup.rawValue, params: nil, methodType: .GET, modelClass: SocialLoginEntity.self, token: false)
+        
     }
 }
 
@@ -79,6 +93,24 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case 1:
             let cell = tableView.dequeueCell(with: DashboardBarChartCell.self, indexPath: indexPath)
+            cell.buyMonthlyBtnTapped = { [weak self] (sender) in
+                guard let sself = self else {return }
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
+                vc.delegate = sself
+                vc.sortArray = [(Constants.string.monthly,false),(Constants.string.weekly,false),(Constants.string.yearly,false)]
+                sself.isBuyHistoryTabSelected = false
+                vc.sortTypeApplied = sself.sortTypeForMonthly
+                sself.present(vc, animated: true, completion: nil)
+            }
+            cell.buyHistoryBtnTapped = { [weak self] (sender) in
+                guard let sself = self else {return }
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
+                vc.delegate = sself
+                vc.sortArray = [(Constants.string.buyHistory,false),(Constants.string.investHistory,false),(Constants.string.investHistoryPerCrypto,false)]
+                sself.isBuyHistoryTabSelected = true
+                vc.sortTypeApplied = sself.sortTypeForHistory
+                sself.present(vc, animated: true, completion: nil)
+            }
             return cell
         default:
             let cell = tableView.dequeueCell(with: DashboardInvestmentCell.self, indexPath: indexPath)
@@ -91,3 +123,40 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
 }
+
+// MARK: - Sorting  Logic Implemented
+//===========================
+extension DashboardVC: ProductSortVCDelegate  {
+    func sortingApplied(sortType: String) {
+        if let cell = self.mainTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? DashboardBarChartCell{
+            if  self.isBuyHistoryTabSelected {
+                 self.sortTypeForHistory = sortType
+                cell.buyHistoryTxtField.text = self.sortTypeForHistory
+            } else {
+                self.sortTypeForMonthly = sortType
+                cell.buyMonthlyTxtField.text = self.sortTypeForMonthly
+            }
+        }
+    }
+}
+
+
+//MARK: - PresenterOutputProtocol
+//===========================
+extension DashboardVC: PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        switch api {
+        case Base.social_signup.rawValue:
+            self.loader.isHidden = true
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+}
+

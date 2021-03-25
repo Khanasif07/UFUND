@@ -65,17 +65,38 @@
                                     <constraint firstAttribute="height" constant="216" id="emr-yy-Diq"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVn-yl-Z0U">
+                                <rect key="frame" x="16" y="16" width="144" height="34"/>
+                                <connections>
+                                    <action selector="buyHistoryBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7Ju-Kl-EhH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Rp-wg-b7I">
+                                <rect key="frame" x="234" y="16" width="109" height="34"/>
+                                <connections>
+                                    <action selector="buyMonthlyBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="A1v-ia-mpR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="IVn-yl-Z0U" firstAttribute="leading" secondItem="PS6-aW-Xfs" secondAttribute="leading" id="1l2-FZ-6El"/>
                             <constraint firstItem="FCY-nB-gAN" firstAttribute="top" secondItem="0Co-FU-zFd" secondAttribute="top" constant="16" id="2aK-NE-gsi"/>
                             <constraint firstItem="uAB-Pk-j4a" firstAttribute="leading" secondItem="FCY-nB-gAN" secondAttribute="leading" id="4i1-Tn-8u0"/>
+                            <constraint firstItem="6Rp-wg-b7I" firstAttribute="trailing" secondItem="Xbk-OQ-2LR" secondAttribute="trailing" id="9NS-Ip-vam"/>
                             <constraint firstItem="Rby-0z-VOK" firstAttribute="top" secondItem="uAB-Pk-j4a" secondAttribute="bottom" constant="16" id="MM1-uD-bwU"/>
                             <constraint firstItem="FCY-nB-gAN" firstAttribute="leading" secondItem="0Co-FU-zFd" secondAttribute="leading" constant="16" id="U9p-y8-JMh"/>
+                            <constraint firstItem="IVn-yl-Z0U" firstAttribute="trailing" secondItem="PS6-aW-Xfs" secondAttribute="trailing" id="ZbT-Lf-idm"/>
+                            <constraint firstItem="6Rp-wg-b7I" firstAttribute="top" secondItem="Xbk-OQ-2LR" secondAttribute="top" id="che-MD-fcO"/>
+                            <constraint firstItem="6Rp-wg-b7I" firstAttribute="bottom" secondItem="Xbk-OQ-2LR" secondAttribute="bottom" id="eCq-lr-pxZ"/>
+                            <constraint firstItem="Xbk-OQ-2LR" firstAttribute="width" secondItem="0Co-FU-zFd" secondAttribute="width" multiplier="0.303621" id="eOz-z3-qGM"/>
                             <constraint firstAttribute="trailing" secondItem="FCY-nB-gAN" secondAttribute="trailing" constant="16" id="gRa-nw-wuT"/>
                             <constraint firstAttribute="bottom" secondItem="Rby-0z-VOK" secondAttribute="bottom" constant="16" id="jUB-yg-5xk"/>
+                            <constraint firstItem="IVn-yl-Z0U" firstAttribute="bottom" secondItem="PS6-aW-Xfs" secondAttribute="bottom" id="qok-GF-RW4"/>
                             <constraint firstAttribute="trailing" secondItem="Rby-0z-VOK" secondAttribute="trailing" constant="16" id="rfm-hz-ade"/>
+                            <constraint firstItem="IVn-yl-Z0U" firstAttribute="top" secondItem="PS6-aW-Xfs" secondAttribute="top" id="tyW-xa-RSj"/>
                             <constraint firstItem="Rby-0z-VOK" firstAttribute="leading" secondItem="0Co-FU-zFd" secondAttribute="leading" constant="16" id="uwC-GT-tdj"/>
+                            <constraint firstItem="6Rp-wg-b7I" firstAttribute="leading" secondItem="Xbk-OQ-2LR" secondAttribute="leading" id="wzp-DY-tIs"/>
                             <constraint firstItem="uAB-Pk-j4a" firstAttribute="top" secondItem="FCY-nB-gAN" secondAttribute="bottom" constant="16" id="zzu-wJ-uQx"/>
                         </constraints>
                     </view>
