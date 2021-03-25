@@ -260,3 +260,46 @@ struct SocialLoginEntity : Mappable {
         user_info <- map["user_info"]
     }
 }
+
+struct InvestorDashboardEntity : Mappable {
+    var data : DashboardEntity?
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+}
+
+struct DashboardEntity : Mappable{
+    init?(map: Map) {
+        
+    }
+    
+    init(){
+        
+    }
+    
+    var investments : Int?
+    var my_investements : Int?
+    var tokenized_assets : Int?
+    var total_categories : Int?
+    var total_earning : Int?
+    var total_products : Int?
+    var total_tokenizes_assets : Int?
+    var total_wallets: Int?
+    
+    mutating func mapping(map: Map) {
+
+        investments <- map["investments"]
+        my_investements <- map["my_investements"]
+        tokenized_assets <- map["tokenized_assets"]
+        total_categories <- map["total_categories"]
+        total_earning <- map["total_earning"]
+        total_products <- map["total_products"]
+        total_tokenizes_assets <- map["total_tokenizes_assets"]
+        total_tokenizes_assets <- map["total_tokenizes_assets"]
+        total_wallets <- map["total_wallets"]
+    }
+}

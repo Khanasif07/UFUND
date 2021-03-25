@@ -27,11 +27,11 @@ class HomeViewController: UIViewController{
             return createActivityIndicator(self.view)
         }()
     var inversterImage :[UIImage] = [#imageLiteral(resourceName: "icDashboardHome"),#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg")]
-    var campinerImage: [UIImage] = [#imageLiteral(resourceName: "add"),#imageLiteral(resourceName: "profile"),#imageLiteral(resourceName: "soild"), #imageLiteral(resourceName: "wallets"),#imageLiteral(resourceName: "vynil"),#imageLiteral(resourceName: "wallets")]
+    var campinerImage: [UIImage] = [#imageLiteral(resourceName: "icDashboardHome"),#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icProductWithBg"), #imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg")]
     var isFromCampainer = false {
         didSet {
             if isFromCampainer {
-                self.headerCount = [(Constants.string.send.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.add.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.profile.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.MyProducts.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.wallet.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.requests.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]
+                self.headerCount = [(Constants.string.dashboard.localize(),#colorLiteral(red: 0.9294117647, green: 0.9764705882, blue: 0.9607843137, alpha: 1)),(Constants.string.categories.localize(),#colorLiteral(red: 1, green: 0.937254902, blue: 0.9411764706, alpha: 1)),(Constants.string.allMyProduct.localize(),#colorLiteral(red: 0.9529411765, green: 0.9568627451, blue: 1, alpha: 1)),(Constants.string.allMyTokenizedAssets.localize(),#colorLiteral(red: 1, green: 0.9764705882, blue: 0.9333333333, alpha: 1)),(Constants.string.myfiatBalance.localize(),#colorLiteral(red: 0.9568627451, green: 0.9529411765, blue: 1, alpha: 1)),(Constants.string.mycryptoBalance.localize(),#colorLiteral(red: 0.9568627451, green: 0.9529411765, blue: 1, alpha: 1))]
             }else{
                 self.headerCount = [(Constants.string.dashboard.localize(),#colorLiteral(red: 0.9294117647, green: 0.9764705882, blue: 0.9607843137, alpha: 1)),(Constants.string.categories.localize(),#colorLiteral(red: 1, green: 0.937254902, blue: 0.9411764706, alpha: 1)),(Constants.string.allProduct.localize(),#colorLiteral(red: 0.9529411765, green: 0.9568627451, blue: 1, alpha: 1)), (Constants.string.newProduct.localize(),#colorLiteral(red: 0.9529411765, green: 0.9568627451, blue: 1, alpha: 1)),(Constants.string.newTokenizedAssets.localize(),#colorLiteral(red: 1, green: 0.9764705882, blue: 0.9333333333, alpha: 1)),(Constants.string.allTokenizedAssets.localize(),#colorLiteral(red: 1, green: 0.9764705882, blue: 0.9333333333, alpha: 1)),(Constants.string.myProductInvestMents.localize(),#colorLiteral(red: 0.9333333333, green: 0.9725490196, blue: 0.9764705882, alpha: 1)),(Constants.string.myTokenInvestMents.localize(),#colorLiteral(red: 0.9333333333, green: 0.9725490196, blue: 0.9764705882, alpha: 1)),  (Constants.string.earningInDollar.localize(),#colorLiteral(red: 0.9607843137, green: 0.9803921569, blue: 0.9137254902, alpha: 1)),(Constants.string.earningInCrypto.localize(),#colorLiteral(red: 0.9607843137, green: 0.9803921569, blue: 0.9137254902, alpha: 1)),(Constants.string.fiatCurrency.localize(),#colorLiteral(red: 0.9568627451, green: 0.9529411765, blue: 1, alpha: 1)),(Constants.string.cryptoCurrency.localize(),#colorLiteral(red: 0.9568627451, green: 0.9529411765, blue: 1, alpha: 1))]
             }
@@ -61,7 +61,6 @@ class HomeViewController: UIViewController{
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.addCustomView()
         self.view.layoutIfNeeded()
     }
     
@@ -75,6 +74,7 @@ class HomeViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.collectionGridView.reloadData()
         if let isFromCamp = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String {
             switch  isFromCamp
             {
@@ -85,9 +85,6 @@ class HomeViewController: UIViewController{
                 isFromCampainer = true
                 getApprovals()
                 getInvesterSilderImageCamp(isLoaderHidden: true)
-                dispatchGroup.notify(queue: .main) {
-                    
-                }
             }
         }
     }
@@ -111,21 +108,18 @@ class HomeViewController: UIViewController{
         collectionGridView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    private func addCustomView(){
-        let view = UIView()
-        let outerView = UIView()
-//        view.frame = self.collectionGridView.bounds
-        outerView.frame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: self.view.frame.width, height: 190.0))
-        outerView.backgroundColor = .red
-        view.addSubview(outerView)
-//        self.collectionGridView.celli
-        
-    }
 }
 
 extension HomeViewController {
     private func initialSetup(){
         self.setupTableView()
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(UserTypeChanged), name: Notification.Name("UserTypeChanged"), object: nil)
+    }
+    
+    @objc func UserTypeChanged(){
+        self.viewWillAppear(true)
+        print("UserTypeChanged")
     }
 }
 
@@ -187,6 +181,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if isFromCampainer {
             
             switch nullStringToEmpty(string: cell?.productNameLbl.text) {
+            case Constants.string.dashboard.localize():
+                let vc = DashboardVC.instantiate(fromAppStoryboard: .Wallet)
+                self.navigationController?.pushViewController(vc, animated: true)
+            case  Constants.string.categories.localize():
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.CategoriesVC) as? CategoriesVC else { return }
+                self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.add.localize():
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.AddAssetsViewController) as? AddAssetsViewController else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -336,8 +336,6 @@ extension HomeViewController: PresenterOutputProtocol {
         case Base.sliderimages.rawValue:
             self.loader.isHidden = true
             self.silderImage = dataArray as? [SilderImage] ?? []
-//            self.investorDesclbl.text = nullStringToEmpty(string: silderImage.first?.description)
-//            self.investorTitleLbl.text = nullStringToEmpty(string: silderImage.first?.title)
 //            self.bottomSheetVC.textContainerHeight = investorHeaderView.frame.height
             //        self.collectionGridView.reloadData()
             if self.silderImage.count == 1 || self.silderImage.count == 0 {

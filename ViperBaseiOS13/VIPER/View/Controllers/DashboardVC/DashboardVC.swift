@@ -18,6 +18,7 @@ class DashboardVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var investorDashboardData : DashboardEntity?
     var isBuyHistoryTabSelected: Bool = false
     var sortTypeForMonthly: String = ""
     var sortTypeForHistory : String = ""
@@ -67,11 +68,18 @@ extension DashboardVC {
         self.mainTableView.registerCell(with: DashboardBarChartCell.self)
         self.mainTableView.registerCell(with: DashboardInvestmentCell.self)
         self.hitInvestorDashboardAPI()
+        self.hitInvestorDashboardGraphsAPI()
     }
     
     private func hitInvestorDashboardAPI(){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.social_signup.rawValue, params: nil, methodType: .GET, modelClass: SocialLoginEntity.self, token: false)
+        self.presenter?.HITAPI(api: Base.investor_dashboard.rawValue, params: nil, methodType: .GET, modelClass: InvestorDashboardEntity.self, token: true)
+        
+    }
+    
+    private func hitInvestorDashboardGraphsAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.investor_dashboard_graph.rawValue, params: nil, methodType: .GET, modelClass: InvestorDashboardEntity.self, token: true)
         
     }
 }
@@ -89,6 +97,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueCell(with: DashboardTabsTableCell.self, indexPath: indexPath)
             cell.isFromCampainer = userType == UserType.investor.rawValue ? false : true
+            cell.investorDashboardData = investorDashboardData
             cell.tabsCollView.layoutIfNeeded()
             return cell
         case 1:
@@ -147,8 +156,13 @@ extension DashboardVC: PresenterOutputProtocol {
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         switch api {
-        case Base.social_signup.rawValue:
+        case Base.investor_dashboard.rawValue:
             self.loader.isHidden = true
+            let investorDashboardEntity = dataDict as? InvestorDashboardEntity
+            if let productData = investorDashboardEntity?.data {
+                self.investorDashboardData = productData
+            }
+            self.mainTableView.reloadData()
         default:
             break
         }

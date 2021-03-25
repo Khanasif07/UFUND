@@ -161,6 +161,8 @@ class SideMenuController: UIViewController {
         
         UserDefaults.standard.set(UserType.campaigner.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
         setUpUserType()
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("UserTypeChanged"), object: nil)
         //        self.drawerController?.closeSide()
         //        self.push(to: Storyboard.Ids.HomeViewController)
         
@@ -170,6 +172,8 @@ class SideMenuController: UIViewController {
         
         UserDefaults.standard.set(UserType.investor.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
         setUpUserType()
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("UserTypeChanged"), object: nil)
         //        self.drawerController?.closeSide()
         //        self.push(to: Storyboard.Ids.HomeViewController)
         

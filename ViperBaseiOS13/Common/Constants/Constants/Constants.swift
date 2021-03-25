@@ -277,6 +277,9 @@ struct Constants {
     let enterOldPassWord = "Enter Old Password";
     let enterNewPassWord = "Enter New Password";
     let enterConfirmPassWord = "Enter Confirm Password";
+    
+    let myfiatBalance = "My Fiat Balance";
+    let mycryptoBalance = "My Crypto Balance";
 }
 
 

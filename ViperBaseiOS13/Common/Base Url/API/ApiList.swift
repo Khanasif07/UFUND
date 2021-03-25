@@ -100,6 +100,8 @@ enum Base : String {
     case myProductInvestment = "/api/product-investment-listing"
     case myTokenInvestment = "/api/tokenized-assets-investment-listing"
     case asset_token_types = "/api/get-tokenized-asset-token-types"
+    case investor_dashboard = "/api/investor-dashboard"
+    case investor_dashboard_graph = "/api/investor-dashboard-graph"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .signUp

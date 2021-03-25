@@ -40,5 +40,24 @@ class ProductsCollectionCell: UICollectionViewCell {
             redBackgroundView.roundCorners([.layerMaxXMaxYCorner], radius: 5.0)
         } else {}
     }
+    
+    public func configureCellForInvestorDashboard(indexPath: IndexPath,model: DashboardEntity){
+        switch indexPath.row {
+        case 0:
+            productValueLbll.text = "\(model.total_categories ?? 0)"
+        case 1:
+            productValueLbll.text = "\(model.total_products ?? 0)"
+        case 2:
+            productValueLbll.text = "$ " + "\(model.total_tokenizes_assets ?? 0)"
+        case 3:
+            productValueLbll.text = "\(model.my_investements ?? 0)"
+        case 4:
+            productValueLbll.text = "$ " + "\(model.total_earning ?? 0)"
+        case 5:
+            productValueLbll.text = "$ " + "\(model.total_wallets ?? 0)"
+        default:
+            print("")
+        }
+    }
 
 }

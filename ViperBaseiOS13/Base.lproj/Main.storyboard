@@ -1929,7 +1929,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Do-n5-web">
                                         <rect key="frame" x="0.0" y="95" width="414" height="801"/>
-                                        <color key="backgroundColor" name="primaryColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hAr-Nt-l2k">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="50" height="115"/>
@@ -1947,10 +1947,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmH-1f-oga">
-                                                                    <rect key="frame" x="20" y="41" width="377" height="42"/>
-                                                                    <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</string>
+                                                                    <rect key="frame" x="20" y="41" width="375.5" height="42"/>
+                                                                    <string key="text">The leap into business in the global real economy through our unique platform. trade, buy and sell goods and tokens in partnership with us, we do sales you do or share the purchases.</string>
                                                                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
-                                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Funding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjN-KP-60a">
@@ -2566,7 +2566,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCG-fC-u67">
-                                                <rect key="frame" x="334" y="13" width="60" height="34"/>
+                                                <rect key="frame" x="334" y="14.5" width="60" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="e22-QY-gSn"/>
                                                 </constraints>
