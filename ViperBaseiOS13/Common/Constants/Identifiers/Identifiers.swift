@@ -24,6 +24,7 @@ struct Storyboard {
     let AccountViewController = "AccountViewController"
     let EditProfileViewController = "EditProfileViewController"
     let UserProfileVC = "UserProfileVC"
+    let SubmitAssetsProductsVC = "SubmitAssetsProductsVC"
     let CountryPickerVC = "CountryPickerVC"
     let NotificationViewController = "NotificationViewController"
     let SideMenuViewController = "SideMenuViewController"

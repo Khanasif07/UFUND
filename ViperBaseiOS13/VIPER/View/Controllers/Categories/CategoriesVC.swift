@@ -257,10 +257,10 @@ extension CategoriesVC: ProductSortVCDelegate  {
 extension CategoriesVC: UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.mainScrollView.contentOffset.x <= UIScreen.main.bounds.width / 2 {
-            isPruductSelected = true
+            isPruductSelected = false
         }
         else {
-            isPruductSelected = false
+            isPruductSelected = true
         }
     }
 }

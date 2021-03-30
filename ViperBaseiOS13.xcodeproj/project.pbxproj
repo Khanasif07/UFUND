@@ -228,8 +228,11 @@
 		845C131825FF53F90018A1E1 /* MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131725FF53F90018A1E1 /* MyWalletVC.swift */; };
 		845C131A25FF8A320018A1E1 /* MyWalletSheetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */; };
 		845C131C25FF8A940018A1E1 /* MyWalletSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */; };
+		846F263C2613384E00FEB452 /* AddProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F263B2613384E00FEB452 /* AddProductsVC.swift */; };
+		846F263E2613385E00FEB452 /* AddAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F263D2613385E00FEB452 /* AddAssetsVC.swift */; };
 		847297D225E7739800711CEE /* ProductDetailPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */; };
 		847297D525E8BD9200711CEE /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D425E8BD9200711CEE /* ChangePasswordVC.swift */; };
+		8472A28E26131B60006A59A0 /* SubmitAssetsProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472A28D26131B60006A59A0 /* SubmitAssetsProductsVC.swift */; };
 		847C10F125DE0BF400D13A5C /* UserProfileVC+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C10F025DE0BF400D13A5C /* UserProfileVC+Enum.swift */; };
 		847C10F425DE8C2500D13A5C /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C10F325DE8C2500D13A5C /* CustomPickerView.swift */; };
 		847C10F725DF8AD600D13A5C /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847C10F625DF8AD600D13A5C /* ProductDetailVC.swift */; };
@@ -547,8 +550,11 @@
 		845C131725FF53F90018A1E1 /* MyWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletVC.swift; sourceTree = "<group>"; };
 		845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletSheetVC.xib; sourceTree = "<group>"; };
 		845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletSheetVC.swift; sourceTree = "<group>"; };
+		846F263B2613384E00FEB452 /* AddProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductsVC.swift; sourceTree = "<group>"; };
+		846F263D2613385E00FEB452 /* AddAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsVC.swift; sourceTree = "<group>"; };
 		847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailPopUpVC.swift; sourceTree = "<group>"; };
 		847297D425E8BD9200711CEE /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		8472A28D26131B60006A59A0 /* SubmitAssetsProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssetsProductsVC.swift; sourceTree = "<group>"; };
 		847C10F025DE0BF400D13A5C /* UserProfileVC+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileVC+Enum.swift"; sourceTree = "<group>"; };
 		847C10F325DE8C2500D13A5C /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		847C10F625DF8AD600D13A5C /* ProductDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
@@ -828,6 +834,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8472A28C26131B36006A59A0 /* SubmitAssetsProductsVC */,
 				841A917D2609A600008AA0A3 /* DashboardVC */,
 				845C131425FF537F0018A1E1 /* Wallet */,
 				845A9FAC25F081390066CE6B /* LoginWithEmailVC */,
@@ -1847,6 +1854,16 @@
 			path = ChangePasswordVC;
 			sourceTree = "<group>";
 		};
+		8472A28C26131B36006A59A0 /* SubmitAssetsProductsVC */ = {
+			isa = PBXGroup;
+			children = (
+				8472A28D26131B60006A59A0 /* SubmitAssetsProductsVC.swift */,
+				846F263B2613384E00FEB452 /* AddProductsVC.swift */,
+				846F263D2613385E00FEB452 /* AddAssetsVC.swift */,
+			);
+			path = SubmitAssetsProductsVC;
+			sourceTree = "<group>";
+		};
 		847C10F225DE8C0500D13A5C /* customPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2559,6 +2576,7 @@
 				0824B10A2382A12000F81A9B /* Sequence.swift in Sources */,
 				085AC03624AF1F0E00FFAD96 /* WebViewController.swift in Sources */,
 				0824B1042382A12000F81A9B /* String.swift in Sources */,
+				846F263E2613385E00FEB452 /* AddAssetsVC.swift in Sources */,
 				8438C67525F5F7C300200270 /* InvestmentsProfitTableCell.swift in Sources */,
 				847C10F125DE0BF400D13A5C /* UserProfileVC+Enum.swift in Sources */,
 				0824B11C2382A13200F81A9B /* TextFieldEffects.swift in Sources */,
@@ -2576,6 +2594,7 @@
 				0826B7C52386934700867CD5 /* WalkThroughCell.swift in Sources */,
 				08FB487D238D2666006C18C5 /* FilterSetViewController.swift in Sources */,
 				086F1392246ED13E00EA4355 /* BuyTokenViewController.swift in Sources */,
+				8472A28E26131B60006A59A0 /* SubmitAssetsProductsVC.swift in Sources */,
 				0824B0DA2382847800F81A9B /* DatePickerDialog.swift in Sources */,
 				08730BD52473D8D8005F9E74 /* SendHistoryViewController.swift in Sources */,
 				0825AB73238BD53C0083AC42 /* CategoriesCell.swift in Sources */,
@@ -2611,6 +2630,7 @@
 				84AB1E2225F8E302004AED01 /* MyInvestmentVC.swift in Sources */,
 				0824B0C32382847800F81A9B /* Bind.swift in Sources */,
 				84411E9025D1449C00718BD1 /* UserProfileVC.swift in Sources */,
+				846F263C2613384E00FEB452 /* AddProductsVC.swift in Sources */,
 				841A91972609A9FE008AA0A3 /* DashboardTabsTableCell.swift in Sources */,
 				0824B0BF2382847800F81A9B /* UIScrollView+ParallaxHeader.swift in Sources */,
 				845A9FAE25F081530066CE6B /* LoginWithEmailVC.swift in Sources */,

@@ -321,6 +321,10 @@ extension  SideMenuController {
     func sectionTappedAction(section: Int){
         //        let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row,section: 0)) as? SideMenuCell
         switch menuContent?[section].0 {
+        case Constants.string.submit_assets.localize():
+            self.drawerController?.closeSide()
+            let vc = SubmitAssetsProductsVC.instantiate(fromAppStoryboard: .Products)
+            self.navigationController?.pushViewController(vc, animated: true)
         case Constants.string.profile.localize(),Constants.string.myProfile.localize():
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.UserProfileVC)

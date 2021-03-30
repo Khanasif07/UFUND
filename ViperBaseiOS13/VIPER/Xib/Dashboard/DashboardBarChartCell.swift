@@ -86,7 +86,7 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
             let data = BarChartData(dataSet: set1)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
             data.barWidth = 0.5
-//            barChartView.data = data
+            barChartView.data = data
             barChartView.barData?.setValueFormatter(MyValueFormatter())
             barChartView.barData?.setDrawValues(true)
 //        }
