@@ -21,8 +21,8 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
     
     // MARK: - Variables
     //===========================
-    var progressPercentageValue: Double = 45.0
     var parties = ["",""]
+    var partiesPercentage = [0.5,99.5]
     
     // MARK: - Lifecycle
     //===========================
@@ -48,8 +48,10 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
 //        chartView.legend = l
 
         // entry label styling
-        pieChartView.entryLabelColor = .white
-        pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
+//        pieChartView.isUsePercentValuesEnabled = false
+        pieChartView.drawEntryLabelsEnabled = true
+        pieChartView.entryLabelColor = .clear
+        pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .bold)
         pieChartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
         self.setDataCount(2, range: 100)
     }
@@ -57,14 +59,14 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
     func setDataCount(_ count: Int, range: UInt32) {
         let entries = (0..<count).map { (i) -> PieChartDataEntry in
             // IMPORTANT: In a PieChart, no values (Entry) should have the same xIndex (even if from different DataSets), since no values can be drawn above each other.
-            return PieChartDataEntry(value: i == 0 ? 55.0 : 45.0,
+            return PieChartDataEntry(value: partiesPercentage[i],
                                      label: parties[i % parties.count],
                                      icon: #imageLiteral(resourceName: "icEarningInCryptoBg"))
         }
         
         let set = PieChartDataSet(entries: entries, label: "")
         set.drawIconsEnabled = false
-        set.sliceSpace = 2
+        set.sliceSpace = 1
         
         
         set.colors = [#colorLiteral(red: 0.137254902, green: 0.262745098, blue: 0.8745098039, alpha: 1),#colorLiteral(red: 0.1647058824, green: 0.7450980392, blue: 0.7843137255, alpha: 1)]
@@ -78,8 +80,8 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
         pFormatter.percentSymbol = " %"
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         
-        data.setValueFont(.systemFont(ofSize: 11, weight: .light))
-        data.setValueTextColor(.white)
+        data.setValueFont(.systemFont(ofSize: 15, weight: .bold))
+        data.setValueTextColor(.clear)
         
         pieChartView.data = data
         pieChartView.highlightValues(nil)

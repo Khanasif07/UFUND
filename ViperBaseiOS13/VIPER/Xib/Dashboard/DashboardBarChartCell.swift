@@ -59,15 +59,6 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         }
     }
     
-//    override func updateChartData() {
-//        if self.shouldHideData {
-//            chartView.data = nil
-//            return
-//        }
-//
-//        self.setDataCount(Int(sliderX.value) + 1, range: UInt32(sliderY.value))
-//    }
-    
     func setDataCount(_ count: Int, range: UInt32) {
         let start = 1
         
@@ -95,7 +86,9 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
             let data = BarChartData(dataSet: set1)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
             data.barWidth = 0.5
-            barChartView.data = data
+//            barChartView.data = data
+            barChartView.barData?.setValueFormatter(MyValueFormatter())
+            barChartView.barData?.setDrawValues(true)
 //        }
         
         //        chartView.setNeedsDisplay()
@@ -134,14 +127,8 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
 
 
 
-//
-//  DayAxisValueFormatter.swift
-//  ChartsDemo-iOS
-//
 //  Created by Jacob Christie on 2017-07-09.
 //  Copyright © 2017 jc. All rights reserved.
-//
-
 
 
 public class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
@@ -240,6 +227,19 @@ public class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
         case 731...1094: return 2018
         case 1095...1458: return 2019
         default: return 2020
+        }
+    }
+}
+
+
+class MyValueFormatter: IValueFormatter {
+    var xValueForToday: Double?  // Set a value
+
+    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        if entry.x == xValueForToday {
+            return "Today"
+        } else {
+            return String(value)
         }
     }
 }

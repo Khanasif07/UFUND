@@ -289,6 +289,14 @@ struct DashboardEntity : Mappable{
     var total_products : Int?
     var total_tokenizes_assets : Int?
     var total_wallets: Int?
+    //
+    var submited_assets: Int?
+    var submited_products: Int?
+    var total_amount: Int?
+    var btc_amount : Int?
+    var eth_amount : Int?
+    var asset : AssetTypes?
+    var product : ProductTypes?
     
     mutating func mapping(map: Map) {
 
@@ -301,5 +309,60 @@ struct DashboardEntity : Mappable{
         total_tokenizes_assets <- map["total_tokenizes_assets"]
         total_tokenizes_assets <- map["total_tokenizes_assets"]
         total_wallets <- map["total_wallets"]
+        //
+        submited_assets <- map["submited_assets"]
+        submited_products <- map["submited_products"]
+        total_amount <- map["total_amount"]
+        btc_amount <- map["btc_amount"]
+        eth_amount <- map["eth_amount"]
+        asset <- map["asset"]
+        product <- map["product"]
+        
     }
 }
+
+struct AssetTypes: Mappable {
+    init?(map: Map) {
+        
+    }
+    var approved : Int?
+    var pending : Int?
+    var reject : Int?
+    var sold : Int?
+    
+    mutating func mapping(map: Map) {
+        
+        approved <- map["approved"]
+        pending <- map["pending"]
+        reject <- map["reject"]
+        sold <- map["sold"]
+    }
+}
+
+struct ProductTypes: Mappable {
+    init?(map: Map) {
+        
+    }
+    var approved : Int?
+    var pending : Int?
+    var reject : Int?
+    var sold : Int?
+    
+    mutating func mapping(map: Map) {
+        
+        approved <- map["approved"]
+        pending <- map["pending"]
+        reject <- map["reject"]
+        sold <- map["sold"]
+    }
+}
+
+struct CampaignerDashboardEntity : Mappable {
+    var data : DashboardEntity?
+    init?(map: Map) {
+    }
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+}
+

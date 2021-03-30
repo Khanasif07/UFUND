@@ -260,6 +260,7 @@ struct Constants {
     let currency = "Currency"
     
     //Sort
+    let daily = "Daily"
     let monthly = "Monthly"
     let weekly = "Weekly"
     let yearly = "Yearly"

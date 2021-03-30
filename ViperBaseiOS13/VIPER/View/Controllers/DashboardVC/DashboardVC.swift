@@ -28,6 +28,7 @@ class DashboardVC: UIViewController {
     //===========================
     var cellTypes : [DashboardCellType] = [.DashboardTabsTableCell,.DashboardBarChartCell,.DashboardInvestmentCell]
     var investorDashboardData : DashboardEntity?
+    var campaignerDashboardData : DashboardEntity?
     var isBuyHistoryTabSelected: Bool = false
     var sortTypeForMonthly: String = ""
     var sortTypeForHistory : String = ""
@@ -78,6 +79,7 @@ extension DashboardVC {
             self.hitInvestorDashboardGraphsAPI()
         } else {
             self.cellTypes = [.DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell]
+            self.hitCampaignerDashboardAPI()
         }
     }
     
@@ -98,9 +100,17 @@ extension DashboardVC {
     
     private func hitInvestorDashboardGraphsAPI(){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.investor_dashboard_graph.rawValue, params: nil, methodType: .GET, modelClass: InvestorDashboardEntity.self, token: true)
+        let params : [String:Any] = [ProductCreate.keys.type: "BUY",ProductCreate.keys.filter_type: 4]
+        self.presenter?.HITAPI(api: Base.investor_dashboard_graph.rawValue, params: params, methodType: .GET, modelClass: InvestorDashboardEntity.self, token: true)
         
     }
+    
+    private func hitCampaignerDashboardAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.campaigner_dashboard.rawValue, params: nil, methodType: .GET, modelClass: CampaignerDashboardEntity.self, token: true)
+        
+    }
+    
 }
 
 // MARK: - Extension For TableView
@@ -125,7 +135,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
                 guard let sself = self else {return }
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
                 vc.delegate = sself
-                vc.sortArray = [(Constants.string.monthly,false),(Constants.string.weekly,false),(Constants.string.yearly,false)]
+                vc.sortArray = [(Constants.string.daily,false),(Constants.string.monthly,false),(Constants.string.weekly,false),(Constants.string.yearly,false)]
                 sself.isBuyHistoryTabSelected = false
                 vc.sortTypeApplied = sself.sortTypeForMonthly
                 sself.present(vc, animated: true, completion: nil)
@@ -142,12 +152,21 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardInvestmentCell:
             let cell = tableView.dequeueCell(with: DashboardInvestmentCell.self, indexPath: indexPath)
+            cell.dollarInvestmentValue.text = "$ " + "\(self.investorDashboardData?.my_investements ?? 0)"
             return cell
         case .DashboardSubmittedProductsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
+            cell.partiesPercentage = [self.campaignerDashboardData?.product?.pending ?? 0,self.campaignerDashboardData?.product?.approved ?? 0,self.campaignerDashboardData?.product?.reject ?? 0,self.campaignerDashboardData?.product?.sold ?? 0]
+            cell.submittedProductLbl.text = "Submitted Products"
+            cell.productImgView.image = #imageLiteral(resourceName: "icProductWithBg")
+            cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_assets ?? 0)"
             return cell
         case .DashboardSubmittedAsssetsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
+            cell.partiesPercentage = [self.campaignerDashboardData?.asset?.pending ?? 0,self.campaignerDashboardData?.asset?.approved ?? 0,self.campaignerDashboardData?.asset?.reject ?? 0,self.campaignerDashboardData?.asset?.sold ?? 0]
+            cell.productImgView.image = #imageLiteral(resourceName: "icTokenizedAssetBg")
+            cell.submittedProductLbl.text = "Submitted Assets"
+            cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_assets ?? 0)"
             return cell
         }
         
@@ -165,7 +184,7 @@ extension DashboardVC: ProductSortVCDelegate  {
         if let cell = self.mainTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? DashboardBarChartCell{
             if  self.isBuyHistoryTabSelected {
                  self.sortTypeForHistory = sortType
-                cell.buyHistoryTxtField.text = self.sortTypeForHistory
+                 cell.buyHistoryTxtField.text = self.sortTypeForHistory
             } else {
                 self.sortTypeForMonthly = sortType
                 cell.buyMonthlyTxtField.text = self.sortTypeForMonthly
@@ -186,6 +205,13 @@ extension DashboardVC: PresenterOutputProtocol {
             let investorDashboardEntity = dataDict as? InvestorDashboardEntity
             if let productData = investorDashboardEntity?.data {
                 self.investorDashboardData = productData
+            }
+            self.mainTableView.reloadData()
+        case Base.campaigner_dashboard.rawValue:
+            self.loader.isHidden = true
+            let investorDashboardEntity = dataDict as? CampaignerDashboardEntity
+            if let productData = investorDashboardEntity?.data {
+                self.campaignerDashboardData = productData
             }
             self.mainTableView.reloadData()
         default:

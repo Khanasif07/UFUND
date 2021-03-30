@@ -92,6 +92,7 @@ struct ProductCreate {
     let end_to = "end_to"
     let status = "status"
     let type = "type"
+    let filter_type = "filter_type"
     let min_percentage = "min_percentage"
     let max_percentage = "max_percentage"
     let min_earning = "min_earning"

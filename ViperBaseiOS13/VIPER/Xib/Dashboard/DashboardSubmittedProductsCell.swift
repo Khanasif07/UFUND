@@ -13,6 +13,7 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var submittedProductLbl: UILabel!
     @IBOutlet weak var productImgView: UIImageView!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var dataContainerView: UIView!
@@ -23,7 +24,11 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
     //===========================
     var progressPercentageValue: Double = 45.0
     var parties = ["","","",""]
-    var partiesPercentage = [25,50,10,15]
+    var partiesPercentage = [25,50,10,15]{
+        didSet{
+            self.setDataCount(4, range: 100)
+        }
+    }
     
     // MARK: - Lifecycle
     //===========================
@@ -80,7 +85,7 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         
         data.setValueFont(.systemFont(ofSize: 11, weight: .light))
-        data.setValueTextColor(.white)
+        data.setValueTextColor(.clear)
         
         pieChartView.data = data
         pieChartView.highlightValues(nil)

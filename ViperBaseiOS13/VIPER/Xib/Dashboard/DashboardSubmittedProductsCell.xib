@@ -31,7 +31,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="4.5" translatesAutoresizingMaskIntoConstraints="NO" id="CkJ-Co-mVM">
                                 <rect key="frame" x="313" y="23" width="125.5" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submitted Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o96-L8-Jse">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submitted Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwW-jb-fl7">
                                         <rect key="frame" x="0.0" y="0.0" width="125.5" height="16.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <nil key="textColor"/>
@@ -191,6 +191,7 @@
                 <outlet property="dataContainerView" destination="QKq-JS-FjZ" id="LdY-SZ-Qe4"/>
                 <outlet property="pieChartView" destination="Edu-de-97t" id="tkY-nY-A1N"/>
                 <outlet property="productImgView" destination="RNv-bz-P0L" id="bTA-FN-tuk"/>
+                <outlet property="submittedProductLbl" destination="ZwW-jb-fl7" id="Cr4-sH-Ce9"/>
                 <outlet property="submittedProductValue" destination="9Vl-Qj-VOc" id="ZPx-kq-vGQ"/>
             </connections>
             <point key="canvasLocation" x="209.42028985507247" y="136.27232142857142"/>
