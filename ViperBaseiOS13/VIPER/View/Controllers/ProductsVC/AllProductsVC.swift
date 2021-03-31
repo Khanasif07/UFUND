@@ -23,6 +23,29 @@ enum CategoryType: String{
    
 
 class AllProductsVC: UIViewController {
+    
+    enum  CampaignerProductType{
+        case AllProduct
+        case LiveProduct
+        case RejectedProduct
+        case SoldProduct
+        case PendingProduct
+        
+        var titleValue:String {
+            switch self {
+            case .AllProduct:
+                return ""
+                case .LiveProduct:
+                return "live"
+                case .RejectedProduct:
+                return "reject"
+                case .PendingProduct:
+                return "pending"
+            default:
+                return "sold"
+            }
+        }
+    }
    
     // MARK: - IBOutlets
     //===========================
@@ -36,6 +59,7 @@ class AllProductsVC: UIViewController {
     //===========================
     var sortType : String = ""
     var searchTask: DispatchWorkItem?
+    var campaignerProductType: CampaignerProductType = .AllProduct
     var productType: ProductType = .AllProducts
     var searchText : String = ""
     var productTitle: String = "All Products"
@@ -119,8 +143,13 @@ extension AllProductsVC {
     
     private func initialSetup(){
         ProductFilterVM.shared.resetToAllFilter()
+        self.collectionViewSetUp()
         self.searchBar.delegate = self
         self.titleLbl.text = productTitle
+        self.getProductList()
+    }
+    
+    private func collectionViewSetUp(){
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
         self.mainCollView.delegate = self
         self.mainCollView.dataSource = self
@@ -131,19 +160,17 @@ extension AllProductsVC {
         mainCollView.collectionViewLayout = layout1
         layout1.minimumInteritemSpacing = 0
         layout1.minimumLineSpacing = 0
-        self.getProductList()
     }
     
     //MARK:- PRDUCTS LIST API CALL
     private func getProductList(page:Int = 1,search: String = "") {
         switch (userType,false) {
         case (UserType.campaigner.rawValue,false):
-            self.presenter?.HITAPI(api: Base.myProductList.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
+            let params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.search: search,ProductCreate.keys.status: campaignerProductType.titleValue]
+            self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,false):
             let params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.new_products: productType == .AllProducts ? 0 : 1,ProductCreate.keys.search: search]
              self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-        case (UserType.investor.rawValue,true):
-            self.presenter?.HITAPI(api: Base.investerProducts.rawValue, params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
         default:
             break
         }
@@ -151,20 +178,10 @@ extension AllProductsVC {
     }
     
     func showFilterVC(_ vc: UIViewController, index: Int = 0) {
-        //        if let _ = UIApplication.topViewController() {
         let ob = ProductFilterVC.instantiate(fromAppStoryboard: .Filter)
         ob.delegate = vc as? ProductFilterVCDelegate
         ob.productType = productType
         vc.present(ob, animated: true, completion: nil)
-        //                ob.selectedIndex = index
-        //            vc.add(childViewController: ob)
-        //        self.addChild(ob)
-        //        let frame = self.view.bounds
-        //        ob.view.frame = frame
-        //        self.view.addSubview(ob.view)
-        
-        //               childViewController.didMove(toParent: self)
-        //        }
     }
     
     private func searchProducts(searchValue: String,page:Int = 1){
@@ -285,19 +302,38 @@ extension AllProductsVC : PresenterOutputProtocol {
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
-        let productModelEntity = dataDict as? ProductsModelEntity
-        self.currentPage = productModelEntity?.data?.current_page ?? 0
-        self.lastPage = productModelEntity?.data?.last_page ?? 0
-        isRequestinApi = false
-        nextPageAvailable = self.lastPage > self.currentPage
-        if let productDict = productModelEntity?.data?.data {
-            if self.currentPage == 1 {
-                self.investerProductList = productDict
-            } else {
-                self.investerProductList?.append(contentsOf: productDict)
+        switch api {
+        case Base.campaignerProductsDefault.rawValue:
+            let productModelEntity = dataDict as? ProductsModelEntity
+            self.currentPage = productModelEntity?.data?.current_page ?? 0
+            self.lastPage = productModelEntity?.data?.last_page ?? 0
+            isRequestinApi = false
+            nextPageAvailable = self.lastPage > self.currentPage
+            if let productDict = productModelEntity?.data?.data {
+                if self.currentPage == 1 {
+                    self.investerProductList = productDict
+                } else {
+                    self.investerProductList?.append(contentsOf: productDict)
+                }
             }
+            self.currentPage += 1
+        case Base.investerProductsDefault.rawValue:
+            let productModelEntity = dataDict as? ProductsModelEntity
+            self.currentPage = productModelEntity?.data?.current_page ?? 0
+            self.lastPage = productModelEntity?.data?.last_page ?? 0
+            isRequestinApi = false
+            nextPageAvailable = self.lastPage > self.currentPage
+            if let productDict = productModelEntity?.data?.data {
+                if self.currentPage == 1 {
+                    self.investerProductList = productDict
+                } else {
+                    self.investerProductList?.append(contentsOf: productDict)
+                }
+            }
+            self.currentPage += 1
+        default:
+            print("Do Nothing")
         }
-        self.currentPage += 1
     }
     
     func showSuccessWithParams(statusCode:Int,params: [String : Any], api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {

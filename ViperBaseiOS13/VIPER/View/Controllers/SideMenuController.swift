@@ -285,17 +285,88 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
             }
             
         case Constants.string.allMyInvestment.localize():
+            self.drawerController?.closeSide()
             if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.myTokenInvestMents.localize(){
-                self.drawerController?.closeSide()
                 let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
                 vc.investmentType = .MyTokenInvestment
                 vc.productTitle = Constants.string.myTokenInvestMents.localize()
                 (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             } else if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.myProductInvestMents.localize(){
-                self.drawerController?.closeSide()
                 let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
                 vc.investmentType = .MyProductInvestment
                 vc.productTitle = Constants.string.myProductInvestMents.localize()
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            }
+            
+        case Constants.string.allMyProduct.localize():
+            switch self.menuContent?[indexPath.section].1[indexPath.row] ?? "" {
+            case Constants.string.allProducts.localize():
+                self.drawerController?.closeSide()
+                let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.allProducts.localize()
+                vc.campaignerProductType = .AllProduct
+                vc.productType = .AllProducts
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            case Constants.string.liveProduct.localize():
+                self.drawerController?.closeSide()
+                let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.liveProduct.localize()
+                vc.productType = .AllProducts
+                vc.campaignerProductType = .LiveProduct
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            case Constants.string.pendingProduct.localize():
+                self.drawerController?.closeSide()
+                let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.pendingProduct.localize()
+                vc.productType = .AllProducts
+                vc.campaignerProductType = .PendingProduct
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            case Constants.string.soldProduct.localize():
+                self.drawerController?.closeSide()
+                let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.soldProduct.localize()
+                vc.productType = .AllProducts
+                vc.campaignerProductType = .SoldProduct
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            default:
+                self.drawerController?.closeSide()
+                let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.rejectedProduct.localize()
+                vc.productType = .AllProducts
+                vc.campaignerProductType = .RejectedProduct
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+                print("Do Nothing")
+            }
+        case Constants.string.allMyTokenizedAssets.localize():
+            switch self.menuContent?[indexPath.section].1[indexPath.row] ?? "" {
+            case Constants.string.allTokens.localize():
+                let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.allTokens.localize()
+                vc.campaignerAssetType = .AllAssets
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            case Constants.string.liveTokens.localize():
+                self.drawerController?.closeSide()
+                let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.liveTokens.localize()
+                vc.campaignerAssetType = .LiveAssets
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            case Constants.string.pendingTokens.localize():
+                self.drawerController?.closeSide()
+                let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.pendingTokens.localize()
+                vc.campaignerAssetType = .PendingAssets
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            case Constants.string.soldTokens.localize():
+                self.drawerController?.closeSide()
+                let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.soldTokens.localize()
+                vc.campaignerAssetType = .SoldAssets
+                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            default:
+                self.drawerController?.closeSide()
+                let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.rejectedTokens.localize()
+                vc.campaignerAssetType = .RejectedAssets
                 (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             }
         default:
@@ -473,9 +544,6 @@ extension  SideMenuController {
         case Constants.string.history.localize():
             
             UserDefaults.standard.set(UserType.investor.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
-            
-            
-            
             if isFromCampainer {
                 self.drawerController?.closeSide()
                 self.push(to: Storyboard.Ids.CampHistoryViewController)
@@ -483,14 +551,10 @@ extension  SideMenuController {
                 self.drawerController?.closeSide()
                 self.push(to: Storyboard.Ids.HistoryViewController)
             }
-            
-            
         case Constants.string.coinpay.localize():
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.PayClearHistoryViewController)
         case Constants.string.logout.localize():
-            
-            
             presentAlertViewController()
             
         default:
@@ -553,5 +617,4 @@ extension SideMenuController: PresenterOutputProtocol {
         self.loader.isHidden = true
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
-    
 }

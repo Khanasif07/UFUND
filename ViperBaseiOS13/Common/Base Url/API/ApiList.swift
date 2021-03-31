@@ -96,6 +96,8 @@ enum Base : String {
     case productsCurrencies = "/api/currencies"
     case categories = "/api/categories"
     case investerProductsDefault = "/api/investor/products"
+    case campaignerProductsDefault = "/api/campaigner-my-products"
+    case campaignerTokenizedAssetsDefault = "/api/campaigner-tokenized-assets"
     case tokenized_asset = "/api/get-tokenized-asset-list"
     case myProductInvestment = "/api/product-investment-listing"
     case myTokenInvestment = "/api/tokenized-assets-investment-listing"

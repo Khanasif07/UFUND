@@ -19,6 +19,30 @@ enum TokenizedAssetsType: String {
 
 class TokenizedAssetsVC: UIViewController {
     
+    enum  CampaignerAssetType{
+        case AllAssets
+        case LiveAssets
+        case RejectedAssets
+        case SoldAssets
+        case PendingAssets
+        
+        var titleValue:String {
+            switch self {
+            case .AllAssets:
+                return ""
+                case .LiveAssets:
+                return "live"
+                case .RejectedAssets:
+                return "reject"
+                case .PendingAssets:
+                return "pending"
+            default:
+                return "sold"
+            }
+        }
+        
+    }
+    
     // MARK: - IBOutlets
     //===========================
     @IBOutlet weak var bottomView: UIView!
@@ -32,6 +56,7 @@ class TokenizedAssetsVC: UIViewController {
     //===========================
     var sortType: String  = ""
     var searchTask: DispatchWorkItem?
+    var campaignerAssetType: CampaignerAssetType = .AllAssets
     var productType: TokenizedAssetsType = .AllAssets
     var searchText : String = ""
     var productTitle: String = "New Tokenized Assest"
@@ -112,8 +137,13 @@ extension TokenizedAssetsVC {
     
     private func initialSetup(){
         ProductFilterVM.shared.resetToAllFilter()
+        self.collectionViewSetUp()
         self.searchBar.delegate = self
         self.titleLbl.text = productTitle
+        self.getTokenizedAssets()
+    }
+    
+    private func collectionViewSetUp(){
         self.mainCollView.registerCell(with: NewProductsCollCell.self)
         self.mainCollView.delegate = self
         self.mainCollView.dataSource = self
@@ -124,7 +154,6 @@ extension TokenizedAssetsVC {
         mainCollView.collectionViewLayout = layout1
         layout1.minimumInteritemSpacing = 0
         layout1.minimumLineSpacing = 0
-        self.getTokenizedAssets()
     }
     
     //MARK:- PRDUCTS LIST API CALL
@@ -133,6 +162,9 @@ extension TokenizedAssetsVC {
         switch (userType,true) {
         case (UserType.investor.rawValue,true):
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case (UserType.campaigner.rawValue,true):
+            let params : [String:Any] = ["search": search,ProductCreate.keys.status: campaignerAssetType.titleValue]
+            self.presenter?.HITAPI(api: Base.campaignerTokenizedAssetsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
         }
