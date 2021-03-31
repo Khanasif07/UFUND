@@ -29,8 +29,6 @@ class DashboardTabsTableCell: UITableViewCell {
         didSet {
             if isFromCampainer {
                 headerCount = [(Constants.string.categories.localize(),#colorLiteral(red: 1, green: 0.2588235294, blue: 0.3019607843, alpha: 1)),(Constants.string.Products.localize(),#colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)), (Constants.string.TokenizedAssets.localize(),#colorLiteral(red: 0.9725490196, green: 0.6980392157, blue: 0.2823529412, alpha: 1)),(Constants.string.allMyInvestment.localize(),#colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1)),(Constants.string.earning.localize(),#colorLiteral(red: 0.5843137255, green: 0.7764705882, blue: 0.137254902, alpha: 1)),(Constants.string.wallet.localize(),#colorLiteral(red: 0.5529411765, green: 0.2705882353, blue: 0.8274509804, alpha: 1))]
-            
-//                headerCount = [Constants.string.add.localize(), Constants.string.profile.localize(), Constants.string.MyProducts.localize(),Constants.string.wallet.localize(), Constants.string.requests.localize(), Constants.string.send.localize()]
             }else{
                 headerCount = [
                     (Constants.string.categories.localize(),#colorLiteral(red: 1, green: 0.2588235294, blue: 0.3019607843, alpha: 1)),(Constants.string.Products.localize(),#colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)), (Constants.string.TokenizedAssets.localize(),#colorLiteral(red: 0.9725490196, green: 0.6980392157, blue: 0.2823529412, alpha: 1)),(Constants.string.allMyInvestment.localize(),#colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1)),(Constants.string.earning.localize(),#colorLiteral(red: 0.5843137255, green: 0.7764705882, blue: 0.137254902, alpha: 1)),(Constants.string.wallet.localize(),#colorLiteral(red: 0.5529411765, green: 0.2705882353, blue: 0.8274509804, alpha: 1))]
@@ -48,7 +46,7 @@ class DashboardTabsTableCell: UITableViewCell {
     }
     
     private func setupCollectionView() {
-        tabsCollView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        tabsCollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tabsCollView.delegate = self
         tabsCollView.dataSource = self
         let nibPost = UINib(nibName: XIB.Names.ProductsCollectionCell, bundle: nil)
@@ -92,7 +90,7 @@ extension DashboardTabsTableCell: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width - 16) / 2 , height: 175.0)
+        return CGSize(width: (collectionView.frame.width) / 2 , height: 175.0)
         
     }
     

@@ -38,48 +38,26 @@ class AddProductsVC: UIViewController {
         initialSetup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.mainTableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainTableView.layoutIfNeeded()
     }
     
-   
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+            self.mainTableView.reloadData()
+        }
+    }
 }
 
 // MARK: - Extension For Functions
 //===========================
 extension AddProductsVC: PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-            self.userDetails = dataDict as? UserDetails
-            self.userProfile = self.userDetails?.user
-            self.loader.isHidden = true
-            self.generalInfoArray[0].1 = self.userProfile?.name ?? ""
-            self.generalInfoArray[1].1 = self.userProfile?.last_name ?? ""
-            self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
-            self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
-            self.generalInfoArray[4].1 = self.userProfile?.address1 ?? ""
-            self.generalInfoArray[5].1 = self.userProfile?.address2 ?? ""
-            self.generalInfoArray[6].1 = self.userProfile?.zip_code ?? ""
-            self.generalInfoArray[7].1 = self.userProfile?.city ?? ""
-            self.generalInfoArray[8].1 = self.userProfile?.state ?? ""
-            self.generalInfoArray[9].1 = self.userProfile?.country ?? ""
-            
-            self.bankInfoArray[0].1 = self.userProfile?.bank_name ?? ""
-            self.bankInfoArray[1].1 = self.userProfile?.account_name ?? ""
-            self.bankInfoArray[2].1 = self.userProfile?.account_number ?? ""
-            self.bankInfoArray[3].1 = self.userProfile?.routing_number ?? ""
-            self.bankInfoArray[4].1 = self.userProfile?.iban_number ?? ""
-            self.bankInfoArray[5].1 = self.userProfile?.swift_number ?? ""
-            self.bankInfoArray[6].1 = self.userProfile?.bank_address ?? ""
-            User.main.picture  = self.userProfile?.picture
-            User.main.name  = self.userProfile?.name
-            User.main.email  = self.userProfile?.email
-            User.main.mobile = self.userProfile?.mobile
-            storeInUserDefaults()
-            self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
-            self.mainTableView.reloadData()
-        
+        self.userDetails = dataDict as? UserDetails
+        self.userProfile = self.userDetails?.user
+        self.loader.isHidden = true
     }
     
     func showError(error: CustomError) {
@@ -88,13 +66,13 @@ extension AddProductsVC: PresenterOutputProtocol {
     }
     
     private func initialSetup() {
-        self.mainTableView.registerCell(with: UserProfilePhoneNoCell.self)
-        self.mainTableView.registerCell(with: UserProfileImageCell.self)
-        self.mainTableView.registerCell(with: UserProfileTableCell.self)
-        self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-//        self.getProfileDetails()
+        self.mainTableView.registerCell(with: UploadDocumentTableCell.self)
+        self.mainTableView.registerCell(with: UserProfilePhoneNoCell.self)
+        self.mainTableView.registerCell(with: UserProfileTableCell.self)
+        self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
+        //        self.getProfileDetails()
     }
     
     func getProfileDetails(){
@@ -109,58 +87,64 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.endIndex
-       }
-       
-       func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.sections[section].sectionCount
-       }
-       
-       func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-           let view = tableView.dequeueHeaderFooter(with: UserProfileHeaderView.self)
-           view.titleLbl.text  = self.sections[section].titleValue
-           return view
-       }
-       
-       func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueHeaderFooter(with: UserProfileHeaderView.self)
+        view.titleLbl.text  = self.sections[section].titleValue
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44.0
-       }
-       
-       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-       }
-       
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-              case 0:
-                  let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
-                  cell.textFIeld.delegate = self
-                  cell.titleLbl.text = self.generalInfoArray[indexPath.row].0
-                  cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row].0
-                  cell.textFIeld.text = self.generalInfoArray[indexPath.row].1
-                  return  cell
-              case 1:
-                  let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
-                  cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
-                  cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
-                  cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
-                  return  cell
-              case 2:
-                  let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
-                  cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
-                  cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0
-                  cell.textFIeld.text = self.dateInfoArray[indexPath.row].1
-                  return  cell
-                  
-              default:
-                  let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
-                  cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
-                  cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
-                  cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
-                  return  cell
-              }
+        switch sections[indexPath.section] {
+        case .basicDetails:
+            let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+            cell.textFIeld.delegate = self
+            cell.titleLbl.text = self.generalInfoArray[indexPath.row].0
+            cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row].0
+            cell.textFIeld.text = self.generalInfoArray[indexPath.row].1
+            return  cell
+        case .productSpecifics:
+            let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+            cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
+            cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
+            cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
+            return  cell
+        case .dAteSpecifics:
+            let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+            if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2{
+//                 cell.textFIeld.inputView = nil
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+            } else {
+//                cell.textFIeld.inputView = nil
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+            }
+            cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
+            cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0
+            cell.textFIeld.text = self.dateInfoArray[indexPath.row].1
+            return  cell
+            
+        default:
+            let cell = tableView.dequeueCell(with: UploadDocumentTableCell.self, indexPath: indexPath)
+            cell.isFromAddProduct = true
+            cell.tabsCollView.layoutIfNeeded()
+            return  cell
+        }
     }
 }
- 
+
 // MARK: - Extension For TextField Delegate
 //====================================
 extension AddProductsVC : UITextFieldDelegate {
@@ -181,28 +165,28 @@ extension AddProductsVC : UITextFieldDelegate {
             }
         }
     }
-      
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let currentString: NSString = textField.text! as NSString
-//        let newString: NSString =
-//            currentString.replacingCharacters(in: range, with: string) as NSString
-//        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
-//                if  let indexPath = mainTableView.indexPath(forItem: cell){
-//                     if indexPath.section  == 0 {
-//                    switch  self.generalInfoArray[indexPath.row - 1].0  {
-//                    case "First Name","Last Name":
-//                        return (string.checkIfValidCharaters(.name) || string.isEmpty) && newString.length <= 50
-                        //                case cell?.mobNoTxtField:
-                    //                    return (string.checkIfValidCharaters(.mobileNumber) || string.isEmpty) && newString.length <= 10
-//                    case "Email":
-//                        return (string.checkIfValidCharaters(.email) || string.isEmpty) && newString.length <= 50
-//                    default:
-//                        return false
-//                    }
-//                }
-//            }
-//        }
-         return true
+        //        let currentString: NSString = textField.text! as NSString
+        //        let newString: NSString =
+        //            currentString.replacingCharacters(in: range, with: string) as NSString
+        //        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
+        //                if  let indexPath = mainTableView.indexPath(forItem: cell){
+        //                     if indexPath.section  == 0 {
+        //                    switch  self.generalInfoArray[indexPath.row - 1].0  {
+        //                    case "First Name","Last Name":
+        //                        return (string.checkIfValidCharaters(.name) || string.isEmpty) && newString.length <= 50
+        //                case cell?.mobNoTxtField:
+        //                    return (string.checkIfValidCharaters(.mobileNumber) || string.isEmpty) && newString.length <= 10
+        //                    case "Email":
+        //                        return (string.checkIfValidCharaters(.email) || string.isEmpty) && newString.length <= 50
+        //                    default:
+        //                        return false
+        //                    }
+        //                }
+        //            }
+        //        }
+        return true
     }
 }
 

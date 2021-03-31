@@ -22,7 +22,7 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var buyMonthlyTxtField: UITextField!
     @IBOutlet weak var buyHistoryTxtField: UITextField!
     @IBOutlet weak var dataContainerView: UIView!
-    @IBOutlet weak var  barChartView :  BarChartView!
+    @IBOutlet weak var barChartView :  BarChartView!
     
     // MARK: - Variables
     //===========================
@@ -30,6 +30,12 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     var buttonView1 = UIButton()
     var buyHistoryBtnTapped: ((UIButton)->())?
     var buyMonthlyBtnTapped: ((UIButton)->())?
+    //
+//    let firstBarValue = [4.0,6.0,5.0,4.5,7.0,4.0,6.0,5.0,4.5,7.0]
+    let firstBarValue = [4.0,6.0,5.0]
+//    let vertXValues = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"]
+     let vertXValues = ["Jan","Feb","Mar"]
+    let verYValues = ["0 €","1000 €","2000 €","3000 €", "4000 €", "5000 €","6000 €", "7000 €", "8000 €","9000 €", "10000 €"]
     
     // MARK: - Lifecycle
     //===========================
@@ -39,7 +45,9 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         buyMonthlyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
         buttonView1.imageEdgeInsets = UIEdgeInsets(top: 0, left: -7.5, bottom: 0, right: +7.5)
         buyHistoryTxtField.setButtonToRightView(btn: buttonView1, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
-        self.setUpBarChart()
+//        self.setUpBarChart()
+        self.setupVerticalChart()
+        self.drawVerticalChart()
     }
     
     override func layoutSubviews() {
@@ -59,187 +67,107 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         }
     }
     
-    func setDataCount(_ count: Int, range: UInt32) {
-        let start = 1
-        
-        let yVals = (start..<start+count+1).map { (i) -> BarChartDataEntry in
-            let mult = range + 1
-            let val = Double(arc4random_uniform(mult))
-            if arc4random_uniform(100) < 25 {
-                return BarChartDataEntry(x: Double(i), y: val, icon: UIImage(named: "icon"))
-            } else {
-                return BarChartDataEntry(x: Double(i), y: val)
-            }
-        }
-        
-        var set1: BarChartDataSet! = nil
-//        if let set = barChartView.data as? BarChartDataSet {
-//            set1 = set
-//            set1.replaceEntries(yVals)
-//            barChartView.data?.notifyDataChanged()
-//            barChartView.notifyDataSetChanged()
-//        } else {
-            set1 = BarChartDataSet(entries: yVals, label: "2021")
-            set1.colors = ChartColorTemplates.material()
-            set1.drawValuesEnabled = false
-            
-            let data = BarChartData(dataSet: set1)
-            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
-            data.barWidth = 0.5
-            barChartView.data = data
-            barChartView.barData?.setValueFormatter(MyValueFormatter())
-            barChartView.barData?.setDrawValues(true)
-//        }
-        
-        //        chartView.setNeedsDisplay()
-    }
     
-//    override func optionTapped(_ option: Option) {
-//        super.handleOption(option, forChartView: chartView)
-//    }
-    
-    private func setUpBarChart(){
-//        self.setup(barLineChartView: barChartView)
-        barChartView.delegate = self
+    //MARK: VERTICAL CHART
+    //=======================
+    func setupVerticalChart() {
+        self.setup(barLineChartView: barChartView)
         barChartView.drawBarShadowEnabled = false
         barChartView.drawValueAboveBarEnabled = false
-        barChartView.maxVisibleCount = 60
+        barChartView.legend.enabled = false
+        barChartView.dragEnabled = false
+        barChartView.doubleTapToZoomEnabled = false
+        barChartView.pinchZoomEnabled = false
+        barChartView.noDataTextColor  = .white
+        
+        let legend = barChartView.legend
+        legend.enabled = false
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.orientation = .vertical
+        legend.drawInside = true
+        legend.yOffset = 10.0
+        legend.xOffset = 10.0
+        legend.yEntrySpace = 0.0
+        
         let xAxis = barChartView.xAxis
-               xAxis.labelPosition = .bottom
-               xAxis.labelFont = .systemFont(ofSize: 10)
-               xAxis.granularity = 1
-               xAxis.labelCount = 7
-               xAxis.valueFormatter = DayAxisValueFormatter(chart: barChartView)
+        xAxis.labelCount = vertXValues.count
+        xAxis.drawAxisLineEnabled = true
+        xAxis.drawGridLinesEnabled = false
+        xAxis.drawLimitLinesBehindDataEnabled = false
+        xAxis.labelTextColor = .black
+        xAxis.granularity = 1.0
+        xAxis.labelFont = UIFont.systemFont(ofSize: 7.5)
+        xAxis.labelPosition = .bottom
+        xAxis.centerAxisLabelsEnabled = true
+        xAxis.granularityEnabled = true
+        xAxis.drawLabelsEnabled = true
+        xAxis.axisMinimum = -0.25
+        xAxis.axisMaximum = Double(vertXValues.count) + 1.0//to increase length of x-axis more than content size
+        xAxis.valueFormatter = IndexAxisValueFormatter(values: vertXValues)
         
-               let l = barChartView.legend
-               l.horizontalAlignment = .left
-               l.verticalAlignment = .bottom
-               l.orientation = .horizontal
-               l.drawInside = false
-               l.form = .circle
-               l.formSize = 9
-               l.font = UIFont(name: "HelveticaNeue-Light", size: 11)!
-               l.xEntrySpace = 4
-        self.setDataCount(11, range: 1000)
+        let leftAxis = barChartView.leftAxis
+        leftAxis.labelFont = .systemFont(ofSize: 10.0)
+        leftAxis.labelCount = verYValues.count
+        leftAxis.valueFormatter = IndexAxisValueFormatter(values: verYValues)
+        leftAxis.labelPosition = .outsideChart
+        leftAxis.axisMinimum = 0
+        leftAxis.axisMaximum = Double(verYValues.count)
+        leftAxis.granularity = 1.0
+        leftAxis.granularityEnabled = true
+        leftAxis.drawAxisLineEnabled = true
+        leftAxis.drawLimitLinesBehindDataEnabled = false
+        leftAxis.drawGridLinesEnabled = false
+        leftAxis.drawLabelsEnabled = true
+        
+        let rightAxis = barChartView.rightAxis
+        rightAxis.enabled = false
+        rightAxis.labelFont = .systemFont(ofSize: 10)
+        rightAxis.labelCount = 8
+        rightAxis.drawAxisLineEnabled = false
+        rightAxis.drawGridLinesEnabled = false
+        rightAxis.drawLabelsEnabled = false
+        rightAxis.spaceTop = 0.15
+        rightAxis.axisMinimum = 0
     }
     
-}
-
-
-
-//  Created by Jacob Christie on 2017-07-09.
-//  Copyright © 2017 jc. All rights reserved.
-
-
-public class DayAxisValueFormatter: NSObject, IAxisValueFormatter {
-    weak var chart: BarLineChartViewBase?
-    let months = ["Jan", "Feb", "Mar",
-                  "Apr", "May", "Jun",
-                  "Jul", "Aug", "Sep",
-                  "Oct", "Nov", "Dec"]
-    
-    
-    init(chart: BarLineChartViewBase) {
-        self.chart = chart
-    }
-    
-    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let days = Int(value)
-        let year = determineYear(forDays: days)
-        let month = determineMonth(forDayOfYear: days)
-        
-        let monthName = months[month % months.count]
-        let yearName = "\(year)"
-        
-        if let chart = chart,
-            chart.visibleXRange > 30 * 6 {
-            return monthName + yearName
-        } else {
-            let dayOfMonth = determineDayOfMonth(forDays: days, month: month + 12 * (year - 2016))
-            var appendix: String
-            
-            switch dayOfMonth {
-            case 1, 21, 31: appendix = "st"
-            case 2, 22: appendix = "nd"
-            case 3, 23: appendix = "rd"
-            default: appendix = "th"
-            }
-            
-            return dayOfMonth == 0 ? "" : String(format: "%d\(appendix) \(monthName)", dayOfMonth)
-        }
-    }
-    
-    private func days(forMonth month: Int, year: Int) -> Int {
-        // month is 0-based
-        switch month {
-        case 1:
-            var is29Feb = false
-            if year < 1582 {
-                is29Feb = (year < 1 ? year + 1 : year) % 4 == 0
-            } else if year > 1582 {
-                is29Feb = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
-            }
-            
-            return is29Feb ? 29 : 28
-            
-        case 3, 5, 8, 10:
-            return 30
-            
-        default:
-            return 31
-        }
-    }
-    
-    private func determineMonth(forDayOfYear dayOfYear: Int) -> Int {
-        var month = -1
-        var days = 0
-        
-        while days < dayOfYear {
-            month += 1
-            if month >= 12 {
-                month = 0
-            }
-            
-            let year = determineYear(forDays: days)
-            days += self.days(forMonth: month, year: year)
+    func drawVerticalChart() {
+        barChartView.noDataText = ""
+        var dataEntries: [BarChartDataEntry] = []
+        for i in 0..<self.vertXValues.count {
+            let dataEntry = BarChartDataEntry(x: Double(i) , yValues: [self.firstBarValue[i]])
+            dataEntries.append(dataEntry)
         }
         
-        return max(month, 0)
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "")
+        chartDataSet.stackLabels = ["Taget 100%","Target 110%", "Taget 120%"]
+        chartDataSet.colors = [.blue,.red, .yellow]
+        let dataSets: [BarChartDataSet] = [chartDataSet]
+        let chartData = BarChartData(dataSets: dataSets)
+        chartData.setDrawValues(false)
+        
+        let groupSpace = 0.06//formula for calculate actual width (((barWidth + barSpace) * (number of bar in group) ) + groupSpace == 1)
+        let barSpace = 0.00
+        let barWidth = 0.31
+        chartData.barWidth = barWidth
+        chartData.groupBars(fromX: 0.0, groupSpace: groupSpace, barSpace: barSpace)
+        barChartView.notifyDataSetChanged()
+        barChartView.data = chartData
+        barChartView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5, easingOption: .linear)
+        
     }
     
-    private func determineDayOfMonth(forDays days: Int, month: Int) -> Int {
-        var count = 0
-        var daysForMonth = 0
-        
-        while count < month {
-            let year = determineYear(forDays: days)
-            daysForMonth += self.days(forMonth: count % 12, year: year)
-            count += 1
-        }
-        
-        return days - daysForMonth
+    /// Returns the colors array according to condition for real sale values.
+    ///
+    /// - Returns: Array of UIColors
+    
+    func setup(barLineChartView chartView: BarLineChartViewBase) {
+        chartView.chartDescription?.enabled = false
+        chartView.dragEnabled = true
+        chartView.setScaleEnabled(true)
+        chartView.isUserInteractionEnabled = false
+        chartView.pinchZoomEnabled = false
+        chartView.noDataTextColor  = .white
     }
     
-    private func determineYear(forDays days: Int) -> Int {
-        switch days {
-        case ...366: return 2016
-        case 367...730: return 2017
-        case 731...1094: return 2018
-        case 1095...1458: return 2019
-        default: return 2020
-        }
-    }
-}
-
-
-class MyValueFormatter: IValueFormatter {
-    var xValueForToday: Double?  // Set a value
-
-    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
-        if entry.x == xValueForToday {
-            return "Today"
-        } else {
-            return String(value)
-        }
-    }
 }

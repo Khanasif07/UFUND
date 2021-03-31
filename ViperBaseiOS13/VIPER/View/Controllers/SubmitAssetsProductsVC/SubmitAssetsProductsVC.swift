@@ -12,6 +12,9 @@ class SubmitAssetsProductsVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var sendRequestBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var bottomBtnView: UIView!
     @IBOutlet weak var btnStackView: UIView!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var addProductBtn: UIButton!
@@ -39,6 +42,19 @@ class SubmitAssetsProductsVC: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainScrollView.layoutIfNeeded()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tokenVC.mainTableView.reloadData()
+        self.productVC.mainTableView.reloadData()
+        self.tokenVC.mainTableView.layoutIfNeeded()
+        self.productVC.mainTableView.layoutIfNeeded()
+    }
+    
     
     // MARK: - Lifecycle
     //===========================
@@ -48,15 +64,16 @@ class SubmitAssetsProductsVC: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-          super.viewDidLayoutSubviews()
-          btnStackView.setCornerRadius(cornerR: btnStackView.frame.height / 2.0)
-          addAssetBtn.setCornerRadius(cornerR: addAssetBtn.frame.height / 2.0)
-          addProductBtn.setCornerRadius(cornerR: addProductBtn.frame.height / 2.0)
-      }
-      
-      deinit {
-          NotificationCenter.default.removeObserver(self)
-      }
+        super.viewDidLayoutSubviews()
+        bottomBtnView.addShadowToTopOrBottom(location: .top,color: UIColor.black16)
+        btnStackView.setCornerRadius(cornerR: btnStackView.frame.height / 2.0)
+        addAssetBtn.setCornerRadius(cornerR: addAssetBtn.frame.height / 2.0)
+        addProductBtn.setCornerRadius(cornerR: addProductBtn.frame.height / 2.0)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     // MARK: - IBActions
     //===========================
@@ -64,6 +81,12 @@ class SubmitAssetsProductsVC: UIViewController {
         self.view.endEditing(true)
         self.mainScrollView.setContentOffset(CGPoint(x: UIScreen.main.bounds.width,y: 0), animated: true)
         self.view.layoutIfNeeded()
+    }
+    
+    @IBAction func cancelBtnAction(_ sender: UIButton) {
+    }
+    
+    @IBAction func sendRequestBtnAction(_ sender: UIButton) {
     }
     
     @IBAction func addBtnAction(_ sender: Any) {
@@ -83,46 +106,56 @@ class SubmitAssetsProductsVC: UIViewController {
 extension SubmitAssetsProductsVC {
     
     private func initialSetup(){
-           self.setUpFont()
-           self.configureScrollView()
-           self.instantiateViewController()
-           self.getCategoryList()
-           self.navigationController?.navigationBar.isHidden = true
-       }
-       
-       private func configureScrollView(){
-           self.isPruductSelected = false
-           self.mainScrollView.contentSize = CGSize(width: 2 * UIScreen.main.bounds.width, height: 1)
-           self.mainScrollView.delegate = self
-           self.mainScrollView.isPagingEnabled = true
-       }
-       
-       private func instantiateViewController() {
-           //instantiate the CategoriesTokenVC
-           self.tokenVC = AddAssetsVC.instantiate(fromAppStoryboard: .Products)
-           self.tokenVC.view.frame.origin = CGPoint.zero
-           self.mainScrollView.frame = self.tokenVC.view.frame
-           self.mainScrollView.addSubview(self.tokenVC.view)
-           self.addChild(self.tokenVC)
-           
-           //instantiate the CategoriesProductsVC
-           self.productVC = AddProductsVC.instantiate(fromAppStoryboard: .Products)
-           self.productVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
-           self.mainScrollView.frame = self.productVC.view.frame
-           self.mainScrollView.addSubview(self.productVC.view)
-           self.addChild(self.productVC)
-       }
-       
-       private func setUpFont(){
-           self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
-           self.btnStackView.borderLineWidth = 1.5
-           self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
-       }
-       
-       private func getCategoryList(){
-//           self.loader.isHidden = false
-//           self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
-       }
+        self.setUpFont()
+        self.configureScrollView()
+        self.instantiateViewController()
+        self.getCategoryList()
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func configureScrollView(){
+        self.isPruductSelected = false
+        self.mainScrollView.contentSize = CGSize(width: 2 * UIScreen.main.bounds.width, height: 1)
+        self.mainScrollView.delegate = self
+        self.mainScrollView.isPagingEnabled = true
+    }
+    
+    private func instantiateViewController() {
+        //instantiate the CategoriesTokenVC
+        self.tokenVC = AddAssetsVC.instantiate(fromAppStoryboard: .Products)
+        self.tokenVC.view.frame.origin = CGPoint.zero
+        self.mainScrollView.frame = self.tokenVC.view.frame
+        self.mainScrollView.addSubview(self.tokenVC.view)
+        self.addChild(self.tokenVC)
+        
+        //instantiate the CategoriesProductsVC
+        self.productVC = AddProductsVC.instantiate(fromAppStoryboard: .Products)
+        self.productVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
+        self.mainScrollView.frame = self.productVC.view.frame
+        self.mainScrollView.addSubview(self.productVC.view)
+        self.addChild(self.productVC)
+    }
+    
+    private func setUpFont(){
+        DispatchQueue.main.async {
+            [self.cancelBtn,self.sendRequestBtn].forEach { (btn) in
+                btn?.layer.masksToBounds = true
+                btn?.layer.borderWidth = 1.0
+                btn?.layer.borderColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
+                btn?.layer.cornerRadius = 2.0
+            }
+        }
+        self.sendRequestBtn.setTitleColor(.white, for: .normal)
+        self.sendRequestBtn.backgroundColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
+        self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
+        self.btnStackView.borderLineWidth = 1.5
+        self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
+    }
+    
+    private func getCategoryList(){
+        //           self.loader.isHidden = false
+        //           self.presenter?.HITAPI(api: Base.category.rawValue, params: nil, methodType: .GET, modelClass: AdditionsModel.self, token: true)
+    }
 }
 
 //    MARK:- ScrollView delegate

@@ -230,6 +230,10 @@
 		845C131C25FF8A940018A1E1 /* MyWalletSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */; };
 		846F263C2613384E00FEB452 /* AddProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F263B2613384E00FEB452 /* AddProductsVC.swift */; };
 		846F263E2613385E00FEB452 /* AddAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F263D2613385E00FEB452 /* AddAssetsVC.swift */; };
+		846F264226143C8500FEB452 /* UploadDocumentCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F264026143C8500FEB452 /* UploadDocumentCollCell.swift */; };
+		846F264326143C8500FEB452 /* UploadDocumentCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846F264126143C8500FEB452 /* UploadDocumentCollCell.xib */; };
+		846F264626143E0B00FEB452 /* UploadDocumentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F264426143E0B00FEB452 /* UploadDocumentTableCell.swift */; };
+		846F264726143E0B00FEB452 /* UploadDocumentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846F264526143E0B00FEB452 /* UploadDocumentTableCell.xib */; };
 		847297D225E7739800711CEE /* ProductDetailPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */; };
 		847297D525E8BD9200711CEE /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847297D425E8BD9200711CEE /* ChangePasswordVC.swift */; };
 		8472A28E26131B60006A59A0 /* SubmitAssetsProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472A28D26131B60006A59A0 /* SubmitAssetsProductsVC.swift */; };
@@ -552,6 +556,10 @@
 		845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletSheetVC.swift; sourceTree = "<group>"; };
 		846F263B2613384E00FEB452 /* AddProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductsVC.swift; sourceTree = "<group>"; };
 		846F263D2613385E00FEB452 /* AddAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsVC.swift; sourceTree = "<group>"; };
+		846F264026143C8500FEB452 /* UploadDocumentCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentCollCell.swift; sourceTree = "<group>"; };
+		846F264126143C8500FEB452 /* UploadDocumentCollCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadDocumentCollCell.xib; sourceTree = "<group>"; };
+		846F264426143E0B00FEB452 /* UploadDocumentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentTableCell.swift; sourceTree = "<group>"; };
+		846F264526143E0B00FEB452 /* UploadDocumentTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadDocumentTableCell.xib; sourceTree = "<group>"; };
 		847297D125E7739800711CEE /* ProductDetailPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailPopUpVC.swift; sourceTree = "<group>"; };
 		847297D425E8BD9200711CEE /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		8472A28D26131B60006A59A0 /* SubmitAssetsProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAssetsProductsVC.swift; sourceTree = "<group>"; };
@@ -1846,6 +1854,17 @@
 			path = Wallet;
 			sourceTree = "<group>";
 		};
+		846F263F26143C5600FEB452 /* XIB's */ = {
+			isa = PBXGroup;
+			children = (
+				846F264026143C8500FEB452 /* UploadDocumentCollCell.swift */,
+				846F264126143C8500FEB452 /* UploadDocumentCollCell.xib */,
+				846F264426143E0B00FEB452 /* UploadDocumentTableCell.swift */,
+				846F264526143E0B00FEB452 /* UploadDocumentTableCell.xib */,
+			);
+			path = "XIB's";
+			sourceTree = "<group>";
+		};
 		847297D325E8BD7E00711CEE /* ChangePasswordVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1857,6 +1876,7 @@
 		8472A28C26131B36006A59A0 /* SubmitAssetsProductsVC */ = {
 			isa = PBXGroup;
 			children = (
+				846F263F26143C5600FEB452 /* XIB's */,
 				8472A28D26131B60006A59A0 /* SubmitAssetsProductsVC.swift */,
 				846F263B2613384E00FEB452 /* AddProductsVC.swift */,
 				846F263D2613385E00FEB452 /* AddAssetsVC.swift */,
@@ -2223,6 +2243,7 @@
 				84E1F2DF26007DA4002B0062 /* MyWalletTableCell.xib in Resources */,
 				84411E9C25D1577C00718BD1 /* UserProfileImageCell.xib in Resources */,
 				845ADB8425ECAEB7009392E2 /* BottomSheetVC.xib in Resources */,
+				846F264726143E0B00FEB452 /* UploadDocumentTableCell.xib in Resources */,
 				088E33C124CAF382001EE899 /* DatePickerViewController.xib in Resources */,
 				0824B0C52382847800F81A9B /* countryCodes.json in Resources */,
 				84D5660825DB9EC80047F052 /* CategoryListTableCell.xib in Resources */,
@@ -2258,6 +2279,7 @@
 				08808A2C247262B100564CA2 /* GoogleService-Info.plist in Resources */,
 				0831EAC0241F65E800AAC527 /* CatogriesCell.xib in Resources */,
 				086F1393246ED13E00EA4355 /* BuyTokenViewController.xib in Resources */,
+				846F264326143C8500FEB452 /* UploadDocumentCollCell.xib in Resources */,
 				84FA6EAA25E4BDC30053E618 /* Fonts in Resources */,
 				080FC599238D43560013B37D /* PaymentsListCell.xib in Resources */,
 				0824B02D238280E700F81A9B /* Main.storyboard in Resources */,
@@ -2514,6 +2536,7 @@
 				84A6C31925DA39C400C00EB1 /* AllProductsVC.swift in Sources */,
 				08A905CB23BDCF1800C794F1 /* InputEntity.swift in Sources */,
 				844682D325D53CB900F44A53 /* ProductSortVC.swift in Sources */,
+				846F264626143E0B00FEB452 /* UploadDocumentTableCell.swift in Sources */,
 				84E16F0925D5215B004F37FA /* ProductCollectionCell.swift in Sources */,
 				84A6C32725DA820F00C00EB1 /* CategoryNewProductsVC.swift in Sources */,
 				0824B1072382A12000F81A9B /* File.swift in Sources */,
@@ -2552,6 +2575,7 @@
 				089C287D23F18E8800230AB3 /* EmptyResultCell.swift in Sources */,
 				0824B0D82382847800F81A9B /* ErrorMessages.swift in Sources */,
 				0824B0D22382847800F81A9B /* MakeJson.swift in Sources */,
+				846F264226143C8500FEB452 /* UploadDocumentCollCell.swift in Sources */,
 				84411E9B25D1577C00718BD1 /* UserProfileImageCell.swift in Sources */,
 				84411E8D25D1099F00718BD1 /* AppConstants.swift in Sources */,
 				845B9DD125D50318009E388F /* CategoriesVC.swift in Sources */,

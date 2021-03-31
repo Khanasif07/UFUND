@@ -38,6 +38,11 @@ class AddAssetsVC: UIViewController {
         initialSetup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.mainTableView.layoutIfNeeded()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.mainTableView.reloadData()
@@ -54,31 +59,6 @@ extension AddAssetsVC: PresenterOutputProtocol {
             self.userDetails = dataDict as? UserDetails
             self.userProfile = self.userDetails?.user
             self.loader.isHidden = true
-            self.generalInfoArray[0].1 = self.userProfile?.name ?? ""
-            self.generalInfoArray[1].1 = self.userProfile?.last_name ?? ""
-            self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
-            self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
-            self.generalInfoArray[4].1 = self.userProfile?.address1 ?? ""
-            self.generalInfoArray[5].1 = self.userProfile?.address2 ?? ""
-            self.generalInfoArray[6].1 = self.userProfile?.zip_code ?? ""
-            self.generalInfoArray[7].1 = self.userProfile?.city ?? ""
-            self.generalInfoArray[8].1 = self.userProfile?.state ?? ""
-            self.generalInfoArray[9].1 = self.userProfile?.country ?? ""
-            
-            self.bankInfoArray[0].1 = self.userProfile?.bank_name ?? ""
-            self.bankInfoArray[1].1 = self.userProfile?.account_name ?? ""
-            self.bankInfoArray[2].1 = self.userProfile?.account_number ?? ""
-            self.bankInfoArray[3].1 = self.userProfile?.routing_number ?? ""
-            self.bankInfoArray[4].1 = self.userProfile?.iban_number ?? ""
-            self.bankInfoArray[5].1 = self.userProfile?.swift_number ?? ""
-            self.bankInfoArray[6].1 = self.userProfile?.bank_address ?? ""
-            User.main.picture  = self.userProfile?.picture
-            User.main.name  = self.userProfile?.name
-            User.main.email  = self.userProfile?.email
-            User.main.mobile = self.userProfile?.mobile
-            storeInUserDefaults()
-            self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
-            self.mainTableView.reloadData()
     }
     
     func showError(error: CustomError) {
@@ -87,13 +67,13 @@ extension AddAssetsVC: PresenterOutputProtocol {
     }
     
     private func initialSetup() {
+        self.mainTableView.registerCell(with: UploadDocumentTableCell.self)
         self.mainTableView.registerCell(with: UserProfilePhoneNoCell.self)
         self.mainTableView.registerCell(with: UserProfileImageCell.self)
         self.mainTableView.registerCell(with: UserProfileTableCell.self)
         self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-//        self.getProfileDetails()
     }
     
     func getProfileDetails(){
@@ -144,10 +124,9 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
             cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
             return  cell
         default:
-            let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
-            cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
-            cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
-            cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
+             let cell = tableView.dequeueCell(with: UploadDocumentTableCell.self, indexPath: indexPath)
+            cell.isFromAddProduct = false
+            cell.tabsCollView.layoutIfNeeded()
             return  cell
         }
     }
