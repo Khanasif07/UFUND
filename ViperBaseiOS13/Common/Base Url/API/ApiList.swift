@@ -162,3 +162,39 @@ enum SocialLoginType: Int {
         }
     }
 }
+
+ enum AddProductCell{
+     case basicDetailsAssets
+     case basicDetailsProduct
+     case productSpecifics
+     case dAteSpecifics
+     case documentImage
+     
+     var sectionCount: Int {
+         switch self{
+         case .basicDetailsAssets:
+             return 7
+         case .basicDetailsProduct:
+             return 6
+         case .productSpecifics:
+             return 4
+         case .dAteSpecifics:
+             return 5
+         case .documentImage:
+             return 1
+         }
+     }
+     
+     var titleValue: String {
+         switch self{
+         case .basicDetailsAssets,.basicDetailsProduct:
+             return "Basic Details"
+         case .productSpecifics:
+             return "Product Specifics"
+         case .dAteSpecifics:
+             return "Date Specifics"
+         case .documentImage:
+             return "Document & Image"
+         }
+     }
+ }

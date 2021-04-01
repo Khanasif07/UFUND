@@ -130,11 +130,11 @@ extension CurrencyVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(with: CategoryListTableCell.self, indexPath: indexPath)
         if tokenType == .Asset {
-            cell.currency = isSearchOn ? self.searchedAssetsListing[indexPath.row] : assetsListing[indexPath.row] ?? AssetTokenTypeModel()
+            cell.currency = isSearchOn ? self.searchedAssetsListing[indexPath.row] : assetsListing[indexPath.row]
             let isPowerSelected = self.selectedAssetsListing.contains(where: {$0.id == (isSearchOn ? self.searchedAssetsListing[indexPath.row].id : assetsListing[indexPath.row].id)})
               cell.statusButton.isSelected = isPowerSelected
         } else {
-            cell.currency = isSearchOn ? self.searchedTokenListing[indexPath.row] : tokenListing[indexPath.row] ?? AssetTokenTypeModel()
+            cell.currency = isSearchOn ? self.searchedTokenListing[indexPath.row] : tokenListing[indexPath.row]
             let isPowerSelected = self.selectedTokenListing.contains(where: {$0.id == (isSearchOn ? self.searchedTokenListing[indexPath.row].id : tokenListing[indexPath.row].id)})
               cell.statusButton.isSelected = isPowerSelected
         }

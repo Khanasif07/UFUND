@@ -13,17 +13,17 @@ class AddProductsVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var requestBtn: UIButton!
+    @IBOutlet var footerView: UIView!
     @IBOutlet weak var mainTableView: UITableView!
     
     // MARK: - Variables
     //===========================
     let userProfileInfoo : [UserProfileAttributes] = UserProfileAttributes.allCases
     var addProductModel  =  ProductModel(json: [:])
-    var imageData: Data?
-    var profileImgUrl : URL?
-    var userDetails: UserDetails?
-    var userProfile: UserProfile?
-    var countryCode: String  = "+91"
+    var imgDataArray = [(UIImage,Data,Bool)]()
+    var categoryListing = [CategoryModel]()
+    var sortTypeAppliedCategory = CategoryModel()
     var generalInfoArray = [("Product Name",""),("Brand",""),("Number of Products",""),("HS Code",""),("EAN Code",""),("UPC Code",""),("ZipCode",""),("City",""),("State",""),("Country","")]
     var bankInfoArray = [("Category",""),("Value of Product",""),("Enter Investment (%)",""),("Description","")]
     var dateInfoArray = [("Start Date",""),("End Date",""),("Investment Date",""),("Maturity Count",""),("Maturity Date","")]
@@ -49,14 +49,17 @@ class AddProductsVC: UIViewController {
             self.mainTableView.reloadData()
         }
     }
+    
+    @IBAction func requestBtnAction(_ sender: UIButton) {
+         requestBtn.isSelected.toggle()
+    }
+    
 }
 
 // MARK: - Extension For Functions
 //===========================
 extension AddProductsVC: PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        self.userDetails = dataDict as? UserDetails
-        self.userProfile = self.userDetails?.user
         self.loader.isHidden = true
     }
     
@@ -66,13 +69,16 @@ extension AddProductsVC: PresenterOutputProtocol {
     }
     
     private func initialSetup() {
+        self.imgDataArray = [(#imageLiteral(resourceName: "checkOut"),Data(),false),(#imageLiteral(resourceName: "checkOut"),Data(),false),(#imageLiteral(resourceName: "checkOut"),Data(),false),(#imageLiteral(resourceName: "checkOut"),Data(),false)]
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.registerCell(with: UploadDocumentTableCell.self)
         self.mainTableView.registerCell(with: UserProfilePhoneNoCell.self)
         self.mainTableView.registerCell(with: UserProfileTableCell.self)
+        self.mainTableView.registerCell(with: AddDescTableCell.self)
         self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
-        //        self.getProfileDetails()
+        self.mainTableView.tableFooterView = footerView
+        self.mainTableView.tableFooterView?.height = 125.0
     }
 }
 
@@ -109,21 +115,39 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
             cell.textFIeld.delegate = self
             cell.titleLbl.text = self.generalInfoArray[indexPath.row].0
             cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row].0
-            cell.textFIeld.text = self.generalInfoArray[indexPath.row].1
+            if indexPath.row == 2{
+                cell.textFIeld.keyboardType = .numberPad
+            } else {
+                 cell.textFIeld.keyboardType = .default
+            }
             return  cell
         case .productSpecifics:
-            let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
-            if indexPath.row == 0{
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+            if indexPath.row == sections[indexPath.section].sectionCount - 1 {
+                let cell = tableView.dequeueCell(with: AddDescTableCell.self, indexPath: indexPath)
+                cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
+//                cell.textView.delegate = self
+                return cell
             } else {
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+                cell.textFIeld.delegate = self
+                if indexPath.row == 1 || indexPath.row == 2{
+                    cell.textFIeld.keyboardType = .numberPad
+                } else {
+                     cell.textFIeld.keyboardType = .default
+                }
+                if indexPath.row == 0{
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                    cell.textFIeld.text = self.sortTypeAppliedCategory.category_name
+                } else {
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                }
+                cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
+                cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
+                return  cell
             }
-            cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
-            cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
-            cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
-            return  cell
         case .dAteSpecifics:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+            cell.textFIeld.delegate = self
             if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2{
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
             } else if indexPath.row == 3 {
@@ -133,19 +157,19 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
             }
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0
-            cell.textFIeld.text = self.dateInfoArray[indexPath.row].1
             return  cell
             
         default:
             let cell = tableView.dequeueCell(with: UploadDocumentTableCell.self, indexPath: indexPath)
-            cell.uploadBtnsTapped = { [weak self] (sender)  in
+            cell.imgDataArray = self.imgDataArray
+            cell.uploadBtnsTapped = { [weak self] (index)  in
                 guard let selff = self else {return}
                 selff.showImage { (image) in
                     if image != nil {
                         let image : UIImage = image!
                         let data = image.jpegData(compressionQuality: 0.2)
-                        //                        self.prodTokenImgData = data
-                        //                        self.prodTokenImg.image = image
+                        selff.imgDataArray[index.row] = (image,data!,true)
+                        selff.mainTableView.reloadData()
                     }
                 }
             }
@@ -207,6 +231,28 @@ extension AddProductsVC : UITextFieldDelegate {
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        _ = textField.text?.byRemovingLeadingTrailingWhiteSpaces ?? ""
+        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
+            if  let indexPath = mainTableView.indexPath(forItem: cell){
+                if sections[indexPath.section] == .productSpecifics {
+                    switch indexPath.row {
+                    case 0:
+                        self.view.endEditing(true)
+                        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
+                        vc.delegate = self
+                        vc.usingForSort = .addProducts
+                        vc.sortDataArray = self.categoryListing
+                        vc.sortTypeAppliedCategory = self.sortTypeAppliedCategory
+                        self.present(vc, animated: true, completion: nil)
+                    default:
+                        print("Do Nothing")
+                    }
+                }
+            }
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //        let currentString: NSString = textField.text! as NSString
         //        let newString: NSString =
@@ -231,3 +277,11 @@ extension AddProductsVC : UITextFieldDelegate {
     }
 }
 
+//MARK:- Sorting
+//==============
+extension AddProductsVC: ProductSortVCDelegate{
+    func sortingAppliedInCategory(sortType: CategoryModel) {
+        self.sortTypeAppliedCategory = sortType
+        self.mainTableView.reloadData()
+    }
+}

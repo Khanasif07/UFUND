@@ -135,6 +135,7 @@ struct AssetTokenTypeModel : Mappable {
     var created_at : String?
     var updated_at : String?
     var name : String?
+    var isSelected: Bool = false
     
     init?(map: Map) {
 

@@ -2584,10 +2584,62 @@
                         <viewLayoutGuide key="safeArea" id="YIl-YJ-Yef"/>
                     </view>
                     <connections>
+                        <outlet property="footerView" destination="tQ6-C9-L4f" id="noI-eF-Eb6"/>
                         <outlet property="mainTableView" destination="jpJ-7t-CP6" id="LD2-Qz-e0I"/>
+                        <outlet property="requestBtn" destination="Dj9-2l-JjF" id="ap2-Xe-S5M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2p-3t-U1p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="tQ6-C9-L4f">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntV-O0-HbZ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WHc-pa-eO1">
+                                    <rect key="frame" x="16" y="10" width="199.5" height="30"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dj9-2l-JjF">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Dj9-2l-JjF" secondAttribute="height" multiplier="1:1" id="5C9-gx-NmR"/>
+                                                <constraint firstAttribute="height" constant="30" id="sN9-Xh-dOc"/>
+                                            </constraints>
+                                            <state key="normal" image="checkBoxUncheck"/>
+                                            <state key="selected" image="checkBoxChecked"/>
+                                            <connections>
+                                                <action selector="requestBtnAction:" destination="V9h-I0-UYx" eventType="touchUpInside" id="JOS-yP-pdh"/>
+                                                <action selector="requestBtnAction:" destination="iuS-Cu-5qA" eventType="touchUpInside" id="jCO-Ic-96S"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request For Deployment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kge-Mo-K26">
+                                            <rect key="frame" x="40" y="0.0" width="159.5" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" name="tabUnSelected"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="8wM-nf-0vA"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WHc-pa-eO1" secondAttribute="trailing" constant="16" id="Rv6-Iy-Sfk"/>
+                                <constraint firstItem="WHc-pa-eO1" firstAttribute="leading" secondItem="ntV-O0-HbZ" secondAttribute="leading" constant="16" id="dQg-WF-j1q"/>
+                                <constraint firstItem="WHc-pa-eO1" firstAttribute="centerY" secondItem="ntV-O0-HbZ" secondAttribute="centerY" id="z2i-Bs-xjc"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="OR5-2d-O08" firstAttribute="trailing" secondItem="ntV-O0-HbZ" secondAttribute="trailing" id="5dL-rg-Llm"/>
+                        <constraint firstItem="ntV-O0-HbZ" firstAttribute="leading" secondItem="tQ6-C9-L4f" secondAttribute="leading" id="8vO-f9-zXr"/>
+                        <constraint firstItem="ntV-O0-HbZ" firstAttribute="leading" secondItem="OR5-2d-O08" secondAttribute="leading" id="GfG-ss-oSj"/>
+                        <constraint firstAttribute="top" secondItem="ntV-O0-HbZ" secondAttribute="top" id="GoB-Mm-lnl"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="OR5-2d-O08"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="8949" y="40"/>
         </scene>
@@ -2626,10 +2678,60 @@
                         <viewLayoutGuide key="safeArea" id="Jaf-eh-G4G"/>
                     </view>
                     <connections>
+                        <outlet property="footerView" destination="Vkn-tf-8rg" id="785-bC-efK"/>
                         <outlet property="mainTableView" destination="iMo-7a-HaN" id="WKh-BM-now"/>
+                        <outlet property="requestBtn" destination="HZ9-Qy-YWz" id="gP6-fv-afp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNl-Ue-Zd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Vkn-tf-8rg">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh3-Ym-ge9">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JMh-J6-Fpa">
+                                    <rect key="frame" x="16" y="10" width="199.5" height="30"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZ9-Qy-YWz">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="LXq-Sx-5bw"/>
+                                                <constraint firstAttribute="width" secondItem="HZ9-Qy-YWz" secondAttribute="height" multiplier="1:1" id="weM-un-9ir"/>
+                                            </constraints>
+                                            <state key="normal" image="checkBoxUncheck"/>
+                                            <state key="selected" image="checkBoxChecked"/>
+                                            <connections>
+                                                <action selector="requestBtnAction:" destination="V9h-I0-UYx" eventType="touchUpInside" id="iCd-vn-oDu"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request For Deployment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIv-Fr-iNb">
+                                            <rect key="frame" x="40" y="0.0" width="159.5" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" name="tabUnSelected"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JMh-J6-Fpa" secondAttribute="trailing" constant="16" id="5o3-bb-rpM"/>
+                                <constraint firstAttribute="height" constant="50" id="VeA-Yg-r5J"/>
+                                <constraint firstItem="JMh-J6-Fpa" firstAttribute="centerY" secondItem="yh3-Ym-ge9" secondAttribute="centerY" id="hHH-oC-bf3"/>
+                                <constraint firstItem="JMh-J6-Fpa" firstAttribute="leading" secondItem="yh3-Ym-ge9" secondAttribute="leading" constant="16" id="n3f-2h-GSv"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="yh3-Ym-ge9" firstAttribute="leading" secondItem="UvS-1j-98I" secondAttribute="leading" id="HAj-cT-cZM"/>
+                        <constraint firstItem="yh3-Ym-ge9" firstAttribute="top" secondItem="Vkn-tf-8rg" secondAttribute="top" id="hDa-sI-KPW"/>
+                        <constraint firstItem="UvS-1j-98I" firstAttribute="trailing" secondItem="yh3-Ym-ge9" secondAttribute="trailing" id="vct-zO-xUb"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="UvS-1j-98I"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="9718" y="42"/>
         </scene>
@@ -2637,6 +2739,8 @@
     <resources>
         <image name="add" width="16.5" height="13"/>
         <image name="bg2" width="711" height="476"/>
+        <image name="checkBoxChecked" width="24" height="24"/>
+        <image name="checkBoxUncheck" width="24" height="24"/>
         <image name="icBackward" width="28" height="28"/>
         <image name="icFilter" width="16" height="15"/>
         <image name="icInformation" width="86" height="86"/>
@@ -2650,6 +2754,9 @@
         </namedColor>
         <namedColor name="primaryColor">
             <color red="1" green="0.11999999731779099" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabUnSelected">
+            <color red="0.69999998807907104" green="0.69999998807907104" blue="0.69999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

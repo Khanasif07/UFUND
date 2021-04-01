@@ -9,21 +9,46 @@ import UIKit
 
 protocol ProductSortVCDelegate:class {
     func sortingApplied(sortType: String)
+    func sortingAppliedInCategory(sortType: CategoryModel)
+    func sortingAppliedInAssetType(sortType: AssetTokenTypeModel)
+    func sortingAppliedInTokenType(sortType: AssetTokenTypeModel)
+}
+
+extension ProductSortVCDelegate {
+    func sortingApplied(sortType: String){}
+    func sortingAppliedInCategory(sortType: CategoryModel) {}
+    func sortingAppliedInAssetType(sortType: AssetTokenTypeModel){}
+    func sortingAppliedInTokenType(sortType: AssetTokenTypeModel){}
 }
 
 class ProductSortVC: UIViewController {
+    enum UsingForSort{
+        case filter
+        case addAssets
+        case assetType
+        case tokenType
+        case addProducts
+    }
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var tableViewHConst: NSLayoutConstraint!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var dataContainerView: UIView!
     
     // MARK: - Variables
     //===========================
+    var usingForSort : UsingForSort = .filter
     var sortTypeApplied: String  = ""
+    var sortTypeAppliedCategory = CategoryModel()
+    var sortTypeAppliedAsset = AssetTokenTypeModel()
+    var sortTypeAppliedToken = AssetTokenTypeModel()
     weak var delegate :ProductSortVCDelegate?
     var sortArray = [(Constants.string.sort_by_latest,false),(Constants.string.sort_by_oldest,false),(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
+    var sortDataArray = [CategoryModel]()
+    var sortTypeAssetListing = [AssetTokenTypeModel]()
+    var sortTypeTokenListing = [AssetTokenTypeModel]()
     
     // MARK: - Lifecycle
     //===========================
@@ -36,7 +61,11 @@ class ProductSortVC: UIViewController {
         super.viewDidLayoutSubviews()
         self.dataContainerView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 15.0)
         mainTableView.frame = CGRect(x: mainTableView.frame.origin.x, y: mainTableView.frame.origin.y, width: mainTableView.frame.size.width, height: mainTableView.contentSize.height)
-        tableViewHConst.constant = mainTableView.frame.height + 15.0
+        if mainTableView.frame.height + 15.0 >= (UIScreen.main.bounds.height){
+            tableViewHConst.constant = UIScreen.main.bounds.height - 220.0
+        } else{
+            tableViewHConst.constant = mainTableView.frame.height + 15.0
+        }
         mainTableView.reloadData()
     }
     
@@ -54,7 +83,20 @@ class ProductSortVC: UIViewController {
 extension ProductSortVC {
     
     private func initialSetup() {
-        self.setSelectedSortingData()
+        switch usingForSort {
+        case .filter:
+            self.titleLbl.text = Constants.string.sort_by.localize()
+            self.setSelectedSortingData()
+        case .assetType:
+            self.titleLbl.text = Constants.string.asset_type.localize()
+            self.setSelectedSortingDataForAssetType()
+        case .tokenType:
+            self.titleLbl.text = Constants.string.token_type.localize()
+            self.setSelectedSortingDataForTokenType()
+        default:
+            self.titleLbl.text = Constants.string.category.localize()
+            self.setSelectedSortingDataForCategory()
+        }
         self.tableViewSetup()
     }
     
@@ -71,6 +113,30 @@ extension ProductSortVC {
             self.sortArray[index].1 =  true
         }
     }
+    
+    private func setSelectedSortingDataForCategory(){
+        if let index =  self.sortDataArray.firstIndex(where: { (sortData) -> Bool in
+            return  sortData.id == sortTypeAppliedCategory.id
+        }){
+            self.sortDataArray[index].isSelected =  true
+        }
+    }
+    
+    private func setSelectedSortingDataForAssetType(){
+        if let index =  self.sortTypeAssetListing.firstIndex(where: { (sortData) -> Bool in
+            return  sortData.id == sortTypeAppliedAsset.id
+        }){
+            self.sortTypeAssetListing[index].isSelected =  true
+        }
+    }
+    
+    private func setSelectedSortingDataForTokenType(){
+        if let index =  self.sortTypeTokenListing.firstIndex(where: { (sortData) -> Bool in
+            return  sortData.id == sortTypeAppliedToken.id
+        }){
+            self.sortTypeTokenListing[index].isSelected =  true
+        }
+    }
 }
 
 // MARK: - Extension For TableView
@@ -78,13 +144,34 @@ extension ProductSortVC {
 extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sortArray.endIndex
+        switch usingForSort {
+        case .filter:
+            return sortArray.endIndex
+        case .assetType:
+            return sortTypeAssetListing.endIndex
+        case .tokenType:
+            return sortTypeTokenListing.endIndex
+        default:
+            return sortDataArray.endIndex
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(with: ProductSortTableCell.self, indexPath: indexPath)
-        cell.sortTitleLbl.text = self.sortArray[indexPath.row].0
-        cell.sortBtn.setImage(self.sortArray[indexPath.row].1 ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
+        switch usingForSort {
+        case .filter:
+            cell.sortTitleLbl.text = self.sortArray[indexPath.row].0
+            cell.sortBtn.setImage(self.sortArray[indexPath.row].1 ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
+        case .assetType:
+            cell.sortTitleLbl.text = self.sortTypeAssetListing[indexPath.row].name
+            cell.sortBtn.setImage(self.sortTypeAssetListing[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
+        case .tokenType:
+            cell.sortTitleLbl.text = self.sortTypeTokenListing[indexPath.row].name
+            cell.sortBtn.setImage(self.sortTypeTokenListing[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
+        default:
+            cell.sortTitleLbl.text = self.sortDataArray[indexPath.row].category_name
+            cell.sortBtn.setImage(self.sortDataArray[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
+        }
         return cell
     }
     
@@ -93,19 +180,67 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let indexx = self.sortArray.firstIndex(where: { (sortTuple) -> Bool in
-            return sortTuple.1
-        }){
-           self.sortArray[indexx].1 = false
-           self.sortArray[indexPath.row].1 = true
-           self.delegate?.sortingApplied(sortType: self.sortArray[indexPath.row].0)
-        } else {
-            self.sortArray[indexPath.row].1 = true
-            self.delegate?.sortingApplied(sortType: self.sortArray[indexPath.row].0)
-        }
-        self.mainTableView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.popOrDismiss(animation: true)
+        switch usingForSort {
+        case .filter:
+            if let indexx = self.sortArray.firstIndex(where: { (sortTuple) -> Bool in
+                return sortTuple.1
+            }){
+                self.sortArray[indexx].1 = false
+                self.sortArray[indexPath.row].1 = true
+                self.delegate?.sortingApplied(sortType: self.sortArray[indexPath.row].0)
+            } else {
+                self.sortArray[indexPath.row].1 = true
+                self.delegate?.sortingApplied(sortType: self.sortArray[indexPath.row].0)
+            }
+            self.mainTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.popOrDismiss(animation: true)
+            }
+        case .assetType:
+            if let indexx = self.sortTypeAssetListing.firstIndex(where: { (sortTuple) -> Bool in
+                return sortTuple.isSelected
+            }){
+                self.sortTypeAssetListing[indexx].isSelected = false
+                self.sortTypeAssetListing[indexPath.row].isSelected = true
+                self.delegate?.sortingAppliedInAssetType(sortType: self.sortTypeAssetListing[indexPath.row])
+            } else {
+                self.sortTypeAssetListing[indexPath.row].isSelected = true
+                self.delegate?.sortingAppliedInAssetType(sortType: self.sortTypeAssetListing[indexPath.row])
+            }
+            self.mainTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.popOrDismiss(animation: true)
+            }
+        case .tokenType:
+            if let indexx = self.sortTypeTokenListing.firstIndex(where: { (sortTuple) -> Bool in
+                return sortTuple.isSelected
+            }){
+                self.sortTypeTokenListing[indexx].isSelected = false
+                self.sortTypeTokenListing[indexPath.row].isSelected = true
+                self.delegate?.sortingAppliedInTokenType(sortType: self.sortTypeTokenListing[indexPath.row])
+            } else {
+                self.sortTypeTokenListing[indexPath.row].isSelected = true
+                self.delegate?.sortingAppliedInTokenType(sortType: self.sortTypeTokenListing[indexPath.row])
+            }
+            self.mainTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.popOrDismiss(animation: true)
+            }
+        default:
+            if let indexx = self.sortDataArray.firstIndex(where: { (sortData) -> Bool in
+                return sortData.isSelected
+            }){
+                self.sortDataArray[indexx].isSelected = false
+                self.sortDataArray[indexPath.row].isSelected = true
+                self.delegate?.sortingAppliedInCategory(sortType: self.sortDataArray[indexPath.row])
+            } else {
+                self.sortDataArray[indexPath.row].isSelected = true
+                self.delegate?.sortingAppliedInCategory(sortType: self.sortDataArray[indexPath.row])
+            }
+            self.mainTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.popOrDismiss(animation: true)
+            }
         }
     }
 }

@@ -19,6 +19,7 @@ struct CategoryModel: Mappable {
     var name : String?
     var type: String?
     var image : String?
+    var isSelected: Bool = false
 
     init?(map: Map)
     {

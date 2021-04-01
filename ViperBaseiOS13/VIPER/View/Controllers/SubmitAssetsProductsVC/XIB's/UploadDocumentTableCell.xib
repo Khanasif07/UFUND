@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HJw-D9-1sI">
-                        <rect key="frame" x="16" y="0.0" width="368" height="124"/>
+                        <rect key="frame" x="16" y="0.0" width="368" height="137.5"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="mWS-yV-FXf" customClass="ASDynamicCollectionView" customModule="UFUND" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="16" width="368" height="92"/>
+                                <rect key="frame" x="0.0" y="16" width="368" height="105.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="M8S-xi-lYe">
                                     <size key="itemSize" width="50" height="50"/>
@@ -41,7 +41,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="HJw-D9-1sI" secondAttribute="bottom" constant="16" id="0mI-kw-O4H"/>
+                    <constraint firstAttribute="bottom" secondItem="HJw-D9-1sI" secondAttribute="bottom" constant="2.5" id="0mI-kw-O4H"/>
                     <constraint firstItem="HJw-D9-1sI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HOA-N1-g3l"/>
                     <constraint firstItem="HJw-D9-1sI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ULP-Yb-Y1P"/>
                     <constraint firstAttribute="trailing" secondItem="HJw-D9-1sI" secondAttribute="trailing" constant="16" id="kzu-TD-uuF"/>

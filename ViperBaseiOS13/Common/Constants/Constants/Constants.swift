@@ -278,6 +278,7 @@ struct Constants {
     let sort_by_name_ZA = "Sort by Name (Z-A)"
     let sort_by_latest = "Sort by Latest"
     let sort_by_oldest = "Sort by Oldest"
+    let sort_by = "Sort By"
     
     //change password vc
     let enterOldPassWord = "Enter Old Password";

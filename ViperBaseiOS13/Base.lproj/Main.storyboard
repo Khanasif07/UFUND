@@ -9607,6 +9607,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="dataContainerView" destination="HQu-dW-ujp" id="EfL-MN-Fbb"/>
                         <outlet property="mainTableView" destination="sos-sa-7FH" id="M44-Hk-gTO"/>
                         <outlet property="tableViewHConst" destination="Zae-eZ-CkG" id="5Rl-uB-eXH"/>
+                        <outlet property="titleLbl" destination="lCp-Qv-Nxf" id="NWv-vl-ODo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6YP-lJ-OBZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
