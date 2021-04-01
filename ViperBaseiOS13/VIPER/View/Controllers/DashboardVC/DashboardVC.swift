@@ -28,6 +28,7 @@ class DashboardVC: UIViewController {
     //===========================
     var cellTypes : [DashboardCellType] = [.DashboardTabsTableCell,.DashboardBarChartCell,.DashboardInvestmentCell]
     var investorDashboardData : DashboardEntity?
+    var investorDashboardGraphData : DashboardEntity?
     var campaignerDashboardData : DashboardEntity?
     var isBuyHistoryTabSelected: Bool = false
     var sortTypeForMonthly: String = ""
@@ -131,6 +132,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardBarChartCell:
             let cell = tableView.dequeueCell(with: DashboardBarChartCell.self, indexPath: indexPath)
+            cell.vertXValues = self.investorDashboardGraphData?.lable!.map { String($0) } ?? []
             cell.buyMonthlyBtnTapped = { [weak self] (sender) in
                 guard let sself = self else {return }
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
@@ -212,6 +214,13 @@ extension DashboardVC: PresenterOutputProtocol {
             let investorDashboardEntity = dataDict as? CampaignerDashboardEntity
             if let productData = investorDashboardEntity?.data {
                 self.campaignerDashboardData = productData
+            }
+            self.mainTableView.reloadData()
+        case Base.investor_dashboard_graph.rawValue:
+            self.loader.isHidden = true
+            let investorDashboardEntity = dataDict as? InvestorDashboardEntity
+            if let productData = investorDashboardEntity?.data {
+                self.investorDashboardGraphData = productData
             }
             self.mainTableView.reloadData()
         default:

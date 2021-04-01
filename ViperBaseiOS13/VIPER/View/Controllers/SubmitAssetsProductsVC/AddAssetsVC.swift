@@ -18,7 +18,7 @@ class AddAssetsVC: UIViewController {
     // MARK: - Variables
     //===========================
     let userProfileInfoo : [UserProfileAttributes] = UserProfileAttributes.allCases
-    var param  =  [String:Any]()
+    var addAssetModel = ProductModel(json: [:])
     var imageData: Data?
     var profileImgUrl : URL?
     var userDetails: UserDetails?
@@ -29,7 +29,7 @@ class AddAssetsVC: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
-    var sections : [AddProductCell] = [.basicDetails,.productSpecifics,.documentImage]
+    var sections : [AddProductCell] = [.basicDetailsAssets,.productSpecifics,.documentImage]
     
     // MARK: - Lifecycle
     //===========================
@@ -109,23 +109,40 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
        }
        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
+          switch sections[indexPath.section] {
+            case .basicDetailsAssets:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
             cell.textFIeld.delegate = self
             cell.titleLbl.text = self.generalInfoArray[indexPath.row].0
             cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row].0
             cell.textFIeld.text = self.generalInfoArray[indexPath.row].1
             return  cell
-        case 1:
+        case .productSpecifics:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+            if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2{
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+            } else {
+                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+            }
             cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
             cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
             return  cell
         default:
              let cell = tableView.dequeueCell(with: UploadDocumentTableCell.self, indexPath: indexPath)
-            cell.isFromAddProduct = false
+             cell.uploadBtnsTapped = { [weak self] (sender)  in
+                guard let selff = self else {return}
+                selff.showImage { (image) in
+                    if image != nil {
+                        
+                        let image : UIImage = image!
+                        let data = image.jpegData(compressionQuality: 0.2)
+//                        self.prodTokenImgData = data
+//                        self.prodTokenImg.image = image
+                    }
+                }
+             }
+             cell.isFromAddProduct = false
             cell.tabsCollView.layoutIfNeeded()
             return  cell
         }
@@ -139,18 +156,39 @@ extension AddAssetsVC : UITextFieldDelegate {
         let text = textField.text?.byRemovingLeadingTrailingWhiteSpaces ?? ""
         if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
             if  let indexPath = mainTableView.indexPath(forItem: cell){
-                if indexPath.section == 0 {
-                    self.generalInfoArray[indexPath.row - 1].1 = text
-                } else {
-                    self.bankInfoArray[indexPath.row].1 = text
+                    if indexPath.section == 0 {
+                        switch indexPath.row {
+                        case 0:
+                            self.addAssetModel.asset_title = text
+                        case 1:
+                            self.addAssetModel.tokenname = text
+                        case 2:
+                            self.addAssetModel.tokenvalue = Int(text)
+                        case 3:
+                            self.addAssetModel.tokensymbol = text
+                        case 4:
+                            self.addAssetModel.tokensupply = Int(text)
+                        case 5:
+                            self.addAssetModel.decimal = Int(text)
+                        default:
+                            self.addAssetModel.asset_amount = Int(text)
+                        }
+                    } else if indexPath.section == 1 {
+                        switch indexPath.row {
+                        case 0:
+                            self.addAssetModel.category_id = Int(text)
+                        case 1:
+                            self.addAssetModel.asset_type = text
+                        case 2:
+                            self.addAssetModel.token_type = Int(text)
+                        case 3:
+                            self.addAssetModel.asset_description = text
+                        default:
+                            self.addAssetModel.asset_description = text
+                        }
+                    }
                 }
             }
-        }
-        if let cell = mainTableView.cell(forItem: textField) as? UserProfilePhoneNoCell {
-            if  let indexPath = mainTableView.indexPath(forItem: cell){
-                self.generalInfoArray[indexPath.row - 1].1 = text
-            }
-        }
     }
       
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -179,14 +217,17 @@ extension AddAssetsVC : UITextFieldDelegate {
 
 
 enum AddProductCell{
-    case basicDetails
+    case basicDetailsAssets
+    case basicDetailsProduct
     case productSpecifics
     case dAteSpecifics
     case documentImage
     
     var sectionCount: Int {
         switch self{
-        case .basicDetails:
+        case .basicDetailsAssets:
+            return 7
+        case .basicDetailsProduct:
             return 6
         case .productSpecifics:
             return 4
@@ -199,7 +240,7 @@ enum AddProductCell{
     
     var titleValue: String {
         switch self{
-        case .basicDetails:
+        case .basicDetailsAssets,.basicDetailsProduct:
             return "Basic Details"
         case .productSpecifics:
             return "Product Specifics"

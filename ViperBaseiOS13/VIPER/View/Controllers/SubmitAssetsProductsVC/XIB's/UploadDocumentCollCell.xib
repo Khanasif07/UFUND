@@ -64,13 +64,30 @@ Document</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qla-lT-jwD">
+                                        <rect key="frame" x="9" y="7.5" width="157.5" height="131.5"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bg3-KF-b7u">
+                                        <rect key="frame" x="9" y="7.5" width="157.5" height="131.5"/>
+                                        <connections>
+                                            <action selector="uploadBtnAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="wfW-Qh-9JC"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="qla-lT-jwD" firstAttribute="leading" secondItem="1j3-3u-IMH" secondAttribute="leading" id="068-Lt-nwC"/>
+                                    <constraint firstItem="qla-lT-jwD" firstAttribute="top" secondItem="1j3-3u-IMH" secondAttribute="top" id="6y0-rh-a4h"/>
+                                    <constraint firstItem="Bg3-KF-b7u" firstAttribute="bottom" secondItem="1j3-3u-IMH" secondAttribute="bottom" id="Chr-ay-IUE"/>
                                     <constraint firstItem="1j3-3u-IMH" firstAttribute="centerX" secondItem="iRi-qI-f4w" secondAttribute="centerX" id="DbP-nB-VVY"/>
                                     <constraint firstItem="1j3-3u-IMH" firstAttribute="width" secondItem="iRi-qI-f4w" secondAttribute="width" multiplier="0.9" id="DsL-Yy-vxY"/>
+                                    <constraint firstItem="qla-lT-jwD" firstAttribute="bottom" secondItem="1j3-3u-IMH" secondAttribute="bottom" id="E4J-Ec-vHN"/>
+                                    <constraint firstItem="Bg3-KF-b7u" firstAttribute="top" secondItem="1j3-3u-IMH" secondAttribute="top" id="LZO-Cg-1rk"/>
+                                    <constraint firstItem="qla-lT-jwD" firstAttribute="trailing" secondItem="1j3-3u-IMH" secondAttribute="trailing" id="mQL-Y2-INf"/>
                                     <constraint firstItem="1j3-3u-IMH" firstAttribute="centerY" secondItem="iRi-qI-f4w" secondAttribute="centerY" id="rx2-22-WiW"/>
                                     <constraint firstItem="1j3-3u-IMH" firstAttribute="height" secondItem="iRi-qI-f4w" secondAttribute="height" multiplier="0.9" id="t1h-0o-7VT"/>
+                                    <constraint firstItem="Bg3-KF-b7u" firstAttribute="trailing" secondItem="1j3-3u-IMH" secondAttribute="trailing" id="wIb-c5-Ngl"/>
+                                    <constraint firstItem="Bg3-KF-b7u" firstAttribute="leading" secondItem="1j3-3u-IMH" secondAttribute="leading" id="yeO-hH-zcH"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="opacityShadow">
@@ -111,9 +128,11 @@ Document</string>
             <size key="customSize" width="212" height="163"/>
             <connections>
                 <outlet property="dataContainerView" destination="uOz-CH-Cks" id="riE-X3-mm2"/>
+                <outlet property="documentImgView" destination="qla-lT-jwD" id="fLw-9l-JHZ"/>
                 <outlet property="productImg" destination="LfC-A0-dpq" id="ZcN-JK-6qk"/>
                 <outlet property="productNameLbl" destination="Kqg-bu-DiP" id="16z-Df-2OK"/>
                 <outlet property="shadowView" destination="iRi-qI-f4w" id="BWE-lx-atq"/>
+                <outlet property="uploadBtn" destination="Bg3-KF-b7u" id="0NK-pV-b8S"/>
             </connections>
             <point key="canvasLocation" x="128.98550724637681" y="162.38839285714286"/>
         </collectionViewCell>

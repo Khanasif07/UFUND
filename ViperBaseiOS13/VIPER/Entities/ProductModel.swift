@@ -147,7 +147,11 @@ struct ProductModel: Mappable {
     var token_type: Int?
     var product_status: Int?
     var token_status: Int?
-   
+    //
+    var asset_title: String?
+    var asset_type : String?
+    var asset_amount: Int?
+    var asset_description: String?
 
     init?(map: Map) {
 

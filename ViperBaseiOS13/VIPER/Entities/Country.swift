@@ -297,6 +297,9 @@ struct DashboardEntity : Mappable{
     var eth_amount : Int?
     var asset : AssetTypes?
     var product : ProductTypes?
+    //
+    var lable: [Int]?
+    var series: [InvestorGraphs]?
     
     mutating func mapping(map: Map) {
 
@@ -317,6 +320,9 @@ struct DashboardEntity : Mappable{
         eth_amount <- map["eth_amount"]
         asset <- map["asset"]
         product <- map["product"]
+        //
+        lable <- map["lable"]
+        series <- map["series"]
         
     }
 }
@@ -366,3 +372,20 @@ struct CampaignerDashboardEntity : Mappable {
     }
 }
 
+
+
+struct InvestorGraphs: Mappable {
+    init?(map: Map) {
+        
+    }
+    var data : [Int]?
+    var name : String?
+    var stack : String?
+    
+    mutating func mapping(map: Map) {
+        
+        data <- map["data"]
+        name <- map["name"]
+        stack <- map["stack"]
+    }
+}

@@ -18,7 +18,7 @@ class AddProductsVC: UIViewController {
     // MARK: - Variables
     //===========================
     let userProfileInfoo : [UserProfileAttributes] = UserProfileAttributes.allCases
-    var param  =  [String:Any]()
+    var addProductModel  =  ProductModel(json: [:])
     var imageData: Data?
     var profileImgUrl : URL?
     var userDetails: UserDetails?
@@ -30,7 +30,7 @@ class AddProductsVC: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
-    var sections : [AddProductCell] = [.basicDetails,.productSpecifics,.dAteSpecifics,.documentImage]
+    var sections : [AddProductCell] = [.basicDetailsProduct,.productSpecifics,.dAteSpecifics,.documentImage]
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
@@ -74,11 +74,6 @@ extension AddProductsVC: PresenterOutputProtocol {
         self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
         //        self.getProfileDetails()
     }
-    
-    func getProfileDetails(){
-        self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.profile.rawValue, params: nil, methodType: .GET, modelClass: UserDetails.self, token: true)
-    }
 }
 
 // MARK: - Extension For TableView
@@ -109,7 +104,7 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sections[indexPath.section] {
-        case .basicDetails:
+        case .basicDetailsProduct:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
             cell.textFIeld.delegate = self
             cell.titleLbl.text = self.generalInfoArray[indexPath.row].0
@@ -118,6 +113,11 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
             return  cell
         case .productSpecifics:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+            if indexPath.row == 0{
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+            } else {
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+            }
             cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
             cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
@@ -125,11 +125,11 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
         case .dAteSpecifics:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
             if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2{
-//                 cell.textFIeld.inputView = nil
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+            } else if indexPath.row == 3 {
+                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
             } else {
-//                cell.textFIeld.inputView = nil
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
             }
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0
@@ -138,6 +138,17 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
             
         default:
             let cell = tableView.dequeueCell(with: UploadDocumentTableCell.self, indexPath: indexPath)
+            cell.uploadBtnsTapped = { [weak self] (sender)  in
+                guard let selff = self else {return}
+                selff.showImage { (image) in
+                    if image != nil {
+                        let image : UIImage = image!
+                        let data = image.jpegData(compressionQuality: 0.2)
+                        //                        self.prodTokenImgData = data
+                        //                        self.prodTokenImg.image = image
+                    }
+                }
+            }
             cell.isFromAddProduct = true
             cell.tabsCollView.layoutIfNeeded()
             return  cell
@@ -153,15 +164,45 @@ extension AddProductsVC : UITextFieldDelegate {
         if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
             if  let indexPath = mainTableView.indexPath(forItem: cell){
                 if indexPath.section == 0 {
-                    self.generalInfoArray[indexPath.row - 1].1 = text
-                } else {
-                    self.bankInfoArray[indexPath.row].1 = text
+                    switch indexPath.row {
+                    case 0:
+                        self.addProductModel.product_title = text
+                    case 1:
+                        self.addProductModel.brand = text
+                    case 2:
+                        self.addProductModel.hs_code = text
+                    case 3:
+                        self.addProductModel.ean_upc_code = text
+                    case 4:
+                        self.addProductModel.hs_code = text
+                    default:
+                        self.addProductModel.hs_code = text
+                    }
+                } else if indexPath.section == 1 {
+                    switch indexPath.row {
+                    case 0:
+                        self.addProductModel.category_id = Int(text)
+                    case 1:
+                        self.addProductModel.product_value = Int(text)
+                    case 2:
+                        self.addProductModel.invest_profit_per = Int(text)
+                    case 3:
+                        self.addProductModel.product_description = text
+                    default:
+                        self.addProductModel.product_description = text
+                    }
+                } else if indexPath.section == 2 {
+                    switch indexPath.row {
+                    case 0:
+                        self.addProductModel.start_date = text
+                    case 1:
+                        self.addProductModel.end_date = text
+                    case 2:
+                        self.addProductModel.maturity_date = text
+                    default:
+                        self.addProductModel.maturity_date = text
+                    }
                 }
-            }
-        }
-        if let cell = mainTableView.cell(forItem: textField) as? UserProfilePhoneNoCell {
-            if  let indexPath = mainTableView.indexPath(forItem: cell){
-                self.generalInfoArray[indexPath.row - 1].1 = text
             }
         }
     }

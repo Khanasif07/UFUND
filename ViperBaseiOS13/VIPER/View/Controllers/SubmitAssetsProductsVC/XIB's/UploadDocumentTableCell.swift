@@ -17,6 +17,7 @@ class UploadDocumentTableCell: UITableViewCell {
     
     // MARK: - Variables
     //===========================
+    var uploadBtnsTapped: ((UIButton)->())?
     var investorDashboardData : DashboardEntity?{
         didSet{
             self.tabsCollView.reloadData()
@@ -82,6 +83,13 @@ extension UploadDocumentTableCell: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueCell(with: UploadDocumentCollCell.self, indexPath: indexPath)
+        cell.documentBtnTapped = { [weak self] (sender)  in
+            guard let selff = self else {return}
+            if let handle = selff.uploadBtnsTapped{
+                handle(sender)
+            }
+            print(selff)
+        }
         cell.productNameLbl.textColor = .black
         cell.productNameLbl.text = isFromAddProduct ? nullStringToEmpty(string: headerCount?[indexPath.row].0) : nullStringToEmpty(string: headerCount?[indexPath.row].0)
         return cell

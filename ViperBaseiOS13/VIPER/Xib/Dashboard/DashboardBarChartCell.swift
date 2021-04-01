@@ -31,10 +31,12 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     var buyHistoryBtnTapped: ((UIButton)->())?
     var buyMonthlyBtnTapped: ((UIButton)->())?
     //
-//    let firstBarValue = [4.0,6.0,5.0,4.5,7.0,4.0,6.0,5.0,4.5,7.0]
-    let firstBarValue = [4.0,6.0,5.0]
-//    let vertXValues = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"]
-     let vertXValues = ["Jan","Feb","Mar"]
+    var firstBarValue = [4.0,6.0,5.0]
+    var vertXValues : [String]?{
+        didSet{
+            self.awakeFromNib()
+        }
+    }
     let verYValues = ["0 €","1000 €","2000 €","3000 €", "4000 €", "5000 €","6000 €", "7000 €", "8000 €","9000 €", "10000 €"]
     
     // MARK: - Lifecycle
@@ -91,7 +93,7 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         legend.yEntrySpace = 0.0
         
         let xAxis = barChartView.xAxis
-        xAxis.labelCount = vertXValues.count
+        xAxis.labelCount = vertXValues?.count ?? 0
         xAxis.drawAxisLineEnabled = true
         xAxis.drawGridLinesEnabled = false
         xAxis.drawLimitLinesBehindDataEnabled = false
@@ -103,8 +105,8 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         xAxis.granularityEnabled = true
         xAxis.drawLabelsEnabled = true
         xAxis.axisMinimum = -0.25
-        xAxis.axisMaximum = Double(vertXValues.count) + 1.0//to increase length of x-axis more than content size
-        xAxis.valueFormatter = IndexAxisValueFormatter(values: vertXValues)
+        xAxis.axisMaximum = Double(vertXValues?.count ?? 0) + 1.0//to increase length of x-axis more than content size
+        xAxis.valueFormatter = IndexAxisValueFormatter(values: vertXValues ?? [])
         
         let leftAxis = barChartView.leftAxis
         leftAxis.labelFont = .systemFont(ofSize: 10.0)
@@ -134,14 +136,14 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     func drawVerticalChart() {
         barChartView.noDataText = ""
         var dataEntries: [BarChartDataEntry] = []
-        for i in 0..<self.vertXValues.count {
+        for i in 0..<(self.vertXValues?.count ?? 0) {
             let dataEntry = BarChartDataEntry(x: Double(i) , yValues: [self.firstBarValue[i]])
             dataEntries.append(dataEntry)
         }
         
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "")
         chartDataSet.stackLabels = ["Taget 100%","Target 110%", "Taget 120%"]
-        chartDataSet.colors = [.blue,.red, .yellow]
+        chartDataSet.colors = [.blue]
         let dataSets: [BarChartDataSet] = [chartDataSet]
         let chartData = BarChartData(dataSets: dataSets)
         chartData.setDrawValues(false)

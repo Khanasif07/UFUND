@@ -10,10 +10,14 @@ import UIKit
 
 class UploadDocumentCollCell: UICollectionViewCell {
 
+    @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var productImg: UIImageView!
     @IBOutlet weak var productNameLbl: UILabel!
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var documentImgView: UIImageView!
+    
+    var documentBtnTapped: ((UIButton)->())?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -24,9 +28,13 @@ class UploadDocumentCollCell: UICollectionViewCell {
         super.awakeFromNib()
         DispatchQueue.main.async {
             self.productImg.layer.masksToBounds = true
-//            self.productImg.layer.borderWidth = 8.0
-//            self.productImg.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
             self.productImg.layer.cornerRadius = self.productImg.bounds.width / 2
+        }
+    }
+    
+    @IBAction func uploadBtnAction(_ sender: UIButton) {
+        if let handle = documentBtnTapped{
+            handle(sender)
         }
     }
     

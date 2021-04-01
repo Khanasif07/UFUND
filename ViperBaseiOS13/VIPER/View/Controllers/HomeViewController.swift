@@ -206,6 +206,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             case Constants.string.send.localize():
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SendViewController) as? SendViewController else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
+            case Constants.string.allMyProduct.localize():
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.AddAssetsViewController) as? AddAssetsViewController else { return }
+                self.navigationController?.pushViewController(vc, animated: true)
                 
                 
             case Constants.string.requests.localize():
