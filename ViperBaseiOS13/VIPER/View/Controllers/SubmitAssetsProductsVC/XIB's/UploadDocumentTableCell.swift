@@ -28,13 +28,14 @@ class UploadDocumentTableCell: UITableViewCell {
     var isFromAddProduct = false {
         didSet {
             if isFromAddProduct {
+                headerCount = [
+                    (Constants.string.uploadDoucment.localize(),#colorLiteral(red: 1, green: 0.2588235294, blue: 0.3019607843, alpha: 1)),(Constants.string.uploadRegulatoryDoucment.localize(),#colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)), (Constants.string.uploadProductImage.localize(),#colorLiteral(red: 0.9725490196, green: 0.6980392157, blue: 0.2823529412, alpha: 1))]
+                self.tabsCollView.reloadData()
+            }else{
+                
                 headerCount = [(Constants.string.uploadDoucment.localize(),#colorLiteral(red: 1, green: 0.2588235294, blue: 0.3019607843, alpha: 1)),
                                (Constants.string.uploadRegulatoryDoucment.localize(),#colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)),
                                (Constants.string.uploadTokensImage.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)),(Constants.string.uploadAssetImage.localize(),#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]
-                self.tabsCollView.reloadData()
-            }else{
-                headerCount = [
-                    (Constants.string.uploadDoucment.localize(),#colorLiteral(red: 1, green: 0.2588235294, blue: 0.3019607843, alpha: 1)),(Constants.string.uploadRegulatoryDoucment.localize(),#colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)), (Constants.string.uploadProductImage.localize(),#colorLiteral(red: 0.9725490196, green: 0.6980392157, blue: 0.2823529412, alpha: 1))]
                 self.tabsCollView.reloadData()
                 
             }

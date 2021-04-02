@@ -11,7 +11,7 @@ import UIKit
 class AddDescTableCell: UITableViewCell {
 
     @IBOutlet weak var dataContainerView: UIView!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: PlaceholderTextView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var textFieldView: UIView!
     

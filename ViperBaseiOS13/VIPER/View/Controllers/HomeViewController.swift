@@ -74,7 +74,6 @@ class HomeViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.collectionGridView.reloadData()
         if let isFromCamp = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String {
             switch  isFromCamp
             {
@@ -118,7 +117,19 @@ extension HomeViewController {
     }
     
     @objc func UserTypeChanged(){
-        self.viewWillAppear(true)
+        self.collectionGridView.reloadData()
+        if let isFromCamp = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String {
+            switch  isFromCamp
+            {
+            case UserType.investor.rawValue:
+                isFromCampainer = false
+                getInvesterSilderImage(isLoaderHidden: true)
+            default:
+                isFromCampainer = true
+                getApprovals()
+                getInvesterSilderImageCamp(isLoaderHidden: true)
+            }
+        }
         print("UserTypeChanged")
     }
 }

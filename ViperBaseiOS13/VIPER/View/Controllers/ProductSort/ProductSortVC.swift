@@ -28,6 +28,7 @@ class ProductSortVC: UIViewController {
         case assetType
         case tokenType
         case addProducts
+        case reward
     }
     
     // MARK: - IBOutlets
@@ -40,12 +41,12 @@ class ProductSortVC: UIViewController {
     // MARK: - Variables
     //===========================
     var usingForSort : UsingForSort = .filter
+    weak var delegate :ProductSortVCDelegate?
+    var sortArray = [(Constants.string.sort_by_latest,false),(Constants.string.sort_by_oldest,false),(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
     var sortTypeApplied: String  = ""
     var sortTypeAppliedCategory = CategoryModel()
     var sortTypeAppliedAsset = AssetTokenTypeModel()
     var sortTypeAppliedToken = AssetTokenTypeModel()
-    weak var delegate :ProductSortVCDelegate?
-    var sortArray = [(Constants.string.sort_by_latest,false),(Constants.string.sort_by_oldest,false),(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
     var sortDataArray = [CategoryModel]()
     var sortTypeAssetListing = [AssetTokenTypeModel]()
     var sortTypeTokenListing = [AssetTokenTypeModel]()

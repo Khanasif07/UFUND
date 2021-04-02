@@ -88,6 +88,11 @@ class SubmitAssetsProductsVC: UIViewController {
     }
     
     @IBAction func sendRequestBtnAction(_ sender: UIButton) {
+        if isPruductSelected {
+            self.productVC.hitSendRequestApi()
+        } else {
+            self.tokenVC.hitSendRequestApi()
+        }
     }
     
     @IBAction func addBtnAction(_ sender: Any) {
@@ -111,7 +116,7 @@ extension SubmitAssetsProductsVC {
         self.configureScrollView()
         self.instantiateViewController()
         self.getCategoryList()
-        self.getAssetTokenTypeList()
+//        self.getAssetTokenTypeList()
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -186,26 +191,28 @@ extension SubmitAssetsProductsVC : PresenterOutputProtocol {
         
     }
     
+    
     func showSuccessWithParams(statusCode: Int,params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){
         self.loader.isHidden = true
         if params[ProductCreate.keys.category_type] as? Int == 1 {
             if let addionalModel = dataDict as? CategoriesModel{
                 self.productVC.categoryListing = addionalModel.data ?? []
             }
-        } else {
+        } else if params[ProductCreate.keys.category_type] as? Int == 2  {
             if let addionalModel = dataDict as? CategoriesModel{
                 self.tokenVC.categoryListing = addionalModel.data ?? []
             }
-        }
+            getAssetTokenTypeList()
+        }else{}
         if params[ProductCreate.keys.type] as? Int == 1 {
             if let addionalModel = dataDict as? AssetTokenTypeEntity {
                 self.tokenVC.assetTypeListing = addionalModel.data ?? []
             }
-        } else {
+        } else if params[ProductCreate.keys.type] as? Int == 2{
             if let addionalModel = dataDict as? AssetTokenTypeEntity{
                 self.tokenVC.tokenTypeListing = addionalModel.data ?? []
             }
-        }
+        }else{}
     }
     
     func showError(error: CustomError) {

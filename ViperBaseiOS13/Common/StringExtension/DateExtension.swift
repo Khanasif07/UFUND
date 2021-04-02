@@ -203,6 +203,19 @@ extension Date {
             return local
         }
     
+    func convertToStringDefault() -> String {
+          // First, get a Date from the String
+          let dateFormatter = DateFormatter()
+          dateFormatter.dateFormat = DateFormat.ddMMyyyy.rawValue
+          
+          //        // Now, get a new string from the Date in the proper format for the user's locale
+          //        dateFormatter.dateFormat = nil
+          //        dateFormatter.dateStyle = .long // set as desired
+          //        dateFormatter.timeStyle = .medium // set as desired
+          let local = dateFormatter.string(from: self)
+          return local
+      }
+    
     func convertToNormalDate() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = Date.DateFormat.dd_MM_yyyy.rawValue

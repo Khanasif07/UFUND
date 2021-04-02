@@ -230,6 +230,7 @@
 		845C131C25FF8A940018A1E1 /* MyWalletSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */; };
 		846097152615CE3A00A9631F /* AddDescTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846097132615CE3A00A9631F /* AddDescTableCell.swift */; };
 		846097162615CE3A00A9631F /* AddDescTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846097142615CE3A00A9631F /* AddDescTableCell.xib */; };
+		8460971926171BC200A9631F /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460971826171BC200A9631F /* CustomTextView.swift */; };
 		846F263C2613384E00FEB452 /* AddProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F263B2613384E00FEB452 /* AddProductsVC.swift */; };
 		846F263E2613385E00FEB452 /* AddAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F263D2613385E00FEB452 /* AddAssetsVC.swift */; };
 		846F264226143C8500FEB452 /* UploadDocumentCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F264026143C8500FEB452 /* UploadDocumentCollCell.swift */; };
@@ -558,6 +559,7 @@
 		845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletSheetVC.swift; sourceTree = "<group>"; };
 		846097132615CE3A00A9631F /* AddDescTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDescTableCell.swift; sourceTree = "<group>"; };
 		846097142615CE3A00A9631F /* AddDescTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddDescTableCell.xib; sourceTree = "<group>"; };
+		8460971826171BC200A9631F /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		846F263B2613384E00FEB452 /* AddProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductsVC.swift; sourceTree = "<group>"; };
 		846F263D2613385E00FEB452 /* AddAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsVC.swift; sourceTree = "<group>"; };
 		846F264026143C8500FEB452 /* UploadDocumentCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentCollCell.swift; sourceTree = "<group>"; };
@@ -1037,6 +1039,7 @@
 		0824B06D2382847600F81A9B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				8460971726171BAC00A9631F /* CustomTextView */,
 				84411E8B25D1098900718BD1 /* AppConstants */,
 				0824B06E2382847600F81A9B /* Cache */,
 				0824B0722382847600F81A9B /* FontHelper */,
@@ -1858,6 +1861,14 @@
 			path = Wallet;
 			sourceTree = "<group>";
 		};
+		8460971726171BAC00A9631F /* CustomTextView */ = {
+			isa = PBXGroup;
+			children = (
+				8460971826171BC200A9631F /* CustomTextView.swift */,
+			);
+			path = CustomTextView;
+			sourceTree = "<group>";
+		};
 		846F263F26143C5600FEB452 /* XIB's */ = {
 			isa = PBXGroup;
 			children = (
@@ -2480,6 +2491,7 @@
 				844522AA25F9C17400D68338 /* InvestmentFilterVC.swift in Sources */,
 				0824B0C12382847800F81A9B /* UIAplication+RLT.swift in Sources */,
 				0824B0D72382847800F81A9B /* Colors.swift in Sources */,
+				8460971926171BC200A9631F /* CustomTextView.swift in Sources */,
 				84D5660725DB9EC80047F052 /* CategoryListTableCell.swift in Sources */,
 				84D565F725DB84980047F052 /* StatusVC.swift in Sources */,
 				081E32DE2386A6CE009096DD /* SignInViewController.swift in Sources */,

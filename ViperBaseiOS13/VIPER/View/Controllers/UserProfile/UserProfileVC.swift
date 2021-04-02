@@ -27,7 +27,6 @@ class UserProfileVC: UIViewController {
     var countryCode: String  = "+91"
     var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Address Line 1",""),("Address Line 2",""),("ZipCode",""),("City",""),("State",""),("Country","")]
     var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Bank Address","")]
-//    var customPickerViewYear = WCCustomPickerView()
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()

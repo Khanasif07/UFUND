@@ -114,6 +114,7 @@ struct ProductModel: Mappable {
     var brand : String?
     var ean_upc_code : String?
     var hs_code : String?
+    var upc_code : String?
     var rating : Double?
     var regulatory_investigator : String?
     var document : String?
@@ -148,10 +149,15 @@ struct ProductModel: Mappable {
     var product_status: Int?
     var token_status: Int?
     //
+    var asset_id : Int?
+    var token_id : Int?
     var asset_title: String?
     var asset_type : String?
     var asset_amount: Int?
     var asset_description: String?
+    var invest_profit_percentage : String?
+    var reward : String?
+    var reward_date: String?
 
     init?(map: Map) {
 
@@ -224,6 +230,67 @@ struct ProductModel: Mappable {
         token_status <- map["token_status"]
       
     }
+    
+    public func getDictForAddProduct()->[String:Any]{
+        var dict = [String:Any]()
+        dict[ProductCreate.keys.product_title] = self.product_title
+        dict[ProductCreate.keys.category_id] = self.category_id
+        dict[ProductCreate.keys.product_description] = self.product_description
+        dict[ProductCreate.keys.products] = self.products
+        dict[ProductCreate.keys.product_value] = self.product_value
+        dict[ProductCreate.keys.brand] = self.brand
+        dict[ProductCreate.keys.ean_upc_code] = self.ean_upc_code
+        dict[ProductCreate.keys.hs_code] = self.hs_code
+        dict[ProductCreate.keys.maturity_count] = self.maturity_count
+        dict[ProductCreate.keys.invest_profit_percentage] = self.invest_profit_percentage
+        dict[ProductCreate.keys.product_image] = self.product_image
+        dict[ProductCreate.keys.product_child_image] = self.product_child_image
+        dict[ProductCreate.keys.document] = self.document
+        dict[ProductCreate.keys.regulatory_investigator] = self.regulatory_investigator
+        dict[ProductCreate.keys.request_deploy] = self.request_deploy
+        return dict
+    }
+    
+    public func getDictForAddAsset()->[String:Any]{
+        var param = [String:Any]()
+        param[ProductCreate.keys.tokenname] = self.tokenname
+        param[ProductCreate.keys.tokensymbol] = self.tokensymbol
+        param[ProductCreate.keys.tokenvalue] = self.tokenvalue
+        param[ProductCreate.keys.tokensupply] = self.tokensupply
+        param[ProductCreate.keys.decimal] = decimal
+        param[ProductCreate.keys.asset_title] = self.asset_title
+        param[ProductCreate.keys.asset_description] = self.asset_description
+        param[ProductCreate.keys.asset_amount] = self.asset_amount
+        param[ProductCreate.keys.category_id] = self.category_id
+        param[ProductCreate.keys.asset_type] = self.asset_id
+        param[ProductCreate.keys.token_type] = self.token_id
+        param[ProductCreate.keys.request_deploy] = self.request_deploy
+        param[ProductCreate.keys.start_date] = self.start_date
+        param[ProductCreate.keys.end_date] = self.end_date
+        param[ProductCreate.keys.reward_date] = self.reward_date
+        return param
+    }
+    
+    
+                       
+//
+//            dataDic =   [ProductCreate.keys.regulatory_investigator:(pdfRegularatorData!,"regulatory.pdf",FileType.pdf.rawValue),
+//                         ProductCreate.keys.document :(pdfDocumnetData!,"document.pdf",FileType.pdf.rawValue),
+//                         ProductCreate.keys.asset_image :(assetsImgData!,"Asset.jpg",FileType.image.rawValue),
+//                         ProductCreate.keys.token_image :(self.tokenImageData!,"Token.jpg",FileType.image.rawValue)
+//                         ]
+//
+//            if assetImageDataArray.count > 0
+//            {
+//                for (index,value) in self.assetImageDataArray.enumerated()
+//                {
+//                    let key = "asset_child_image[\(index)]"
+//                    dataDic[key] = (value,"ExtraImage\(index).jpg",FileType.image.rawValue)
+//
+//                }
+//     }
+//
+         
 
 }
 
@@ -409,8 +476,8 @@ struct TokenDetailsEntity : Mappable {
 
     mutating func mapping(map: Map) {
        payment_method_type <- map["payment_method_type"]
-        print("**payment_method_type",payment_method_type)
-avilable_token <- map["avilable_token"]
+//        print("**payment_method_type",payment_method_type)
+        avilable_token <- map["avilable_token"]
         id <- map["id"]
         user_id <- map["user_id"]
         tokenname <- map["tokenname"]

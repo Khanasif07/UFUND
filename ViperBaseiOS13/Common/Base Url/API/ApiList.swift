@@ -167,7 +167,8 @@ enum SocialLoginType: Int {
      case basicDetailsAssets
      case basicDetailsProduct
      case productSpecifics
-     case dAteSpecifics
+     case dateSpecificsProducts
+     case dateSpecificsAssets
      case documentImage
      
      var sectionCount: Int {
@@ -178,8 +179,10 @@ enum SocialLoginType: Int {
              return 6
          case .productSpecifics:
              return 4
-         case .dAteSpecifics:
+         case .dateSpecificsProducts:
              return 5
+         case .dateSpecificsAssets:
+            return 4
          case .documentImage:
              return 1
          }
@@ -191,7 +194,7 @@ enum SocialLoginType: Int {
              return "Basic Details"
          case .productSpecifics:
              return "Product Specifics"
-         case .dAteSpecifics:
+         case .dateSpecificsProducts,.dateSpecificsAssets:
              return "Date Specifics"
          case .documentImage:
              return "Document & Image"

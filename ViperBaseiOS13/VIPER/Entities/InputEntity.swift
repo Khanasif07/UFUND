@@ -46,15 +46,17 @@ struct ProductCreate {
     
     static let keys = ProductCreate()
     
+    let invest_profit_percentage = "invest_profit_percentage"
+    let maturity_count = "maturity_count"
     let product_title = "product_title"
-    let product_image = "product_image"
     let category_id = "category_id"
+    let product_image = "product_image"
+    let product_child_image = "product_child_image"
     let product_description = "product_description"
     let product_value = "product_value"
     let regulatory_investigator = "regulatory_investigator"
     let document = "document"
     let token_image = "token_image"
-    let product_child_image = "product_child_image"
     let tokenname = "tokenname"
     let tokensymbol = "tokensymbol"
     let tokenvalue = "tokenvalue"
@@ -71,6 +73,10 @@ struct ProductCreate {
     let hs_code = "hs_code"
     let products = "products"
     let token_type = "token_type"
+    let request_deploy = "request_deploy"
+    let start_date = "start_date"
+    let end_date = "end_date"
+    let reward_date = "reward_date"
     
     //
     let category = "category"

@@ -30,12 +30,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mWm-Y1-WVO">
                                 <rect key="frame" x="16" y="37" width="256" height="133"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type Your Message Here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bvo-vn-kKb">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bvo-vn-kKb" customClass="PlaceholderTextView" customModule="UFUND" customModuleProvider="target">
                                         <rect key="frame" x="8" y="8" width="240" height="117"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" name="tabUnSelected"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="Type Your Message Here"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -70,7 +73,7 @@
             <connections>
                 <outlet property="dataContainerView" destination="NPv-Id-HmJ" id="0a6-qF-3gk"/>
                 <outlet property="textFieldView" destination="mWm-Y1-WVO" id="MHH-i2-cy7"/>
-                <outlet property="textView" destination="Bvo-vn-kKb" id="YAC-b3-8F7"/>
+                <outlet property="textView" destination="Bvo-vn-kKb" id="Wo0-gs-Uga"/>
                 <outlet property="titleLbl" destination="WHe-Eh-DNa" id="x9w-5U-llB"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="149.66517857142856"/>
