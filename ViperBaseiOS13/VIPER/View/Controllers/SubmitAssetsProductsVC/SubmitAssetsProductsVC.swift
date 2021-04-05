@@ -45,15 +45,10 @@ class SubmitAssetsProductsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainScrollView.layoutIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.tokenVC.mainTableView.reloadData()
-        self.productVC.mainTableView.reloadData()
-        self.tokenVC.mainTableView.layoutIfNeeded()
-        self.productVC.mainTableView.layoutIfNeeded()
     }
     
     
@@ -85,6 +80,7 @@ class SubmitAssetsProductsVC: UIViewController {
     }
     
     @IBAction func cancelBtnAction(_ sender: UIButton) {
+        self.popOrDismiss(animation: true)
     }
     
     @IBAction func sendRequestBtnAction(_ sender: UIButton) {

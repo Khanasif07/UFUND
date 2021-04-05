@@ -298,7 +298,7 @@ struct DashboardEntity : Mappable{
     var asset : AssetTypes?
     var product : ProductTypes?
     //
-    var lable: [Int]?
+    var lable: [String]?
     var series: [InvestorGraphs]?
     
     mutating func mapping(map: Map) {
@@ -378,7 +378,7 @@ struct InvestorGraphs: Mappable {
     init?(map: Map) {
         
     }
-    var data : [Int]?
+    var data : [Double]?
     var name : String?
     var stack : String?
     

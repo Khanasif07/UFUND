@@ -242,17 +242,13 @@ struct ProductModel: Mappable {
         dict[ProductCreate.keys.products] = self.products
         dict[ProductCreate.keys.product_value] = self.product_value
         dict[ProductCreate.keys.brand] = self.brand
-        dict[ProductCreate.keys.ean_upc_code] = self.ean_upc_code
+        dict[ProductCreate.keys.ean_upc_code] = (self.ean_upc_code ?? "") + "/" + (self.upc_code ?? "")
         dict[ProductCreate.keys.hs_code] = self.hs_code
         dict[ProductCreate.keys.maturity_count] = self.maturity_count
         dict[ProductCreate.keys.start_date] = self.start_date
         dict[ProductCreate.keys.end_date] = self.end_date
         dict[ProductCreate.keys.investment_date] = self.investment_date
         dict[ProductCreate.keys.invest_profit_percentage] = self.invest_profit_per
-//        dict[ProductCreate.keys.product_image] = self.product_image
-//        dict[ProductCreate.keys.product_child_image] = self.product_child_image
-//        dict[ProductCreate.keys.document] = self.document
-//        dict[ProductCreate.keys.regulatory_investigator] = self.regulatory_investigator
         dict[ProductCreate.keys.request_deploy] = self.request_deploy
         return dict
     }

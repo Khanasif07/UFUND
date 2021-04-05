@@ -31,7 +31,7 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     var buyHistoryBtnTapped: ((UIButton)->())?
     var buyMonthlyBtnTapped: ((UIButton)->())?
     //
-    var firstBarValue = [4.0,6.0,5.0]
+    var firstBarValue: [Double] = [4.0,6.0,5.0,4.0,6.0,5.0,0.9]
     var vertXValues : [String]?{
         didSet{
             self.awakeFromNib()

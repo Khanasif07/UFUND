@@ -34,7 +34,7 @@ class AddAssetsVC: UIViewController {
     var sortTypeAppliedReward = ""
     let assetsByRewardsDetails : [(String,Bool)] =   [("Interest",false),("Share",false),("Goods",false)]
     var generalInfoArray = [("Name of Asset",""),("Token Name",""),("Value of Token",""),("Token Symbol",""),("Token Supply",""),("Decimal",""),("Value of Asset","")]
-    var bankInfoArray = [("Category",""),("Asset Type",""),("Token Type",""),("Description","")]
+    var productSpecifics = [("Category",""),("Asset Type",""),("Token Type",""),("Description","")]
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
@@ -51,12 +51,6 @@ class AddAssetsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainTableView.layoutIfNeeded()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.mainTableView.reloadData()
     }
     
     // MARK: - IBActions
@@ -113,10 +107,15 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
         return 44.0
        }
        
-       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-       }
-       
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch sections[indexPath.section] {
+        case .documentImage:
+            return 330.0
+        default:
+            return  UITableView.automaticDimension
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           switch sections[indexPath.section] {
             case .basicDetailsAssets:
@@ -152,7 +151,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == sections[indexPath.section].sectionCount - 1 {
                 let cell = tableView.dequeueCell(with: AddDescTableCell.self, indexPath: indexPath)
                 cell.textView.delegate = self
-                cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
+                cell.titleLbl.text = self.productSpecifics[indexPath.row ].0
                 return cell
             } else {
                 let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
@@ -168,8 +167,8 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
                 }
-                cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
-                cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
+                cell.titleLbl.text = self.productSpecifics[indexPath.row ].0
+                cell.textFIeld.placeholder = self.productSpecifics[indexPath.row].0
                 return  cell
             }
           case .dateSpecificsAssets:
@@ -191,6 +190,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                  cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                 cell.textFIeld.text = self.addAssetModel.reward
             }
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0

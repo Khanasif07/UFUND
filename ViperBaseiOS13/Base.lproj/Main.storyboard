@@ -11314,7 +11314,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="backBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="Qxy-6x-AD6"/>
-                                                    <action selector="productBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="6Vb-9J-wHg"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps2-PU-oHm">
@@ -11337,7 +11336,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="searchBtnAction:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="gRJ-SL-icF"/>
+                                                    <action selector="searchBtnAction:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="dDt-72-Cbb"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -11433,7 +11432,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="productBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="P7D-6G-js6"/>
+                                                                    <action selector="productBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="o1K-3r-NRI"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpW-eZ-lyl">
@@ -11451,7 +11450,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="tokenBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="ZWl-YZ-nsq"/>
+                                                                    <action selector="tokenBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="P9U-c8-ag9"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -11594,9 +11593,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="backBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="qlc-TA-0Hb"/>
                                                     <action selector="backBtnTapped:" destination="9YN-nF-XvG" eventType="touchUpInside" id="w9e-iH-jmz"/>
-                                                    <action selector="productBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="Ok2-Ra-v4G"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories Detail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gu-bj-oHN">
@@ -11620,7 +11617,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="searchBtnAction:" destination="9YN-nF-XvG" eventType="touchUpInside" id="daa-df-21P"/>
-                                                    <action selector="searchBtnAction:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="sMW-kJ-p75"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -11717,7 +11713,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="newProductBtnTapped:" destination="9YN-nF-XvG" eventType="touchUpInside" id="gFj-fs-NZe"/>
-                                                                    <action selector="productBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="gEe-Eg-ssa"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdL-Cw-Fkh">
@@ -11736,7 +11731,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="allProductBtnTapped:" destination="9YN-nF-XvG" eventType="touchUpInside" id="2oh-12-Vdw"/>
-                                                                    <action selector="tokenBtnTapped:" destination="Wx7-Yg-cKs" eventType="touchUpInside" id="RFc-t1-P7i"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>

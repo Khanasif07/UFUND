@@ -45,14 +45,10 @@ class AddProductsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.mainTableView.layoutIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.async {
-            self.mainTableView.reloadData()
-        }
     }
     
     @IBAction func requestBtnAction(_ sender: UIButton) {
@@ -84,7 +80,7 @@ extension AddProductsVC {
         let params = self.addProductModel.getDictForAddProduct()
         let documentData : [String:(Data,String,String)] =   [ProductCreate.keys.regulatory_investigator:(imgDataArray[0].1,"regulatory.pdf",FileType.pdf.rawValue),
                                                               ProductCreate.keys.document :(imgDataArray[1].1,"document.pdf",FileType.pdf.rawValue),
-                                                              ProductCreate.keys.product_image :(imgDataArray[2].1,"Product.jpg",FileType.image.rawValue),
+                                                              ProductCreate.keys.product_image :(imgDataArray[2].1,"Product.jpeg",FileType.image.rawValue),
                                                               
         ]
         
@@ -173,7 +169,12 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        switch sections[indexPath.section] {
+        case .documentImage:
+            return 330.0
+        default:
+            return  UITableView.automaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -381,7 +382,7 @@ extension AddProductsVC : UITextFieldDelegate {
                         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
                         vc.delegate = self
                         vc.usingForSort = .filter
-                        vc.sortArray = [("30",false),("60",false),("90",false),("120",false)]
+                        vc.sortArray = [("30",false),("60",false),("90",false),("120",false),("180",false)]
                         vc.sortTypeApplied = self.sortTypeAppliedMaturityCount
                         self.present(vc, animated: true, completion: nil)
                         print("Do Nothing")

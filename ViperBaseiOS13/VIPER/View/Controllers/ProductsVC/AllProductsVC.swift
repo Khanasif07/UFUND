@@ -216,7 +216,7 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
         cell.productNameLbl.text =   (self.investerProductList?[indexPath.row].product_title ?? "")
         let imgEntity =   (self.investerProductList?[indexPath.row].product_image ?? "")
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
+        cell.productImgView.sd_setImage(with: url , placeholderImage: #imageLiteral(resourceName: "imgPlaceHolder"))
         cell.productTypeLbl.text = (self.investerProductList?[indexPath.row].category?.category_name ?? "")
         cell.priceLbl.text = "$" +  "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
         cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status == nil)

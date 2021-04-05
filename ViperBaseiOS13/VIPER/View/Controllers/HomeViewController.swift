@@ -218,10 +218,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SendViewController) as? SendViewController else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.allMyProduct.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.AddAssetsViewController) as? AddAssetsViewController else { return }
+                //                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.AddAssetsViewController) as? AddAssetsViewController else { return }
+                //                self.navigationController?.pushViewController(vc, animated: true)
+                //
+                let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.allProducts.localize()
+                vc.campaignerProductType = .AllProduct
+                vc.productType = .AllProducts
                 self.navigationController?.pushViewController(vc, animated: true)
-                
-                
+            case Constants.string.allMyTokenizedAssets:
+                let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                vc.productTitle = Constants.string.allTokens.localize()
+                vc.campaignerAssetType = .AllAssets
+                self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.requests.localize():
                 
                 if #available(iOS 13.0, *) {

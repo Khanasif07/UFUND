@@ -31,8 +31,8 @@ class DashboardVC: UIViewController {
     var investorDashboardGraphData : DashboardEntity?
     var campaignerDashboardData : DashboardEntity?
     var isBuyHistoryTabSelected: Bool = false
-    var sortTypeForMonthly: String = ""
-    var sortTypeForHistory : String = ""
+    var sortTypeForMonthly: String = Constants.string.daily
+    var sortTypeForHistory : String = Constants.string.buyHistory
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     private lazy var loader  : UIView = {
           return createActivityIndicator(self.view)
@@ -77,7 +77,9 @@ extension DashboardVC {
         if userType == UserType.investor.rawValue{
             self.cellTypes = [.DashboardTabsTableCell,.DashboardBarChartCell,.DashboardInvestmentCell]
             self.hitInvestorDashboardAPI()
-            self.hitInvestorDashboardGraphsAPI()
+            let type: Any = (sortTypeForHistory == Constants.string.buyHistory) ? "BUY" : (sortTypeForHistory == Constants.string.buyHistory) ? "INVEST" : 3
+            let filterType: Any = (sortTypeForMonthly == Constants.string.daily) ? 1 : (sortTypeForHistory == Constants.string.weekly) ? 2 : (sortTypeForHistory == Constants.string.monthly) ? 3 : 4
+            self.hitInvestorDashboardGraphsAPI(params: [ProductCreate.keys.type: type,ProductCreate.keys.filter_type: filterType])
         } else {
             self.cellTypes = [.DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell]
             self.hitCampaignerDashboardAPI()
@@ -99,9 +101,8 @@ extension DashboardVC {
         
     }
     
-    private func hitInvestorDashboardGraphsAPI(){
+    private func hitInvestorDashboardGraphsAPI(params : [String:Any] = [ProductCreate.keys.type: "BUY",ProductCreate.keys.filter_type: 4]){
         self.loader.isHidden = false
-        let params : [String:Any] = [ProductCreate.keys.type: "BUY",ProductCreate.keys.filter_type: 4]
         self.presenter?.HITAPI(api: Base.investor_dashboard_graph.rawValue, params: params, methodType: .GET, modelClass: InvestorDashboardEntity.self, token: true)
         
     }
@@ -132,6 +133,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardBarChartCell:
             let cell = tableView.dequeueCell(with: DashboardBarChartCell.self, indexPath: indexPath)
+            cell.firstBarValue = self.investorDashboardGraphData?.series?.first?.data ?? []
             cell.vertXValues = self.investorDashboardGraphData?.lable!.map { String($0) } ?? []
             cell.buyMonthlyBtnTapped = { [weak self] (sender) in
                 guard let sself = self else {return }
@@ -161,7 +163,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             cell.partiesPercentage = [self.campaignerDashboardData?.product?.pending ?? 0,self.campaignerDashboardData?.product?.approved ?? 0,self.campaignerDashboardData?.product?.reject ?? 0,self.campaignerDashboardData?.product?.sold ?? 0]
             cell.submittedProductLbl.text = "Submitted Products"
             cell.productImgView.image = #imageLiteral(resourceName: "icProductWithBg")
-            cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_assets ?? 0)"
+            cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_products ?? 0)"
             return cell
         case .DashboardSubmittedAsssetsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
@@ -187,9 +189,15 @@ extension DashboardVC: ProductSortVCDelegate  {
             if  self.isBuyHistoryTabSelected {
                  self.sortTypeForHistory = sortType
                  cell.buyHistoryTxtField.text = self.sortTypeForHistory
+                 let type: Any = (sortTypeForHistory == Constants.string.buyHistory) ? "BUY" : (sortTypeForHistory == Constants.string.buyHistory) ? "INVEST" : 3
+                let filterType: Any = (sortTypeForMonthly == Constants.string.daily) ? 1 : (sortTypeForHistory == Constants.string.weekly) ? 2 : (sortTypeForHistory == Constants.string.monthly) ? 3 : 4
+                 self.hitInvestorDashboardGraphsAPI(params: [ProductCreate.keys.type: type,ProductCreate.keys.filter_type: filterType])
             } else {
                 self.sortTypeForMonthly = sortType
                 cell.buyMonthlyTxtField.text = self.sortTypeForMonthly
+                let type: Any = (sortTypeForHistory == Constants.string.buyHistory) ? "BUY" : (sortTypeForHistory == Constants.string.buyHistory) ? "INVEST" : 3
+                let filterType: Any = (sortTypeForMonthly == Constants.string.daily) ? 1 : (sortTypeForHistory == Constants.string.weekly) ? 2 : (sortTypeForHistory == Constants.string.monthly) ? 3 : 4
+                self.hitInvestorDashboardGraphsAPI(params: [ProductCreate.keys.type: type,ProductCreate.keys.filter_type: filterType])
             }
         }
     }
