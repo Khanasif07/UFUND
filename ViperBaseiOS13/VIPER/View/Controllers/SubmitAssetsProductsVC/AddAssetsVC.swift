@@ -22,7 +22,6 @@ class AddAssetsVC: UIViewController {
     
     // MARK: - Variables
     //===========================
-    let userProfileInfoo : [UserProfileAttributes] = UserProfileAttributes.allCases
     var addAssetModel = ProductModel(json: [:])
     var imgDataArray = [(UIImage,Data,Bool)]()
     var selectedIndexPath : IndexPath?
@@ -191,8 +190,6 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.inputView = datePicker
                 
             default:
-                 cell.textFIeld.text = self.addAssetModel.reward
-                 cell.textFIeld.text = self.sortTypeAppliedReward
                  cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
             }
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
@@ -320,15 +317,17 @@ extension AddAssetsVC : UITextFieldDelegate {
                     switch indexPath.row {
                     case 0:
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
-                        self.addAssetModel.start_date = text
+                        self.addAssetModel.startDate = datePicker.selectedDate()
+                        self.addAssetModel.start_date = datePicker.selectedDate()?.convertToStringDefault()
                     case 1:
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
-                        self.addAssetModel.end_date = text
+                        self.addAssetModel.end_date = datePicker.selectedDate()?.convertToStringDefault()
+                        self.addAssetModel.endDate = datePicker.selectedDate()
                     case 2:
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
-                        self.addAssetModel.reward_date = text
+                        self.addAssetModel.reward_date = datePicker.selectedDate()?.convertToStringDefault()
                     default:
-                        self.addAssetModel.reward_date = text
+                        print("")
                     }
                 }
                 }
@@ -376,7 +375,7 @@ extension AddAssetsVC : UITextFieldDelegate {
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 1:
-                        self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+                        self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: self.addAssetModel.startDate ?? Date())
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 2:

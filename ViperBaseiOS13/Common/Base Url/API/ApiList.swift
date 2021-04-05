@@ -180,7 +180,7 @@ enum SocialLoginType: Int {
          case .productSpecifics:
              return 4
          case .dateSpecificsProducts:
-             return 5
+             return 4
          case .dateSpecificsAssets:
             return 4
          case .documentImage:

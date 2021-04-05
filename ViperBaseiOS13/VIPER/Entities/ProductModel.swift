@@ -158,6 +158,9 @@ struct ProductModel: Mappable {
     var invest_profit_percentage : String?
     var reward : String?
     var reward_date: String?
+    var investment_date : String?
+    var startDate: Date?
+    var endDate: Date?
 
     init?(map: Map) {
 
@@ -242,11 +245,14 @@ struct ProductModel: Mappable {
         dict[ProductCreate.keys.ean_upc_code] = self.ean_upc_code
         dict[ProductCreate.keys.hs_code] = self.hs_code
         dict[ProductCreate.keys.maturity_count] = self.maturity_count
-        dict[ProductCreate.keys.invest_profit_percentage] = self.invest_profit_percentage
-        dict[ProductCreate.keys.product_image] = self.product_image
-        dict[ProductCreate.keys.product_child_image] = self.product_child_image
-        dict[ProductCreate.keys.document] = self.document
-        dict[ProductCreate.keys.regulatory_investigator] = self.regulatory_investigator
+        dict[ProductCreate.keys.start_date] = self.start_date
+        dict[ProductCreate.keys.end_date] = self.end_date
+        dict[ProductCreate.keys.investment_date] = self.investment_date
+        dict[ProductCreate.keys.invest_profit_percentage] = self.invest_profit_per
+//        dict[ProductCreate.keys.product_image] = self.product_image
+//        dict[ProductCreate.keys.product_child_image] = self.product_child_image
+//        dict[ProductCreate.keys.document] = self.document
+//        dict[ProductCreate.keys.regulatory_investigator] = self.regulatory_investigator
         dict[ProductCreate.keys.request_deploy] = self.request_deploy
         return dict
     }
@@ -268,29 +274,9 @@ struct ProductModel: Mappable {
         param[ProductCreate.keys.start_date] = self.start_date
         param[ProductCreate.keys.end_date] = self.end_date
         param[ProductCreate.keys.reward_date] = self.reward_date
+        param[ProductCreate.keys.reward] = self.reward == "Interest" ? 2 : (self.reward == "Good" ? 1 : 3)
         return param
     }
-    
-    
-                       
-//
-//            dataDic =   [ProductCreate.keys.regulatory_investigator:(pdfRegularatorData!,"regulatory.pdf",FileType.pdf.rawValue),
-//                         ProductCreate.keys.document :(pdfDocumnetData!,"document.pdf",FileType.pdf.rawValue),
-//                         ProductCreate.keys.asset_image :(assetsImgData!,"Asset.jpg",FileType.image.rawValue),
-//                         ProductCreate.keys.token_image :(self.tokenImageData!,"Token.jpg",FileType.image.rawValue)
-//                         ]
-//
-//            if assetImageDataArray.count > 0
-//            {
-//                for (index,value) in self.assetImageDataArray.enumerated()
-//                {
-//                    let key = "asset_child_image[\(index)]"
-//                    dataDic[key] = (value,"ExtraImage\(index).jpg",FileType.image.rawValue)
-//
-//                }
-//     }
-//
-         
 
 }
 

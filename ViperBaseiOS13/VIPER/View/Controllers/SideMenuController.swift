@@ -340,6 +340,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
         case Constants.string.allMyTokenizedAssets.localize():
             switch self.menuContent?[indexPath.section].1[indexPath.row] ?? "" {
             case Constants.string.allTokens.localize():
+                self.drawerController?.closeSide()
                 let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
                 vc.productTitle = Constants.string.allTokens.localize()
                 vc.campaignerAssetType = .AllAssets

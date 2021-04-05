@@ -76,7 +76,9 @@ struct ProductCreate {
     let request_deploy = "request_deploy"
     let start_date = "start_date"
     let end_date = "end_date"
+       let investment_date = "investment_date"
     let reward_date = "reward_date"
+    let reward = "reward"
     
     //
     let category = "category"

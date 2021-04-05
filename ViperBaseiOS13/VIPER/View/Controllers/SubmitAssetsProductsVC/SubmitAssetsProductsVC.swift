@@ -89,7 +89,7 @@ class SubmitAssetsProductsVC: UIViewController {
     
     @IBAction func sendRequestBtnAction(_ sender: UIButton) {
         if isPruductSelected {
-            self.productVC.hitSendRequestApi()
+            self.productVC.isCheckParamsData()
         } else {
             self.tokenVC.hitSendRequestApi()
         }

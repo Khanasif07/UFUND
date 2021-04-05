@@ -27,9 +27,10 @@ class AddProductsVC: UIViewController {
     var selectedIndexPath: IndexPath?
     var categoryListing = [CategoryModel]()
     var sortTypeAppliedCategory = CategoryModel()
+    var sortTypeAppliedMaturityCount = ""
     var generalInfoArray = [("Product Name",""),("Brand",""),("Number of Products",""),("HS Code",""),("EAN Code",""),("UPC Code",""),("ZipCode",""),("City",""),("State",""),("Country","")]
     var bankInfoArray = [("Category",""),("Value of Product",""),("Enter Investment (%)",""),("Description","")]
-    var dateInfoArray = [("Start Date",""),("End Date",""),("Investment Date",""),("Maturity Count",""),("Maturity Date","")]
+    var dateInfoArray = [("Start Date",""),("End Date",""),("Investment Date",""),("Maturity Count","")]
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
@@ -55,7 +56,7 @@ class AddProductsVC: UIViewController {
     }
     
     @IBAction func requestBtnAction(_ sender: UIButton) {
-         requestBtn.isSelected.toggle()
+        requestBtn.isSelected.toggle()
         self.addProductModel.request_deploy =  requestBtn.isSelected ? 1 : 0
     }
     
@@ -82,12 +83,69 @@ extension AddProductsVC {
         self.loader.isHidden = false
         let params = self.addProductModel.getDictForAddProduct()
         let documentData : [String:(Data,String,String)] =   [ProductCreate.keys.regulatory_investigator:(imgDataArray[0].1,"regulatory.pdf",FileType.pdf.rawValue),
-                     ProductCreate.keys.document :(imgDataArray[1].1,"document.pdf",FileType.pdf.rawValue),
-                     ProductCreate.keys.product_image :(imgDataArray[2].1,"Asset.jpg",FileType.image.rawValue),
-                    
-            ]
+                                                              ProductCreate.keys.document :(imgDataArray[1].1,"document.pdf",FileType.pdf.rawValue),
+                                                              ProductCreate.keys.product_image :(imgDataArray[2].1,"Product.jpg",FileType.image.rawValue),
+                                                              
+        ]
         
         self.presenter?.UploadData(api: Base.campaigner_create_product.rawValue, params: params, imageData: documentData , methodType: .POST, modelClass: SuccessDict.self, token: true)
+    }
+    
+    public func isCheckParamsData(){
+        guard let productName = self.addProductModel.product_title, !productName.isEmpty else {
+            return ToastManager.show(title: Constants.string.pleaseEnterProductName, state: .warning)
+        }
+        guard let brandName =  self.addProductModel.brand, !brandName.isEmpty else{
+            return  ToastManager.show(title: Constants.string.enterBrand, state: .warning)
+        }
+        guard let productsCount =  self.addProductModel.products, !(productsCount == 0)else{
+            return  ToastManager.show(title: Constants.string.enterProducts, state: .warning)
+        }
+        guard let hs_code =  self.addProductModel.hs_code , !hs_code.isEmpty else {
+            return  ToastManager.show(title: Constants.string.enterHSCode, state: .warning)
+        }
+        guard let ean_upc_code = self.addProductModel.ean_upc_code ,!(ean_upc_code.isEmpty)  else {
+            return  ToastManager.show(title: Constants.string.enterEAN, state: .warning)
+        }
+        guard let upc_code = self.addProductModel.upc_code ,!(upc_code.isEmpty) else{
+            return  ToastManager.show(title: Constants.string.enterEAN, state: .warning)
+        }
+        
+        guard let decrip = self.addProductModel.product_description , !decrip.isEmpty else{
+            return  ToastManager.show(title: Constants.string.enterDesctription, state: .warning)
+        }
+        
+        guard let category_id = self.addProductModel.category_id , !(category_id == 0) else{
+            return  ToastManager.show(title: Constants.string.selectCategory, state: .warning)
+        }
+        guard let invest_profit_per = self.addProductModel.invest_profit_per , !(invest_profit_per == 0) else{
+            return  ToastManager.show(title: Constants.string.selectCategory, state: .warning)
+        }
+        guard let product_value = self.addProductModel.product_value , !(product_value == 0) else{
+            return  ToastManager.show(title: Constants.string.enterProductValue, state: .warning)
+        }
+        guard let start_date = self.addProductModel.start_date , !(start_date.isEmpty) else{
+            return  ToastManager.show(title: Constants.string.enterStartDate, state: .warning)
+        }
+        guard let end_date = self.addProductModel.end_date , !(end_date.isEmpty) else{
+            return  ToastManager.show(title: Constants.string.enterEndDate, state: .warning)
+        }
+        guard let investment_date = self.addProductModel.investment_date , !(investment_date.isEmpty) else{
+            return  ToastManager.show(title: Constants.string.enterInvestmentDate, state: .warning)
+        }
+        if !self.imgDataArray[2].2{
+            ToastManager.show(title: Constants.string.uploadProductImage, state: .warning)
+            return
+        }
+        if !self.imgDataArray[0].2{
+            ToastManager.show(title: Constants.string.uploadRegulatory, state: .warning)
+            return
+        }
+        if !self.imgDataArray[1].2{
+            ToastManager.show(title: Constants.string.uploadDocument, state: .warning)
+            return
+        }
+        self.hitSendRequestApi()
     }
     
 }
@@ -145,15 +203,15 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.keyboardType = .default
                 cell.textFIeld.text = self.addProductModel.upc_code
             default:
-                cell.textFIeld.keyboardType = .default
-                cell.textFIeld.text = self.addProductModel.asset_amount == nil ? "" : "\(self.addProductModel.asset_amount ?? 0)"
+               print("Do Nothing")
             }
-            return  cell
+              return  cell
         case .productSpecifics:
             if indexPath.row == sections[indexPath.section].sectionCount - 1 {
                 let cell = tableView.dequeueCell(with: AddDescTableCell.self, indexPath: indexPath)
                 cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
                 cell.textView.delegate = self
+                cell.textView.text = self.addProductModel.product_description
                 return cell
             } else {
                 let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
@@ -170,10 +228,9 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
                 case 2:
                      cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
                     cell.textFIeld.keyboardType = .numberPad
-                    cell.textFIeld.text =  self.addProductModel.product_investment_count == nil ? "" :  "\(self.addProductModel.product_investment_count ?? 0)"
+                    cell.textFIeld.text =  self.addProductModel.invest_profit_per == nil ? "" :  "\(self.addProductModel.invest_profit_per ?? 0)"
                 default:
-                    cell.textFIeld.keyboardType = .default
-                    cell.textFIeld.text = self.addProductModel.product_description
+                   print("")
                 }
                 cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
                 cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
@@ -182,13 +239,24 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
         case .dateSpecificsProducts:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
             cell.textFIeld.delegate = self
-            if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2{
+            switch indexPath.row {
+            case 0:
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
                 cell.textFIeld.inputView = datePicker
-            } else if indexPath.row == 3 {
-                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
-            } else {
-                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                cell.textFIeld.text = self.addProductModel.start_date
+            case 1:
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.inputView = datePicker
+                cell.textFIeld.text = self.addProductModel.end_date
+            case 2:
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.inputView = datePicker
+                cell.textFIeld.text = self.addProductModel.investment_date
+            default:
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.keyboardType = .default
+                cell.textFIeld.text = self.addProductModel.maturity_count == nil ? "" :  "\(self.addProductModel.maturity_count ?? "")"
+                print("")
             }
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0
@@ -200,6 +268,7 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
             cell.uploadBtnsTapped = { [weak self] (index)  in
                 guard let selff = self else {return}
                 if index.row == 0 || index.row == 1 {
+                    selff.selectedIndexPath = index
                     selff.showPdfDocument()
                 } else {
                     selff.showImage { (image) in
@@ -252,21 +321,23 @@ extension AddProductsVC : UITextFieldDelegate {
                     case 3:
                         self.addProductModel.product_description = text
                     default:
-                        self.addProductModel.product_description = text
+                        print("Do Nothing")
                     }
                 } else if indexPath.section == 2 {
                     switch indexPath.row {
                     case 0:
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
-                        self.addProductModel.start_date = text
+                        self.addProductModel.start_date = datePicker.selectedDate()?.convertToStringDefault()
+                        self.addProductModel.startDate = datePicker.selectedDate()
                     case 1:
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
-                        self.addProductModel.end_date = text
+                        self.addProductModel.end_date = datePicker.selectedDate()?.convertToStringDefault()
+                        self.addProductModel.endDate = datePicker.selectedDate()
                     case 2:
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
-                        self.addProductModel.maturity_date = text
+                        self.addProductModel.investment_date = datePicker.selectedDate()?.convertToStringDefault()
                     default:
-                        self.addProductModel.maturity_date = text
+                        self.addProductModel.maturity_count = text
                     }
                 }
             }
@@ -298,7 +369,7 @@ extension AddProductsVC : UITextFieldDelegate {
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 1:
-                        self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+                        self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: self.addProductModel.startDate ?? Date())
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 2:
@@ -306,6 +377,13 @@ extension AddProductsVC : UITextFieldDelegate {
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     default:
+                        self.view.endEditing(true)
+                        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
+                        vc.delegate = self
+                        vc.usingForSort = .filter
+                        vc.sortArray = [("30",false),("60",false),("90",false),("120",false)]
+                        vc.sortTypeApplied = self.sortTypeAppliedMaturityCount
+                        self.present(vc, animated: true, completion: nil)
                         print("Do Nothing")
                     }
                 }
@@ -328,6 +406,12 @@ extension AddProductsVC: ProductSortVCDelegate{
     func sortingAppliedInCategory(sortType: CategoryModel) {
         self.sortTypeAppliedCategory = sortType
         self.addProductModel.category_id =  sortType.id
+        self.mainTableView.reloadData()
+    }
+    
+    func sortingApplied(sortType: String){
+        self.sortTypeAppliedMaturityCount = sortType
+        self.addProductModel.maturity_count = sortType
         self.mainTableView.reloadData()
     }
 }
