@@ -48,9 +48,8 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
 //        chartView.legend = l
 
         // entry label styling
-//        pieChartView.isUsePercentValuesEnabled = false
-        pieChartView.drawEntryLabelsEnabled = true
-        pieChartView.entryLabelColor = .clear
+        pieChartView.drawEntryLabelsEnabled = false
+        pieChartView.entryLabelColor = .yellow
         pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .bold)
         pieChartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
         self.setDataCount(2, range: 100)

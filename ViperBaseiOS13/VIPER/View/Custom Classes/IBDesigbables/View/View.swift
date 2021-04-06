@@ -186,7 +186,7 @@ public func applyShadowView(view: UIView) {
     view.layer.masksToBounds = false
     view.layer.shadowRadius = 2
     view.layer.shadowOpacity = 1
-    view.layer.shadowColor = shadowColor.cgColor.copy(alpha: 0.35)
+    view.layer.shadowColor = shadowColor.cgColor.copy(alpha: 0.25)
     view.layer.shadowOffset = CGSize(width: 0 , height:1)
 }
 
