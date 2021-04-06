@@ -166,11 +166,19 @@ extension AllProductsVC {
     private func getProductList(page:Int = 1,search: String = "") {
         switch (userType,false) {
         case (UserType.campaigner.rawValue,false):
-            let params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.search: search,ProductCreate.keys.status: campaignerProductType.titleValue]
+            var params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.search: search,ProductCreate.keys.status: campaignerProductType.titleValue]
+            if !self.sortType.isEmpty{
+                params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+            }
             self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,false):
-            let params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.new_products: productType == .AllProducts ? 0 : 1,ProductCreate.keys.search: search]
-             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            var params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.new_products: productType == .AllProducts ? 0 : 1,ProductCreate.keys.search: search]
+            if !self.sortType.isEmpty{
+                params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+            }
+            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
         }
@@ -286,11 +294,27 @@ extension AllProductsVC: ProductSortVCDelegate  {
         self.sortType = sortType
         switch sortType {
         case Constants.string.sort_by_name_AZ:
-            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
-            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            switch (userType,false) {
+            case (UserType.campaigner.rawValue,false):
+                let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
+                self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            case (UserType.investor.rawValue,false):
+               let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
+                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            default:
+                break
+            }
         case Constants.string.sort_by_name_ZA:
-            let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
-            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            switch (userType,false) {
+            case (UserType.campaigner.rawValue,false):
+                let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
+                self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            case (UserType.investor.rawValue,false):
+                let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
+                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            default:
+                break
+            }
         default:
             print("Noting")
         }
@@ -465,8 +489,16 @@ extension AllProductsVC: ProductFilterVCDelegate {
                 params[ProductCreate.keys.status] = Status.Matured.rawValue
             }
         }
-        params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
-        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        switch (userType,false) {
+        case (UserType.campaigner.rawValue,false):
+            params[ProductCreate.keys.status] = campaignerProductType.titleValue
+            self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case (UserType.investor.rawValue,false):
+             params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
+             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        default:
+            break
+        }
         self.loader.isHidden = false
     }
 }
