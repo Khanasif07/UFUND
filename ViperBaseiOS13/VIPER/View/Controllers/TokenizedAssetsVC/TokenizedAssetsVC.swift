@@ -158,12 +158,26 @@ extension TokenizedAssetsVC {
     
     //MARK:- PRDUCTS LIST API CALL
     private func getTokenizedAssets(page:Int = 1,search: String = "") {
-        let params : [String:Any] = ["search": search,ProductCreate.keys.type: productType == .AllAssets ? 0 : 1 ]
         switch (userType,true) {
         case (UserType.investor.rawValue,true):
+            var params = ProductFilterVM.shared.paramsDictForAssets
+            params[ProductCreate.keys.page] = page
+            params[ProductCreate.keys.search] = search
+            params[ProductCreate.keys.type]  = productType == .AllAssets ? 0 : 1
+            if !self.sortType.isEmpty{
+                params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+            }
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.campaigner.rawValue,true):
-            let params : [String:Any] = ["search": search,ProductCreate.keys.status: campaignerAssetType.titleValue]
+            var params = ProductFilterVM.shared.paramsDictForAssets
+            params[ProductCreate.keys.page] = page
+            params[ProductCreate.keys.search] = search
+            params[ProductCreate.keys.status]  =  campaignerAssetType.titleValue
+            if !self.sortType.isEmpty{
+                params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+            }
             self.presenter?.HITAPI(api: Base.campaignerTokenizedAssetsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break
@@ -267,12 +281,49 @@ extension TokenizedAssetsVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
         self.sortType = sortType
         switch sortType {
-        case "Sort by Name (A-Z)":
-            let params :[String:Any] = [ProductCreate.keys.type: productType == .AllAssets ? 0 : 1 ,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
-            self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-        case "Sort by Name (Z-A)":
-            let params :[String:Any] = [ProductCreate.keys.type: productType == .AllAssets ? 0 : 1 ,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
-            self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case Constants.string.sort_by_name_AZ:
+            switch (userType,false) {
+            case (UserType.campaigner.rawValue,false):
+                var params = ProductFilterVM.shared.paramsDictForAssets
+                params[ProductCreate.keys.page] = 1
+                params[ProductCreate.keys.search] = searchText
+                params[ProductCreate.keys.status]  =  campaignerAssetType.titleValue
+                params[ProductCreate.keys.sort_order] = "ASC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+                self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            case (UserType.investor.rawValue,false):
+                var params = ProductFilterVM.shared.paramsDictForAssets
+                params[ProductCreate.keys.page] = 1
+                params[ProductCreate.keys.search] = searchText
+                params[ProductCreate.keys.type]  =   productType == .AllAssets ? 0 : 1
+                params[ProductCreate.keys.sort_order] = "ASC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+                self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            default:
+                break
+            }
+        case Constants.string.sort_by_name_ZA:
+            
+            switch (userType,false) {
+            case (UserType.campaigner.rawValue,false):
+                var params = ProductFilterVM.shared.paramsDictForAssets
+                params[ProductCreate.keys.page] = 1
+                params[ProductCreate.keys.search] = searchText
+                params[ProductCreate.keys.status]  =  campaignerAssetType.titleValue
+                params[ProductCreate.keys.sort_order] = "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+                self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            case (UserType.investor.rawValue,false):
+                var params = ProductFilterVM.shared.paramsDictForAssets
+                params[ProductCreate.keys.page] = 1
+                params[ProductCreate.keys.search] = searchText
+                params[ProductCreate.keys.type]  =   productType == .AllAssets ? 0 : 1
+                params[ProductCreate.keys.sort_order] = "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+                self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            default:
+                break
+            }
         default:
             print("Noting")
         }
@@ -409,8 +460,20 @@ extension TokenizedAssetsVC: AssetsFilterVCDelegate {
         var params = ProductFilterVM.shared.paramsDictForAssets
         params[ProductCreate.keys.page] = 1
         params[ProductCreate.keys.search] = searchText
-        params[ProductCreate.keys.type] = productType == .AllAssets ? 0 : 1
-        self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        if !self.sortType.isEmpty{
+            params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        }
+        switch (userType,false) {
+        case (UserType.campaigner.rawValue,false):
+            params[ProductCreate.keys.status] = campaignerAssetType.titleValue
+            self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case (UserType.investor.rawValue,false):
+             params[ProductCreate.keys.type] = productType == .AllAssets ? 0 : 1
+             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        default:
+            break
+        }
         self.loader.isHidden = false
     }
     

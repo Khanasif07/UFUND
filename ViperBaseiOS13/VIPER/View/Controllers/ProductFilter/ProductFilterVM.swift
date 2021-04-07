@@ -193,6 +193,34 @@ class ProductFilterVM {
         return params
     }
     
+    var paramsDictForProducts: [String:Any]{
+        
+        var params : [String:Any] = [:]
+        if self.selectedCategoryListing.endIndex > 0{
+            let category =  self.selectedCategoryListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params[ProductCreate.keys.category] = category
+        }
+        if self.minimumPrice != 0{
+            params[ProductCreate.keys.min] = self.minimumPrice
+        }
+        if self.maximumPrice != 0{
+            params[ProductCreate.keys.max] = self.maximumPrice
+        }
+        if self.status.endIndex > 0{
+            if ProductFilterVM.shared.status.contains(Status.All.title){
+            }
+            if ProductFilterVM.shared.status.contains(Status.Live.title){
+                params[ProductCreate.keys.status] = Status.Live.rawValue
+            }
+            if ProductFilterVM.shared.status.contains(Status.Matured.title){
+                params[ProductCreate.keys.status] = Status.Matured.rawValue
+            }
+        }
+        return params
+    }
+    
     public init() {
         resetToAllFilter()
     }

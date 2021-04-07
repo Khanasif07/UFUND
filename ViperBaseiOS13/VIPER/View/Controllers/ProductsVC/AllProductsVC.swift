@@ -166,14 +166,20 @@ extension AllProductsVC {
     private func getProductList(page:Int = 1,search: String = "") {
         switch (userType,false) {
         case (UserType.campaigner.rawValue,false):
-            var params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.search: search,ProductCreate.keys.status: campaignerProductType.titleValue]
+            var params = ProductFilterVM.shared.paramsDictForProducts
+            params[ProductCreate.keys.page] = page
+            params[ProductCreate.keys.search] = search
+            params[ProductCreate.keys.status]  =  campaignerProductType.titleValue
             if !self.sortType.isEmpty{
                 params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
                 params[ProductCreate.keys.sort_by] = "product_title"
             }
             self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,false):
-            var params : [String:Any] = [ProductCreate.keys.page: page,ProductCreate.keys.new_products: productType == .AllProducts ? 0 : 1,ProductCreate.keys.search: search]
+            var params = ProductFilterVM.shared.paramsDictForProducts
+            params[ProductCreate.keys.page] = page
+            params[ProductCreate.keys.search] = search
+            params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
             if !self.sortType.isEmpty{
                 params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
                 params[ProductCreate.keys.sort_by] = "product_title"
@@ -296,10 +302,20 @@ extension AllProductsVC: ProductSortVCDelegate  {
         case Constants.string.sort_by_name_AZ:
             switch (userType,false) {
             case (UserType.campaigner.rawValue,false):
-                let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
+                var params = ProductFilterVM.shared.paramsDictForProducts
+                params[ProductCreate.keys.page] = 1
+                params[ProductCreate.keys.search] = searchText
+                params[ProductCreate.keys.status]  =  campaignerProductType.titleValue
+                params[ProductCreate.keys.sort_order] = "ASC"
+                params[ProductCreate.keys.sort_by] = "product_title"
                 self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             case (UserType.investor.rawValue,false):
-               let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
+                var params = ProductFilterVM.shared.paramsDictForProducts
+                params[ProductCreate.keys.page] = 1
+                params[ProductCreate.keys.search] = searchText
+                params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
+                params[ProductCreate.keys.sort_order] = "ASC"
+                params[ProductCreate.keys.sort_by] = "product_title"
                 self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             default:
                 break
@@ -307,10 +323,20 @@ extension AllProductsVC: ProductSortVCDelegate  {
         case Constants.string.sort_by_name_ZA:
             switch (userType,false) {
             case (UserType.campaigner.rawValue,false):
-                let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
+                var params = ProductFilterVM.shared.paramsDictForProducts
+                params[ProductCreate.keys.page] = 1
+                params[ProductCreate.keys.search] = searchText
+                params[ProductCreate.keys.status]  =  campaignerProductType.titleValue
+                params[ProductCreate.keys.sort_order] = "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
                 self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             case (UserType.investor.rawValue,false):
-                let params :[String:Any] = [ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title",ProductCreate.keys.search: self.searchText]
+                var params = ProductFilterVM.shared.paramsDictForProducts
+                params[ProductCreate.keys.page] = 1
+                params[ProductCreate.keys.search] = searchText
+                params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
+                params[ProductCreate.keys.sort_order] = "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
                 self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             default:
                 break
@@ -465,29 +491,12 @@ extension AllProductsVC: ProductFilterVCDelegate {
             self.selectedMaxPrice = (0.0,false)
         }
         //
-        var params :[String:Any] = [ProductCreate.keys.page: 1,ProductCreate.keys.search: searchText]
-        if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
-            let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params[ProductCreate.keys.category] = category
-        }
-        if ProductFilterVM.shared.minimumPrice != 0{
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
-        }
-        if ProductFilterVM.shared.maximumPrice != 0{
-            params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
-        }
-        if ProductFilterVM.shared.status.endIndex > 0{
-            if ProductFilterVM.shared.status.contains(Status.All.title){
-            }
-            if ProductFilterVM.shared.status.contains(Status.Live.title){
-                params[ProductCreate.keys.status] = Status.Live.rawValue
-            }
-            if ProductFilterVM.shared.status.contains(Status.Matured.title){
-                params[ProductCreate.keys.status] = Status.Matured.rawValue
-            }
+        var params  = ProductFilterVM.shared.paramsDictForProducts
+        params[ProductCreate.keys.page] =  1
+        params[ProductCreate.keys.search] = self.searchText
+        if !self.sortType.isEmpty{
+            params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
         }
         switch (userType,false) {
         case (UserType.campaigner.rawValue,false):
