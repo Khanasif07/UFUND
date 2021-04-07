@@ -206,7 +206,7 @@ extension Date {
     func convertToStringDefault() -> String {
           // First, get a Date from the String
           let dateFormatter = DateFormatter()
-          dateFormatter.dateFormat = DateFormat.dd_MM_yyyy.rawValue
+          dateFormatter.dateFormat = DateFormat.yyyy_MM_dd.rawValue
           
           //        // Now, get a new string from the Date in the proper format for the user's locale
           //        dateFormatter.dateFormat = nil
