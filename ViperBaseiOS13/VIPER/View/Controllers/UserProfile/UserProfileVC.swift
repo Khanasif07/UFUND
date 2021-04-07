@@ -21,6 +21,7 @@ class UserProfileVC: UIViewController {
     let userProfileInfoo : [UserProfileAttributes] = UserProfileAttributes.allCases
     var param  =  [String:Any]()
     var imageData: Data?
+    var profileImg: UIImage?
     var profileImgUrl : URL?
     var userDetails: UserDetails?
     var userProfile: UserProfile?
@@ -207,7 +208,9 @@ extension UserProfileVC: PresenterOutputProtocol {
             User.main.email  = self.userProfile?.email
             User.main.mobile = self.userProfile?.mobile
             storeInUserDefaults()
-            self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
+            if !(self.userProfile?.picture?.isEmpty ?? true){
+                self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
+            }
             self.mainTableView.reloadData()
         }
         
@@ -289,11 +292,18 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                     selff.showImage { (image) in
                         let proImg : UIImage = image!
                         cell.profileImgView.image = proImg
+                        selff.profileImg = proImg
                         selff.imageData = proImg.jpegData(compressionQuality: 0.2)!
                     }
                   }
                 }
-                cell.profileImgView.sd_setImage(with: self.profileImgUrl ?? nil , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
+                if self.profileImgUrl == nil && self.profileImg == nil {
+                    cell.profileImgView.sd_setImage(with: self.profileImgUrl ?? nil , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
+                } else if  self.profileImgUrl == nil && self.profileImg != nil {
+                    cell.profileImgView.image = self.profileImg
+                } else {
+                    cell.profileImgView.sd_setImage(with: self.profileImgUrl ?? nil , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
+                }
                 cell.profileImgView.isUserInteractionEnabled = isEnableEdit
                 cell.profileImgView.backgroundColor = .clear
                 return  cell

@@ -75,73 +75,74 @@ extension AddProductsVC {
         self.mainTableView.tableFooterView?.height = 125.0
     }
     
-    public func hitSendRequestApi(){
-        self.loader.isHidden = false
-        let params = self.addProductModel.getDictForAddProduct()
-        let documentData : [String:(Data,String,String)] =   [ProductCreate.keys.regulatory_investigator:(imgDataArray[0].1,"regulatory.pdf",FileType.pdf.rawValue),
-                                                              ProductCreate.keys.document :(imgDataArray[1].1,"document.pdf",FileType.pdf.rawValue),
-                                                              ProductCreate.keys.product_image :(imgDataArray[2].1,"Product.jpeg",FileType.image.rawValue),
-                                                              
-        ]
-        
-        self.presenter?.UploadData(api: Base.campaigner_create_product.rawValue, params: params, imageData: documentData , methodType: .POST, modelClass: SuccessDict.self, token: true)
-    }
-    
-    public func isCheckParamsData(){
+    public func isCheckParamsData()-> Bool{
         guard let productName = self.addProductModel.product_title, !productName.isEmpty else {
-            return ToastManager.show(title: Constants.string.pleaseEnterProductName, state: .warning)
+             ToastManager.show(title: Constants.string.pleaseEnterProductName, state: .warning)
+            return  false
         }
         guard let brandName =  self.addProductModel.brand, !brandName.isEmpty else{
-            return  ToastManager.show(title: Constants.string.enterBrand, state: .warning)
+              ToastManager.show(title: Constants.string.enterBrand, state: .warning)
+            return  false
         }
         guard let productsCount =  self.addProductModel.products, !(productsCount == 0)else{
-            return  ToastManager.show(title: Constants.string.enterProducts, state: .warning)
+              ToastManager.show(title: Constants.string.enterProducts, state: .warning)
+            return  false
         }
         guard let hs_code =  self.addProductModel.hs_code , !hs_code.isEmpty else {
-            return  ToastManager.show(title: Constants.string.enterHSCode, state: .warning)
+              ToastManager.show(title: Constants.string.enterHSCode, state: .warning)
+            return  false
         }
         guard let ean_upc_code = self.addProductModel.ean_upc_code ,!(ean_upc_code.isEmpty)  else {
-            return  ToastManager.show(title: Constants.string.enterEAN, state: .warning)
+              ToastManager.show(title: Constants.string.enterEAN, state: .warning)
+            return  false
         }
         guard let upc_code = self.addProductModel.upc_code ,!(upc_code.isEmpty) else{
-            return  ToastManager.show(title: Constants.string.enterEAN, state: .warning)
+              ToastManager.show(title: Constants.string.enterEAN, state: .warning)
+            return  false
         }
         
         guard let decrip = self.addProductModel.product_description , !decrip.isEmpty else{
-            return  ToastManager.show(title: Constants.string.enterDesctription, state: .warning)
+              ToastManager.show(title: Constants.string.enterDesctription, state: .warning)
+            return  false
         }
         
         guard let category_id = self.addProductModel.category_id , !(category_id == 0) else{
-            return  ToastManager.show(title: Constants.string.selectCategory, state: .warning)
+              ToastManager.show(title: Constants.string.selectCategory, state: .warning)
+            return  false
         }
         guard let invest_profit_per = self.addProductModel.invest_profit_per , !(invest_profit_per == 0) else{
-            return  ToastManager.show(title: Constants.string.selectCategory, state: .warning)
+              ToastManager.show(title: Constants.string.selectCategory, state: .warning)
+            return  false
         }
         guard let product_value = self.addProductModel.product_value , !(product_value == 0) else{
-            return  ToastManager.show(title: Constants.string.enterProductValue, state: .warning)
+              ToastManager.show(title: Constants.string.enterProductValue, state: .warning)
+            return  false
         }
         guard let start_date = self.addProductModel.start_date , !(start_date.isEmpty) else{
-            return  ToastManager.show(title: Constants.string.enterStartDate, state: .warning)
+              ToastManager.show(title: Constants.string.enterStartDate, state: .warning)
+            return  false
         }
         guard let end_date = self.addProductModel.end_date , !(end_date.isEmpty) else{
-            return  ToastManager.show(title: Constants.string.enterEndDate, state: .warning)
+              ToastManager.show(title: Constants.string.enterEndDate, state: .warning)
+              return  false
         }
         guard let investment_date = self.addProductModel.investment_date , !(investment_date.isEmpty) else{
-            return  ToastManager.show(title: Constants.string.enterInvestmentDate, state: .warning)
+            ToastManager.show(title: Constants.string.enterInvestmentDate, state: .warning)
+            return  false
         }
         if !self.imgDataArray[2].2{
             ToastManager.show(title: Constants.string.uploadProductImage, state: .warning)
-            return
+            return false
         }
         if !self.imgDataArray[0].2{
             ToastManager.show(title: Constants.string.uploadRegulatory, state: .warning)
-            return
+            return false
         }
         if !self.imgDataArray[1].2{
             ToastManager.show(title: Constants.string.uploadDocument, state: .warning)
-            return
+            return false
         }
-        self.hitSendRequestApi()
+        return true
     }
     
 }

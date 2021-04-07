@@ -220,64 +220,64 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    private func isCheckParamsData(){
+    public func isCheckParamsData()-> Bool{
         guard let assetName = self.addAssetModel.asset_title, !assetName.isEmpty else {
-            return ToastManager.show(title: Constants.string.enterAssetName, state: .warning)
+             ToastManager.show(title: Constants.string.enterAssetName, state: .warning)
+            return false
         }
         guard let tokenName =  self.addAssetModel.tokenname, !tokenName.isEmpty else{
-            return  ToastManager.show(title: Constants.string.enterTokenName, state: .warning)
+              ToastManager.show(title: Constants.string.enterTokenName, state: .warning)
+            return false
         }
         guard let tokenValue =  self.addAssetModel.tokenvalue, !(tokenValue == 0)else{
-            return  ToastManager.show(title: Constants.string.enterTotalToken, state: .warning)
+              ToastManager.show(title: Constants.string.enterTotalToken, state: .warning)
+            return false
         }
         guard let tokenSymbol =  self.addAssetModel.tokensymbol , !tokenSymbol.isEmpty else {
-            return  ToastManager.show(title: Constants.string.enterTokenSymbol, state: .warning)
+              ToastManager.show(title: Constants.string.enterTokenSymbol, state: .warning)
+            return false
         }
         guard let decimal = self.addAssetModel.decimal ,!(decimal == 0)  else {
-            return  ToastManager.show(title: Constants.string.enterDecimal, state: .warning)
+              ToastManager.show(title: Constants.string.enterDecimal, state: .warning)
+            return false
         }
         guard let assetValue = self.addAssetModel.asset_amount ,!(assetValue == 0) else{
-            return  ToastManager.show(title: Constants.string.enterAssetValue, state: .warning)
+              ToastManager.show(title: Constants.string.enterAssetValue, state: .warning)
+            return false
         }
-        
         guard let decrip = self.addAssetModel.asset_description , !decrip.isEmpty else{
-            return  ToastManager.show(title: Constants.string.enterDesctription, state: .warning)
+              ToastManager.show(title: Constants.string.enterDesctription, state: .warning)
+            return false
         }
-        
         guard let assetCategoryID = self.addAssetModel.category_id , !(assetCategoryID == 0) else{
-            return  ToastManager.show(title: Constants.string.selectCategory, state: .warning)
+              ToastManager.show(title: Constants.string.selectCategory, state: .warning)
+            return false
         }
         guard let assetID = self.addAssetModel.asset_id , !(assetID == 0) else{
-            return  ToastManager.show(title: Constants.string.selectAsset, state: .warning)
+              ToastManager.show(title: Constants.string.selectAsset, state: .warning)
+            return false
         }
         guard let tokenID = self.addAssetModel.token_id , !(tokenID == 0) else{
-                   return  ToastManager.show(title: Constants.string.selectAsset, state: .warning)
+                     ToastManager.show(title: Constants.string.selectAsset, state: .warning)
+            return false
                }
         if !self.imgDataArray[2].2{
             ToastManager.show(title: Constants.string.uploadAssetImg, state: .warning)
-            return
+            return false
         }
         if !self.imgDataArray[3].2{
                    ToastManager.show(title: Constants.string.uploadTokenImage, state: .warning)
-                   return
+                   return false
                }
         if !self.imgDataArray[0].2{
             ToastManager.show(title: Constants.string.uploadRegulatory, state: .warning)
-            return
+            return false
         }
         if !self.imgDataArray[1].2{
             ToastManager.show(title: Constants.string.uploadDocument, state: .warning)
-            return
+            return false
                }
-        self.loader.isHidden = false
-        let params = self.addAssetModel.getDictForAddAsset()
-        let documentData: [String:(Data,String,String)] =   [ProductCreate.keys.regulatory_investigator:(imgDataArray[0].1,"regulatory.pdf",FileType.pdf.rawValue),
-                     ProductCreate.keys.document :(imgDataArray[1].1,"document.pdf",FileType.pdf.rawValue),
-                     ProductCreate.keys.asset_image :(imgDataArray[2].1,"Asset.jpg",FileType.image.rawValue),
-                     ProductCreate.keys.token_image :(imgDataArray[3].1,"Token.jpg",FileType.image.rawValue)
-            ]
-        
-        self.presenter?.UploadData(api: Base.campaigner_create_asset.rawValue, params: params, imageData: documentData , methodType: .POST, modelClass: SuccessDict.self, token: true)
+        return true
     }
 }
  

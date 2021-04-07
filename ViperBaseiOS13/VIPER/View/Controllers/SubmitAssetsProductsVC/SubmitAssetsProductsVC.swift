@@ -85,9 +85,13 @@ class SubmitAssetsProductsVC: UIViewController {
     
     @IBAction func sendRequestBtnAction(_ sender: UIButton) {
         if isPruductSelected {
-            self.productVC.isCheckParamsData()
+            if self.productVC.isCheckParamsData(){
+                self.hitSendRequestApi()
+            }
         } else {
-            self.tokenVC.hitSendRequestApi()
+            if self.tokenVC.isCheckParamsData(){
+                self.hitSendRequestApi()
+            }
         }
     }
     
@@ -165,6 +169,30 @@ extension SubmitAssetsProductsVC {
         self.presenter?.HITAPI(api: Base.asset_token_types.rawValue, params: [ProductCreate.keys.type: 1], methodType: .GET, modelClass: AssetTokenTypeEntity.self, token: true)
         self.presenter?.HITAPI(api: Base.asset_token_types.rawValue, params: [ProductCreate.keys.type: 2], methodType: .GET, modelClass: AssetTokenTypeEntity.self, token: true)
     }
+    
+    public func hitSendRequestApi(){
+        self.loader.isHidden = false
+        if isPruductSelected {
+            let params = self.productVC.addProductModel.getDictForAddProduct()
+            let documentData : [String:(Data,String,String)] =   [ProductCreate.keys.regulatory_investigator:(self.productVC.imgDataArray[0].1,"regulatory.pdf",FileType.pdf.rawValue),
+                                                                  ProductCreate.keys.document :(self.productVC.imgDataArray[1].1,"document.pdf",FileType.pdf.rawValue),
+                                                                  ProductCreate.keys.product_image :(self.productVC.imgDataArray[2].1,"Product.jpg",FileType.image.rawValue),
+                                                                  
+            ]
+            self.presenter?.UploadData(api: Base.campaigner_create_product.rawValue, params: params, imageData: documentData , methodType: .POST, modelClass: SuccessDict.self, token: true)
+        } else {
+            let params = self.tokenVC.addAssetModel.getDictForAddAsset()
+            let documentData: [String:(Data,String,String)] =   [ProductCreate.keys.regulatory_investigator:(tokenVC.imgDataArray[0].1,"regulatory.pdf",FileType.pdf.rawValue),
+                                                                 ProductCreate.keys.document :(tokenVC.imgDataArray[1].1,"document.pdf",FileType.pdf.rawValue),
+                                                                 ProductCreate.keys.asset_image :(tokenVC.imgDataArray[2].1,"Asset.jpg",FileType.image.rawValue),
+                                                                 ProductCreate.keys.token_image :(tokenVC.imgDataArray[3].1,"Token.jpg",FileType.image.rawValue)
+            ]
+            
+            self.presenter?.UploadData(api: Base.campaigner_create_asset.rawValue, params: params, imageData: documentData , methodType: .POST, modelClass: SuccessDict.self, token: true)
+        }
+        self.loader.isHidden = false
+        
+    }
 }
 
 //    MARK:- ScrollView delegate
@@ -183,38 +211,44 @@ extension SubmitAssetsProductsVC: UIScrollViewDelegate{
 //    MARK:- PresenterOutputProtocol
 //    ==========================
 extension SubmitAssetsProductsVC : PresenterOutputProtocol {
-    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        
-    }
-    
-    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {}
     func showSuccessWithParams(statusCode: Int,params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){
         self.loader.isHidden = true
-        if params[ProductCreate.keys.category_type] as? Int == 1 {
-            if let addionalModel = dataDict as? CategoriesModel{
-                self.productVC.categoryListing = addionalModel.data ?? []
-            }
-        } else if params[ProductCreate.keys.category_type] as? Int == 2  {
-            if let addionalModel = dataDict as? CategoriesModel{
-                self.tokenVC.categoryListing = addionalModel.data ?? []
-            }
-            getAssetTokenTypeList()
-        }else{}
-        if params[ProductCreate.keys.type] as? Int == 1 {
-            if let addionalModel = dataDict as? AssetTokenTypeEntity {
-                self.tokenVC.assetTypeListing = addionalModel.data ?? []
-            }
-        } else if params[ProductCreate.keys.type] as? Int == 2{
-            if let addionalModel = dataDict as? AssetTokenTypeEntity{
-                self.tokenVC.tokenTypeListing = addionalModel.data ?? []
-            }
-        }else{}
+        switch api {
+        case Base.campaigner_create_product.rawValue:
+            self.popOrDismiss(animation: true)
+        case Base.campaigner_create_asset.rawValue:
+            self.popOrDismiss(animation: true)
+        case Base.categories.rawValue:
+            if params[ProductCreate.keys.category_type] as? Int == 1 {
+                if let addionalModel = dataDict as? CategoriesModel{
+                    self.productVC.categoryListing = addionalModel.data ?? []
+                }
+            } else if params[ProductCreate.keys.category_type] as? Int == 2  {
+                if let addionalModel = dataDict as? CategoriesModel{
+                    self.tokenVC.categoryListing = addionalModel.data ?? []
+                }
+                getAssetTokenTypeList()
+            }else{}
+        case Base.asset_token_types.rawValue:
+            if params[ProductCreate.keys.type] as? Int == 1 {
+                if let addionalModel = dataDict as? AssetTokenTypeEntity {
+                    self.tokenVC.assetTypeListing = addionalModel.data ?? []
+                }
+            } else if params[ProductCreate.keys.type] as? Int == 2{
+                if let addionalModel = dataDict as? AssetTokenTypeEntity{
+                    self.tokenVC.tokenTypeListing = addionalModel.data ?? []
+                }
+            }else{}
+        default:
+            print("Do Nothing")
+        }
+        
     }
     
     func showError(error: CustomError) {
         self.loader.isHidden = true
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
-        
     }
- 
+    
 }
