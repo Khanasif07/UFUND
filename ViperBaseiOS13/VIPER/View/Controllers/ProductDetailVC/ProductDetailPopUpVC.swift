@@ -7,21 +7,34 @@
 //
 
 import UIKit
+import iOSDropDown
 
 class ProductDetailPopUpVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var tokenImgView: UIImageView!
+    @IBOutlet weak var tokenPriceLbl: UILabel!
     @IBOutlet weak var tokenPriceValueLbl: UILabel!
-    @IBOutlet weak var paymentMethodTxtField: UITextField!
+    @IBOutlet weak var paymentMethodTxtField: DropDown!
     @IBOutlet weak var payableAmountValueLbl: UILabel!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var buyNowBtn: UIButton!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var coinLbl: UILabel!
+    @IBOutlet weak var qtyValueLbl: UILabel!
     @IBOutlet weak var tokenQtyLbl: UILabel!
-    
     // MARK: - Variables
     //===========================
+    var productModel: ProductModel?
+    var currentValInvPer : Int = 20 {
+        didSet{
+            self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
+            let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
+            self.payableAmountValueLbl.text = "$ " + "\(percentageValue)"
+        }
+    }
     var buyNowBtnTitle: String = "Buy Product"
     var button = UIButton()
     var isForBuyproduct = false {
@@ -51,7 +64,6 @@ class ProductDetailPopUpVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func buyNowAction(_ sender: Any) {
-        showAlert(message: "Under Development")
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -59,11 +71,15 @@ class ProductDetailPopUpVC: UIViewController {
     }
     
     @IBAction func qtyMinusAction(_ sender: UIButton) {
-        
+        if self.currentValInvPer !=  0{
+        self.currentValInvPer -=  1
+        }
     }
     
     @IBAction func qtyPlusAction(_ sender: Any) {
-        
+        if self.currentValInvPer !=  100{
+        self.currentValInvPer +=  1
+    }
     }
     
 }
@@ -73,12 +89,50 @@ class ProductDetailPopUpVC: UIViewController {
 extension ProductDetailPopUpVC {
     
     private func initialSetup() {
-         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
-         paymentMethodTxtField.setButtonToRightView(btn: button, selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+        self.dataSetUp()
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
+        paymentMethodTxtField.delegate = self
+        paymentMethodTxtField.setButtonToRightView(btn: button, selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         self.cancelBtn.backgroundColor = .white
         self.cancelBtn.setTitleColor(#colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1), for: .normal)
         self.cancelBtn.borderColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
         self.cancelBtn.borderLineWidth = 1.0
+        paymentMethodTxtField.optionArray = ["ETH","BTC","PayPal"]
+        paymentMethodTxtField.optionIds = [0,1,2]
+        paymentMethodTxtField.arrowColor = .clear
+        paymentMethodTxtField.didSelect { (categoryName, index,id)  in
+            print(categoryName)
+            print(index)
+            print(id)
+        }
+    }
+    
+    private func dataSetUp(){
+        self.tokenQtyLbl.text = self.isForBuyproduct ? "Token Quantity" : "Investment Percentage (%)"
+        let imgEntity =  productModel?.product_image ?? ""
+        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
+        self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
     }
 }
+
+extension ProductDetailPopUpVC : UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if  textField == paymentMethodTxtField {
+            self.view.endEditingForce()
+            paymentMethodTxtField.showList()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        view.endEditingForce()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditingForce()
+        return true
+    }
+}
+
 
