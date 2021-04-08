@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ObjectMapper
 import PDFKit
 import MobileCoreServices
 
@@ -458,22 +457,6 @@ extension AddProductsVC: UIDocumentPickerDelegate {
         importMenu.modalPresentationStyle = .formSheet
         self.present(importMenu, animated: true, completion: nil)
     }
-}
-
-//    MARK:- PresenterOutputProtocol
-//    ==========================
-extension AddProductsVC : PresenterOutputProtocol {
-    
-    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-         self.loader.isHidden = true
-    }
-    
-    func showError(error: CustomError) {
-        self.loader.isHidden = true
-        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
-        
-    }
-    
 }
 
 //    MARK:- UITextViewDelegate

@@ -38,18 +38,12 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
     
     private func setupProgressView(){
         pieChartView.delegate = self
-        let l = pieChartView.legend
-        l.horizontalAlignment = .right
-        l.verticalAlignment = .top
-        l.orientation = .vertical
-        l.xEntrySpace = 7
-        l.yEntrySpace = 0
-        l.yOffset = 0
-//        chartView.legend = l
+        pieChartView.legend.enabled = false
 
         // entry label styling
         pieChartView.drawEntryLabelsEnabled = false
         pieChartView.entryLabelColor = .yellow
+        pieChartView.usePercentValuesEnabled = true
         pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .bold)
         pieChartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
         self.setDataCount(2, range: 100)
@@ -79,8 +73,8 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
         pFormatter.percentSymbol = " %"
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         
-        data.setValueFont(.systemFont(ofSize: 15, weight: .bold))
-        data.setValueTextColor(.clear)
+        data.setValueFont(.systemFont(ofSize: 12, weight: .semibold))
+        data.setValueTextColor(.white)
         
         pieChartView.data = data
         pieChartView.highlightValues(nil)
@@ -91,3 +85,4 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
     
     
 }
+

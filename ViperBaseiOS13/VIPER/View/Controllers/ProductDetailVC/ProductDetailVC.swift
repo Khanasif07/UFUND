@@ -31,7 +31,7 @@ class ProductDetailVC: UIViewController {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var mainTableView: UITableView!
     
-    
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var cellTypes = [ProductDetailCellType.productDescCell,ProductDetailCellType.productDateCell,ProductDetailCellType.productInvestmentCell]
     
     // MARK: - Variables
@@ -88,6 +88,7 @@ extension ProductDetailVC {
         let imgEntity =  productModel?.product_image ?? ""
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
+        self.bottomView.isHidden = userType != UserType.investor.rawValue
     }
     
     private func setFont(){

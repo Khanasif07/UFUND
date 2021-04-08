@@ -30,7 +30,7 @@ class AssetsDetailVC: UIViewController {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var mainTableView: UITableView!
     
-    
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var cellTypes = [AssetsDetailCellType.assetsDescCell,AssetsDetailCellType.assetsInfoCell,AssetsDetailCellType.assetsDateCell,AssetsDetailCellType.assetsInvestmentCell]
     
     // MARK: - Variables
@@ -88,6 +88,7 @@ extension AssetsDetailVC {
         let imgEntity =  productModel?.token_image ?? ""
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
+        self.bottomView.isHidden = userType != UserType.investor.rawValue
     }
     
     private func setFont(){

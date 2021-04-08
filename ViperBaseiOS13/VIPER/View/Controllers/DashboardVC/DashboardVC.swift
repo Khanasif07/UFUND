@@ -31,7 +31,7 @@ class DashboardVC: UIViewController {
     var investorDashboardGraphData : DashboardEntity?
     var campaignerDashboardData : DashboardEntity?
     var isBuyHistoryTabSelected: Bool = false
-    var sortTypeForMonthly: String = Constants.string.daily
+    var sortTypeForMonthly: String = Constants.string.yearly
     var sortTypeForHistory : String = Constants.string.buyHistory
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     private lazy var loader  : UIView = {
@@ -133,8 +133,10 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardBarChartCell:
             let cell = tableView.dequeueCell(with: DashboardBarChartCell.self, indexPath: indexPath)
-            cell.firstBarValue = self.investorDashboardGraphData?.series?.first?.data ?? []
+//            cell.firstBarValue = self.investorDashboardGraphData?.series?.first?.data ?? []
             cell.vertXValues = self.investorDashboardGraphData?.lable!.map { String($0) } ?? []
+            cell.buyHistoryTxtField.text = self.sortTypeForHistory
+            cell.buyMonthlyTxtField.text = self.sortTypeForMonthly
             cell.buyMonthlyBtnTapped = { [weak self] (sender) in
                 guard let sself = self else {return }
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
@@ -162,7 +164,10 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
             cell.partiesPercentage = [self.campaignerDashboardData?.product?.pending ?? 0,self.campaignerDashboardData?.product?.approved ?? 0,self.campaignerDashboardData?.product?.reject ?? 0,self.campaignerDashboardData?.product?.sold ?? 0]
             cell.submittedProductLbl.text = "Submitted Products"
+            cell.submittedProductValue.textColor = #colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)
             cell.productImgView.image = #imageLiteral(resourceName: "icProductWithBg")
+            cell.bottomStackView.isHidden = (self.campaignerDashboardData?.submited_products ?? 0 == 0)
+            cell.chartStackView.isHidden = (self.campaignerDashboardData?.submited_products ?? 0 == 0)
             cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_products ?? 0)"
             return cell
         case .DashboardSubmittedAsssetsCell:
@@ -170,6 +175,9 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             cell.partiesPercentage = [self.campaignerDashboardData?.asset?.pending ?? 0,self.campaignerDashboardData?.asset?.approved ?? 0,self.campaignerDashboardData?.asset?.reject ?? 0,self.campaignerDashboardData?.asset?.sold ?? 0]
             cell.productImgView.image = #imageLiteral(resourceName: "icTokenizedAssetBg")
             cell.submittedProductLbl.text = "Submitted Assets"
+            cell.submittedProductValue.textColor = #colorLiteral(red: 0.9568627451, green: 0.6235294118, blue: 0.03921568627, alpha: 1)
+            cell.bottomStackView.isHidden = (self.campaignerDashboardData?.submited_assets ?? 0 == 0)
+            cell.chartStackView.isHidden = (self.campaignerDashboardData?.submited_assets ?? 0 == 0)
             cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_assets ?? 0)"
             return cell
         }

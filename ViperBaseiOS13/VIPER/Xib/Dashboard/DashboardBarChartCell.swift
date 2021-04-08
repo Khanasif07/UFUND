@@ -47,7 +47,6 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         buyMonthlyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
         buttonView1.imageEdgeInsets = UIEdgeInsets(top: 0, left: -7.5, bottom: 0, right: +7.5)
         buyHistoryTxtField.setButtonToRightView(btn: buttonView1, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
-//        self.setUpBarChart()
         self.setupVerticalChart()
         self.drawVerticalChart()
     }

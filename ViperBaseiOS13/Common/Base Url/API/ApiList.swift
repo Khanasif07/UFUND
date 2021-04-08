@@ -167,26 +167,29 @@ enum SocialLoginType: Int {
      case basicDetailsAssets
      case basicDetailsProduct
      case productSpecifics
+     case assetsSpecifics
      case dateSpecificsProducts
      case dateSpecificsAssets
      case documentImage
      
-     var sectionCount: Int {
-         switch self{
-         case .basicDetailsAssets:
-             return 7
-         case .basicDetailsProduct:
-             return 6
-         case .productSpecifics:
-             return 4
-         case .dateSpecificsProducts:
-             return 4
-         case .dateSpecificsAssets:
+    var sectionCount: Int {
+        switch self{
+        case .basicDetailsAssets:
+            return 7
+        case .basicDetailsProduct:
+            return 6
+        case .productSpecifics:
             return 4
-         case .documentImage:
-             return 1
-         }
-     }
+        case .assetsSpecifics:
+            return 4
+        case .dateSpecificsProducts:
+            return 4
+        case .dateSpecificsAssets:
+            return 4
+        case .documentImage:
+            return 1
+        }
+    }
      
      var titleValue: String {
          switch self{
@@ -194,6 +197,8 @@ enum SocialLoginType: Int {
              return "Basic Details"
          case .productSpecifics:
              return "Product Specifics"
+        case .assetsSpecifics:
+            return "Asset Specifics"
          case .dateSpecificsProducts,.dateSpecificsAssets:
              return "Date Specifics"
          case .documentImage:

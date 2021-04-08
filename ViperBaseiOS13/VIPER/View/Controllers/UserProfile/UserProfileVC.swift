@@ -301,7 +301,9 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                     cell.profileImgView.sd_setImage(with: self.profileImgUrl ?? nil , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
                 } else if  self.profileImgUrl == nil && self.profileImg != nil {
                     cell.profileImgView.image = self.profileImg
-                } else {
+                } else if self.profileImgUrl != nil && self.profileImg != nil{
+                     cell.profileImgView.image = self.profileImg
+                }else {
                     cell.profileImgView.sd_setImage(with: self.profileImgUrl ?? nil , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
                 }
                 cell.profileImgView.isUserInteractionEnabled = isEnableEdit

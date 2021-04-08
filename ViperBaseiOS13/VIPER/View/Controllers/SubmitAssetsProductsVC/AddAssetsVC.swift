@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ObjectMapper
 import PDFKit
 import MobileCoreServices
 
@@ -40,7 +39,7 @@ class AddAssetsVC: UIViewController {
     }()
     var dateInfoArray = [("Start Date",""),("End Date",""),("Reward Date",""),("Reward","")]
     var datePicker = CustomDatePicker()
-    var sections : [AddProductCell] = [.basicDetailsAssets,.productSpecifics,.dateSpecificsAssets,.documentImage]
+    var sections : [AddProductCell] = [.basicDetailsAssets,.assetsSpecifics,.dateSpecificsAssets,.documentImage]
     
     // MARK: - LifecycleAddProductCell
     //===========================
@@ -78,10 +77,6 @@ extension AddAssetsVC {
         self.mainTableView.tableFooterView = footerView
         self.mainTableView.tableFooterView?.height = 125.0
       
-    }
-    
-    public func hitSendRequestApi(){
-        self.isCheckParamsData()
     }
 }
 
@@ -147,7 +142,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.text = self.addAssetModel.asset_amount == nil ? "" : "\(self.addAssetModel.asset_amount ?? 0)"
             }
             return  cell
-        case .productSpecifics:
+        case .assetsSpecifics:
             if indexPath.row == sections[indexPath.section].sectionCount - 1 {
                 let cell = tableView.dequeueCell(with: AddDescTableCell.self, indexPath: indexPath)
                 cell.textView.delegate = self
@@ -338,7 +333,7 @@ extension AddAssetsVC : UITextFieldDelegate {
         _ = textField.text?.byRemovingLeadingTrailingWhiteSpaces ?? ""
         if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
             if  let indexPath = mainTableView.indexPath(forItem: cell){
-                if sections[indexPath.section] == .productSpecifics {
+                if sections[indexPath.section] == .assetsSpecifics {
                     switch indexPath.row {
                     case 0:
                         self.view.endEditing(true)
@@ -468,21 +463,6 @@ extension AddAssetsVC: UIDocumentPickerDelegate {
     }
 }
 
-//    MARK:- PresenterOutputProtocol
-//    ==========================
-extension AddAssetsVC : PresenterOutputProtocol {
-    
-    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-         self.loader.isHidden = true
-    }
-    
-    func showError(error: CustomError) {
-        self.loader.isHidden = true
-        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
-        
-    }
-    
-}
 
 //    MARK:- UITextViewDelegate
 //    ==========================

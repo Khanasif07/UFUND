@@ -42,7 +42,6 @@ class AssetsFilterVC: UIViewController {
     // Parchment View
     var filtersTabs =  [MenuItem]()
     var parchmentView : PagingViewController?
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isFilterApplied:Bool = false
     var allChildVCs: [UIViewController] = [UIViewController]()
     weak var delegate : AssetsFilterVCDelegate?
