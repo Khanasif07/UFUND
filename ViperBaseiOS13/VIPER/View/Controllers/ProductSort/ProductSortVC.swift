@@ -37,7 +37,7 @@ class ProductSortVC: UIViewController {
     @IBOutlet weak var tableViewHConst: NSLayoutConstraint!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var dataContainerView: UIView!
-    
+    @IBOutlet weak var backgroundView: UIView!
     // MARK: - Variables
     //===========================
     var usingForSort : UsingForSort = .filter
@@ -99,12 +99,18 @@ extension ProductSortVC {
             self.setSelectedSortingDataForCategory()
         }
         self.tableViewSetup()
+        self.setUpTapGesture()
     }
     
     private func tableViewSetup(){
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.registerCell(with: ProductSortTableCell.self)
+    }
+    
+    private func setUpTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        backgroundView.addGestureRecognizer(tap)
     }
     
     private func setSelectedSortingData(){
@@ -137,6 +143,10 @@ extension ProductSortVC {
         }){
             self.sortTypeTokenListing[index].isSelected =  true
         }
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+         self.popOrDismiss(animation: true)
     }
 }
 

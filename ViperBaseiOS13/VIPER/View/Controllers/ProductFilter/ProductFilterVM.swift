@@ -52,8 +52,8 @@ class ProductFilterVM {
     var maximumEarning: CGFloat = 0.0
     var minimumYield: CGFloat = 0.0
     var maximumYield: CGFloat = 0.0
-    let allTabsStrForMyPrductInvestments: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(), Constants.string.earning.localize(),Constants.string.yield.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
-    let allTabsStrForMyTokenInvestments: [String] = [Constants.string.category.localize() ,Constants.string.priceRange.localize(),Constants.string.yield.localize(),Constants.string.byReward.localize(),Constants.string.startDate.localize(), Constants.string.endDate.localize()]
+    let allTabsStrForMyPrductInvestments: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(),Constants.string.yield.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
+    let allTabsStrForMyTokenInvestments: [String] = [Constants.string.category.localize() ,Constants.string.priceRange.localize(),Constants.string.byReward.localize(),Constants.string.startDate.localize(), Constants.string.endDate.localize(),Constants.string.asset_type.localize() ,Constants.string.token_type.localize()]
 
     weak var delegate: ProductFilterVMDelegate?
     

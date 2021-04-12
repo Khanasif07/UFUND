@@ -37,7 +37,7 @@ class AddAssetsVC: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
-    var dateInfoArray = [("Start Date",""),("End Date",""),("Reward Date",""),("Reward","")]
+    var dateInfoArray = [(Constants.string.startDate,""),(Constants.string.endDate,""),("Reward Date",""),("Reward","")]
     var datePicker = CustomDatePicker()
     var sections : [AddProductCell] = [.basicDetailsAssets,.assetsSpecifics,.dateSpecificsAssets,.documentImage]
     

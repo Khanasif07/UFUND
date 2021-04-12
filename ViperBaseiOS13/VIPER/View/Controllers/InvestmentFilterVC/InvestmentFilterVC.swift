@@ -33,15 +33,15 @@ class InvestmentFilterVC: UIViewController {
     var categoryListingVC : CategoryListingVC!
     var startDateVC       : AssetsFilterDateVC!
     var priceRangeVC      : PriceRangeVC!
-    var earningVC         : PriceRangeVC!
     var yieldVC           : PriceRangeVC!
     var endDateVC         : AssetsFilterDateVC!
     var maturityDateVC    : AssetsFilterDateVC!
     var byRewardsVC       : StatusVC!
+    var assetTypeVC              : CurrencyVC!
+    var tokenTypeVC              : CurrencyVC!
     // Parchment View
     var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     var filtersTabs =  [MenuItem]()
-//    var currencyModelEntity : CurrencyModelEntity?
     var parchmentView : PagingViewController?
     
     //  MARK: - Variables
@@ -121,7 +121,7 @@ extension InvestmentFilterVC {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
                 self.categoryListingVC.categoryType = investmentType  == .MyProductInvestment ? .Products : .TokenzedAssets
                 self.allChildVCs.append(categoryListingVC)
-            } else if i == 4 {
+            } else if i == 3 {
                 self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.startDateVC.filterDateType = .investmentStartDate
                 self.allChildVCs.append(startDateVC)
@@ -130,14 +130,10 @@ extension InvestmentFilterVC {
                 self.priceRangeVC.filterPriceType = .priceRange
                 self.allChildVCs.append(priceRangeVC)
             } else if i == 2 {
-                self.earningVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
-                self.earningVC.filterPriceType = .earning
-                self.allChildVCs.append(earningVC)
-            } else if i == 3 {
                 self.yieldVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.yieldVC.filterPriceType = .yield
                 self.allChildVCs.append(yieldVC)
-            } else if i == 5 {
+            } else if i == 4 {
                 self.endDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.endDateVC.filterDateType = .investmentEndDate
                 self.allChildVCs.append(endDateVC)
@@ -164,7 +160,7 @@ extension InvestmentFilterVC {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
                 self.categoryListingVC.categoryType = investmentType  == .MyProductInvestment ? .Products : .TokenzedAssets
                 self.allChildVCs.append(categoryListingVC)
-            } else if i == 4 {
+            } else if i == 3 {
                 self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.startDateVC.filterDateType = .investmentStartDate
                 self.allChildVCs.append(startDateVC)
@@ -172,18 +168,22 @@ extension InvestmentFilterVC {
                 self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.priceRangeVC.filterPriceType = .priceRange
                 self.allChildVCs.append(priceRangeVC)
-            } else if i == 3 {
+            } else if i == 2 {
                 self.byRewardsVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
                 self.byRewardsVC.statusType = .byRewards
                 self.allChildVCs.append(byRewardsVC)
-            } else if i == 2 {
-                self.yieldVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
-                self.yieldVC.filterPriceType = .yield
-                self.allChildVCs.append(yieldVC)
-            } else if i == 5 {
+            } else if i == 4 {
                 self.endDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.endDateVC.filterDateType = .investmentEndDate
                 self.allChildVCs.append(endDateVC)
+            }else if i == 4 {
+                self.assetTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                self.assetTypeVC.tokenType = .Asset
+                self.allChildVCs.append(assetTypeVC)
+            } else {
+                self.tokenTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                self.tokenTypeVC.tokenType = .Asset
+                self.allChildVCs.append(tokenTypeVC)
             }
         }
         self.view.layoutIfNeeded()

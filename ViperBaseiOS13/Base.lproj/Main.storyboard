@@ -9575,18 +9575,27 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="btb-XD-5iX" firstAttribute="top" secondItem="HQu-dW-ujp" secondAttribute="top" constant="52" id="VkB-qi-Rcn"/>
                                             <constraint firstItem="lCp-Qv-Nxf" firstAttribute="leading" secondItem="HQu-dW-ujp" secondAttribute="leading" constant="16" id="Vzc-E4-skI"/>
                                             <constraint firstItem="lCp-Qv-Nxf" firstAttribute="top" secondItem="HQu-dW-ujp" secondAttribute="top" constant="15" id="XaO-Yo-p1b"/>
+                                            <constraint firstItem="WrS-CK-gIR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lCp-Qv-Nxf" secondAttribute="trailing" constant="100" id="YIv-Sg-qGc"/>
                                             <constraint firstItem="btb-XD-5iX" firstAttribute="leading" secondItem="HQu-dW-ujp" secondAttribute="leading" id="eDv-xe-4Bt"/>
                                             <constraint firstAttribute="trailing" secondItem="btb-XD-5iX" secondAttribute="trailing" id="gsI-WU-U4w"/>
                                             <constraint firstAttribute="trailing" secondItem="WrS-CK-gIR" secondAttribute="trailing" constant="16" id="mqM-iu-RPj"/>
                                             <constraint firstItem="sos-sa-7FH" firstAttribute="top" secondItem="btb-XD-5iX" secondAttribute="bottom" id="qCJ-Rp-UVp"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mc8-rX-9BN">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="498"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="HQu-dW-ujp" secondAttribute="bottom" id="5if-69-6np"/>
+                                    <constraint firstItem="Mc8-rX-9BN" firstAttribute="top" secondItem="ziU-hX-vD3" secondAttribute="top" id="5ml-5i-QXU"/>
                                     <constraint firstItem="HQu-dW-ujp" firstAttribute="centerX" secondItem="ziU-hX-vD3" secondAttribute="centerX" id="6e4-LH-Yla"/>
+                                    <constraint firstItem="HQu-dW-ujp" firstAttribute="top" secondItem="Mc8-rX-9BN" secondAttribute="bottom" id="N7p-6e-c7d"/>
                                     <constraint firstAttribute="trailing" secondItem="sos-sa-7FH" secondAttribute="trailing" id="OEd-1T-xgY"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mc8-rX-9BN" secondAttribute="trailing" id="bBD-wp-Sqa"/>
+                                    <constraint firstItem="Mc8-rX-9BN" firstAttribute="leading" secondItem="ziU-hX-vD3" secondAttribute="leading" id="hLE-rR-Ox0"/>
                                     <constraint firstItem="sos-sa-7FH" firstAttribute="leading" secondItem="ziU-hX-vD3" secondAttribute="leading" id="m1D-B8-7I2"/>
                                     <constraint firstItem="HQu-dW-ujp" firstAttribute="leading" secondItem="ziU-hX-vD3" secondAttribute="leading" id="udM-He-aN0"/>
                                     <constraint firstAttribute="trailing" secondItem="HQu-dW-ujp" secondAttribute="trailing" id="vkG-SD-tMV"/>
@@ -9604,6 +9613,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <viewLayoutGuide key="safeArea" id="Jri-AY-mKQ"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="Mc8-rX-9BN" id="2Mn-HO-U3V"/>
                         <outlet property="dataContainerView" destination="HQu-dW-ujp" id="EfL-MN-Fbb"/>
                         <outlet property="mainTableView" destination="sos-sa-7FH" id="M44-Hk-gTO"/>
                         <outlet property="tableViewHConst" destination="Zae-eZ-CkG" id="5Rl-uB-eXH"/>
