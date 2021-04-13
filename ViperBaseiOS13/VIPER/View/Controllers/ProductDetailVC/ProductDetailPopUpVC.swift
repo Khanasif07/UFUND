@@ -97,6 +97,7 @@ extension ProductDetailPopUpVC {
         self.cancelBtn.setTitleColor(#colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1), for: .normal)
         self.cancelBtn.borderColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
         self.cancelBtn.borderLineWidth = 1.0
+        self.currentValInvPer = 20
         paymentMethodTxtField.optionArray = ["ETH","BTC","PayPal"]
         paymentMethodTxtField.optionIds = [0,1,2]
         paymentMethodTxtField.arrowColor = .clear

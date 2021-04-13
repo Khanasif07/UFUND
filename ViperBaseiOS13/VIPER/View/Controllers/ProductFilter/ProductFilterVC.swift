@@ -11,15 +11,15 @@ import Parchment
 import ObjectMapper
 
 protocol ProductFilterVCDelegate: class {
-    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool))
-    func filterDataWithoutFilter(_ category: ([CategoryModel],Bool),_ currency:  ([AssetTokenTypeModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  )
+    func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool))
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool))
     
 }
 
 extension ProductFilterVCDelegate{
-    func filterDataWithoutFilter(_ category: ([CategoryModel],Bool),_ currency:  ([AssetTokenTypeModel],Bool),_ status:  ([String],Bool),_ min: (CGFloat,Bool),_ max: (CGFloat,Bool)  ){}
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)){}
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)){}
+    func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)){}
        
 }
 
@@ -45,6 +45,9 @@ class ProductFilterVC: UIViewController {
     var categoryListingVC : CategoryListingVC!
     var priceRangeVC      : PriceRangeVC!
     var statusVC          : StatusVC!
+    var startDateVC       : AssetsFilterDateVC!
+    var endDateVC         : AssetsFilterDateVC!
+    var maturityDateVC        : AssetsFilterDateVC!
     // Parchment View
     var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     var filtersTabs =  [MenuItem]()
@@ -100,12 +103,12 @@ class ProductFilterVC: UIViewController {
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), ([], false), (ProductFilterVM.shared.status, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
+        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.status, false), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true),(ProductFilterVM.shared.start_from, false), (ProductFilterVM.shared.start_to, false), (ProductFilterVM.shared.close_from, false),(ProductFilterVM.shared.close_to, false), (ProductFilterVM.shared.investmentMaturity_from, false), (ProductFilterVM.shared.investmentMaturity_to, false))
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
-        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), ([], false), (ProductFilterVM.shared.status, !ProductFilterVM.shared.status.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true))
+        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.status, !ProductFilterVM.shared.status.isEmpty), (ProductFilterVM.shared.minimumPrice , true), (ProductFilterVM.shared.maximumPrice , true),(ProductFilterVM.shared.start_from, !ProductFilterVM.shared.start_from.isEmpty), (ProductFilterVM.shared.start_to, !ProductFilterVM.shared.start_to.isEmpty), (ProductFilterVM.shared.close_from, !ProductFilterVM.shared.close_from.isEmpty),(ProductFilterVM.shared.close_to, !ProductFilterVM.shared.close_to.isEmpty), (ProductFilterVM.shared.investmentMaturity_from, !ProductFilterVM.shared.investmentMaturity_from.isEmpty), (ProductFilterVM.shared.investmentMaturity_to, !ProductFilterVM.shared.investmentMaturity_to.isEmpty))
          self.popOrDismiss(animation: true)
     }
 }
@@ -118,10 +121,11 @@ extension ProductFilterVC {
         if isFilterWithoutCategory{
             self.setupPagerViewWithoutCategory()
         } else {
-            if productType == .NewProducts {
-                self.setupPagerViewWithoutStatus()
-            } else {
-                self.setupPagerView()
+            switch productType {
+            case .NewProducts,.AllProducts:
+                 self.setupPagerViewWithoutStatus()
+            default:
+                 self.setupPagerView()
             }
         }
     }
@@ -139,6 +143,18 @@ extension ProductFilterVC {
                 self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
                 self.statusVC.statusType = .status
                 self.allChildVCs.append(statusVC)
+            }else if i == 3 {
+                self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.startDateVC.filterDateType = .startDate
+                self.allChildVCs.append(startDateVC)
+            } else if i == 4 {
+                self.endDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.endDateVC.filterDateType = .closeDate
+                self.allChildVCs.append(endDateVC)
+            } else {
+                self.maturityDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.maturityDateVC.filterDateType = .investmentMaturityDate
+                self.allChildVCs.append(maturityDateVC)
             }
         }
         self.view.layoutIfNeeded()
@@ -160,6 +176,18 @@ extension ProductFilterVC {
             } else if i == 1 {
                 self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(priceRangeVC)
+            }else if i == 2 {
+                self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.startDateVC.filterDateType = .startDate
+                self.allChildVCs.append(startDateVC)
+            } else if i == 3 {
+                self.endDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.endDateVC.filterDateType = .closeDate
+                self.allChildVCs.append(endDateVC)
+            } else {
+                self.maturityDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.maturityDateVC.filterDateType = .investmentMaturityDate
+                self.allChildVCs.append(maturityDateVC)
             }
         }
         self.view.layoutIfNeeded()
@@ -183,6 +211,18 @@ extension ProductFilterVC {
                 self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
                 self.statusVC.statusType = .status
                 self.allChildVCs.append(statusVC)
+            }else if i == 2 {
+                self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.startDateVC.filterDateType = .startDate
+                self.allChildVCs.append(startDateVC)
+            } else if i == 3 {
+                self.endDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.endDateVC.filterDateType = .closeDate
+                self.allChildVCs.append(endDateVC)
+            } else {
+                self.maturityDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
+                self.maturityDateVC.filterDateType = .investmentMaturityDate
+                self.allChildVCs.append(maturityDateVC)
             }
         }
         self.view.layoutIfNeeded()

@@ -182,7 +182,7 @@ extension InvestmentFilterVC {
                 self.allChildVCs.append(assetTypeVC)
             } else {
                 self.tokenTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
-                self.tokenTypeVC.tokenType = .Asset
+                self.tokenTypeVC.tokenType = .Token
                 self.allChildVCs.append(tokenTypeVC)
             }
         }

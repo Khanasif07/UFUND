@@ -93,6 +93,8 @@ struct ProductCreate {
     let currency = "currency"
     let page = "page"
     let start_from = "start_from"
+    let offer_from = "offer_from"
+    let offer_to = "offer_to"
     let start_to = "start_to"
     let close_from  = "close_from"
     let close_to = "close_to"

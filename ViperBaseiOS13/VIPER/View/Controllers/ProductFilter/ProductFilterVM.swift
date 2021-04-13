@@ -25,9 +25,9 @@ class ProductFilterVM {
     var categoryListing: [CategoryModel] = []
     var selectedCategoryListing: [CategoryModel] = []
     var status: [String] = []
-    let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(), Constants.string.status.localize()]
-    let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(), Constants.string.status.localize()]
-     let allTabsStrWithoutStatus: [String] = [Constants.string.category.localize(),Constants.string.priceRange.localize()]
+    let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(), Constants.string.status.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
+    let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(), Constants.string.status.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
+     let allTabsStrWithoutStatus: [String] = [Constants.string.category.localize(),Constants.string.priceRange.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
     //Assets
     var selectedAssetsListing = [AssetTokenTypeModel]()
     var selectedTokenListing = [AssetTokenTypeModel]()
@@ -218,6 +218,12 @@ class ProductFilterVM {
                 params[ProductCreate.keys.status] = Status.Matured.rawValue
             }
         }
+        if !self.start_from.isEmpty{ params[ProductCreate.keys.offer_from] = self.start_from }
+        if !self.start_to.isEmpty{ params[ProductCreate.keys.offer_to] = self.start_to }
+        if !self.close_from.isEmpty{ params[ProductCreate.keys.close_from] = self.close_from }
+        if !self.close_to.isEmpty{ params[ProductCreate.keys.close_to] = self.close_to }
+        if !self.investmentMaturity_from.isEmpty{ params[ProductCreate.keys.maturity_from] = self.investmentMaturity_from }
+        if !self.investmentMaturity_to.isEmpty{ params[ProductCreate.keys.maturity_to] = self.investmentMaturity_to }
         return params
     }
     

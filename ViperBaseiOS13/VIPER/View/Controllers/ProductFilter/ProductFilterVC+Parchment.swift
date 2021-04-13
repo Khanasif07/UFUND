@@ -17,7 +17,7 @@ extension ProductFilterVC: PagingViewControllerDataSource {
           return  MenuItem(title: ProductFilterVM.shared.allTabsStrWithoutCategory[index], index: index, isSelected: filtersTabs[index].isSelected )
         } else {
             if (productType == .AllProducts){
-              return  MenuItem(title: ProductFilterVM.shared.allTabsStr[index], index: index, isSelected: filtersTabs[index].isSelected )
+              return  MenuItem(title: ProductFilterVM.shared.allTabsStrWithoutStatus[index], index: index, isSelected: filtersTabs[index].isSelected )
             } else{
                 return  MenuItem(title: ProductFilterVM.shared.allTabsStrWithoutStatus[index], index: index, isSelected: filtersTabs[index].isSelected)
             }
@@ -28,7 +28,7 @@ extension ProductFilterVC: PagingViewControllerDataSource {
         return self.allChildVCs[index]
     }
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
-        return isFilterWithoutCategory ? ProductFilterVM.shared.allTabsStrWithoutCategory.count : productType == .AllProducts ? ProductFilterVM.shared.allTabsStr.count : ProductFilterVM.shared.allTabsStrWithoutStatus.count
+        return isFilterWithoutCategory ? ProductFilterVM.shared.allTabsStrWithoutCategory.count : productType == .AllProducts ? ProductFilterVM.shared.allTabsStrWithoutStatus.count : ProductFilterVM.shared.allTabsStrWithoutStatus.count
     }
 }
 

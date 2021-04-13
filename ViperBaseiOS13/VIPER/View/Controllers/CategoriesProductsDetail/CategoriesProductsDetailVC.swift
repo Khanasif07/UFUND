@@ -49,10 +49,17 @@ class CategoriesProductsDetailVC: UIViewController {
             }
         }
     }
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCurrency : (([AssetTokenTypeModel],Bool)) = ([],false)
     var selectedStatus: (([String],Bool)) = ([],false)
     var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
     var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
+    var selectedInvestorStart_from : (String,Bool) = ("",false)
+    var selectedInvestorStart_to : (String,Bool) = ("",false)
+    var selectedInvestorClose_from : (String,Bool) = ("",false)
+    var selectedInvestorClose_to : (String,Bool) = ("",false)
+    var selectedInvestorMature_from : (String,Bool) = ("",false)
+    var selectedInvestorMature_to : (String,Bool) = ("",false)
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -95,7 +102,6 @@ class CategoriesProductsDetailVC: UIViewController {
         
         @IBAction func sortBtnAction(_ sender: UIButton) {
             guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
-            vc.sortArray = [(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
             vc.sortTypeApplied = self.sortType
             vc.delegate = self
             self.present(vc, animated: true, completion: nil)
@@ -181,37 +187,21 @@ extension CategoriesProductsDetailVC {
     private func getNewProductsData(page:Int = 1,search: String){
         self.loader.isHidden = false
         self.productType = .NewProducts
-        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products: 1,ProductCreate.keys.search: search]
+        var params  = ProductFilterVM.shared.paramsDictForProducts
         if !self.sortType.isEmpty{
-            params[ProductCreate.keys.sort_order] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
+            params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
         }
+        params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
     private func getAllProductsData(){
         self.productType = .AllProducts
-        var params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  0,ProductCreate.keys.search: searchText]
+        var params  = ProductFilterVM.shared.paramsDictForProducts
         if !self.sortType.isEmpty{
             params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
-        }
-        if ProductFilterVM.shared.minimumPrice != 0{
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
-        }
-        if ProductFilterVM.shared.maximumPrice != 0{
-            params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
-        }
-        if ProductFilterVM.shared.status.endIndex > 0{
-            if ProductFilterVM.shared.status.contains(Status.All.title){
-            }
-            if ProductFilterVM.shared.status.contains(Status.Live.title){
-                params[ProductCreate.keys.status] = Status.Live.rawValue
-            }
-            if ProductFilterVM.shared.status.contains(Status.Matured.title){
-                params[ProductCreate.keys.status] = Status.Matured.rawValue
-            }
         }
         params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
@@ -242,12 +232,22 @@ extension CategoriesProductsDetailVC: ProductSortVCDelegate  {
         case Constants.string.sort_by_name_AZ:
             self.loader.isHidden = false
             self.productType = .NewProducts
-            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
+            var params  = ProductFilterVM.shared.paramsDictForProducts
+            params[ProductCreate.keys.page] = 1
+            params[ProductCreate.keys.search] = searchText
+            params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by] = "product_title"
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
             self.loader.isHidden = false
             self.productType = .NewProducts
-            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllProducts ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
+            var params  = ProductFilterVM.shared.paramsDictForProducts
+            params[ProductCreate.keys.page] = 1
+            params[ProductCreate.keys.search] = searchText
+            params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
@@ -347,13 +347,22 @@ extension CategoriesProductsDetailVC : PresenterOutputProtocol{
 // MARK: - Hotel filter Delegate methods
 
 extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+    
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
         ProductFilterVM.shared.status = self.selectedStatus.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
+        ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
+        ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
+        ProductFilterVM.shared.start_from = self.selectedInvestorStart_from.0
+        ProductFilterVM.shared.start_to = self.selectedInvestorStart_to.0
+        ProductFilterVM.shared.close_from =  self.selectedInvestorClose_from.0
+        ProductFilterVM.shared.close_to = self.selectedInvestorClose_to.0
+        ProductFilterVM.shared.investmentMaturity_from = self.selectedInvestorMature_from.0
+        ProductFilterVM.shared.investmentMaturity_to = self.selectedInvestorMature_to.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ currency: ([AssetTokenTypeModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
         self.loader.isHidden = false
         //
         if status.1 {
@@ -378,31 +387,39 @@ extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
             self.selectedMaxPrice = (0.0,false)
         }
         //
-        self.productType = .NewProducts
-        var params :[String:Any] = [ProductCreate.keys.page: 1,ProductCreate.keys.search: searchText,ProductCreate.keys.category: "\(categoryModel?.id ?? 0)"]
+        //
+        ProductFilterVM.shared.investmentMaturity_from = maturity_from.1 ? maturity_from.0 : ""
+        ProductFilterVM.shared.investmentMaturity_to = maturity_to.1 ? maturity_to.0 : ""
+        ProductFilterVM.shared.start_from = start_from.1 ? start_from.0 : ""
+        ProductFilterVM.shared.start_to = start_to.1 ? start_to.0 : ""
+        ProductFilterVM.shared.close_from = close_from.1 ? close_from.0 : ""
+        ProductFilterVM.shared.close_to = close_to.1 ? close_to.0 : ""
+        if !start_from.1{self.selectedInvestorStart_from = ("",false) }
+        if !start_to.1{self.selectedInvestorStart_to = ("",false) }
+        if !close_from.1{self.selectedInvestorClose_from = ("",false) }
+        if !close_to.1{self.selectedInvestorClose_to = ("",false) }
+        if !maturity_from.1{self.selectedInvestorMature_from = ("",false) }
+        if !maturity_to.1{self.selectedInvestorMature_to = ("",false) }
+        //
+        var params  = ProductFilterVM.shared.paramsDictForProducts
+        params[ProductCreate.keys.page] =  1
+        params[ProductCreate.keys.search] = self.searchText
         if !self.sortType.isEmpty{
-            params[ProductCreate.keys.sort_order] =  (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
+            params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
         }
-        if ProductFilterVM.shared.minimumPrice != 0{
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
+        self.productType = .NewProducts
+        switch (userType,false) {
+        case (UserType.campaigner.rawValue,false):
+//            params[ProductCreate.keys.status] = campaignerProductType.titleValue
+            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case (UserType.investor.rawValue,false):
+            params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
+            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        default:
+            break
         }
-        if ProductFilterVM.shared.maximumPrice != 0{
-            params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
-        }
-        if ProductFilterVM.shared.status.endIndex > 0{
-            if ProductFilterVM.shared.status.contains(Status.All.title){
-            }
-            if ProductFilterVM.shared.status.contains(Status.Live.title){
-                params[ProductCreate.keys.status] = Status.Live.rawValue
-            }
-            if ProductFilterVM.shared.status.contains(Status.Matured.title){
-                params[ProductCreate.keys.status] = Status.Matured.rawValue
-            }
-        }
-        params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
-        self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        //
     }
 }
 
