@@ -136,6 +136,7 @@ struct ProductModel: Mappable {
     var maturity_date : String?
     var maturity_count : String?
     //TokenizedAssets Key
+    var asset : Asset?
     var tokenrequest : Tokenrequest?
     var tokenname: String?
     var tokensupply: Int?
@@ -213,6 +214,7 @@ struct ProductModel: Mappable {
         decimal <- map["decimal"]
         contract_address <- map["contract_address"]
         token_type <- map["token_type"]
+        asset <- map["asset"]
         
         if investment_product_total == nil {
             

@@ -43,7 +43,6 @@ class HomeViewController: UIViewController{
     var timer: Timer?
     var approvalObject : ApprovalModel?
     let dispatchGroup = DispatchGroup()
-//    let bottomSheetVC = BottomSheetVC()
     
     override func viewDidLoad() {
         super.viewDidLoad() 
@@ -74,18 +73,6 @@ class HomeViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        if let isFromCamp = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String {
-            switch  isFromCamp
-            {
-            case UserType.investor.rawValue:
-                isFromCampainer = false
-                getInvesterSilderImage(isLoaderHidden: true)
-            default:
-                isFromCampainer = true
-                getApprovals()
-                getInvesterSilderImageCamp(isLoaderHidden: true)
-            }
-        }
     }
     
     @IBAction func menuOpener(_ sender: UIButton){
@@ -113,10 +100,11 @@ extension HomeViewController {
     private func initialSetup(){
         self.setupTableView()
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(UserTypeChanged), name: Notification.Name("UserTypeChanged"), object: nil)
+        nc.addObserver(self, selector: #selector(userTypeChanged), name: Notification.Name("UserTypeChanged"), object: nil)
+        self.userTypeChanged()
     }
     
-    @objc func UserTypeChanged(){
+    @objc func userTypeChanged(){
         self.collectionGridView.reloadData()
         if let isFromCamp = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String {
             switch  isFromCamp

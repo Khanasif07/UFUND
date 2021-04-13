@@ -26,7 +26,7 @@ class ProductFilterVM {
     var selectedCategoryListing: [CategoryModel] = []
     var status: [String] = []
     let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(), Constants.string.status.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
-    let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(), Constants.string.status.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
+    let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
      let allTabsStrWithoutStatus: [String] = [Constants.string.category.localize(),Constants.string.priceRange.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
     //Assets
     var selectedAssetsListing = [AssetTokenTypeModel]()

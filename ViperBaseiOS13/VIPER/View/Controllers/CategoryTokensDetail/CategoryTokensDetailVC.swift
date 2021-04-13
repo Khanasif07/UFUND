@@ -245,12 +245,28 @@ extension CategoryTokensDetailVC: ProductSortVCDelegate  {
         case Constants.string.sort_by_name_AZ:
             self.loader.isHidden = false
             self.productType = .NewAssets
-            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllAssets ? 0 : 1,ProductCreate.keys.sort_order:"ASC",ProductCreate.keys.sort_by:"product_title"]
+            var params = ProductFilterVM.shared.paramsDictForAssets
+            params[ProductCreate.keys.page] = 1
+            params[ProductCreate.keys.search] = searchText
+            if !self.sortType.isEmpty{
+                params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+            }
+            params[ProductCreate.keys.category] = categoryModel?.id
+            params[ProductCreate.keys.type] = productType == .AllAssets ? 0 : 1
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
             self.loader.isHidden = false
             self.productType = .NewAssets
-            let params :[String:Any] = [ProductCreate.keys.category: "\(categoryModel?.id ?? 0)",ProductCreate.keys.new_products:  productType == .AllAssets ? 0 : 1,ProductCreate.keys.sort_order:"DESC",ProductCreate.keys.sort_by:"product_title"]
+            var params = ProductFilterVM.shared.paramsDictForAssets
+            params[ProductCreate.keys.page] = 1
+            params[ProductCreate.keys.search] = searchText
+            if !self.sortType.isEmpty{
+                params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "DESC" : "DESC"
+                params[ProductCreate.keys.sort_by] = "product_title"
+            }
+            params[ProductCreate.keys.category] = categoryModel?.id
+            params[ProductCreate.keys.type] = productType == .AllAssets ? 0 : 1
             self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
@@ -396,31 +412,14 @@ extension CategoryTokensDetailVC: AssetsFilterVCDelegate {
         if !close_to.1{self.selectedClose_to = ("",false) }
         //
         self.productType = .NewAssets
-        var params :[String:Any] = [ProductCreate.keys.page: 1,ProductCreate.keys.search: searchText]
-        if ProductFilterVM.shared.selectedCategoryListing.endIndex > 0{
-            let category =  ProductFilterVM.shared.selectedCategoryListing.map { (model) -> String in
-                return String(model.id ?? 0)
-            }.joined(separator: ",")
-            params[ProductCreate.keys.category] = category
+        var params = ProductFilterVM.shared.paramsDictForAssets
+        params[ProductCreate.keys.page] = 1
+        params[ProductCreate.keys.search] = searchText
+        if !self.sortType.isEmpty{
+            params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
         }
-        if ProductFilterVM.shared.minimumPrice != 0{
-            params[ProductCreate.keys.min] = ProductFilterVM.shared.minimumPrice
-        }
-        if ProductFilterVM.shared.maximumPrice != 0{
-            params[ProductCreate.keys.max] = ProductFilterVM.shared.maximumPrice
-        }
-        if ProductFilterVM.shared.byRewards.endIndex > 0{
-            if !ProductFilterVM.shared.types.contains(AssetsByReward.All.title){
-                let byRewards =  ProductFilterVM.shared.byRewards.map { (model) -> String in
-                    return model
-                }.joined(separator: ",")
-                params[ProductCreate.keys.reward_by] = byRewards
-            }
-        }
-        if !ProductFilterVM.shared.start_from.isEmpty{ params[ProductCreate.keys.start_from] = ProductFilterVM.shared.start_from }
-        if !ProductFilterVM.shared.start_to.isEmpty{ params[ProductCreate.keys.start_to] = ProductFilterVM.shared.start_to }
-        if !ProductFilterVM.shared.close_from.isEmpty{ params[ProductCreate.keys.close_from] = ProductFilterVM.shared.close_from }
-        if !ProductFilterVM.shared.close_to.isEmpty{ params[ProductCreate.keys.close_to] = ProductFilterVM.shared.close_to }
+        //
         params[ProductCreate.keys.type] = productType == .AllAssets ? 0 : 1
         self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }

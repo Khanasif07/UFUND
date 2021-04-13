@@ -219,11 +219,16 @@ extension TokenizedAssetsVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: NewProductsCollCell.self, indexPath: indexPath)
-        cell.productNameLbl.text =  (self.investerProductList?[indexPath.row].tokenname ?? "")
         let imgEntity =   (self.investerProductList?[indexPath.row].token_image ?? "")
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-        cell.categoryLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
+        if userType == UserType.investor.rawValue {
+            cell.categoryLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
+            cell.productNameLbl.text =  (self.investerProductList?[indexPath.row].tokenname ?? "")
+        } else{
+            cell.categoryLbl.text =  (self.investerProductList?[indexPath.row].asset?.category?.category_name ?? "")
+            cell.productNameLbl.text =  (self.investerProductList?[indexPath.row].asset?.asset_title ?? "")
+        }
         cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenvalue ?? 0))")
         cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status == nil)
         cell.statusLbl.text = (self.investerProductList?[indexPath.row].token_status == 1) ? "Live" : "Closed"

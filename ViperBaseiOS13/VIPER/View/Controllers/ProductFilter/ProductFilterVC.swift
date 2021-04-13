@@ -16,13 +16,6 @@ protocol ProductFilterVCDelegate: class {
     
 }
 
-extension ProductFilterVCDelegate{
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)){}
-    
-    func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)){}
-       
-}
-
 class ProductFilterVC: UIViewController {
     
     // MARK: - IBOutlets
@@ -124,8 +117,6 @@ extension ProductFilterVC {
             switch productType {
             case .NewProducts,.AllProducts:
                  self.setupPagerViewWithoutStatus()
-            default:
-                 self.setupPagerView()
             }
         }
     }
@@ -208,14 +199,10 @@ extension ProductFilterVC {
                 self.priceRangeVC = PriceRangeVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(priceRangeVC)
             } else if i == 1 {
-                self.statusVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
-                self.statusVC.statusType = .status
-                self.allChildVCs.append(statusVC)
-            }else if i == 2 {
                 self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.startDateVC.filterDateType = .startDate
                 self.allChildVCs.append(startDateVC)
-            } else if i == 3 {
+            } else if i == 2 {
                 self.endDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.endDateVC.filterDateType = .closeDate
                 self.allChildVCs.append(endDateVC)
