@@ -314,12 +314,27 @@ extension AddAssetsVC : UITextFieldDelegate {
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
                         self.addAssetModel.startDate = datePicker.selectedDate()
                         self.addAssetModel.start_date = datePicker.selectedDate()?.convertToStringDefault()
+                        self.addAssetModel.rewardDate = nil
+                        self.addAssetModel.reward_date = ""
+                        self.addAssetModel.endDate = nil
+                        self.addAssetModel.end_date = ""
+                        self.mainTableView.reloadData()
                     case 1:
+                        if self.addAssetModel.startDate == nil {
+                             return
+                        }
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
                         self.addAssetModel.end_date = datePicker.selectedDate()?.convertToStringDefault()
                         self.addAssetModel.endDate = datePicker.selectedDate()
+                        self.addAssetModel.rewardDate = nil
+                        self.addAssetModel.reward_date = ""
+                        self.mainTableView.reloadData()
                     case 2:
+                        if self.addAssetModel.startDate == nil || self.addAssetModel.endDate == nil{
+                            return
+                        }
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
+                        self.addAssetModel.rewardDate = datePicker.selectedDate()
                         self.addAssetModel.reward_date = datePicker.selectedDate()?.convertToStringDefault()
                     default:
                         print("")
@@ -370,11 +385,21 @@ extension AddAssetsVC : UITextFieldDelegate {
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 1:
+                        if self.addAssetModel.startDate == nil {
+                            self.view.endEditing(true)
+                            ToastManager.show(title: Constants.string.selectStartDate, state: .warning)
+                             return
+                        }
                         self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: self.addAssetModel.startDate ?? Date())
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 2:
-                        self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+                        if self.addAssetModel.startDate == nil || self.addAssetModel.endDate == nil{
+                            self.view.endEditing(true)
+                            ToastManager.show(title: Constants.string.selectStartEndDate, state: .warning)
+                            return
+                        }
+                        self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: self.addAssetModel.endDate ?? Date())
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 3:

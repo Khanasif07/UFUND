@@ -1136,7 +1136,7 @@ Percentage (%)</string>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKh-xT-Yeb">
                                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
-                                                                        <state key="normal" image="add"/>
+                                                                        <state key="normal" image="icLess"/>
                                                                         <connections>
                                                                             <action selector="qtyMinusAction:" destination="SFY-jC-YZm" eventType="touchUpInside" id="qav-s3-0Gy"/>
                                                                         </connections>
@@ -1163,7 +1163,7 @@ Percentage (%)</string>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KSk-AB-bnQ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
-                                                                        <state key="normal" image="add"/>
+                                                                        <state key="normal" image="icAdd"/>
                                                                         <connections>
                                                                             <action selector="qtyPlusAction:" destination="SFY-jC-YZm" eventType="touchUpInside" id="BRR-Cd-yU6"/>
                                                                         </connections>
@@ -1316,7 +1316,7 @@ Percentage (%)</string>
                                         <rect key="frame" x="-1" y="0.0" width="416" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKx-7m-Ocx">
-                                                <rect key="frame" x="16" y="-2.5" width="56" height="56"/>
+                                                <rect key="frame" x="16" y="11.5" width="28" height="28"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <state key="normal" image="icBackward">
@@ -2746,14 +2746,15 @@ Percentage (%)</string>
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="16.5" height="13"/>
         <image name="bg2" width="711" height="476"/>
         <image name="checkBoxChecked" width="24" height="24"/>
         <image name="checkBoxUncheck" width="24" height="24"/>
+        <image name="icAdd" width="28" height="28"/>
         <image name="icBackward" width="28" height="28"/>
         <image name="icFilter" width="16" height="15"/>
         <image name="icInformation" width="86" height="86"/>
         <image name="icInvest" width="18.5" height="18"/>
+        <image name="icLess" width="28" height="28"/>
         <image name="icRadioSelected" width="20" height="20"/>
         <image name="icSearch" width="16" height="16"/>
         <image name="icSort" width="16" height="15"/>

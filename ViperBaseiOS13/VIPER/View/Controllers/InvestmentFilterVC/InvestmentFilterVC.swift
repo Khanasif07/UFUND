@@ -10,8 +10,8 @@ import Parchment
 import ObjectMapper
 
 protocol InvestmentFilterVCDelegate: class {
-    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool),_ byRewards: ([String], Bool) )
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_eraning: (CGFloat, Bool),_ byRewards: ([String], Bool) )
+    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool),_ byRewards: ([String], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool) )
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_eraning: (CGFloat, Bool),_ byRewards: ([String], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool) )
     
 }
 
@@ -91,12 +91,12 @@ class InvestmentFilterVC: UIViewController {
     
     @IBAction func closeBtnAction(_ sender: UIButton) {
         ProductFilterVM.shared.lastSelectedIndex = 0
-        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.investmentStart_from, false), (ProductFilterVM.shared.investmentStart_to, false), (ProductFilterVM.shared.minimumPrice , false), (ProductFilterVM.shared.maximumPrice , false), (ProductFilterVM.shared.investmentClose_from, false),(ProductFilterVM.shared.investmentClose_to, false), (ProductFilterVM.shared.investmentMaturity_from, false), (ProductFilterVM.shared.investmentMaturity_to, false), (ProductFilterVM.shared.minimumEarning, false), (ProductFilterVM.shared.maximumEarning, false), (ProductFilterVM.shared.byRewards, false))
+        delegate?.filterDataWithoutFilter((ProductFilterVM.shared.selectedCategoryListing, false), (ProductFilterVM.shared.investmentStart_from, false), (ProductFilterVM.shared.investmentStart_to, false), (ProductFilterVM.shared.minimumPrice , false), (ProductFilterVM.shared.maximumPrice , false), (ProductFilterVM.shared.investmentClose_from, false),(ProductFilterVM.shared.investmentClose_to, false), (ProductFilterVM.shared.investmentMaturity_from, false), (ProductFilterVM.shared.investmentMaturity_to, false), (ProductFilterVM.shared.minimumEarning, false), (ProductFilterVM.shared.maximumEarning, false), (ProductFilterVM.shared.byRewards, false), (ProductFilterVM.shared.selectedAssetsListing, false), (ProductFilterVM.shared.selectedTokenListing, false))
         self.popOrDismiss(animation: true)
     }
     
     @IBAction func applyBtnAction(_ sender: UIButton) {
-        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.investmentStart_from, !ProductFilterVM.shared.investmentStart_from.isEmpty), (ProductFilterVM.shared.investmentStart_to, !ProductFilterVM.shared.investmentStart_to.isEmpty), (ProductFilterVM.shared.minimumPrice , ProductFilterVM.shared.minimumPrice != 0.0), (ProductFilterVM.shared.maximumPrice , ProductFilterVM.shared.maximumPrice != 0.0), (ProductFilterVM.shared.investmentClose_from, !ProductFilterVM.shared.investmentClose_from.isEmpty),(ProductFilterVM.shared.investmentClose_to, !ProductFilterVM.shared.investmentClose_to.isEmpty), (ProductFilterVM.shared.investmentMaturity_from, !ProductFilterVM.shared.investmentMaturity_from.isEmpty), (ProductFilterVM.shared.investmentMaturity_to, !ProductFilterVM.shared.investmentMaturity_to.isEmpty), (ProductFilterVM.shared.minimumEarning, ProductFilterVM.shared.minimumEarning != 0.0), (ProductFilterVM.shared.maximumEarning, ProductFilterVM.shared.maximumEarning != 0.0), (ProductFilterVM.shared.byRewards, !ProductFilterVM.shared.byRewards.isEmpty))
+        delegate?.filterApplied((ProductFilterVM.shared.selectedCategoryListing, !ProductFilterVM.shared.selectedCategoryListing.isEmpty), (ProductFilterVM.shared.investmentStart_from, !ProductFilterVM.shared.investmentStart_from.isEmpty), (ProductFilterVM.shared.investmentStart_to, !ProductFilterVM.shared.investmentStart_to.isEmpty), (ProductFilterVM.shared.minimumPrice , ProductFilterVM.shared.minimumPrice != 0.0), (ProductFilterVM.shared.maximumPrice , ProductFilterVM.shared.maximumPrice != 0.0), (ProductFilterVM.shared.investmentClose_from, !ProductFilterVM.shared.investmentClose_from.isEmpty),(ProductFilterVM.shared.investmentClose_to, !ProductFilterVM.shared.investmentClose_to.isEmpty), (ProductFilterVM.shared.investmentMaturity_from, !ProductFilterVM.shared.investmentMaturity_from.isEmpty), (ProductFilterVM.shared.investmentMaturity_to, !ProductFilterVM.shared.investmentMaturity_to.isEmpty), (ProductFilterVM.shared.minimumEarning, ProductFilterVM.shared.minimumEarning != 0.0), (ProductFilterVM.shared.maximumEarning, ProductFilterVM.shared.maximumEarning != 0.0), (ProductFilterVM.shared.byRewards, !ProductFilterVM.shared.byRewards.isEmpty),(ProductFilterVM.shared.selectedAssetsListing, !ProductFilterVM.shared.selectedAssetsListing.isEmpty), (ProductFilterVM.shared.selectedTokenListing, !ProductFilterVM.shared.selectedTokenListing.isEmpty))
          self.popOrDismiss(animation: true)
     }
 }
@@ -176,7 +176,7 @@ extension InvestmentFilterVC {
                 self.endDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.endDateVC.filterDateType = .investmentEndDate
                 self.allChildVCs.append(endDateVC)
-            }else if i == 4 {
+            }else if i == 5 {
                 self.assetTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
                 self.assetTypeVC.tokenType = .Asset
                 self.allChildVCs.append(assetTypeVC)

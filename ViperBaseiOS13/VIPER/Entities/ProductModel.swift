@@ -162,6 +162,7 @@ struct ProductModel: Mappable {
     var investment_date : String?
     var startDate: Date?
     var endDate: Date?
+    var rewardDate : Date?
 
     init?(map: Map) {
 

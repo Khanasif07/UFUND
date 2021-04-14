@@ -53,6 +53,8 @@ class MyInvestmentVC: UIViewController {
     var selectedMinimumEarning : (CGFloat,Bool) = (0.0,false)
     var selectedMaximumEarning : (CGFloat,Bool) = (0.0,false)
     var selectedByRewards : (([String],Bool)) = ([],false)
+    var selectedAssetsListing : (([AssetTokenTypeModel],Bool)) = ([],false)
+    var selectedTokenListing : (([AssetTokenTypeModel],Bool)) = ([],false)
     //Pagination
     var hideLoader: Bool = false
     var nextPageAvailable = true
@@ -357,8 +359,10 @@ extension MyInvestmentVC : PresenterOutputProtocol {
 
 extension MyInvestmentVC: InvestmentFilterVCDelegate {
     
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool), _ byRewards: ([String], Bool)) {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool), _ min_earning: (CGFloat, Bool), _ max_eraning: (CGFloat, Bool), _ byRewards: ([String], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool)) {
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
+        ProductFilterVM.shared.selectedTokenListing = self.selectedTokenListing.0
+        ProductFilterVM.shared.selectedAssetsListing = self.selectedAssetsListing.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
         ProductFilterVM.shared.investmentStart_from = self.selectedInvestorStart_from.0
@@ -374,7 +378,7 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         ProductFilterVM.shared.byRewards = self.selectedByRewards.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool), _ byRewards: ([String], Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool), _ byRewards: ([String], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool)) {
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0
@@ -382,6 +386,20 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         }else {
             ProductFilterVM.shared.selectedCategoryListing = []
             self.selectedCategory = ([],false)
+        }
+        if asset_types.1 {
+            ProductFilterVM.shared.selectedAssetsListing = asset_types.0
+            self.selectedAssetsListing = asset_types
+        }else{
+            ProductFilterVM.shared.selectedAssetsListing = []
+            self.selectedAssetsListing = ([],false)
+        }
+        if token_types.1 {
+            ProductFilterVM.shared.selectedTokenListing = token_types.0
+            self.selectedTokenListing = token_types
+        }else{
+            ProductFilterVM.shared.selectedTokenListing = []
+            self.selectedTokenListing = ([],false)
         }
         if min.1 {
             ProductFilterVM.shared.minimumPrice = min.0

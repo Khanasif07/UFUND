@@ -138,6 +138,18 @@ class ProductFilterVM {
         if !self.investmentClose_to.isEmpty {
             params[ProductCreate.keys.end_to] = self.investmentClose_to
         }
+        if self.selectedAssetsListing.endIndex > 0{
+            let assets =  self.selectedAssetsListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params[ProductCreate.keys.asset_type] = assets
+        }
+        if self.selectedTokenListing.endIndex > 0{
+            let tokens =  self.selectedTokenListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params[ProductCreate.keys.token_type] = tokens
+        }
         return params
     }
     

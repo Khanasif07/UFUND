@@ -110,7 +110,7 @@ class CurrencyVC: UIViewController {
 
     //MARK:- PRDUCTS LIST API CALL
     private func getProductsCurrenciesList() {
-        self.presenter?.HITAPI(api: Base.asset_token_types.rawValue, params: ["type": tokenType == .Asset ? 1 : 2], methodType: .GET, modelClass: AssetTokenTypeEntity.self, token: true)
+        self.presenter?.HITAPI(api: Base.asset_token_types.rawValue, params: [ProductCreate.keys.type: tokenType == .Asset ? 1 : 2], methodType: .GET, modelClass: AssetTokenTypeEntity.self, token: true)
     }
 }
 
