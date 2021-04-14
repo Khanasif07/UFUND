@@ -60,6 +60,7 @@ class MyInvestmentsDetailVC: UIViewController {
     @IBAction func investBtnAction(_ sender: UIButton) {
         let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
         vc.isForBuyproduct = false
+        vc.productModel = productModel
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -70,6 +71,7 @@ class MyInvestmentsDetailVC: UIViewController {
     @IBAction func buyProductBtnAction(_ sender: UIButton) {
         let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
         vc.isForBuyproduct = true
+        vc.productModel = productModel
         self.present(vc, animated: true, completion: nil)
     }
 }
@@ -183,7 +185,7 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueCell(with: InvestmentsProfitTableCell.self, indexPath: indexPath)
-            cell.configureCell(model: productModel ?? ProductModel(json: [:]))
+//            cell.configureCell(model: productModel ?? ProductModel(json: [:]))
             return cell
         }
     }

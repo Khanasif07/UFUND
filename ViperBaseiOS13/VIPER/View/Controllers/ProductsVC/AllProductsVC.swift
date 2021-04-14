@@ -302,51 +302,64 @@ extension AllProductsVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 extension AllProductsVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
         self.sortType = sortType
+        var params = ProductFilterVM.shared.paramsDictForProducts
+        params[ProductCreate.keys.page] = 1
+        params[ProductCreate.keys.search] = searchText
         switch sortType {
         case Constants.string.sort_by_name_AZ:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by] = "product_title"
             switch (userType,false) {
             case (UserType.campaigner.rawValue,false):
-                var params = ProductFilterVM.shared.paramsDictForProducts
-                params[ProductCreate.keys.page] = 1
-                params[ProductCreate.keys.search] = searchText
                 params[ProductCreate.keys.status]  =  campaignerProductType.titleValue
-                params[ProductCreate.keys.sort_order] = "ASC"
-                params[ProductCreate.keys.sort_by] = "product_title"
                 self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             case (UserType.investor.rawValue,false):
-                var params = ProductFilterVM.shared.paramsDictForProducts
-                params[ProductCreate.keys.page] = 1
-                params[ProductCreate.keys.search] = searchText
                 params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
-                params[ProductCreate.keys.sort_order] = "ASC"
-                params[ProductCreate.keys.sort_by] = "product_title"
+                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            default:
+                break
+            }
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+            switch (userType,false) {
+            case (UserType.campaigner.rawValue,false):
+                params[ProductCreate.keys.status]  =  campaignerProductType.titleValue
+                self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            case (UserType.investor.rawValue,false):
+                params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
+                self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            default:
+                break
+            }
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+            switch (userType,false) {
+            case (UserType.campaigner.rawValue,false):
+                params[ProductCreate.keys.status]  =  campaignerProductType.titleValue
+                self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+            case (UserType.investor.rawValue,false):
+                params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
                 self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             default:
                 break
             }
         case Constants.string.sort_by_name_ZA:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
             switch (userType,false) {
             case (UserType.campaigner.rawValue,false):
-                var params = ProductFilterVM.shared.paramsDictForProducts
-                params[ProductCreate.keys.page] = 1
-                params[ProductCreate.keys.search] = searchText
                 params[ProductCreate.keys.status]  =  campaignerProductType.titleValue
-                params[ProductCreate.keys.sort_order] = "DESC"
-                params[ProductCreate.keys.sort_by] = "product_title"
                 self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             case (UserType.investor.rawValue,false):
-                var params = ProductFilterVM.shared.paramsDictForProducts
-                params[ProductCreate.keys.page] = 1
-                params[ProductCreate.keys.search] = searchText
                 params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
-                params[ProductCreate.keys.sort_order] = "DESC"
-                params[ProductCreate.keys.sort_by] = "product_title"
                 self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             default:
                 break
             }
         default:
-            print("Noting")
+            print("Do Nothing")
         }
     }
 }

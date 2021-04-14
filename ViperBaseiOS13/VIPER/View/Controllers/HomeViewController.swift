@@ -392,14 +392,5 @@ class FooterView : UICollectionReusableView {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var investorTitleLbl: UILabel!
     @IBOutlet weak var investorDesclbl: UILabel!
-    
-    //MARK:- LifeCycle
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        initialSetup()
-    }
-    
-    func initialSetup() {
-    }
-    
+
 }
