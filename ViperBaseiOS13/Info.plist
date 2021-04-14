@@ -54,6 +54,13 @@
 	<string>$(PRODUCT_NAME) need permission for access</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Poppins-BoldItalic.ttf</string>
+		<string>Poppins-Light.ttf</string>
+		<string>Poppins-ExtraBold.ttf</string>
+		<string>Poppins-LightItalic.ttf</string>
+		<string>Poppins-Thin.ttf</string>
+		<string>Poppins-Italic.ttf</string>
+		<string>Poppins-MediumItalic.ttf</string>
 		<string>Poppins-SemiBold.ttf</string>
 		<string>Poppins-Black.ttf</string>
 		<string>Poppins-Bold.ttf</string>

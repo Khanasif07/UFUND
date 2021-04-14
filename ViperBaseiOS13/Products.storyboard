@@ -12,6 +12,9 @@
         <array key="NunitoSans-Bold.ttf">
             <string>NunitoSans-Bold</string>
         </array>
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
+        </array>
         <array key="Poppins-Medium.ttf">
             <string>Poppins-Medium</string>
         </array>
@@ -161,8 +164,8 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Products" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6F-oW-Yy6">
-                                                <rect key="frame" x="159.5" y="16" width="95" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <rect key="frame" x="163.5" y="16" width="87" height="19"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -594,8 +597,8 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Tokenized Assest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeF-z8-fA4">
-                                                <rect key="frame" x="120.5" y="16" width="173.5" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <rect key="frame" x="126.5" y="16" width="161" height="19"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1249,6 +1252,7 @@ Percentage (%)</string>
                                             <constraint firstItem="URn-fv-5hr" firstAttribute="top" secondItem="MR2-3c-2Pn" secondAttribute="top" constant="16" id="UVZ-Nr-18K"/>
                                             <constraint firstAttribute="trailing" secondItem="2NM-1c-yq1" secondAttribute="trailing" constant="16" id="Vzr-UB-uNK"/>
                                             <constraint firstItem="h3w-5E-t8w" firstAttribute="leading" secondItem="MR2-3c-2Pn" secondAttribute="leading" id="aA9-Ut-LUe"/>
+                                            <constraint firstItem="NU3-KZ-aOg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="V6G-x5-HQx" secondAttribute="trailing" constant="10" id="aHL-gI-Zak"/>
                                             <constraint firstItem="V6G-x5-HQx" firstAttribute="leading" secondItem="MR2-3c-2Pn" secondAttribute="leading" constant="16" id="b6w-1B-UdE"/>
                                             <constraint firstItem="5p0-G8-2iq" firstAttribute="centerY" secondItem="9gM-sn-DdY" secondAttribute="centerY" id="bDU-dd-j1l"/>
                                             <constraint firstItem="PKS-kT-Fsn" firstAttribute="width" secondItem="MR2-3c-2Pn" secondAttribute="width" multiplier="93/343" id="eOq-Lg-2t2"/>
@@ -1340,8 +1344,8 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiW-4b-bAr">
-                                                <rect key="frame" x="125.5" y="13" width="165.5" height="25.5"/>
-                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
+                                                <rect key="frame" x="133.5" y="14.5" width="149.5" height="22.5"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1829,8 +1833,8 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories Detail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Q3-Z6-s7x">
-                                                <rect key="frame" x="140" y="16" width="134" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <rect key="frame" x="145.5" y="16" width="123" height="19"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -2135,8 +2139,8 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Token Investment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3j-zO-BMN">
-                                                <rect key="frame" x="124.5" y="16" width="165" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <rect key="frame" x="131" y="16" width="152.5" height="19"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -2368,8 +2372,8 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submit Assets &amp; Products" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I25-87-rXR">
-                                                <rect key="frame" x="106" y="16" width="202" height="19"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <rect key="frame" x="113.5" y="16" width="187.5" height="19"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>

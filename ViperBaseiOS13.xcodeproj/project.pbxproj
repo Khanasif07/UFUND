@@ -101,10 +101,6 @@
 		0825AB86238C0B4C0083AC42 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0825AB84238C0B4C0083AC42 /* HeaderCell.xib */; };
 		08268C5723D97AE300FA111F /* SilderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08268C5623D97AE300FA111F /* SilderImage.swift */; };
 		0826B78C2386757000867CD5 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0826B78B2386757000867CD5 /* Fonts.swift */; };
-		0826B7BB238680F300867CD5 /* OpenSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0826B7BA238680EB00867CD5 /* OpenSans-Bold.otf */; };
-		0826B7BC238680F300867CD5 /* OpenSans-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0826B7B8238680DD00867CD5 /* OpenSans-Light.otf */; };
-		0826B7BD238680F300867CD5 /* OpenSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0826B7B9238680E400867CD5 /* OpenSans-Regular.otf */; };
-		0826B7C12386850300867CD5 /* OpenSans-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0826B7C0238684CD00867CD5 /* OpenSans-Semibold.otf */; };
 		0826B7C52386934700867CD5 /* WalkThroughCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0826B7C32386934700867CD5 /* WalkThroughCell.swift */; };
 		0826B7C62386934700867CD5 /* WalkThroughCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0826B7C42386934700867CD5 /* WalkThroughCell.xib */; };
 		0826E94723C86A92000D98D3 /* PdfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0826E94623C86A92000D98D3 /* PdfViewController.swift */; };
@@ -195,6 +191,25 @@
 		841A919F2609B2AF008AA0A3 /* DashboardBarChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841A919D2609B2AF008AA0A3 /* DashboardBarChartCell.xib */; };
 		841A91A52609C223008AA0A3 /* DashboardInvestmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A91A32609C223008AA0A3 /* DashboardInvestmentCell.swift */; };
 		841A91A62609C223008AA0A3 /* DashboardInvestmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841A91A42609C223008AA0A3 /* DashboardInvestmentCell.xib */; };
+		842ABD0F2626BB42007AA9BA /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABCFC2626BB42007AA9BA /* Poppins-ExtraLight.ttf */; };
+		842ABD102626BB42007AA9BA /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABCFD2626BB42007AA9BA /* Poppins-ThinItalic.ttf */; };
+		842ABD112626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABCFE2626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf */; };
+		842ABD122626BB42007AA9BA /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABCFF2626BB42007AA9BA /* Poppins-BoldItalic.ttf */; };
+		842ABD132626BB42007AA9BA /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD002626BB42007AA9BA /* Poppins-Light.ttf */; };
+		842ABD142626BB42007AA9BA /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD012626BB42007AA9BA /* Poppins-Medium.ttf */; };
+		842ABD152626BB42007AA9BA /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD022626BB42007AA9BA /* Poppins-SemiBoldItalic.ttf */; };
+		842ABD162626BB42007AA9BA /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD032626BB42007AA9BA /* Poppins-ExtraBoldItalic.ttf */; };
+		842ABD172626BB42007AA9BA /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD042626BB42007AA9BA /* Poppins-ExtraBold.ttf */; };
+		842ABD182626BB42007AA9BA /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD052626BB42007AA9BA /* Poppins-BlackItalic.ttf */; };
+		842ABD192626BB42007AA9BA /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD062626BB42007AA9BA /* OFL.txt */; };
+		842ABD1A2626BB42007AA9BA /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD072626BB42007AA9BA /* Poppins-Regular.ttf */; };
+		842ABD1B2626BB42007AA9BA /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD082626BB42007AA9BA /* Poppins-LightItalic.ttf */; };
+		842ABD1C2626BB42007AA9BA /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD092626BB42007AA9BA /* Poppins-Bold.ttf */; };
+		842ABD1D2626BB42007AA9BA /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD0A2626BB42007AA9BA /* Poppins-Black.ttf */; };
+		842ABD1E2626BB42007AA9BA /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD0B2626BB42007AA9BA /* Poppins-Thin.ttf */; };
+		842ABD1F2626BB42007AA9BA /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD0C2626BB42007AA9BA /* Poppins-SemiBold.ttf */; };
+		842ABD202626BB42007AA9BA /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD0D2626BB42007AA9BA /* Poppins-Italic.ttf */; };
+		842ABD212626BB42007AA9BA /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABD0E2626BB42007AA9BA /* Poppins-MediumItalic.ttf */; };
 		8438C67125F5F72F00200270 /* MyInvestmentsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438C67025F5F72F00200270 /* MyInvestmentsDetailVC.swift */; };
 		8438C67525F5F7C300200270 /* InvestmentsProfitTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438C67325F5F7C300200270 /* InvestmentsProfitTableCell.swift */; };
 		8438C67625F5F7C300200270 /* InvestmentsProfitTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8438C67425F5F7C300200270 /* InvestmentsProfitTableCell.xib */; };
@@ -293,7 +308,6 @@
 		84E1F2DB26007483002B0062 /* MyWalletSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E1F2DA26007483002B0062 /* MyWalletSectionView.xib */; };
 		84E1F2DE26007DA4002B0062 /* MyWalletTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1F2DC26007DA4002B0062 /* MyWalletTableCell.swift */; };
 		84E1F2DF26007DA4002B0062 /* MyWalletTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E1F2DD26007DA4002B0062 /* MyWalletTableCell.xib */; };
-		84FA6EAA25E4BDC30053E618 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 84FA6EA925E4BDC30053E618 /* Fonts */; };
 		84FA6EAE25E4CA330053E618 /* CustomCircularBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EAD25E4CA330053E618 /* CustomCircularBar.swift */; };
 		84FA6EB225E5F0F40053E618 /* TokenizedAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EB125E5F0F40053E618 /* TokenizedAssetsVC.swift */; };
 		84FA6EB525E5FBEC0053E618 /* AssetsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EB425E5FBEC0053E618 /* AssetsDetailVC.swift */; };
@@ -425,10 +439,6 @@
 		0825AB84238C0B4C0083AC42 /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
 		08268C5623D97AE300FA111F /* SilderImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilderImage.swift; sourceTree = "<group>"; };
 		0826B78B2386757000867CD5 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		0826B7B8238680DD00867CD5 /* OpenSans-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.otf"; sourceTree = "<group>"; };
-		0826B7B9238680E400867CD5 /* OpenSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.otf"; sourceTree = "<group>"; };
-		0826B7BA238680EB00867CD5 /* OpenSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.otf"; sourceTree = "<group>"; };
-		0826B7C0238684CD00867CD5 /* OpenSans-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.otf"; sourceTree = "<group>"; };
 		0826B7C32386934700867CD5 /* WalkThroughCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkThroughCell.swift; sourceTree = "<group>"; };
 		0826B7C42386934700867CD5 /* WalkThroughCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalkThroughCell.xib; sourceTree = "<group>"; };
 		0826E94623C86A92000D98D3 /* PdfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfViewController.swift; sourceTree = "<group>"; };
@@ -453,10 +463,6 @@
 		0831EAC1241F6BB600AAC527 /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		083228A72424C56400CCFA1B /* TokenProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenProductViewController.swift; sourceTree = "<group>"; };
 		0833AA6523D70F62005235A6 /* TokenRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRequestViewController.swift; sourceTree = "<group>"; };
-		08345CC423ACA4CE00E3B4CC /* lato_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_light.ttf; sourceTree = "<group>"; };
-		08345CC523ACA4CE00E3B4CC /* lato.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato.ttf; sourceTree = "<group>"; };
-		08345CC623ACA4CE00E3B4CC /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
-		08345CC723ACA4CF00E3B4CC /* lato_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_bold.ttf; sourceTree = "<group>"; };
 		083E73842387D07F00F3E90A /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
 		083FF1B12387DEC500400012 /* ChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeViewController.swift; sourceTree = "<group>"; };
 		084811EE23ED77A00063CC0E /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -525,6 +531,25 @@
 		841A919D2609B2AF008AA0A3 /* DashboardBarChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardBarChartCell.xib; sourceTree = "<group>"; };
 		841A91A32609C223008AA0A3 /* DashboardInvestmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvestmentCell.swift; sourceTree = "<group>"; };
 		841A91A42609C223008AA0A3 /* DashboardInvestmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardInvestmentCell.xib; sourceTree = "<group>"; };
+		842ABCFC2626BB42007AA9BA /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		842ABCFD2626BB42007AA9BA /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
+		842ABCFE2626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		842ABCFF2626BB42007AA9BA /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		842ABD002626BB42007AA9BA /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		842ABD012626BB42007AA9BA /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		842ABD022626BB42007AA9BA /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		842ABD032626BB42007AA9BA /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		842ABD042626BB42007AA9BA /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		842ABD052626BB42007AA9BA /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
+		842ABD062626BB42007AA9BA /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		842ABD072626BB42007AA9BA /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		842ABD082626BB42007AA9BA /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		842ABD092626BB42007AA9BA /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		842ABD0A2626BB42007AA9BA /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		842ABD0B2626BB42007AA9BA /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		842ABD0C2626BB42007AA9BA /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		842ABD0D2626BB42007AA9BA /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		842ABD0E2626BB42007AA9BA /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		8438C67025F5F72F00200270 /* MyInvestmentsDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvestmentsDetailVC.swift; sourceTree = "<group>"; };
 		8438C67325F5F7C300200270 /* InvestmentsProfitTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsProfitTableCell.swift; sourceTree = "<group>"; };
 		8438C67425F5F7C300200270 /* InvestmentsProfitTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentsProfitTableCell.xib; sourceTree = "<group>"; };
@@ -623,7 +648,6 @@
 		84E1F2DA26007483002B0062 /* MyWalletSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletSectionView.xib; sourceTree = "<group>"; };
 		84E1F2DC26007DA4002B0062 /* MyWalletTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletTableCell.swift; sourceTree = "<group>"; };
 		84E1F2DD26007DA4002B0062 /* MyWalletTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletTableCell.xib; sourceTree = "<group>"; };
-		84FA6EA925E4BDC30053E618 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		84FA6EAD25E4CA330053E618 /* CustomCircularBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircularBar.swift; sourceTree = "<group>"; };
 		84FA6EB125E5F0F40053E618 /* TokenizedAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedAssetsVC.swift; sourceTree = "<group>"; };
 		84FA6EB425E5FBEC0053E618 /* AssetsDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsDetailVC.swift; sourceTree = "<group>"; };
@@ -1503,14 +1527,6 @@
 		0826B7722386745900867CD5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				08345CC623ACA4CE00E3B4CC /* lato_black.ttf */,
-				08345CC723ACA4CF00E3B4CC /* lato_bold.ttf */,
-				08345CC423ACA4CE00E3B4CC /* lato_light.ttf */,
-				08345CC523ACA4CE00E3B4CC /* lato.ttf */,
-				0826B7BA238680EB00867CD5 /* OpenSans-Bold.otf */,
-				0826B7B8238680DD00867CD5 /* OpenSans-Light.otf */,
-				0826B7B9238680E400867CD5 /* OpenSans-Regular.otf */,
-				0826B7C0238684CD00867CD5 /* OpenSans-Semibold.otf */,
 				0826B78B2386757000867CD5 /* Fonts.swift */,
 			);
 			path = Fonts;
@@ -1730,6 +1746,32 @@
 				841A918D2609A8FF008AA0A3 /* AlignmentFlowLayout.swift */,
 			);
 			path = AlignmentFlowLayout;
+			sourceTree = "<group>";
+		};
+		842ABCFB2626BB42007AA9BA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				842ABCFC2626BB42007AA9BA /* Poppins-ExtraLight.ttf */,
+				842ABCFD2626BB42007AA9BA /* Poppins-ThinItalic.ttf */,
+				842ABCFE2626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf */,
+				842ABCFF2626BB42007AA9BA /* Poppins-BoldItalic.ttf */,
+				842ABD002626BB42007AA9BA /* Poppins-Light.ttf */,
+				842ABD012626BB42007AA9BA /* Poppins-Medium.ttf */,
+				842ABD022626BB42007AA9BA /* Poppins-SemiBoldItalic.ttf */,
+				842ABD032626BB42007AA9BA /* Poppins-ExtraBoldItalic.ttf */,
+				842ABD042626BB42007AA9BA /* Poppins-ExtraBold.ttf */,
+				842ABD052626BB42007AA9BA /* Poppins-BlackItalic.ttf */,
+				842ABD062626BB42007AA9BA /* OFL.txt */,
+				842ABD072626BB42007AA9BA /* Poppins-Regular.ttf */,
+				842ABD082626BB42007AA9BA /* Poppins-LightItalic.ttf */,
+				842ABD092626BB42007AA9BA /* Poppins-Bold.ttf */,
+				842ABD0A2626BB42007AA9BA /* Poppins-Black.ttf */,
+				842ABD0B2626BB42007AA9BA /* Poppins-Thin.ttf */,
+				842ABD0C2626BB42007AA9BA /* Poppins-SemiBold.ttf */,
+				842ABD0D2626BB42007AA9BA /* Poppins-Italic.ttf */,
+				842ABD0E2626BB42007AA9BA /* Poppins-MediumItalic.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		8438C66F25F5F6E200200270 /* MyInvestmentsDetailVC */ = {
@@ -2072,7 +2114,7 @@
 		84FA6EAB25E4BE440053E618 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				84FA6EA925E4BDC30053E618 /* Fonts */,
+				842ABCFB2626BB42007AA9BA /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2246,37 +2288,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DD055325D293C6003AC05C /* SideMenuTableCell.xib in Resources */,
+				842ABD1B2626BB42007AA9BA /* Poppins-LightItalic.ttf in Resources */,
 				086F139C246F12F000EA4355 /* SendTokenViewController.xib in Resources */,
 				089C287E23F18E8800230AB3 /* EmptyResultCell.xib in Resources */,
 				84E16F0A25D5215B004F37FA /* ProductCollectionCell.xib in Resources */,
+				842ABD112626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf in Resources */,
 				0825AB7D238BF2A80083AC42 /* HomeCell.xib in Resources */,
 				841A91982609A9FE008AA0A3 /* DashboardTabsTableCell.xib in Resources */,
 				0825AB82238BF61E0083AC42 /* GridCell.xib in Resources */,
-				0826B7C12386850300867CD5 /* OpenSans-Semibold.otf in Resources */,
 				08A905D023BDD77900C794F1 /* ProductDecpCell.xib in Resources */,
 				841A91A62609C223008AA0A3 /* DashboardInvestmentCell.xib in Resources */,
+				842ABD162626BB42007AA9BA /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				84411E9425D1480700718BD1 /* UserProfileHeaderView.xib in Resources */,
 				0820702D23DEC08C006793D8 /* OTPViewController.xib in Resources */,
 				84411EA025D22B4600718BD1 /* UserProfilePhoneNoCell.xib in Resources */,
 				085AC03424AF1EB000FFAD96 /* coin_payment.html in Resources */,
 				086F138E246EB3C100EA4355 /* HistoryCell.xib in Resources */,
-				0826B7BB238680F300867CD5 /* OpenSans-Bold.otf in Resources */,
 				082FBA5B24051DE600F45950 /* TokenAssetsAmountViewController.xib in Resources */,
 				84A6C32025DA47ED00C00EB1 /* AllProductsCollCell.xib in Resources */,
-				0826B7BC238680F300867CD5 /* OpenSans-Light.otf in Resources */,
-				0826B7BD238680F300867CD5 /* OpenSans-Regular.otf in Resources */,
 				0821E8F8241B8C4300263674 /* CryptoReceiveViewController.xib in Resources */,
 				84FA6EBA25E5FEDF0053E618 /* AssetsDetailInfoCell.xib in Resources */,
+				842ABD172626BB42007AA9BA /* Poppins-ExtraBold.ttf in Resources */,
+				842ABD0F2626BB42007AA9BA /* Poppins-ExtraLight.ttf in Resources */,
 				0826B7C62386934700867CD5 /* WalkThroughCell.xib in Resources */,
+				842ABD132626BB42007AA9BA /* Poppins-Light.ttf in Resources */,
 				84E1F2DF26007DA4002B0062 /* MyWalletTableCell.xib in Resources */,
 				84411E9C25D1577C00718BD1 /* UserProfileImageCell.xib in Resources */,
 				845ADB8425ECAEB7009392E2 /* BottomSheetVC.xib in Resources */,
 				846F264726143E0B00FEB452 /* UploadDocumentTableCell.xib in Resources */,
 				088E33C124CAF382001EE899 /* DatePickerViewController.xib in Resources */,
 				0824B0C52382847800F81A9B /* countryCodes.json in Resources */,
+				842ABD1A2626BB42007AA9BA /* Poppins-Regular.ttf in Resources */,
+				842ABD122626BB42007AA9BA /* Poppins-BoldItalic.ttf in Resources */,
 				84D5660825DB9EC80047F052 /* CategoryListTableCell.xib in Resources */,
 				84E1F2DB26007483002B0062 /* MyWalletSectionView.xib in Resources */,
+				842ABD1F2626BB42007AA9BA /* Poppins-SemiBold.ttf in Resources */,
 				844682D725D53DC900F44A53 /* ProductSortTableCell.xib in Resources */,
+				842ABD142626BB42007AA9BA /* Poppins-Medium.ttf in Resources */,
 				0825AB86238C0B4C0083AC42 /* HeaderCell.xib in Resources */,
 				847C110025DF968300D13A5C /* ProductDetailDateCell.xib in Resources */,
 				847C110425DFC7EF00D13A5C /* ProductDetailInvestmentCell.xib in Resources */,
@@ -2285,7 +2333,9 @@
 				84D5660425DB96BD0047F052 /* MenuItemCollectionCell.xib in Resources */,
 				84A08252260CABA300CE95E5 /* DashboardSubmittedProductsCell.xib in Resources */,
 				0824B035238280E800F81A9B /* LaunchScreen.storyboard in Resources */,
+				842ABD152626BB42007AA9BA /* Poppins-SemiBoldItalic.ttf in Resources */,
 				847C10FC25DF8F0800D13A5C /* ProductDetailDescriptionCell.xib in Resources */,
+				842ABD102626BB42007AA9BA /* Poppins-ThinItalic.ttf in Resources */,
 				0825AB6D238BC0940083AC42 /* NotificationCell.xib in Resources */,
 				84D565EC25DB68C20047F052 /* Filter.storyboard in Resources */,
 				0825A05A23B4A003001BEC21 /* ProductListCell.xib in Resources */,
@@ -2297,19 +2347,25 @@
 				0825AB74238BD53C0083AC42 /* CategoriesCell.xib in Resources */,
 				8493AFBD2600ACCC00000720 /* NewProductsCollCell.xib in Resources */,
 				84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */,
+				842ABD1C2626BB42007AA9BA /* Poppins-Bold.ttf in Resources */,
+				842ABD212626BB42007AA9BA /* Poppins-MediumItalic.ttf in Resources */,
 				087B7B86241D0F5B0024D998 /* FundCell.xib in Resources */,
 				0870FC46238CFBD800D24B41 /* ProductsCollectionCell.xib in Resources */,
 				0824B0C62382847800F81A9B /* CountryPicker.bundle in Resources */,
 				085AC03D24AF4C9F00FFAD96 /* TranscationHistoryCell.xib in Resources */,
+				842ABD1D2626BB42007AA9BA /* Poppins-Black.ttf in Resources */,
 				8438C67625F5F7C300200270 /* InvestmentsProfitTableCell.xib in Resources */,
 				84A6C31B25DA3A3A00C00EB1 /* Products.storyboard in Resources */,
 				08294D74238E5CA7008108A2 /* CoinCell.xib in Resources */,
 				08808A2C247262B100564CA2 /* GoogleService-Info.plist in Resources */,
+				842ABD202626BB42007AA9BA /* Poppins-Italic.ttf in Resources */,
 				0831EAC0241F65E800AAC527 /* CatogriesCell.xib in Resources */,
+				842ABD192626BB42007AA9BA /* OFL.txt in Resources */,
 				846097162615CE3A00A9631F /* AddDescTableCell.xib in Resources */,
+				842ABD182626BB42007AA9BA /* Poppins-BlackItalic.ttf in Resources */,
 				086F1393246ED13E00EA4355 /* BuyTokenViewController.xib in Resources */,
 				846F264326143C8500FEB452 /* UploadDocumentCollCell.xib in Resources */,
-				84FA6EAA25E4BDC30053E618 /* Fonts in Resources */,
+				842ABD1E2626BB42007AA9BA /* Poppins-Thin.ttf in Resources */,
 				080FC599238D43560013B37D /* PaymentsListCell.xib in Resources */,
 				0824B02D238280E700F81A9B /* Main.storyboard in Resources */,
 				845C131625FF53970018A1E1 /* Wallet.storyboard in Resources */,
