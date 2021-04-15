@@ -135,7 +135,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.keyboardType = .numberPad
                 cell.textFIeld.text = self.addAssetModel.tokensupply == nil ?  "" : "\(self.addAssetModel.tokensupply ?? 0)"
             case 5:
-                cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.keyboardType = .decimalPad
                 cell.textFIeld.text = self.addAssetModel.decimal == nil ? "" : "\(self.addAssetModel.decimal ?? 0)"
             default:
                 cell.textFIeld.keyboardType = .numberPad
@@ -232,7 +232,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
               ToastManager.show(title: Constants.string.enterTokenSymbol, state: .warning)
             return false
         }
-        guard let decimal = self.addAssetModel.decimal ,!(decimal == 0)  else {
+        guard let decimal = self.addAssetModel.decimal ,!(decimal == 0.0)  else {
               ToastManager.show(title: Constants.string.enterDecimal, state: .warning)
             return false
         }
@@ -301,7 +301,7 @@ extension AddAssetsVC : UITextFieldDelegate {
                             self.addAssetModel.tokensupply = Int(text)
                             cell.textFIeld.text = text
                         case 5:
-                            self.addAssetModel.decimal = Int(text)
+                            self.addAssetModel.decimal = Double(text)
                             cell.textFIeld.text = text
                         default:
                             self.addAssetModel.asset_amount = Int(text)
@@ -417,6 +417,33 @@ extension AddAssetsVC : UITextFieldDelegate {
             }
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
+            if  let indexPath = mainTableView.indexPath(forItem: cell){
+                if indexPath.section == 0 {
+                    switch indexPath.row {
+                    case 5:
+                        guard let counter = textField.text?.components(separatedBy: ".") else { return false }
+                        if (counter.count - 1 > 0 && string == ".")  { return false }
+                        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+                        if updatedText.contains(s: ".") {
+                            let arr = updatedText.components(separatedBy: ".")
+                            return arr[1].count == 2 || arr[1].count == 1 || arr[1].count == 0
+                        }else {
+                            return updatedText.count <= 8
+                        }
+                    default:
+                        return true
+                    }
+                }
+            }
+        }
+        return true
+    }
+        
 }
 //MARK:- Sorting
 //==============

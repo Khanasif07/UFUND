@@ -144,7 +144,7 @@ struct ProductModel: Mappable {
     var tokensymbol: String?
     var tokenvalue: Int?
     var user: UserProfile?
-    var decimal: Int?
+    var decimal: Double?
     var contract_address: String?
     var token_type: Int?
     var product_status: Int?
