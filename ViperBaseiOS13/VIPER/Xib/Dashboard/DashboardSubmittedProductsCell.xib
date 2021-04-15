@@ -7,6 +7,17 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
+        </array>
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,13 +29,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKq-JS-FjZ">
-                        <rect key="frame" x="16" y="8" width="221" height="378"/>
+                        <rect key="frame" x="16" y="8" width="252" height="378"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Qui-n9-uu7">
-                                <rect key="frame" x="8" y="0.0" width="205" height="368"/>
+                                <rect key="frame" x="8" y="0.0" width="236" height="368"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4oP-Oj-1hd">
-                                        <rect key="frame" x="0.0" y="0.0" width="205" height="68"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="236" height="68"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icProductWithBg" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-bz-P0L">
                                                 <rect key="frame" x="8" y="10" width="48" height="48"/>
@@ -33,25 +44,25 @@
                                                     <constraint firstAttribute="width" secondItem="RNv-bz-P0L" secondAttribute="height" id="e5y-fk-u9j"/>
                                                 </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="CkJ-Co-mVM">
-                                                <rect key="frame" x="71.5" y="10" width="125.5" height="48"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="CkJ-Co-mVM">
+                                                <rect key="frame" x="102.5" y="12" width="125.5" height="44.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submitted Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwW-jb-fl7">
                                                         <rect key="frame" x="0.0" y="0.0" width="125.5" height="16.5"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                         <color key="textColor" red="0.43137254901960786" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vl-Qj-VOc">
-                                                        <rect key="frame" x="0.0" y="19" width="125.5" height="29"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                        <rect key="frame" x="0.0" y="16.5" width="125.5" height="28"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="24"/>
                                                         <color key="textColor" red="0.31764705882352939" green="0.34509803921568627" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Egx-q4-deR">
-                                                <rect key="frame" x="8" y="67" width="189" height="1"/>
+                                                <rect key="frame" x="8" y="67" width="220" height="1"/>
                                                 <color key="backgroundColor" red="0.43137254901960786" green="0.41960784313725491" blue="0.41960784313725491" alpha="0.1051311204800793" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="yZL-La-jkA"/>
@@ -71,10 +82,10 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hn0-wT-WfT">
-                                        <rect key="frame" x="0.0" y="84" width="205" height="205"/>
+                                        <rect key="frame" x="0.0" y="84" width="236" height="205"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Edu-de-97t" customClass="PieChartView" customModule="Charts">
-                                                <rect key="frame" x="0.0" y="0.0" width="205" height="205"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="236" height="205"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Edu-de-97t" secondAttribute="height" id="tSV-oU-EXW"/>
@@ -83,11 +94,11 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UYq-UT-1wl">
-                                        <rect key="frame" x="0.0" y="305" width="205" height="63"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="UYq-UT-1wl">
+                                        <rect key="frame" x="0.0" y="305" width="236" height="63"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fLc-Gm-NGv">
-                                                <rect key="frame" x="0.0" y="0.0" width="142.5" height="12"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="135.5" height="12"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbm-S2-ywx">
                                                         <rect key="frame" x="0.0" y="1" width="10" height="10"/>
@@ -103,15 +114,15 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No of Pending Products " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otS-tj-NAM">
-                                                        <rect key="frame" x="25" y="0.0" width="117.5" height="12"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <rect key="frame" x="25" y="0.0" width="110.5" height="12"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="doQ-Se-Q99">
-                                                <rect key="frame" x="0.0" y="17" width="147" height="12"/>
+                                                <rect key="frame" x="0.0" y="17" width="139" height="12"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAg-M8-yWS">
                                                         <rect key="frame" x="0.0" y="1" width="10" height="10"/>
@@ -127,15 +138,15 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No of Approved Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKa-Rj-au4">
-                                                        <rect key="frame" x="25" y="0.0" width="122" height="12"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <rect key="frame" x="25" y="0.0" width="114" height="12"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="EqG-3W-3Pq">
-                                                <rect key="frame" x="0.0" y="34" width="143" height="12"/>
+                                                <rect key="frame" x="0.0" y="34" width="135.5" height="12"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdM-Sk-8vC">
                                                         <rect key="frame" x="0.0" y="1" width="10" height="10"/>
@@ -151,15 +162,15 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No of Rejected Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXu-r1-83R">
-                                                        <rect key="frame" x="25" y="0.0" width="118" height="12"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <rect key="frame" x="25" y="0.0" width="110.5" height="12"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9mI-gS-TYM">
-                                                <rect key="frame" x="0.0" y="51" width="121" height="12"/>
+                                                <rect key="frame" x="0.0" y="51" width="114.5" height="12"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7QI-V9-dT1">
                                                         <rect key="frame" x="0.0" y="1" width="10" height="10"/>
@@ -175,8 +186,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No of sold Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JC9-Pn-YO5">
-                                                        <rect key="frame" x="25" y="0.0" width="96" height="12"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <rect key="frame" x="25" y="0.0" width="89.5" height="12"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
