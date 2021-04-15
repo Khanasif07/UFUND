@@ -42,7 +42,7 @@ class ProductDetailPopUpVC: UIViewController {
             if isForBuyproduct{
                 self.buyNowBtnTitle = "Buy Product"
             }else {
-                self.buyNowBtnTitle = "Invest"
+                self.buyNowBtnTitle = "Buy " + "Token"
             }
         }
     }

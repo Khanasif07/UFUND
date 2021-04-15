@@ -99,6 +99,7 @@ extension AssetsDetailVC {
         self.investBtn.borderColor = UIColor.rgb(r: 255, g: 31, b: 45)
         self.investBtn.borderLineWidth = 1.0
         self.buyProductBtn.setTitleColor(.white, for: .normal)
+        self.buyProductBtn.setTitle("Buy " + ProductCreate.keys.tokens_assets, for: .normal)
         self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
         : UIColor.rgb(r: 255, g: 31, b: 45)
         self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false

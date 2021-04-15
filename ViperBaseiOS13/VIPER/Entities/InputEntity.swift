@@ -81,6 +81,7 @@ struct ProductCreate {
     let reward = "reward"
     
     //
+    let tokens_assets = "Tokens & Assets"
     let category = "category"
     let search = "search"
     let min = "min"
