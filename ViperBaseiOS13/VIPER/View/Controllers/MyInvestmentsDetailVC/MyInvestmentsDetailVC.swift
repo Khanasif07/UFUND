@@ -36,6 +36,7 @@ class MyInvestmentsDetailVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var productModel: ProductModel?
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
@@ -108,15 +109,15 @@ extension MyInvestmentsDetailVC {
             self.liveView.backgroundColor = (productModel?.product_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.product_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
             self.statusRadioImgView.image = (productModel?.product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.product_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
             self.statusLbl.text = (productModel?.product_status == 1) ? "Live" : (productModel?.status == 2) ? "Closed" : "Matured"
-            self.buyProductBtn.setTitle("Buy " + ProductCreate.keys.products, for: .normal)
+            self.buyProductBtn.setTitle(" Buy " + ProductCreate.keys.products, for: .normal)
             self.cellTypes = [.productDescCell,.productDateCell,.productInvestmentCell,.InvestmentsProfitCell]
             self.hitProductDetailAPI()
         } else {
             investBtn.isHidden = true
             self.liveView.backgroundColor = (productModel?.token_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.token_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
-            self.statusRadioImgView.image = (productModel?.token_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.token_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
-            self.statusLbl.text = (productModel?.token_status == 1) ? "Live" : "Closed"
-            self.buyProductBtn.setTitle("Buy " + ProductCreate.keys.tokens_assets, for: .normal)
+            self.statusRadioImgView.image = (productModel?.token_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.token_status == 2) ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioSelected")
+            self.statusLbl.text = (productModel?.token_status == 1) ? "Live" : "Live"
+            self.buyProductBtn.setTitle(" Buy " + ProductCreate.keys.tokens_assets, for: .normal)
             self.cellTypes = [.productDescCell,.assetDetailInfoCell,.productDateCell,.productInvestmentCell,.assetsSupplyTableCell]
             self.hitTokensDetailAPI()
         }
@@ -176,9 +177,11 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
                 cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
                 cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
             default:
+                cell.productLbl.text = ProductCreate.keys.token
+                cell.productDetailLbl.text = ProductCreate.keys.tokenDetail
                 cell.productTitleLbl.text = productModel?.tokenname ?? ""
-                cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
-                cell.productDescLbl.text = "\(productModel?.tokenrequest?.description ?? "")"
+                cell.priceLbl.text = "$ " + "\(productModel?.tokenrequest?.asset?.asset_value ?? 0.0)"
+                cell.productDescLbl.text = "\(productModel?.tokenrequest?.asset?.description ?? "")"
             }
             return cell
         case .assetDetailInfoCell:
@@ -203,7 +206,11 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .assetsSupplyTableCell:
             let cell = tableView.dequeueCell(with: AssetsSupplyTableCell.self, indexPath: indexPath)
-            cell.configureCellForInvestor(model: productModel ?? ProductModel(json: [:]))
+            if userType == UserType.investor.rawValue {
+                cell.configureCellForInvestor(model: productModel ?? ProductModel(json: [:]))
+            } else {
+                cell.configureCellForCampaigner(model: productModel?.asset ?? Asset(json: [:]),productModel: productModel ?? ProductModel(json: [:]) )
+            }
             return cell
         default:
             let cell = tableView.dequeueCell(with: InvestmentsProfitTableCell.self, indexPath: indexPath)

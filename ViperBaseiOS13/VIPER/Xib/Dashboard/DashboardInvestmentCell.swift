@@ -51,7 +51,7 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
         pieChartView.usePercentValuesEnabled = true
         pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .bold)
         pieChartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
-        self.setDataCount(2, range: 100)
+        self.setDataCount(partiesPercentage.endIndex, range: 100)
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
@@ -67,7 +67,7 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
         set.sliceSpace = 1
         
         
-        set.colors = [#colorLiteral(red: 0.137254902, green: 0.262745098, blue: 0.8745098039, alpha: 1),#colorLiteral(red: 0.1647058824, green: 0.7450980392, blue: 0.7843137255, alpha: 1)]
+        set.colors = [#colorLiteral(red: 0.1647058824, green: 0.7450980392, blue: 0.7843137255, alpha: 1),#colorLiteral(red: 0.5294117647, green: 0.262745098, blue: 0.9137254902, alpha: 1)]
         
         let data = PieChartData(dataSet: set)
         

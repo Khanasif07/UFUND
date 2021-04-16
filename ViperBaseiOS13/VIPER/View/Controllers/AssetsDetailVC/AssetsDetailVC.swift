@@ -112,12 +112,12 @@ extension AssetsDetailVC {
     private func setFont(){
         self.investBtn.isHidden = true
         self.liveView.backgroundColor = (productModel?.token_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.token_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
-        self.statusRadioImgView.image = (productModel?.token_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.token_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
-        self.statusLbl.text = (productModel?.product_status == 1) ? "Live" : "Closed"
+        self.statusRadioImgView.image = (productModel?.token_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.token_status == 2) ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioSelected")
+        self.statusLbl.text = (productModel?.product_status == 1) ? "Live" : "Live"
         self.investBtn.borderColor = UIColor.rgb(r: 255, g: 31, b: 45)
         self.investBtn.borderLineWidth = 1.0
         self.buyProductBtn.setTitleColor(.white, for: .normal)
-        self.buyProductBtn.setTitle("Buy " + ProductCreate.keys.tokens_assets, for: .normal)
+        self.buyProductBtn.setTitle(" Buy " + ProductCreate.keys.tokens_assets, for: .normal)
         self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
         : UIColor.rgb(r: 255, g: 31, b: 45)
         self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
@@ -158,9 +158,11 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
         switch cellTypes[indexPath.row] {
         case AssetsDetailCellType.assetsDescCell:
             let cell = tableView.dequeueCell(with: ProductDetailDescriptionCell.self, indexPath: indexPath)
+            cell.productLbl.text = ProductCreate.keys.token
+            cell.productDetailLbl.text = ProductCreate.keys.tokenDetail
             cell.productTitleLbl.text = productModel?.tokenname ?? ""
-            cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
-            cell.productDescLbl.text = "\(productModel?.tokenrequest?.description ?? "")"
+            cell.priceLbl.text = "$ " + "\(productModel?.tokenrequest?.asset?.asset_value ?? 0.0)"
+            cell.productDescLbl.text = "\(productModel?.tokenrequest?.asset?.description ?? "")"
             return cell
         case AssetsDetailCellType.assetsDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
@@ -179,9 +181,11 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
         default:
             let cell = tableView.dequeueCell(with: AssetsSupplyTableCell.self, indexPath: indexPath)
             if userType == UserType.investor.rawValue {
+                  cell.myTokenStackView.isHidden = true
                   cell.configureCellForInvestor(model: productModel ?? ProductModel(json: [:]))
             } else {
-                  cell.configureCellForCampaigner(model: productModel?.asset ?? Asset(json: [:]))
+                  cell.myTokenStackView.isHidden = false
+                  cell.configureCellForCampaigner(model: productModel?.asset ?? Asset(json: [:]),productModel: productModel ?? ProductModel(json: [:]) )
             }
             return cell
         }

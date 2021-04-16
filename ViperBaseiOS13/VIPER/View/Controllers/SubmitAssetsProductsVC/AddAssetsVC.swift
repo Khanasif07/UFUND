@@ -292,7 +292,7 @@ extension AddAssetsVC : UITextFieldDelegate {
                             self.addAssetModel.tokenname = text
                             cell.textFIeld.text = text
                         case 2:
-                            self.addAssetModel.tokenvalue = Int(text)
+                            self.addAssetModel.tokenvalue = Double(text)
                             cell.textFIeld.text = text
                         case 3:
                             self.addAssetModel.tokensymbol = text

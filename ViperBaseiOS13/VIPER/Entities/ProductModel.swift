@@ -109,6 +109,7 @@ struct ProductsEntity : Mappable {
 struct ProductModel: Mappable {
     var id : Int?
     var user_id : Int?
+    var avilable_token : Int?
     var product_title : String?
     var product_image : String?
     var products : Int?
@@ -154,7 +155,7 @@ struct ProductModel: Mappable {
     var tokensupply: Int?
     var move_to_sale : String?
     var tokensymbol: String?
-    var tokenvalue: Int?
+    var tokenvalue: Double?
     var user: UserProfile?
     var decimal: Double?
     var contract_address: String?
@@ -229,6 +230,7 @@ struct ProductModel: Mappable {
         contract_address <- map["contract_address"]
         token_type <- map["token_type"]
         asset <- map["asset"]
+        avilable_token <- map["avilable_token"]
         
         if investment_product_total == nil {
             

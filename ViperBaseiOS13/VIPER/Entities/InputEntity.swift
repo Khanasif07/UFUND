@@ -58,6 +58,8 @@ struct ProductCreate {
     let document = "document"
     let token_image = "token_image"
     let tokenname = "tokenname"
+    let tokenDetail = "Token Details"
+    let token = "Token"
     let tokensymbol = "tokensymbol"
     let tokenvalue = "tokenvalue"
     let tokensupply = "tokensupply"

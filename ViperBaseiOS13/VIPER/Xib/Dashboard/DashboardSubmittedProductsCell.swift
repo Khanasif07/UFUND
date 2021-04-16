@@ -63,7 +63,7 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
         pieChartView.usePercentValuesEnabled = true
         pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
         pieChartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
-        self.setDataCount(4, range: 100)
+        self.setDataCount(partiesPercentage.endIndex, range: 100)
     }
     
     func setDataCount(_ count: Int, range: UInt32) {

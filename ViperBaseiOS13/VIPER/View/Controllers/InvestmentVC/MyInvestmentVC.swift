@@ -227,9 +227,9 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
             cell.categoryLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
-            cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenvalue ?? 0))")
+            cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenrequest?.asset?.asset_value ?? 0.0))")
             cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status == nil)
-            cell.statusLbl.text = (self.investerProductList?[indexPath.row].token_status == 1) ? "Live" : "Closed"
+            cell.statusLbl.text = (self.investerProductList?[indexPath.row].token_status == 1) ? "Live" : "Live"
             cell.liveView.backgroundColor = (self.investerProductList?[indexPath.row].token_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
             cell.statusRadioImgView.image = (self.investerProductList?[indexPath.row].product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (self.investerProductList?[indexPath.row].status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
             return cell

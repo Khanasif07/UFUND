@@ -159,6 +159,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
         case .DashboardInvestmentCell:
             let cell = tableView.dequeueCell(with: DashboardInvestmentCell.self, indexPath: indexPath)
             cell.dollarInvestmentValue.text = "$ " + "\(self.investorDashboardData?.my_investements ?? 0)"
+            cell.partiesPercentage = [1.0,0.0]
             return cell
         case .DashboardSubmittedProductsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)

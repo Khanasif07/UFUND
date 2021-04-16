@@ -35,14 +35,14 @@ class ProductDetailPopUpVC: UIViewController {
             self.payableAmountValueLbl.text = "$ " + "\(percentageValue)"
         }
     }
-    var buyNowBtnTitle: String = "Buy Product"
+    var buyNowBtnTitle: String = "Buy Now"
     var button = UIButton()
     var isForBuyproduct = false {
         didSet{
             if isForBuyproduct{
-                self.buyNowBtnTitle = "Buy Product"
+                self.buyNowBtnTitle = "Buy Now"
             }else {
-                self.buyNowBtnTitle = "Buy " + "Token"
+                self.buyNowBtnTitle = "Invest"
             }
         }
     }
