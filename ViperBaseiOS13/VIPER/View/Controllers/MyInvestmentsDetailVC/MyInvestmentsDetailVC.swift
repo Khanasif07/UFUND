@@ -86,7 +86,6 @@ extension MyInvestmentsDetailVC {
     
     private func initialSetup() {
         self.setUpForProductAndTokenPage()
-        self.setFont()
         self.setFooterView()
         self.setupTableView()
     }
@@ -127,10 +126,18 @@ extension MyInvestmentsDetailVC {
         self.investBtn.borderColor = UIColor.rgb(r: 255, g: 31, b: 45)
         self.investBtn.borderLineWidth = 1.0
         self.buyProductBtn.setTitleColor(.white, for: .normal)
-        self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
-        : UIColor.rgb(r: 255, g: 31, b: 45)
-        self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
-        : true
+        if  investmentType == .MyProductInvestment {
+            self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
+                : UIColor.rgb(r: 255, g: 31, b: 45)
+            self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
+                : true
+        } else {
+            self.buyProductBtn.backgroundColor = (productModel?.tokenrequest?.avilable_token ?? 0) == 0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
+                : UIColor.rgb(r: 255, g: 31, b: 45)
+            self.buyProductBtn.isUserInteractionEnabled = (productModel?.tokenrequest?.avilable_token ?? 0) == 0 ?  false
+                : true
+        }
+        
     }
     
     private func setFooterView(){
@@ -240,11 +247,13 @@ extension MyInvestmentsDetailVC : PresenterOutputProtocol {
         case "/\(Base.productsDetail.rawValue)/\(productModel?.id ?? 0)":
             self.loader.isHidden = true
             self.productModel = dataDict as? ProductModel
+            self.setFont()
             self.mainTableView.reloadData()
         case "/\(Base.tokensDetail.rawValue)/\(productModel?.id ?? 0)":
             self.loader.isHidden = true
             if let productDetailData = dataDict as? ProductDetailsEntity {
                 self.productModel = productDetailData.data
+                self.setFont()
             }
             self.mainTableView.reloadData()
         default:

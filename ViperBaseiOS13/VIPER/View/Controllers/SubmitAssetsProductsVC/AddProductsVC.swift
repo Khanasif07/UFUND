@@ -374,7 +374,7 @@ extension AddProductsVC : UITextFieldDelegate {
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 2:
-                        self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+                        self.datePicker.datePicker.minimumDate =  Calendar.current.date(byAdding: .day, value: 1, to: self.addProductModel.endDate ?? Date())
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     default:
