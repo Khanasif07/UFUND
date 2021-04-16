@@ -22,7 +22,11 @@ class InvestmentsProfitTableCell: UITableViewCell {
     
     // MARK: - Variables
     //===========================
-    var progressPercentageValue: Double = 0.0
+    var progressPercentageValue: Double = 0.0{
+        didSet{
+             self.progressView.setProgress(to: self.progressPercentageValue / 100, withAnimation: true)
+        }
+    }
     
     // MARK: - Lifecycle
     //===========================
@@ -32,14 +36,11 @@ class InvestmentsProfitTableCell: UITableViewCell {
     }
     
     func configureCell(model: ProductModel){
-        self.yourInvestmentValueLbl.text = "\(model.investment_product_total ?? 0.0)"
-        self.yourEarnedValueLbl.text = "N/A"
-        self.yourInvestmentPercentageLbl.text = "N/A"
-        let netProfitPercentage = (model.investment_product_total ?? 0.0) * 100 / (model.total_product_value ?? 0.0)
-//        self.progressValue.text = "\(netProfitPercentage)"
-        self.progressPercentageValue = netProfitPercentage
-        self.newProfitPercentageLbl.text =  "\(netProfitPercentage.round(to: 1))" + "%"
-        self.netProfitValueLbl.text = "\((model.total_product_value ?? 0.0) * netProfitPercentage / 100)"
+        let youEarned = (model.invested_amount ?? 0.0) + (model.earnings ?? 0.0)
+        self.yourInvestmentValueLbl.text = "\(model.invested_amount ?? 0.0)"
+        self.yourEarnedValueLbl.text = "\(youEarned)"
+        self.progressValue.text = "\(progressPercentageValue)" + "%"
+        self.netProfitValueLbl.text = "\((model.earnings ?? 0.0))"
     }
     
     private func setupProgressView(){

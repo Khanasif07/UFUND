@@ -148,6 +148,12 @@ extension MyInvestmentsDetailVC {
         return (investValue / totalValue) * 100
     }
     
+    private func getProgressPerForYourInvestment() -> Double{
+        let earnings =   (productModel?.earnings ?? 0.0 )
+        let invested_amount =  (productModel?.invested_amount ?? 0.0)
+        return ((earnings  * 100) / invested_amount)
+    }
+    
     private func hitProductDetailAPI(){
           self.loader.isHidden = false
           self.presenter?.HITAPI(api: "/\(Base.productsDetail.rawValue)/\(productModel?.id ?? 0)", params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
@@ -214,7 +220,8 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueCell(with: InvestmentsProfitTableCell.self, indexPath: indexPath)
-//            cell.configureCell(model: productModel ?? ProductModel(json: [:]))
+            cell.progressPercentageValue = self.getProgressPerForYourInvestment().round(to: 2)
+            cell.configureCell(model: productModel ?? ProductModel(json: [:]))
             return cell
         }
     }
