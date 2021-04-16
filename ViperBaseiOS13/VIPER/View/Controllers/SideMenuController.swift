@@ -274,13 +274,13 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
                 self.drawerController?.closeSide()
                 let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
                 vc.productTitle = Constants.string.newTokenizedAssets.localize()
-                vc.productType = .NewAssets
+                vc.assetType = .NewAssets
                 (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             } else if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.allTokenizedAssets.localize(){
                 self.drawerController?.closeSide()
                 let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
                 vc.productTitle = Constants.string.allTokenizedAssets.localize()
-                vc.productType = .AllAssets
+                vc.assetType = .AllAssets
                 (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
             }
             

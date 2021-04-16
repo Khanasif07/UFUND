@@ -264,12 +264,12 @@ extension BottomSheetVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
             case Constants.string.newTokenizedAssets.localize():
                 let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
                 vc.productTitle = Constants.string.newTokenizedAssets.localize()
-                vc.productType = .NewAssets
+                vc.assetType = .NewAssets
                 self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.allTokenizedAssets.localize():
                 let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
                 vc.productTitle = Constants.string.allTokenizedAssets.localize()
-                vc.productType = .AllAssets
+                vc.assetType = .AllAssets
                 self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.investment.localize():
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.InvestmentListViewController) as? InvestmentListViewController else { return }

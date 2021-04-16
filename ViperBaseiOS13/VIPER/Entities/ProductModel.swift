@@ -34,6 +34,18 @@ struct ProductListModel : Mappable {
     
 }
 
+struct ProductDetailsEntity : Mappable {
+    var data : ProductModel?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+}
+
 struct ProductModelEntity : Mappable {
     var categories : [Categories]?
     var data : [ProductModel]?
@@ -149,6 +161,7 @@ struct ProductModel: Mappable {
     var token_type: Int?
     var product_status: Int?
     var token_status: Int?
+    var user_product: UserProduct?
     //
     var asset_id : Int?
     var token_id : Int?
@@ -234,6 +247,7 @@ struct ProductModel: Mappable {
         product_investment_count <- map["product_investment_count"]
         product_status <- map["product_status"]
         token_status <- map["token_status"]
+        user_product <- map["user_product"]
       
     }
     
@@ -344,7 +358,7 @@ struct TokenRequestModel : Mappable {
     var status : Int?
     var request_deploy : Int?
     var tokenrequest : Tokenrequest?
-var asset : Asset?
+    var asset : Asset?
     
     init?(map: Map) {
 
@@ -493,6 +507,7 @@ struct TokenDetailsEntity : Mappable {
 struct Tokenrequest : Mappable {
     var id : Int?
     var user_id : Int?
+    var avilable_token: Int?
     var tokenname : String?
     var tokensymbol : String?
     var tokenvalue : Double?
@@ -517,11 +532,16 @@ struct Tokenrequest : Mappable {
     init?(map: Map) {
 
     }
+    
+    init(json: [String:Any]){
+        
+    }
 
     mutating func mapping(map: Map) {
 
         id <- map["id"]
         user_id <- map["user_id"]
+        avilable_token <- map["avilable_token"]
         tokenname <- map["tokenname"]
         tokensymbol <- map["tokensymbol"]
         tokenvalue <- map["tokenvalue"]
@@ -550,6 +570,8 @@ struct Tokenrequest : Mappable {
 struct Asset : Mappable {
     var id : Int?
     var token_id : Int?
+    var avilable_token: Int?
+    var tokensupply: Int?
     var asset_title : String?
     var asset_image : String?
     var description : String?
@@ -568,6 +590,11 @@ struct Asset : Mappable {
     init?(map: Map) {
 
     }
+    
+    init(json: [String:Any]){
+        
+    }
+    
 
     mutating func mapping(map: Map) {
 
@@ -587,6 +614,8 @@ struct Asset : Mappable {
         category <- map["category"]
         asset_child_image <- map["asset_child_image"]
         reward <- map["reward"]
+        tokensupply <- map["tokensupply"]
+        avilable_token <- map["avilable_token"]
     }
 
 }
@@ -611,6 +640,36 @@ struct Asset_type : Mappable {
         type <- map["type"]
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
+    }
+
+}
+
+struct UserProduct : Mappable{
+    var amount : Int?
+    var created_at : String?
+    var id : Int?
+    var payment_id : String?
+    var product_id : String?
+    var product_type : String?
+    var quantity : Int?
+    var updated_at : String?
+    var user_id : String?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+
+        amount <- map["amount"]
+        created_at <- map["created_at"]
+        id <- map["id"]
+        payment_id <- map["payment_id"]
+        product_id <- map["product_id"]
+        product_type <- map["product_type"]
+        quantity <- map["quantity"]
+        updated_at <- map["updated_at"]
+        user_id <- map["user_id"]
     }
 
 }

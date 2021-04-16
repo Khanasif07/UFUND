@@ -22,7 +22,12 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
     // MARK: - Variables
     //===========================
     var parties = ["",""]
-    var partiesPercentage = [0.5,99.5]
+    var partiesPercentage = [25.0,0.0]{
+        didSet{
+            self.partiesPercentage.removeAll(where: {$0 == 0.0})
+            self.setDataCount(partiesPercentage.endIndex, range: 100)
+        }
+    }
     
     // MARK: - Lifecycle
     //===========================

@@ -295,6 +295,8 @@
 		84D5660425DB96BD0047F052 /* MenuItemCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D5660225DB96BD0047F052 /* MenuItemCollectionCell.xib */; };
 		84D5660725DB9EC80047F052 /* CategoryListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5660525DB9EC80047F052 /* CategoryListTableCell.swift */; };
 		84D5660825DB9EC80047F052 /* CategoryListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84D5660625DB9EC80047F052 /* CategoryListTableCell.xib */; };
+		84DC5EC326285A8A0020C9B2 /* AssetsSupplyTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC5EC126285A8A0020C9B2 /* AssetsSupplyTableCell.swift */; };
+		84DC5EC426285A8A0020C9B2 /* AssetsSupplyTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DC5EC226285A8A0020C9B2 /* AssetsSupplyTableCell.xib */; };
 		84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */; };
 		84DD054F25D239AD003AC05C /* CountryCodeTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */; };
 		84DD055225D293C6003AC05C /* SideMenuTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD055025D293C6003AC05C /* SideMenuTableCell.swift */; };
@@ -635,6 +637,8 @@
 		84D5660225DB96BD0047F052 /* MenuItemCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuItemCollectionCell.xib; sourceTree = "<group>"; };
 		84D5660525DB9EC80047F052 /* CategoryListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListTableCell.swift; sourceTree = "<group>"; };
 		84D5660625DB9EC80047F052 /* CategoryListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryListTableCell.xib; sourceTree = "<group>"; };
+		84DC5EC126285A8A0020C9B2 /* AssetsSupplyTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsSupplyTableCell.swift; sourceTree = "<group>"; };
+		84DC5EC226285A8A0020C9B2 /* AssetsSupplyTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetsSupplyTableCell.xib; sourceTree = "<group>"; };
 		84DD054C25D239AD003AC05C /* CountryCodeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeTableCell.swift; sourceTree = "<group>"; };
 		84DD054D25D239AD003AC05C /* CountryCodeTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCodeTableCell.xib; sourceTree = "<group>"; };
 		84DD055025D293C6003AC05C /* SideMenuTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableCell.swift; sourceTree = "<group>"; };
@@ -2149,6 +2153,8 @@
 			children = (
 				84FA6EB725E5FEDF0053E618 /* AssetsDetailInfoCell.swift */,
 				84FA6EB825E5FEDF0053E618 /* AssetsDetailInfoCell.xib */,
+				84DC5EC126285A8A0020C9B2 /* AssetsSupplyTableCell.swift */,
+				84DC5EC226285A8A0020C9B2 /* AssetsSupplyTableCell.xib */,
 			);
 			path = "XIB's";
 			sourceTree = "<group>";
@@ -2298,6 +2304,7 @@
 				0825AB82238BF61E0083AC42 /* GridCell.xib in Resources */,
 				08A905D023BDD77900C794F1 /* ProductDecpCell.xib in Resources */,
 				841A91A62609C223008AA0A3 /* DashboardInvestmentCell.xib in Resources */,
+				84DC5EC426285A8A0020C9B2 /* AssetsSupplyTableCell.xib in Resources */,
 				842ABD162626BB42007AA9BA /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				84411E9425D1480700718BD1 /* UserProfileHeaderView.xib in Resources */,
 				0820702D23DEC08C006793D8 /* OTPViewController.xib in Resources */,
@@ -2673,6 +2680,7 @@
 				84A6C31F25DA47ED00C00EB1 /* AllProductsCollCell.swift in Sources */,
 				84DD055225D293C6003AC05C /* SideMenuTableCell.swift in Sources */,
 				84FA6EB225E5F0F40053E618 /* TokenizedAssetsVC.swift in Sources */,
+				84DC5EC326285A8A0020C9B2 /* AssetsSupplyTableCell.swift in Sources */,
 				0826B78C2386757000867CD5 /* Fonts.swift in Sources */,
 				0824B1202382A13200F81A9B /* Label.swift in Sources */,
 				0824B0E923828EFE00F81A9B /* WebService.swift in Sources */,

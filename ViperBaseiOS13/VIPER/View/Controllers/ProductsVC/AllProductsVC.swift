@@ -257,7 +257,7 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if true {
+        if !isRequestinApi {
             guard nextPageAvailable, !isRequestinApi else { return }
         } else {
             guard !isRequestinApi else { return }

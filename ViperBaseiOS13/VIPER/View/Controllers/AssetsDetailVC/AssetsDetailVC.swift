@@ -8,6 +8,7 @@
 
 
 import UIKit
+import ObjectMapper
 
 class AssetsDetailVC: UIViewController {
     
@@ -16,6 +17,7 @@ class AssetsDetailVC: UIViewController {
         case assetsDescCell
         case assetsDateCell
         case assetsInvestmentCell
+        case assetsSupplyTableCell
     }
     
     // MARK: - IBOutlets
@@ -30,12 +32,17 @@ class AssetsDetailVC: UIViewController {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var mainTableView: UITableView!
     
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-    var cellTypes = [AssetsDetailCellType.assetsDescCell,AssetsDetailCellType.assetsInfoCell,AssetsDetailCellType.assetsDateCell,AssetsDetailCellType.assetsInvestmentCell]
     
     // MARK: - Variables
     //===========================
     var productModel: ProductModel?
+    var assetsType: TokenizedAssetsType = .AllAssets
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
+    private lazy var loader  : UIView = {
+        return createActivityIndicator(self.view)
+    }()
+    var cellTypes = [AssetsDetailCellType.assetsDescCell,AssetsDetailCellType.assetsInfoCell,AssetsDetailCellType.assetsDateCell,AssetsDetailCellType.assetsInvestmentCell]
+    
     
     // MARK: - Lifecycle
     //===========================
@@ -76,19 +83,30 @@ class AssetsDetailVC: UIViewController {
 extension AssetsDetailVC {
     
     private func initialSetup() {
+        self.hitTokensDetailAPI()
+        self.setAssetType()
         self.setFont()
         self.setFooterView()
+        self.setUpTableView()
+    }
+    
+    private func setUpTableView(){
         self.mainTableView.registerCell(with: ProductDetailDescriptionCell.self)
         self.mainTableView.registerCell(with: ProductDetailDateCell.self)
         self.mainTableView.registerCell(with: ProductDetailInvestmentCell.self)
         self.mainTableView.registerCell(with: AssetsDetailInfoCell.self)
+        self.mainTableView.registerCell(with: AssetsSupplyTableCell.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.tableHeaderView = headerView
-        let imgEntity =  productModel?.token_image ?? ""
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
-        self.bottomView.isHidden = userType != UserType.investor.rawValue
+    }
+    
+    private func setAssetType(){
+        if assetsType == .AllAssets{
+            self.cellTypes = [.assetsDescCell,.assetsInfoCell,.assetsDateCell,.assetsInvestmentCell,.assetsSupplyTableCell]
+        } else {
+            self.cellTypes = [.assetsDescCell,.assetsInfoCell,.assetsDateCell,.assetsInvestmentCell]
+        }
     }
     
     private func setFont(){
@@ -110,12 +128,21 @@ extension AssetsDetailVC {
         let footerView = UIView()
         footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50.0)
         self.mainTableView.tableFooterView = footerView
+        let imgEntity =  productModel?.token_image ?? ""
+        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
+        self.bottomView.isHidden = userType != UserType.investor.rawValue
     }
     
     private func getProgressPercentage() -> Double{
         let investValue =   (productModel?.tokenvalue ?? 0 )
         let totalValue =  (productModel?.tokenvalue ?? 0)
         return Double((investValue / totalValue) * 100)
+    }
+    
+    private func hitTokensDetailAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: "/\(Base.tokensDetail.rawValue)/\(productModel?.id ?? 0)", params: nil, methodType: .GET, modelClass: ProductDetailsEntity.self, token: true)
     }
 }
 
@@ -143,16 +170,47 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueCell(with: AssetsDetailInfoCell.self, indexPath: indexPath)
             cell.configureCell(model: productModel ?? ProductModel(json: [:]))
             return cell
-        default:
+        case AssetsDetailCellType.assetsInvestmentCell:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
             cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
-//            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
-//            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+            //            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
+            //            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
+            return cell
+        default:
+            let cell = tableView.dequeueCell(with: AssetsSupplyTableCell.self, indexPath: indexPath)
+            if userType == UserType.investor.rawValue {
+                  cell.configureCellForInvestor(model: productModel ?? ProductModel(json: [:]))
+            } else {
+                  cell.configureCellForCampaigner(model: productModel?.asset ?? Asset(json: [:]))
+            }
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+// MARK: - Extension For PresenterOutputProtocol
+//===========================
+extension AssetsDetailVC : PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        switch api {
+        case "/\(Base.tokensDetail.rawValue)/\(productModel?.id ?? 0)":
+            self.loader.isHidden = true
+            if let productDetailData = dataDict as? ProductDetailsEntity {
+                self.productModel = productDetailData.data
+            }
+            self.mainTableView.reloadData()
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class ProductDetailVC: UIViewController {
     
@@ -31,12 +32,15 @@ class ProductDetailVC: UIViewController {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var mainTableView: UITableView!
     
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-    var cellTypes = [ProductDetailCellType.productDescCell,ProductDetailCellType.productDateCell,ProductDetailCellType.productInvestmentCell]
-    
     // MARK: - Variables
     //===========================
     var productModel: ProductModel?
+    private lazy var loader  : UIView = {
+           return createActivityIndicator(self.view)
+       }()
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
+    var cellTypes = [ProductDetailCellType.productDescCell,ProductDetailCellType.productDateCell,ProductDetailCellType.productInvestmentCell]
+    
     
     // MARK: - Lifecycle
     //===========================
@@ -81,16 +85,17 @@ extension ProductDetailVC {
     private func initialSetup() {
         self.setFont()
         self.setFooterView()
+        self.setUpTableView()
+    }
+    
+    private func setUpTableView(){
+        self.hitProductDetailAPI()
         self.mainTableView.registerCell(with: ProductDetailDescriptionCell.self)
         self.mainTableView.registerCell(with: ProductDetailDateCell.self)
         self.mainTableView.registerCell(with: ProductDetailInvestmentCell.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.tableHeaderView = headerView
-        let imgEntity =  productModel?.product_image ?? ""
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
-        self.bottomView.isHidden = userType != UserType.investor.rawValue
     }
     
     private func setFont(){
@@ -110,12 +115,21 @@ extension ProductDetailVC {
         let footerView = UIView()
         footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50.0)
         self.mainTableView.tableFooterView = footerView
+        let imgEntity =  productModel?.product_image ?? ""
+        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
+        self.bottomView.isHidden = userType != UserType.investor.rawValue
     }
     
     private func getProgressPercentage() -> Double{
         let investValue =   (productModel?.investment_product_total ?? 0.0 )
         let totalValue =  (productModel?.total_product_value ?? 0.0)
         return (investValue / totalValue) * 100
+    }
+    
+    private func hitProductDetailAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: "/\(Base.productsDetail.rawValue)/\(productModel?.id ?? 0)", params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
     }
 }
 
@@ -152,3 +166,25 @@ extension ProductDetailVC : UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
 }
+
+// MARK: - Extension For PresenterOutputProtocol
+//===========================
+extension ProductDetailVC : PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        switch api {
+        case "/\(Base.productsDetail.rawValue)/\(productModel?.id ?? 0)":
+            self.loader.isHidden = true
+            self.productModel = dataDict as? ProductModel
+            self.mainTableView.reloadData()
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+}
+

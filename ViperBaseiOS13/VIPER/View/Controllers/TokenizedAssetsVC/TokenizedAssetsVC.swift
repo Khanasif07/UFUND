@@ -57,7 +57,7 @@ class TokenizedAssetsVC: UIViewController {
     var sortType: String  = ""
     var searchTask: DispatchWorkItem?
     var campaignerAssetType: CampaignerAssetType = .AllAssets
-    var productType: TokenizedAssetsType = .AllAssets
+    var assetType: TokenizedAssetsType = .AllAssets
     var searchText : String = ""
     var productTitle: String = "New Tokenized Assest"
     var investerProductList : [ProductModel]?{
@@ -162,7 +162,7 @@ extension TokenizedAssetsVC {
             var params = ProductFilterVM.shared.paramsDictForAssets
             params[ProductCreate.keys.page] = page
             params[ProductCreate.keys.search] = search
-            params[ProductCreate.keys.type]  = productType == .AllAssets ? 0 : 1
+            params[ProductCreate.keys.type]  = assetType == .AllAssets ? 0 : 1
             if !self.sortType.isEmpty{
                 params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
                 params[ProductCreate.keys.sort_by] = "product_title"
@@ -244,6 +244,7 @@ extension TokenizedAssetsVC: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let ob = AssetsDetailVC.instantiate(fromAppStoryboard: .Products)
+        ob.assetsType = assetType
         ob.productModel =  (self.investerProductList?[indexPath.row])
         self.navigationController?.pushViewController(ob, animated: true)
     }
@@ -296,7 +297,7 @@ extension TokenizedAssetsVC: ProductSortVCDelegate  {
                 params[ProductCreate.keys.status]  =  campaignerAssetType.titleValue
                 self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             case (UserType.investor.rawValue,false):
-                params[ProductCreate.keys.type]  =   productType == .AllAssets ? 0 : 1
+                params[ProductCreate.keys.type]  =   assetType == .AllAssets ? 0 : 1
                 self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             default:
                 break
@@ -309,7 +310,7 @@ extension TokenizedAssetsVC: ProductSortVCDelegate  {
                 params[ProductCreate.keys.status]  =  campaignerAssetType.titleValue
                 self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             case (UserType.investor.rawValue,false):
-                params[ProductCreate.keys.type]  =   productType == .AllAssets ? 0 : 1
+                params[ProductCreate.keys.type]  =   assetType == .AllAssets ? 0 : 1
                 self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             default:
                 break
@@ -322,7 +323,7 @@ extension TokenizedAssetsVC: ProductSortVCDelegate  {
                 params[ProductCreate.keys.status]  =  campaignerAssetType.titleValue
                 self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             case (UserType.investor.rawValue,false):
-                params[ProductCreate.keys.type]  =   productType == .AllAssets ? 0 : 1
+                params[ProductCreate.keys.type]  =   assetType == .AllAssets ? 0 : 1
                 self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             default:
                 break
@@ -335,7 +336,7 @@ extension TokenizedAssetsVC: ProductSortVCDelegate  {
                 params[ProductCreate.keys.status]  =  campaignerAssetType.titleValue
                 self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             case (UserType.investor.rawValue,false):
-                params[ProductCreate.keys.type]  =   productType == .AllAssets ? 0 : 1
+                params[ProductCreate.keys.type]  =   assetType == .AllAssets ? 0 : 1
                 self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             default:
                 break
@@ -485,7 +486,7 @@ extension TokenizedAssetsVC: AssetsFilterVCDelegate {
             params[ProductCreate.keys.status] = campaignerAssetType.titleValue
             self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,false):
-             params[ProductCreate.keys.type] = productType == .AllAssets ? 0 : 1
+             params[ProductCreate.keys.type] = assetType == .AllAssets ? 0 : 1
              self.presenter?.HITAPI(api: Base.tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break

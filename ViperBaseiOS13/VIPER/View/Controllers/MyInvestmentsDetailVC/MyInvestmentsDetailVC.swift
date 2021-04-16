@@ -4,7 +4,7 @@
 //
 //  Created by Admin on 08/03/21.
 //  Copyright © 2021 CSS. All rights reserved.
-
+import ObjectMapper
 import UIKit
 
 class MyInvestmentsDetailVC: UIViewController {
@@ -16,6 +16,7 @@ class MyInvestmentsDetailVC: UIViewController {
         case assetDetailInfoCell
         case productInvestmentCell
         case InvestmentsProfitCell
+        case assetsSupplyTableCell
     }
     
     
@@ -33,12 +34,14 @@ class MyInvestmentsDetailVC: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     
-    var investmentType: MyInvestmentType = .MyProductInvestment
-    var cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
-    
     // MARK: - Variables
     //===========================
     var productModel: ProductModel?
+    private lazy var loader  : UIView = {
+        return createActivityIndicator(self.view)
+    }()
+    var investmentType: MyInvestmentType = .MyProductInvestment
+    var cellTypes : [MyInvestmentsDetailCellType] = [.productDescCell,.productDateCell,.productInvestmentCell]
     
     // MARK: - Lifecycle
     //===========================
@@ -84,17 +87,19 @@ extension MyInvestmentsDetailVC {
         self.setUpForProductAndTokenPage()
         self.setFont()
         self.setFooterView()
+        self.setupTableView()
+    }
+    
+    private func setupTableView(){
         self.mainTableView.registerCell(with: ProductDetailDescriptionCell.self)
         self.mainTableView.registerCell(with: ProductDetailDateCell.self)
         self.mainTableView.registerCell(with: ProductDetailInvestmentCell.self)
         self.mainTableView.registerCell(with: InvestmentsProfitTableCell.self)
         self.mainTableView.registerCell(with: AssetsDetailInfoCell.self)
+        self.mainTableView.registerCell(with: AssetsSupplyTableCell.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.tableHeaderView = headerView
-        let imgEntity = investmentType == .MyProductInvestment ?  productModel?.product_image ?? "" : productModel?.token_image ?? "" 
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
     }
     
     private func setUpForProductAndTokenPage(){
@@ -104,14 +109,16 @@ extension MyInvestmentsDetailVC {
             self.statusRadioImgView.image = (productModel?.product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.product_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
             self.statusLbl.text = (productModel?.product_status == 1) ? "Live" : (productModel?.status == 2) ? "Closed" : "Matured"
             self.buyProductBtn.setTitle("Buy " + ProductCreate.keys.products, for: .normal)
-            self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell,MyInvestmentsDetailCellType.InvestmentsProfitCell]
+            self.cellTypes = [.productDescCell,.productDateCell,.productInvestmentCell,.InvestmentsProfitCell]
+            self.hitProductDetailAPI()
         } else {
             investBtn.isHidden = true
             self.liveView.backgroundColor = (productModel?.token_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.token_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
             self.statusRadioImgView.image = (productModel?.token_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.token_status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
             self.statusLbl.text = (productModel?.token_status == 1) ? "Live" : "Closed"
             self.buyProductBtn.setTitle("Buy " + ProductCreate.keys.tokens_assets, for: .normal)
-            self.cellTypes = [MyInvestmentsDetailCellType.productDescCell,MyInvestmentsDetailCellType.assetDetailInfoCell,MyInvestmentsDetailCellType.productDateCell,MyInvestmentsDetailCellType.productInvestmentCell]
+            self.cellTypes = [.productDescCell,.assetDetailInfoCell,.productDateCell,.productInvestmentCell,.assetsSupplyTableCell]
+            self.hitTokensDetailAPI()
         }
     }
     
@@ -121,11 +128,6 @@ extension MyInvestmentsDetailVC {
         self.buyProductBtn.setTitleColor(.white, for: .normal)
         self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
         : UIColor.rgb(r: 255, g: 31, b: 45)
-       
-//        self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
-//               : UIColor.rgb(r: 255, g: 31, b: 45)
-//               self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
-//               : true
         self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
         : true
     }
@@ -134,12 +136,25 @@ extension MyInvestmentsDetailVC {
         let footerView = UIView()
         footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50.0)
         self.mainTableView.tableFooterView = footerView
+        let imgEntity = investmentType == .MyProductInvestment ?  productModel?.product_image ?? "" : productModel?.token_image ?? ""
+        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
     }
     
     private func getProgressPercentage() -> Double{
         let investValue =   (productModel?.investment_product_total ?? 0.0 )
         let totalValue =  (productModel?.total_product_value ?? 0.0)
         return (investValue / totalValue) * 100
+    }
+    
+    private func hitProductDetailAPI(){
+          self.loader.isHidden = false
+          self.presenter?.HITAPI(api: "/\(Base.productsDetail.rawValue)/\(productModel?.id ?? 0)", params: nil, methodType: .GET, modelClass: ProductModel.self, token: true)
+      }
+    
+    private func hitTokensDetailAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: "/\(Base.tokensDetail.rawValue)/\(productModel?.id ?? 0)", params: nil, methodType: .GET, modelClass: ProductDetailsEntity.self, token: true)
     }
 }
 
@@ -153,7 +168,7 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch cellTypes[indexPath.row] {
-        case MyInvestmentsDetailCellType.productDescCell:
+        case .productDescCell:
             let cell = tableView.dequeueCell(with: ProductDetailDescriptionCell.self, indexPath: indexPath)
             switch investmentType {
             case .MyProductInvestment:
@@ -166,16 +181,16 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
                 cell.productDescLbl.text = "\(productModel?.tokenrequest?.description ?? "")"
             }
             return cell
-        case MyInvestmentsDetailCellType.assetDetailInfoCell:
+        case .assetDetailInfoCell:
             let cell = tableView.dequeueCell(with: AssetsDetailInfoCell.self, indexPath: indexPath)
             cell.configureCell(model: productModel ?? ProductModel(json: [:]))
             return cell
-        case MyInvestmentsDetailCellType.productDateCell:
+        case .productDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
             cell.setCellForInvestmentDetailPage()
             cell.configureCell(model: self.productModel!)
             return cell
-        case MyInvestmentsDetailCellType.productInvestmentCell:
+        case .productInvestmentCell:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
             switch investmentType {
             case .MyProductInvestment:
@@ -186,6 +201,10 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
                 cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
             }
             return cell
+        case .assetsSupplyTableCell:
+            let cell = tableView.dequeueCell(with: AssetsSupplyTableCell.self, indexPath: indexPath)
+            cell.configureCellForInvestor(model: productModel ?? ProductModel(json: [:]))
+            return cell
         default:
             let cell = tableView.dequeueCell(with: InvestmentsProfitTableCell.self, indexPath: indexPath)
 //            cell.configureCell(model: productModel ?? ProductModel(json: [:]))
@@ -195,5 +214,32 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+// MARK: - Extension For PresenterOutputProtocol
+//===========================
+extension MyInvestmentsDetailVC : PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        switch api {
+        case "/\(Base.productsDetail.rawValue)/\(productModel?.id ?? 0)":
+            self.loader.isHidden = true
+            self.productModel = dataDict as? ProductModel
+            self.mainTableView.reloadData()
+        case "/\(Base.tokensDetail.rawValue)/\(productModel?.id ?? 0)":
+            self.loader.isHidden = true
+            if let productDetailData = dataDict as? ProductDetailsEntity {
+                self.productModel = productDetailData.data
+            }
+            self.mainTableView.reloadData()
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }
