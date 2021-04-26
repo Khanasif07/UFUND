@@ -75,6 +75,10 @@ class HomeViewController: UIViewController{
         super.viewWillAppear(true)
     }
     
+    @IBAction func notificationBtnTapped(_ sender: UIButton) {
+        self.push(to: Storyboard.Ids.NotificationViewController)
+    }
+    
     @IBAction func menuOpener(_ sender: UIButton){
         self.drawerController?.openSide(.left)
         self.viewSideMenu.addPressAnimation()
@@ -119,6 +123,11 @@ extension HomeViewController {
             }
         }
         print("UserTypeChanged")
+    }
+    
+    private func push(to identifier : String) {
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: identifier)
+        (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -196,7 +205,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             case Constants.string.profile.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.EditProfileViewController) as? EditProfileViewController else { return }
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             case Constants.string.wallet.localize():

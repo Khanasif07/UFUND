@@ -36,8 +36,7 @@ class NotificationViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.register(UINib.init(nibName: XIB.Names.NotificationCell, bundle: nil), forCellReuseIdentifier: XIB.Names.NotificationCell)
-        titleLbl.textColor = UIColor(hex: darkTextColor)
-        titleLbl.text = Constants.string.Notification.localize().uppercased()
+        titleLbl.text = Constants.string.Notification.localize()
         getNotificationList()
     }
 
@@ -69,14 +68,14 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 18.5 * tableView.frame.height / 100
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.NotificationCell, for: indexPath) as! NotificationCell
         cell.ttileLbl.text = self.notificationList?[indexPath.row].title
-        cell.descripLbl.text = self.notificationList?[indexPath.row].description
-        cell.timeLbl.text = self.notificationList?[indexPath.row].created_at
+        let date = (self.notificationList?[indexPath.row].created_at)?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
+        cell.timeLbl.text = date.timeAgoSince
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return  cell

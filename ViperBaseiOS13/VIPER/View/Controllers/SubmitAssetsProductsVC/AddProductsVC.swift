@@ -382,7 +382,7 @@ extension AddProductsVC : UITextFieldDelegate {
                         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
                         vc.delegate = self
                         vc.usingForSort = .filter
-                        vc.sortArray = [("30",false),("60",false),("90",false),("120",false),("180",false)]
+                        vc.sortArray = [("30 days",false),("60 days",false),("90 days",false),("120 days",false),("180 days",false)]
                         vc.sortTypeApplied = self.sortTypeAppliedMaturityCount
                         self.present(vc, animated: true, completion: nil)
                         print("Do Nothing")

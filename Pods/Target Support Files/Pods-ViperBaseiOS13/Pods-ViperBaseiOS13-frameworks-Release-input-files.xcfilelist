@@ -14,7 +14,6 @@ ${BUILT_PRODUCTS_DIR}/IOSLinkedInAPIFix1/IOSLinkedInAPIFix1.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/KWDrawerController/KWDrawerController.framework
 ${BUILT_PRODUCTS_DIR}/LinkedinSwift/LinkedinSwift.framework
-${PODS_ROOT}/Mati-Global-ID-SDK/MatiGlobalIDSDK.framework
 ${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
 ${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
@@ -23,7 +22,7 @@ ${BUILT_PRODUCTS_DIR}/QRCodeReader.swift/QRCodeReader.framework
 ${BUILT_PRODUCTS_DIR}/RangeSeekSlider/RangeSeekSlider.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework
-${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework
+${PODS_ROOT}/TwitterKit5/iOS/TwitterKit.framework
 ${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework
 ${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework
 ${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework

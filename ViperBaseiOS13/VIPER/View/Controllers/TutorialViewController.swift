@@ -23,28 +23,27 @@ class TutorialViewController: UIViewController {
     @IBOutlet weak var orLbl: UILabel!
     @IBOutlet weak var inverstorButton: UIButton!
     @IBOutlet weak var campaignerButton: UIButton!
-    
     @IBOutlet weak var welcomeBack: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        withRenderingMode(originalImage: #imageLiteral(resourceName: "logo"), imgView: logoImg, imgTintColur: .white)
+//        withRenderingMode(originalImage: #imageLiteral(resourceName: "logo"), imgView: logoImg, imgTintColur: .white)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        localize()
-               setFont()
+//        localize()
+//               setFont()
         
-       welcomeBack.text = "Welcome to \n\nUFUND"
+//       welcomeBack.text = "Welcome to \n\nUFUND"
     }
     
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        localize()
-        setFont()
+//        localize()
+//        setFont()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -66,7 +66,6 @@ struct ProductsModelEntity : Mappable {
     init?(map: Map) {
 
     }
-
     mutating func mapping(map: Map) {
         data <- map["data"]
     }
@@ -143,7 +142,7 @@ struct ProductModel: Mappable {
     var invested_amount: Double?
     var earnings: Double?
     var product_investment_count: Int?
-    var payment_method_type : [Payment_method_type]?
+    var payment_method_type : [Payment_method]?
     var end_date : String?
     var start_date: String?
     var maturity_date : String?
@@ -806,4 +805,36 @@ struct Payment_method_type : Mappable {
         value <- map["value"]
     }
 
+}
+
+
+struct Payment_method : Mappable {
+    var key : String?
+    var value : String?
+    var id : Int?
+    var isSelected: Bool = false
+
+    init(json: [String:Any]){
+        
+    }
+    
+    init(){}
+    init?(map: Map) {
+
+    }
+    mutating func mapping(map: Map) {
+        key <- map["key"]
+        value <- map["value"]
+        id <- map["id"]
+    }
+
+}
+struct Payment_method_Entity : Mappable {
+    var data : [Payment_method]?
+    init?(map: Map) {
+
+    }
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
 }

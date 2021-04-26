@@ -113,6 +113,34 @@ extension DashboardVC {
         
     }
     
+    private func  tabsRedirection(_ indexPath: IndexPath){
+        switch indexPath.row {
+        case 0:
+            guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.CategoriesVC) as? CategoriesVC else { return }
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 1:
+            let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+            vc.productTitle = Constants.string.allProducts.localize()
+            vc.productType = .AllProducts
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+            vc.productTitle = Constants.string.allTokenizedAssets.localize()
+            vc.assetType = .NewAssets
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
+            vc.investmentType = .MyProductInvestment
+            vc.productTitle = Constants.string.myProductInvestMents.localize()
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 5:
+            let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            print("Nothing")
+        }
+    }
+    
 }
 
 // MARK: - Extension For TableView
@@ -127,6 +155,10 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
         switch cellTypes[indexPath.row] {
         case .DashboardTabsTableCell:
             let cell = tableView.dequeueCell(with: DashboardTabsTableCell.self, indexPath: indexPath)
+            cell.tabsTapped = {   [weak self]  (selectedIndex) in
+                guard let selff = self else {return}
+                selff.tabsRedirection(selectedIndex)
+            }
             cell.isFromCampainer = userType == UserType.investor.rawValue ? false : true
             cell.investorDashboardData = investorDashboardData
             cell.tabsCollView.layoutIfNeeded()

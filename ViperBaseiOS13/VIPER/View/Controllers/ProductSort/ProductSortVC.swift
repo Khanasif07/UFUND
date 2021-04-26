@@ -12,6 +12,7 @@ protocol ProductSortVCDelegate:class {
     func sortingAppliedInCategory(sortType: CategoryModel)
     func sortingAppliedInAssetType(sortType: AssetTokenTypeModel)
     func sortingAppliedInTokenType(sortType: AssetTokenTypeModel)
+    func sortingAppliedInPaymentType(sortType: Payment_method)
 }
 
 extension ProductSortVCDelegate {
@@ -19,6 +20,7 @@ extension ProductSortVCDelegate {
     func sortingAppliedInCategory(sortType: CategoryModel) {}
     func sortingAppliedInAssetType(sortType: AssetTokenTypeModel){}
     func sortingAppliedInTokenType(sortType: AssetTokenTypeModel){}
+    func sortingAppliedInPaymentType(sortType: Payment_method){}
 }
 
 class ProductSortVC: UIViewController {
@@ -29,6 +31,7 @@ class ProductSortVC: UIViewController {
         case tokenType
         case addProducts
         case reward
+        case paymentMethods
     }
     
     // MARK: - IBOutlets
@@ -44,12 +47,14 @@ class ProductSortVC: UIViewController {
     weak var delegate :ProductSortVCDelegate?
     var sortArray = [(Constants.string.sort_by_latest,false),(Constants.string.sort_by_oldest,false),(Constants.string.sort_by_name_AZ,false),(Constants.string.sort_by_name_ZA,false)]
     var sortTypeApplied: String  = ""
+    var selectedPaymentMethod = Payment_method()
     var sortTypeAppliedCategory = CategoryModel()
     var sortTypeAppliedAsset = AssetTokenTypeModel()
     var sortTypeAppliedToken = AssetTokenTypeModel()
     var sortDataArray = [CategoryModel]()
     var sortTypeAssetListing = [AssetTokenTypeModel]()
     var sortTypeTokenListing = [AssetTokenTypeModel]()
+    var sortTypePaymentListing = [Payment_method]()
     
     // MARK: - Lifecycle
     //===========================
@@ -94,6 +99,9 @@ extension ProductSortVC {
         case .tokenType:
             self.titleLbl.text = Constants.string.token_type.localize()
             self.setSelectedSortingDataForTokenType()
+        case .paymentMethods:
+            self.titleLbl.text = Constants.string.paymentMethods.localize()
+            self.setSelectedSortingDataForPaymentType()
         default:
             self.titleLbl.text = Constants.string.category.localize()
             self.setSelectedSortingDataForCategory()
@@ -145,6 +153,14 @@ extension ProductSortVC {
         }
     }
     
+    private func setSelectedSortingDataForPaymentType(){
+        if let index =  self.sortTypePaymentListing.firstIndex(where: { (sortData) -> Bool in
+            return  sortData.id == self.selectedPaymentMethod.id
+        }){
+            self.sortTypePaymentListing[index].isSelected =  true
+        }
+    }
+    
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
          self.popOrDismiss(animation: true)
     }
@@ -162,6 +178,8 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
             return sortTypeAssetListing.endIndex
         case .tokenType:
             return sortTypeTokenListing.endIndex
+        case .paymentMethods:
+            return sortTypePaymentListing.endIndex
         default:
             return sortDataArray.endIndex
         }
@@ -179,6 +197,9 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
         case .tokenType:
             cell.sortTitleLbl.text = self.sortTypeTokenListing[indexPath.row].name
             cell.sortBtn.setImage(self.sortTypeTokenListing[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
+        case .paymentMethods:
+            cell.sortTitleLbl.text = self.sortTypePaymentListing[indexPath.row].key
+            cell.sortBtn.setImage(self.sortTypePaymentListing[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
         default:
             cell.sortTitleLbl.text = self.sortDataArray[indexPath.row].category_name
             cell.sortBtn.setImage(self.sortDataArray[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
@@ -232,6 +253,21 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
             } else {
                 self.sortTypeTokenListing[indexPath.row].isSelected = true
                 self.delegate?.sortingAppliedInTokenType(sortType: self.sortTypeTokenListing[indexPath.row])
+            }
+            self.mainTableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                self.popOrDismiss(animation: true)
+            }
+        case .paymentMethods:
+            if let indexx = self.sortTypePaymentListing.firstIndex(where: { (sortTuple) -> Bool in
+                return sortTuple.isSelected
+            }){
+                self.sortTypePaymentListing[indexx].isSelected = false
+                self.sortTypePaymentListing[indexPath.row].isSelected = true
+                self.delegate?.sortingAppliedInPaymentType(sortType: self.sortTypePaymentListing[indexPath.row])
+            } else {
+                self.sortTypePaymentListing[indexPath.row].isSelected = true
+                self.delegate?.sortingAppliedInPaymentType(sortType: self.sortTypePaymentListing[indexPath.row])
             }
             self.mainTableView.reloadData()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {

@@ -64,12 +64,14 @@ class AssetsDetailVC: UIViewController {
     @IBAction func buyProductBtnAction(_ sender: UIButton) {
         let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
         vc.isForBuyproduct = true
+        vc.productModel = productModel
         self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func investBtnAction(_ sender: UIButton) {
         let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
         vc.isForBuyproduct = false
+        vc.productModel = productModel
         self.present(vc, animated: true, completion: nil)
     }
     

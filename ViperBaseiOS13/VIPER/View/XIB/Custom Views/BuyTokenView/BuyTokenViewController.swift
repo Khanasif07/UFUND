@@ -84,16 +84,16 @@ class BuyTokenViewController: UIViewController {
         
         
         if isFromProductBuy {
-                  self.cryptoEntity = self.productDetails?.payment_method_type ?? []
-                                             
-                                             print("**self.productDetails?.payment_method_type",self.productDetails?.payment_method_type)
-                                             
-                              for value in self.productDetails?.payment_method_type ??  [] {
-                                                 
-                                                 self.cryptoCoin.append(nullStringToEmpty(string: value.name))
-                                                 self.cryptoIndex.append(1)
-                                                 
-                                             }
+//                 self.cryptoEntity = self.productDetails?.payment_method_type ?? []
+//
+//                                             print("**self.productDetails?.payment_method_type",self.productDetails?.payment_method_type)
+//
+//                              for value in self.productDetails?.payment_method_type ??  [] {
+//
+//                                                self.cryptoCoin.append(nullStringToEmpty(string: value.name))
+//                                                 self.cryptoIndex.append(1)
+//
+//                                          }
                    
                } else {
                     self.cryptoEntity = self.tokenDetails?.payment_method_type ?? []

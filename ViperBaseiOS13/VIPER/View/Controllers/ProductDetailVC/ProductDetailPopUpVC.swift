@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import iOSDropDown
+import ObjectMapper
 
 class ProductDetailPopUpVC: UIViewController {
     
@@ -16,7 +16,7 @@ class ProductDetailPopUpVC: UIViewController {
     @IBOutlet weak var tokenImgView: UIImageView!
     @IBOutlet weak var tokenPriceLbl: UILabel!
     @IBOutlet weak var tokenPriceValueLbl: UILabel!
-    @IBOutlet weak var paymentMethodTxtField: DropDown!
+    @IBOutlet weak var paymentMethodTxtField: UITextField!
     @IBOutlet weak var payableAmountValueLbl: UILabel!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var dataContainerView: UIView!
@@ -27,7 +27,11 @@ class ProductDetailPopUpVC: UIViewController {
     @IBOutlet weak var tokenQtyLbl: UILabel!
     // MARK: - Variables
     //===========================
+    private lazy var loader  : UIView = {
+              return createActivityIndicator(self.view)
+          }()
     var productModel: ProductModel?
+    var selectedPaymentMethod: Payment_method?
     var currentValInvPer : Int = 20 {
         didSet{
             self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
@@ -90,6 +94,7 @@ extension ProductDetailPopUpVC {
     
     private func initialSetup() {
         self.dataSetUp()
+        self.getPaymentMethodListing()
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         paymentMethodTxtField.delegate = self
         paymentMethodTxtField.setButtonToRightView(btn: button, selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
@@ -98,14 +103,6 @@ extension ProductDetailPopUpVC {
         self.cancelBtn.borderColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
         self.cancelBtn.borderLineWidth = 1.0
         self.currentValInvPer = 20
-        paymentMethodTxtField.optionArray = ["ETH","BTC","PayPal"]
-        paymentMethodTxtField.optionIds = [0,1,2]
-        paymentMethodTxtField.arrowColor = .clear
-        paymentMethodTxtField.didSelect { (categoryName, index,id)  in
-            print(categoryName)
-            print(index)
-            print(id)
-        }
     }
     
     private func dataSetUp(){
@@ -115,14 +112,27 @@ extension ProductDetailPopUpVC {
         self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
     }
+    
+    private func getPaymentMethodListing(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.paymentMethods.rawValue, params: [:], methodType: .GET, modelClass: Payment_method_Entity.self, token: true)
+    }
 }
 
+// MARK: - Extension For Functions
+//===========================
 extension ProductDetailPopUpVC : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if  textField == paymentMethodTxtField {
             self.view.endEditingForce()
-            paymentMethodTxtField.showList()
+            self.view.endEditing(true)
+            guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
+            vc.delegate = self
+            vc.usingForSort = .paymentMethods
+            vc.sortTypePaymentListing = self.productModel?.payment_method_type ?? []
+            vc.selectedPaymentMethod = self.selectedPaymentMethod ?? Payment_method()
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
@@ -136,4 +146,35 @@ extension ProductDetailPopUpVC : UITextFieldDelegate {
     }
 }
 
+// MARK: - Extension For Functions
+//===========================
+extension ProductDetailPopUpVC : PresenterOutputProtocol {
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
+        switch api {
+        case Base.paymentMethods.rawValue:
+            let productModelEntity = dataDict as? Payment_method_Entity
+            if let payment_methods = productModelEntity?.data {
+                self.productModel?.payment_method_type = payment_methods
+                self.paymentMethodTxtField.text = self.selectedPaymentMethod?.key ?? ""
+            }
+        default:
+            self.loader.isHidden = true
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+    }
+}
+ 
+
+// MARK: - Extension For Functions
+//===========================
+extension ProductDetailPopUpVC : ProductSortVCDelegate {
+    func sortingAppliedInPaymentType(sortType: Payment_method) {
+        self.selectedPaymentMethod = sortType
+        self.paymentMethodTxtField.text = self.selectedPaymentMethod?.key ?? ""
+    }
+}
 

@@ -8,9 +8,9 @@
 
 import UIKit
 import ObjectMapper
-import MatiGlobalIDSDK
+//import MatiGlobalIDSDK
 
-class EditProfileViewController: UIViewController, MFKYCDelegate {
+/*class EditProfileViewController: UIViewController, MFKYCDelegate {
     
     @IBAction func profileClickEvent(_ sender: UIButton) {
         isSelectProfile = true
@@ -547,3 +547,4 @@ extension EditProfileViewController {
     }
 }
 
+*/

@@ -67,7 +67,7 @@ class ProdDetailViewController: UIViewController {
         customAlertViewController.ids = productDetails?.id ?? 0
         customAlertViewController.delegate = self
         customAlertViewController.productOrToken = nullStringToEmpty(string: BuyOrInvest.product)
-        customAlertViewController.cryptoEntity = self.productDetails?.payment_method_type ?? []
+//        customAlertViewController.cryptoEntity = self.productDetails?.payment_method_type ?? []
         customAlertViewController.providesPresentationContextTransitionStyle = true;
         customAlertViewController.definesPresentationContext = true;
         customAlertViewController.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext

@@ -16,7 +16,7 @@ let googleMapKey = "AIzaSyAlpDGEYqZS44sI_ffynh5sjm5JsNPPFLg"
 let appSecretKey = "zt0XX058LD6kHEXGzrMh31zRnP4Myt8nf7KNQtuM"
 let stripeKey = ""
 let appClientId = 2
-let baseUrl =   "https://ufunddevonline.appskeeper.in"
+let baseUrl =   "https://ufundqaonline.appskeeper.in"
 //"https://ufund.online"//"http://54.236.180.74"//http://ufunddevonline.appskeeper.in" //http://54.236.180.74"  //"http://ufunddevadmin.appskeeper.in" //"http://54.88.124.37"
 let deviceIds = "1"
 let storageUrl = baseUrl + "/storage/"

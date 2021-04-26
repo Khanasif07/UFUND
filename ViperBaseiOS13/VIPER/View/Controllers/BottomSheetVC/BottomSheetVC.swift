@@ -221,7 +221,7 @@ extension BottomSheetVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             case Constants.string.profile.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.EditProfileViewController) as? EditProfileViewController else { return }
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             case Constants.string.wallet.localize():
