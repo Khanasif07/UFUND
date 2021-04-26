@@ -119,19 +119,17 @@ extension DashboardVC {
             guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.CategoriesVC) as? CategoriesVC else { return }
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
-            vc.productTitle = Constants.string.allProducts.localize()
-            vc.productType = .AllProducts
-            self.navigationController?.pushViewController(vc, animated: true)
+            let selectedVC = CategoriesProductsDetailVC.instantiate(fromAppStoryboard: .Main)
+            selectedVC.categoryTitle = Constants.string.Products.localize()
+            self.navigationController?.pushViewController(selectedVC, animated: true)
         case 2:
-            let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
-            vc.productTitle = Constants.string.allTokenizedAssets.localize()
-            vc.assetType = .NewAssets
-            self.navigationController?.pushViewController(vc, animated: true)
+            let selectedVC = CategoryTokensDetailVC.instantiate(fromAppStoryboard: .Products)
+            selectedVC.categoryTitle = Constants.string.TokenizedAssets.localize()
+            self.navigationController?.pushViewController(selectedVC, animated: true)
         case 3:
             let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
             vc.investmentType = .MyProductInvestment
-            vc.productTitle = Constants.string.myProductInvestMents.localize()
+            vc.productTitle = Constants.string.allMyInvestment.localize()
             self.navigationController?.pushViewController(vc, animated: true)
         case 5:
             let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
