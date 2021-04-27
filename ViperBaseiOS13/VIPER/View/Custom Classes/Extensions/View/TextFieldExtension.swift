@@ -19,7 +19,7 @@ extension UITextField {
         self.rightView = btn
         
         btn.isSelected = false
-        
+        btn.isUserInteractionEnabled = false
         if let selectedImg = selectedImage { btn.setImage(selectedImg, for: .selected) }
         if let unselectedImg = normalImage { btn.setImage(unselectedImg, for: .normal) }
         if let btnSize = size {

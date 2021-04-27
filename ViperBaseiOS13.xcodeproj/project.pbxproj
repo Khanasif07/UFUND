@@ -192,6 +192,10 @@
 		841A91A52609C223008AA0A3 /* DashboardInvestmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A91A32609C223008AA0A3 /* DashboardInvestmentCell.swift */; };
 		841A91A62609C223008AA0A3 /* DashboardInvestmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841A91A42609C223008AA0A3 /* DashboardInvestmentCell.xib */; };
 		842763D32636EEC300E0FE4A /* ProductTokenInvestmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842763D22636EEC300E0FE4A /* ProductTokenInvestmentVC.swift */; };
+		842763D626380E6500E0FE4A /* WebViewControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842763D526380E6500E0FE4A /* WebViewControllerVC.swift */; };
+		842763D826382C8400E0FE4A /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842763D726382C8400E0FE4A /* SettingVC.swift */; };
+		842763DC26382D9200E0FE4A /* SettingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842763DA26382D9200E0FE4A /* SettingTableCell.swift */; };
+		842763DD26382D9200E0FE4A /* SettingTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842763DB26382D9200E0FE4A /* SettingTableCell.xib */; };
 		842ABD0F2626BB42007AA9BA /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABCFC2626BB42007AA9BA /* Poppins-ExtraLight.ttf */; };
 		842ABD102626BB42007AA9BA /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABCFD2626BB42007AA9BA /* Poppins-ThinItalic.ttf */; };
 		842ABD112626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 842ABCFE2626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf */; };
@@ -535,6 +539,10 @@
 		841A91A32609C223008AA0A3 /* DashboardInvestmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvestmentCell.swift; sourceTree = "<group>"; };
 		841A91A42609C223008AA0A3 /* DashboardInvestmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardInvestmentCell.xib; sourceTree = "<group>"; };
 		842763D22636EEC300E0FE4A /* ProductTokenInvestmentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductTokenInvestmentVC.swift; sourceTree = "<group>"; };
+		842763D526380E6500E0FE4A /* WebViewControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewControllerVC.swift; sourceTree = "<group>"; };
+		842763D726382C8400E0FE4A /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		842763DA26382D9200E0FE4A /* SettingTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableCell.swift; sourceTree = "<group>"; };
+		842763DB26382D9200E0FE4A /* SettingTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableCell.xib; sourceTree = "<group>"; };
 		842ABCFC2626BB42007AA9BA /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		842ABCFD2626BB42007AA9BA /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		842ABCFE2626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
@@ -880,6 +888,7 @@
 		0824B063238282F500F81A9B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				842763D426380E4200E0FE4A /* WebViewControllerVC */,
 				842763D12636EB1600E0FE4A /* ProductTokenInvestmentVC */,
 				8472A28C26131B36006A59A0 /* SubmitAssetsProductsVC */,
 				841A917D2609A600008AA0A3 /* DashboardVC */,
@@ -1763,6 +1772,24 @@
 			path = ProductTokenInvestmentVC;
 			sourceTree = "<group>";
 		};
+		842763D426380E4200E0FE4A /* WebViewControllerVC */ = {
+			isa = PBXGroup;
+			children = (
+				842763D526380E6500E0FE4A /* WebViewControllerVC.swift */,
+				842763D726382C8400E0FE4A /* SettingVC.swift */,
+			);
+			path = WebViewControllerVC;
+			sourceTree = "<group>";
+		};
+		842763D926382D7700E0FE4A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				842763DA26382D9200E0FE4A /* SettingTableCell.swift */,
+				842763DB26382D9200E0FE4A /* SettingTableCell.xib */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		842ABCFB2626BB42007AA9BA /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -2048,6 +2075,7 @@
 		84B451D825CD3204001DD54A /* Xib */ = {
 			isa = PBXGroup;
 			children = (
+				842763D926382D7700E0FE4A /* Settings */,
 				841A91862609A809008AA0A3 /* Dashboard */,
 				84A6C31C25DA47CA00C00EB1 /* Products */,
 				84B451D925CD322F001DD54A /* SideMenuHeaderView.swift */,
@@ -2389,6 +2417,7 @@
 				845C131625FF53970018A1E1 /* Wallet.storyboard in Resources */,
 				0827A13323C4631E00EDF005 /* CollectionImageCell.xib in Resources */,
 				082932DC23C76F3700CAA6C2 /* AssetsImgCell.xib in Resources */,
+				842763DD26382D9200E0FE4A /* SettingTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2713,12 +2742,14 @@
 				847C10F125DE0BF400D13A5C /* UserProfileVC+Enum.swift in Sources */,
 				0824B11C2382A13200F81A9B /* TextFieldEffects.swift in Sources */,
 				841A919E2609B2AF008AA0A3 /* DashboardBarChartCell.swift in Sources */,
+				842763D826382C8400E0FE4A /* SettingVC.swift in Sources */,
 				0824B0C22382847800F81A9B /* ParallaxHeader.swift in Sources */,
 				0824B10D2382A12000F81A9B /* ViewExtension.swift in Sources */,
 				84411E9725D14C0400718BD1 /* UserProfileTableCell.swift in Sources */,
 				84AB1E1F25F79503004AED01 /* CategoryTokensDetailVC.swift in Sources */,
 				844682D625D53DC900F44A53 /* ProductSortTableCell.swift in Sources */,
 				0820702E23DEC08C006793D8 /* OTPViewController.swift in Sources */,
+				842763DC26382D9200E0FE4A /* SettingTableCell.swift in Sources */,
 				0824B11B2382A13200F81A9B /* HoshiTextField.swift in Sources */,
 				086F138D246EB3C100EA4355 /* HistoryCell.swift in Sources */,
 				083228A82424C56400CCFA1B /* TokenProductViewController.swift in Sources */,
@@ -2743,6 +2774,7 @@
 				08918BB023852CE000F274C2 /* TextFieldExtension.swift in Sources */,
 				84E16F0325D5087A004F37FA /* CategoriesTokenVC.swift in Sources */,
 				841A917F2609A620008AA0A3 /* DashboardVC.swift in Sources */,
+				842763D626380E6500E0FE4A /* WebViewControllerVC.swift in Sources */,
 				082B215423C315650056FBA6 /* InvestmentListViewController.swift in Sources */,
 				0821E8F7241B8C4300263674 /* CryptoReceiveViewController.swift in Sources */,
 				082FBA5A24051DE600F45950 /* TokenAssetsAmountViewController.swift in Sources */,

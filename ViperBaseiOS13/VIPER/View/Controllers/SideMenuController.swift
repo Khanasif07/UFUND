@@ -41,12 +41,12 @@ class SideMenuController: UIViewController {
             
             if isFromCampainer {
                 
-                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.submit_assets.localize(),[]),(Constants.string.allMyProduct.localize(),[]),(Constants.string.allMyTokenizedAssets.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icSubmitAssets"),[#imageLiteral(resourceName: "icSubmitAssets")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icWallet"),[#imageLiteral(resourceName: "icWallet")]),(#imageLiteral(resourceName: "icChnagePassword"),[]),(#imageLiteral(resourceName: "icLogout"),[])]
+                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.submit_assets.localize(),[]),(Constants.string.allMyProduct.localize(),[]),(Constants.string.allMyTokenizedAssets.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.setting.localize(),[]),(Constants.string.logout.localize(),[])]
+                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icSubmitAssets"),[#imageLiteral(resourceName: "icSubmitAssets")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icWallet"),[#imageLiteral(resourceName: "icWallet")]),(#imageLiteral(resourceName: "Image"),[]),(#imageLiteral(resourceName: "icLogout"),[])]
                 
             } else {
-                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
-                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icInvestments"),[#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icInvestments")]),(#imageLiteral(resourceName: "icWallet"),[#imageLiteral(resourceName: "icWallet")]),(#imageLiteral(resourceName: "icChnagePassword"),[#imageLiteral(resourceName: "icChnagePassword")]),(#imageLiteral(resourceName: "icLogout"),[#imageLiteral(resourceName: "icLogout")])]
+                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.setting.localize(),[]),(Constants.string.logout.localize(),[])]
+                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icInvestments"),[#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icInvestments")]),(#imageLiteral(resourceName: "icWallet"),[#imageLiteral(resourceName: "icWallet")]),(#imageLiteral(resourceName: "Image"),[]),(#imageLiteral(resourceName: "icLogout"),[#imageLiteral(resourceName: "icLogout")])]
             }
         }
     }
@@ -251,17 +251,10 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
         case Constants.string.Products.localize():
             if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.allProduct.localize(){
                 self.drawerController?.closeSide()
-                if isFromCampainer {
-                    let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as! TokenProductViewController
-                    viewController.tileStr = Constants.string.all.localize()
-                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
-                } else {
                     let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
                     vc.productTitle = Constants.string.allProducts.localize()
                     vc.productType = .AllProducts
                     (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
-                    
-                }
             } else if self.menuContent?[indexPath.section].1[indexPath.row] ?? "" == Constants.string.newProduct.localize(){
                 self.drawerController?.closeSide()
                 let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
@@ -419,8 +412,6 @@ extension  SideMenuController {
         case Constants.string.categories.localize():
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.CategoriesVC)
-            //            self.drawerController?.closeSide()
-        //            self.push(to: Storyboard.Ids.ProductViewController)
         case Constants.string.TokenizedAssets.localize():
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.newTokenizedAssets.localize(),Constants.string.allTokenizedAssets.localize()]
@@ -429,9 +420,10 @@ extension  SideMenuController {
                 self.menuContent?[section].1 = []
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
-            //            self.drawerController?.closeSide()
-            //            self.push(to: Storyboard.Ids.TokenizedAssetsListViewController)
-            
+        case Constants.string.setting.localize():
+            self.drawerController?.closeSide()
+            let vc = SettingVC.instantiate(fromAppStoryboard: .Products)
+            (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
         case Constants.string.allMyInvestment.localize():
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.myProductInvestMents.localize(),Constants.string.myTokenInvestMents.localize()]

@@ -12,6 +12,8 @@ class ProductTokenInvestmentVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBarHC: NSLayoutConstraint!
     @IBOutlet weak var btnContainerView: UIView!
     @IBOutlet weak var sortBtn: UIButton!
     @IBOutlet weak var filterBtn: UIButton!
@@ -69,6 +71,10 @@ class ProductTokenInvestmentVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchBarHC.constant = 0.0
+            self.view.layoutIfNeeded()
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -93,6 +99,11 @@ class ProductTokenInvestmentVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func searchBtnAction(_ sender: UIButton) {
+        searchBar.becomeFirstResponder()
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchBarHC.constant = 51.0
+            self.view.layoutIfNeeded()
+        })
     }
     
     @IBAction func backBtnAction(_ sender: UIButton) {
@@ -112,12 +123,17 @@ class ProductTokenInvestmentVC: UIViewController {
     
     @IBAction func myProductTapped(_ sender: UIButton) {
         self.view.endEditing(true)
+        investmentType = .MyProductInvestment
         self.mainScrollView.setContentOffset(CGPoint.zero, animated: true)
         self.view.layoutIfNeeded()
     }
     
     @IBAction func myTokenTappedAction(_ sender: UIButton) {
         self.view.endEditing(true)
+        investmentType = .MyTokenInvestment
+        if currentPageFrToken == 0{
+            self.getProductList()
+        }
         self.mainScrollView.setContentOffset(CGPoint(x: UIScreen.main.bounds.width,y: 0), animated: true)
         self.view.layoutIfNeeded()
     }
@@ -132,6 +148,7 @@ extension ProductTokenInvestmentVC {
         self.configureScrollView()
         self.instantiateViewController()
         self.isPruductSelected = true
+        self.searchBar.delegate = self
         self.getProductList()
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -170,7 +187,7 @@ extension ProductTokenInvestmentVC {
        }
     
     //MARK:- PRDUCTS LIST API CALL
-    private func getProductList(page:Int = 1,loader:Bool = false,searchValue:String = "") {
+    public func getProductList(page:Int = 1,loader:Bool = false,searchValue:String = "") {
         switch (userType,false) {
         case (UserType.investor.rawValue,false):
             var params : [String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
@@ -203,6 +220,14 @@ extension ProductTokenInvestmentVC {
         self.loader.isHidden = loader
     }
     
+    private func searchProducts(searchValue: String,page:Int = 1){
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            self?.getProductList(page: page, searchValue: searchValue)
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+    }
 }
 
 //    MARK:- ScrollView delegate
@@ -239,14 +264,12 @@ extension ProductTokenInvestmentVC : PresenterOutputProtocol {
                 }
             }
             self.currentPage += 1
-            self.investmentType = .MyTokenInvestment
-            self.getProductList()
         case Base.myTokenInvestment.rawValue:
             let productModelEntity = dataDict as? ProductsModelEntity
             self.currentPageFrToken = productModelEntity?.data?.current_page ?? 0
             self.lastPageFrToken = productModelEntity?.data?.last_page ?? 0
             isRequestinApiFrToken = false
-            nextPageAvailable = self.lastPage > self.currentPage
+            nextPageAvailable = self.lastPageFrToken > self.currentPageFrToken
             if let productDict = productModelEntity?.data?.data {
                 if self.currentPageFrToken == 1 {
                     self.tokenVC.allProductListing = productDict
@@ -287,41 +310,76 @@ extension ProductTokenInvestmentVC : ProductSortVCDelegate {
           case Constants.string.sort_by_name_AZ:
               params[ProductCreate.keys.sort_order] = "ASC"
               params[ProductCreate.keys.sort_by] = "product_title"
-              switch (userType,false) {
-              case (UserType.investor.rawValue,false):
-                  self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-              default:
-                  break
-              }
           case  Constants.string.sort_by_latest:
               params[ProductCreate.keys.sort_order] = "ASC"
               params[ProductCreate.keys.sort_by]  = "created_at"
-              switch (userType,false) {
-              case (UserType.investor.rawValue,false):
-                  self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-              default:
-                  break
-              }
           case  Constants.string.sort_by_oldest:
               params[ProductCreate.keys.sort_order] = "DESC"
               params[ProductCreate.keys.sort_by]  = "created_at"
-              switch (userType,false) {
-              case (UserType.investor.rawValue,false):
-                  self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-              default:
-                  break
-              }
           case Constants.string.sort_by_name_ZA:
               params[ProductCreate.keys.sort_order] = "DESC"
               params[ProductCreate.keys.sort_by] = "product_title"
-              switch (userType,false) {
-              case (UserType.investor.rawValue,false):
-                  self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-              default:
-                  break
-              }
           default:
               print("Do Nothing")
           }
+        switch (userType,false,investmentType) {
+        case (UserType.investor.rawValue,false,.MyProductInvestment):
+            self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case (UserType.investor.rawValue,false,.MyTokenInvestment):
+            self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        default:
+            break
+        }
       }
   }
+
+
+//MARK:- UISearchBarDelegate
+//========================================
+extension ProductTokenInvestmentVC: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
+        self.searchProducts(searchValue: self.searchText)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchBarHC.constant = 51.0
+                self.view.layoutIfNeeded()
+            })
+        }else{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchBarHC.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        }
+        searchBar.resignFirstResponder()
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        self.searchProducts(searchValue: "")
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchBarHC.constant = 51.0
+                self.view.layoutIfNeeded()
+            })
+        }else{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.searchBarHC.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        }
+        searchBar.resignFirstResponder()
+    }
+}
+

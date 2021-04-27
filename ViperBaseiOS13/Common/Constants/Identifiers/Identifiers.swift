@@ -58,6 +58,7 @@ struct Storyboard {
     let KYCMatiViewController = "KYCMatiViewController"
     let WebViewController = "WebViewController"
     let CategoriesVC = "CategoriesVC"
+    let settingVC = "SettingVC"
     let ProductSortVC = "ProductSortVC"
     let AllProductsVC = "AllProductsVC"
     

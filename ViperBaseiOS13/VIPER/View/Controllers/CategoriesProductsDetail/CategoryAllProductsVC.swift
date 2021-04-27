@@ -95,6 +95,35 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
         return CGSize(width: (collectionView.frame.width / 2), height: 36 * collectionView.frame.height / 100)
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        switch categoryType {
+        case .Products:
+            if let parentVC = self.parent {
+                 if let topVC = parentVC as? ProductTokenInvestmentVC {
+                    if !topVC.isRequestinApi {
+                        guard topVC.nextPageAvailable, !topVC.isRequestinApi else { return }
+                    } else {
+                        guard !topVC.isRequestinApi else { return }
+                    }
+                    topVC.isRequestinApi = true
+                    topVC.getProductList(page: topVC.currentPage)
+                }
+            }
+        default:
+            if let parentVC = self.parent {
+               if let topVC = parentVC as? ProductTokenInvestmentVC {
+                    if !topVC.isRequestinApi {
+                        guard topVC.nextPageAvailable, !topVC.isRequestinApi else { return }
+                    } else {
+                        guard !topVC.isRequestinApi else { return }
+                    }
+                    topVC.isRequestinApi = true
+                    topVC.getProductList(page: topVC.currentPage)
+                }
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch categoryType {
         case .Products:
