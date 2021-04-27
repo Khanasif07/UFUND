@@ -50,6 +50,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var emailIdTxtFld: UITextField!
     @IBOutlet weak var socialBtnStackView: UIStackView!
+    @IBOutlet weak var privacyAttributedLbl: UILabel!
     
     
     var param = [String: AnyObject]()
@@ -127,6 +128,9 @@ class SignUpViewController: UIViewController {
         super.viewDidDisappear(true)
     }
     
+    @IBAction func privacyUrlBtnTapped(_ sender: UIButton) {
+    }
+    
     @IBAction func faceBookBtnAction(_ sender: UIButton) {
         self.socialLoginType = .facebook
         FacebookController.shared.getFacebookUserInfo(fromViewController: self, isSilentLogin: false, success: { [weak self] (model) in
@@ -200,7 +204,7 @@ extension SignUpViewController {
         facebookLbl.text = Constants.string.facebook.localize()
         titleLbl.text = Constants.string.signUp.localize().uppercased()
         signUpButton.setGradientBackground()
-        
+        privacyAttributedLbl.halfTextColorChange(fullText: Constants.string.by_signing_up_you_agree_to_ufund_privacy_policy.localize(), changeText: Constants.string.ufund_privacy_terms.localize())
         attributedLbl.halfTextColorChange(fullText: Constants.string.donotHaveSignInAccount.localize(), changeText: Constants.string.signIn.localize())
         signUpButton.titleLabel?.textColor = UIColor(hex: appBGColor)
         signUpButton.setTitle(Constants.string.signUp.localize().uppercased(), for: .normal)

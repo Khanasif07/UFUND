@@ -127,9 +127,7 @@ extension DashboardVC {
             selectedVC.categoryTitle = Constants.string.TokenizedAssets.localize()
             self.navigationController?.pushViewController(selectedVC, animated: true)
         case 3:
-            let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
-            vc.investmentType = .MyProductInvestment
-            vc.productTitle = Constants.string.allMyInvestment.localize()
+            let vc = ProductTokenInvestmentVC.instantiate(fromAppStoryboard: .Products)
             self.navigationController?.pushViewController(vc, animated: true)
         case 5:
             let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)

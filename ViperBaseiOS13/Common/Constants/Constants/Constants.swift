@@ -60,6 +60,8 @@ struct Constants {
     let donotHaveAccount = "Click here to SIGN UP"
     let signIn = "SIGN IN"
     let donotHaveSignInAccount = "Click here to SIGN IN"
+    let by_signing_up_you_agree_to_ufund_privacy_policy = "By signing up you agree to ufund's Privacy & Terms"
+    let ufund_privacy_terms = "ufund's Privacy & Terms"
     let signUp = "SIGN UP"
     let email = "Email"
     let name = "Name"

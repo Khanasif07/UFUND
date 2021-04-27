@@ -51,7 +51,6 @@ class SubmitAssetsProductsVC: UIViewController {
         super.viewDidAppear(animated)
     }
     
-    
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
