@@ -248,8 +248,6 @@ extension SignUpViewController {
                     let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
                     vc.webViewType = .termsCondition
                     self.navigationController?.pushViewController(vc, animated: true)
-//                  guard let url = URL(string: baseUrl + "/" + "terms-and-conditions") else { return }
-//                    UIApplication.shared.open(url)
                 }
             }
         }

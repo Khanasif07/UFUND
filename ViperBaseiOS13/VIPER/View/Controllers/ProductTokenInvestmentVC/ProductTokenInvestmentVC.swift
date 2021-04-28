@@ -68,6 +68,23 @@ class ProductTokenInvestmentVC: UIViewController {
     }
     var currentPageFrToken: Int = 0
     var lastPageFrToken: Int  = 0
+    // filter variable
+    var selectedCategory : (([CategoryModel],Bool)) = ([],false)
+    var selectedInvestorStart_from : (String,Bool) = ("",false)
+    var selectedInvestorStart_to : (String,Bool) = ("",false)
+    var selectedInvestorClose_from : (String,Bool) = ("",false)
+    var selectedInvestorClose_to : (String,Bool) = ("",false)
+    var selectedInvestorMature_from : (String,Bool) = ("",false)
+    var selectedInvestorMature_to : (String,Bool) = ("",false)
+    var selectedInvestorYield_from : (CGFloat,Bool) = (0.0,false)
+    var selectedInvestorYield_to : (CGFloat,Bool) = (0.0,false)
+    var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
+    var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
+    var selectedMinimumEarning : (CGFloat,Bool) = (0.0,false)
+    var selectedMaximumEarning : (CGFloat,Bool) = (0.0,false)
+    var selectedByRewards : (([String],Bool)) = ([],false)
+    var selectedAssetsListing : (([AssetTokenTypeModel],Bool)) = ([],false)
+    var selectedTokenListing : (([AssetTokenTypeModel],Bool)) = ([],false)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -145,6 +162,7 @@ class ProductTokenInvestmentVC: UIViewController {
 extension ProductTokenInvestmentVC {
     
     private func initialSetup(){
+        ProductFilterVM.shared.resetToAllFilter()
         self.configureScrollView()
         self.instantiateViewController()
         self.isPruductSelected = true
@@ -383,3 +401,124 @@ extension ProductTokenInvestmentVC: UISearchBarDelegate{
     }
 }
 
+
+// MARK: - Product InvestmentFilterVCDelegate  methods
+extension ProductTokenInvestmentVC: InvestmentFilterVCDelegate {
+    
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool), _ min_earning: (CGFloat, Bool), _ max_eraning: (CGFloat, Bool), _ byRewards: ([String], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool)) {
+        ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
+        ProductFilterVM.shared.selectedTokenListing = self.selectedTokenListing.0
+        ProductFilterVM.shared.selectedAssetsListing = self.selectedAssetsListing.0
+        ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
+        ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
+        ProductFilterVM.shared.investmentStart_from = self.selectedInvestorStart_from.0
+        ProductFilterVM.shared.investmentStart_to = self.selectedInvestorStart_to.0
+        ProductFilterVM.shared.investmentClose_from =  self.selectedInvestorClose_from.0
+        ProductFilterVM.shared.investmentClose_to = self.selectedInvestorClose_to.0
+        ProductFilterVM.shared.investmentMaturity_from = self.selectedInvestorMature_from.0
+        ProductFilterVM.shared.investmentMaturity_to = self.selectedInvestorMature_to.0
+        ProductFilterVM.shared.minimumEarning = self.selectedMinimumEarning.0
+        ProductFilterVM.shared.maximumEarning = self.selectedMaximumEarning.0
+        ProductFilterVM.shared.minimumYield = self.selectedInvestorYield_from.0
+        ProductFilterVM.shared.maximumYield = self.selectedInvestorYield_to.0
+        ProductFilterVM.shared.byRewards = self.selectedByRewards.0
+    }
+    
+    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool), _ byRewards: ([String], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool)) {
+        //
+        if category.1 {
+            ProductFilterVM.shared.selectedCategoryListing = category.0
+            self.selectedCategory = category
+        }else {
+            ProductFilterVM.shared.selectedCategoryListing = []
+            self.selectedCategory = ([],false)
+        }
+        if asset_types.1 {
+            ProductFilterVM.shared.selectedAssetsListing = asset_types.0
+            self.selectedAssetsListing = asset_types
+        }else{
+            ProductFilterVM.shared.selectedAssetsListing = []
+            self.selectedAssetsListing = ([],false)
+        }
+        if token_types.1 {
+            ProductFilterVM.shared.selectedTokenListing = token_types.0
+            self.selectedTokenListing = token_types
+        }else{
+            ProductFilterVM.shared.selectedTokenListing = []
+            self.selectedTokenListing = ([],false)
+        }
+        if min.1 {
+            ProductFilterVM.shared.minimumPrice = min.0
+            self.selectedMinPrice = min
+        } else {
+            ProductFilterVM.shared.minimumPrice = 0.0
+            self.selectedMinPrice = (0.0,false)
+        }
+        if max.1 {
+            ProductFilterVM.shared.maximumPrice = max.0
+            self.selectedMaxPrice = max
+        } else {
+            ProductFilterVM.shared.maximumPrice = 0.0
+            self.selectedMaxPrice = (0.0,false)
+        }
+        if min_earning.1 {
+            ProductFilterVM.shared.minimumEarning = min_earning.0
+            self.selectedMinimumEarning = min_earning
+        } else {
+            ProductFilterVM.shared.minimumEarning = 0.0
+            self.selectedMinimumEarning = (0.0,false)
+        }
+        if max_earning.1 {
+            ProductFilterVM.shared.maximumEarning = max_earning.0
+            self.selectedMaximumEarning = max_earning
+        } else {
+            ProductFilterVM.shared.maximumEarning = 0.0
+            self.selectedMaximumEarning = (0.0,false)
+        }
+        if byRewards.1 {
+            ProductFilterVM.shared.byRewards = byRewards.0
+            self.selectedByRewards = byRewards
+        } else {
+            ProductFilterVM.shared.byRewards = []
+            self.selectedByRewards = ([],false)
+        }
+        ProductFilterVM.shared.investmentMaturity_from = maturity_from.1 ? maturity_from.0 : ""
+        ProductFilterVM.shared.investmentMaturity_to = maturity_to.1 ? maturity_to.0 : ""
+        ProductFilterVM.shared.investmentStart_from = start_from.1 ? start_from.0 : ""
+        ProductFilterVM.shared.investmentStart_to = start_to.1 ? start_to.0 : ""
+        ProductFilterVM.shared.investmentClose_from = close_from.1 ? close_from.0 : ""
+        ProductFilterVM.shared.investmentClose_to = close_to.1 ? close_to.0 : ""
+        if !start_from.1{self.selectedInvestorStart_from = ("",false) }
+        if !start_to.1{self.selectedInvestorStart_to = ("",false) }
+        if !close_from.1{self.selectedInvestorClose_from = ("",false) }
+        if !close_to.1{self.selectedInvestorClose_to = ("",false) }
+        if !maturity_from.1{self.selectedInvestorMature_from = ("",false) }
+        if !maturity_to.1{self.selectedInvestorMature_to = ("",false) }
+        //
+        var params :[String:Any] = ProductFilterVM.shared.paramsDictForInvestment
+        params[ProductCreate.keys.page] = 1
+        switch sortType {
+        case Constants.string.sort_by_name_AZ:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_name_ZA:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        default:
+            print("Add Nothing")
+        }
+        params[ProductCreate.keys.search] = self.searchText
+        if investmentType == .MyProductInvestment {
+            self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        } else {
+            self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        }
+        self.loader.isHidden = false
+    }
+}

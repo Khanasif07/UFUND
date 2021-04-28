@@ -68,14 +68,14 @@ class CategoryListingVC: UIViewController {
     }
     
     private func getCategoryList(){
-        if categoryListing?.endIndex == 0 {
+//        if categoryListing?.endIndex == 0 {
             self.loader.isHidden = false
             if categoryType == .Products {
                 self.presenter?.HITAPI(api: Base.categories.rawValue, params: [ProductCreate.keys.category_type: 1], methodType: .GET, modelClass: CategoriesModel.self, token: true)
             } else {
                 self.presenter?.HITAPI(api: Base.categories.rawValue, params: [ProductCreate.keys.category_type: 2], methodType: .GET, modelClass: CategoriesModel.self, token: true)
             }
-        }
+//        }
     }
     
     func removeSelectedPower(model : CategoryModel) {
