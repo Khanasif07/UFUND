@@ -76,7 +76,6 @@ class SignInViewController: UIViewController {
         loginEffect = 0
         emailIdTxtFld.delegate = self
         passwordTxtFld.delegate = self
-        passwordTxtFld.isSecureTextEntry = true
         emailIdTxtFld.keyboardType = .emailAddress
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
@@ -271,6 +270,7 @@ extension SignInViewController {
     
     func setFont() {
         attributedLbl.textAlignment = .center
+        passwordTxtFld.setupPasswordTextField()
     }
 }
 

@@ -117,7 +117,7 @@ extension MyInvestmentsDetailVC {
             self.statusRadioImgView.image = (productModel?.token_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.token_status == 2) ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioSelected")
             self.statusLbl.text = (productModel?.token_status == 1) ? "Live" : "Live"
             self.buyProductBtn.setTitle(" Buy " + ProductCreate.keys.tokens_assets, for: .normal)
-            self.cellTypes = [.productDescCell,.assetDetailInfoCell,.productDateCell,.productInvestmentCell,.assetsSupplyTableCell]
+            self.cellTypes = [.productDescCell,.assetDetailInfoCell,.productDateCell,.assetsSupplyTableCell]
             self.hitTokensDetailAPI()
         }
     }

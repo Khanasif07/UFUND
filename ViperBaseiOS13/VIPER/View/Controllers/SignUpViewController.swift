@@ -232,7 +232,6 @@ extension SignUpViewController {
     }
     
     @objc func tapLabel(_ gesture: UITapGestureRecognizer) {
-        print("Hello")
         let string = "\(self.privacyAttributedLbl.text ?? "")"
         let termsAndCondition = Constants.string.terms.localize()
         let privacyPolicy = Constants.string.privacy.localize()
@@ -255,7 +254,9 @@ extension SignUpViewController {
     
     func setFont() {
         attributedLbl.textAlignment = .center
+        passwordTxtFld.setupPasswordTextField()
     }
+    
     
     private func addAppleLoginButtton(){
         AppleLoginController.shared.delegate = self
