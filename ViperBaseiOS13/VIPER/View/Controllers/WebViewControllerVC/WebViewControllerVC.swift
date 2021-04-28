@@ -41,6 +41,7 @@ class WebViewControllerVC: UIViewController {
     // MARK: - Variables
     //===========================
     var webViewType : WebViewType = .privacyPolicy
+    private var isInjected: Bool = false
     var webView : WKWebView!
     var request : URLRequest!
     
@@ -103,6 +104,20 @@ extension WebViewControllerVC : WKUIDelegate,WKNavigationDelegate,UIScrollViewDe
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return nil
     }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    if isInjected == true {
+        return
+    }
+    self.isInjected = true
+    // get HTML text
+    let js = "document.body.outerHTML"
+    webView.evaluateJavaScript(js) { (html, error) in
+        let headerString = "<head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></head>"
+        webView.loadHTMLString(headerString + (html as! String), baseURL: nil)
+    }
+    }
+    
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         scrollView.setZoomScale(1.0, animated: false)
