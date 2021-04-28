@@ -204,8 +204,8 @@ extension SignUpViewController {
         facebookLbl.text = Constants.string.facebook.localize()
         titleLbl.text = Constants.string.signUp.localize().uppercased()
         signUpButton.setGradientBackground()
-        privacyAttributedLbl.halfTextColorChange(fullText: Constants.string.by_signing_up_you_agree_to_ufund_privacy_policy.localize(), changeText: Constants.string.ufund_privacy_terms.localize())
         attributedLbl.halfTextColorChange(fullText: Constants.string.donotHaveSignInAccount.localize(), changeText: Constants.string.signIn.localize())
+        self.setUpAttributedString()
         signUpButton.titleLabel?.textColor = UIColor(hex: appBGColor)
         signUpButton.setTitle(Constants.string.signUp.localize().uppercased(), for: .normal)
         emailIdTxtFld.applyEffectToTextField(placeHolderString: Constants.string.emailId.localize())
@@ -214,6 +214,45 @@ extension SignUpViewController {
         phoneNumberTxtFld.applyEffectToTextField(placeHolderString: Constants.string.phoneNumber.localize())
         passwordTxtFld.applyEffectToTextField(placeHolderString: Constants.string.password.localize())
         
+    }
+    
+    private func setUpAttributedString(){
+        let attributedString = NSMutableAttributedString(string: Constants.string.by_signing_up_you_agree_to_ufund_privacy_policy.localize(), attributes: [
+            .font: UIFont.systemFont(ofSize: 12.0),
+            .foregroundColor: UIColor.black
+        ])
+        let privactAttText = (NSAttributedString(string: Constants.string.privacy.localize(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.red,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13.0)]))
+        attributedString.append(privactAttText)
+        attributedString.append(NSAttributedString(string: "&", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black,NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)]))
+        attributedString.append(NSAttributedString(string: Constants.string.terms.localize(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.red,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13.0)]))
+        privacyAttributedLbl.attributedText = attributedString
+        privacyAttributedLbl.isUserInteractionEnabled = true
+        privacyAttributedLbl.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(self.tapLabel(_:))))
+        
+    }
+    
+    @objc func tapLabel(_ gesture: UITapGestureRecognizer) {
+        print("Hello")
+        let string = "\(self.privacyAttributedLbl.text ?? "")"
+        let termsAndCondition = Constants.string.terms.localize()
+        let privacyPolicy = Constants.string.privacy.localize()
+        if let range = string.range(of: privacyPolicy) {
+            if gesture.didTapAttributedTextsInLabel(label: self.privacyAttributedLbl, inRange: NSRange(range, in: string)) {
+                let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
+                vc.webViewType = .privacyPolicy
+                self.navigationController?.pushViewController(vc, animated: true)
+//                guard let url = URL(string: baseUrl + "/" + "privacy-policy") else { return }
+//                UIApplication.shared.open(url)
+            } else if let range = string.range(of: termsAndCondition)  {
+                if gesture.didTapAttributedTextsInLabel(label: self.privacyAttributedLbl, inRange: NSRange(range, in: string)) {
+                    let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
+                    vc.webViewType = .termsCondition
+                    self.navigationController?.pushViewController(vc, animated: true)
+//                  guard let url = URL(string: baseUrl + "/" + "terms-and-conditions") else { return }
+//                    UIApplication.shared.open(url)
+                }
+            }
+        }
     }
     
     func setFont() {

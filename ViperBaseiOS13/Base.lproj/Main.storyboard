@@ -5135,7 +5135,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIj-Dx-9Ib">
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIj-Dx-9Ib">
                                                         <rect key="frame" x="12" y="2.5" width="335" height="45"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="4bm-wy-z5o"/>
