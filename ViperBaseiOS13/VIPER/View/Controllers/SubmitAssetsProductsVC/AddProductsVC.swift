@@ -242,15 +242,15 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
             cell.textFIeld.delegate = self
             switch indexPath.row {
             case 0:
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
                 cell.textFIeld.text = self.addProductModel.start_date
             case 1:
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
                 cell.textFIeld.text = self.addProductModel.end_date
             case 2:
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
                 cell.textFIeld.text = self.addProductModel.investment_date
             default:

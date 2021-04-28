@@ -13,13 +13,13 @@ extension UITextField {
     
     // SET BUTTON TO RIGHT VIEW
     //=========================
-    func setButtonToRightView(btn : UIButton, selectedImage : UIImage?, normalImage : UIImage?, size: CGSize?) {
+    func setButtonToRightView(btn : UIButton, selectedImage : UIImage?, normalImage : UIImage?, size: CGSize?,isUserInteractionEnabled: Bool = true) {
         
         self.rightViewMode = .always
         self.rightView = btn
         
         btn.isSelected = false
-        btn.isUserInteractionEnabled = false
+        btn.isUserInteractionEnabled = isUserInteractionEnabled
         if let selectedImg = selectedImage { btn.setImage(selectedImg, for: .selected) }
         if let unselectedImg = normalImage { btn.setImage(unselectedImg, for: .normal) }
         if let btnSize = size {

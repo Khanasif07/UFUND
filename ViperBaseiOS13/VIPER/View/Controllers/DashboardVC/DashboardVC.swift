@@ -121,10 +121,12 @@ extension DashboardVC {
         case 1:
             let selectedVC = CategoriesProductsDetailVC.instantiate(fromAppStoryboard: .Main)
             selectedVC.categoryTitle = Constants.string.Products.localize()
+            selectedVC.isFilterWithoutCategory = false
             self.navigationController?.pushViewController(selectedVC, animated: true)
         case 2:
             let selectedVC = CategoryTokensDetailVC.instantiate(fromAppStoryboard: .Products)
             selectedVC.categoryTitle = Constants.string.TokenizedAssets.localize()
+             selectedVC.isFilterWithoutCategory = false
             self.navigationController?.pushViewController(selectedVC, animated: true)
         case 3:
             let vc = ProductTokenInvestmentVC.instantiate(fromAppStoryboard: .Products)

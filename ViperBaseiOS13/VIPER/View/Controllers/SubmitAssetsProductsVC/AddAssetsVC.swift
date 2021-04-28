@@ -135,7 +135,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.keyboardType = .numberPad
                 cell.textFIeld.text = self.addAssetModel.tokensupply == nil ?  "" : "\(self.addAssetModel.tokensupply ?? 0)"
             case 5:
-                cell.textFIeld.keyboardType = .decimalPad
+                cell.textFIeld.keyboardType = .numberPad
                 cell.textFIeld.text = self.addAssetModel.decimal == nil ? "" : "\(self.addAssetModel.decimal ?? 0)"
             default:
                 cell.textFIeld.keyboardType = .numberPad
@@ -172,15 +172,15 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 cell.textFIeld.text = self.addAssetModel.start_date
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
             case 1:
                 cell.textFIeld.text = self.addAssetModel.end_date
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
             case 2:
                 cell.textFIeld.text = self.addAssetModel.reward_date
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
                 
             default:
@@ -426,14 +426,13 @@ extension AddAssetsVC : UITextFieldDelegate {
                 if indexPath.section == 0 {
                     switch indexPath.row {
                     case 5:
-                        guard let counter = textField.text?.components(separatedBy: ".") else { return false }
-                        if (counter.count - 1 > 0 && string == ".")  { return false }
                         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-                        if updatedText.contains(s: ".") {
-                            let arr = updatedText.components(separatedBy: ".")
-                            return arr[1].count == 2 || arr[1].count == 1 || arr[1].count == 0
-                        }else {
-                            return updatedText.count <= 8
+                        if updatedText.count == 1 {
+                            return true
+                        } else if updatedText.count == 2 {
+                            return (updatedText.first == "0" || updatedText.first == "1") && updatedText.last != "9" 
+                        } else {
+                            return updatedText.count <= 2
                         }
                     default:
                         return true

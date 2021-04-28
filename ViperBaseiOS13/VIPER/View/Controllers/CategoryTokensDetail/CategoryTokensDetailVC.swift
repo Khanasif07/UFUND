@@ -23,6 +23,7 @@ class CategoryTokensDetailVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var isFilterWithoutCategory: Bool = true
     var searchTask: DispatchWorkItem?
     var productType: TokenizedAssetsType = .NewAssets
     var categoryTitle:  String  = ""

@@ -23,6 +23,7 @@ class CategoriesProductsDetailVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var isFilterWithoutCategory: Bool = true
     var searchTask: DispatchWorkItem?
     var productType: ProductType = .NewProducts
     var categoryTitle:  String  = ""
@@ -50,7 +51,7 @@ class CategoriesProductsDetailVC: UIViewController {
         }
     }
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-    var selectedCurrency : (([AssetTokenTypeModel],Bool)) = ([],false)
+    var selectedCategory : (([CategoryModel],Bool)) = ([],false)
     var selectedMinPrice: (CGFloat,Bool) = (0.0,false)
     var selectedMaxPrice: (CGFloat,Bool) = (0.0,false)
     var selectedInvestorStart_from : (String,Bool) = ("",false)
@@ -108,7 +109,7 @@ class CategoriesProductsDetailVC: UIViewController {
     
     @IBAction func filterBtnAction(_ sender: UIButton) {
         let ob = ProductFilterVC.instantiate(fromAppStoryboard: .Filter)
-        ob.isFilterWithoutCategory = true
+        ob.isFilterWithoutCategory = isFilterWithoutCategory
         ob.delegate = self
         self.present(ob, animated: true, completion: nil)
     }
@@ -187,12 +188,28 @@ extension CategoriesProductsDetailVC {
         self.loader.isHidden = false
         self.productType = .NewProducts
         var params  = ProductFilterVM.shared.paramsDictForProducts
-        if !self.sortType.isEmpty{
-            params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
-            params[ProductCreate.keys.sort_by] = "product_title"
-        }
         params[ProductCreate.keys.search] = searchText
-        params[ProductCreate.keys.category] = self.categoryModel?.id
+        if let categoryId = self.categoryModel?.id {
+            if categoryId != 0 {
+                params[ProductCreate.keys.category] = categoryId
+            }
+        }
+        switch sortType {
+        case Constants.string.sort_by_name_AZ:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_name_ZA:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        default:
+            print("Add Nothing")
+        }
         params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
@@ -200,18 +217,34 @@ extension CategoriesProductsDetailVC {
     private func getAllProductsData(){
         self.productType = .AllProducts
         var params  = ProductFilterVM.shared.paramsDictForProducts
-        if !self.sortType.isEmpty{
-            params[ProductCreate.keys.sort_order] = (sortType == Constants.string.sort_by_name_AZ) ? "ASC" : "DESC"
-            params[ProductCreate.keys.sort_by] = "product_title"
-        }
         params[ProductCreate.keys.search] = searchText
-        params[ProductCreate.keys.category] = self.categoryModel?.id
+        if let categoryId = self.categoryModel?.id {
+            if categoryId != 0 {
+                params[ProductCreate.keys.category] = categoryId
+            }
+        }
+        switch sortType {
+        case Constants.string.sort_by_name_AZ:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_name_ZA:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        default:
+            print("Add Nothing")
+        }
         params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
         self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
     }
     
-   private  func getApiData(){
-    self.getNewProductsData(search: searchText)
+    private  func getApiData(){
+        self.getNewProductsData(search: searchText)
     }
     
     private func searchProducts(searchValue: String,page:Int = 1){
@@ -231,28 +264,33 @@ extension CategoriesProductsDetailVC {
 extension CategoriesProductsDetailVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
         self.sortType = sortType
+        self.loader.isHidden = false
+        var params = ProductFilterVM.shared.paramsDictForProducts
+        self.productType = .NewProducts
+        params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
+        if let categoryId = self.categoryModel?.id {
+            if categoryId != 0 {
+                params[ProductCreate.keys.category] = categoryId
+            }
+        }
+        params[ProductCreate.keys.page] = 1
+        params[ProductCreate.keys.search] = searchText
         switch sortType {
         case Constants.string.sort_by_name_AZ:
-            self.loader.isHidden = false
-            self.productType = .NewProducts
-            var params  = ProductFilterVM.shared.paramsDictForProducts
-            params[ProductCreate.keys.page] = 1
-            params[ProductCreate.keys.search] = searchText
-            params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
             params[ProductCreate.keys.sort_order] = "ASC"
             params[ProductCreate.keys.sort_by] = "product_title"
-            params[ProductCreate.keys.category] = self.categoryModel?.id
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case Constants.string.sort_by_name_ZA:
-            self.loader.isHidden = false
-            self.productType = .NewProducts
-            var params  = ProductFilterVM.shared.paramsDictForProducts
-            params[ProductCreate.keys.page] = 1
-            params[ProductCreate.keys.search] = searchText
-            params[ProductCreate.keys.new_products]  =   productType == .AllProducts ? 0 : 1
             params[ProductCreate.keys.sort_order] = "DESC"
             params[ProductCreate.keys.sort_by] = "product_title"
-            params[ProductCreate.keys.category] = self.categoryModel?.id
+            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+            self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             print("Noting")
@@ -354,6 +392,7 @@ extension CategoriesProductsDetailVC : PresenterOutputProtocol{
 extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
     
     func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
+        ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
         ProductFilterVM.shared.maximumPrice = self.selectedMaxPrice.0
         ProductFilterVM.shared.minimumPrice = self.selectedMinPrice.0
@@ -369,6 +408,13 @@ extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
     func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
         self.loader.isHidden = false
         //
+        if category.1 {
+            ProductFilterVM.shared.selectedCategoryListing = category.0
+            self.selectedCategory = category
+        }else {
+            ProductFilterVM.shared.selectedCategoryListing = []
+            self.selectedCategory = ([],false)
+        }
         if min.1 {
             ProductFilterVM.shared.minimumPrice = min.0
             self.selectedMinPrice = min
@@ -400,18 +446,33 @@ extension CategoriesProductsDetailVC: ProductFilterVCDelegate {
         var params  = ProductFilterVM.shared.paramsDictForProducts
         params[ProductCreate.keys.page] =  1
         params[ProductCreate.keys.search] = self.searchText
-        if !self.sortType.isEmpty{
-            params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+        switch sortType {
+        case Constants.string.sort_by_name_AZ:
+            params[ProductCreate.keys.sort_order] = "ASC"
             params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_name_ZA:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        default:
+            print("Add Nothing")
         }
         self.productType = .NewProducts
         switch (userType,false) {
         case (UserType.campaigner.rawValue,false):
-//            params[ProductCreate.keys.status] = campaignerProductType.titleValue
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         case (UserType.investor.rawValue,false):
             params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
-            params[ProductCreate.keys.category] = self.categoryModel?.id
+            if let categoryId = self.categoryModel?.id {
+                if categoryId != 0 {
+                    params[ProductCreate.keys.category] = categoryId
+                }
+            }
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
             break

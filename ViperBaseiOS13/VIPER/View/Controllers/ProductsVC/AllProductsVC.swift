@@ -521,9 +521,21 @@ extension AllProductsVC: ProductFilterVCDelegate {
         var params  = ProductFilterVM.shared.paramsDictForProducts
         params[ProductCreate.keys.page] =  1
         params[ProductCreate.keys.search] = self.searchText
-        if !self.sortType.isEmpty{
-            params[ProductCreate.keys.sort_order] = sortType ==  Constants.string.sort_by_name_AZ ? "ASC" : "DESC"
+        switch sortType {
+        case Constants.string.sort_by_name_AZ:
+            params[ProductCreate.keys.sort_order] = "ASC"
             params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_name_ZA:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by] = "product_title"
+        case  Constants.string.sort_by_latest:
+            params[ProductCreate.keys.sort_order] = "ASC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        case  Constants.string.sort_by_oldest:
+            params[ProductCreate.keys.sort_order] = "DESC"
+            params[ProductCreate.keys.sort_by]  = "created_at"
+        default:
+            print("Add Nothing")
         }
         switch (userType,false) {
         case (UserType.campaigner.rawValue,false):

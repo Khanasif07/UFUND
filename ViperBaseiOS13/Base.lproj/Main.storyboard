@@ -1900,12 +1900,12 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4IH-xl-VTZ">
-                                                <rect key="frame" x="334" y="10.5" width="25" height="30"/>
+                                                <rect key="frame" x="339" y="13.5" width="20" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="25" id="5uE-0z-jyr"/>
-                                                    <constraint firstAttribute="height" constant="30" id="aA6-gV-RJJ"/>
+                                                    <constraint firstAttribute="width" constant="20" id="5uE-0z-jyr"/>
+                                                    <constraint firstAttribute="height" constant="24" id="aA6-gV-RJJ"/>
                                                 </constraints>
-                                                <state key="normal" image="whiteNotify"/>
+                                                <state key="normal" image="icNotification"/>
                                                 <connections>
                                                     <action selector="notificationBtnTapped:" destination="sUp-LO-iTn" eventType="touchUpInside" id="rKy-2d-twb"/>
                                                 </connections>
@@ -9788,8 +9788,8 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WGd-gJ-sp7">
-                                        <rect key="frame" x="20" y="251.5" width="335" height="395.5"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WGd-gJ-sp7">
+                                        <rect key="frame" x="20" y="251.5" width="335" height="415.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -9800,7 +9800,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstItem="Owu-mh-lCa" firstAttribute="trailing" secondItem="QKU-Fg-gW2" secondAttribute="trailing" constant="-20" id="7bd-kA-ThO"/>
                                     <constraint firstItem="QKU-Fg-gW2" firstAttribute="top" secondItem="oAc-KS-3Sd" secondAttribute="top" id="J9m-sd-BCj"/>
                                     <constraint firstItem="Owu-mh-lCa" firstAttribute="leading" secondItem="QKU-Fg-gW2" secondAttribute="leading" constant="20" id="NFU-D4-vNY"/>
-                                    <constraint firstAttribute="bottom" secondItem="WGd-gJ-sp7" secondAttribute="bottom" constant="20" id="SPm-VP-aUe"/>
+                                    <constraint firstAttribute="bottom" secondItem="WGd-gJ-sp7" secondAttribute="bottom" id="SPm-VP-aUe"/>
                                     <constraint firstItem="WGd-gJ-sp7" firstAttribute="top" secondItem="Owu-mh-lCa" secondAttribute="bottom" constant="15" id="bkR-9Z-Lb3"/>
                                     <constraint firstItem="WGd-gJ-sp7" firstAttribute="leading" secondItem="oAc-KS-3Sd" secondAttribute="leading" constant="20" id="cvv-v5-y5j"/>
                                     <constraint firstAttribute="trailing" secondItem="WGd-gJ-sp7" secondAttribute="trailing" constant="20" id="nae-2i-sX8"/>
@@ -12912,6 +12912,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="icInformation" width="86" height="86"/>
         <image name="icLogo" width="79.5" height="32"/>
         <image name="icMenu" width="32" height="32"/>
+        <image name="icNotification" width="20" height="24"/>
         <image name="icPlaceHolder" width="64" height="64"/>
         <image name="icSearch" width="16" height="16"/>
         <image name="icSort" width="16" height="15"/>
@@ -12933,7 +12934,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="uploadIcons" width="36" height="36"/>
         <image name="vynil" width="27.5" height="27.5"/>
         <image name="wallets" width="31" height="31.5"/>
-        <image name="whiteNotify" width="35" height="43"/>
         <namedColor name="appBGColor">
             <color red="0.98000001907348633" green="0.98000001907348633" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

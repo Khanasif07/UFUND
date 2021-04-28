@@ -105,9 +105,9 @@ extension AssetsDetailVC {
     
     private func setAssetType(){
         if assetsType == .AllAssets{
-            self.cellTypes = [.assetsDescCell,.assetsInfoCell,.assetsDateCell,.assetsInvestmentCell,.assetsSupplyTableCell]
+            self.cellTypes = [.assetsDescCell,.assetsInfoCell,.assetsDateCell,.assetsSupplyTableCell]
         } else {
-            self.cellTypes = [.assetsDescCell,.assetsInfoCell,.assetsDateCell,.assetsInvestmentCell]
+            self.cellTypes = [.assetsDescCell,.assetsInfoCell,.assetsDateCell,.assetsSupplyTableCell]
         }
     }
     
