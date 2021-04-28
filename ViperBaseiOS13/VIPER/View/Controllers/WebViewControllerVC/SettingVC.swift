@@ -5,7 +5,7 @@
 //  Created by Admin on 27/04/21.
 //  Copyright © 2021 CSS. All rights reserved.
 //
-
+import ObjectMapper
 import UIKit
 
 class SettingVC: UIViewController {
@@ -16,7 +16,10 @@ class SettingVC: UIViewController {
     
     // MARK: - Variables
     //===========================
-    var dataArray = [(Constants.string.changePassword.localize(),#imageLiteral(resourceName: "icChnagePassword")),(Constants.string.terms_conditions.localize(),#imageLiteral(resourceName: "icTermCondition")),(Constants.string.privacy_policy.localize(),#imageLiteral(resourceName: "icPrivacyPolicy"))]
+    private lazy var loader  : UIView = {
+          return createActivityIndicator(self.view)
+      }()
+    var dataArray = [(Constants.string.changePassword.localize(),#imageLiteral(resourceName: "icChnagePassword")),(Constants.string.terms_conditions.localize(),#imageLiteral(resourceName: "icTermCondition")),(Constants.string.privacy_policy.localize(),#imageLiteral(resourceName: "icPrivacyPolicy")),(Constants.string.logout.localize(),#imageLiteral(resourceName: "icLogout"))]
     
     // MARK: - Lifecycle
     //===========================
@@ -42,6 +45,25 @@ extension SettingVC {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.registerCell(with: SettingTableCell.self)
+    }
+    
+    func presentAlertViewController() {
+        let alertController = UIAlertController(title: Constants.string.appName.localize(), message: Constants.string.areYouSureWantToLogout.localize(), preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: Constants.string.OK.localize(), style: UIAlertAction.Style.default) {
+            (result : UIAlertAction) -> Void in
+            self.getLogout()
+        }
+        
+        let cancelAction = UIAlertAction(title: Constants.string.Cancel.localize(), style: UIAlertAction.Style.default) {
+            (result : UIAlertAction) -> Void in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+        
     }
 }
 
@@ -73,10 +95,44 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
             let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
             vc.webViewType = .termsCondition
             self.navigationController?.pushViewController(vc, animated: true)
+        case Constants.string.logout.localize():
+            self.presentAlertViewController()
         default:
             let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
             vc.webViewType = .privacyPolicy
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+}
+
+
+//MARK: - PresenterOutputProtocol
+
+extension SettingVC: PresenterOutputProtocol {
+    
+    func getLogout() {
+        self.loader.isHidden = false
+        var param = [String: AnyObject]()
+        param[RegisterParam.keys.id] = User.main.id as AnyObject
+        self.presenter?.HITAPI(api: Base.logout.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
+    }
+    
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        
+        switch api {
+        case Base.logout.rawValue:
+            self.loader.isHidden = true
+            self.drawerController?.closeSide()
+            forceLogout(with: SuccessMessage.string.logoutMsg.localize())
+            
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }

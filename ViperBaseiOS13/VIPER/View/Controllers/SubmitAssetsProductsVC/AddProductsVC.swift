@@ -429,7 +429,7 @@ extension AddProductsVC: UIDocumentPickerDelegate {
                     do{
                         let imageData: Data = try Data(contentsOf: myURL)
                         if let indexx = self.selectedIndexPath {
-                            self.imgDataArray[indexx.row] =  (#imageLiteral(resourceName: "bg2"),imageData,true)
+                           self.imgDataArray[indexx.row] =  (#imageLiteral(resourceName: "pdfIcon"),imageData,true)
                         }
                         print(">>>",imageData)
                     } catch {

@@ -203,7 +203,12 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .productDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
-            cell.setCellForInvestmentDetailPage()
+            switch investmentType {
+            case .MyProductInvestment:
+                cell.setCellForInvestmentDetailPage()
+            default:
+                cell.bottomStackView.isHidden = true
+            }
             cell.configureCell(model: self.productModel!)
             return cell
         case .productInvestmentCell:
