@@ -76,6 +76,7 @@ class SignInViewController: UIViewController {
         loginEffect = 0
         emailIdTxtFld.delegate = self
         passwordTxtFld.delegate = self
+        setFont()
         emailIdTxtFld.keyboardType = .emailAddress
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
@@ -87,7 +88,6 @@ class SignInViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         localize()
-        setFont()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

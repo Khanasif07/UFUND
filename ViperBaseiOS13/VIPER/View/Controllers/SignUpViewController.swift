@@ -95,7 +95,7 @@ class SignUpViewController: UIViewController {
         phoneNumberTxtFld.delegate = self
         emailIdTxtFld.delegate = self
         passwordTxtFld.delegate = self
-        passwordTxtFld.isSecureTextEntry = true
+        setFont()
         emailIdTxtFld.keyboardType = .emailAddress
         phoneNumberTxtFld.keyboardType = .numberPad
         if #available(iOS 13.0, *) {
@@ -121,7 +121,6 @@ class SignUpViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         localize()
-        setFont()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -48,7 +48,7 @@ class ProductsCollectionCell: UICollectionViewCell {
         case 1:
             productValueLbll.text = "\(model.total_products ?? 0)"
         case 2:
-            productValueLbll.text = "$ " + "\(model.total_tokenizes_assets ?? 0)"
+            productValueLbll.text = "\(model.total_tokenizes_assets ?? 0)"
         case 3:
             productValueLbll.text = "\(model.my_investements ?? 0)"
         case 4:
