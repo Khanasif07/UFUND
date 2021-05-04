@@ -63,7 +63,7 @@ class MyInvestmentsDetailVC: UIViewController {
     //===========================
     @IBAction func investBtnAction(_ sender: UIButton) {
         let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
-        vc.isForBuyproduct = false
+        vc.isForBuyAndToken = (investmentType == .MyProductInvestment) ? .InvestProduct : .InvestToken
         vc.productModel = productModel
         self.present(vc, animated: true, completion: nil)
     }
@@ -74,7 +74,7 @@ class MyInvestmentsDetailVC: UIViewController {
     
     @IBAction func buyProductBtnAction(_ sender: UIButton) {
         let vc = ProductDetailPopUpVC.instantiate(fromAppStoryboard: .Products)
-        vc.isForBuyproduct = true
+        vc.isForBuyAndToken = (investmentType == .MyProductInvestment) ? .InvestProduct : .InvestToken
         vc.productModel = productModel
         self.present(vc, animated: true, completion: nil)
     }

@@ -9,10 +9,21 @@
 import UIKit
 import ObjectMapper
 
+enum IsForBuyAndToken {
+    case InvestToken
+    case BuyProduct
+    case InvestProduct
+}
+
 class ProductDetailPopUpVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var incrView: UIView!
+    @IBOutlet weak var decrView: UIView!
+    @IBOutlet weak var totalProductPriceTitleLbl: UILabel!
+    @IBOutlet weak var totalProductAmt: UILabel!
+    @IBOutlet weak var totalPayableAmt: UILabel!
     @IBOutlet weak var tokenImgView: UIImageView!
     @IBOutlet weak var tokenPriceLbl: UILabel!
     @IBOutlet weak var tokenPriceValueLbl: UILabel!
@@ -25,31 +36,49 @@ class ProductDetailPopUpVC: UIViewController {
     @IBOutlet weak var coinLbl: UILabel!
     @IBOutlet weak var qtyValueLbl: UILabel!
     @IBOutlet weak var tokenQtyLbl: UILabel!
+    
     // MARK: - Variables
     //===========================
+    var isForBuyAndToken: IsForBuyAndToken = .BuyProduct
     private lazy var loader  : UIView = {
               return createActivityIndicator(self.view)
           }()
     var productModel: ProductModel?
     var selectedPaymentMethod: Payment_method?
-    var currentValInvPer : Int = 20 {
+    var currentValInvPer : Int = 5 {
         didSet{
-            self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
-            let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
-            self.payableAmountValueLbl.text = "$ " + "\(percentageValue)"
+            switch isForBuyAndToken {
+            case .BuyProduct:
+                self.buyNowBtnTitle = "Buy Now"
+                self.qtyValueLbl.text = "\(01)"
+                let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
+                self.totalProductAmt.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
+                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 50)"
+                self.incrView.isHidden = true
+                self.decrView.isHidden = true
+            case .InvestProduct:
+                 self.buyNowBtnTitle = "Invest"
+                self.incrView.isHidden = false
+                self.decrView.isHidden = false
+                self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
+                let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
+                self.totalProductAmt.text = "$ " + "\(percentageValue)"
+                self.payableAmountValueLbl.text = "$ " + "\(50)"
+                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 50)"
+            default:
+                self.buyNowBtnTitle = "Buy Now"
+                self.incrView.isHidden = false
+                self.decrView.isHidden = false
+                self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
+                let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
+                self.totalProductAmt.text = "$ " + "\(percentageValue)"
+                self.payableAmountValueLbl.text = "$ " + "\(50)"
+                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 50)"
+            }
         }
     }
     var buyNowBtnTitle: String = "Buy Now"
     var button = UIButton()
-    var isForBuyproduct = false {
-        didSet{
-            if isForBuyproduct{
-                self.buyNowBtnTitle = "Buy Now"
-            }else {
-                self.buyNowBtnTitle = "Invest"
-            }
-        }
-    }
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
@@ -75,14 +104,14 @@ class ProductDetailPopUpVC: UIViewController {
     }
     
     @IBAction func qtyMinusAction(_ sender: UIButton) {
-        if self.currentValInvPer !=  0{
-        self.currentValInvPer -=  1
+        if self.currentValInvPer !=  5{
+        self.currentValInvPer -=  5
         }
     }
     
     @IBAction func qtyPlusAction(_ sender: Any) {
         if self.currentValInvPer !=  100{
-        self.currentValInvPer +=  1
+        self.currentValInvPer +=  5
     }
     }
     
@@ -102,11 +131,24 @@ extension ProductDetailPopUpVC {
         self.cancelBtn.setTitleColor(#colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1), for: .normal)
         self.cancelBtn.borderColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
         self.cancelBtn.borderLineWidth = 1.0
-        self.currentValInvPer = 20
+        self.currentValInvPer = 5
     }
     
     private func dataSetUp(){
-        self.tokenQtyLbl.text = self.isForBuyproduct ? "Token Quantity" : "Investment Percentage (%)"
+        switch isForBuyAndToken {
+        case .BuyProduct:
+            self.tokenPriceLbl.text = "Product Price"
+            self.totalProductPriceTitleLbl.text = "Total Product Amount"
+            self.tokenQtyLbl.text = "Product Quantity"
+        case .InvestProduct:
+            self.tokenPriceLbl.text = "Product Price"
+            self.totalProductPriceTitleLbl.text = "Total Product Amount"
+            self.tokenQtyLbl.text = "Product\nInvestment"
+        default:
+            self.tokenPriceLbl.text =  "Token Price"
+            self.totalProductPriceTitleLbl.text = "Total Token Amount"
+            self.tokenQtyLbl.text = "Token Quantity"
+        }
         let imgEntity =  productModel?.product_image ?? ""
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
@@ -156,6 +198,8 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
             let productModelEntity = dataDict as? Payment_method_Entity
             if let payment_methods = productModelEntity?.data {
                 self.productModel?.payment_method_type = payment_methods
+                self.selectedPaymentMethod =
+                    self.productModel?.payment_method_type?.first ?? Payment_method()
                 self.paymentMethodTxtField.text = self.selectedPaymentMethod?.key ?? ""
             }
         default:

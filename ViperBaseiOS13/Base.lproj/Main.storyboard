@@ -5408,9 +5408,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         </subviews>
                         <color key="backgroundColor" name="appBGColor"/>
                         <constraints>
-                            <constraint firstItem="k5A-5N-AX4" firstAttribute="leading" secondItem="lj8-dy-0Ya" secondAttribute="leading" id="7hb-Nk-JaY"/>
+                            <constraint firstItem="k5A-5N-AX4" firstAttribute="leading" secondItem="lj8-dy-0Ya" secondAttribute="leading" id="7hb-Nk-JaY">
+                                <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="0we-va-KsK" firstAttribute="top" secondItem="k5A-5N-AX4" secondAttribute="top" id="IIB-pt-eE8"/>
-                            <constraint firstAttribute="trailing" secondItem="k5A-5N-AX4" secondAttribute="trailing" id="Pl5-Ap-Utu"/>
+                            <constraint firstAttribute="trailing" secondItem="k5A-5N-AX4" secondAttribute="trailing" id="Pl5-Ap-Utu">
+                                <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                            </constraint>
                             <constraint firstAttribute="bottom" secondItem="k5A-5N-AX4" secondAttribute="bottom" id="p8C-C5-9KO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0we-va-KsK"/>
