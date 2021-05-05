@@ -27,7 +27,7 @@ class AddDescTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        textFieldView.applyEffectToView()
+        textView.applyEffectToView()
     }
 
 }

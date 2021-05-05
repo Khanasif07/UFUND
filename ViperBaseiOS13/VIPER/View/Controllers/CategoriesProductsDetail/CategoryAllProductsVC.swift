@@ -14,6 +14,7 @@ class CategoryAllProductsVC: UIViewController {
 
     @IBOutlet weak var mainCollView: UICollectionView!
     
+    var isUsedForMyInvestment: Bool = false
     var categoryType: CategoryType = .Products
     var categoryModel : CategoryModel?
     var allProductListing : [ProductModel]?{
@@ -127,13 +128,27 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch categoryType {
         case .Products:
-            let ob = ProductDetailVC.instantiate(fromAppStoryboard: .Products)
-            ob.productModel =  (self.allProductListing?[indexPath.row])
-            self.navigationController?.pushViewController(ob, animated: true)
+            if isUsedForMyInvestment {
+                let ob = MyInvestmentsDetailVC.instantiate(fromAppStoryboard: .Products)
+                ob.productModel =  (self.allProductListing?[indexPath.row])
+                ob.investmentType = .MyProductInvestment
+                self.navigationController?.pushViewController(ob, animated: true)
+            } else {
+                let ob = ProductDetailVC.instantiate(fromAppStoryboard: .Products)
+                ob.productModel =  (self.allProductListing?[indexPath.row])
+                self.navigationController?.pushViewController(ob, animated: true)
+            }
         default:
-            let ob = AssetsDetailVC.instantiate(fromAppStoryboard: .Products)
-            ob.productModel =  (self.allProductListing?[indexPath.row])
-            self.navigationController?.pushViewController(ob, animated: true)
+            if isUsedForMyInvestment {
+                let ob = MyInvestmentsDetailVC.instantiate(fromAppStoryboard: .Products)
+                ob.investmentType = .MyTokenInvestment
+                ob.productModel =  (self.allProductListing?[indexPath.row])
+                self.navigationController?.pushViewController(ob, animated: true)
+            } else {
+                let ob = AssetsDetailVC.instantiate(fromAppStoryboard: .Products)
+                ob.productModel =  (self.allProductListing?[indexPath.row])
+                self.navigationController?.pushViewController(ob, animated: true)
+            }
         }
     }
 }

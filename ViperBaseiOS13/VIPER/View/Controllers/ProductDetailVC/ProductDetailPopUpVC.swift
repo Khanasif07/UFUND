@@ -19,6 +19,9 @@ class ProductDetailPopUpVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var qtyTxtField: UITextField!
+    @IBOutlet weak var investPerView: UIView!
+    @IBOutlet weak var quantityView: UIView!
     @IBOutlet weak var incrView: UIView!
     @IBOutlet weak var decrView: UIView!
     @IBOutlet weak var totalProductPriceTitleLbl: UILabel!
@@ -69,7 +72,7 @@ class ProductDetailPopUpVC: UIViewController {
                 self.buyNowBtnTitle = "Buy Now"
                 self.incrView.isHidden = false
                 self.decrView.isHidden = false
-                self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
+                self.qtyTxtField.text = "\(currentValInvPer)"
                 let percentageValue = (Double(currentValInvPer) * (productModel?.tokenrequest?.asset?.asset_value ?? 0.0))
                 self.totalProductAmt.text = "$ " + "\(percentageValue)"
                 self.payableAmountValueLbl.text = "$ " + "\(50)"
@@ -104,12 +107,25 @@ class ProductDetailPopUpVC: UIViewController {
     }
     
     @IBAction func qtyMinusAction(_ sender: UIButton) {
+        if self.currentValInvPer !=  1{
+            self.currentValInvPer -=  1
+        }
+    }
+    
+    @IBAction func qtyPlusAction(_ sender: UIButton) {
+        let totalRemaining = self.productModel?.tokenrequest?.avilable_token ?? 0
+        if self.currentValInvPer !=  totalRemaining{
+            self.currentValInvPer +=  1
+        }
+    }
+    
+    @IBAction func perMinusAction(_ sender: UIButton) {
         if self.currentValInvPer !=  5{
         self.currentValInvPer -=  5
         }
     }
     
-    @IBAction func qtyPlusAction(_ sender: Any) {
+    @IBAction func perPlusAction(_ sender: Any) {
         if self.currentValInvPer !=  100{
         self.currentValInvPer +=  5
     }
@@ -131,22 +147,32 @@ extension ProductDetailPopUpVC {
         self.cancelBtn.setTitleColor(#colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1), for: .normal)
         self.cancelBtn.borderColor = #colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1)
         self.cancelBtn.borderLineWidth = 1.0
-        self.currentValInvPer = 5
+        self.qtyTxtField.delegate = self
+        self.qtyTxtField.keyboardType = .numberPad
     }
     
     private func dataSetUp(){
         switch isForBuyAndToken {
         case .BuyProduct:
+            self.investPerView.isHidden = false
+            self.quantityView.isHidden = true
             self.tokenPriceLbl.text = "Product Price"
             self.totalProductPriceTitleLbl.text = "Total Product Amount"
             self.tokenQtyLbl.text = "Product Quantity"
             self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
+            self.currentValInvPer = 1
         case .InvestProduct:
+            self.currentValInvPer = 5
+            self.investPerView.isHidden = false
+            self.quantityView.isHidden = true
             self.tokenPriceLbl.text = "Product Price"
             self.totalProductPriceTitleLbl.text = "Total Product Amount"
             self.tokenQtyLbl.text = "Product\nInvestment"
             self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
         default:
+            self.currentValInvPer = 1
+            self.investPerView.isHidden = true
+            self.quantityView.isHidden = false
             self.tokenPriceLbl.text =  "Token Price"
             self.totalProductPriceTitleLbl.text = "Total Token Amount"
             self.tokenQtyLbl.text = "Token Quantity"
@@ -169,7 +195,6 @@ extension ProductDetailPopUpVC : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if  textField == paymentMethodTxtField {
-            self.view.endEditingForce()
             self.view.endEditing(true)
             guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
             vc.delegate = self
@@ -177,16 +202,48 @@ extension ProductDetailPopUpVC : UITextFieldDelegate {
             vc.sortTypePaymentListing = self.productModel?.payment_method_type ?? []
             vc.selectedPaymentMethod = self.selectedPaymentMethod ?? Payment_method()
             self.present(vc, animated: true, completion: nil)
+        } else if textField == qtyTxtField {
+            
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if   textField == qtyTxtField {
+            let totalRemaining = self.productModel?.tokenrequest?.avilable_token ?? 0
+            let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string) as String
+            if let num = Int(newText), num >= 0 && num <= totalRemaining {
+                return true
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        view.endEditingForce()
+        switch textField {
+        case paymentMethodTxtField:
+            view.endEditingForce()
+        case qtyTxtField:
+            self.currentValInvPer = Int(textField.text ?? "0") ?? 0
+        default:
+            view.endEditingForce()
+        }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditingForce()
-        return true
+        switch textField {
+        case paymentMethodTxtField:
+            view.endEditingForce()
+            return true
+        case qtyTxtField:
+            self.currentValInvPer = Int(textField.text ?? "0") ?? 0
+            return true
+        default:
+            view.endEditingForce()
+             return true
+        }
     }
 }
 

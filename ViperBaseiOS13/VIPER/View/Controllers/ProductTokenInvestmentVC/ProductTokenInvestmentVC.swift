@@ -181,6 +181,7 @@ extension ProductTokenInvestmentVC {
     private func instantiateViewController() {
         //instantiate the CategoriesProductsVC
         self.productVC = CategoryAllProductsVC.instantiate(fromAppStoryboard: .Products)
+        self.productVC.isUsedForMyInvestment = true
         self.productVC.view.frame.origin = CGPoint.zero
         self.productVC.categoryType = .Products
         self.mainScrollView.frame = self.productVC.view.frame
@@ -189,6 +190,7 @@ extension ProductTokenInvestmentVC {
         
         //instantiate the CategoriesTokenVC
         self.tokenVC = CategoryAllProductsVC.instantiate(fromAppStoryboard: .Products)
+        self.tokenVC.isUsedForMyInvestment = true
         self.tokenVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.width, y: 0)
         self.mainScrollView.frame = self.tokenVC.view.frame
         self.tokenVC.categoryType = .TokenzedAssets

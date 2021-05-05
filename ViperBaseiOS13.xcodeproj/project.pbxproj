@@ -238,6 +238,7 @@
 		844682D325D53CB900F44A53 /* ProductSortVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844682D225D53CB900F44A53 /* ProductSortVC.swift */; };
 		844682D625D53DC900F44A53 /* ProductSortTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844682D425D53DC900F44A53 /* ProductSortTableCell.swift */; };
 		844682D725D53DC900F44A53 /* ProductSortTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844682D525D53DC900F44A53 /* ProductSortTableCell.xib */; };
+		8455755A26426B2200205092 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8455755926426B2200205092 /* ContactUsVC.swift */; };
 		845A9FAE25F081530066CE6B /* LoginWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A9FAD25F081530066CE6B /* LoginWithEmailVC.swift */; };
 		845ADB8425ECAEB7009392E2 /* BottomSheetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845ADB8325ECAEB7009392E2 /* BottomSheetVC.xib */; };
 		845ADB8625ECAEE7009392E2 /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845ADB8525ECAEE7009392E2 /* BottomSheetVC.swift */; };
@@ -585,6 +586,7 @@
 		844682D225D53CB900F44A53 /* ProductSortVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSortVC.swift; sourceTree = "<group>"; };
 		844682D425D53DC900F44A53 /* ProductSortTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSortTableCell.swift; sourceTree = "<group>"; };
 		844682D525D53DC900F44A53 /* ProductSortTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductSortTableCell.xib; sourceTree = "<group>"; };
+		8455755926426B2200205092 /* ContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsVC.swift; sourceTree = "<group>"; };
 		845A9FAD25F081530066CE6B /* LoginWithEmailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailVC.swift; sourceTree = "<group>"; };
 		845ADB8325ECAEB7009392E2 /* BottomSheetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetVC.xib; sourceTree = "<group>"; };
 		845ADB8525ECAEE7009392E2 /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
@@ -1777,6 +1779,7 @@
 			children = (
 				842763D526380E6500E0FE4A /* WebViewControllerVC.swift */,
 				842763D726382C8400E0FE4A /* SettingVC.swift */,
+				8455755926426B2200205092 /* ContactUsVC.swift */,
 			);
 			path = WebViewControllerVC;
 			sourceTree = "<group>";
@@ -2752,6 +2755,7 @@
 				842763DC26382D9200E0FE4A /* SettingTableCell.swift in Sources */,
 				0824B11B2382A13200F81A9B /* HoshiTextField.swift in Sources */,
 				086F138D246EB3C100EA4355 /* HistoryCell.swift in Sources */,
+				8455755A26426B2200205092 /* ContactUsVC.swift in Sources */,
 				083228A82424C56400CCFA1B /* TokenProductViewController.swift in Sources */,
 				8493AFBC2600ACCC00000720 /* NewProductsCollCell.swift in Sources */,
 				0826B7C52386934700867CD5 /* WalkThroughCell.swift in Sources */,
