@@ -193,8 +193,6 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
         case AssetsDetailCellType.assetsInvestmentCell:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
             cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0)"
-            //            cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
-            //            cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
             return cell
         default:
             let cell = tableView.dequeueCell(with: AssetsSupplyTableCell.self, indexPath: indexPath)
