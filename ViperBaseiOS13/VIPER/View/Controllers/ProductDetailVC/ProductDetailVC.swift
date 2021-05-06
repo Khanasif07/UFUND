@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MXParallaxHeader
 import ObjectMapper
 
 class ProductDetailVC: UIViewController {
@@ -86,6 +87,7 @@ extension ProductDetailVC {
         self.setFont()
         self.setFooterView()
         self.setUpTableView()
+        self.parallelHeaderSetUp()
     }
     
     private func setUpTableView(){
@@ -95,7 +97,6 @@ extension ProductDetailVC {
         self.mainTableView.registerCell(with: ProductDetailInvestmentCell.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        self.mainTableView.tableHeaderView = headerView
     }
     
     private func setFont(){
@@ -113,7 +114,7 @@ extension ProductDetailVC {
     
     private func setFooterView(){
         let footerView = UIView()
-        footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50.0)
+        footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150.0)
         self.mainTableView.tableFooterView = footerView
         let imgEntity =  productModel?.product_image ?? ""
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
@@ -125,6 +126,21 @@ extension ProductDetailVC {
         let investValue =   (productModel?.investment_product_total ?? 0.0 )
         let totalValue =  (productModel?.total_product_value ?? 0.0)
         return (investValue / totalValue) * 100
+    }
+    
+    private func parallelHeaderSetUp() {
+        let parallexHeaderHeight = isDeviceIPad ? CGFloat(450.0) : CGFloat(325.0)
+        self.mainTableView.sectionHeaderHeight = CGFloat.leastNormalMagnitude
+        self.headerView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: isDeviceIPad ? 450.0 : 325.0)
+        self.mainTableView.parallaxHeader.view = self.headerView
+        self.mainTableView.parallaxHeader.minimumHeight = 0.0 // 64
+        self.mainTableView.parallaxHeader.height = parallexHeaderHeight
+        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
+        mainTableView.parallaxHeader.view?.widthAnchor.constraint(equalTo: mainTableView.widthAnchor).isActive = true
+        self.headerView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 11.0, *) {
+            mainTableView.contentInsetAdjustmentBehavior = .always
+        }
     }
     
     private func hitProductDetailAPI(){

@@ -4985,10 +4985,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ah-wy-Swz">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="742.5"/>
+                                        <rect key="frame" x="0.0" y="20" width="375" height="746"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgImg" translatesAutoresizingMaskIntoConstraints="NO" id="bXl-mJ-M3V">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="742.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="746"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLF-qp-JtH">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
@@ -5023,13 +5023,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="i9I-NI-nWK">
-                                                <rect key="frame" x="20" y="66" width="335" height="331.5"/>
+                                                <rect key="frame" x="20" y="66" width="335" height="335"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d85-JS-Bq1">
-                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="51"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ASn-2B-eL0">
-                                                                <rect key="frame" x="15" y="5" width="305" height="40.5"/>
+                                                                <rect key="frame" x="15" y="5" width="305" height="41"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -5037,6 +5037,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="height" constant="51" id="AUk-zd-UBd"/>
                                                             <constraint firstAttribute="trailing" secondItem="ASn-2B-eL0" secondAttribute="trailing" constant="15" id="RL4-Rl-n8V"/>
                                                             <constraint firstItem="ASn-2B-eL0" firstAttribute="top" secondItem="d85-JS-Bq1" secondAttribute="top" constant="5" id="sXP-if-mKp"/>
                                                             <constraint firstAttribute="bottom" secondItem="ASn-2B-eL0" secondAttribute="bottom" constant="5" id="tcK-el-wtM"/>
@@ -5044,10 +5045,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BgM-lL-kA5">
-                                                        <rect key="frame" x="0.0" y="70.5" width="335" height="50"/>
+                                                        <rect key="frame" x="0.0" y="71" width="335" height="51"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pNN-NN-VUz">
-                                                                <rect key="frame" x="15" y="5" width="305" height="40"/>
+                                                                <rect key="frame" x="15" y="5" width="305" height="41"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -5062,10 +5063,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eY2-8x-uaJ">
-                                                        <rect key="frame" x="0.0" y="140.5" width="335" height="50.5"/>
+                                                        <rect key="frame" x="0.0" y="142" width="335" height="51"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6E2-zb-ksa">
-                                                                <rect key="frame" x="15" y="5" width="305" height="40.5"/>
+                                                                <rect key="frame" x="15" y="5" width="305" height="41"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -5080,10 +5081,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyT-Ha-8Ci">
-                                                        <rect key="frame" x="0.0" y="211" width="335" height="50"/>
+                                                        <rect key="frame" x="0.0" y="213" width="335" height="51"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5fL-z7-HMe">
-                                                                <rect key="frame" x="15" y="5" width="305" height="40"/>
+                                                                <rect key="frame" x="15" y="5" width="305" height="41"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -5098,10 +5099,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cp8-XR-uDM">
-                                                        <rect key="frame" x="0.0" y="281" width="335" height="50.5"/>
+                                                        <rect key="frame" x="0.0" y="284" width="335" height="51"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NGN-xB-Zzx">
-                                                                <rect key="frame" x="15" y="5" width="305" height="40.5"/>
+                                                                <rect key="frame" x="15" y="5" width="305" height="41"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -5117,12 +5118,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="d85-JS-Bq1" firstAttribute="height" secondItem="i9I-NI-nWK" secondAttribute="width" multiplier="0.15" id="PYU-tv-xPP"/>
-                                                </constraints>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0b-CC-EgB">
-                                                <rect key="frame" x="10" y="407.5" width="355" height="285"/>
+                                                <rect key="frame" x="10" y="411" width="355" height="285"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-Hg-P9y">
                                                         <rect key="frame" x="12" y="247.5" width="331" height="0.0"/>
@@ -5260,7 +5258,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 </constraints>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0t5-zR-kn8">
-                                                                                <rect key="frame" x="65.5" y="14" width="45.5" height="16.5"/>
+                                                                                <rect key="frame" x="65.5" y="14.5" width="45.5" height="16.5"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -5299,7 +5297,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                         </constraints>
                                                                                     </imageView>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linkedin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Id-ek-XsV">
-                                                                                        <rect key="frame" x="62" y="14" width="53" height="16.5"/>
+                                                                                        <rect key="frame" x="62" y="14.5" width="53" height="16.5"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Black" family="Lato" pointSize="14"/>
                                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>

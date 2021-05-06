@@ -54,6 +54,7 @@ enum Base : String {
     case sliderimages = "/api/sliderimages?type=investor"
      case sliderimagesCamp = "/api/sliderimages?type=campaigner"
     case logout = "/api/logout"
+    case contact_Us = "/api/contact-us"
     case enableGoogle = "/api/2fa/enable"
     case disableGoogle = "/api/2fa/disable"
     case checkEnable = "/api/g2fotpcheckenable"

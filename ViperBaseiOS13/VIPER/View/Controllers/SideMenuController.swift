@@ -232,11 +232,19 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15 * tableView.frame.height / 100
+        if isDeviceIPad {
+             return 10 * tableView.frame.height / 100
+        } else {
+             return 15 * tableView.frame.height / 100
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 10 * tableView.frame.height / 100
+        if isDeviceIPad {
+            return 7.5 * tableView.frame.height / 100
+        } else {
+            return 10 * tableView.frame.height / 100
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

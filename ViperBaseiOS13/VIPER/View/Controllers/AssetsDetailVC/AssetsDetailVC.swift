@@ -8,6 +8,7 @@
 
 
 import UIKit
+import MXParallaxHeader
 import ObjectMapper
 
 class AssetsDetailVC: UIViewController {
@@ -90,6 +91,7 @@ extension AssetsDetailVC {
         self.setFont()
         self.setFooterView()
         self.setUpTableView()
+        self.parallelHeaderSetUp()
     }
     
     private func setUpTableView(){
@@ -100,7 +102,6 @@ extension AssetsDetailVC {
         self.mainTableView.registerCell(with: AssetsSupplyTableCell.self)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        self.mainTableView.tableHeaderView = headerView
     }
     
     private func setAssetType(){
@@ -128,12 +129,27 @@ extension AssetsDetailVC {
     
     private func setFooterView(){
         let footerView = UIView()
-        footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50.0)
+        footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150.0)
         self.mainTableView.tableFooterView = footerView
         let imgEntity =  productModel?.token_image ?? ""
         let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
         self.bottomView.isHidden = userType != UserType.investor.rawValue
+    }
+    
+    private func parallelHeaderSetUp() {
+        let parallexHeaderHeight = isDeviceIPad ? CGFloat(450.0) : CGFloat(325.0)
+        self.mainTableView.sectionHeaderHeight = CGFloat.leastNormalMagnitude
+        self.headerView.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: isDeviceIPad ? 450.0 : 325.0)
+        self.mainTableView.parallaxHeader.view = self.headerView
+        self.mainTableView.parallaxHeader.minimumHeight = 0.0 // 64
+        self.mainTableView.parallaxHeader.height = parallexHeaderHeight
+        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
+        mainTableView.parallaxHeader.view?.widthAnchor.constraint(equalTo: mainTableView.widthAnchor).isActive = true
+        self.headerView.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 11.0, *) {
+            mainTableView.contentInsetAdjustmentBehavior = .always
+        }
     }
     
     private func getProgressPercentage() -> Double{

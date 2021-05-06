@@ -8,6 +8,7 @@
 
 
 import UIKit
+import ObjectMapper
 
 class ContactUsVC: UIViewController {
     
@@ -22,6 +23,9 @@ class ContactUsVC: UIViewController {
     
     // MARK: - Variable
     //==========================
+    private lazy var loader  : UIView = {
+             return createActivityIndicator(self.view)
+         }()
     var descText : String = ""
     // MARK: - Lifecycle
     //===========================
@@ -32,13 +36,14 @@ class ContactUsVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        containerView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
+//        containerView.addShadowRounded(cornerRadius: 5, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
         self.submitBtn.layer.cornerRadius = 5.0
     }
     
     // MARK: - IBActions
     //===========================
     @IBAction func submitBtnAction(_ sender: UIButton) {
+        self.getLogout()
     }
     
     @IBAction func backBtnAction(_ sender: UIButton) {
@@ -55,11 +60,21 @@ extension ContactUsVC {
         self.setupTextAndFont()
     }
     
+    func getLogout() {
+        self.loader.isHidden = false
+        var param = [String: AnyObject]()
+        param[RegisterParam.keys.id] = User.main.id as AnyObject
+        self.presenter?.HITAPI(api: Base.contact_Us.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
+    }
+    
     private func setupTextAndFont(){
+        msgTxtView.isScrollEnabled = true
         self.emailTxtFld.delegate = self
         self.skypTxtFld.delegate = self
         self.phoneTxtField.delegate = self
         self.msgTxtView.delegate = self
+        self.msgTxtView.isUserInteractionEnabled = true
+        self.msgTxtView.isEditable = true
         self.phoneTxtField.keyboardType = .numberPad
         emailTxtFld.applyEffectToView()
         skypTxtFld.applyEffectToView()
@@ -88,9 +103,33 @@ extension ContactUsVC : UITextViewDelegate , UITextFieldDelegate{
         let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
         return updatedText.count <= 250
     }
-    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        let text = textView.text?.byRemovingLeadingTrailingWhiteSpaces ?? ""
+        print(text)
+    }
     func textViewDidEndEditing(_ textView: UITextView) {
         let text = textView.text?.byRemovingLeadingTrailingWhiteSpaces ?? ""
         print(text)
+    }
+}
+
+//MARK: - PresenterOutputProtocol
+
+extension ContactUsVC: PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any){
+        
+        switch api {
+        case Base.contact_Us.rawValue:
+            self.loader.isHidden = true
+            self.popOrDismiss(animation: true)
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }

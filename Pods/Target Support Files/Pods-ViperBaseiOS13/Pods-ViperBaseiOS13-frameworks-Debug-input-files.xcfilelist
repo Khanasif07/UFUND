@@ -14,6 +14,7 @@ ${BUILT_PRODUCTS_DIR}/IOSLinkedInAPIFix1/IOSLinkedInAPIFix1.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/KWDrawerController/KWDrawerController.framework
 ${BUILT_PRODUCTS_DIR}/LinkedinSwift/LinkedinSwift.framework
+${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework
 ${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework
 ${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
