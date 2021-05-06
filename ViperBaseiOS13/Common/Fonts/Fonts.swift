@@ -12,11 +12,12 @@ import UIKit
 //Custom font type
 enum FontType: String {
 
-    case medium = "SFUIText-Medium"
-    case bold = "lato_bold"
-    case regular = "lato"
-    case semiBold = "SFUIText-Semibold"
-    case light = "lato_light"
+    case extraLight = "Poppins-ExtraLight"
+    case bold = "Poppins-Bold"
+    case regular = "Poppins-Regular"
+    case semiBold = "Poppins-SemiBold"
+    case light = "Poppins-Light"
+    case medium = "Poppins-Medium"
     
 }
 

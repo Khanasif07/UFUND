@@ -156,8 +156,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionHeader) {
         guard let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "FooterView", for: indexPath) as? FooterView else {return UICollectionReusableView() }
-//        footerView.investorDesclbl.text = nullStringToEmpty(string: silderImage.first?.description)
-//        footerView.investorTitleLbl.text = nullStringToEmpty(string: silderImage.first?.title)
+        footerView.investorDesclbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
+        footerView.investorTitleLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x22) : .setCustomFont(name: .bold, size: .x18)
         return footerView
         }
         fatalError()
@@ -392,14 +392,17 @@ extension HomeViewController: PresenterOutputProtocol {
     }
 }
 
-
+//MARK: - UICollectionReusableView
 class FooterView : UICollectionReusableView {
-    
     //MARK:- Variables
     
     //MARK:- IBOutlets
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var investorTitleLbl: UILabel!
     @IBOutlet weak var investorDesclbl: UILabel!
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
 
 }

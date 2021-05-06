@@ -40,3 +40,39 @@ struct SilderImage : Mappable {
 	}
 
 }
+
+struct ContactUsModelEntity : Mappable {
+    var data : [ContactUsModel]?
+    init?(map: Map) {
+
+    }
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+}
+
+struct ContactUsModel : Mappable {
+    var type : Int?
+    var status: Int?
+    var key : String?
+    var id:Int?
+    var key_name: String?
+    var updated_at: Int?
+    var created_at: String?
+    var details: String?
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        type <- map["type"]
+        status <- map["status"]
+        key <- map["key"]
+        id <- map["id"]
+        key_name <- map["key_name"]
+        updated_at <- map["updated_at"]
+        created_at <- map["created_at"]
+        details <- map["details"]
+    }
+}
+

@@ -28,9 +28,6 @@
         <array key="Poppins-Medium.ttf">
             <string>Poppins-Medium</string>
         </array>
-        <array key="Poppins-Regular.ttf">
-            <string>Poppins-Regular</string>
-        </array>
         <array key="Poppins-SemiBold.ttf">
             <string>Poppins-SemiBold</string>
         </array>
@@ -1953,7 +1950,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmH-1f-oga">
                                                                     <rect key="frame" x="20" y="41" width="334" height="56"/>
                                                                     <string key="text">The leap into business in the global real economy through our unique platform. trade, buy and sell goods and tokens in partnership with us, we do sales you do or share the purchases.</string>
-                                                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                    <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -1990,6 +1987,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <constraint firstItem="DoJ-Lk-6QQ" firstAttribute="top" secondItem="CuS-Vy-gCJ" secondAttribute="top" id="XPO-oX-cr2"/>
                                                 <constraint firstItem="DoJ-Lk-6QQ" firstAttribute="leading" secondItem="CuS-Vy-gCJ" secondAttribute="leading" id="j92-nC-XDJ"/>
                                             </constraints>
+                                            <connections>
+                                                <outlet property="containerView" destination="xJP-ar-D0e" id="GTV-87-jad"/>
+                                                <outlet property="investorDesclbl" destination="OmH-1f-oga" id="c7s-Qy-qZV"/>
+                                                <outlet property="investorTitleLbl" destination="xjN-KP-60a" id="bqb-Nn-J1Y"/>
+                                            </connections>
                                         </collectionReusableView>
                                     </collectionView>
                                 </subviews>
@@ -12782,106 +12784,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BAa-U5-JcG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="FooterView" reuseIdentifier="FooterView" id="xCr-hb-arj" customClass="FooterView" customModule="UFUND" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="398" height="115"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6KO-ph-ctX">
-                            <rect key="frame" x="0.0" y="0.0" width="398" height="115"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSp-rr-206">
-                                    <rect key="frame" x="20" y="45.5" width="359.5" height="50.5"/>
-                                    <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</string>
-                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
-                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Business Funding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kg5-5Y-7y0">
-                                    <rect key="frame" x="20" y="16" width="143.5" height="25.5"/>
-                                    <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
-                                    <color key="textColor" name="primaryColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oSp-rr-206" secondAttribute="trailing" constant="16" id="58T-y4-0wh"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kg5-5Y-7y0" secondAttribute="trailing" constant="16" id="Brw-Du-WHU"/>
-                                <constraint firstAttribute="bottom" secondItem="oSp-rr-206" secondAttribute="bottom" constant="19" id="Jgp-jf-u8Q"/>
-                                <constraint firstItem="kg5-5Y-7y0" firstAttribute="top" secondItem="6KO-ph-ctX" secondAttribute="top" constant="16" id="MrR-dD-wE4"/>
-                                <constraint firstItem="oSp-rr-206" firstAttribute="leading" secondItem="kg5-5Y-7y0" secondAttribute="leading" id="Rkh-k7-PEA"/>
-                                <constraint firstItem="oSp-rr-206" firstAttribute="top" secondItem="kg5-5Y-7y0" secondAttribute="bottom" constant="4" id="sDo-bQ-7ti"/>
-                                <constraint firstItem="kg5-5Y-7y0" firstAttribute="leading" secondItem="6KO-ph-ctX" secondAttribute="leading" constant="20" id="zjw-Oa-Qta"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="6KO-ph-ctX" secondAttribute="trailing" id="4uY-KA-0QV"/>
-                        <constraint firstItem="6KO-ph-ctX" firstAttribute="leading" secondItem="xCr-hb-arj" secondAttribute="leading" id="8bE-Oq-3Xj"/>
-                        <constraint firstItem="6KO-ph-ctX" firstAttribute="top" secondItem="xCr-hb-arj" secondAttribute="top" id="EPO-nH-SmQ"/>
-                        <constraint firstAttribute="bottom" secondItem="6KO-ph-ctX" secondAttribute="bottom" id="kVT-ff-sv3"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="ZQu-hd-CEi"/>
-                    <connections>
-                        <outlet property="containerView" destination="6KO-ph-ctX" id="IxE-Qf-BMw"/>
-                        <outlet property="investorDesclbl" destination="oSp-rr-206" id="EJJ-rE-4UV"/>
-                        <outlet property="investorTitleLbl" destination="kg5-5Y-7y0" id="ZBn-Zt-Vs8"/>
-                    </connections>
-                </collectionReusableView>
-                <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="FooterView" reuseIdentifier="FooterView" id="fxV-Xc-clx" customClass="FooterView" customModule="UFUND" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="398" height="115"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="at9-ub-Tcg">
-                            <rect key="frame" x="0.0" y="0.0" width="398" height="115"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-8L-k87">
-                                    <rect key="frame" x="20" y="45.5" width="359.5" height="50.5"/>
-                                    <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt</string>
-                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
-                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Business Funding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vH1-HY-Xb6">
-                                    <rect key="frame" x="20" y="16" width="143.5" height="25.5"/>
-                                    <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
-                                    <color key="textColor" name="primaryColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="vH1-HY-Xb6" firstAttribute="top" secondItem="at9-ub-Tcg" secondAttribute="top" constant="16" id="CNt-RQ-dKh"/>
-                                <constraint firstItem="VaZ-8L-k87" firstAttribute="top" secondItem="vH1-HY-Xb6" secondAttribute="bottom" constant="4" id="VyS-Qc-8Yu"/>
-                                <constraint firstItem="vH1-HY-Xb6" firstAttribute="leading" secondItem="at9-ub-Tcg" secondAttribute="leading" constant="20" id="WNn-Xm-Pao"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VaZ-8L-k87" secondAttribute="trailing" constant="16" id="YWp-hC-xTJ"/>
-                                <constraint firstAttribute="bottom" secondItem="VaZ-8L-k87" secondAttribute="bottom" constant="19" id="b63-cX-mLu"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vH1-HY-Xb6" secondAttribute="trailing" constant="16" id="eNA-DH-cMY"/>
-                                <constraint firstItem="VaZ-8L-k87" firstAttribute="leading" secondItem="vH1-HY-Xb6" secondAttribute="leading" id="mfU-2T-SvG"/>
-                            </constraints>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="at9-ub-Tcg" secondAttribute="bottom" id="BPR-6Y-DoK"/>
-                        <constraint firstItem="at9-ub-Tcg" firstAttribute="leading" secondItem="fxV-Xc-clx" secondAttribute="leading" id="Z3b-tO-g9m"/>
-                        <constraint firstAttribute="trailing" secondItem="at9-ub-Tcg" secondAttribute="trailing" id="idL-FQ-oic"/>
-                        <constraint firstItem="at9-ub-Tcg" firstAttribute="top" secondItem="fxV-Xc-clx" secondAttribute="top" id="qIS-qx-g5E"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="hF0-8h-bIq"/>
-                    <connections>
-                        <outlet property="containerView" destination="at9-ub-Tcg" id="Isl-dR-dNN"/>
-                        <outlet property="investorDesclbl" destination="VaZ-8L-k87" id="acf-x5-7wY"/>
-                        <outlet property="investorTitleLbl" destination="vH1-HY-Xb6" id="KoO-fq-UWX"/>
-                    </connections>
-                </collectionReusableView>
-                <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="FooterView" reuseIdentifier="FooterView" id="oSt-Jp-dqD" customClass="FooterView" customModule="UFUND" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="398" height="115"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <viewLayoutGuide key="safeArea" id="Mpj-5C-mIb"/>
-                </collectionReusableView>
             </objects>
             <point key="canvasLocation" x="5698" y="729"/>
         </scene>
