@@ -17,6 +17,11 @@ class SideMenuHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var headerBtn: UIButton!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        titleLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .regular, size: .x14)
+    }
+    
     
     @IBAction func sectionTapped(_ sender: UIButton) {
         if let handle = headerBtnAction{

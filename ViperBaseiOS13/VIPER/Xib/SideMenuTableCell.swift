@@ -16,5 +16,6 @@ class SideMenuTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        titleLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .regular, size: .x14)
     }
 }

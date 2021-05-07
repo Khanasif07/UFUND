@@ -185,7 +185,9 @@
                     <navigationItem key="navigationItem" id="5NU-Nk-YCT"/>
                     <connections>
                         <outlet property="campaignerButton" destination="FJ4-og-CLJ" id="N4K-mA-PMI"/>
+                        <outlet property="campaignerLbl" destination="K2F-mp-hUj" id="wnk-0B-xnr"/>
                         <outlet property="inverstorButton" destination="vAG-HB-xai" id="p8B-P8-MrL"/>
+                        <outlet property="investorLbl" destination="c9x-NJ-HWj" id="Ilv-Rj-bS8"/>
                         <outlet property="welcomeBack" destination="eaz-0t-yDy" id="w2x-VF-wDU"/>
                     </connections>
                 </viewController>
@@ -1912,7 +1914,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <constraints>
                                             <constraint firstItem="vN2-oN-XRe" firstAttribute="centerY" secondItem="XRr-EC-CQT" secondAttribute="centerY" id="39o-uK-RkO"/>
                                             <constraint firstAttribute="trailing" secondItem="4IH-xl-VTZ" secondAttribute="trailing" constant="16" id="76T-7O-LRT"/>
-                                            <constraint firstAttribute="height" constant="51" id="FTN-lA-6gJ"/>
+                                            <constraint firstAttribute="height" constant="51" id="FTN-lA-6gJ">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                            </constraint>
                                             <constraint firstAttribute="bottom" secondItem="RL3-Qb-06d" secondAttribute="bottom" id="JrK-Oz-pf7"/>
                                             <constraint firstItem="RL3-Qb-06d" firstAttribute="leading" secondItem="XRr-EC-CQT" secondAttribute="leading" id="KD9-RP-z6y"/>
                                             <constraint firstItem="jPF-Pe-egl" firstAttribute="centerX" secondItem="XRr-EC-CQT" secondAttribute="centerX" id="Yqc-dS-iTs"/>
@@ -5004,7 +5008,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="51" id="8J0-eW-69j"/>
+                                                    <constraint firstAttribute="height" constant="51" id="8J0-eW-69j">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                                    </constraint>
                                                     <constraint firstItem="TbW-xf-39y" firstAttribute="centerY" secondItem="FLF-qp-JtH" secondAttribute="centerY" id="Wdt-I4-y4c"/>
                                                     <constraint firstAttribute="trailing" secondItem="TbW-xf-39y" secondAttribute="trailing" constant="10" id="X6p-mV-DdJ"/>
                                                     <constraint firstItem="TbW-xf-39y" firstAttribute="leading" secondItem="FLF-qp-JtH" secondAttribute="leading" constant="20" id="dPT-kJ-Gi6"/>
@@ -11407,7 +11413,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ps2-PU-oHm" firstAttribute="centerX" secondItem="kbc-gS-H8c" secondAttribute="centerX" id="L7R-CR-cAz"/>
-                                            <constraint firstAttribute="height" constant="51" id="Ry3-ho-I8h"/>
+                                            <constraint firstAttribute="height" constant="51" id="Ry3-ho-I8h">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                            </constraint>
                                             <constraint firstItem="ASG-cu-lWh" firstAttribute="leading" secondItem="kbc-gS-H8c" secondAttribute="leading" constant="15" id="bMd-Xw-PcJ"/>
                                             <constraint firstAttribute="trailing" secondItem="KBH-Qv-RRI" secondAttribute="trailing" constant="16" id="eKU-p1-SJi"/>
                                             <constraint firstItem="ps2-PU-oHm" firstAttribute="centerY" secondItem="kbc-gS-H8c" secondAttribute="centerY" id="ezH-DI-6xV"/>
@@ -11457,7 +11465,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="51" id="3xk-tF-Zt5"/>
+                                            <constraint firstAttribute="height" constant="51" id="3xk-tF-Zt5">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="55"/>
+                                            </constraint>
                                             <constraint firstItem="jhZ-b1-qZX" firstAttribute="height" secondItem="WEI-H0-xsQ" secondAttribute="height" multiplier="0.85" id="LKZ-T5-Rwp"/>
                                             <constraint firstAttribute="trailing" secondItem="Jwz-yP-1KM" secondAttribute="trailing" constant="14" id="LUb-bo-Kq3"/>
                                             <constraint firstItem="Jwz-yP-1KM" firstAttribute="leading" secondItem="WEI-H0-xsQ" secondAttribute="leading" constant="14" id="qG3-ca-9Vs"/>
@@ -11476,9 +11486,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8x-DN-uN6">
                                                                 <rect key="frame" x="0.0" y="0.0" width="169" height="34"/>
                                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.1176470588" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="34" id="dA4-Q1-GhZ"/>
-                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="Products">
@@ -11533,10 +11540,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="51" id="HXz-gV-stB"/>
+                                            <constraint firstAttribute="height" constant="51" id="HXz-gV-stB">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="61"/>
+                                            </constraint>
                                             <constraint firstItem="jgf-yh-Fv2" firstAttribute="centerX" secondItem="tam-Ne-AgK" secondAttribute="centerX" id="LJA-Ou-j1m"/>
                                             <constraint firstItem="jgf-yh-Fv2" firstAttribute="centerY" secondItem="tam-Ne-AgK" secondAttribute="centerY" id="f8w-0e-lPj"/>
                                             <constraint firstAttribute="trailing" secondItem="jgf-yh-Fv2" secondAttribute="trailing" constant="16" id="nzF-Cx-MZR"/>
+                                            <constraint firstItem="SKY-hp-0QD" firstAttribute="height" secondItem="tam-Ne-AgK" secondAttribute="height" multiplier="0.67" id="rYx-IZ-xyX"/>
                                             <constraint firstItem="jgf-yh-Fv2" firstAttribute="leading" secondItem="tam-Ne-AgK" secondAttribute="leading" constant="16" id="vch-pI-VSY"/>
                                         </constraints>
                                     </view>
@@ -11617,6 +11627,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="productBtn" destination="k8x-DN-uN6" id="ycC-SW-TsZ"/>
                         <outlet property="searchTxtField" destination="jhZ-b1-qZX" id="w6r-Dw-kGC"/>
                         <outlet property="searchViewHConst" destination="3xk-tF-Zt5" id="r3P-n0-NW1"/>
+                        <outlet property="titleLbl" destination="ps2-PU-oHm" id="Bsx-Sg-36d"/>
                         <outlet property="tokenBtn" destination="rpW-eZ-lyl" id="piC-Ws-iLW"/>
                     </connections>
                 </viewController>
@@ -11691,7 +11702,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="8gu-bj-oHN" firstAttribute="centerY" secondItem="fKJ-cc-Trb" secondAttribute="centerY" id="9qR-Ox-0AH"/>
                                             <constraint firstItem="8gu-bj-oHN" firstAttribute="centerX" secondItem="fKJ-cc-Trb" secondAttribute="centerX" id="Crm-E6-x5B"/>
                                             <constraint firstItem="klz-2z-uSP" firstAttribute="centerY" secondItem="fKJ-cc-Trb" secondAttribute="centerY" id="YFA-FQ-6Qy"/>
-                                            <constraint firstAttribute="height" constant="51" id="ej3-UY-hms"/>
+                                            <constraint firstAttribute="height" constant="51" id="ej3-UY-hms">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                            </constraint>
                                             <constraint firstItem="klz-2z-uSP" firstAttribute="leading" secondItem="fKJ-cc-Trb" secondAttribute="leading" constant="15" id="zIY-tK-Cho"/>
                                         </constraints>
                                     </view>
@@ -11756,9 +11769,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xHW-2I-ZdP">
                                                                 <rect key="frame" x="0.0" y="0.0" width="169" height="34"/>
                                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.1176470588" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="34" id="Ehz-03-QSd"/>
-                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="New Products">
@@ -11815,9 +11825,12 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <constraints>
                                             <constraint firstItem="iCJ-Kd-K51" firstAttribute="centerY" secondItem="g37-qF-fH3" secondAttribute="centerY" id="6jw-zJ-gb2"/>
                                             <constraint firstItem="iCJ-Kd-K51" firstAttribute="leading" secondItem="g37-qF-fH3" secondAttribute="leading" constant="16" id="HSh-TB-Muq"/>
-                                            <constraint firstAttribute="height" constant="51" id="UpU-D4-GC6"/>
+                                            <constraint firstAttribute="height" constant="51" id="UpU-D4-GC6">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="61"/>
+                                            </constraint>
                                             <constraint firstAttribute="trailing" secondItem="iCJ-Kd-K51" secondAttribute="trailing" constant="16" id="W21-ae-mIb"/>
                                             <constraint firstItem="iCJ-Kd-K51" firstAttribute="centerX" secondItem="g37-qF-fH3" secondAttribute="centerX" id="eM5-5e-cBX"/>
+                                            <constraint firstItem="53O-vS-EZS" firstAttribute="height" secondItem="g37-qF-fH3" secondAttribute="height" multiplier="0.67" id="wHo-qU-iuG"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMW-uN-ZZa">
@@ -12060,23 +12073,23 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QF-qN-tga">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYx-V7-Mg6">
-                                        <rect key="frame" x="12.5" y="-7.5" width="56" height="56"/>
+                                        <rect key="frame" x="12.5" y="-2.5" width="56" height="56"/>
                                         <state key="normal" image="icBackward"/>
                                         <connections>
                                             <action selector="backBtnAction:" destination="gbm-Dj-gfa" eventType="touchUpInside" id="31R-jy-h0T"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeI-6R-e0X">
-                                        <rect key="frame" x="165" y="11" width="45.5" height="19"/>
+                                        <rect key="frame" x="165" y="16" width="45.5" height="19"/>
                                         <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                         <color key="textColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S5e-6f-65h">
-                                        <rect key="frame" x="282" y="5.5" width="77" height="30"/>
+                                        <rect key="frame" x="282" y="10.5" width="77" height="30"/>
                                         <color key="backgroundColor" name="inversterGrad2"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="77" id="dot-PK-PMk"/>
@@ -12099,7 +12112,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
                                     <constraint firstItem="dYx-V7-Mg6" firstAttribute="centerY" secondItem="9QF-qN-tga" secondAttribute="centerY" id="6JD-Fa-6kx"/>
-                                    <constraint firstAttribute="height" constant="41" id="LkI-j0-dU0"/>
+                                    <constraint firstAttribute="height" constant="51" id="LkI-j0-dU0">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                    </constraint>
                                     <constraint firstItem="dYx-V7-Mg6" firstAttribute="leading" secondItem="9QF-qN-tga" secondAttribute="leading" constant="12.5" id="Q95-jA-Ws9"/>
                                     <constraint firstItem="NeI-6R-e0X" firstAttribute="centerX" secondItem="9QF-qN-tga" secondAttribute="centerX" id="cZ0-pY-7nq"/>
                                     <constraint firstItem="S5e-6f-65h" firstAttribute="centerY" secondItem="9QF-qN-tga" secondAttribute="centerY" id="dYj-HF-2qT"/>
@@ -12108,10 +12123,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFS-rF-aem">
-                                <rect key="frame" x="0.0" y="41" width="375" height="626"/>
+                                <rect key="frame" x="0.0" y="51" width="375" height="616"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="BYY-3G-j1D">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="626"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="616"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableView>

@@ -19,14 +19,17 @@ public  struct TutorialContent {
 
 class TutorialViewController: UIViewController {
     
+    @IBOutlet weak var campaignerLbl: UILabel!
     @IBOutlet weak var logoImg: UIImageView!
     @IBOutlet weak var orLbl: UILabel!
+    @IBOutlet weak var investorLbl: UILabel!
     @IBOutlet weak var inverstorButton: UIButton!
     @IBOutlet weak var campaignerButton: UIButton!
     @IBOutlet weak var welcomeBack: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setFont()
        
 //        withRenderingMode(originalImage: #imageLiteral(resourceName: "logo"), imgView: logoImg, imgTintColur: .white)
     }
@@ -71,7 +74,9 @@ extension TutorialViewController {
     }
     
     func setFont() {
-        orLbl.textColor = UIColor.white
+        welcomeBack.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x20)
+        investorLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x18)
+        campaignerLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x18)
         campaignerButton.setTitleColor(UIColor(hex: primaryColor), for: .normal)
         inverstorButton.setTitleColor(UIColor(hex: primaryColor), for: .normal)
     }

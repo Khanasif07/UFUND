@@ -139,6 +139,7 @@ extension TokenizedAssetsVC {
         self.collectionViewSetUp()
         self.searchBar.delegate = self
         self.titleLbl.text = productTitle
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.getTokenizedAssets()
     }
     

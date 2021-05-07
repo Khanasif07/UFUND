@@ -9,11 +9,13 @@
 import UIKit
 
 class ProductSortTableCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    
+    
     @IBOutlet weak var sortBtn: UIButton!
     @IBOutlet weak var sortTitleLbl: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        sortTitleLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .regular, size: .x14)
+    }
 }

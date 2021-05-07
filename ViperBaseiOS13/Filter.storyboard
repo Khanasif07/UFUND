@@ -36,17 +36,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Hm-Ju-avP">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZ1-rC-hRO">
-                                                <rect key="frame" x="16" y="6.5" width="44" height="31"/>
+                                                <rect key="frame" x="16" y="10" width="44" height="31"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                 <state key="normal" title="Filters">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEv-uS-x6z">
-                                                <rect key="frame" x="314" y="7" width="84" height="30"/>
+                                                <rect key="frame" x="314" y="10.5" width="84" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="84" id="fgG-i9-UCh"/>
@@ -67,12 +67,14 @@
                                             <constraint firstAttribute="trailing" secondItem="CEv-uS-x6z" secondAttribute="trailing" constant="16" id="DSO-ZD-ofY"/>
                                             <constraint firstItem="kZ1-rC-hRO" firstAttribute="centerY" secondItem="4Hm-Ju-avP" secondAttribute="centerY" id="ecj-ey-doo"/>
                                             <constraint firstItem="kZ1-rC-hRO" firstAttribute="leading" secondItem="4Hm-Ju-avP" secondAttribute="leading" constant="16" id="vwX-cg-YVN"/>
-                                            <constraint firstAttribute="height" constant="44" id="wWb-HO-9Pe"/>
+                                            <constraint firstAttribute="height" constant="51" id="wWb-HO-9Pe">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                            </constraint>
                                             <constraint firstItem="CEv-uS-x6z" firstAttribute="centerY" secondItem="4Hm-Ju-avP" secondAttribute="centerY" id="yfd-z4-gok"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhT-j6-sOe">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                        <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JR-pA-G4K">
@@ -415,17 +417,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xa1-i0-r64">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2b-tV-Ici">
-                                                <rect key="frame" x="16" y="6" width="46" height="32"/>
+                                                <rect key="frame" x="16" y="9.5" width="46" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                 <state key="normal" title="Filters">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOJ-X0-tgA">
-                                                <rect key="frame" x="314" y="7" width="84" height="30"/>
+                                                <rect key="frame" x="314" y="10.5" width="84" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="84" id="IjA-Wj-y35"/>
@@ -446,12 +448,14 @@
                                             <constraint firstItem="y2b-tV-Ici" firstAttribute="centerY" secondItem="Xa1-i0-r64" secondAttribute="centerY" id="bPy-dm-y1r"/>
                                             <constraint firstItem="y2b-tV-Ici" firstAttribute="leading" secondItem="Xa1-i0-r64" secondAttribute="leading" constant="16" id="cKw-Ac-cBt"/>
                                             <constraint firstAttribute="trailing" secondItem="FOJ-X0-tgA" secondAttribute="trailing" constant="16" id="cn6-8j-mCk"/>
-                                            <constraint firstAttribute="height" constant="44" id="dal-5S-aeX"/>
+                                            <constraint firstAttribute="height" constant="51" id="dal-5S-aeX">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                            </constraint>
                                             <constraint firstItem="FOJ-X0-tgA" firstAttribute="centerY" secondItem="Xa1-i0-r64" secondAttribute="centerY" id="l6m-4Z-Mf8"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6u-iK-EK5">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                        <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ps0-2c-Gox">
@@ -635,17 +639,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxt-Sr-ugz">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m7d-Mx-IYG">
-                                                <rect key="frame" x="16" y="7.5" width="38" height="29"/>
+                                                <rect key="frame" x="16" y="11" width="38" height="29"/>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="Filters">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00J-79-glt">
-                                                <rect key="frame" x="314" y="7" width="84" height="30"/>
+                                                <rect key="frame" x="314" y="10.5" width="84" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="06a-DD-CVF"/>
@@ -664,14 +668,16 @@
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="00J-79-glt" secondAttribute="trailing" constant="16" id="4do-1G-zSK"/>
-                                            <constraint firstAttribute="height" constant="44" id="5js-rw-6g9"/>
+                                            <constraint firstAttribute="height" constant="51" id="5js-rw-6g9">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                            </constraint>
                                             <constraint firstItem="m7d-Mx-IYG" firstAttribute="leading" secondItem="yxt-Sr-ugz" secondAttribute="leading" constant="16" id="ONS-JY-4Ui"/>
                                             <constraint firstItem="00J-79-glt" firstAttribute="centerY" secondItem="yxt-Sr-ugz" secondAttribute="centerY" id="T16-ey-du8"/>
                                             <constraint firstItem="m7d-Mx-IYG" firstAttribute="centerY" secondItem="yxt-Sr-ugz" secondAttribute="centerY" id="sgL-lt-AWJ"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DY7-l2-fpr">
-                                        <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                        <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sya-Yo-G2L">

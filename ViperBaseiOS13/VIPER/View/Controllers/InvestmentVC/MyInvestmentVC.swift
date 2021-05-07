@@ -120,6 +120,7 @@ extension MyInvestmentVC {
     private func initialSetup(){
         ProductFilterVM.shared.resetToAllFilter()
         self.titleLbl.text = productTitle
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.searchBar.delegate = self
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
         self.mainCollView.registerCell(with: NewProductsCollCell.self)

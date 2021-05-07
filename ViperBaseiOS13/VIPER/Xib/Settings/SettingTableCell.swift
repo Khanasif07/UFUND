@@ -12,15 +12,10 @@ class SettingTableCell: UITableViewCell {
 
     @IBOutlet weak var titleImgView: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        titleLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .regular, size: .x14)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

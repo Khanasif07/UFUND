@@ -31,7 +31,7 @@ extension UIScrollView {
                 return header
             }
             let header = ParallaxHeader()
-            self.parallaxHeader = header
+//            self.parallaxHeader = header
             return header
         }
         set(parallaxHeader) {

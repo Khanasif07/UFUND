@@ -56,11 +56,8 @@ class SideMenuController: UIViewController {
     }()
     
     var isSelectInvester = true {
-        
         didSet {
-            
             if isSelectInvester {
-                
                 investButton.backgroundColor = UIColor(hex: primaryColor)
                 campaignerButton.backgroundColor = UIColor.white
                 campaignerButton.setTitleColor(UIColor(hex: primaryColor), for: .normal)
@@ -70,7 +67,6 @@ class SideMenuController: UIViewController {
                 campaignerButton.backgroundColor = UIColor(hex: primaryColor)
                 investButton.setTitleColor(UIColor(hex: primaryColor), for: .normal)
                 campaignerButton.setTitleColor(UIColor.white, for: .normal)
-                
             }
         }
     }
@@ -85,9 +81,6 @@ class SideMenuController: UIViewController {
         profileLastName.textColor = .white
         tableView.delegate = self
         tableView.dataSource = self
-        //        investButton.titleEdgeInsets.left = 40
-        //        campaignerButton.titleEdgeInsets.left = 40
-        //
         let url = URL.init(string: baseUrl + "/" +  nullStringToEmpty(string: User.main.picture))
         profileImg.sd_setImage(with: url , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
         profileImg.contentMode = .scaleAspectFill
@@ -124,6 +117,9 @@ class SideMenuController: UIViewController {
         investButton.roundCorners([.layerMaxXMaxYCorner, .layerMaxXMinYCorner], radius: 8)
         campaignerButton.roundCorners([.layerMinXMaxYCorner, .layerMinXMinYCorner], radius: 8)
         topRoundedView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 10)
+        investButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x13)
+        campaignerButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x13)
+        profileName.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x15) : .setCustomFont(name: .semiBold, size: .x14)
         
     }
     
