@@ -71,7 +71,7 @@ extension AddProductsVC {
         self.mainTableView.registerCell(with: AddDescTableCell.self)
         self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
         self.mainTableView.tableFooterView = footerView
-        self.mainTableView.tableFooterView?.height = 125.0
+        self.mainTableView.tableFooterView?.height = isDeviceIPad ? 175.0 : 125.0
     }
     
     public func isCheckParamsData()-> Bool{

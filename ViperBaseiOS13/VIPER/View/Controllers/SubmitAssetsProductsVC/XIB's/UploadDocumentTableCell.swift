@@ -104,7 +104,7 @@ extension UploadDocumentTableCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width - 32) / 2 , height: 147.5)
+        return CGSize(width: (collectionView.frame.width - 32) / 2 , height: isDeviceIPad ? 185.0 : 147.5)
         
     }
     

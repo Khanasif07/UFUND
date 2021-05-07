@@ -75,7 +75,7 @@ extension AddAssetsVC {
         self.mainTableView.registerCell(with: AddDescTableCell.self)
         self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
         self.mainTableView.tableFooterView = footerView
-        self.mainTableView.tableFooterView?.height = 125.0
+        self.mainTableView.tableFooterView?.height = isDeviceIPad ? 175.0 : 125.0
       
     }
 }
@@ -105,7 +105,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch sections[indexPath.section] {
         case .documentImage:
-            return 330.0
+            return isDeviceIPad ? 405.0 : 330.0
         default:
             return  UITableView.automaticDimension
         }

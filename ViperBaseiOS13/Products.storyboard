@@ -2551,9 +2551,6 @@ Percentage (%)</string>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qak-Py-VhQ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="188.5" height="34"/>
                                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.1176470588" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="34" id="cUp-dJ-chm"/>
-                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="Add Asset">
@@ -2608,7 +2605,10 @@ Percentage (%)</string>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="51" id="3kM-1i-cYj"/>
+                                            <constraint firstItem="BEI-pq-bQL" firstAttribute="height" secondItem="3tv-xk-aAY" secondAttribute="height" multiplier="0.67" id="1Sc-zb-Yw2"/>
+                                            <constraint firstAttribute="height" constant="51" id="3kM-1i-cYj">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="61"/>
+                                            </constraint>
                                             <constraint firstItem="zA8-hs-vnB" firstAttribute="leading" secondItem="3tv-xk-aAY" secondAttribute="leading" constant="16" id="RyY-YM-gEg"/>
                                             <constraint firstItem="zA8-hs-vnB" firstAttribute="centerX" secondItem="3tv-xk-aAY" secondAttribute="centerX" id="jf6-uu-qs8"/>
                                             <constraint firstAttribute="trailing" secondItem="zA8-hs-vnB" secondAttribute="trailing" constant="16" id="m4b-qx-vKW"/>
@@ -2707,6 +2707,7 @@ Percentage (%)</string>
                         <outlet property="cancelBtn" destination="OA2-iX-vL2" id="MsS-pO-gmm"/>
                         <outlet property="mainScrollView" destination="Q7t-0i-Dgg" id="GFD-gS-MDd"/>
                         <outlet property="sendRequestBtn" destination="fzq-zO-kMw" id="p3Y-it-G3t"/>
+                        <outlet property="titleLbl" destination="I25-87-rXR" id="mUa-6B-DdF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYK-He-4SH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

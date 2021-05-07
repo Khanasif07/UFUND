@@ -13,6 +13,7 @@ class SubmitAssetsProductsVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var sendRequestBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var bottomBtnView: UIView!
@@ -115,7 +116,6 @@ extension SubmitAssetsProductsVC {
         self.configureScrollView()
         self.instantiateViewController()
         self.getCategoryList()
-//        self.getAssetTokenTypeList()
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -156,6 +156,11 @@ extension SubmitAssetsProductsVC {
         self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
         self.btnStackView.borderLineWidth = 1.5
         self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
+        self.addProductBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
+        self.addAssetBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
+        self.sendRequestBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
+        self.cancelBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
     }
     
     private func getCategoryList(){
