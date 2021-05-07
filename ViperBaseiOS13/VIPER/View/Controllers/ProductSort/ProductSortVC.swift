@@ -210,7 +210,7 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if isDeviceIPad{
-            return 60.0
+            return 52.0
         } else{
             return 47.0
         }

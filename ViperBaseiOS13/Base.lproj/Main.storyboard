@@ -1867,21 +1867,16 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vN2-oN-XRe">
-                                                <rect key="frame" x="147.5" y="3" width="80" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="g4a-GO-9uf"/>
-                                                    <constraint firstAttribute="height" constant="45" id="xuP-LH-TnX"/>
-                                                </constraints>
+                                                <rect key="frame" x="108" y="-6.5" width="159" height="64"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL3-Qb-06d">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="51"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icMenu" translatesAutoresizingMaskIntoConstraints="NO" id="JD4-Hu-zSC">
-                                                        <rect key="frame" x="16" y="9.5" width="32" height="32"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu" translatesAutoresizingMaskIntoConstraints="NO" id="JD4-Hu-zSC">
+                                                        <rect key="frame" x="16" y="17" width="16.5" height="17"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="32" id="qX2-If-ZcT"/>
-                                                            <constraint firstAttribute="width" constant="32" id="tAd-O8-0oe"/>
+                                                            <constraint firstAttribute="width" secondItem="JD4-Hu-zSC" secondAttribute="height" id="pss-JC-9o9"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
@@ -1917,6 +1912,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstAttribute="height" constant="51" id="FTN-lA-6gJ">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="65"/>
                                             </constraint>
+                                            <constraint firstItem="JD4-Hu-zSC" firstAttribute="height" secondItem="XRr-EC-CQT" secondAttribute="height" multiplier="0.325" id="GQy-ZV-o7e"/>
                                             <constraint firstAttribute="bottom" secondItem="RL3-Qb-06d" secondAttribute="bottom" id="JrK-Oz-pf7"/>
                                             <constraint firstItem="RL3-Qb-06d" firstAttribute="leading" secondItem="XRr-EC-CQT" secondAttribute="leading" id="KD9-RP-z6y"/>
                                             <constraint firstItem="jPF-Pe-egl" firstAttribute="centerX" secondItem="XRr-EC-CQT" secondAttribute="centerX" id="Yqc-dS-iTs"/>
@@ -4543,11 +4539,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lU4-k8-Mff">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icBackward" translatesAutoresizingMaskIntoConstraints="NO" id="R67-89-1NK">
-                                                        <rect key="frame" x="16" y="10.5" width="30" height="30"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_back_Ipod" translatesAutoresizingMaskIntoConstraints="NO" id="R67-89-1NK">
+                                                        <rect key="frame" x="16" y="17" width="16.5" height="17"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="bMk-jg-QX1"/>
-                                                            <constraint firstAttribute="width" constant="30" id="pq8-Dj-8NV"/>
+                                                            <constraint firstAttribute="width" secondItem="R67-89-1NK" secondAttribute="height" id="4vq-Fr-ucI"/>
                                                         </constraints>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nls-5T-wG7">
@@ -4569,7 +4564,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="R67-89-1NK" firstAttribute="centerY" secondItem="lU4-k8-Mff" secondAttribute="centerY" id="2Q4-tR-tlc"/>
-                                                    <constraint firstAttribute="height" constant="51" id="3J3-B7-lDc"/>
+                                                    <constraint firstAttribute="height" constant="51" id="3J3-B7-lDc">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="65"/>
+                                                    </constraint>
+                                                    <constraint firstItem="R67-89-1NK" firstAttribute="height" secondItem="lU4-k8-Mff" secondAttribute="height" multiplier="0.325" id="GQn-QR-5cd"/>
                                                     <constraint firstItem="R67-89-1NK" firstAttribute="leading" secondItem="lU4-k8-Mff" secondAttribute="leading" constant="16" id="N9C-Fr-CYB"/>
                                                     <constraint firstItem="oT9-Q8-gLo" firstAttribute="centerY" secondItem="lU4-k8-Mff" secondAttribute="centerY" id="R9E-Vl-Xet"/>
                                                     <constraint firstItem="Nls-5T-wG7" firstAttribute="top" secondItem="lU4-k8-Mff" secondAttribute="top" id="WQF-pZ-xnk"/>
@@ -11365,10 +11363,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASG-cu-lWh">
-                                                <rect key="frame" x="15" y="-2.5" width="56" height="56"/>
+                                                <rect key="frame" x="15" y="17" width="16.5" height="17"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ASG-cu-lWh" secondAttribute="height" id="IAE-Lp-0y5"/>
+                                                </constraints>
                                                 <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <state key="normal" image="icBackward">
+                                                <state key="normal" image="ic_back_Ipod">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <state key="selected">
@@ -11393,8 +11394,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-Qv-RRI">
-                                                <rect key="frame" x="327" y="9.5" width="32" height="32"/>
-                                                <state key="normal" image="icSearch">
+                                                <rect key="frame" x="342.5" y="17" width="16.5" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="KBH-Qv-RRI" secondAttribute="height" multiplier="1:1" id="txi-Mm-MOt"/>
+                                                </constraints>
+                                                <state key="normal" image="ic_search_ipod">
                                                     <color key="titleColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -11419,7 +11423,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="ASG-cu-lWh" firstAttribute="leading" secondItem="kbc-gS-H8c" secondAttribute="leading" constant="15" id="bMd-Xw-PcJ"/>
                                             <constraint firstAttribute="trailing" secondItem="KBH-Qv-RRI" secondAttribute="trailing" constant="16" id="eKU-p1-SJi"/>
                                             <constraint firstItem="ps2-PU-oHm" firstAttribute="centerY" secondItem="kbc-gS-H8c" secondAttribute="centerY" id="ezH-DI-6xV"/>
+                                            <constraint firstItem="ASG-cu-lWh" firstAttribute="height" secondItem="kbc-gS-H8c" secondAttribute="height" multiplier="0.325" id="fxQ-uV-3L9"/>
                                             <constraint firstItem="KBH-Qv-RRI" firstAttribute="centerY" secondItem="kbc-gS-H8c" secondAttribute="centerY" id="npI-Hl-wcU"/>
+                                            <constraint firstItem="KBH-Qv-RRI" firstAttribute="height" secondItem="kbc-gS-H8c" secondAttribute="height" multiplier="0.325" id="p70-6P-AFi"/>
                                             <constraint firstItem="ASG-cu-lWh" firstAttribute="centerY" secondItem="kbc-gS-H8c" secondAttribute="centerY" id="zn1-GG-g16"/>
                                         </constraints>
                                     </view>
@@ -11650,10 +11656,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klz-2z-uSP">
-                                                <rect key="frame" x="15" y="-2.5" width="56" height="56"/>
+                                                <rect key="frame" x="15" y="17" width="16.5" height="17"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="klz-2z-uSP" secondAttribute="height" multiplier="1:1" id="ADq-4e-f0r"/>
+                                                </constraints>
                                                 <color key="tintColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <state key="normal" image="icBackward">
+                                                <state key="normal" image="ic_back_Ipod">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <state key="selected">
@@ -11678,8 +11687,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5DF-0E-bIW">
-                                                <rect key="frame" x="327" y="9.5" width="32" height="32"/>
-                                                <state key="normal" image="icSearch">
+                                                <rect key="frame" x="342.5" y="17" width="16.5" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="5DF-0E-bIW" secondAttribute="height" id="prr-Qc-vzI"/>
+                                                </constraints>
+                                                <state key="normal" image="ic_search_ipod">
                                                     <color key="titleColor" red="0.098039215690000001" green="0.098039215690000001" blue="0.098039215690000001" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -11697,11 +11709,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="klz-2z-uSP" firstAttribute="height" secondItem="fKJ-cc-Trb" secondAttribute="height" multiplier="0.325" id="0bo-Zq-YQT"/>
                                             <constraint firstAttribute="trailing" secondItem="5DF-0E-bIW" secondAttribute="trailing" constant="16" id="1ou-Zq-DzT"/>
                                             <constraint firstItem="5DF-0E-bIW" firstAttribute="centerY" secondItem="fKJ-cc-Trb" secondAttribute="centerY" id="5Ob-eC-6l1"/>
                                             <constraint firstItem="8gu-bj-oHN" firstAttribute="centerY" secondItem="fKJ-cc-Trb" secondAttribute="centerY" id="9qR-Ox-0AH"/>
                                             <constraint firstItem="8gu-bj-oHN" firstAttribute="centerX" secondItem="fKJ-cc-Trb" secondAttribute="centerX" id="Crm-E6-x5B"/>
                                             <constraint firstItem="klz-2z-uSP" firstAttribute="centerY" secondItem="fKJ-cc-Trb" secondAttribute="centerY" id="YFA-FQ-6Qy"/>
+                                            <constraint firstItem="5DF-0E-bIW" firstAttribute="height" secondItem="fKJ-cc-Trb" secondAttribute="height" multiplier="0.325" id="coJ-46-8Yl"/>
                                             <constraint firstAttribute="height" constant="51" id="ej3-UY-hms">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="65"/>
                                             </constraint>
@@ -12076,8 +12090,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYx-V7-Mg6">
-                                        <rect key="frame" x="12.5" y="-2.5" width="56" height="56"/>
-                                        <state key="normal" image="icBackward"/>
+                                        <rect key="frame" x="12.5" y="17" width="16.5" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dYx-V7-Mg6" secondAttribute="height" multiplier="1:1" id="sWd-5r-edb"/>
+                                        </constraints>
+                                        <state key="normal" image="ic_back_Ipod"/>
                                         <connections>
                                             <action selector="backBtnAction:" destination="gbm-Dj-gfa" eventType="touchUpInside" id="31R-jy-h0T"/>
                                         </connections>
@@ -12112,6 +12129,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
                                     <constraint firstItem="dYx-V7-Mg6" firstAttribute="centerY" secondItem="9QF-qN-tga" secondAttribute="centerY" id="6JD-Fa-6kx"/>
+                                    <constraint firstItem="dYx-V7-Mg6" firstAttribute="height" secondItem="9QF-qN-tga" secondAttribute="height" multiplier="0.325" id="AsF-zL-v7u"/>
                                     <constraint firstAttribute="height" constant="51" id="LkI-j0-dU0">
                                         <variation key="heightClass=regular-widthClass=regular" constant="65"/>
                                     </constraint>
@@ -12823,20 +12841,20 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="group23003" width="100" height="100"/>
         <image name="group23004" width="100" height="100"/>
         <image name="home" width="24.5" height="22"/>
-        <image name="icBackward" width="28" height="28"/>
         <image name="icClose" width="20" height="20"/>
         <image name="icCloseWhite" width="12" height="12"/>
         <image name="icEdit" width="18" height="18"/>
         <image name="icFilter" width="16" height="15"/>
         <image name="icInformation" width="86" height="86"/>
         <image name="icLogo" width="79.5" height="32"/>
-        <image name="icMenu" width="32" height="32"/>
         <image name="icNotification" width="20" height="24"/>
         <image name="icPlaceHolder" width="64" height="64"/>
-        <image name="icSearch" width="16" height="16"/>
         <image name="icSort" width="16" height="15"/>
+        <image name="ic_back_Ipod" width="22" height="21"/>
         <image name="ic_google" width="32" height="32"/>
         <image name="ic_linkedin" width="32" height="32"/>
+        <image name="ic_menu" width="27.5" height="21.5"/>
+        <image name="ic_search_ipod" width="22" height="22"/>
         <image name="iconfinder_ETH_1175230" width="34.5" height="55.5"/>
         <image name="imgPlaceHolder" width="95.5" height="84.5"/>
         <image name="inverstors" width="16" height="15"/>

@@ -68,6 +68,7 @@ class WebViewControllerVC: UIViewController {
     private func initialSetup() {
         setupView()
         loadUrl()
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
         titleLbl.text = webViewType.text
     }
     

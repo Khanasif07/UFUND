@@ -12,6 +12,7 @@ class SettingVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var mainTableView: UITableView!
     
     // MARK: - Variables
@@ -42,6 +43,7 @@ class SettingVC: UIViewController {
 extension SettingVC {
     
     private func initialSetup() {
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.registerCell(with: SettingTableCell.self)

@@ -87,6 +87,7 @@ extension DashboardVC {
     }
     
     private func tableViewSetUp(){
+        self.titleLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.registerCell(with: DashboardTabsTableCell.self)

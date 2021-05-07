@@ -123,6 +123,7 @@ extension MyWalletVC {
     }
     
     private func setUpBorder(){
+        self.titleLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         DispatchQueue.main.async {
             [self.userInvestmentImgView,self.totalAssetsImgView,self.totalProductImgView].forEach { (imgView) in
                 imgView?.layer.masksToBounds = true

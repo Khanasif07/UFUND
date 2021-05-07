@@ -14,7 +14,7 @@ class ContactUsVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
-    
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var contactUsLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
     @IBOutlet weak var skypeLbl: UILabel!
@@ -62,6 +62,7 @@ extension ContactUsVC {
     }
     
     private func setupTextAndFont(){
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
     }
 }
 
