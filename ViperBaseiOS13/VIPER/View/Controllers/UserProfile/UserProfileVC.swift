@@ -13,6 +13,7 @@ class UserProfileVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var editBtn: UIButton!
     
@@ -223,6 +224,7 @@ extension UserProfileVC: PresenterOutputProtocol {
     
     private func initialSetup() {
         self.isEnableEdit = false
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.mainTableView.registerCell(with: UserProfilePhoneNoCell.self)
         self.mainTableView.registerCell(with: UserProfileImageCell.self)
         self.mainTableView.registerCell(with: UserProfileTableCell.self)
@@ -242,11 +244,6 @@ extension UserProfileVC: PresenterOutputProtocol {
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.profile.rawValue, params: nil, methodType: .GET, modelClass: UserDetails.self, token: true)
     }
-    
-//    private func customYearPicker(){
-//        self.customPickerViewYear.delegate = self
-//        self.customPickerViewYear.dataArray = currencyListing
-//    }
 }
 
 // MARK: - Extension For TableView

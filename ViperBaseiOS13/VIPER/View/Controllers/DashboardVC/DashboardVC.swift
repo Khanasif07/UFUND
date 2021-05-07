@@ -217,7 +217,13 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        switch cellTypes[indexPath.row]{
+        case .DashboardBarChartCell:
+            return isDeviceIPad ? 450.0 : 350.0
+        default:
+            return UITableView.automaticDimension
+        }
+       
     }
 }
 

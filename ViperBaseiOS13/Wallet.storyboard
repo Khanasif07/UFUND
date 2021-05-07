@@ -672,12 +672,22 @@
                                                             <constraint firstAttribute="width" secondItem="0Eh-g7-7Dj" secondAttribute="height" id="JfV-jD-VKy"/>
                                                         </constraints>
                                                     </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEe-Ih-Ciu">
+                                                        <rect key="frame" x="15" y="10" width="30" height="30"/>
+                                                        <connections>
+                                                            <action selector="backBtnAction:" destination="ZUz-zu-wyP" eventType="touchUpInside" id="d59-iJ-Haf"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="0Eh-g7-7Dj" firstAttribute="leading" secondItem="xO4-AO-GlO" secondAttribute="leading" constant="16" id="BU0-9J-6F9"/>
+                                                    <constraint firstItem="CEe-Ih-Ciu" firstAttribute="top" secondItem="xO4-AO-GlO" secondAttribute="top" constant="10" id="LDk-oX-rwu"/>
                                                     <constraint firstAttribute="width" constant="60" id="NfS-cl-kxG"/>
                                                     <constraint firstItem="0Eh-g7-7Dj" firstAttribute="centerY" secondItem="xO4-AO-GlO" secondAttribute="centerY" id="OcP-rs-9qE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CEe-Ih-Ciu" secondAttribute="trailing" constant="15" id="ReW-6M-b9H"/>
+                                                    <constraint firstItem="CEe-Ih-Ciu" firstAttribute="leading" secondItem="xO4-AO-GlO" secondAttribute="leading" constant="15" id="ZsD-0j-gF9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="CEe-Ih-Ciu" secondAttribute="bottom" constant="11" id="dFu-3d-wLw"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dashboard" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfB-5x-7Sc">

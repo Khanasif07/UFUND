@@ -167,6 +167,7 @@ extension CategoriesProductsDetailVC {
     }
     
     private func setUpFont(){
+        self.titleLbl.font  = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
         self.titleLbl.text = categoryTitle
         self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
         self.btnStackView.borderLineWidth = 1.5

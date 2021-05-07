@@ -15,6 +15,7 @@ class UserProfileHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var dataContainerView: UIView!
     
     override func awakeFromNib() {
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x14) : .setCustomFont(name: .semiBold, size: .x12)
         self.dataContainerView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 8)
     }
 }

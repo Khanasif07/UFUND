@@ -26,6 +26,7 @@ class UploadDocumentCollCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        productNameLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .regular, size: .x10)
         DispatchQueue.main.async {
             self.productImg.layer.masksToBounds = true
             self.productImg.layer.cornerRadius = self.productImg.bounds.width / 2

@@ -28,6 +28,8 @@ class UserProfileTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x14) : .setCustomFont(name: .medium, size: .x14)
+        self.textFIeld.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .regular, size: .x12)
         textFieldView.applyEffectToView()
     }
 
