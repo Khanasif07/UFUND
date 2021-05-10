@@ -73,10 +73,10 @@ extension UILabel {
         let attribute = NSMutableAttributedString.init(string: fullText)
         attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: primaryColor) , range: range)
         attribute.addAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: darkTextColor),
-                                  NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12)],range: rangeFull)
+                                  NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: isDeviceIPad ? 14.0 : 12.0)],range: rangeFull)
         
          attribute.addAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: primaryColor),
-                                       NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12),
+                                       NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: isDeviceIPad ? 14.0 : 12.0),
                                       NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue as Any],range: rangeSignUp)
         self.attributedText = attribute
     }
@@ -88,9 +88,9 @@ extension UILabel {
           let rangeFull = NSString(string: strSignup).range(of: strSignup, options: String.CompareOptions.caseInsensitive)
           let attrStr = NSMutableAttributedString.init(string:strSignup)
           attrStr.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.white,
-                                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 12)],range: rangeFull)
+                                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: isDeviceIPad ? 14.0 : 12.0)],range: rangeFull)
           attrStr.addAttributes([NSAttributedString.Key.foregroundColor : UIColor.white,
-                                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14),
+                                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: isDeviceIPad ? 16.0 : 14.0),
                                 NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue as Any],range: rangeSignUp) // for swift 4 -> Change thick to styleThick
           self.attributedText = attrStr
     }

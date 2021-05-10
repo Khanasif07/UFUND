@@ -96,7 +96,7 @@ struct Constants {
     let newTokenizedAssets = "New Tokenized Assets"
     let allTokenizedAssets = "All Tokenized Assets"
     let earningInDollar = "Earning In Dollar"
-    let earningInCrypto = "Earning In Crpto"
+    let earningInCrypto = "Earning In Crypto"
     let tokenInvestMent = "Token Investment"
     let fiatCurrency = "Fiat Balance"
     let cryptoCurrency = "Crypto Balance"

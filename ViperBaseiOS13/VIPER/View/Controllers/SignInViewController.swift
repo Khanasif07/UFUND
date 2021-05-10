@@ -20,6 +20,9 @@ class SignInViewController: UIViewController {
     
     var socialLoginType: SocialLoginType = .facebook
     
+    @IBOutlet weak var linkedinLbl: UILabel!
+    @IBOutlet weak var googleLbl: UILabel!
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var socialBtnStackView: UIStackView!
     @IBOutlet weak var gFDisableButton: UIButton!
     fileprivate var socialLogin = SocialLoginHelper ()
@@ -271,6 +274,15 @@ extension SignInViewController {
     func setFont() {
         attributedLbl.textAlignment = .center
         passwordTxtFld.setupPasswordTextField()
+        forgetPWButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+        signInButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x14)
+        self.welcomeLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x14)
+        [emailIdTxtFld,passwordTxtFld].forEach { (txtfield) in
+            txtfield.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+        }
+        [googleLbl,twitterLbl,facebookLbl,linkedinLbl].forEach { (lbl) in
+            lbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+        }
     }
 }
 

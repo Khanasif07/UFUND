@@ -37,6 +37,7 @@ class NotificationViewController: UIViewController {
         tableView.dataSource = self
         self.tableView.register(UINib.init(nibName: XIB.Names.NotificationCell, bundle: nil), forCellReuseIdentifier: XIB.Names.NotificationCell)
         titleLbl.text = Constants.string.Notification.localize()
+        titleLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         getNotificationList()
     }
 

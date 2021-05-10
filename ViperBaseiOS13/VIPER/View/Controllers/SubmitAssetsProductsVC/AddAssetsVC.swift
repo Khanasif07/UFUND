@@ -105,7 +105,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch sections[indexPath.section] {
         case .documentImage:
-            return isDeviceIPad ? 405.0 : 330.0
+            return isDeviceIPad ? 475.0 : 330.0
         default:
             return  UITableView.automaticDimension
         }

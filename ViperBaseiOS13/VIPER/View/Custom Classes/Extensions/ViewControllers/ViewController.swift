@@ -132,7 +132,12 @@ extension UIViewController {
     
     func showImage(with completion : @escaping ((UIImage?)->())){
         
-        let alert = UIAlertController(title: Constants.string.selectSource, message: nil, preferredStyle: .actionSheet)
+        var alertStyle = UIAlertController.Style.actionSheet
+        if (UIDevice.current.userInterfaceIdiom == .pad) {
+            alertStyle = UIAlertController.Style.alert
+        }
+        
+        let alert = UIAlertController(title: Constants.string.selectSource, message: nil, preferredStyle: alertStyle)
         alert.addAction(UIAlertAction(title: Constants.string.camera, style: .default, handler: { (Void) in
             self.chooseImage(with: .camera)
         }))
