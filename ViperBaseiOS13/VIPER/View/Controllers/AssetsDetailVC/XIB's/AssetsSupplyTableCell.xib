@@ -22,14 +22,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="181" id="KGk-i7-Jjw" customClass="AssetsSupplyTableCell" customModule="UFUND" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="369" height="335"/>
+            <rect key="frame" x="0.0" y="0.0" width="369" height="325"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="369" height="335"/>
+                <rect key="frame" x="0.0" y="0.0" width="369" height="325"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvH-Wl-gDB">
-                        <rect key="frame" x="10" y="10" width="349" height="315"/>
+                        <rect key="frame" x="10" y="0.0" width="349" height="315"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Cxl-dI-lgU">
                                 <rect key="frame" x="6" y="35" width="97.5" height="255.5"/>
@@ -126,7 +126,9 @@
                                 <rect key="frame" x="151" y="68" width="190" height="190"/>
                                 <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="190" id="HTd-G3-XsK"/>
+                                    <constraint firstAttribute="height" constant="190" id="HTd-G3-XsK">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="225"/>
+                                    </constraint>
                                     <constraint firstAttribute="width" secondItem="0jf-uK-zgi" secondAttribute="height" id="KFu-IS-lry"/>
                                 </constraints>
                             </view>
@@ -147,7 +149,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKQ-wJ-Iuu">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKQ-wJ-Iuu">
                                 <rect key="frame" x="6" y="10" width="337" height="1"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.2901960784" blue="0.6588235294" alpha="0.10358527250000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
@@ -174,7 +176,7 @@
                     <constraint firstAttribute="trailing" secondItem="GvH-Wl-gDB" secondAttribute="trailing" constant="10" id="9S2-Xk-V5u"/>
                     <constraint firstItem="GvH-Wl-gDB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="N1J-Jq-Od6"/>
                     <constraint firstAttribute="bottom" secondItem="GvH-Wl-gDB" secondAttribute="bottom" constant="10" id="O2O-p6-xhN"/>
-                    <constraint firstItem="GvH-Wl-gDB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="r6i-Vk-gBG"/>
+                    <constraint firstItem="GvH-Wl-gDB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="r6i-Vk-gBG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
