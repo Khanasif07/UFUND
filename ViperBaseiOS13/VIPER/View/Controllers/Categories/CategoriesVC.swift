@@ -15,6 +15,7 @@ class CategoriesVC: UIViewController {
     //===========================
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var sortBtn: UIButton!
     @IBOutlet weak var btnStackView: UIView!
     @IBOutlet weak var tokenBtn: UIButton!
     @IBOutlet weak var productBtn: UIButton!
@@ -148,8 +149,9 @@ extension CategoriesVC {
         self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
         self.btnStackView.borderLineWidth = 1.5
         self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
-        self.productBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
-        self.tokenBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
+        self.sortBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.productBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        self.tokenBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
     }
     
     private func getCategoryList(){

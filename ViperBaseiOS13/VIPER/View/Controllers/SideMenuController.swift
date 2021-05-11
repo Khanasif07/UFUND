@@ -117,9 +117,10 @@ class SideMenuController: UIViewController {
         investButton.roundCorners([.layerMaxXMaxYCorner, .layerMaxXMinYCorner], radius: 8)
         campaignerButton.roundCorners([.layerMinXMaxYCorner, .layerMinXMinYCorner], radius: 8)
         topRoundedView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 10)
-        investButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x13)
-        campaignerButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x13)
-        profileName.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x15) : .setCustomFont(name: .semiBold, size: .x14)
+        investButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x15) : .setCustomFont(name: .semiBold, size: .x13)
+        campaignerButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x15) : .setCustomFont(name: .semiBold, size: .x13)
+        profileName.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x14)
+         profileLastName.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x14) : .setCustomFont(name: .medium, size: .x12)
         
     }
     

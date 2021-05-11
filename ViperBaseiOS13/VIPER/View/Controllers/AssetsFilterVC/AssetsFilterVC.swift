@@ -109,6 +109,8 @@ class AssetsFilterVC: UIViewController {
 extension AssetsFilterVC {
     
     private func initialSetup() {
+        self.applyBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.closeButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
         if isFilterWithoutCategory{
             self.setupPagerViewWithoutCategory()
         } else {
@@ -202,7 +204,7 @@ extension AssetsFilterVC {
         self.parchmentView?.menuItemSpacing = 10.0
         self.parchmentView?.backgroundColor = .red
         self.parchmentView?.menuInsets = UIEdgeInsets(top: 0.0, left: 16.0, bottom: 0.0, right: 0.0)
-        self.parchmentView?.menuItemSize = .sizeToFit(minWidth: 150, height: 60)
+        self.parchmentView?.menuItemSize = .sizeToFit(minWidth: 200.0, height: isDeviceIPad ? 75 : 60)
         self.parchmentView?.borderOptions = PagingBorderOptions.visible(
             height: 0.5,
             zIndex: Int.max - 1,

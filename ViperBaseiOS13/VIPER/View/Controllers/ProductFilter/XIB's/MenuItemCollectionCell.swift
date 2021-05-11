@@ -43,19 +43,20 @@ class MenuItemCollectionCell: PagingCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.title.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
         self.dataContainerView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9333333333, blue: 0.937254902, alpha: 1)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.dataContainerView.setCirclerCornerRadius()
+        self.dataContainerView.layer.cornerRadius = self.dataContainerView.frame.height / 2.0
     }
     
     open override func setPagingItem(_ pagingItem: PagingItem, selected: Bool, options: PagingOptions) {
          if let item = pagingItem as? MenuItem {
             self.title.text = item.title
             self.title.textColor = selected ? .white : .black
-            self.title.font = selected ? UIFont.boldSystemFont(ofSize: 12.0) : UIFont.boldSystemFont(ofSize: 11.0)
+            self.title.font = isDeviceIPad ? (selected  ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x16) ): (selected  ? .setCustomFont(name: .semiBold, size: .x14) : .setCustomFont(name: .semiBold, size: .x12))
             self.dataContainerView.backgroundColor = selected ? .red : #colorLiteral(red: 0.9568627451, green: 0.9333333333, blue: 0.937254902, alpha: 1)
         }
      }

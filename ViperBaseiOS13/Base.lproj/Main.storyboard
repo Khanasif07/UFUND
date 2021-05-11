@@ -1881,8 +1881,8 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-EC-CQT">
                                         <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vN2-oN-XRe">
-                                                <rect key="frame" x="127.5" y="-6.5" width="159" height="64"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLogo-1" translatesAutoresizingMaskIntoConstraints="NO" id="vN2-oN-XRe">
+                                                <rect key="frame" x="137" y="4.5" width="140" height="42"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL3-Qb-06d">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="51"/>
@@ -1902,12 +1902,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     <constraint firstAttribute="width" constant="60" id="vkS-IH-Oax"/>
                                                 </constraints>
                                             </view>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UFUND" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPF-Pe-egl">
-                                                <rect key="frame" x="178.5" y="16" width="57" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4IH-xl-VTZ">
                                                 <rect key="frame" x="378.5" y="16.5" width="18" height="18"/>
                                                 <constraints>
@@ -1930,11 +1924,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="4IH-xl-VTZ" firstAttribute="height" secondItem="XRr-EC-CQT" secondAttribute="height" multiplier="0.35" id="JA2-zD-Gk0"/>
                                             <constraint firstAttribute="bottom" secondItem="RL3-Qb-06d" secondAttribute="bottom" id="JrK-Oz-pf7"/>
                                             <constraint firstItem="RL3-Qb-06d" firstAttribute="leading" secondItem="XRr-EC-CQT" secondAttribute="leading" id="KD9-RP-z6y"/>
-                                            <constraint firstItem="jPF-Pe-egl" firstAttribute="centerX" secondItem="XRr-EC-CQT" secondAttribute="centerX" id="Yqc-dS-iTs"/>
                                             <constraint firstItem="4IH-xl-VTZ" firstAttribute="centerY" secondItem="XRr-EC-CQT" secondAttribute="centerY" id="gRE-ro-zMD"/>
                                             <constraint firstItem="vN2-oN-XRe" firstAttribute="centerX" secondItem="XRr-EC-CQT" secondAttribute="centerX" id="prJ-Ej-dzp"/>
                                             <constraint firstItem="RL3-Qb-06d" firstAttribute="top" secondItem="XRr-EC-CQT" secondAttribute="top" id="tS7-h7-NzM"/>
-                                            <constraint firstItem="jPF-Pe-egl" firstAttribute="centerY" secondItem="XRr-EC-CQT" secondAttribute="centerY" id="urT-CW-RY0"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdY-rh-1yG">
@@ -9716,21 +9708,23 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAc-KS-3Sd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-Fg-gW2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="223"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icPlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="UU5-Qo-S0w">
-                                                <rect key="frame" x="20" y="104" width="64" height="64"/>
+                                                <rect key="frame" x="20" y="99.5" width="64" height="64"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="64" id="alm-ev-chZ"/>
-                                                    <constraint firstAttribute="width" constant="64" id="iib-KG-YaV"/>
+                                                    <constraint firstAttribute="height" constant="64" id="alm-ev-chZ">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="75"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="width" secondItem="UU5-Qo-S0w" secondAttribute="height" id="cIP-lS-tVO"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="p2J-fi-vJm">
-                                                <rect key="frame" x="99" y="116" width="300" height="40"/>
+                                                <rect key="frame" x="99" y="116" width="300" height="30.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Asif Khan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UA5-H3-q5S">
                                                         <rect key="frame" x="0.0" y="0.0" width="300" height="16.5"/>
@@ -9738,25 +9732,22 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         <color key="textColor" red="0.90980392160000001" green="0.91764705879999997" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
-                                                        <rect key="frame" x="0.0" y="26" width="300" height="14"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-Xs-DVu">
+                                                        <rect key="frame" x="0.0" y="16.5" width="300" height="14"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="ve7-Co-jCM"/>
-                                                </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6YH-Ap-jhO">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="227.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="223"/>
                                                 <connections>
                                                     <action selector="profileRedirect:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="bus-Wq-PZA"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGu-76-syX">
-                                                <rect key="frame" x="0.0" y="212.5" width="414" height="15"/>
+                                                <rect key="frame" x="0.0" y="208" width="414" height="15"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="up1-BD-8vf"/>
@@ -9766,7 +9757,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <rect key="frame" x="366" y="54" width="32" height="32"/>
                                                 <color key="backgroundColor" red="0.72549019607843135" green="0.10980392156862745" blue="0.0" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="A8n-u6-Cdq"/>
+                                                    <constraint firstAttribute="height" constant="32" id="A8n-u6-Cdq">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="37.5"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="width" secondItem="IC4-wI-Gfa" secondAttribute="height" id="Xgo-Eb-L6C"/>
                                                 </constraints>
                                                 <state key="normal" image="icCloseWhite"/>
@@ -9794,7 +9787,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Owu-mh-lCa">
-                                        <rect key="frame" x="20" y="242.5" width="374" height="38"/>
+                                        <rect key="frame" x="20" y="238" width="374" height="38"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGV-Z1-Hrx">
                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="38"/>
@@ -9822,7 +9815,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WGd-gJ-sp7">
-                                        <rect key="frame" x="20" y="295.5" width="374" height="566.5"/>
+                                        <rect key="frame" x="20" y="291" width="374" height="605"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -9844,7 +9837,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="oAc-KS-3Sd" firstAttribute="trailing" secondItem="Rn0-eN-zIz" secondAttribute="trailing" id="3ov-Dy-HOK"/>
-                            <constraint firstItem="oAc-KS-3Sd" firstAttribute="bottom" secondItem="Rn0-eN-zIz" secondAttribute="bottom" id="IvY-gZ-PcT"/>
+                            <constraint firstItem="oAc-KS-3Sd" firstAttribute="bottom" secondItem="eVf-4O-fpm" secondAttribute="bottom" id="IvY-gZ-PcT"/>
                             <constraint firstItem="oAc-KS-3Sd" firstAttribute="top" secondItem="eVf-4O-fpm" secondAttribute="top" id="Ufg-Bd-2Ze"/>
                             <constraint firstItem="oAc-KS-3Sd" firstAttribute="leading" secondItem="Rn0-eN-zIz" secondAttribute="leading" id="Yxg-Jm-RLD"/>
                             <constraint firstItem="Rn0-eN-zIz" firstAttribute="top" secondItem="IC4-wI-Gfa" secondAttribute="top" constant="-10" id="kgX-La-VDz"/>
@@ -11656,6 +11649,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="productBtn" destination="k8x-DN-uN6" id="ycC-SW-TsZ"/>
                         <outlet property="searchTxtField" destination="jhZ-b1-qZX" id="w6r-Dw-kGC"/>
                         <outlet property="searchViewHConst" destination="3xk-tF-Zt5" id="r3P-n0-NW1"/>
+                        <outlet property="sortBtn" destination="JtW-ha-2Wh" id="JdS-YW-gZf"/>
                         <outlet property="titleLbl" destination="ps2-PU-oHm" id="Bsx-Sg-36d"/>
                         <outlet property="tokenBtn" destination="rpW-eZ-lyl" id="piC-Ws-iLW"/>
                     </connections>
@@ -12846,7 +12840,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="64" height="48"/>
+        <image name="arrow.left" catalog="system" width="32" height="32"/>
         <image name="back" width="57.5" height="41"/>
         <image name="bgImg" width="564.5" height="1216.5"/>
         <image name="blackFilter" width="19" height="20"/>
@@ -12870,7 +12864,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="icEdit" width="18" height="18"/>
         <image name="icFilter" width="16" height="15"/>
         <image name="icInformation" width="86" height="86"/>
-        <image name="icLogo" width="79.5" height="32"/>
+        <image name="icLogo-1" width="70" height="21"/>
         <image name="icNotification" width="20" height="24"/>
         <image name="icPlaceHolder" width="64" height="64"/>
         <image name="icSort" width="16" height="15"/>

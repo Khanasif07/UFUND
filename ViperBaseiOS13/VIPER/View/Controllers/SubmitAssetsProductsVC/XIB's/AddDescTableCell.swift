@@ -27,6 +27,8 @@ class AddDescTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.textView.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)
         textView.applyEffectToView()
     }
 

@@ -45,6 +45,8 @@ class TokenizedAssetsVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var filterBtn: UIButton!
+    @IBOutlet weak var sortBtn: UIButton!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var searchViewHConst: NSLayoutConstraint!
     @IBOutlet weak var titleLbl: UILabel!
@@ -141,6 +143,8 @@ extension TokenizedAssetsVC {
         self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: .x14)
         self.searchBar.searchTextField.textColor = .white
         self.titleLbl.text = productTitle
+        self.sortBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.filterBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.getTokenizedAssets()
     }

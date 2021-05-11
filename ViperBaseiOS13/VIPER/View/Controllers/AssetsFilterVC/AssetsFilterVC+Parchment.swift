@@ -31,9 +31,7 @@ extension AssetsFilterVC : PagingViewControllerDelegate, PagingViewControllerSiz
         // depending onthe text size, give the width of the menu item
         if let pagingIndexItem = pagingItem as? MenuItem {
             let text = pagingIndexItem.title
-            
-            let font = UIFont.boldSystemFont(ofSize: 12.0)
-            return text.widthOfString(usingFont: font) + 35.0
+            return text.widthOfString(usingFont: isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)) + 35.0
         }
         
         return 150.0

@@ -355,9 +355,11 @@
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="XHV-Da-GL0" id="4Qj-kS-cQo"/>
+                        <outlet property="filterBtn" destination="3wD-c1-FYz" id="a6D-Rc-7cG"/>
                         <outlet property="mainCollView" destination="nGb-X3-ocA" id="WNV-NC-bUZ"/>
                         <outlet property="searchBar" destination="HAl-nI-9r4" id="YMp-2e-Msq"/>
                         <outlet property="searchViewHConst" destination="ekw-dc-uYU" id="C6c-if-JHn"/>
+                        <outlet property="sortBtn" destination="cR4-n6-cKI" id="W21-cK-ffS"/>
                         <outlet property="titleLbl" destination="Z6F-oW-Yy6" id="VFI-hV-1EW"/>
                     </connections>
                 </viewController>
@@ -802,9 +804,11 @@
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="UPT-BL-FFx" id="ESx-Z6-DkS"/>
+                        <outlet property="filterBtn" destination="QK5-oa-KL8" id="Lv0-gs-Jup"/>
                         <outlet property="mainCollView" destination="A1a-0p-456" id="rnB-5A-nT4"/>
                         <outlet property="searchBar" destination="5LV-si-0SI" id="Jze-n9-br2"/>
                         <outlet property="searchViewHConst" destination="gI3-fy-flX" id="uap-q7-hz3"/>
+                        <outlet property="sortBtn" destination="8Rb-Fj-Mt8" id="x9D-Te-NDW"/>
                         <outlet property="titleLbl" destination="MeF-z8-fA4" id="nRD-Cm-Ngu"/>
                     </connections>
                 </viewController>

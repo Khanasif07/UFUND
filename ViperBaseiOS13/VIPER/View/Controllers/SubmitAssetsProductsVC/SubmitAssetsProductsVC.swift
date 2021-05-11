@@ -157,10 +157,10 @@ extension SubmitAssetsProductsVC {
         self.btnStackView.borderLineWidth = 1.5
         self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
-        self.addProductBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
-        self.addAssetBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
-        self.sendRequestBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
-        self.cancelBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x15) : .setCustomFont(name: .medium, size: .x14)
+        self.addProductBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        self.addAssetBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        self.sendRequestBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        self.cancelBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
     }
     
     private func getCategoryList(){

@@ -106,7 +106,7 @@ extension ProductSortVC {
             self.titleLbl.text = Constants.string.category.localize()
             self.setSelectedSortingDataForCategory()
         }
-        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x16) : .setCustomFont(name: .semiBold, size: .x16)
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
         self.tableViewSetup()
         self.setUpTapGesture()
     }

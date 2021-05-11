@@ -53,7 +53,9 @@ class AllProductsVC: UIViewController {
     @IBOutlet weak var searchViewHConst: NSLayoutConstraint!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var mainCollView: UICollectionView!
+    @IBOutlet weak var sortBtn: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var filterBtn: UIButton!
     
     // MARK: - Variables
     //===========================
@@ -152,6 +154,8 @@ extension AllProductsVC {
         self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: .x14)
         self.searchBar.searchTextField.textColor = .white
         self.titleLbl.text = productTitle
+        self.sortBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.filterBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.getProductList()
     }

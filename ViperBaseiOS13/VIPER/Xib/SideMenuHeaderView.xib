@@ -30,7 +30,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Product" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cc-2h-cRe">
-                            <rect key="frame" x="34" y="21" width="273" height="18.5"/>
+                            <rect key="frame" x="31.5" y="21" width="69.5" height="18.5"/>
                             <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
                             <color key="textColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="0.70381585805694014" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -42,14 +42,14 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jrJ-87-9Ni">
-                            <rect key="frame" x="34" y="59.5" width="298" height="0.5"/>
+                            <rect key="frame" x="31.5" y="59.5" width="300.5" height="0.5"/>
                             <color key="backgroundColor" red="0.90980392156862744" green="0.91764705882352937" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="0.5" id="jhY-y1-pmY"/>
                             </constraints>
                         </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDropdown" translatesAutoresizingMaskIntoConstraints="NO" id="TVE-dR-rjW">
-                            <rect key="frame" x="317" y="22.5" width="15" height="15"/>
+                            <rect key="frame" x="324.5" y="22.5" width="15" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="TVE-dR-rjW" secondAttribute="height" id="OOW-2D-Rjx"/>
                                 <constraint firstAttribute="height" constant="15" id="bYf-Ql-qzR"/>
@@ -61,10 +61,10 @@
                         <constraint firstItem="TVE-dR-rjW" firstAttribute="centerY" secondItem="QOa-Ps-Bdw" secondAttribute="centerY" id="GPY-aZ-fMf"/>
                         <constraint firstItem="0Cc-2h-cRe" firstAttribute="centerY" secondItem="TJw-D6-cy7" secondAttribute="centerY" id="HJ8-p3-hUx"/>
                         <constraint firstItem="TJw-D6-cy7" firstAttribute="leading" secondItem="QOa-Ps-Bdw" secondAttribute="leading" constant="2.5" id="HMr-Zg-ASt"/>
-                        <constraint firstAttribute="trailing" secondItem="TVE-dR-rjW" secondAttribute="trailing" constant="10" id="Hhr-Yr-0sA"/>
+                        <constraint firstAttribute="trailing" secondItem="TVE-dR-rjW" secondAttribute="trailing" constant="2.5" id="Hhr-Yr-0sA"/>
                         <constraint firstItem="BID-V9-mma" firstAttribute="leading" secondItem="QOa-Ps-Bdw" secondAttribute="leading" id="L1m-j4-zL3"/>
-                        <constraint firstAttribute="trailing" secondItem="0Cc-2h-cRe" secondAttribute="trailing" constant="35" id="THm-Ca-jLL"/>
-                        <constraint firstItem="0Cc-2h-cRe" firstAttribute="leading" secondItem="TJw-D6-cy7" secondAttribute="trailing" constant="7.5" id="YNO-oy-VZN"/>
+                        <constraint firstItem="TVE-dR-rjW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Cc-2h-cRe" secondAttribute="trailing" constant="5" id="WXy-cI-veZ"/>
+                        <constraint firstItem="0Cc-2h-cRe" firstAttribute="leading" secondItem="TJw-D6-cy7" secondAttribute="trailing" constant="5" id="YNO-oy-VZN"/>
                         <constraint firstItem="jrJ-87-9Ni" firstAttribute="leading" secondItem="0Cc-2h-cRe" secondAttribute="leading" id="ZHd-kB-TTK"/>
                         <constraint firstItem="TJw-D6-cy7" firstAttribute="centerY" secondItem="QOa-Ps-Bdw" secondAttribute="centerY" id="azB-wa-qAB"/>
                         <constraint firstAttribute="trailing" secondItem="BID-V9-mma" secondAttribute="trailing" id="gQ5-pP-IFM"/>
