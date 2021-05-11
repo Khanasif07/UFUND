@@ -34,14 +34,13 @@ class ForgetViewController: UIViewController {
         emailIdTxtFld.applyEffectToTextField(placeHolderString: Constants.string.email.localize())
         forgotPwButton.setGradientBackground()
         forgotPwButton.setTitle(Constants.string.confirm.localize().uppercased(), for: .normal)
-        
-      
+        setFont()
         if isFromG2F == true {
             descripLbl.text = Constants.string.disableG2FDesc.localize()
-            titleLbl.text = Constants.string.disableTwoFactor.localize().uppercased()
+            titleLbl.text = Constants.string.disableTwoFactor.localize()
         } else {
             descripLbl.text = Constants.string.recoveryPw.localize()
-            titleLbl.text = Constants.string.forgetPas.localize().uppercased()
+            titleLbl.text = Constants.string.forgetPas.localize()
         }
         
         
@@ -51,6 +50,13 @@ class ForgetViewController: UIViewController {
 
 //MARK: - Button Action
 extension ForgetViewController {
+    
+    func setFont() {
+        forgotPwButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x14)
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x14)
+        self.emailIdTxtFld.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+        descripLbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+    }
   
     @IBAction func goBack(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)

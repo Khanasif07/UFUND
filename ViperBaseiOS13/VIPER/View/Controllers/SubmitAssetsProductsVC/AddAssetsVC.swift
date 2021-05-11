@@ -162,6 +162,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
                 }
+                cell.textFIeld.delegate = self
                 cell.titleLbl.text = self.productSpecifics[indexPath.row ].0
                 cell.textFIeld.placeholder = self.productSpecifics[indexPath.row].0
                 return  cell

@@ -1654,6 +1654,7 @@ Percentage (%)</string>
                         <outlet property="newPasswordTextField" destination="n6a-9F-1U4" id="ks2-7r-BtC"/>
                         <outlet property="oldPasswordTextField" destination="Owk-Co-Psz" id="gw0-FA-oae"/>
                         <outlet property="submitBtn" destination="wRT-HC-dqN" id="zCl-xl-2j5"/>
+                        <outlet property="titleLbl" destination="AiW-4b-bAr" id="Ei8-ha-4iY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ial-N5-bUB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -14,6 +14,7 @@ class ChangePasswordVC: UIViewController {
     // MARK: - IBOutlets
     //===========================
     @IBOutlet weak var oldPasswordTextField: UITextField!
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var newPasswordTextField: UITextField!
     @IBOutlet weak var confirmPassWordTextField: UITextField!
     @IBOutlet weak var submitBtn: UIButton!
@@ -99,6 +100,7 @@ extension ChangePasswordVC {
     }
     
     func setUpTextField(){
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
         for (index,txtField) in [oldPasswordTextField,newPasswordTextField,confirmPassWordTextField].enumerated() {
             txtField?.delegate = self
             txtField?.placeholder = placeHolderArr[index]
