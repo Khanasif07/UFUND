@@ -122,6 +122,13 @@ extension MyInvestmentVC {
         self.titleLbl.text = productTitle
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.searchBar.delegate = self
+        self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: .x14)
+        self.searchBar.searchTextField.textColor = .white
+        self.collectionSetUp()
+        self.getProductList()
+    }
+    
+    private func collectionSetUp(){
         self.mainCollView.registerCell(with: AllProductsCollCell.self)
         self.mainCollView.registerCell(with: NewProductsCollCell.self)
         self.mainCollView.delegate = self
@@ -133,7 +140,6 @@ extension MyInvestmentVC {
         mainCollView.collectionViewLayout = layout1
         layout1.minimumInteritemSpacing = 0
         layout1.minimumLineSpacing = 0
-        self.getProductList()
     }
     
     //MARK:- PRDUCTS LIST API CALL
@@ -232,7 +238,7 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status == nil)
             cell.statusLbl.text = (self.investerProductList?[indexPath.row].token_status == 1) ? "Live" : "Live"
             cell.liveView.backgroundColor = (self.investerProductList?[indexPath.row].token_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
-            cell.statusRadioImgView.image = (self.investerProductList?[indexPath.row].product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (self.investerProductList?[indexPath.row].status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
+            cell.statusRadioImgView.image = (self.investerProductList?[indexPath.row].product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (self.investerProductList?[indexPath.row].status == 2) ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioSelected")
             return cell
         }
        
@@ -525,5 +531,17 @@ extension MyInvestmentVC: UISearchBarDelegate{
             })
         }
         searchBar.resignFirstResponder()
+    }
+}
+
+
+//MARK:- UISearchBar
+//========================================
+public extension UISearchBar {
+
+    func setTextColor(color: UIColor) {
+        let svs = subviews.flatMap { $0.subviews }
+        guard let tf = (svs.filter { $0 is UITextField }).first as? UITextField else { return }
+        tf.textColor = color
     }
 }

@@ -220,10 +220,14 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
         switch cellTypes[indexPath.row]{
         case .DashboardBarChartCell:
             return isDeviceIPad ? 450.0 : 350.0
+        case .DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell:
+            return isDeviceIPad ? UITableView.automaticDimension : UITableView.automaticDimension
+        case .DashboardInvestmentCell:
+            return isDeviceIPad ? 450.0 : 376.5
         default:
             return UITableView.automaticDimension
         }
-       
+        
     }
 }
 

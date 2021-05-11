@@ -41,12 +41,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pb-Jr-wTu" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="59" y="51" width="225" height="225"/>
+                                <rect key="frame" x="0.0" y="51" width="343" height="225"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="2Pb-Jr-wTu" secondAttribute="height" id="n7M-mV-nUG"/>
-                                    <constraint firstAttribute="height" constant="225" id="xdT-fp-C0u"/>
-                                </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5y1-2R-YyO">
                                 <rect key="frame" x="16" y="298" width="311" height="46.5"/>
@@ -114,8 +110,10 @@
                         <constraints>
                             <constraint firstItem="bke-YJ-gHD" firstAttribute="leading" secondItem="hDL-Rd-G6G" secondAttribute="leading" constant="16" id="3az-jr-T6E"/>
                             <constraint firstItem="bke-YJ-gHD" firstAttribute="top" secondItem="hDL-Rd-G6G" secondAttribute="top" constant="8" id="FZz-CC-UAb"/>
+                            <constraint firstItem="2Pb-Jr-wTu" firstAttribute="leading" secondItem="hDL-Rd-G6G" secondAttribute="leading" id="Py2-ir-VSf"/>
                             <constraint firstAttribute="trailing" secondItem="5y1-2R-YyO" secondAttribute="trailing" constant="16" id="TZR-zd-OwE"/>
                             <constraint firstItem="5y1-2R-YyO" firstAttribute="leading" secondItem="hDL-Rd-G6G" secondAttribute="leading" constant="16" id="UdS-Xv-rKQ"/>
+                            <constraint firstAttribute="trailing" secondItem="2Pb-Jr-wTu" secondAttribute="trailing" id="VI0-VG-6LV"/>
                             <constraint firstAttribute="bottom" secondItem="5y1-2R-YyO" secondAttribute="bottom" constant="16" id="dak-WT-XJv"/>
                             <constraint firstItem="2Pb-Jr-wTu" firstAttribute="top" secondItem="bke-YJ-gHD" secondAttribute="bottom" constant="22" id="sjQ-jG-elH"/>
                             <constraint firstItem="2Pb-Jr-wTu" firstAttribute="centerX" secondItem="hDL-Rd-G6G" secondAttribute="centerX" id="yKU-W5-lIh"/>

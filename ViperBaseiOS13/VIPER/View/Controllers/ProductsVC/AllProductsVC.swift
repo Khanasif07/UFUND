@@ -149,6 +149,8 @@ extension AllProductsVC {
         ProductFilterVM.shared.resetToAllFilter()
         self.collectionViewSetUp()
         self.searchBar.delegate = self
+        self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: .x14)
+        self.searchBar.searchTextField.textColor = .white
         self.titleLbl.text = productTitle
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.getProductList()

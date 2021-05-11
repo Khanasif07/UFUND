@@ -158,6 +158,8 @@ extension CategoriesVC {
     }
     
     private func setUpSearchBar(){
+        self.searchTxtField.searchTextField.font = .setCustomFont(name: .medium, size: .x14)
+        self.searchTxtField.searchTextField.textColor = .white
         self.searchTxtField.delegate = self
         if #available(iOS 13.0, *) {
             self.searchTxtField.searchTextField.textColor = .white

@@ -1826,16 +1826,13 @@ Percentage (%)</string>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjD-z3-kld">
-                                                <rect key="frame" x="0.0" y="716" width="414" height="85"/>
+                                                <rect key="frame" x="0.0" y="720.5" width="414" height="80.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xJL-01-s8X">
-                                                        <rect key="frame" x="16" y="21" width="382" height="43"/>
+                                                        <rect key="frame" x="16" y="20" width="382" height="40.5"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b76-Pf-NPu" userLabel="SORT">
-                                                                <rect key="frame" x="0.0" y="0.0" width="187" height="43"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="43" id="LcJ-a2-W9O"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="0.0" y="0.0" width="187" height="40.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <state key="normal" title="  Invest" image="icInvest">
                                                                     <color key="titleColor" name="primaryColor"/>
@@ -1845,7 +1842,7 @@ Percentage (%)</string>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-KC-h3M">
-                                                                <rect key="frame" x="195" y="0.0" width="187" height="43"/>
+                                                                <rect key="frame" x="195" y="0.0" width="187" height="40.5"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                                 <color key="tintColor" red="0.86666666670000003" green="0.16078431369999999" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="  Buy Products" image="icbuyproduct">
@@ -1860,6 +1857,7 @@ Percentage (%)</string>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="xJL-01-s8X" firstAttribute="height" secondItem="RjD-z3-kld" secondAttribute="height" multiplier="43/85" id="1J9-rh-dgP"/>
                                                     <constraint firstItem="xJL-01-s8X" firstAttribute="leading" secondItem="RjD-z3-kld" secondAttribute="leading" constant="16" id="3R2-1V-bkz"/>
                                                     <constraint firstItem="xJL-01-s8X" firstAttribute="centerX" secondItem="RjD-z3-kld" secondAttribute="centerX" id="PL5-Ir-Nao"/>
                                                     <constraint firstItem="xJL-01-s8X" firstAttribute="centerY" secondItem="RjD-z3-kld" secondAttribute="centerY" id="Q9y-xp-IgU"/>
@@ -1880,7 +1878,7 @@ Percentage (%)</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Igg-yb-d7U" secondAttribute="trailing" id="0D2-ok-ryZ"/>
                                     <constraint firstAttribute="bottom" secondItem="RjD-z3-kld" secondAttribute="bottom" id="CNb-jj-bZ3"/>
-                                    <constraint firstItem="RjD-z3-kld" firstAttribute="height" secondItem="RU7-LZ-Yge" secondAttribute="height" multiplier="0.095" id="Ije-Nj-DA6"/>
+                                    <constraint firstItem="RjD-z3-kld" firstAttribute="height" secondItem="RU7-LZ-Yge" secondAttribute="height" multiplier="0.0898438" id="Ije-Nj-DA6"/>
                                     <constraint firstItem="RjD-z3-kld" firstAttribute="leading" secondItem="RU7-LZ-Yge" secondAttribute="leading" id="KKV-uK-8M1"/>
                                     <constraint firstAttribute="trailing" secondItem="hEq-gO-2Ou" secondAttribute="trailing" id="Pd2-Qu-T4A"/>
                                     <constraint firstItem="Igg-yb-d7U" firstAttribute="leading" secondItem="RU7-LZ-Yge" secondAttribute="leading" id="Uks-lv-HwL"/>
@@ -2219,10 +2217,10 @@ Percentage (%)</string>
                                 <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Kjo-YB-tdi">
-                                        <rect key="frame" x="0.0" y="25.5" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="20" width="414" height="40.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8p6-JR-DQJ" userLabel="SORT">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="40.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  SORT" image="icSort">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2232,7 +2230,7 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-q6-8xP" userLabel="FILTER">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="30"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="40.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  FILTER" image="icFilter">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2249,11 +2247,12 @@ Percentage (%)</string>
                                     <constraint firstItem="Kjo-YB-tdi" firstAttribute="centerY" secondItem="F9h-Ks-Lvy" secondAttribute="centerY" id="0hS-sN-s45"/>
                                     <constraint firstItem="Kjo-YB-tdi" firstAttribute="leading" secondItem="F9h-Ks-Lvy" secondAttribute="leading" id="NHA-6l-9IR"/>
                                     <constraint firstAttribute="trailing" secondItem="Kjo-YB-tdi" secondAttribute="trailing" id="W7w-mX-ac7"/>
+                                    <constraint firstItem="Kjo-YB-tdi" firstAttribute="height" secondItem="F9h-Ks-Lvy" secondAttribute="height" multiplier="43/85" id="Yav-Te-cO1"/>
                                     <constraint firstItem="Kjo-YB-tdi" firstAttribute="centerX" secondItem="F9h-Ks-Lvy" secondAttribute="centerX" id="l6q-TW-ulI"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zk2-RA-Vtw">
-                                <rect key="frame" x="206.5" y="833.5" width="1" height="45"/>
+                                <rect key="frame" x="206.5" y="825" width="1" height="61.5"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="7qA-bj-r1S"/>
@@ -2463,10 +2462,10 @@ Percentage (%)</string>
                                 <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HS9-i3-lg4">
-                                        <rect key="frame" x="0.0" y="25.5" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="18.5" width="414" height="43.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDb-Uv-1Pd" userLabel="SORT">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="43.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  SORT" image="icSort">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2476,7 +2475,7 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaZ-gQ-3eE">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="30"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="43.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  FILTER" image="icFilter">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2490,6 +2489,7 @@ Percentage (%)</string>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="HS9-i3-lg4" firstAttribute="height" secondItem="Lm6-lM-xRt" secondAttribute="height" multiplier="43/80" id="5S0-u1-vA1"/>
                                     <constraint firstItem="HS9-i3-lg4" firstAttribute="leading" secondItem="Lm6-lM-xRt" secondAttribute="leading" id="94T-sw-5Vc"/>
                                     <constraint firstAttribute="trailing" secondItem="HS9-i3-lg4" secondAttribute="trailing" id="Kuo-9f-mVv"/>
                                     <constraint firstItem="HS9-i3-lg4" firstAttribute="centerX" secondItem="Lm6-lM-xRt" secondAttribute="centerX" id="Nw0-Ge-HBS"/>
@@ -2497,7 +2497,7 @@ Percentage (%)</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtM-eE-37a">
-                                <rect key="frame" x="206.5" y="833.5" width="1" height="45"/>
+                                <rect key="frame" x="206.5" y="834" width="1" height="43.5"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="Zdp-EN-FAR"/>
@@ -2515,7 +2515,7 @@ Percentage (%)</string>
                             <constraint firstItem="Lm6-lM-xRt" firstAttribute="leading" secondItem="xtH-Qq-nSI" secondAttribute="leading" id="bv1-Gs-2jc"/>
                             <constraint firstAttribute="bottom" secondItem="Lm6-lM-xRt" secondAttribute="bottom" id="cvy-CF-9rr"/>
                             <constraint firstItem="xtH-Qq-nSI" firstAttribute="trailing" secondItem="bHP-eM-ke8" secondAttribute="trailing" id="f5s-ah-17e"/>
-                            <constraint firstItem="dtM-eE-37a" firstAttribute="height" secondItem="HS9-i3-lg4" secondAttribute="height" multiplier="1.5" id="gzo-OO-d65"/>
+                            <constraint firstItem="dtM-eE-37a" firstAttribute="height" secondItem="HS9-i3-lg4" secondAttribute="height" id="gzo-OO-d65"/>
                             <constraint firstItem="bHP-eM-ke8" firstAttribute="leading" secondItem="xtH-Qq-nSI" secondAttribute="leading" id="krN-VB-g9W"/>
                             <constraint firstItem="hTB-Ky-x7l" firstAttribute="top" secondItem="xtH-Qq-nSI" secondAttribute="top" id="lF4-lw-8h5"/>
                         </constraints>
@@ -2685,16 +2685,13 @@ Percentage (%)</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7t-yd-jY6">
-                                        <rect key="frame" x="0.0" y="812.5" width="414" height="83.5"/>
+                                        <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hbr-0i-CSW">
-                                                <rect key="frame" x="16" y="20" width="382" height="43"/>
+                                                <rect key="frame" x="16" y="18.5" width="382" height="43.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OA2-iX-vL2" userLabel="SORT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187" height="43"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="43" id="OLY-it-gd6"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="0.0" width="187" height="43.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                         <state key="normal" title=" Cancel">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2704,7 +2701,7 @@ Percentage (%)</string>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzq-zO-kMw">
-                                                        <rect key="frame" x="195" y="0.0" width="187" height="43"/>
+                                                        <rect key="frame" x="195" y="0.0" width="187" height="43.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                         <state key="normal" title="Send Request">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2719,6 +2716,7 @@ Percentage (%)</string>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="hbr-0i-CSW" firstAttribute="centerX" secondItem="i7t-yd-jY6" secondAttribute="centerX" id="8WM-YC-iOY"/>
+                                            <constraint firstItem="hbr-0i-CSW" firstAttribute="height" secondItem="i7t-yd-jY6" secondAttribute="height" multiplier="43/80" id="IOe-Hz-Ims"/>
                                             <constraint firstItem="hbr-0i-CSW" firstAttribute="centerY" secondItem="i7t-yd-jY6" secondAttribute="centerY" id="bFJ-Nf-Z9m"/>
                                             <constraint firstItem="hbr-0i-CSW" firstAttribute="leading" secondItem="i7t-yd-jY6" secondAttribute="leading" constant="16" id="caN-4i-lxJ"/>
                                             <constraint firstAttribute="trailing" secondItem="hbr-0i-CSW" secondAttribute="trailing" constant="16" id="wPo-c5-l1R"/>
@@ -2732,7 +2730,7 @@ Percentage (%)</string>
                                     <constraint firstItem="mlV-Rt-rW0" firstAttribute="leading" secondItem="7NB-ZB-9ba" secondAttribute="leading" id="HdZ-tf-vgX"/>
                                     <constraint firstItem="3tv-xk-aAY" firstAttribute="top" secondItem="XqZ-sX-RXW" secondAttribute="bottom" id="KBQ-ch-2d0"/>
                                     <constraint firstAttribute="trailing" secondItem="3tv-xk-aAY" secondAttribute="trailing" id="Pw9-oV-SU7"/>
-                                    <constraint firstItem="i7t-yd-jY6" firstAttribute="height" secondItem="7NB-ZB-9ba" secondAttribute="height" multiplier="0.0933875" id="WtG-VU-8Lx"/>
+                                    <constraint firstItem="i7t-yd-jY6" firstAttribute="height" secondItem="7NB-ZB-9ba" secondAttribute="height" multiplier="0.0898438" id="WtG-VU-8Lx"/>
                                     <constraint firstAttribute="bottom" secondItem="mlV-Rt-rW0" secondAttribute="bottom" id="dVI-SM-2j4"/>
                                     <constraint firstItem="mlV-Rt-rW0" firstAttribute="top" secondItem="3tv-xk-aAY" secondAttribute="bottom" id="gFJ-bH-09a"/>
                                     <constraint firstAttribute="bottom" secondItem="i7t-yd-jY6" secondAttribute="bottom" id="nQ2-E7-lDh"/>
@@ -3202,10 +3200,10 @@ Percentage (%)</string>
                                 <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Up9-ec-gNX">
-                                        <rect key="frame" x="0.0" y="25.5" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="13.5" width="414" height="53.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrm-Lb-DRn" userLabel="SORT">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="53.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  SORT" image="icSort">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3216,7 +3214,7 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOS-yS-osO">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="30"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="53.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  FILTER" image="icFilter">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3234,11 +3232,12 @@ Percentage (%)</string>
                                     <constraint firstItem="Up9-ec-gNX" firstAttribute="centerY" secondItem="o4O-FQ-f3g" secondAttribute="centerY" id="0iV-gd-j5V"/>
                                     <constraint firstAttribute="trailing" secondItem="Up9-ec-gNX" secondAttribute="trailing" id="8cB-ab-ujC"/>
                                     <constraint firstItem="Up9-ec-gNX" firstAttribute="leading" secondItem="o4O-FQ-f3g" secondAttribute="leading" id="Rzi-lY-73O"/>
+                                    <constraint firstItem="Up9-ec-gNX" firstAttribute="height" secondItem="o4O-FQ-f3g" secondAttribute="height" multiplier="53/80" id="h49-Na-4Uc"/>
                                     <constraint firstItem="Up9-ec-gNX" firstAttribute="centerX" secondItem="o4O-FQ-f3g" secondAttribute="centerX" id="pvB-hI-qwG"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-sU-r0f">
-                                <rect key="frame" x="206.5" y="833.5" width="1" height="45"/>
+                                <rect key="frame" x="206.5" y="829" width="1" height="53.5"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="4mQ-Wj-qUB"/>
@@ -3247,7 +3246,7 @@ Percentage (%)</string>
                         </subviews>
                         <color key="backgroundColor" name="primaryColor"/>
                         <constraints>
-                            <constraint firstItem="XFH-sU-r0f" firstAttribute="height" secondItem="Up9-ec-gNX" secondAttribute="height" multiplier="1.5" id="2oI-TL-IM7"/>
+                            <constraint firstItem="XFH-sU-r0f" firstAttribute="height" secondItem="Up9-ec-gNX" secondAttribute="height" id="2oI-TL-IM7"/>
                             <constraint firstItem="o4O-FQ-f3g" firstAttribute="leading" secondItem="3DZ-gP-ymF" secondAttribute="leading" id="36l-Dx-9Oh"/>
                             <constraint firstItem="o4O-FQ-f3g" firstAttribute="height" secondItem="j8i-uA-bn1" secondAttribute="height" multiplier="0.0898438" id="3ge-5h-It9"/>
                             <constraint firstItem="XFH-sU-r0f" firstAttribute="centerY" secondItem="Up9-ec-gNX" secondAttribute="centerY" id="GeD-4v-VJs"/>
