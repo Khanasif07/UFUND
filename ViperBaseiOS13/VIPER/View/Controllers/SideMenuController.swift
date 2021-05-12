@@ -119,8 +119,8 @@ class SideMenuController: UIViewController {
         topRoundedView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 10)
         investButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x15) : .setCustomFont(name: .semiBold, size: .x13)
         campaignerButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x15) : .setCustomFont(name: .semiBold, size: .x13)
-        profileName.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x14)
-         profileLastName.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+        profileName.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+         profileLastName.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .medium, size: .x12)
         
     }
     

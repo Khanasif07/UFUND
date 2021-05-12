@@ -19,6 +19,10 @@ class ProductDetailPopUpVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var selectAmtMethodTitlelbl: UILabel!
+    @IBOutlet weak var totalProductAmtTitlelbl: UILabel!
+    @IBOutlet weak var adminCommTitleLbl: UILabel!
+    @IBOutlet weak var totalPayAmtTitleLbl: UILabel!
     @IBOutlet weak var qtyTxtField: UITextField!
     @IBOutlet weak var investPerView: UIView!
     @IBOutlet weak var quantityView: UIView!
@@ -47,6 +51,7 @@ class ProductDetailPopUpVC: UIViewController {
               return createActivityIndicator(self.view)
           }()
     var productModel: ProductModel?
+    var walletBalance: WalletBalance?
     var selectedPaymentMethod: Payment_method?
     var currentValInvPer : Int = 5 {
         didSet{
@@ -100,6 +105,7 @@ class ProductDetailPopUpVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func buyNowAction(_ sender: Any) {
+        self.hitWalletAPI()
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -139,6 +145,7 @@ extension ProductDetailPopUpVC {
     
     private func initialSetup() {
         self.dataSetUp()
+        self.setFont()
         self.getPaymentMethodListing()
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         paymentMethodTxtField.delegate = self
@@ -149,6 +156,28 @@ extension ProductDetailPopUpVC {
         self.cancelBtn.borderLineWidth = 1.0
         self.qtyTxtField.delegate = self
         self.qtyTxtField.keyboardType = .numberPad
+    }
+    
+    private func hitWalletAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
+    }
+    
+    private func setFont(){
+        self.titleLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x16)
+        self.coinLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
+        self.tokenPriceLbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        self.tokenPriceValueLbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
+        self.tokenQtyLbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x18) : .setCustomFont(name: .regular, size: .x14)
+        self.qtyTxtField.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
+        self.totalPayableAmt.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
+        self.totalProductAmt.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
+        self.payableAmountValueLbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
+        self.cancelBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
+        self.buyNowBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        [selectAmtMethodTitlelbl,totalProductAmtTitlelbl,adminCommTitleLbl,totalPayAmtTitleLbl].forEach { (lbl) in
+            lbl?.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        }
     }
     
     private func dataSetUp(){
@@ -260,6 +289,14 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
                 self.selectedPaymentMethod =
                     self.productModel?.payment_method_type?.first ?? Payment_method()
                 self.paymentMethodTxtField.text = self.selectedPaymentMethod?.key ?? ""
+            }
+        case Base.wallet.rawValue:
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                self.walletBalance = data
+                let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
+                self.present(vc, animated: true, completion: nil)
+                print(data)
             }
         default:
             self.loader.isHidden = true

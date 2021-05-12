@@ -1039,11 +1039,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MR2-3c-2Pn">
                                         <rect key="frame" x="16" y="217.5" width="382" height="461"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icInformation" translatesAutoresizingMaskIntoConstraints="NO" id="URn-fv-5hr">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icInformation" translatesAutoresizingMaskIntoConstraints="NO" id="URn-fv-5hr">
                                                 <rect key="frame" x="16" y="16" width="48" height="48"/>
                                                 <color key="backgroundColor" red="0.85490196078431369" green="0.85490196078431369" blue="0.85490196078431369" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="7qi-bF-7v8"/>
+                                                    <constraint firstAttribute="height" constant="48" id="7qi-bF-7v8">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="55"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="width" secondItem="URn-fv-5hr" secondAttribute="height" id="QWA-gK-wZm"/>
                                                 </constraints>
                                             </imageView>
@@ -1096,7 +1098,9 @@
                                                         <rect key="frame" x="111.5" y="0.0" width="103.5" height="36"/>
                                                         <color key="backgroundColor" name="primaryColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="36" id="6gu-GO-fuX"/>
+                                                            <constraint firstAttribute="height" constant="36" id="6gu-GO-fuX">
+                                                                <variation key="heightClass=regular-widthClass=regular" constant="45"/>
+                                                            </constraint>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                         <state key="normal" title="Buy Now">
@@ -1183,7 +1187,9 @@ Percentage (%)</string>
                                                                 <constraints>
                                                                     <constraint firstItem="tKh-xT-Yeb" firstAttribute="leading" secondItem="HOr-2w-sOB" secondAttribute="leading" id="k5t-95-Hgk"/>
                                                                     <constraint firstItem="tKh-xT-Yeb" firstAttribute="top" secondItem="HOr-2w-sOB" secondAttribute="top" id="rPL-14-rmJ"/>
-                                                                    <constraint firstAttribute="height" constant="28" id="rxr-sP-s7F"/>
+                                                                    <constraint firstAttribute="height" constant="28" id="rxr-sP-s7F">
+                                                                        <variation key="heightClass=regular-widthClass=regular" constant="35"/>
+                                                                    </constraint>
                                                                     <constraint firstAttribute="width" secondItem="HOr-2w-sOB" secondAttribute="height" multiplier="2" id="txQ-xV-1f1"/>
                                                                     <constraint firstAttribute="bottom" secondItem="tKh-xT-Yeb" secondAttribute="bottom" id="ufA-fL-NdN"/>
                                                                     <constraint firstAttribute="trailing" secondItem="tKh-xT-Yeb" secondAttribute="trailing" id="vfY-qA-gQj"/>
@@ -1217,7 +1223,9 @@ Percentage (%)</string>
                                                                     <constraint firstAttribute="width" secondItem="lUc-bw-TGd" secondAttribute="height" multiplier="2" id="Ber-B1-TYK"/>
                                                                     <constraint firstItem="KSk-AB-bnQ" firstAttribute="leading" secondItem="lUc-bw-TGd" secondAttribute="leading" id="EMa-k5-lYd"/>
                                                                     <constraint firstAttribute="bottom" secondItem="KSk-AB-bnQ" secondAttribute="bottom" id="LWH-HX-bOT"/>
-                                                                    <constraint firstAttribute="height" constant="28" id="Zme-nS-Ph9"/>
+                                                                    <constraint firstAttribute="height" constant="28" id="Zme-nS-Ph9">
+                                                                        <variation key="heightClass=regular-widthClass=regular" constant="35"/>
+                                                                    </constraint>
                                                                     <constraint firstItem="KSk-AB-bnQ" firstAttribute="top" secondItem="lUc-bw-TGd" secondAttribute="top" id="a7B-6L-ZbF"/>
                                                                     <constraint firstAttribute="trailing" secondItem="KSk-AB-bnQ" secondAttribute="trailing" id="soN-vM-Pbk"/>
                                                                 </constraints>
@@ -1292,7 +1300,9 @@ Percentage (%)</string>
                                                                 </subviews>
                                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="28" id="FaV-e9-7jl"/>
+                                                                    <constraint firstAttribute="height" constant="28" id="FaV-e9-7jl">
+                                                                        <variation key="heightClass=regular-widthClass=regular" constant="35"/>
+                                                                    </constraint>
                                                                     <constraint firstAttribute="bottom" secondItem="fA9-f2-Qsa" secondAttribute="bottom" id="KQH-q9-2MR"/>
                                                                     <constraint firstAttribute="trailing" secondItem="fA9-f2-Qsa" secondAttribute="trailing" id="Phf-Eg-Knk"/>
                                                                     <constraint firstAttribute="width" secondItem="tki-yX-EMq" secondAttribute="height" id="c9G-IH-fwq"/>
@@ -1332,7 +1342,9 @@ Percentage (%)</string>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="Ya8-77-40G" secondAttribute="bottom" id="YQx-bI-BNM"/>
                                                     <constraint firstItem="Ya8-77-40G" firstAttribute="leading" secondItem="88Z-gS-Lim" secondAttribute="leading" id="c1X-pv-WQi"/>
-                                                    <constraint firstAttribute="height" constant="48" id="fPf-7g-D7d"/>
+                                                    <constraint firstAttribute="height" constant="48" id="fPf-7g-D7d">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="55"/>
+                                                    </constraint>
                                                     <constraint firstItem="Ya8-77-40G" firstAttribute="top" secondItem="88Z-gS-Lim" secondAttribute="top" id="ssG-bk-igK"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ya8-77-40G" secondAttribute="trailing" id="uTw-NV-ppO"/>
                                                 </constraints>
@@ -1450,6 +1462,7 @@ Percentage (%)</string>
                         <viewLayoutGuide key="safeArea" id="NQj-aN-8s9"/>
                     </view>
                     <connections>
+                        <outlet property="adminCommTitleLbl" destination="yP7-4y-7lf" id="vh1-CD-VzP"/>
                         <outlet property="buyNowBtn" destination="PKS-kT-Fsn" id="afS-Uu-0jy"/>
                         <outlet property="cancelBtn" destination="hwn-36-u2d" id="lEp-EM-uzV"/>
                         <outlet property="coinLbl" destination="G2n-pw-3rk" id="Jon-1G-WL8"/>
@@ -1462,13 +1475,16 @@ Percentage (%)</string>
                         <outlet property="qtyTxtField" destination="8qH-oL-KPm" id="UCu-9r-Nf7"/>
                         <outlet property="qtyValueLbl" destination="3jR-0l-xsR" id="vlq-AK-7FG"/>
                         <outlet property="quantityView" destination="GtS-lM-vwN" id="cQS-0s-k06"/>
+                        <outlet property="selectAmtMethodTitlelbl" destination="64g-v1-7Aq" id="WKH-SY-S5f"/>
                         <outlet property="titleLbl" destination="kam-9v-M7s" id="pWx-ns-ac8"/>
                         <outlet property="tokenImgView" destination="URn-fv-5hr" id="TkY-KP-6LE"/>
                         <outlet property="tokenPriceLbl" destination="wbJ-sh-OOM" id="z0f-Tf-Rak"/>
                         <outlet property="tokenPriceValueLbl" destination="p57-Qj-EPW" id="1AO-tx-uCC"/>
                         <outlet property="tokenQtyLbl" destination="9gM-sn-DdY" id="szR-3a-Jbe"/>
+                        <outlet property="totalPayAmtTitleLbl" destination="y6W-ju-8tl" id="oGX-K3-urF"/>
                         <outlet property="totalPayableAmt" destination="Rkm-I7-r4M" id="O3W-zy-bZK"/>
                         <outlet property="totalProductAmt" destination="HW3-Ug-RPC" id="EMu-If-wxF"/>
+                        <outlet property="totalProductAmtTitlelbl" destination="hDe-5F-iVG" id="K5C-wC-DAN"/>
                         <outlet property="totalProductPriceTitleLbl" destination="hDe-5F-iVG" id="OIA-xn-l9M"/>
                     </connections>
                 </viewController>

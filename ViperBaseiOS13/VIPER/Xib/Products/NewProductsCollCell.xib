@@ -118,17 +118,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pe8-XM-eIh">
-                                        <rect key="frame" x="0.0" y="12" width="56" height="25"/>
+                                        <rect key="frame" x="0.0" y="22.5" width="66" height="29"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRadioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="9iQ-NU-e1K">
-                                                <rect key="frame" x="8" y="7.5" width="10" height="10"/>
+                                                <rect key="frame" x="8" y="4.5" width="20" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="10" id="2zY-uy-3Km"/>
-                                                    <constraint firstAttribute="width" constant="10" id="g2q-Q3-cMh"/>
+                                                    <constraint firstAttribute="width" secondItem="9iQ-NU-e1K" secondAttribute="height" id="TKO-75-mPR"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YwX-u5-UdS">
-                                                <rect key="frame" x="23" y="4" width="23" height="17"/>
+                                                <rect key="frame" x="33" y="6" width="23" height="17"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -136,26 +135,26 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="YwX-u5-UdS" secondAttribute="bottom" constant="6" id="9br-GG-0dL"/>
                                             <constraint firstItem="YwX-u5-UdS" firstAttribute="leading" secondItem="9iQ-NU-e1K" secondAttribute="trailing" constant="5" id="c80-MI-IHR"/>
-                                            <constraint firstItem="YwX-u5-UdS" firstAttribute="centerY" secondItem="Pe8-XM-eIh" secondAttribute="centerY" id="dJx-rF-Ip1"/>
                                             <constraint firstAttribute="trailing" secondItem="YwX-u5-UdS" secondAttribute="trailing" constant="10" id="fMo-Xy-Xjf"/>
                                             <constraint firstItem="9iQ-NU-e1K" firstAttribute="leading" secondItem="Pe8-XM-eIh" secondAttribute="leading" constant="8" id="nIZ-zz-yzu"/>
                                             <constraint firstItem="9iQ-NU-e1K" firstAttribute="centerY" secondItem="Pe8-XM-eIh" secondAttribute="centerY" id="tYh-06-jWE"/>
+                                            <constraint firstItem="YwX-u5-UdS" firstAttribute="top" secondItem="Pe8-XM-eIh" secondAttribute="top" constant="6" id="ysJ-58-NiE"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="Pe8-XM-eIh" firstAttribute="height" secondItem="IwK-Oa-Z2S" secondAttribute="height" multiplier="0.10177" id="6B3-Za-AGX"/>
                                     <constraint firstItem="i9K-4j-q9f" firstAttribute="top" secondItem="IwK-Oa-Z2S" secondAttribute="top" id="6Pz-qx-gVE"/>
                                     <constraint firstItem="JwK-NY-W0m" firstAttribute="top" secondItem="i9K-4j-q9f" secondAttribute="bottom" id="7iR-lY-YkC"/>
                                     <constraint firstAttribute="bottom" secondItem="JwK-NY-W0m" secondAttribute="bottom" id="8We-ws-M6N"/>
                                     <constraint firstAttribute="trailing" secondItem="i9K-4j-q9f" secondAttribute="trailing" id="9s4-uf-1jF"/>
+                                    <constraint firstItem="Pe8-XM-eIh" firstAttribute="centerY" secondItem="IwK-Oa-Z2S" secondAttribute="centerY" multiplier="0.3" id="BoU-bx-Tzg"/>
                                     <constraint firstItem="Pe8-XM-eIh" firstAttribute="leading" secondItem="i9K-4j-q9f" secondAttribute="leading" id="FPz-yr-AWC"/>
                                     <constraint firstAttribute="trailing" secondItem="JwK-NY-W0m" secondAttribute="trailing" id="WdV-pR-DK8"/>
                                     <constraint firstItem="JwK-NY-W0m" firstAttribute="leading" secondItem="IwK-Oa-Z2S" secondAttribute="leading" id="ayp-Qb-vhM"/>
                                     <constraint firstItem="i9K-4j-q9f" firstAttribute="leading" secondItem="IwK-Oa-Z2S" secondAttribute="leading" id="twW-bF-D3B"/>
-                                    <constraint firstItem="Pe8-XM-eIh" firstAttribute="top" secondItem="IwK-Oa-Z2S" secondAttribute="top" constant="12" id="ySp-6L-xCN"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -24,6 +24,7 @@ class AllProductsCollCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.statusLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x14) : .setCustomFont(name: .bold, size: .x10)
     }
     
     override func layoutSubviews() {

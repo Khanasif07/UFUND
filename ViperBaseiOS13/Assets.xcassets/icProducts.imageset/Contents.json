@@ -1,19 +1,29 @@
 {
   "images" : [
     {
-      "scale" : "1x",
       "idiom" : "universal",
-      "filename" : "icProducts.png"
+      "filename" : "icProducts.png",
+      "scale" : "1x"
     },
     {
-      "filename" : "icProducts@2x.png",
       "idiom" : "universal",
+      "filename" : "icProducts@2x.png",
       "scale" : "2x"
     },
     {
-      "scale" : "3x",
       "idiom" : "universal",
-      "filename" : "icProducts@3x.png"
+      "filename" : "icProducts@3x.png",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "Product.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "Product@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

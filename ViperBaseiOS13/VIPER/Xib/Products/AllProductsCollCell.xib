@@ -142,16 +142,13 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8t-gO-ya4">
-                                        <rect key="frame" x="0.0" y="10.5" width="57" height="25.5"/>
+                                        <rect key="frame" x="0.0" y="21" width="66" height="32"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRadioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="zih-c5-NF0">
-                                                <rect key="frame" x="8" y="7.5" width="11" height="10.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="zih-c5-NF0" secondAttribute="height" multiplier="1:1" id="0ky-MA-JyY"/>
-                                                </constraints>
+                                                <rect key="frame" x="8" y="6" width="20" height="20"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbZ-7m-vvQ">
-                                                <rect key="frame" x="26.5" y="6" width="20.5" height="14"/>
+                                                <rect key="frame" x="35.5" y="6" width="20.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="10"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -159,11 +156,13 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.63529411764705879" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="zih-c5-NF0" firstAttribute="height" secondItem="c8t-gO-ya4" secondAttribute="height" multiplier="0.425" id="4iP-QF-ChC"/>
-                                            <constraint firstItem="zih-c5-NF0" firstAttribute="centerY" secondItem="c8t-gO-ya4" secondAttribute="centerY" id="X2x-Tb-QTr"/>
-                                            <constraint firstItem="NbZ-7m-vvQ" firstAttribute="centerY" secondItem="c8t-gO-ya4" secondAttribute="centerY" id="jHd-Yj-AyV"/>
+                                            <constraint firstAttribute="bottom" secondItem="NbZ-7m-vvQ" secondAttribute="bottom" constant="6" id="1uJ-dy-fms"/>
+                                            <constraint firstItem="zih-c5-NF0" firstAttribute="bottom" secondItem="NbZ-7m-vvQ" secondAttribute="bottom" id="esb-ch-6lc"/>
+                                            <constraint firstItem="zih-c5-NF0" firstAttribute="top" secondItem="NbZ-7m-vvQ" secondAttribute="top" id="gep-Va-MjW"/>
+                                            <constraint firstItem="NbZ-7m-vvQ" firstAttribute="top" secondItem="c8t-gO-ya4" secondAttribute="top" constant="6" id="iMB-1d-ys8"/>
                                             <constraint firstItem="zih-c5-NF0" firstAttribute="leading" secondItem="c8t-gO-ya4" secondAttribute="leading" constant="8" id="noh-eg-Mev"/>
                                             <constraint firstItem="NbZ-7m-vvQ" firstAttribute="leading" secondItem="zih-c5-NF0" secondAttribute="trailing" constant="7.5" id="sIn-ut-sYT"/>
+                                            <constraint firstItem="zih-c5-NF0" firstAttribute="centerY" secondItem="c8t-gO-ya4" secondAttribute="centerY" id="tMa-Yk-3qf"/>
                                             <constraint firstAttribute="trailing" secondItem="NbZ-7m-vvQ" secondAttribute="trailing" constant="10" id="yjC-bZ-gkI"/>
                                         </constraints>
                                     </view>
@@ -172,13 +171,12 @@
                                 <constraints>
                                     <constraint firstItem="HGI-ut-5HK" firstAttribute="leading" secondItem="mnr-1c-hRR" secondAttribute="leading" id="Brh-8f-nLH"/>
                                     <constraint firstAttribute="trailing" secondItem="HGI-ut-5HK" secondAttribute="trailing" id="GCv-c8-0dG"/>
-                                    <constraint firstItem="c8t-gO-ya4" firstAttribute="height" secondItem="mnr-1c-hRR" secondAttribute="height" multiplier="0.10177" id="Klt-Xz-DU1"/>
                                     <constraint firstItem="OHA-Ik-OZf" firstAttribute="top" secondItem="HGI-ut-5HK" secondAttribute="bottom" id="ME1-KG-1Je"/>
+                                    <constraint firstItem="c8t-gO-ya4" firstAttribute="centerY" secondItem="mnr-1c-hRR" secondAttribute="centerY" multiplier="0.3" id="SfT-1O-iNu"/>
                                     <constraint firstItem="c8t-gO-ya4" firstAttribute="leading" secondItem="HGI-ut-5HK" secondAttribute="leading" id="qQL-L1-ATz"/>
                                     <constraint firstItem="HGI-ut-5HK" firstAttribute="top" secondItem="mnr-1c-hRR" secondAttribute="top" id="qSz-fd-Dek"/>
                                     <constraint firstAttribute="bottom" secondItem="OHA-Ik-OZf" secondAttribute="bottom" id="rcX-9p-2i8"/>
                                     <constraint firstAttribute="trailing" secondItem="OHA-Ik-OZf" secondAttribute="trailing" id="tp5-lT-0mD"/>
-                                    <constraint firstItem="c8t-gO-ya4" firstAttribute="centerY" secondItem="HGI-ut-5HK" secondAttribute="centerY" multiplier="0.35" id="ub7-xZ-esa"/>
                                     <constraint firstItem="OHA-Ik-OZf" firstAttribute="leading" secondItem="mnr-1c-hRR" secondAttribute="leading" id="yj0-I3-YVZ"/>
                                 </constraints>
                             </view>

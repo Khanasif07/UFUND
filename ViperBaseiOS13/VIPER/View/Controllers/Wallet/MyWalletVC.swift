@@ -189,7 +189,6 @@ extension MyWalletVC {
     private func hitWalletAPI(){
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
-        
     }
 }
 
