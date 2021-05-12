@@ -50,16 +50,16 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fSO-e1-pTh">
-                                                <rect key="frame" x="46" y="122.5" width="65" height="14"/>
+                                                <rect key="frame" x="7.5" y="118.5" width="142" height="14"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Products" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf5-eG-nmU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="65" height="14"/>
+                                                        <rect key="frame" x="38.5" y="0.0" width="65" height="14"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="12"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca5-dM-J65">
-                                                        <rect key="frame" x="19" y="0.0" width="27" height="0.0"/>
+                                                        <rect key="frame" x="57.5" y="0.0" width="27" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -71,8 +71,10 @@
                                         <constraints>
                                             <constraint firstItem="r0H-pk-kK9" firstAttribute="width" secondItem="qDW-X6-fy5" secondAttribute="width" multiplier="0.425" id="Gvj-B8-pxx"/>
                                             <constraint firstItem="fSO-e1-pTh" firstAttribute="centerX" secondItem="qDW-X6-fy5" secondAttribute="centerX" id="NTM-cD-4DK"/>
+                                            <constraint firstAttribute="trailing" secondItem="fSO-e1-pTh" secondAttribute="trailing" constant="7.5" id="S5E-jD-hDB"/>
                                             <constraint firstItem="r0H-pk-kK9" firstAttribute="centerX" secondItem="qDW-X6-fy5" secondAttribute="centerX" id="cHp-pE-6Xl"/>
-                                            <constraint firstItem="fSO-e1-pTh" firstAttribute="centerY" secondItem="qDW-X6-fy5" secondAttribute="centerY" multiplier="1.65" id="rum-FI-eh0"/>
+                                            <constraint firstItem="fSO-e1-pTh" firstAttribute="centerY" secondItem="qDW-X6-fy5" secondAttribute="centerY" multiplier="1.6" id="rum-FI-eh0"/>
+                                            <constraint firstItem="fSO-e1-pTh" firstAttribute="leading" secondItem="qDW-X6-fy5" secondAttribute="leading" constant="7.5" id="uLu-mz-tUQ"/>
                                             <constraint firstItem="r0H-pk-kK9" firstAttribute="centerY" secondItem="qDW-X6-fy5" secondAttribute="centerY" multiplier="0.7" id="y5D-UK-ZLr"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>

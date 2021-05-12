@@ -50,7 +50,9 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="84" id="fgG-i9-UCh"/>
-                                                    <constraint firstAttribute="height" constant="30" id="qWE-mW-6CQ"/>
+                                                    <constraint firstAttribute="height" constant="30" id="qWE-mW-6CQ">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                                    </constraint>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="Clear All">
@@ -429,7 +431,9 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="84" id="IjA-Wj-y35"/>
-                                                    <constraint firstAttribute="height" constant="30" id="JC5-jx-Z6Y"/>
+                                                    <constraint firstAttribute="height" constant="30" id="JC5-jx-Z6Y">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                                    </constraint>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="Clear All">
@@ -652,7 +656,9 @@
                                                 <rect key="frame" x="314" y="10.5" width="84" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="06a-DD-CVF"/>
+                                                    <constraint firstAttribute="height" constant="30" id="06a-DD-CVF">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="width" constant="84" id="njw-q0-diu"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>

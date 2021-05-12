@@ -73,10 +73,7 @@
                                                 <rect key="frame" x="16" y="16" width="382" height="103"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTokenInvestmentBg" translatesAutoresizingMaskIntoConstraints="NO" id="GVb-Ef-gsL">
-                                                        <rect key="frame" x="16" y="0.5" width="102" height="102"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="GVb-Ef-gsL" secondAttribute="height" id="3KY-Qt-i5f"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="16" y="26" width="101" height="51"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xb5-SL-cMd">
                                                         <rect key="frame" x="231.5" y="28" width="134.5" height="47"/>
@@ -101,6 +98,7 @@
                                                     <constraint firstItem="xb5-SL-cMd" firstAttribute="centerY" secondItem="Mrl-nJ-El1" secondAttribute="centerY" id="AUL-qM-uXb"/>
                                                     <constraint firstAttribute="trailing" secondItem="xb5-SL-cMd" secondAttribute="trailing" constant="16" id="L33-3y-QzN"/>
                                                     <constraint firstItem="GVb-Ef-gsL" firstAttribute="centerY" secondItem="Mrl-nJ-El1" secondAttribute="centerY" id="TyZ-D1-ZnR"/>
+                                                    <constraint firstItem="GVb-Ef-gsL" firstAttribute="height" secondItem="Mrl-nJ-El1" secondAttribute="height" multiplier="0.495146" id="f5W-QS-po1"/>
                                                     <constraint firstItem="GVb-Ef-gsL" firstAttribute="leading" secondItem="Mrl-nJ-El1" secondAttribute="leading" constant="16" id="hLu-uA-TGI"/>
                                                 </constraints>
                                             </view>
@@ -111,10 +109,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="187" height="185"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icProductWithBg" translatesAutoresizingMaskIntoConstraints="NO" id="Dxe-PW-8VG">
-                                                                <rect key="frame" x="42.5" y="0.0" width="102" height="102"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="Dxe-PW-8VG" secondAttribute="height" id="Qiz-F0-kKw"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="43" y="25.5" width="101" height="51"/>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YYC-7P-QKq">
                                                                 <rect key="frame" x="55" y="122.5" width="77.5" height="42"/>
@@ -139,6 +134,7 @@
                                                             <constraint firstItem="Dxe-PW-8VG" firstAttribute="centerY" secondItem="sph-EW-AdL" secondAttribute="centerY" multiplier="0.55" id="1Pl-jb-dtq"/>
                                                             <constraint firstItem="YYC-7P-QKq" firstAttribute="centerX" secondItem="sph-EW-AdL" secondAttribute="centerX" id="51p-ty-N7l"/>
                                                             <constraint firstItem="YYC-7P-QKq" firstAttribute="centerY" secondItem="sph-EW-AdL" secondAttribute="centerY" multiplier="1.55" id="Lt2-ra-dMb"/>
+                                                            <constraint firstItem="Dxe-PW-8VG" firstAttribute="height" secondItem="sph-EW-AdL" secondAttribute="height" multiplier="0.275676" id="hhk-qc-TR4"/>
                                                             <constraint firstItem="Dxe-PW-8VG" firstAttribute="centerX" secondItem="sph-EW-AdL" secondAttribute="centerX" id="pDp-x4-udx"/>
                                                         </constraints>
                                                     </view>
@@ -146,10 +142,7 @@
                                                         <rect key="frame" x="195" y="0.0" width="187" height="185"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icEarningInCryptoBg" translatesAutoresizingMaskIntoConstraints="NO" id="oe9-2a-M1w">
-                                                                <rect key="frame" x="42.5" y="0.0" width="102" height="102"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="oe9-2a-M1w" secondAttribute="height" id="MPr-2k-tPp"/>
-                                                                </constraints>
+                                                                <rect key="frame" x="43" y="25.5" width="101" height="51"/>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="F5R-sI-f6X">
                                                                 <rect key="frame" x="32.5" y="122.5" width="122" height="42"/>
@@ -172,6 +165,7 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <constraints>
                                                             <constraint firstItem="F5R-sI-f6X" firstAttribute="centerX" secondItem="tH2-dt-QS7" secondAttribute="centerX" id="9ij-6v-nvL"/>
+                                                            <constraint firstItem="oe9-2a-M1w" firstAttribute="height" secondItem="tH2-dt-QS7" secondAttribute="height" multiplier="0.275676" id="QVi-js-3gU"/>
                                                             <constraint firstItem="oe9-2a-M1w" firstAttribute="centerX" secondItem="tH2-dt-QS7" secondAttribute="centerX" id="WR8-8e-T8r"/>
                                                             <constraint firstItem="oe9-2a-M1w" firstAttribute="centerY" secondItem="tH2-dt-QS7" secondAttribute="centerY" multiplier="0.55" id="nbD-1M-2Ae"/>
                                                             <constraint firstItem="F5R-sI-f6X" firstAttribute="centerY" secondItem="tH2-dt-QS7" secondAttribute="centerY" multiplier="1.55" id="qNx-7g-Nw6"/>
@@ -289,7 +283,9 @@
                                                         <color key="backgroundColor" red="0.094117647058823528" green="0.74117647058823533" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstItem="b5V-Qt-bfr" firstAttribute="centerY" secondItem="wDn-m1-WDb" secondAttribute="centerY" id="Jam-6c-UaH"/>
-                                                            <constraint firstAttribute="height" constant="64" id="nKx-4m-HhX"/>
+                                                            <constraint firstAttribute="height" constant="64" id="nKx-4m-HhX">
+                                                                <variation key="heightClass=regular-widthClass=regular" constant="75"/>
+                                                            </constraint>
                                                             <constraint firstItem="b5V-Qt-bfr" firstAttribute="centerX" secondItem="wDn-m1-WDb" secondAttribute="centerX" id="vnl-jC-M0R"/>
                                                         </constraints>
                                                     </view>

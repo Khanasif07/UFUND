@@ -26,7 +26,7 @@ class ProductsCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         productValueLbll.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x28) : .setCustomFont(name: .bold, size: .x24)
-        productNameLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x16) : .setCustomFont(name: .bold, size: .x12)
+        productNameLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x14)
         DispatchQueue.main.async {
             self.productImg.layer.masksToBounds = true
             self.productImg.layer.borderWidth = 8.0
