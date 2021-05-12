@@ -219,13 +219,13 @@ extension SignUpViewController {
     
     private func setUpAttributedString(){
         let attributedString = NSMutableAttributedString(string: Constants.string.by_signing_up_you_agree_to_ufund_privacy_policy.localize(), attributes: [
-            .font: UIFont.systemFont(ofSize: isDeviceIPad ? 14.0 : 12.0),
+            .font: UIFont.systemFont(ofSize: isDeviceIPad ? 16.0 : 12.0),
             .foregroundColor: UIColor.black
         ])
-        let privactAttText = (NSAttributedString(string: Constants.string.privacy.localize(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.red,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: isDeviceIPad ? 15.0 : 13.0)]))
+        let privactAttText = (NSAttributedString(string: Constants.string.privacy.localize(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.red,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: isDeviceIPad ? 18.0 : 13.0)]))
         attributedString.append(privactAttText)
-        attributedString.append(NSAttributedString(string: "&", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black,NSAttributedString.Key.font: UIFont.systemFont(ofSize: isDeviceIPad ? 14.0 : 12.0)]))
-        attributedString.append(NSAttributedString(string: Constants.string.terms.localize(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.red,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: isDeviceIPad ? 14.0 : 13.0)]))
+        attributedString.append(NSAttributedString(string: "&", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black,NSAttributedString.Key.font: UIFont.systemFont(ofSize: isDeviceIPad ? 16.0 : 12.0)]))
+        attributedString.append(NSAttributedString(string: Constants.string.terms.localize(), attributes: [NSAttributedString.Key.foregroundColor: UIColor.red,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: isDeviceIPad ? 17.0 : 13.0)]))
         privacyAttributedLbl.attributedText = attributedString
         privacyAttributedLbl.isUserInteractionEnabled = true
         privacyAttributedLbl.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(self.tapLabel(_:))))
@@ -256,13 +256,13 @@ extension SignUpViewController {
     func setFont() {
         attributedLbl.textAlignment = .center
         passwordTxtFld.setupPasswordTextField()
-        signUpButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x14)
+        signUpButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x14)
         [nameTxtFld,lastNameTxtFld,phoneNumberTxtFld,emailIdTxtFld,passwordTxtFld].forEach { (txtfield) in
-            txtfield.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+            txtfield.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
         }
         [googleLbl,twitterLbl,facebookLbl,linkedinLbl].forEach { (lbl) in
-            lbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+            lbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
         }
     }
     

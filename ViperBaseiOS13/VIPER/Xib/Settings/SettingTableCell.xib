@@ -46,12 +46,14 @@
                 <constraints>
                     <constraint firstItem="jXQ-h8-EGm" firstAttribute="leading" secondItem="eTa-b2-Y4X" secondAttribute="trailing" constant="8" id="9Ca-zG-dtX"/>
                     <constraint firstItem="eTa-b2-Y4X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="DeP-6k-nR3"/>
+                    <constraint firstAttribute="bottom" secondItem="jXQ-h8-EGm" secondAttribute="bottom" constant="12" id="OXJ-L3-huW"/>
                     <constraint firstAttribute="bottom" secondItem="0Fx-nL-tLX" secondAttribute="bottom" id="PYd-IK-7fL"/>
                     <constraint firstItem="jXQ-h8-EGm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S7q-ay-nZh"/>
                     <constraint firstItem="0Fx-nL-tLX" firstAttribute="leading" secondItem="jXQ-h8-EGm" secondAttribute="leading" id="Tj5-mJ-vqt"/>
                     <constraint firstAttribute="trailing" secondItem="jXQ-h8-EGm" secondAttribute="trailing" constant="16" id="aTA-d7-1Th"/>
                     <constraint firstItem="eTa-b2-Y4X" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aZO-Au-fkb"/>
                     <constraint firstAttribute="trailing" secondItem="0Fx-nL-tLX" secondAttribute="trailing" constant="57" id="pyp-DS-1NO"/>
+                    <constraint firstItem="jXQ-h8-EGm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="z3l-kR-nqW"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

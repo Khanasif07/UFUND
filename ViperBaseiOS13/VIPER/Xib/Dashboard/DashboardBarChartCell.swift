@@ -19,6 +19,8 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var productPerCurrencyTitlelbl: UILabel!
+    @IBOutlet weak var buyHistoryTitleLbl: UILabel!
     @IBOutlet weak var buyMonthlyTxtField: UITextField!
     @IBOutlet weak var buyHistoryTxtField: UITextField!
     @IBOutlet weak var dataContainerView: UIView!
@@ -47,6 +49,11 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         buyMonthlyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
         buttonView1.imageEdgeInsets = UIEdgeInsets(top: 0, left: -7.5, bottom: 0, right: +7.5)
         buyHistoryTxtField.setButtonToRightView(btn: buttonView1, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
+        buyHistoryTitleLbl.font  = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        productPerCurrencyTitlelbl.font  = isDeviceIPad ? .setCustomFont(name: .regular, size: .x18) : .setCustomFont(name: .regular, size: .x14)
+        [buyMonthlyTxtField,buyHistoryTxtField].forEach { (txtField) in
+             txtField.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
+        }
         self.setupVerticalChart()
         self.drawVerticalChart()
     }

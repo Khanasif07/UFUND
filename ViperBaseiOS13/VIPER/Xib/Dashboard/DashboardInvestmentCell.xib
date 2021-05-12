@@ -130,11 +130,14 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="allMyInvestTitleLbl" destination="bke-YJ-gHD" id="tPz-Bh-mpb"/>
                 <outlet property="cryptoInvestmentValue" destination="QZL-1u-lZJ" id="g7n-R6-ZEH"/>
                 <outlet property="cryptoPercentageValue" destination="hsP-lu-ojT" id="SxP-xu-A2E"/>
                 <outlet property="dataContainerView" destination="hDL-Rd-G6G" id="JMr-MK-azA"/>
                 <outlet property="dollarInvestmentValue" destination="c3k-9h-meZ" id="zLN-aW-gLU"/>
                 <outlet property="dollarPercentageValue" destination="K9R-CO-YbP" id="MDD-5U-tuL"/>
+                <outlet property="investCryptoTitleLbl" destination="fHC-3n-441" id="HzN-dB-LNc"/>
+                <outlet property="investDollarTitleLbl" destination="4p3-Il-1J9" id="xkg-Km-MsB"/>
                 <outlet property="pieChartView" destination="2Pb-Jr-wTu" id="fDL-N8-tMf"/>
             </connections>
             <point key="canvasLocation" x="184.05797101449278" y="170.08928571428569"/>

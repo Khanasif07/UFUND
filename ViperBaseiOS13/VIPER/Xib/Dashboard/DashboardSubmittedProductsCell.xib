@@ -40,7 +40,9 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icProductWithBg" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-bz-P0L">
                                                 <rect key="frame" x="8" y="10" width="48" height="48"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="Fir-6l-JEj"/>
+                                                    <constraint firstAttribute="height" constant="48" id="Fir-6l-JEj">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="width" secondItem="RNv-bz-P0L" secondAttribute="height" id="e5y-fk-u9j"/>
                                                 </constraints>
                                             </imageView>

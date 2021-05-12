@@ -16,6 +16,6 @@ class SettingTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        titleLbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x14) : .setCustomFont(name: .medium, size: .x14)
+        titleLbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x18) : .setCustomFont(name: .regular, size: .x14)
     }
 }

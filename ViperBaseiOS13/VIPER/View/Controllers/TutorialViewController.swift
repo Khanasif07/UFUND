@@ -75,8 +75,8 @@ extension TutorialViewController {
     
     func setFont() {
         welcomeBack.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x20)
-        investorLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x18)
-        campaignerLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x18)
+        investorLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x22) : .setCustomFont(name: .medium, size: .x18)
+        campaignerLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x22) : .setCustomFont(name: .medium, size: .x18)
         campaignerButton.setTitleColor(UIColor(hex: primaryColor), for: .normal)
         inverstorButton.setTitleColor(UIColor(hex: primaryColor), for: .normal)
     }

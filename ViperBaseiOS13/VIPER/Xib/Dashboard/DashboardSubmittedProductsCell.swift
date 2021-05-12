@@ -46,7 +46,8 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
     }
     
     private func setUpProductAssetLogo(){
-        self.submittedProductLbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x14) : .setCustomFont(name: .medium, size: .x14)
+        self.submittedProductValue.font  = isDeviceIPad ? .setCustomFont(name: .bold, size: .x28) : .setCustomFont(name: .bold, size: .x24)
+        self.submittedProductLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
         DispatchQueue.main.async {
             self.productImgView.layer.masksToBounds = true
             self.productImgView.layer.borderWidth = 8.0

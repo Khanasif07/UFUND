@@ -52,10 +52,10 @@ class ForgetViewController: UIViewController {
 extension ForgetViewController {
     
     func setFont() {
-        forgotPwButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x14)
+        forgotPwButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x14)
-        self.emailIdTxtFld.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
-        descripLbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .medium, size: .x12)
+        self.emailIdTxtFld.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
+        descripLbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
     }
   
     @IBAction func goBack(_ sender: UIButton) {

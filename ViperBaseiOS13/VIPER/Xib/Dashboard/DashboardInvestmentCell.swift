@@ -12,9 +12,12 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var allMyInvestTitleLbl: UILabel!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var cryptoPercentageValue: UILabel!
+    @IBOutlet weak var investCryptoTitleLbl: UILabel!
+    @IBOutlet weak var investDollarTitleLbl: UILabel!
     @IBOutlet weak var dollarPercentageValue: UILabel!
     @IBOutlet weak var cryptoInvestmentValue: UILabel!
     @IBOutlet weak var dollarInvestmentValue: UILabel!
@@ -33,6 +36,13 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
     //===========================
     override func awakeFromNib() {
         super.awakeFromNib()
+        [investCryptoTitleLbl,investDollarTitleLbl].forEach { (lbl) in
+            lbl.font  = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        }
+        [cryptoInvestmentValue,dollarInvestmentValue].forEach { (lbl) in
+            lbl.font  = isDeviceIPad ? .setCustomFont(name: .bold, size: .x22) : .setCustomFont(name: .bold, size: .x18)
+        }
+        self.allMyInvestTitleLbl.font  = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
         setupProgressView()
     }
     

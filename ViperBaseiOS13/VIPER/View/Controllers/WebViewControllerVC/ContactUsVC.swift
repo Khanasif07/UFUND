@@ -62,6 +62,9 @@ extension ContactUsVC {
     }
     
     private func setupTextAndFont(){
+        [contactUsLbl,skypeLbl,emailLbl,phoneLbl].forEach { (lbl) in
+            lbl.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x18) : .setCustomFont(name: .regular, size: .x14)
+        }
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
     }
 }

@@ -73,10 +73,10 @@ extension UILabel {
         let attribute = NSMutableAttributedString.init(string: fullText)
         attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hex: primaryColor) , range: range)
         attribute.addAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: darkTextColor),
-                                  NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: isDeviceIPad ? 14.0 : 12.0)],range: rangeFull)
+                                  NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: isDeviceIPad ? 16.0 : 12.0)],range: rangeFull)
         
          attribute.addAttributes([NSAttributedString.Key.foregroundColor : UIColor(hex: primaryColor),
-                                       NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: isDeviceIPad ? 14.0 : 12.0),
+                                       NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: isDeviceIPad ? 16.0 : 12.0),
                                       NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue as Any],range: rangeSignUp)
         self.attributedText = attribute
     }

@@ -42,6 +42,11 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Sp9-um-AmP">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="45"/>
+                                    </constraint>
+                                </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="uAB-Pk-j4a">
                                 <rect key="frame" x="16" y="66" width="223.5" height="20"/>
@@ -111,9 +116,11 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="barChartView" destination="Rby-0z-VOK" id="i82-ED-xw7"/>
+                <outlet property="buyHistoryTitleLbl" destination="4hv-N2-H8T" id="wAu-WA-eI0"/>
                 <outlet property="buyHistoryTxtField" destination="PS6-aW-Xfs" id="rgG-Hv-D9y"/>
                 <outlet property="buyMonthlyTxtField" destination="Xbk-OQ-2LR" id="Ivr-xF-pd7"/>
                 <outlet property="dataContainerView" destination="0Co-FU-zFd" id="Aep-6G-XMY"/>
+                <outlet property="productPerCurrencyTitlelbl" destination="G7z-4P-o5I" id="Tze-3z-m0Y"/>
             </connections>
             <point key="canvasLocation" x="160" y="115"/>
         </tableViewCell>
