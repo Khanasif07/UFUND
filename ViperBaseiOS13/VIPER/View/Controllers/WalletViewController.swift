@@ -161,8 +161,8 @@ extension WalletViewController : PresenterOutputProtocol {
         
         self.loader.isHidden = true
         self.walletBalance = dataDict as? WalletBalance
-        self.assets = self.walletBalance?.data ?? []
-        walletAmountLbl.text = "$" + String(self.walletBalance?.total_amount ?? 0.0)
+//        self.assets = self.walletBalance?.data ?? []
+//        walletAmountLbl.text = "$" + String(self.walletBalance?.total_amount ?? 0.0)
        
         self.collectionView.reloadData()
     }
@@ -197,13 +197,13 @@ extension WalletViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let url = URL.init(string: baseUrl + "/" + nullStringToEmpty(string: entity.image))
         cell.img.sd_setImage(with: url , placeholderImage: nil)
         
-        if nullStringToEmpty(string: entity.coin_name) == "Ethereum" {
-            let ethBalance = String(self.walletBalance?.eth?.round(to: 6) ?? 0.0)
-                cell.balanceLbl.text = nullStringToEmpty(string: ethBalance)
-        } else if nullStringToEmpty(string: entity.coin_name) == "Bitcoin" {
-            let btcBalance = String(self.walletBalance?.btc?.round(to: 6) ?? 0.0)
-            cell.balanceLbl.text = nullStringToEmpty(string: btcBalance)
-        }
+//        if nullStringToEmpty(string: entity.coin_name) == "Ethereum" {
+//            let ethBalance = String(self.walletBalance?.eth?.round(to: 6) ?? 0.0)
+//                cell.balanceLbl.text = nullStringToEmpty(string: ethBalance)
+//        } else if nullStringToEmpty(string: entity.coin_name) == "Bitcoin" {
+//            let btcBalance = String(self.walletBalance?.btc?.round(to: 6) ?? 0.0)
+//            cell.balanceLbl.text = nullStringToEmpty(string: btcBalance)
+//        }
         return cell
     }
     

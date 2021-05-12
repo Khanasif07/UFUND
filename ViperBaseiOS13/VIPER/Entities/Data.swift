@@ -39,8 +39,9 @@ struct WalletBalance : Mappable {
     var eth: Double?
     var total_amount : Double?
     var btc : Double?
+    var wallet: Double?
     
-    var data : [DataAssets]?
+//    var data : [DataAssets]?
 
     init?(map: Map) {
 
@@ -49,9 +50,23 @@ struct WalletBalance : Mappable {
     mutating func mapping(map: Map) {
 
         total_amount <- map["total_amount"]
-        data <- map["data"]
+        wallet <- map["wallet"]
         eth <- map["eth"]
         btc <- map["btc"]
     }
 
+}
+
+struct WalletEntity : Mappable{
+    
+    var balance: WalletBalance?
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        balance <- map["balance"]
+    }
+    
+    
 }

@@ -21,6 +21,8 @@ class AssetsFilterDateVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var toTitlelbl: UILabel!
+    @IBOutlet weak var fromTitlelbl: UILabel!
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
     
@@ -79,6 +81,10 @@ class AssetsFilterDateVC: UIViewController {
 extension AssetsFilterDateVC {
     
     private func initialSetup() {
+        self.fromTitlelbl.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x18) : .setCustomFont(name: .regular, size: .x14)
+        self.toTitlelbl.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x18) : .setCustomFont(name: .regular, size: .x14)
+        self.fromTextField.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x20) : .setCustomFont(name: .regular, size: .x16)
+        self.toTextField.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x20) : .setCustomFont(name: .regular, size: .x16)
         buttonView1.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         self.datePicker.addTarget(self, action: #selector(handleDatePicker(_:)), for: .valueChanged)

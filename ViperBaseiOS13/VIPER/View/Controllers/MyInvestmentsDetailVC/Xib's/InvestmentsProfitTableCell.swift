@@ -12,6 +12,11 @@ class InvestmentsProfitTableCell: UITableViewCell {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var totalEarnTitleLbl: UILabel!
+    @IBOutlet weak var netProfileTitleLbl: UILabel!
+    @IBOutlet weak var youEarnedTitlelbl: UILabel!
+    @IBOutlet weak var yourInvestTitlelbl: UILabel!
+    @IBOutlet weak var yourInvAndProfileTitlelbl: UILabel!
     @IBOutlet weak var progressValue: UILabel!
     @IBOutlet weak var progressView: CircularProgressBar!
     @IBOutlet weak var yourInvestmentValueLbl: UILabel!
@@ -32,6 +37,14 @@ class InvestmentsProfitTableCell: UITableViewCell {
     //===========================
     override func awakeFromNib() {
         super.awakeFromNib()
+        progressValue.font  =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x28) : .setCustomFont(name: .bold, size: .x24)
+        yourInvAndProfileTitlelbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x16)
+        [netProfileTitleLbl,youEarnedTitlelbl,yourInvestTitlelbl,totalEarnTitleLbl].forEach { (lbl) in
+            lbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        }
+        [yourInvestmentValueLbl,yourEarnedValueLbl,netProfitValueLbl].forEach { (lbl) in
+            lbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        }
         self.setupProgressView()
     }
     

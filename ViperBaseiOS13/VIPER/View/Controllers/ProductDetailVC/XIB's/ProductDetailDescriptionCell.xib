@@ -91,6 +91,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="priceLbl" destination="Tnz-Tw-6AU" id="uiX-iz-zJ6"/>
+                <outlet property="priceTitleLbl" destination="7O2-eA-xlX" id="C24-WP-LNn"/>
                 <outlet property="productDescLbl" destination="B2U-Cb-giv" id="l2S-8f-WOP"/>
                 <outlet property="productDetailLbl" destination="LMd-Yr-5tp" id="p7R-JK-HM6"/>
                 <outlet property="productLbl" destination="NmJ-iU-Pu5" id="3be-W9-WlM"/>

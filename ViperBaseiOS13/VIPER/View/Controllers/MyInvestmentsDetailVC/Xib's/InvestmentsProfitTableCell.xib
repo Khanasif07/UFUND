@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
+        </array>
         <array key="Poppins-Medium.ttf">
             <string>Poppins-Medium</string>
         </array>
@@ -44,7 +47,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(20% of overall investment.)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJH-hJ-s4c">
-                                        <rect key="frame" x="0.0" y="46" width="138.5" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="46" width="124.5" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -84,7 +87,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0.0%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPs-p1-XoJ">
-                                        <rect key="frame" x="0.0" y="36.5" width="31.5" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="29.5" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="10"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -95,22 +98,24 @@
                                 <rect key="frame" x="167" y="89" width="180" height="180"/>
                                 <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="OZv-yd-Atg"/>
+                                    <constraint firstAttribute="height" constant="180" id="OZv-yd-Atg">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="225"/>
+                                    </constraint>
                                     <constraint firstAttribute="width" secondItem="wvm-tc-Z3i" secondAttribute="height" id="nTd-Pg-Tcc"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tIL-go-9L2">
-                                <rect key="frame" x="227" y="157" width="60" height="44.5"/>
+                                <rect key="frame" x="228.5" y="158.5" width="57.5" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Earn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTP-oK-ofD">
-                                        <rect key="frame" x="3" y="0.0" width="54.5" height="15.5"/>
+                                        <rect key="frame" x="4" y="0.0" width="49" height="13"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Z5-Ct-gXM">
-                                        <rect key="frame" x="0.0" y="15.5" width="60" height="29"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <rect key="frame" x="0.0" y="13" width="57.5" height="28"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -124,8 +129,8 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Investment &amp; Profit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQB-5f-4Te">
-                                <rect key="frame" x="6" y="27" width="181.5" height="20"/>
-                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
+                                <rect key="frame" x="6" y="27" width="172.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -163,11 +168,16 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="netProfileTitleLbl" destination="gda-5j-S3E" id="QwX-7w-G7X"/>
                 <outlet property="netProfitValueLbl" destination="8kA-1Q-jle" id="cyL-aL-ccB"/>
                 <outlet property="newProfitPercentageLbl" destination="OPs-p1-XoJ" id="x53-dJ-VYW"/>
                 <outlet property="progressValue" destination="9Z5-Ct-gXM" id="4Bu-ss-Asf"/>
                 <outlet property="progressView" destination="wvm-tc-Z3i" id="cKM-oN-LwT"/>
+                <outlet property="totalEarnTitleLbl" destination="TTP-oK-ofD" id="wi0-R5-tjN"/>
+                <outlet property="youEarnedTitlelbl" destination="H6M-lz-8ES" id="sfN-lb-1hl"/>
                 <outlet property="yourEarnedValueLbl" destination="qm3-qO-y3v" id="ZsU-Tc-5bQ"/>
+                <outlet property="yourInvAndProfileTitlelbl" destination="QQB-5f-4Te" id="x5j-TB-Poi"/>
+                <outlet property="yourInvestTitlelbl" destination="vq0-zi-hMz" id="tUE-C7-fce"/>
                 <outlet property="yourInvestmentPercentageLbl" destination="nJH-hJ-s4c" id="9Xy-9A-ZQK"/>
                 <outlet property="yourInvestmentValueLbl" destination="TFX-kh-mTE" id="qJ4-uC-mtt"/>
             </connections>

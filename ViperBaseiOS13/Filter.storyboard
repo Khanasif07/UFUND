@@ -618,7 +618,9 @@
                     </view>
                     <connections>
                         <outlet property="fromTextField" destination="ABP-X0-ha1" id="MT7-S2-UHC"/>
+                        <outlet property="fromTitlelbl" destination="bQR-ul-nYS" id="li2-fm-0Ih"/>
                         <outlet property="toTextField" destination="72q-Zl-jXt" id="cFR-y2-xPI"/>
+                        <outlet property="toTitlelbl" destination="LQU-Gu-Fl4" id="SXJ-pq-gpE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RoG-Oi-tYm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

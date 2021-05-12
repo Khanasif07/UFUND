@@ -36,7 +36,9 @@
                                 <rect key="frame" x="167" y="26" width="180" height="180"/>
                                 <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="Fk8-ep-Cdd"/>
+                                    <constraint firstAttribute="height" constant="180" id="Fk8-ep-Cdd">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="225"/>
+                                    </constraint>
                                     <constraint firstAttribute="width" secondItem="vpJ-c8-B0L" secondAttribute="height" id="Nkm-rB-SqC"/>
                                 </constraints>
                             </view>
@@ -72,6 +74,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="overAllInvestmentLbl" destination="bhR-Wu-Tuc" id="Ipx-aj-wa0"/>
+                <outlet property="overallInvestmentlbl" destination="b6h-8T-BjH" id="psl-eW-wXH"/>
                 <outlet property="progressValue" destination="Znt-4y-7Ex" id="Sh6-Ga-sco"/>
                 <outlet property="progressView" destination="vpJ-c8-B0L" id="1RE-pC-wBT"/>
             </connections>

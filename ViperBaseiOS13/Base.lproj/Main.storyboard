@@ -12840,7 +12840,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="32" height="32"/>
+        <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="back" width="57.5" height="41"/>
         <image name="bgImg" width="564.5" height="1216.5"/>
         <image name="blackFilter" width="19" height="20"/>

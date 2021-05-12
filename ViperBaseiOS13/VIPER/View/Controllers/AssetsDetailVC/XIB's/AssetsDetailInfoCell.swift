@@ -13,6 +13,7 @@ class AssetsDetailInfoCell: UITableViewCell {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet var titleLbls: [UILabel]!
     @IBOutlet weak var tokenDecimnalLbl: UILabel!
     @IBOutlet weak var coinLbl: UILabel!
     @IBOutlet weak var typeLbl: UILabel!
@@ -31,7 +32,11 @@ class AssetsDetailInfoCell: UITableViewCell {
     //===========================
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.titleLbls.forEach({ (lbl) in
+            lbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)})
+        [tokenDecimnalLbl,coinLbl,typeLbl,categorylbl,auditorsLbl,backedAssetsLbl,contractAddressLbl,tokenTypeLbl,rewardsLbl,totalSupplyLbl].forEach { (lbl) in
+            lbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        }
     }
     
     func configureCell(model:ProductModel){

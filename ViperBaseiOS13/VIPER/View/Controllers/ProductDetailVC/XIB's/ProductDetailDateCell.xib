@@ -144,8 +144,10 @@
             <connections>
                 <outlet property="bottomStackView" destination="pZJ-px-hS0" id="9AG-zK-IYF"/>
                 <outlet property="investmentStartDateLbl" destination="PMk-ia-ErG" id="PmY-wb-ihI"/>
+                <outlet property="investmentStartDateTitlelbl" destination="RAv-4Z-c7f" id="7PH-nk-dQf"/>
                 <outlet property="investmentStartStackView" destination="gr7-eD-M7z" id="Ab8-RL-zy1"/>
                 <outlet property="maturityDateLbl" destination="twX-BZ-itA" id="sZt-wD-ePl"/>
+                <outlet property="maturityDateTitlelbl" destination="zak-5y-I0t" id="Z8u-bp-izm"/>
                 <outlet property="offerEndDateLbl" destination="iKQ-DB-yI2" id="CcY-SW-huw"/>
                 <outlet property="offerEndDateTitleLbl" destination="Cwp-Jv-R7o" id="NJX-iB-kRP"/>
                 <outlet property="offerStartDateLbl" destination="y0B-RP-Mi8" id="nx1-9L-2YH"/>

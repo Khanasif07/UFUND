@@ -8,7 +8,7 @@
 
 import UIKit
 import iOSDropDown
-
+import ObjectMapper
 
 class MyWalletVC: UIViewController {
     
@@ -35,6 +35,10 @@ class MyWalletVC: UIViewController {
     //===========================
     let bottomSheetVC = MyWalletSheetVC()
     var  buttonView = UIButton()
+    private lazy var loader  : UIView = {
+        return createActivityIndicator(self.view)
+    }()
+       
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
@@ -148,6 +152,7 @@ extension MyWalletVC {
             print(index)
             print(id)
         }
+        self.hitWalletAPI()
         
     }
     
@@ -179,6 +184,12 @@ extension MyWalletVC {
         let globalPoint = bottomStackView.superview?.convert(bottomStackView.frame.origin, to: nil)
         bottomSheetVC.textContainerHeight = (globalPoint?.y ?? 0.0)
         self.view.layoutIfNeeded()
+    }
+    
+    private func hitWalletAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
+        
     }
 }
 
@@ -217,4 +228,27 @@ extension MyWalletVC : UITextFieldDelegate {
     }
 }
 
+
+//MARK: - PresenterOutputProtocol
+//===========================
+extension MyWalletVC: PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
+        switch api {
+        case Base.wallet.rawValue:
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                print(data)
+            }
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+}
 

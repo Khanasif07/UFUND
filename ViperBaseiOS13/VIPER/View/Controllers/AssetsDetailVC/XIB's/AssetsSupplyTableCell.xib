@@ -185,13 +185,17 @@
                 <outlet property="myTokenLbl" destination="NRo-tB-UuO" id="KWv-rB-bYc"/>
                 <outlet property="myTokenPerLbl" destination="X5e-DP-A7e" id="KYj-45-kMh"/>
                 <outlet property="myTokenStackView" destination="n31-4h-2GZ" id="WaZ-7H-8Hd"/>
+                <outlet property="myTokentitleLbl" destination="O9H-28-ssc" id="W5i-mj-rhv"/>
                 <outlet property="pieChartView" destination="0jf-uK-zgi" id="QFB-pW-S8H"/>
+                <outlet property="totalRemTitleLbl" destination="eDX-Jz-35S" id="WbD-1W-R5C"/>
                 <outlet property="totalRemainingLbl" destination="ykX-LY-75g" id="37I-D7-JrH"/>
                 <outlet property="totalRemainingPerLbl" destination="TSB-52-VSt" id="QEs-5x-ZFt"/>
                 <outlet property="totalSoldLbl" destination="MxH-4E-2pn" id="RG6-VX-tKS"/>
                 <outlet property="totalSoldPerLbl" destination="uff-ga-JzQ" id="BeV-A8-PWk"/>
+                <outlet property="totalSoldTitlelbl" destination="xtC-ZB-MwW" id="0Oh-c0-Zoz"/>
                 <outlet property="totalSupplyLbl" destination="1ic-bM-vX9" id="TDt-iR-Gin"/>
                 <outlet property="totalSupplyPieChartLbl" destination="Xxp-TW-AyI" id="aKh-6M-VKg"/>
+                <outlet property="totalSupplyTitleLbl" destination="hfP-PQ-7kZ" id="Se9-aU-e94"/>
             </connections>
             <point key="canvasLocation" x="102.17391304347827" y="170.42410714285714"/>
         </tableViewCell>

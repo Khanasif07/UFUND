@@ -12,6 +12,7 @@ class ProductDetailDateCell: UITableViewCell {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var investmentStartDateTitlelbl: UILabel!
     @IBOutlet weak var investmentStartStackView: UIStackView!
     @IBOutlet weak var offerEndDateTitleLbl: UILabel!
     @IBOutlet weak var offerStartDateTitleLbl: UILabel!
@@ -20,6 +21,7 @@ class ProductDetailDateCell: UITableViewCell {
     @IBOutlet weak var maturityDateLbl: UILabel!
     @IBOutlet weak var investmentStartDateLbl: UILabel!
     @IBOutlet weak var offerEndDateLbl: UILabel!
+    @IBOutlet weak var maturityDateTitlelbl: UILabel!
     // MARK: - Variables
     //===========================
     
@@ -27,7 +29,14 @@ class ProductDetailDateCell: UITableViewCell {
     //===========================
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        offerStartDateTitleLbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        offerStartDateLbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        offerEndDateTitleLbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        offerEndDateLbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        investmentStartDateTitlelbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        investmentStartDateLbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        maturityDateTitlelbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        maturityDateLbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
     }
     
     override func layoutSubviews() {

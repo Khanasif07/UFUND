@@ -16,6 +16,6 @@ class ProductSortTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        sortTitleLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x14) : .setCustomFont(name: .regular, size: .x14)
+        sortTitleLbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x20) : .setCustomFont(name: .regular, size: .x15)
     }
 }

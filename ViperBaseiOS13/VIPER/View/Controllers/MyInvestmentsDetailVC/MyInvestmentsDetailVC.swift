@@ -154,7 +154,9 @@ extension MyInvestmentsDetailVC {
             self.buyProductBtn.isUserInteractionEnabled = (productModel?.tokenrequest?.avilable_token ?? 0) == 0 ?  false
                 : true
         }
-        
+         self.statusLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x17) : .setCustomFont(name: .bold, size: .x13)
+        self.buyProductBtn.titleLabel?.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
+        self.investBtn.titleLabel?.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
     }
     
     private func setFooterView(){

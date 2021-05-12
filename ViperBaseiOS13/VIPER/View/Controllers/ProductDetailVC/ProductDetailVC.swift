@@ -110,6 +110,9 @@ extension ProductDetailVC {
         : UIColor.rgb(r: 255, g: 31, b: 45)
         self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
         : true
+        self.statusLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x17) : .setCustomFont(name: .bold, size: .x13)
+        self.buyProductBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
+        self.investBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
     }
     
     private func setFooterView(){

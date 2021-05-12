@@ -92,7 +92,7 @@ extension DashboardTabsTableCell: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if isDeviceIPad {
-            return CGSize(width: (collectionView.frame.width) / 2 , height: 300.0)
+            return CGSize(width: (collectionView.frame.width) / 2 , height: 325.0)
         } else {
             return CGSize(width: (collectionView.frame.width) / 2 , height: 175.0)
         }

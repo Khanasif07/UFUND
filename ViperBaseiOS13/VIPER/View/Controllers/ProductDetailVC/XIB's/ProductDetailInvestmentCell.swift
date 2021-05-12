@@ -11,6 +11,7 @@ class ProductDetailInvestmentCell: UITableViewCell {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var overallInvestmentlbl: UILabel!
     @IBOutlet weak var progressValue: UILabel!
     @IBOutlet weak var progressView: CircularProgressBar!
     @IBOutlet weak var overAllInvestmentLbl: UILabel!
@@ -23,6 +24,9 @@ class ProductDetailInvestmentCell: UITableViewCell {
     //===========================
     override func awakeFromNib() {
         super.awakeFromNib()
+        overallInvestmentlbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        overAllInvestmentLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x28) : .setCustomFont(name: .bold, size: .x24)
+        progressValue.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x28) : .setCustomFont(name: .semiBold, size: .x24)
         self.setupProgressView()
     }
     

@@ -106,7 +106,7 @@ extension ProductSortVC {
             self.titleLbl.text = Constants.string.category.localize()
             self.setSelectedSortingDataForCategory()
         }
-        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.tableViewSetup()
         self.setUpTapGesture()
     }
@@ -209,11 +209,7 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if isDeviceIPad{
-            return 52.0
-        } else{
-            return 47.0
-        }
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

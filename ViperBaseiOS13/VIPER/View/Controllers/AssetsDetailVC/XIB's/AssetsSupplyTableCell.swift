@@ -13,6 +13,10 @@ class AssetsSupplyTableCell: UITableViewCell,ChartViewDelegate {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var totalSoldTitlelbl: UILabel!
+    @IBOutlet weak var totalRemTitleLbl: UILabel!
+    @IBOutlet weak var myTokentitleLbl: UILabel!
+    @IBOutlet weak var totalSupplyTitleLbl: UILabel!
     @IBOutlet weak var totalSupplyPieChartLbl: UILabel!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var dataContainerVIew: UIView!
@@ -35,6 +39,13 @@ class AssetsSupplyTableCell: UITableViewCell,ChartViewDelegate {
     //===========================
     override func awakeFromNib() {
         super.awakeFromNib()
+        totalSupplyPieChartLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
+        [totalSoldTitlelbl,totalRemTitleLbl,totalSupplyTitleLbl].forEach { (lbl) in
+            lbl.font = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        }
+        [totalSupplyLbl,myTokenLbl,totalRemainingLbl,totalSoldLbl].forEach { (lbl) in
+            lbl.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        }
         self.setupProgressView()
     }
     

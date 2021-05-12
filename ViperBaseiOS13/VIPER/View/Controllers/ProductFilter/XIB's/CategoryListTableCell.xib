@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SourceSansPro-Regular.ttf">
-            <string>SourceSansPro-Regular</string>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -25,17 +26,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <subviews>
                             <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cosmetics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbX-E6-LIt">
-                                <rect key="frame" x="16" y="13.5" width="256" height="17.5"/>
+                                <rect key="frame" x="16" y="10" width="254" height="24"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQR-3V-JG2">
-                                <rect key="frame" x="282" y="11" width="22" height="22"/>
+                                <rect key="frame" x="280" y="10" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="22" id="dT2-WS-M5D"/>
-                                    <constraint firstAttribute="height" constant="22" id="giU-i4-HOq"/>
+                                    <constraint firstAttribute="width" secondItem="wQR-3V-JG2" secondAttribute="height" id="G1W-db-qZS"/>
+                                    <constraint firstAttribute="height" constant="24" id="fI2-hE-8dv"/>
                                 </constraints>
                                 <state key="normal" image="checkBoxUncheck"/>
                                 <state key="selected" image="checkBoxChecked"/>
@@ -48,6 +49,8 @@
                             <constraint firstItem="VbX-E6-LIt" firstAttribute="leading" secondItem="eZX-4p-ZbN" secondAttribute="leading" constant="16" id="8ea-j5-E8w"/>
                             <constraint firstAttribute="height" constant="44" id="ETq-Fq-LeR"/>
                             <constraint firstAttribute="trailing" secondItem="wQR-3V-JG2" secondAttribute="trailing" constant="16" id="JJW-on-P1v"/>
+                            <constraint firstItem="VbX-E6-LIt" firstAttribute="top" secondItem="eZX-4p-ZbN" secondAttribute="top" constant="10" id="a0x-dV-5Kl"/>
+                            <constraint firstAttribute="bottom" secondItem="VbX-E6-LIt" secondAttribute="bottom" constant="10" id="gb7-kv-zHZ"/>
                             <constraint firstItem="VbX-E6-LIt" firstAttribute="centerY" secondItem="eZX-4p-ZbN" secondAttribute="centerY" id="ioN-gu-1k1"/>
                         </constraints>
                     </view>

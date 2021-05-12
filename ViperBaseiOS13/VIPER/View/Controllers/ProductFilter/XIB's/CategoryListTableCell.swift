@@ -51,7 +51,7 @@ class CategoryListTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.categoryTitleLabel.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x20) : .setCustomFont(name: .regular, size: .x15)
     }
     
     private func populateData() {

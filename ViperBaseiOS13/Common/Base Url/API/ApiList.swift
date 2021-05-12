@@ -75,7 +75,7 @@ enum Base : String {
     case filter = "/api/filter-data?filter_type="
     case tokenDetail = "/api/tokenized-asset-details"
     case details = "?detail="
-    case  wallet = "/api/wallet"
+//    case  wallet = "/api/wallet"
     case payHistory = "/api/coinpayment-history"
     
     
@@ -111,6 +111,7 @@ enum Base : String {
     case productsDetail = "api/product-details"
     case tokensDetail = "api/get-tokenized-asset-detail"
     case paymentMethods = "/api/pay-methods"
+    case wallet = "/api/get-balance"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .signUp

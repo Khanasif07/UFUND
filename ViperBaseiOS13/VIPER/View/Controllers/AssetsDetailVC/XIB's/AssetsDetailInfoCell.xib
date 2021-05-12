@@ -259,6 +259,16 @@
                 <outlet property="tokenTypeLbl" destination="U8z-Mm-HyY" id="46B-AA-zyF"/>
                 <outlet property="totalSupplyLbl" destination="uNU-ci-x3c" id="i2F-gX-Bwu"/>
                 <outlet property="typeLbl" destination="MZD-Ng-HVk" id="m9J-wb-LnM"/>
+                <outletCollection property="titleLbls" destination="Q60-kg-cpK" collectionClass="NSMutableArray" id="G9L-Yc-auS"/>
+                <outletCollection property="titleLbls" destination="su6-j3-jwi" collectionClass="NSMutableArray" id="frI-wh-9f1"/>
+                <outletCollection property="titleLbls" destination="Ti0-Xw-sAZ" collectionClass="NSMutableArray" id="FxS-lm-JOU"/>
+                <outletCollection property="titleLbls" destination="gdd-Ge-ey9" collectionClass="NSMutableArray" id="HdF-tD-iPA"/>
+                <outletCollection property="titleLbls" destination="Y6P-ZN-kQs" collectionClass="NSMutableArray" id="ifL-NL-ph4"/>
+                <outletCollection property="titleLbls" destination="Olx-vX-Y5O" collectionClass="NSMutableArray" id="fvo-e9-t7E"/>
+                <outletCollection property="titleLbls" destination="Vqj-5f-X32" collectionClass="NSMutableArray" id="1Vk-J7-bWn"/>
+                <outletCollection property="titleLbls" destination="rvb-Sm-g7O" collectionClass="NSMutableArray" id="tZ5-8G-iWb"/>
+                <outletCollection property="titleLbls" destination="13G-Dh-ZL0" collectionClass="NSMutableArray" id="EQs-3g-sfc"/>
+                <outletCollection property="titleLbls" destination="x4y-ij-MY5" collectionClass="NSMutableArray" id="TDP-tu-FOm"/>
             </connections>
             <point key="canvasLocation" x="127" y="233"/>
         </tableViewCell>

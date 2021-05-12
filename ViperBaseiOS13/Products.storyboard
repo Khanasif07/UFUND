@@ -532,8 +532,8 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbv-xX-pus">
-                                            <rect key="frame" x="40" y="14.5" width="26.5" height="16"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                            <rect key="frame" x="40" y="6" width="26.5" height="32.5"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -542,7 +542,8 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="jbv-xX-pus" secondAttribute="trailing" constant="16" id="1kE-Sh-7We"/>
                                         <constraint firstItem="jbv-xX-pus" firstAttribute="leading" secondItem="bLb-lf-faf" secondAttribute="trailing" constant="12" id="Dpb-Mr-mq9"/>
-                                        <constraint firstAttribute="height" constant="44.5" id="OV5-1S-Vas"/>
+                                        <constraint firstAttribute="bottom" secondItem="jbv-xX-pus" secondAttribute="bottom" constant="6" id="NEi-z5-JNQ"/>
+                                        <constraint firstItem="jbv-xX-pus" firstAttribute="top" secondItem="GwU-Nb-yUb" secondAttribute="top" constant="6" id="Xo6-px-txg"/>
                                         <constraint firstItem="bLb-lf-faf" firstAttribute="centerY" secondItem="GwU-Nb-yUb" secondAttribute="centerY" id="jNe-Zl-Yyx"/>
                                         <constraint firstItem="bLb-lf-faf" firstAttribute="leading" secondItem="GwU-Nb-yUb" secondAttribute="leading" constant="8" id="nD6-TV-vJq"/>
                                         <constraint firstItem="bLb-lf-faf" firstAttribute="height" secondItem="GwU-Nb-yUb" secondAttribute="height" multiplier="0.45" id="o8k-fZ-heu"/>
@@ -554,8 +555,8 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="MsA-eD-5e3" secondAttribute="trailing" id="0yL-mv-fBX"/>
                                 <constraint firstItem="GwU-Nb-yUb" firstAttribute="leading" secondItem="b8K-mI-Hhv" secondAttribute="leading" id="9FQ-TT-jvf"/>
+                                <constraint firstItem="GwU-Nb-yUb" firstAttribute="centerY" secondItem="MsA-eD-5e3" secondAttribute="centerY" multiplier="0.3" id="AoW-Mv-UBL"/>
                                 <constraint firstAttribute="bottom" secondItem="MsA-eD-5e3" secondAttribute="bottom" id="S34-mn-6G1"/>
-                                <constraint firstItem="GwU-Nb-yUb" firstAttribute="centerY" secondItem="MsA-eD-5e3" secondAttribute="centerY" multiplier="0.3" id="cIM-mK-h2X"/>
                                 <constraint firstItem="MsA-eD-5e3" firstAttribute="leading" secondItem="b8K-mI-Hhv" secondAttribute="leading" id="h9e-3Z-eZP"/>
                                 <constraint firstItem="MsA-eD-5e3" firstAttribute="top" secondItem="b8K-mI-Hhv" secondAttribute="top" id="ia3-l8-plb"/>
                             </constraints>
@@ -982,16 +983,17 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-jE-Jt6">
-                                            <rect key="frame" x="40.5" y="17" width="26.5" height="16"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                            <rect key="frame" x="40.5" y="6" width="26.5" height="38"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="IUK-jE-Jt6" secondAttribute="bottom" constant="6" id="AAn-7z-OCH"/>
                                         <constraint firstItem="cIr-39-ree" firstAttribute="centerY" secondItem="laY-Du-M3H" secondAttribute="centerY" id="ADZ-7D-hsX"/>
-                                        <constraint firstAttribute="height" constant="50" id="Gg2-kw-28P"/>
+                                        <constraint firstItem="IUK-jE-Jt6" firstAttribute="top" secondItem="laY-Du-M3H" secondAttribute="top" constant="6" id="LPN-sp-sjT"/>
                                         <constraint firstItem="IUK-jE-Jt6" firstAttribute="centerY" secondItem="laY-Du-M3H" secondAttribute="centerY" id="NQm-lA-NIf"/>
                                         <constraint firstAttribute="trailing" secondItem="IUK-jE-Jt6" secondAttribute="trailing" constant="16" id="b0H-8f-9Xs"/>
                                         <constraint firstItem="IUK-jE-Jt6" firstAttribute="leading" secondItem="cIr-39-ree" secondAttribute="trailing" constant="12.5" id="g18-f6-Qpg"/>
@@ -1935,15 +1937,16 @@ Percentage (%)</string>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsm-pF-ipC">
-                                            <rect key="frame" x="40" y="14.5" width="26.5" height="16"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                            <rect key="frame" x="40" y="6" width="26.5" height="32.5"/>
+                                            <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" red="0.14117647059999999" green="0.63529411759999999" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="44.5" id="Jnr-P6-Qt6"/>
+                                        <constraint firstItem="lDa-Yy-96I" firstAttribute="bottom" secondItem="qsm-pF-ipC" secondAttribute="bottom" constant="6" id="1aX-JA-uf6"/>
+                                        <constraint firstAttribute="top" secondItem="qsm-pF-ipC" secondAttribute="top" constant="-6" id="6Pj-mM-lBs"/>
                                         <constraint firstAttribute="trailing" secondItem="qsm-pF-ipC" secondAttribute="trailing" constant="16" id="OLf-mR-Fw4"/>
                                         <constraint firstItem="qsm-pF-ipC" firstAttribute="centerY" secondItem="Fdt-6F-Qvl" secondAttribute="centerY" id="TVo-Ie-a1V"/>
                                         <constraint firstItem="Fo3-uo-rkV" firstAttribute="leading" secondItem="Fdt-6F-Qvl" secondAttribute="leading" constant="8" id="hQG-nO-f6H"/>
@@ -2527,9 +2530,11 @@ Percentage (%)</string>
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="Lm6-lM-xRt" id="3du-Rg-FIR"/>
+                        <outlet property="filterBtn" destination="vaZ-gQ-3eE" id="bSt-5q-HM2"/>
                         <outlet property="mainCollView" destination="40N-2H-0s6" id="jNJ-OQ-7yG"/>
                         <outlet property="searchBar" destination="D4T-5z-uvd" id="7yb-xs-I8D"/>
                         <outlet property="searchViewHConst" destination="XHd-RC-IGx" id="s5G-kk-Keq"/>
+                        <outlet property="sortBtn" destination="bDb-Uv-1Pd" id="YoV-x7-7AO"/>
                         <outlet property="titleLbl" destination="I3j-zO-BMN" id="9Nq-JC-goJ"/>
                     </connections>
                 </viewController>

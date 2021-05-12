@@ -65,6 +65,10 @@ extension PriceRangeVC : RangeSeekSliderDelegate {
     }
     
     private func initialSetup() {
+        self.maxRangeLbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x15)
+        self.minRangeLbl.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x15)
+        self.minRangeField.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x24) : .setCustomFont(name: .medium, size: .x20)
+        self.maxRangeField.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x24) : .setCustomFont(name: .medium, size: .x20)
         self.priceSlider.delegate = self
         switch filterPriceType {
         case .priceRange:
