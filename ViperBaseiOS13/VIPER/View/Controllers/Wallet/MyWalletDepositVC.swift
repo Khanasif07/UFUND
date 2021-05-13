@@ -14,6 +14,10 @@ class MyWalletDepositVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var desWalletLastVIew: UIImageView!
+    @IBOutlet weak var desWalletfirstVIew: UIImageView!
+    @IBOutlet weak var qrCodeImgView: UIImageView!
+    @IBOutlet weak var qrcodeView: UIView!
     @IBOutlet weak var addAmtLbl: UILabel!
     @IBOutlet weak var depositToWalletLbl: UILabel!
     @IBOutlet weak var currencyTxtField: UITextField!
@@ -68,10 +72,12 @@ extension MyWalletDepositVC: UITextFieldDelegate {
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
         currencyTxtField.text =  self.selectedCurrencyType
+        qrCodeImgView.image = Common.CreateQrCodeForyourString(string: "Hacking with Swift is the best iOS coding tutorial I've ever read!")
+        addAmtLbl.isHidden = true
+        amtTxtField.isHidden = true
     }
     
     private func setFont(){
-//        currencyControl.setTitleTextAttributes([NSAttributedString.Key.font: isDeviceIPad ? 20 : 15], for: .normal)
         self.currencyTxtField.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x15)
         self.amtTxtField.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x28) : .setCustomFont(name: .regular, size: .x24)
         self.depositToWalletLbl.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x20) : .setCustomFont(name: .regular, size: .x16)
@@ -85,11 +91,26 @@ extension MyWalletDepositVC: UITextFieldDelegate {
             currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
             currencyTxtField.text =  self.selectedCurrencyType
             currencyTxtField.isUserInteractionEnabled = true
+            qrcodeView.isHidden = false
+            addAmtLbl.isHidden = true
+            desWalletLastVIew.isHidden = false
+            desWalletfirstVIew.isHidden = true
+            amtTxtField.isHidden = true
+            descLbl.text = "Copy address or scan QR to add money to "
         } else {
             currencyTxtField.rightView = nil
             currencyTxtField.inputView = nil
             currencyTxtField.text = " Dollar (USD)"
+            descLbl.text = "Amount will be added to UFUND wallet"
             currencyTxtField.isUserInteractionEnabled = false
+            addAmtLbl.isHidden = false
+            desWalletLastVIew.isHidden = true
+            desWalletfirstVIew.isHidden = false
+            amtTxtField.isHidden = false
+            qrcodeView.isHidden = true
+        }
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -99,7 +120,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
         vc.usingForSort = .filter
-        vc.sortArray = [("ETC",false),("BITCOIN",false)]
+        vc.sortArray = [("ETC",false),("Bitcoin",false)]
         vc.sortTypeApplied = self.selectedCurrencyType
         self.present(vc, animated: true, completion: nil)
     }

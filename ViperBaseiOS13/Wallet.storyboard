@@ -446,7 +446,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkh-Yf-CyI">
-                                        <rect key="frame" x="0.0" y="523.5" width="414" height="372.5"/>
+                                        <rect key="frame" x="0.0" y="159.5" width="414" height="736.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deposit to Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ha1-eo-cel">
                                                 <rect key="frame" x="16" y="15" width="126.5" height="19.5"/>
@@ -473,13 +473,13 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KwM-9V-Rq4">
-                                                <rect key="frame" x="0.0" y="53" width="414" height="319.5"/>
+                                                <rect key="frame" x="0.0" y="53" width="414" height="683.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r08-2d-JJa">
-                                                        <rect key="frame" x="0.0" y="6" width="414" height="165.5"/>
+                                                        <rect key="frame" x="0.0" y="6" width="414" height="503.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="O0T-Eg-WNW">
-                                                                <rect key="frame" x="16" y="73" width="382" height="76.5"/>
+                                                                <rect key="frame" x="16" y="73" width="382" height="414.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJq-ar-cTT">
                                                                         <rect key="frame" x="0.0" y="0.0" width="79" height="16.5"/>
@@ -495,7 +495,37 @@
                                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="28"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeJ-3D-sFw">
+                                                                        <rect key="frame" x="0.0" y="84.5" width="382" height="330"/>
+                                                                        <subviews>
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C2z-9C-s0p">
+                                                                                <rect key="frame" x="101" y="50" width="180" height="180"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="C2z-9C-s0p" secondAttribute="height" id="HLK-OF-Ejb"/>
+                                                                                    <constraint firstAttribute="height" constant="180" id="qPw-KZ-Eh2"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sg2432371261`w809279y89" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nro-nB-DmN">
+                                                                                <rect key="frame" x="101" y="249" width="180" height="14"/>
+                                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                                <color key="textColor" name="tabUnSelected"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="nro-nB-DmN" firstAttribute="trailing" secondItem="C2z-9C-s0p" secondAttribute="trailing" id="74B-AH-BOQ"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="C2z-9C-s0p" secondAttribute="bottom" constant="100" id="Xmd-Vs-n0m"/>
+                                                                            <constraint firstItem="nro-nB-DmN" firstAttribute="leading" secondItem="C2z-9C-s0p" secondAttribute="leading" id="Zif-fr-QwY"/>
+                                                                            <constraint firstItem="nro-nB-DmN" firstAttribute="top" secondItem="C2z-9C-s0p" secondAttribute="bottom" constant="19" id="ehb-Wn-3EC"/>
+                                                                            <constraint firstItem="C2z-9C-s0p" firstAttribute="centerX" secondItem="IeJ-3D-sFw" secondAttribute="centerX" id="h4R-iJ-h2k"/>
+                                                                            <constraint firstItem="C2z-9C-s0p" firstAttribute="top" secondItem="IeJ-3D-sFw" secondAttribute="top" constant="50" id="sb1-Li-wyt"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="IeJ-3D-sFw" secondAttribute="trailing" id="1dY-1S-UL7"/>
+                                                                </constraints>
                                                             </stackView>
                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dHC-Gi-EzF">
                                                                 <rect key="frame" x="16" y="16" width="123" height="32"/>
@@ -511,7 +541,7 @@
                                                                 </segments>
                                                             </segmentedControl>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kyf-oS-giE">
-                                                                <rect key="frame" x="16" y="149.5" width="382" height="1"/>
+                                                                <rect key="frame" x="16" y="487.5" width="382" height="1"/>
                                                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="az1-py-Nhd"/>
@@ -528,6 +558,7 @@
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Currency" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jqi-L7-TUq">
                                                                         <rect key="frame" x="0.0" y="-2" width="135" height="34"/>
+                                                                        <color key="textColor" red="0.41960784313725491" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
                                                                     </textField>
@@ -578,7 +609,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Sv-Ki-mWf">
-                                                        <rect key="frame" x="16" y="223.5" width="382" height="42"/>
+                                                        <rect key="frame" x="16" y="587.5" width="382" height="42"/>
                                                         <color key="backgroundColor" name="primaryColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="42" id="ff2-H8-PjF">
@@ -594,21 +625,26 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uwe-87-S8o">
-                                                        <rect key="frame" x="86.5" y="182.5" width="241.5" height="26"/>
+                                                        <rect key="frame" x="45" y="520.5" width="324.5" height="52"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWallet" translatesAutoresizingMaskIntoConstraints="NO" id="Sb9-sr-Coo">
-                                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="26" id="LAW-tk-5JJ"/>
                                                                     <constraint firstAttribute="width" secondItem="Sb9-sr-Coo" secondAttribute="height" id="WX1-mF-7KV"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount will be added to UFUND wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5C-R0-aLx">
-                                                                <rect key="frame" x="31" y="6" width="210.5" height="14"/>
+                                                                <rect key="frame" x="57" y="19" width="210.5" height="14"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" red="0.41960784313725491" green="0.41960784313725491" blue="0.41960784313725491" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWallet" translatesAutoresizingMaskIntoConstraints="NO" id="XdY-bH-XbN">
+                                                                <rect key="frame" x="272.5" y="0.0" width="52" height="52"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="XdY-bH-XbN" secondAttribute="height" id="gYk-eB-Jiy"/>
+                                                                </constraints>
+                                                            </imageView>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -668,8 +704,12 @@
                         <outlet property="currencyTxtField" destination="jqi-L7-TUq" id="jAO-Wf-EE1"/>
                         <outlet property="dataContainerView" destination="Mkh-Yf-CyI" id="blP-tz-31f"/>
                         <outlet property="depositToWalletLbl" destination="ha1-eo-cel" id="8jc-Ic-3cT"/>
+                        <outlet property="desWalletLastVIew" destination="XdY-bH-XbN" id="iQc-Ku-MJe"/>
+                        <outlet property="desWalletfirstVIew" destination="Sb9-sr-Coo" id="vWP-eB-QqN"/>
                         <outlet property="descLbl" destination="B5C-R0-aLx" id="2We-gA-Xe1"/>
                         <outlet property="proceedBtn" destination="8Sv-Ki-mWf" id="wBg-fK-ru6"/>
+                        <outlet property="qrCodeImgView" destination="C2z-9C-s0p" id="Zxe-MT-ByG"/>
+                        <outlet property="qrcodeView" destination="IeJ-3D-sFw" id="F0G-d9-7y2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jw5-nA-Udl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1045,6 +1085,9 @@
         </namedColor>
         <namedColor name="primaryColor">
             <color red="1" green="0.11999999731779099" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabUnSelected">
+            <color red="0.69999998807907104" green="0.69999998807907104" blue="0.69999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
