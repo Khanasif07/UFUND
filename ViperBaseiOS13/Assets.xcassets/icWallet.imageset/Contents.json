@@ -17,10 +17,12 @@
     },
     {
       "idiom" : "ipad",
+      "filename" : "Wallet.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
+      "filename" : "Wallet@2x.png",
       "scale" : "2x"
     }
   ],

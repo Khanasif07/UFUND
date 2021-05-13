@@ -1,8 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "icPrivacyPolicy.png",
       "idiom" : "universal",
+      "filename" : "icPrivacyPolicy.png",
       "scale" : "1x"
     },
     {
@@ -11,9 +11,19 @@
       "scale" : "2x"
     },
     {
-      "scale" : "3x",
       "idiom" : "universal",
-      "filename" : "icPrivacyPolicy@3x.png"
+      "filename" : "icPrivacyPolicy@3x.png",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "Privay policy.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "Privay policy@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
