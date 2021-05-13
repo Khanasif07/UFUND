@@ -27,12 +27,20 @@ class ProductsCollectionCell: UICollectionViewCell {
         super.awakeFromNib()
         productValueLbll.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x28) : .setCustomFont(name: .bold, size: .x24)
         productNameLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x14)
-        DispatchQueue.main.async {
-            self.productImg.layer.masksToBounds = true
-            self.productImg.layer.borderWidth = 8.0
-            self.productImg.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
-            self.productImg.layer.cornerRadius = self.productImg.bounds.width / 2
+        if !isDeviceIPad{
+            DispatchQueue.main.async {
+                self.productImg.layer.masksToBounds = true
+                self.productImg.layer.borderWidth = 8.0
+                self.productImg.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
+                self.productImg.layer.cornerRadius = self.productImg.bounds.width / 2
+            }
+        }else {
+            DispatchQueue.main.async {
+                self.productImg.layer.masksToBounds = true
+                self.productImg.layer.cornerRadius = self.productImg.bounds.width / 2
+            }
         }
+       
     }
     
     public func configureCell(indexPath: IndexPath){

@@ -14,6 +14,16 @@
       "idiom" : "universal",
       "filename" : "icEarningInCryptoBg@3x.png",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "Earning in Dollar.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "Earning in Dollar@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

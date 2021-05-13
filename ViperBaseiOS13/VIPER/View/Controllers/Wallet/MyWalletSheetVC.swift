@@ -22,7 +22,7 @@ class MyWalletSheetVC: UIViewController {
      var menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
     lazy var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(closePullUp))
     var fullView: CGFloat {
-        return 70.0
+        return (isDeviceIPad ? 90.0 : 70.0)
     }
     var textContainerHeight : CGFloat? {
         didSet{
@@ -31,7 +31,7 @@ class MyWalletSheetVC: UIViewController {
     }
     var partialView: CGFloat {
 //        return UIScreen.main.bounds.height - (UIApplication.shared.statusBarFrame.height) - (textContainerHeight ?? 0.0)
-        return (textContainerHeight ?? 0.0) + UIApplication.shared.statusBarFrame.height + 64.0
+        return (textContainerHeight ?? 0.0) + UIApplication.shared.statusBarFrame.height + (isDeviceIPad ? 78.0 : 64.0)
     }
     //MARK:- VIEW LIFE CYCLE
     //======================

@@ -14,7 +14,13 @@ class MyWalletVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
-    @IBOutlet weak var currencyTextField: DropDown!
+    @IBOutlet weak var withdrawlBtnLbl: UILabel!
+    @IBOutlet weak var depositBtnLbl: UILabel!
+    @IBOutlet weak var yourWalletBalanceTitleLbl: UILabel!
+    @IBOutlet weak var totalTokensTitleLbl: UILabel!
+    @IBOutlet weak var totalProductsTitlelbl: UILabel!
+    @IBOutlet weak var overUserInvestLbl: UILabel!
+    @IBOutlet weak var currencyTextField: UITextField!
     @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var dropdownView: UIView!
     @IBOutlet weak var currencyControl: UISegmentedControl!
@@ -33,6 +39,7 @@ class MyWalletVC: UIViewController {
     @IBOutlet weak var walletBalanceView: UIView!
     // MARK: - Variables
     //===========================
+    var selectedCurrencyType = "ETC"
     let bottomSheetVC = MyWalletSheetVC()
     var  buttonView = UIButton()
     private lazy var loader  : UIView = {
@@ -81,7 +88,7 @@ class MyWalletVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func withdrawlBtnAction(_ sender: UIButton) {
-        let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
+        let vc = MyWalletWithdrawlVC.instantiate(fromAppStoryboard: .Wallet)
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -124,6 +131,7 @@ extension MyWalletVC {
     
     private func initialSetup() {
         self.setUpBorder()
+        self.setFont()
     }
     
     private func setUpBorder(){
@@ -144,23 +152,34 @@ extension MyWalletVC {
         self.currencyTextField.delegate = self
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         currencyTextField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
-        currencyTextField.optionArray = ["ETH","BTC"]
-        currencyTextField.optionIds = [0,1]
-        currencyTextField.arrowColor = .clear
-        currencyTextField.didSelect { (categoryName, index,id)  in
-            print(categoryName)
-            print(index)
-            print(id)
+    }
+    
+    private func setFont(){
+        [totalTokensTitleLbl,totalProductsTitlelbl,overUserInvestLbl].forEach { (lbl) in
+            lbl.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
         }
-        self.hitWalletAPI()
-        
+        yourWalletBalanceTitleLbl.font  = isDeviceIPad ? .setCustomFont(name: .regular, size: .x18) : .setCustomFont(name: .regular, size: .x14)
+        currencyTextField.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
+        [withdrawlBtnLbl,depositBtnLbl].forEach { (lbl) in
+            lbl.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
+        }
+        [userInvestmentValueLbl,totalProductsValueLbl,totalAssetsValueLbl].forEach { (lbl) in
+            lbl.font  = isDeviceIPad ? .setCustomFont(name: .bold, size: .x28) : .setCustomFont(name: .bold, size: .x24)
+        }
+        yourWalletBalanceLbl.font  = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x32) : .setCustomFont(name: .semiBold, size: .x28)
     }
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
+            currencyTextField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
+            currencyTextField.text =  self.selectedCurrencyType
+            currencyTextField.isUserInteractionEnabled = true
             currencyTextField.isHidden = false
         } else {
-             currencyTextField.isHidden = true
+            currencyTextField.rightView = nil
+            currencyTextField.inputView = nil
+            currencyTextField.text = " Dollar (USD)"
+            currencyTextField.isUserInteractionEnabled = false
         }
     }
     
@@ -168,10 +187,7 @@ extension MyWalletVC {
         
         guard !self.children.contains(bottomSheetVC) else { return }
         self.addChild(bottomSheetVC)
-        //        self.view.addSubview(bottomSheetVC.view)
         self.view.insertSubview(bottomSheetVC.view, belowSubview: self.topView)
-        //        bottomSheetVC.didMove(toParent: self)
-        
         let height = view.frame.height
         let width  = view.frame.width
         bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
@@ -205,16 +221,18 @@ extension MyWalletVC : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
+//MARK: - PresenterOutputProtocol
+//===========================
 extension MyWalletVC : UITextFieldDelegate {
-    
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        if  textField == currencyTextField {
-            self.view.endEditingForce()
-            currencyTextField.showList()
-        }
+        _ = textField.text?.byRemovingLeadingTrailingWhiteSpaces ?? ""
+        self.view.endEditing(true)
+        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
+        vc.delegate = self
+        vc.usingForSort = .filter
+        vc.sortArray = [("ETC",false),("BITCOIN",false)]
+        vc.sortTypeApplied = self.selectedCurrencyType
+        self.present(vc, animated: true, completion: nil)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -251,3 +269,13 @@ extension MyWalletVC: PresenterOutputProtocol {
     }
 }
 
+
+//MARK:- Sorting
+//==============
+extension MyWalletVC: ProductSortVCDelegate{
+    
+    func sortingApplied(sortType: String){
+        self.selectedCurrencyType = sortType
+        currencyTextField.text =  self.selectedCurrencyType
+    }
+}

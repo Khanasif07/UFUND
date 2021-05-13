@@ -42,7 +42,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDW-X6-fy5">
                                         <rect key="frame" x="8.5" y="8.5" width="157" height="157"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r0H-pk-kK9">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icDashboardHome" translatesAutoresizingMaskIntoConstraints="NO" id="r0H-pk-kK9">
                                                 <rect key="frame" x="45" y="21.5" width="67" height="67"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -143,6 +143,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="icDashboardHome" width="71.5" height="71"/>
         <namedColor name="primaryColor">
             <color red="1" green="0.11999999731779099" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
