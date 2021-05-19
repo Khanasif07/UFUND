@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="165" id="KGk-i7-Jjw" customClass="SendCoinsTableCell" customModule="UFUND" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwB-Il-GN4">
+                        <rect key="frame" x="8" y="4" width="359" height="157"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="nH3-TY-dMQ" customClass="ASDynamicCollectionView" customModule="UFUND" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="31.5" width="359" height="125.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Kns-rP-q5J">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Tokens" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXI-Ci-5RG">
+                                <rect key="frame" x="16" y="7.5" width="114.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDb-GI-pvv">
+                                <rect key="frame" x="315" y="3" width="36" height="26"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                <state key="normal" title="See all">
+                                    <color key="titleColor" name="primaryColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LDb-GI-pvv" secondAttribute="trailing" constant="8" id="250-lR-rB8"/>
+                            <constraint firstAttribute="trailing" secondItem="nH3-TY-dMQ" secondAttribute="trailing" id="7Au-pi-4Jv"/>
+                            <constraint firstItem="BXI-Ci-5RG" firstAttribute="leading" secondItem="kwB-Il-GN4" secondAttribute="leading" constant="16" id="MVt-Ul-fVz"/>
+                            <constraint firstItem="LDb-GI-pvv" firstAttribute="centerY" secondItem="BXI-Ci-5RG" secondAttribute="centerY" id="R0l-Ub-nKI"/>
+                            <constraint firstItem="nH3-TY-dMQ" firstAttribute="leading" secondItem="kwB-Il-GN4" secondAttribute="leading" id="VHo-bY-7cO"/>
+                            <constraint firstAttribute="bottom" secondItem="nH3-TY-dMQ" secondAttribute="bottom" id="YaF-ju-79b"/>
+                            <constraint firstItem="nH3-TY-dMQ" firstAttribute="top" secondItem="BXI-Ci-5RG" secondAttribute="bottom" constant="7.5" id="Yvk-Vo-gO4"/>
+                            <constraint firstItem="BXI-Ci-5RG" firstAttribute="top" secondItem="kwB-Il-GN4" secondAttribute="top" constant="7.5" id="cEv-dy-W1I"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="kwB-Il-GN4" secondAttribute="trailing" constant="8" id="D1N-Eb-po2"/>
+                    <constraint firstItem="kwB-Il-GN4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="MTP-VF-Pv5"/>
+                    <constraint firstAttribute="bottom" secondItem="kwB-Il-GN4" secondAttribute="bottom" constant="4" id="Uaz-nf-Axm"/>
+                    <constraint firstItem="kwB-Il-GN4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="vcB-FF-NGl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dataContainerView" destination="kwB-Il-GN4" id="rqw-Mb-7uQ"/>
+                <outlet property="numberOfTokenLbl" destination="BXI-Ci-5RG" id="8Gn-jm-qgK"/>
+                <outlet property="seeAllBtn" destination="LDb-GI-pvv" id="FJz-kQ-wp2"/>
+                <outlet property="tabsCollView" destination="nH3-TY-dMQ" id="hkI-UT-gbJ"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="164.39732142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="primaryColor">
+            <color red="1" green="0.11999999731779099" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

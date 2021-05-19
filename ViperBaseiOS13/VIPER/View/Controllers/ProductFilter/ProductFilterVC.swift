@@ -20,6 +20,7 @@ class ProductFilterVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var applyBtn: UIButton!
     @IBOutlet weak var clearAllButton: UIButton!
@@ -111,8 +112,7 @@ class ProductFilterVC: UIViewController {
 extension ProductFilterVC {
     
     private func initialSetup() {
-        self.applyBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
-        self.closeButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.setUpFont()
         if isFilterWithoutCategory{
             self.setupPagerViewWithoutCategory()
         } else {
@@ -121,6 +121,13 @@ extension ProductFilterVC {
                  self.setupPagerViewWithoutStatus()
             }
         }
+    }
+    
+    private func setUpFont(){
+        self.filterBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x16)
+        self.clearAllButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.applyBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.closeButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
     }
     
     private func setupPagerView(isMenuReload:Bool = true) {

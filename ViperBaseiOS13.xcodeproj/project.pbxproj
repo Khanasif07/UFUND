@@ -316,6 +316,11 @@
 		84E1F2DB26007483002B0062 /* MyWalletSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E1F2DA26007483002B0062 /* MyWalletSectionView.xib */; };
 		84E1F2DE26007DA4002B0062 /* MyWalletTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1F2DC26007DA4002B0062 /* MyWalletTableCell.swift */; };
 		84E1F2DF26007DA4002B0062 /* MyWalletTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E1F2DD26007DA4002B0062 /* MyWalletTableCell.xib */; };
+		84E2A8202653733800872C22 /* SendCoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2A81F2653733800872C22 /* SendCoinVC.swift */; };
+		84E2A8232653830E00872C22 /* SendCoinTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2A8212653830E00872C22 /* SendCoinTableCell.swift */; };
+		84E2A8242653830E00872C22 /* SendCoinTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E2A8222653830E00872C22 /* SendCoinTableCell.xib */; };
+		84E2A8272653DB0600872C22 /* SendCoinsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2A8252653DB0600872C22 /* SendCoinsTableCell.swift */; };
+		84E2A8282653DB0600872C22 /* SendCoinsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E2A8262653DB0600872C22 /* SendCoinsTableCell.xib */; };
 		84FA49AA264D0BD3009270B2 /* MyWalletWithdrawlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA49A9264D0BD3009270B2 /* MyWalletWithdrawlVC.swift */; };
 		84FA6EAE25E4CA330053E618 /* CustomCircularBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EAD25E4CA330053E618 /* CustomCircularBar.swift */; };
 		84FA6EB225E5F0F40053E618 /* TokenizedAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EB125E5F0F40053E618 /* TokenizedAssetsVC.swift */; };
@@ -665,6 +670,11 @@
 		84E1F2DA26007483002B0062 /* MyWalletSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletSectionView.xib; sourceTree = "<group>"; };
 		84E1F2DC26007DA4002B0062 /* MyWalletTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletTableCell.swift; sourceTree = "<group>"; };
 		84E1F2DD26007DA4002B0062 /* MyWalletTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletTableCell.xib; sourceTree = "<group>"; };
+		84E2A81F2653733800872C22 /* SendCoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCoinVC.swift; sourceTree = "<group>"; };
+		84E2A8212653830E00872C22 /* SendCoinTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCoinTableCell.swift; sourceTree = "<group>"; };
+		84E2A8222653830E00872C22 /* SendCoinTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendCoinTableCell.xib; sourceTree = "<group>"; };
+		84E2A8252653DB0600872C22 /* SendCoinsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCoinsTableCell.swift; sourceTree = "<group>"; };
+		84E2A8262653DB0600872C22 /* SendCoinsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendCoinsTableCell.xib; sourceTree = "<group>"; };
 		84FA49A9264D0BD3009270B2 /* MyWalletWithdrawlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletWithdrawlVC.swift; sourceTree = "<group>"; };
 		84FA6EAD25E4CA330053E618 /* CustomCircularBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircularBar.swift; sourceTree = "<group>"; };
 		84FA6EB125E5F0F40053E618 /* TokenizedAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedAssetsVC.swift; sourceTree = "<group>"; };
@@ -1944,6 +1954,7 @@
 		845C131425FF537F0018A1E1 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				84E2A81E2653731D00872C22 /* SendCoinVC */,
 				84E1F2D5260073DF002B0062 /* Xib's */,
 				845C131725FF53F90018A1E1 /* MyWalletVC.swift */,
 				845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */,
@@ -2156,8 +2167,20 @@
 				84E1F2DA26007483002B0062 /* MyWalletSectionView.xib */,
 				84E1F2DC26007DA4002B0062 /* MyWalletTableCell.swift */,
 				84E1F2DD26007DA4002B0062 /* MyWalletTableCell.xib */,
+				84E2A8212653830E00872C22 /* SendCoinTableCell.swift */,
+				84E2A8222653830E00872C22 /* SendCoinTableCell.xib */,
+				84E2A8252653DB0600872C22 /* SendCoinsTableCell.swift */,
+				84E2A8262653DB0600872C22 /* SendCoinsTableCell.xib */,
 			);
 			path = "Xib's";
+			sourceTree = "<group>";
+		};
+		84E2A81E2653731D00872C22 /* SendCoinVC */ = {
+			isa = PBXGroup;
+			children = (
+				84E2A81F2653733800872C22 /* SendCoinVC.swift */,
+			);
+			path = SendCoinVC;
 			sourceTree = "<group>";
 		};
 		84FA6EAB25E4BE440053E618 /* Resources */ = {
@@ -2343,6 +2366,7 @@
 				086F139C246F12F000EA4355 /* SendTokenViewController.xib in Resources */,
 				089C287E23F18E8800230AB3 /* EmptyResultCell.xib in Resources */,
 				84E16F0A25D5215B004F37FA /* ProductCollectionCell.xib in Resources */,
+				84E2A8282653DB0600872C22 /* SendCoinsTableCell.xib in Resources */,
 				842ABD112626BB42007AA9BA /* Poppins-ExtraLightItalic.ttf in Resources */,
 				0825AB7D238BF2A80083AC42 /* HomeCell.xib in Resources */,
 				841A91982609A9FE008AA0A3 /* DashboardTabsTableCell.xib in Resources */,
@@ -2380,6 +2404,7 @@
 				0825AB86238C0B4C0083AC42 /* HeaderCell.xib in Resources */,
 				847C110025DF968300D13A5C /* ProductDetailDateCell.xib in Resources */,
 				847C110425DFC7EF00D13A5C /* ProductDetailInvestmentCell.xib in Resources */,
+				84E2A8242653830E00872C22 /* SendCoinTableCell.xib in Resources */,
 				08DF504823B1E91700621C0E /* SecurityCell.xib in Resources */,
 				08B55EC52387ECEC0014E660 /* AccountCell.xib in Resources */,
 				84D5660425DB96BD0047F052 /* MenuItemCollectionCell.xib in Resources */,
@@ -2626,6 +2651,7 @@
 				84D565EF25DB69380047F052 /* ProductFilterVC.swift in Sources */,
 				0824B0BA2382847800F81A9B /* Formatter.swift in Sources */,
 				08E5CC1323CDA38000DCE77D /* AddAssetsViewController+Extension.swift in Sources */,
+				84E2A8202653733800872C22 /* SendCoinVC.swift in Sources */,
 				087B7B88241D17CA0024D998 /* Data.swift in Sources */,
 				08918BAC23852CC300F274C2 /* ButtonExtension.swift in Sources */,
 				08DF504723B1E91700621C0E /* SecurityCell.swift in Sources */,
@@ -2785,6 +2811,7 @@
 				842763D626380E6500E0FE4A /* WebViewControllerVC.swift in Sources */,
 				082B215423C315650056FBA6 /* InvestmentListViewController.swift in Sources */,
 				0821E8F7241B8C4300263674 /* CryptoReceiveViewController.swift in Sources */,
+				84E2A8272653DB0600872C22 /* SendCoinsTableCell.swift in Sources */,
 				082FBA5A24051DE600F45950 /* TokenAssetsAmountViewController.swift in Sources */,
 				0824B0E523828DE100F81A9B /* Presenter.swift in Sources */,
 				0824B1062382A12000F81A9B /* Int.swift in Sources */,
@@ -2794,6 +2821,7 @@
 				84411E8A25D1048900718BD1 /* GoogleController.swift in Sources */,
 				847C10F725DF8AD600D13A5C /* ProductDetailVC.swift in Sources */,
 				84A08251260CABA300CE95E5 /* DashboardSubmittedProductsCell.swift in Sources */,
+				84E2A8232653830E00872C22 /* SendCoinTableCell.swift in Sources */,
 				0824B0D62382847800F81A9B /* AppData.swift in Sources */,
 				0827A13223C4631E00EDF005 /* CollectionImageCell.swift in Sources */,
 				84FA6EB925E5FEDF0053E618 /* AssetsDetailInfoCell.swift in Sources */,

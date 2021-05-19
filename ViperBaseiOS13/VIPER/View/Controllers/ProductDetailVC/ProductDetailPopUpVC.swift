@@ -50,6 +50,7 @@ class ProductDetailPopUpVC: UIViewController {
     private lazy var loader  : UIView = {
               return createActivityIndicator(self.view)
           }()
+    var totalPayableAmtValue : Double = 0.0
     var productModel: ProductModel?
     var walletBalance: WalletBalance?
     var selectedPaymentMethod: Payment_method?
@@ -61,7 +62,8 @@ class ProductDetailPopUpVC: UIViewController {
                 self.qtyValueLbl.text = "\(01)"
                 let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
                 self.totalProductAmt.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
-                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 50)"
+                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 1)"
+                self.totalPayableAmtValue = percentageValue + 1
                 self.incrView.isHidden = true
                 self.decrView.isHidden = true
             case .InvestProduct:
@@ -71,8 +73,9 @@ class ProductDetailPopUpVC: UIViewController {
                 self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
                 let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
                 self.totalProductAmt.text = "$ " + "\(percentageValue)"
-                self.payableAmountValueLbl.text = "$ " + "\(50)"
-                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 50)"
+                self.payableAmountValueLbl.text = "$ " + "\(1)"
+                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 1)"
+                self.totalPayableAmtValue = percentageValue + 1
             default:
                 self.buyNowBtnTitle = "Buy Now"
                 self.incrView.isHidden = false
@@ -80,8 +83,9 @@ class ProductDetailPopUpVC: UIViewController {
                 self.qtyTxtField.text = "\(currentValInvPer)"
                 let percentageValue = (Double(currentValInvPer) * (productModel?.tokenrequest?.asset?.asset_value ?? 0.0))
                 self.totalProductAmt.text = "$ " + "\(percentageValue)"
-                self.payableAmountValueLbl.text = "$ " + "\(50)"
-                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 50)"
+                self.payableAmountValueLbl.text = "$ " + "\(1)"
+                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 1)"
+                self.totalPayableAmtValue = percentageValue + 1
             }
         }
     }
@@ -162,6 +166,21 @@ extension ProductDetailPopUpVC {
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
     }
+    
+    private func hitBuyInvestTransactionAPI(){
+        self.loader.isHidden = false
+        var params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethod?.key ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
+        switch isForBuyAndToken{
+        case .BuyProduct:
+             params[ProductCreate.keys.type]  = "BUY"
+        case .InvestToken:
+             params[ProductCreate.keys.type]  = "INVEST"
+        case .InvestProduct:
+            params[ProductCreate.keys.type]  = "INVEST"
+        }
+        self.presenter?.HITAPI(api: Base.invest_buy_transaction.rawValue, params: params, methodType: .POST, modelClass: WalletEntity.self, token: true)
+    }
+    
     
     private func setFont(){
         self.titleLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x16)
@@ -294,10 +313,39 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
             let walletData = dataDict as? WalletEntity
             if let data = walletData?.balance {
                 self.walletBalance = data
-                let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
-                self.present(vc, animated: true, completion: nil)
+                switch selectedPaymentMethod?.key {
+                case "ETH":
+                    let ethBalance =  self.walletBalance?.eth ?? 0.0
+                    if ethBalance >= self.totalPayableAmtValue{
+                         self.hitBuyInvestTransactionAPI()
+                    } else {
+                         let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
+                         self.present(vc, animated: true, completion: nil)
+                    }
+                case "BTC":
+                    let btcBalance =  self.walletBalance?.btc ?? 0.0
+                    if btcBalance >= self.totalPayableAmtValue{
+                        self.hitBuyInvestTransactionAPI()
+                    } else {
+                         let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                case "PAYPAL":
+                    let paypalBalance =  self.walletBalance?.wallet ?? 0.0
+                    if paypalBalance >= self.totalPayableAmtValue{
+                        self.hitBuyInvestTransactionAPI()
+                    } else {
+                         let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
+                         self.present(vc, animated: true, completion: nil)
+                    }
+                default:
+                    print("Do Nothing")
+                }
                 print(data)
             }
+        case Base.invest_buy_transaction.rawValue:
+            self.popOrDismiss(animation: true)
+            
         default:
             self.loader.isHidden = true
         }

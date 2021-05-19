@@ -4562,7 +4562,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oT9-Q8-gLo">
-                                                        <rect key="frame" x="155.5" y="14.5" width="103.5" height="22.5"/>
+                                                        <rect key="frame" x="162.5" y="16" width="89.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -5036,7 +5036,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="i9I-NI-nWK">
-                                                <rect key="frame" x="20" y="66" width="374" height="335"/>
+                                                <rect key="frame" x="20" y="66" width="374" height="406"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d85-JS-Bq1">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
@@ -5129,11 +5129,29 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                             <constraint firstAttribute="bottom" secondItem="NGN-xB-Zzx" secondAttribute="bottom" constant="5" id="XUS-zi-lh0"/>
                                                         </constraints>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="57F-WV-5Uj">
+                                                        <rect key="frame" x="0.0" y="355" width="374" height="51"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vie-3B-2nD">
+                                                                <rect key="frame" x="15" y="5" width="344" height="41"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="Vie-3B-2nD" firstAttribute="top" secondItem="57F-WV-5Uj" secondAttribute="top" constant="5" id="7rw-N6-Yft"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Vie-3B-2nD" secondAttribute="bottom" constant="5" id="9dD-JV-KsF"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Vie-3B-2nD" secondAttribute="trailing" constant="15" id="DWM-Gd-Mow"/>
+                                                            <constraint firstItem="Vie-3B-2nD" firstAttribute="leading" secondItem="57F-WV-5Uj" secondAttribute="leading" constant="15" id="Inb-0d-ZoJ"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0b-CC-EgB">
-                                                <rect key="frame" x="10" y="411" width="394" height="285"/>
+                                                <rect key="frame" x="10" y="482" width="394" height="285"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdb-Hg-P9y">
                                                         <rect key="frame" x="12" y="247.5" width="370" height="0.0"/>
@@ -5442,6 +5460,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                     <connections>
                         <outlet property="TwitterBtn" destination="84Y-P2-0ZW" id="yQl-9y-zAa"/>
                         <outlet property="attributedLbl" destination="cdb-Hg-P9y" id="ltw-q2-sTt"/>
+                        <outlet property="confirmPassTxtField" destination="Vie-3B-2nD" id="JOw-eo-pBL"/>
                         <outlet property="emailIdTxtFld" destination="ASn-2B-eL0" id="SNJ-4C-tAf"/>
                         <outlet property="faceBookButton" destination="vaY-s0-ENE" id="QXU-HU-Vno"/>
                         <outlet property="facebookLbl" destination="91L-j2-MgL" id="eio-hZ-ya6"/>
@@ -11963,10 +11982,12 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="allProductsBtn" destination="DdL-Cw-Fkh" id="mlg-Ka-xny"/>
                         <outlet property="bottomView" destination="wMU-ym-up5" id="Hpa-Jd-bJI"/>
                         <outlet property="btnStackView" destination="iCJ-Kd-K51" id="PfL-wf-cZ3"/>
+                        <outlet property="filterBtn" destination="RFt-ij-Lym" id="Ae4-ba-FbB"/>
                         <outlet property="mainScrollView" destination="Lsw-pq-2zK" id="j0A-ut-WKZ"/>
                         <outlet property="newProductsBtn" destination="xHW-2I-ZdP" id="7ad-ej-aeG"/>
                         <outlet property="searchTxtField" destination="qVQ-no-RR8" id="zAX-oy-fED"/>
                         <outlet property="searchViewHConst" destination="W1s-bs-Hxh" id="nLx-K6-Rrf"/>
+                        <outlet property="sortBtn" destination="LTQ-RI-qFj" id="C1v-1C-VGE"/>
                         <outlet property="titleLbl" destination="8gu-bj-oHN" id="xiR-6n-7r3"/>
                     </connections>
                 </viewController>

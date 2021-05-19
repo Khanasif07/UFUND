@@ -43,7 +43,8 @@ class MenuItemCollectionCell: PagingCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.title.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.title.textColor = #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
+        self.title.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .regular, size: .x12)
         self.dataContainerView.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.9333333333, blue: 0.937254902, alpha: 1)
     }
     
@@ -55,8 +56,8 @@ class MenuItemCollectionCell: PagingCell {
     open override func setPagingItem(_ pagingItem: PagingItem, selected: Bool, options: PagingOptions) {
          if let item = pagingItem as? MenuItem {
             self.title.text = item.title
-            self.title.textColor = selected ? .white : .black
-            self.title.font = isDeviceIPad ? (selected  ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x16) ): (selected  ? .setCustomFont(name: .semiBold, size: .x14) : .setCustomFont(name: .semiBold, size: .x12))
+            self.title.textColor = selected ? .white : #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
+            self.title.font = isDeviceIPad ? (selected  ? .setCustomFont(name: .semiBold, size: .x17) : .setCustomFont(name: .regular, size: .x16) ): (selected  ? .setCustomFont(name: .semiBold, size: .x12) : .setCustomFont(name: .regular, size: .x12))
             self.dataContainerView.backgroundColor = selected ? .red : #colorLiteral(red: 0.9568627451, green: 0.9333333333, blue: 0.937254902, alpha: 1)
         }
      }

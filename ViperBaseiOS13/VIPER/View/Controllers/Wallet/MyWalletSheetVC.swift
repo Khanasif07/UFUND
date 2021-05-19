@@ -8,17 +8,24 @@
 
 import UIKit
 import DZNEmptyDataSet
+import ObjectMapper
 
 class MyWalletSheetVC: UIViewController {
     // holdView can be UIImageView instead
     //MARK:- OUTLETS
     //==============
+    @IBOutlet weak var investBuyHistoryBtn: UIButton!
+    @IBOutlet weak var walletHistoryBtn: UIButton!
     @IBOutlet weak var mainCotainerView: UIView!
     @IBOutlet weak var bottomLayoutConstraint : NSLayoutConstraint!
     @IBOutlet weak var mainTableView: UITableView!
     
     //MARK:- VARIABLE
     //================
+     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
+    private lazy var loader  : UIView = {
+           return createActivityIndicator(self.view)
+       }()
      var menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
     lazy var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(closePullUp))
     var fullView: CGFloat {
@@ -64,6 +71,15 @@ class MyWalletSheetVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func walletHistoryBtnAction(_ sender: UIButton) {
+        self.walletHistoryBtn.setTitleColor(.red, for: .normal)
+        self.investBuyHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
+    }
+    
+    @IBAction func investBuyHistoryBtnAciton(_ sender: UIButton) {
+        self.walletHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
+        self.investBuyHistoryBtn.setTitleColor(.red, for: .normal)
+    }
     
     @IBAction func rightButton(_ sender: AnyObject) {
         print("clicked")
@@ -107,8 +123,14 @@ class MyWalletSheetVC: UIViewController {
         }
     }
     
-    func roundViews() {
-//        holdView.layer.cornerRadius = 3
+    private func hitWalletHistoryAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.wallet_sell_hisory.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
+    }
+    
+    private func hitBuyInvestHistoryAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.wallet_buy_Invest_hisory.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
     }
 }
 
@@ -118,10 +140,12 @@ extension MyWalletSheetVC {
     
     private func initialSetup() {
         setupTableView()
+        setUpFont()
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetVC.panGesture))
         view.addGestureRecognizer(gesture)
-        roundViews()
         setupSwipeGesture()
+        hitWalletHistoryAPI()
+        hitBuyInvestHistoryAPI()
     }
     
     private func setupTableView() {
@@ -136,6 +160,21 @@ extension MyWalletSheetVC {
         swipeDown.direction = .down
         swipeDown.delegate = self
         mainTableView.addGestureRecognizer(swipeDown)
+    }
+    
+    private func setUpFont(){
+        self.walletHistoryBtn.setTitleColor(.red, for: .normal)
+        self.investBuyHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
+        if userType == UserType.campaigner.rawValue {
+            walletHistoryBtn.setTitle(Constants.string.walletHistory.localize(), for: .normal)
+            investBuyHistoryBtn.setTitle(Constants.string.investBuyHistory.localize(), for: .normal)
+        } else {
+            walletHistoryBtn.setTitle(Constants.string.walletHistory.localize(), for: .normal)
+            investBuyHistoryBtn.setTitle(Constants.string.transHistory.localize(), for: .normal)
+        }
+        [investBuyHistoryBtn,walletHistoryBtn].forEach { (lbl) in
+            lbl?.titleLabel?.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
+        }
     }
     
     @objc func closePullUp() {
@@ -211,3 +250,33 @@ extension MyWalletSheetVC : UIGestureRecognizerDelegate {
         return false
     }
 }
+
+
+//MARK: - PresenterOutputProtocol
+//===========================
+extension MyWalletSheetVC: PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
+        switch api {
+        case Base.wallet_sell_hisory.rawValue:
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                print(data)
+            }
+        case Base.wallet_buy_Invest_hisory.rawValue:
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                print(data)
+            }
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+}
+

@@ -86,7 +86,7 @@ enum Base : String {
     case investerProducts = "/api/investor/myproducts"
     case investorAssets = "/api/investor/myassets"
     case investmentproducts = "/api/investor/investmentproducts"
-    case investBuyTransaction = "/api/invest-buy-transaction"
+    case investBuyTransaction = "/api/invest-buy-transactionn"
     case sellHistory = "/api/campaigner/sellHistory"
     case buyandinvesthistory = "/api/investor/buyandinvesthistory"
     case walletHistory = "/api/walletHistory"
@@ -112,6 +112,9 @@ enum Base : String {
     case tokensDetail = "api/get-tokenized-asset-detail"
     case paymentMethods = "/api/pay-methods"
     case wallet = "/api/get-balance"
+    case invest_buy_transaction =  "/api/invest-buy-transaction"
+    case wallet_sell_hisory =  "/api/wallet-sell-history"
+    case wallet_buy_Invest_hisory =  "/api/investor/wallet-buy-invest-history"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .signUp
@@ -211,3 +214,26 @@ enum SocialLoginType: Int {
          }
      }
  }
+
+enum SendCoinCell{
+    case tokensListing
+    case TransactionHistory
+    
+    var sectionCount: Int {
+        switch self{
+        case .tokensListing:
+            return 1
+        case .TransactionHistory:
+            return 1
+        }
+    }
+    
+    var titleValue: String {
+        switch self{
+        case .tokensListing:
+            return "Number of Tokens"
+        case .TransactionHistory:
+            return "Transaction history"
+        }
+    }
+}

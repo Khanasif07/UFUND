@@ -50,6 +50,7 @@ struct ProductCreate {
     let maturity_count = "maturity_count"
     let product_title = "product_title"
     let category_id = "category_id"
+    let product_id = "product_id"
     let product_image = "product_image"
     let product_child_image = "product_child_image"
     let product_description = "product_description"

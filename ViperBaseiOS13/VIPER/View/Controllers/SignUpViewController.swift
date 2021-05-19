@@ -39,6 +39,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var socialLoginViews1: UIStackView!
     @IBOutlet weak var socialLoginViews: UIStackView!
     @IBOutlet weak var lastNameTxtFld: UITextField!
+    @IBOutlet weak var confirmPassTxtField: UITextField!
     @IBOutlet weak var passwordTxtFld: UITextField!
     @IBOutlet weak var phoneNumberTxtFld: UITextField!
     @IBOutlet weak var linkedinBtn: UIButton!
@@ -214,6 +215,7 @@ extension SignUpViewController {
         lastNameTxtFld.applyEffectToTextField(placeHolderString: Constants.string.lastName.localize())
         phoneNumberTxtFld.applyEffectToTextField(placeHolderString: Constants.string.phoneNumber.localize())
         passwordTxtFld.applyEffectToTextField(placeHolderString: Constants.string.password.localize())
+        confirmPassTxtField.applyEffectToTextField(placeHolderString: Constants.string.confirmPassword.localize())
         
     }
     
@@ -256,9 +258,10 @@ extension SignUpViewController {
     func setFont() {
         attributedLbl.textAlignment = .center
         passwordTxtFld.setupPasswordTextField()
+        confirmPassTxtField.setupPasswordTextField()
         signUpButton.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x14)
-        [nameTxtFld,lastNameTxtFld,phoneNumberTxtFld,emailIdTxtFld,passwordTxtFld].forEach { (txtfield) in
+        [nameTxtFld,lastNameTxtFld,phoneNumberTxtFld,emailIdTxtFld,passwordTxtFld,confirmPassTxtField].forEach { (txtfield) in
             txtfield.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .medium, size: .x12)
         }
         [googleLbl,twitterLbl,facebookLbl,linkedinLbl].forEach { (lbl) in
@@ -350,6 +353,16 @@ extension SignUpViewController {
         
         guard let password = passwordTxtFld.text, !password.isEmpty else {
             ToastManager.show(title:  ErrorMessage.list.enterPassword.localize(), state: .error)
+            return
+        }
+        
+        guard let confirmPassword = confirmPassTxtField.text, !confirmPassword.isEmpty else {
+            ToastManager.show(title:  ErrorMessage.list.enterConfirmPassword.localize(), state: .error)
+            return
+        }
+        
+        if password != confirmPassword{
+            ToastManager.show(title:  ErrorMessage.list.correctPassowrd.localize(), state: .error)
             return
         }
         

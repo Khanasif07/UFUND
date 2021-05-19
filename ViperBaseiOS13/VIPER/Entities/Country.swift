@@ -266,6 +266,10 @@ struct InvestorDashboardEntity : Mappable {
     init?(map: Map) {
 
     }
+    
+    init(){
+        
+    }
 
     mutating func mapping(map: Map) {
         data <- map["data"]

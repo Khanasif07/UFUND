@@ -138,6 +138,7 @@ extension ProductDetailVC {
         self.mainTableView.parallaxHeader.view = self.headerView
         self.mainTableView.parallaxHeader.minimumHeight = 0.0 // 64
         self.mainTableView.parallaxHeader.height = parallexHeaderHeight
+//        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.self
         self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
         mainTableView.parallaxHeader.view?.widthAnchor.constraint(equalTo: mainTableView.widthAnchor).isActive = true
         self.headerView.translatesAutoresizingMaskIntoConstraints = false

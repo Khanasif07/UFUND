@@ -126,8 +126,16 @@ extension MyInvestmentVC {
         self.sortBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
         self.filterBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
         self.searchBar.delegate = self
-        self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: .x14)
-        self.searchBar.searchTextField.textColor = .white
+        if #available(iOS 13.0, *) {
+            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
+            searchBar.tintColor = .white
+            searchBar.setIconColor(.white)
+            searchBar.setPlaceholderColor(.white)
+            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
+            self.searchBar.searchTextField.textColor = .lightGray
+        } else {
+            // Fallback on earlier versions
+        }
         self.collectionSetUp()
         self.getProductList()
     }

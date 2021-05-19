@@ -18,6 +18,7 @@ struct ErrorMessage {
     let enterValidEmail = "Enter Valid Email Id"
     let enterPassword = "Enter Password"
     let enterConfirmPassword = "Enter Confirm Password"
+    let correctPassowrd = "Please Enter correct password"
     let enterName = "Enter Name"
     let enterLastName = "Enter Last Name"
     let enterPhoneNumber = "Enter Phone Number"

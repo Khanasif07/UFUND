@@ -18,6 +18,7 @@ struct Constants {
     static let string = Constants()
     let disable = "Disable"
     let send = "Send"
+    let send_coin = "Send Coin"
     let InvalidOTP = "Enter valid OTP"
     let history = "History"
     let submit_assets =  "Submit Assets/Products"
@@ -251,7 +252,9 @@ struct Constants {
     let HSCode = "HS code"
     let Burn = "Burn"
     let transAmount = "INVEST"
+    let transHistory = "Transaction History"
     let amountUSD = "Enter amount (USD)"
+    let amount = "amount"
     let coinpay = "Coin Payment History"
     let copyClipboard = "Address Copied"
     let sucessKYC = "You have been approved and now you can enjoy freely our services"
@@ -277,6 +280,7 @@ struct Constants {
     let yield = "My Yield"
     let status = "Status"
     let currency = "Currency"
+    let payment_mode = "payment_mode"
     
     //Sort
     let daily = "Daily"
@@ -286,6 +290,7 @@ struct Constants {
     
     let buyHistory = "Buy History (Products per Currency)"
     let investHistory = "Invest History (Products per Currency)"
+    let investBuyHistory = "Invest Buy History"
     let investHistoryPerCrypto = "Invest History (Per Token & Crypto )"
     
     let sort_by_name_AZ = "Sort by Name (A-Z)"

@@ -262,7 +262,9 @@ struct ProductModel: Mappable {
         dict[ProductCreate.keys.brand] = self.brand
         dict[ProductCreate.keys.ean_upc_code] = (self.ean_upc_code ?? "") + "/" + (self.upc_code ?? "")
         dict[ProductCreate.keys.hs_code] = self.hs_code
-        dict[ProductCreate.keys.maturity_count] = self.maturity_count
+        if let maturityCountValue = self.maturity_count?.components(separatedBy: " ").first{
+             dict[ProductCreate.keys.maturity_count] = maturityCountValue
+        }
         dict[ProductCreate.keys.start_date] = self.start_date
         dict[ProductCreate.keys.end_date] = self.end_date
         dict[ProductCreate.keys.investment_date] = self.investment_date

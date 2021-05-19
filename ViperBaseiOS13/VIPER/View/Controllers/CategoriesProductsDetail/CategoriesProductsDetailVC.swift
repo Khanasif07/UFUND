@@ -12,6 +12,8 @@ class CategoriesProductsDetailVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var filterBtn: UIButton!
+    @IBOutlet weak var sortBtn: UIButton!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var btnStackView: UIView!
@@ -172,12 +174,21 @@ extension CategoriesProductsDetailVC {
         self.btnStackView.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.9176470588, blue: 0.9176470588, alpha: 0.7010701185)
         self.btnStackView.borderLineWidth = 1.5
         self.btnStackView.borderColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 0.1007089439)
+        self.sortBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.filterBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.allProductsBtn.titleLabel?.font =  isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        self.newProductsBtn.titleLabel?.font =  isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
     }
     
     private func setUpSearchBar(){
         self.searchTxtField.delegate = self
         if #available(iOS 13.0, *) {
-            self.searchTxtField.searchTextField.textColor = .white
+            self.searchTxtField.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
+            searchTxtField.tintColor = .white
+            searchTxtField.setIconColor(.white)
+            searchTxtField.setPlaceholderColor(.white)
+            self.searchTxtField.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
+            self.searchTxtField.searchTextField.textColor = .lightGray
         } else {
             // Fallback on earlier versions
         }
