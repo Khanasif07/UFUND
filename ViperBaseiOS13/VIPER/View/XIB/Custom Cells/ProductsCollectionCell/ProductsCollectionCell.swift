@@ -30,8 +30,6 @@ class ProductsCollectionCell: UICollectionViewCell {
         if !isDeviceIPad{
             DispatchQueue.main.async {
                 self.productImg.layer.masksToBounds = true
-                self.productImg.layer.borderWidth = 8.0
-                self.productImg.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
                 self.productImg.layer.cornerRadius = self.productImg.bounds.width / 2
             }
         }else {

@@ -26,8 +26,8 @@ class HomeViewController: UIViewController{
         {
             return createActivityIndicator(self.view)
         }()
-    var inversterImage :[UIImage] = [#imageLiteral(resourceName: "icDashboardHome"),#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg")]
-    var campinerImage: [UIImage] = [#imageLiteral(resourceName: "icDashboardHome"),#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icProductWithBg"), #imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg")]
+    var inversterImage :[UIImage] = [#imageLiteral(resourceName: "icDashboardHome"),#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icProductWithBg"),#imageLiteral(resourceName: "icAllProductsBg"),#imageLiteral(resourceName: "icNewTokenizedAssetBg"),#imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icProductInvestmentBg"),#imageLiteral(resourceName: "icTokenInvestmentBg"),#imageLiteral(resourceName: "icEarningInCryptoBg"),#imageLiteral(resourceName: "icEarningInDollarBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icFiatCurrencyBg")]
+    var campinerImage: [UIImage] = [#imageLiteral(resourceName: "icDashboardHome"),#imageLiteral(resourceName: "icCategoriesBg"),#imageLiteral(resourceName: "icProductWithBg"), #imageLiteral(resourceName: "icTokenizedAssetBg"),#imageLiteral(resourceName: "icCryptoCurrencyBg"),#imageLiteral(resourceName: "icFiatCurrencyBg")]
     var isFromCampainer = false {
         didSet {
             if isFromCampainer {

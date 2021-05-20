@@ -87,6 +87,14 @@ class ChangePasswordVC: UIViewController {
         param[RegisterParam.keys.id] = User.main.id as AnyObject
         self.presenter?.HITAPI(api: Base.logout.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
     }
+    
+    private func setUpFont(){
+        self.titleLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
+        self.submitBtn.titleLabel?.font =  isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
+        [oldPasswordTextField,newPasswordTextField,confirmPassWordTextField].forEach { (textFIeld) in
+            textFIeld?.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        }
+    }
 
     
 }
@@ -97,6 +105,7 @@ extension ChangePasswordVC {
     
     private func initialSetup() {
         self.setUpTextField()
+        self.setUpFont()
     }
     
     func setUpTextField(){

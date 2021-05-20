@@ -205,6 +205,7 @@ extension ProductDetailPopUpVC {
             self.investPerView.isHidden = false
             self.quantityView.isHidden = true
             self.tokenPriceLbl.text = "Product Price"
+            self.titleLbl.text = self.productModel?.product_title ?? ""
             self.totalProductPriceTitleLbl.text = "Total Product Amount"
             self.tokenQtyLbl.text = "Product Quantity"
             self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
@@ -213,6 +214,7 @@ extension ProductDetailPopUpVC {
             self.currentValInvPer = 5
             self.investPerView.isHidden = false
             self.quantityView.isHidden = true
+            self.titleLbl.text = self.productModel?.product_title ?? ""
             self.tokenPriceLbl.text = "Product Price"
             self.totalProductPriceTitleLbl.text = "Total Product Amount"
             self.tokenQtyLbl.text = "Product\nInvestment"
@@ -221,6 +223,7 @@ extension ProductDetailPopUpVC {
             self.currentValInvPer = 1
             self.investPerView.isHidden = true
             self.quantityView.isHidden = false
+            self.titleLbl.text = self.productModel?.asset?.asset_title ?? ""
             self.tokenPriceLbl.text =  "Token Price"
             self.totalProductPriceTitleLbl.text = "Total Token Amount"
             self.tokenQtyLbl.text = "Token Quantity"

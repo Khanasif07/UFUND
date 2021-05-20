@@ -29,8 +29,11 @@ class UserProfilePhoneNoCell: UITableViewCell {
            self.dataContainerView.applyShadow(radius: 0)
        }
        
-       override func awakeFromNib() {
-           super.awakeFromNib()
-           textFieldView.applyEffectToView()
-       }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        countryCodeLbl.font =   isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x16) : .setCustomFont(name: .bold, size: .x12)
+        self.phoneTextField.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+        textFieldView.applyEffectToView()
+    }
 }

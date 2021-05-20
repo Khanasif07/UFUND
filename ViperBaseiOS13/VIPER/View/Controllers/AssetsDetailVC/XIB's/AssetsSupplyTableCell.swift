@@ -140,8 +140,7 @@ class AssetsSupplyTableCell: UITableViewCell,ChartViewDelegate {
            pFormatter.percentSymbol = " %"
            data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
            
-           data.setValueFont(.systemFont(ofSize: 12, weight: .semibold))
-           data.setValueTextColor(.white)
+        data.setValueFont(isDeviceIPad  ? .setCustomFont(name: .bold, size: .x16) : .setCustomFont(name: .bold, size: .x12))
            
            pieChartView.data = data
            pieChartView.highlightValues(nil)

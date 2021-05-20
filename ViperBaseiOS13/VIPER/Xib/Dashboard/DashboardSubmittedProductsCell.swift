@@ -90,7 +90,7 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
         pFormatter.maximumFractionDigits = 1
         pFormatter.multiplier = 1.0
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
-        data.setValueFont(.systemFont(ofSize: 12, weight: .semibold))
+        data.setValueFont(isDeviceIPad  ? .setCustomFont(name: .bold, size: .x16) : .setCustomFont(name: .bold, size: .x12))
         data.setValueTextColor(.white)
         
         pieChartView.data = data

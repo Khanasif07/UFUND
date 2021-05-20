@@ -2316,10 +2316,12 @@ Percentage (%)</string>
                         <outlet property="allTokensBtn" destination="0ia-mI-XEq" id="g6z-24-OHl"/>
                         <outlet property="bottomView" destination="F9h-Ks-Lvy" id="dTa-75-4Yx"/>
                         <outlet property="btnStackView" destination="SX6-xr-L1B" id="Q3J-Xx-yPR"/>
+                        <outlet property="filterBtn" destination="Xxs-q6-8xP" id="MNS-vv-VB0"/>
                         <outlet property="mainScrollView" destination="ani-dB-gVj" id="jA7-ac-Kdz"/>
                         <outlet property="newTokensBtn" destination="EHl-2W-Ybd" id="oUZ-YJ-XbH"/>
                         <outlet property="searchTxtField" destination="H86-bU-8lS" id="Kcs-D2-Nlz"/>
                         <outlet property="searchViewHConst" destination="Qe9-KR-rNr" id="CsX-97-xQs"/>
+                        <outlet property="sortBtn" destination="8p6-JR-DQJ" id="vel-u5-jht"/>
                         <outlet property="titleLbl" destination="5Q3-Z6-s7x" id="TWZ-Qf-fe0"/>
                     </connections>
                 </viewController>

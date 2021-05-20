@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icProductWithBg.png",
+      "filename" : "icNewProducts.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icProductWithBg@2x.png",
+      "filename" : "icNewProducts@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icProductWithBg@3x.png",
+      "filename" : "icNewProducts@3x.png",
       "scale" : "3x"
     },
     {

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icTokenizedAssetBg.png",
+      "filename" : "icAllTokenizedAssets.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icTokenizedAssetBg@2x.png",
+      "filename" : "icAllTokenizedAssets@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icTokenizedAssetBg@3x.png",
+      "filename" : "icAllTokenizedAssets@3x.png",
       "scale" : "3x"
     },
     {

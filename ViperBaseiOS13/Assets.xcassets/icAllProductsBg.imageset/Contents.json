@@ -2,27 +2,25 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icMyTokenInvestments.png",
+      "filename" : "icAllProducts.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icMyTokenInvestments@2x.png",
+      "filename" : "icAllProducts@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icMyTokenInvestments@3x.png",
+      "filename" : "icAllProducts@3x.png",
       "scale" : "3x"
     },
     {
       "idiom" : "ipad",
-      "filename" : "My Product Investment@2x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
-      "filename" : "My Product Investment@2x-1.png",
       "scale" : "2x"
     }
   ],
