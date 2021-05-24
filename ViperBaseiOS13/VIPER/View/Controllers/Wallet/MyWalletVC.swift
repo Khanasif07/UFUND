@@ -205,7 +205,7 @@ extension MyWalletVC {
     
     private func hitWalletAPI(){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.investor_wallet_counts.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
+        self.presenter?.HITAPI(api: Base.investor_wallet_counts.rawValue, params: nil, methodType: .GET, modelClass: WalletModuleEntity.self, token: true)
     }
 }
 
@@ -254,10 +254,12 @@ extension MyWalletVC: PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.loader.isHidden = true
         switch api {
-        case Base.wallet.rawValue:
-            let walletData = dataDict as? WalletEntity
-            if let data = walletData?.balance {
-                print(data)
+        case Base.investor_wallet_counts.rawValue:
+            let walletData = dataDict as? WalletModuleEntity
+            if let data = walletData?.data {
+                self.userInvestmentValueLbl.text = "$ " + "\(data.overall_invest ?? 0)"
+                self.totalProductsValueLbl.text = "\(data.total_products ?? 0)"
+                self.totalAssetsValueLbl.text = "\(data.total_tokens ?? 0)"
             }
         default:
             break

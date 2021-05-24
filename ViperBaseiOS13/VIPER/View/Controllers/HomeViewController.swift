@@ -321,14 +321,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
-            case Constants.string.fiatCurrency.localize():
+            case Constants.string.myfiatBalance.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
                 self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.cryptoCurrency.localize():
+            case Constants.string.mycryptoBalance.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
                 self.navigationController?.pushViewController(vc, animated: true)
-                
-                
             default:
                 break
             }

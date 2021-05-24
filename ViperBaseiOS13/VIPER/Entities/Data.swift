@@ -67,6 +67,42 @@ struct WalletEntity : Mappable{
     mutating func mapping(map: Map) {
         balance <- map["balance"]
     }
+}
+
+
+
+struct WalletModuleEntity : Mappable {
+    var data : WalletModule?
+    init?(map: Map) {
+    }
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+}
+
+
+
+struct WalletModule : Mappable {
     
+    var buy_histories  : [History]?
+    var invest_histories : [History]?
+    var sell_histories: [History]?
+    var overall_invest: Double?
+    var total_products : Int?
+    var total_tokens : Int?
+    var wallet: Double?
     
+    init?(map: Map) {
+    }
+
+    mutating func mapping(map: Map) {
+
+        total_products <- map["total_products"]
+        total_tokens <- map["total_tokens"]
+        overall_invest <- map["overall_invest"]
+        sell_histories <- map["sell_histories"]
+        invest_histories <- map["invest_histories"]
+        buy_histories <- map["buy_histories"]
+    }
+
 }
