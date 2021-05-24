@@ -17,10 +17,12 @@
     },
     {
       "idiom" : "ipad",
+      "filename" : "ic_All Products.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
+      "filename" : "ic_All Products@2x.png",
       "scale" : "2x"
     }
   ],

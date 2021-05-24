@@ -160,15 +160,14 @@ extension CategoriesVC {
     }
     
     private func setUpSearchBar(){
-        if #available(iOS 13.0, *) {
-            self.searchTxtField.searchTextField.font = .setCustomFont(name: .medium, size: .x14)
-            self.searchTxtField.delegate = self
-            self.searchTxtField.searchTextField.textColor = .white
-        } else {
-            // Fallback on earlier versions
-        }
-        if #available(iOS 13.0, *) {
-            self.searchTxtField.searchTextField.textColor = .white
+        self.searchTxtField.delegate = self
+       if #available(iOS 13.0, *) {
+            self.searchTxtField.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
+            searchTxtField.tintColor = .white
+            searchTxtField.setIconColor(.white)
+            searchTxtField.setPlaceholderColor(.white)
+            self.searchTxtField.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
+            self.searchTxtField.searchTextField.textColor = .lightGray
         } else {
             // Fallback on earlier versions
         }

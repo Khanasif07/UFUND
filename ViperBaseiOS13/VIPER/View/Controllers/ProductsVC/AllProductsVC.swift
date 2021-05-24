@@ -150,6 +150,19 @@ extension AllProductsVC {
     private func initialSetup(){
         ProductFilterVM.shared.resetToAllFilter()
         self.collectionViewSetUp()
+        self.setUpFont()
+        self.setSearchBar()
+        self.getProductList()
+    }
+    
+    private func setUpFont(){
+        self.titleLbl.text = productTitle
+        self.sortBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.filterBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
+        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
+    }
+    
+    private func setSearchBar(){
         self.searchBar.delegate = self
         if #available(iOS 13.0, *) {
             self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
@@ -161,11 +174,6 @@ extension AllProductsVC {
         } else {
             // Fallback on earlier versions
         }
-        self.titleLbl.text = productTitle
-        self.sortBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
-        self.filterBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)
-        self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
-        self.getProductList()
     }
     
     private func collectionViewSetUp(){

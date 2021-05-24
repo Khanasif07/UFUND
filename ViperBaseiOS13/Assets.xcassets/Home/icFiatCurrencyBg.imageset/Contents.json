@@ -17,10 +17,12 @@
     },
     {
       "idiom" : "ipad",
+      "filename" : "ic_Crypto Currency.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
+      "filename" : "ic_Crypto Currency@2x.png",
       "scale" : "2x"
     }
   ],

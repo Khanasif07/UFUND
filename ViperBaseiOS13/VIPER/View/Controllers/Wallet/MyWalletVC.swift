@@ -132,6 +132,7 @@ extension MyWalletVC {
     private func initialSetup() {
         self.setUpBorder()
         self.setFont()
+        self.hitWalletAPI()
     }
     
     private func setUpBorder(){
@@ -204,7 +205,7 @@ extension MyWalletVC {
     
     private func hitWalletAPI(){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
+        self.presenter?.HITAPI(api: Base.investor_wallet_counts.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
     }
 }
 

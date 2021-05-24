@@ -144,8 +144,8 @@ extension MyWalletSheetVC {
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetVC.panGesture))
         view.addGestureRecognizer(gesture)
         setupSwipeGesture()
-        hitWalletHistoryAPI()
-        hitBuyInvestHistoryAPI()
+//        hitWalletHistoryAPI()
+//        hitBuyInvestHistoryAPI()
     }
     
     private func setupTableView() {

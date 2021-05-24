@@ -238,6 +238,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     self.navigationController?.pushViewController(vc, animated: true)
                     // Fallback on earlier versions
                 }
+            case Constants.string.fiatCurrency.localize():
+                let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+                self.navigationController?.pushViewController(vc, animated: true)
+            case Constants.string.cryptoCurrency.localize():
+                let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+                self.navigationController?.pushViewController(vc, animated: true)
                 
                 
             default:
@@ -315,6 +321,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
+            case Constants.string.fiatCurrency.localize():
+                let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+                self.navigationController?.pushViewController(vc, animated: true)
+            case Constants.string.cryptoCurrency.localize():
+                let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+                self.navigationController?.pushViewController(vc, animated: true)
                 
                 
             default:
