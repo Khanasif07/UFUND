@@ -113,10 +113,11 @@ enum Base : String {
     case tokensDetail = "api/get-tokenized-asset-detail"
     case paymentMethods = "/api/pay-methods"
     case wallet = "/api/get-balance"
-    case investor_wallet_counts = "/api/investor/wallet-counts"
+    case investor_wallet_counts = "/api/wallet-counts"
     case invest_buy_transaction =  "/api/invest-buy-transaction"
     case wallet_sell_hisory =  "/api/wallet-sell-history"
     case wallet_buy_Invest_hisory =  "/api/investor/wallet-buy-invest-history"
+//    case campaigner_dashboard_sellHistory = "/api/campaigner-dashboard-sell-history"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .signUp

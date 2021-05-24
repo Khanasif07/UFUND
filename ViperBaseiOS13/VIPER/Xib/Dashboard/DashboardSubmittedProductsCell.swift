@@ -20,7 +20,8 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var submittedProductValue: UILabel!
-  
+    @IBOutlet var descLbls: [UILabel]!
+    
     
     // MARK: - Variables
     //==========================
@@ -66,6 +67,20 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
         pieChartView.entryLabelFont = .systemFont(ofSize: 12, weight: .light)
         pieChartView.animate(xAxisDuration: 1.4, easingOption: .easeOutBack)
         self.setDataCount(partiesPercentage.endIndex, range: 100)
+    }
+    
+    public func setupDescriptionForProducts(){
+        self.descLbls[0].text = "No of Approved Products"
+        self.descLbls[1].text = "No of Products Pending for Approval"
+        self.descLbls[2].text = "No of Rejected Products"
+        self.descLbls[3].text = "No of sold Products"
+    }
+    
+    public func setupDescriptionForAssets(){
+        self.descLbls[0].text = "No of Approved Assets"
+        self.descLbls[1].text = "No of Assets Pending for Approval"
+        self.descLbls[2].text = "No of Rejected Assets"
+        self.descLbls[3].text = "No of sold Assets"
     }
     
     func setDataCount(_ count: Int, range: UInt32) {

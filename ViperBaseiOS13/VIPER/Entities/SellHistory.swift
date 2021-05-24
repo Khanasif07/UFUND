@@ -15,18 +15,18 @@ import Foundation
 import ObjectMapper
 
 struct SellHistoryEntity : Mappable {
-	var history : [History]?
-var walletHistory : [History]?
-	init?(map: Map) {
-
-	}
-
-	mutating func mapping(map: Map) {
-
-		history <- map["history"]
+    var history : [History]?
+    var walletHistory : [History]?
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        history <- map["history"]
         walletHistory <- map["wallet_history"]
-	}
-
+    }
+    
 }
 
 

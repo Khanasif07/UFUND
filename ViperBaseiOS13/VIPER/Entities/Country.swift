@@ -304,6 +304,8 @@ struct DashboardEntity : Mappable{
     //
     var lable: [String]?
     var series: [InvestorGraphs]?
+    //
+    var sell_histories : [History]?
     
     mutating func mapping(map: Map) {
 
@@ -327,6 +329,8 @@ struct DashboardEntity : Mappable{
         //
         lable <- map["lable"]
         series <- map["series"]
+        //
+        sell_histories <- map["sell_histories"]
         
     }
 }

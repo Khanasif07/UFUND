@@ -22,32 +22,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="429" id="KGk-i7-Jjw" customClass="DashboardSubmittedProductsCell" customModule="UFUND" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="406.5"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="412.5"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="406.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="412.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QKq-JS-FjZ">
-                        <rect key="frame" x="16" y="8" width="252" height="390.5"/>
+                        <rect key="frame" x="16" y="8" width="252" height="396.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Qui-n9-uu7">
-                                <rect key="frame" x="8" y="0.0" width="236" height="380.5"/>
+                                <rect key="frame" x="8" y="0.0" width="236" height="386.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4oP-Oj-1hd">
-                                        <rect key="frame" x="0.0" y="0.0" width="236" height="68"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="236" height="74"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icProductWithBg" translatesAutoresizingMaskIntoConstraints="NO" id="RNv-bz-P0L">
-                                                <rect key="frame" x="8" y="10" width="48" height="48"/>
+                                                <rect key="frame" x="8" y="10" width="54" height="54"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="Fir-6l-JEj">
-                                                        <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                                                    <constraint firstAttribute="height" constant="54" id="Fir-6l-JEj">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="66"/>
                                                     </constraint>
                                                     <constraint firstAttribute="width" secondItem="RNv-bz-P0L" secondAttribute="height" id="e5y-fk-u9j"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="CkJ-Co-mVM">
-                                                <rect key="frame" x="102.5" y="12" width="125.5" height="44.5"/>
+                                                <rect key="frame" x="102.5" y="15" width="125.5" height="44.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submitted Products" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwW-jb-fl7">
                                                         <rect key="frame" x="0.0" y="0.0" width="125.5" height="16.5"/>
@@ -64,7 +64,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Egx-q4-deR">
-                                                <rect key="frame" x="8" y="67" width="220" height="1"/>
+                                                <rect key="frame" x="8" y="73" width="220" height="1"/>
                                                 <color key="backgroundColor" red="0.43137254901960786" green="0.41960784313725491" blue="0.41960784313725491" alpha="0.1051311204800793" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="yZL-La-jkA"/>
@@ -84,7 +84,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hn0-wT-WfT">
-                                        <rect key="frame" x="0.0" y="84" width="236" height="205"/>
+                                        <rect key="frame" x="0.0" y="90" width="236" height="205"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Edu-de-97t" customClass="PieChartView" customModule="Charts">
                                                 <rect key="frame" x="0.0" y="0.0" width="236" height="205"/>
@@ -99,7 +99,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="UYq-UT-1wl">
-                                        <rect key="frame" x="0.0" y="305" width="236" height="75.5"/>
+                                        <rect key="frame" x="0.0" y="311" width="236" height="75.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fLc-Gm-NGv">
                                                 <rect key="frame" x="0.0" y="0.0" width="157.5" height="14"/>
@@ -226,12 +226,16 @@
                 <outlet property="productImgView" destination="RNv-bz-P0L" id="bTA-FN-tuk"/>
                 <outlet property="submittedProductLbl" destination="ZwW-jb-fl7" id="Cr4-sH-Ce9"/>
                 <outlet property="submittedProductValue" destination="9Vl-Qj-VOc" id="ZPx-kq-vGQ"/>
+                <outletCollection property="descLbls" destination="otS-tj-NAM" collectionClass="NSMutableArray" id="urh-N2-93G"/>
+                <outletCollection property="descLbls" destination="aKa-Rj-au4" collectionClass="NSMutableArray" id="tTT-0G-3Zc"/>
+                <outletCollection property="descLbls" destination="nXu-r1-83R" collectionClass="NSMutableArray" id="RmO-lo-R7M"/>
+                <outletCollection property="descLbls" destination="JC9-Pn-YO5" collectionClass="NSMutableArray" id="1jJ-eE-Ibf"/>
             </connections>
             <point key="canvasLocation" x="242.75362318840581" y="172.76785714285714"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icProductWithBg" width="50.5" height="51"/>
+        <image name="icProductWithBg" width="96.5" height="96"/>
         <namedColor name="primaryColor">
             <color red="1" green="0.11999999731779099" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

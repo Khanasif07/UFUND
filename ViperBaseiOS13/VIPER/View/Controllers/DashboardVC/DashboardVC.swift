@@ -17,6 +17,7 @@ class DashboardVC: UIViewController {
         case DashboardInvestmentCell
         case DashboardSubmittedProductsCell
         case DashboardSubmittedAsssetsCell
+        case DashboardSellHistory
     }
     
     // MARK: - IBOutlets
@@ -81,7 +82,7 @@ extension DashboardVC {
             let filterType: Any = (sortTypeForMonthly == Constants.string.daily) ? 1 : (sortTypeForHistory == Constants.string.weekly) ? 2 : (sortTypeForHistory == Constants.string.monthly) ? 3 : 4
             self.hitInvestorDashboardGraphsAPI(params: [ProductCreate.keys.type: type,ProductCreate.keys.filter_type: filterType])
         } else {
-            self.cellTypes = [.DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell]
+            self.cellTypes = [.DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell,.DashboardSellHistory]
             self.hitCampaignerDashboardAPI()
         }
     }
@@ -90,6 +91,7 @@ extension DashboardVC {
         self.titleLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        self.mainTableView.registerHeaderFooter(with: DashboardSellHistroryView.self)
         self.mainTableView.registerCell(with: DashboardTabsTableCell.self)
         self.mainTableView.registerCell(with: DashboardBarChartCell.self)
         self.mainTableView.registerCell(with: DashboardInvestmentCell.self)
@@ -145,13 +147,16 @@ extension DashboardVC {
 // MARK: - Extension For TableView
 //===========================
 extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.cellTypes.endIndex
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch cellTypes[indexPath.row] {
+        switch cellTypes[indexPath.section] {
         case .DashboardTabsTableCell:
             let cell = tableView.dequeueCell(with: DashboardTabsTableCell.self, indexPath: indexPath)
             cell.tabsTapped = {   [weak self]  (selectedIndex) in
@@ -194,6 +199,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardSubmittedProductsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
+            cell.setupDescriptionForProducts()
             cell.partiesPercentage = [self.campaignerDashboardData?.product?.pending ?? 0,self.campaignerDashboardData?.product?.approved ?? 0,self.campaignerDashboardData?.product?.reject ?? 0,self.campaignerDashboardData?.product?.sold ?? 0]
             cell.submittedProductLbl.text = "Submitted Products"
             cell.submittedProductValue.textColor = #colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)
@@ -204,6 +210,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardSubmittedAsssetsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
+            cell.setupDescriptionForAssets()
             cell.partiesPercentage = [self.campaignerDashboardData?.asset?.pending ?? 0,self.campaignerDashboardData?.asset?.approved ?? 0,self.campaignerDashboardData?.asset?.reject ?? 0,self.campaignerDashboardData?.asset?.sold ?? 0]
             cell.productImgView.image = #imageLiteral(resourceName: "icTokenizedAssetBg")
             cell.submittedProductLbl.text = "Submitted Assets"
@@ -212,12 +219,34 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             cell.chartStackView.isHidden = (self.campaignerDashboardData?.submited_assets ?? 0 == 0)
             cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_assets ?? 0)"
             return cell
+        case .DashboardSellHistory:
+            return UITableViewCell()
         }
         
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch cellTypes[section]  {
+        case .DashboardSellHistory:
+             let view  = tableView.dequeueHeaderFooter(with: DashboardSellHistroryView.self)
+             return view
+        default:
+             return UITableViewHeaderFooterView()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch cellTypes[section]  {
+        case .DashboardSellHistory:
+            return 211.0
+        default:
+            return 0.0
+        }
+    }
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch cellTypes[indexPath.row]{
+        switch cellTypes[indexPath.section]{
         case .DashboardBarChartCell:
             return isDeviceIPad ? 450.0 : 350.0
         case .DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell:
