@@ -14,12 +14,14 @@ class LoginWithEmailVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var signInBtn: UIButton!
     // MARK: - Variables
     //===========================
     var socialLoginSuccess: (()->())?
+    var socialLoginFailure: (()->())?
     private lazy var loader  : UIView = {
           return createActivityIndicator(self.view)
       }()
@@ -54,6 +56,7 @@ class LoginWithEmailVC: UIViewController {
     override func viewDidLayoutSubviews() {
            super.viewDidLayoutSubviews()
            self.signInBtn.setCornerRadius(cornerR: self.signInBtn.frame.height / 2)
+           self.cancelBtn.setCornerRadius(cornerR: self.signInBtn.frame.height / 2)
            self.dataContainerView.dropShadow(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
        }
     
@@ -67,6 +70,9 @@ class LoginWithEmailVC: UIViewController {
         self.hitSocialLoginAPI(name: name,email: email, socialId: socialId, socialType: socialLoginType)
     }
     
+    @IBAction func cancelBtnAction(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
 }
 
@@ -76,6 +82,9 @@ extension LoginWithEmailVC {
     
     private func initialSetup() {
         emailTxtField.applyEffectToView()
+        [signInBtn,cancelBtn].forEach { (btn) in
+            btn?.titleLabel?.font = .setCustomFont(name: .medium, size: .x16)
+        }
         emailTxtField.delegate = self
     }
     
@@ -129,6 +138,11 @@ extension LoginWithEmailVC: PresenterOutputProtocol {
     func showError(error: CustomError) {
         self.loader.isHidden = true
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+        self.dismiss(animated: true) {
+            if let handle = self.socialLoginFailure{
+                handle()
+            }
+        }
     }
 }
 

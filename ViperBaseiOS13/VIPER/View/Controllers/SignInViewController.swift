@@ -411,6 +411,11 @@ extension SignInViewController: PresenterOutputProtocol {
                     selff.push(id: Storyboard.Ids.DrawerController, animation: true)
                 }
             }
+            vc.socialLoginFailure = { [weak self] in
+            guard let selff = self else { return }
+                //Sonu will let us know
+                print("")
+            }
             vc.socialLoginType = socialLoginType
             vc.name = socialLoginParams[RegisterParam.keys.name] as? String ?? ""
             vc.email = socialLoginParams[RegisterParam.keys.email] as? String ?? ""

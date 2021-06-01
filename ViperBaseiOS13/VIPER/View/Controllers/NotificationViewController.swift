@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 import ObjectMapper
 
 class NotificationViewController: UIViewController {
@@ -35,6 +36,8 @@ class NotificationViewController: UIViewController {
         } 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
         self.tableView.register(UINib.init(nibName: XIB.Names.NotificationCell, bundle: nil), forCellReuseIdentifier: XIB.Names.NotificationCell)
         titleLbl.text = Constants.string.Notification.localize()
         titleLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
@@ -111,4 +114,33 @@ extension NotificationViewController : PresenterOutputProtocol
         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
     }
  
+}
+
+
+//MARK:- Tableview Empty dataset delegates
+//========================================
+extension NotificationViewController : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return  #imageLiteral(resourceName: "icNoData")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string:"", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return  NSAttributedString(string:"Looks Nothing Found", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
+    }
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
 }

@@ -238,10 +238,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     self.navigationController?.pushViewController(vc, animated: true)
                     // Fallback on earlier versions
                 }
-            case Constants.string.fiatCurrency.localize():
+            case Constants.string.myfiatBalance.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
                 self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.cryptoCurrency.localize():
+            case Constants.string.mycryptoBalance.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
                 self.navigationController?.pushViewController(vc, animated: true)
                 
@@ -321,12 +321,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
-            case Constants.string.myfiatBalance.localize():
+            case Constants.string.fiatCurrency.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
                 self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.mycryptoBalance.localize():
+            case Constants.string.cryptoCurrency.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
-                self.navigationController?.pushViewController(vc, animated: true)
+//              self.navigationController?.pushViewController(vc, animated: true)
             default:
                 break
             }

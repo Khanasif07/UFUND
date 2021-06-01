@@ -9,9 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="NunitoSans-Bold.ttf">
-            <string>NunitoSans-Bold</string>
-        </array>
         <array key="Poppins-Bold.ttf">
             <string>Poppins-Bold</string>
         </array>
@@ -1707,30 +1704,30 @@ Percentage (%)</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cyf-Ce-VDS">
-                                <rect key="frame" x="16" y="261.5" width="382" height="373"/>
+                                <rect key="frame" x="16" y="277" width="382" height="342"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icInformation" translatesAutoresizingMaskIntoConstraints="NO" id="wb8-wY-5rV">
-                                        <rect key="frame" x="137" y="35" width="108" height="108"/>
+                                        <rect key="frame" x="137" y="25" width="108" height="108"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wb8-wY-5rV" secondAttribute="height" id="2Nc-78-g4e"/>
                                             <constraint firstAttribute="height" constant="108" id="37Y-yv-HkP"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manual Email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7y-3W-z9d">
-                                        <rect key="frame" x="140" y="185" width="102.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="17"/>
+                                        <rect key="frame" x="143" y="158" width="96.5" height="19"/>
+                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                         <color key="textColor" red="0.10980392160000001" green="0.1137254902" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCi-Uy-1N9">
-                                        <rect key="frame" x="140" y="212" width="102.5" height="1"/>
+                                        <rect key="frame" x="143" y="184" width="96.5" height="1"/>
                                         <color key="backgroundColor" red="0.87450980389999999" green="0.89411764709999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="5l5-YW-mwr"/>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KGf-mp-d9d">
-                                        <rect key="frame" x="16" y="221" width="350" height="51"/>
+                                        <rect key="frame" x="16" y="193" width="350" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="ZBe-dn-pcc"/>
                                         </constraints>
@@ -1738,13 +1735,12 @@ Percentage (%)</string>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="haW-3t-CTm">
-                                        <rect key="frame" x="130" y="297" width="122" height="48"/>
+                                        <rect key="frame" x="16" y="269" width="350" height="48"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJi-iZ-mpD">
-                                                <rect key="frame" x="0.0" y="0.0" width="122" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="167" height="48"/>
                                                 <color key="backgroundColor" name="primaryColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="122" id="ZNL-3B-3Eh"/>
                                                     <constraint firstAttribute="height" constant="48" id="bNi-Xt-7iz"/>
                                                 </constraints>
                                                 <state key="normal" title="Sign In">
@@ -1765,22 +1761,48 @@ Percentage (%)</string>
                                                     <action selector="signInBtnAction:" destination="N1F-3A-dxV" eventType="touchUpInside" id="ilT-n9-aT1"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAm-jI-0La">
+                                                <rect key="frame" x="183" y="0.0" width="167" height="48"/>
+                                                <color key="backgroundColor" name="primaryColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="wQS-By-I2O"/>
+                                                </constraints>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.090196078430000007" green="0.1450980392" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="cancelBtnAction:" destination="N1F-3A-dxV" eventType="touchUpInside" id="Dja-c7-YXo"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="haW-3t-CTm" firstAttribute="leading" secondItem="Cyf-Ce-VDS" secondAttribute="leading" constant="16" id="0px-Bg-IiW"/>
                                     <constraint firstItem="KGf-mp-d9d" firstAttribute="leading" secondItem="Cyf-Ce-VDS" secondAttribute="leading" constant="16" id="2Bv-k3-eLL"/>
                                     <constraint firstItem="bCi-Uy-1N9" firstAttribute="top" secondItem="A7y-3W-z9d" secondAttribute="bottom" constant="7" id="2SL-NY-Owx"/>
                                     <constraint firstItem="haW-3t-CTm" firstAttribute="centerX" secondItem="Cyf-Ce-VDS" secondAttribute="centerX" id="5bH-H6-EH5"/>
                                     <constraint firstItem="wb8-wY-5rV" firstAttribute="centerX" secondItem="Cyf-Ce-VDS" secondAttribute="centerX" id="C4m-fH-80N"/>
-                                    <constraint firstItem="A7y-3W-z9d" firstAttribute="top" secondItem="wb8-wY-5rV" secondAttribute="bottom" constant="42" id="FgK-VS-6ar"/>
-                                    <constraint firstItem="wb8-wY-5rV" firstAttribute="top" secondItem="Cyf-Ce-VDS" secondAttribute="top" constant="35" id="Gl2-pg-5p9"/>
+                                    <constraint firstItem="A7y-3W-z9d" firstAttribute="top" secondItem="wb8-wY-5rV" secondAttribute="bottom" constant="25" id="FgK-VS-6ar"/>
+                                    <constraint firstItem="wb8-wY-5rV" firstAttribute="top" secondItem="Cyf-Ce-VDS" secondAttribute="top" constant="25" id="Gl2-pg-5p9"/>
                                     <constraint firstItem="A7y-3W-z9d" firstAttribute="centerX" secondItem="Cyf-Ce-VDS" secondAttribute="centerX" id="Kcy-33-U15"/>
                                     <constraint firstItem="bCi-Uy-1N9" firstAttribute="trailing" secondItem="A7y-3W-z9d" secondAttribute="trailing" id="QtB-oK-DRF"/>
                                     <constraint firstItem="haW-3t-CTm" firstAttribute="top" secondItem="KGf-mp-d9d" secondAttribute="bottom" constant="25" id="akc-kv-kgL"/>
                                     <constraint firstAttribute="trailing" secondItem="KGf-mp-d9d" secondAttribute="trailing" constant="16" id="b7F-YA-uDj"/>
-                                    <constraint firstAttribute="bottom" secondItem="haW-3t-CTm" secondAttribute="bottom" constant="28" id="nXz-Yg-YRg"/>
+                                    <constraint firstAttribute="trailing" secondItem="haW-3t-CTm" secondAttribute="trailing" constant="16" id="fFi-s2-6MA"/>
+                                    <constraint firstAttribute="bottom" secondItem="haW-3t-CTm" secondAttribute="bottom" constant="25" id="nXz-Yg-YRg"/>
                                     <constraint firstItem="KGf-mp-d9d" firstAttribute="top" secondItem="A7y-3W-z9d" secondAttribute="bottom" constant="16" id="olb-VW-IeF"/>
                                     <constraint firstItem="bCi-Uy-1N9" firstAttribute="leading" secondItem="A7y-3W-z9d" secondAttribute="leading" id="q12-bU-Ccw"/>
                                 </constraints>
@@ -1796,6 +1818,7 @@ Percentage (%)</string>
                         <viewLayoutGuide key="safeArea" id="b0V-nw-Mn0"/>
                     </view>
                     <connections>
+                        <outlet property="cancelBtn" destination="HAm-jI-0La" id="cNH-sO-6MA"/>
                         <outlet property="dataContainerView" destination="Cyf-Ce-VDS" id="3eC-0M-eAa"/>
                         <outlet property="emailTxtField" destination="KGf-mp-d9d" id="l6m-WL-Po2"/>
                         <outlet property="signInBtn" destination="EJi-iZ-mpD" id="V1I-GE-nRO"/>
