@@ -71,7 +71,8 @@ extension CategoriesTokenVC: UICollectionViewDelegate, UICollectionViewDataSourc
         let cell = collectionView.dequeueCell(with: ProductCollectionCell.self, indexPath: indexPath)
         cell.productName.text = isSearchEnable ? (self.searchTokenCategories?[indexPath.row].category_name ?? "") : (self.tokenCategories?[indexPath.row].category_name ?? "")
         let imgEntity =  isSearchEnable ? (self.searchTokenCategories?[indexPath.row].image ?? "") : (self.tokenCategories?[indexPath.row].image ?? "")
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+//        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        let url = URL(string: "" +  nullStringToEmpty(string: imgEntity))
         cell.productImg.sd_setImage(with: url , placeholderImage: nil)
         cell.backgroundColor = .clear
         return cell

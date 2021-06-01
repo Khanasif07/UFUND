@@ -272,6 +272,7 @@ struct Constants {
     let price = "Price"
     let startDate = "Offer Start Date"
     let investmentStartDate = "Investment Start Date"
+    let investmentDate = "Investment Date"
     let closingDate = "Offer End Date"
     let priceRange = "Price Range"
     let maturityDate = "Maturity Date"

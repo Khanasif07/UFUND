@@ -232,7 +232,7 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
         if isDeviceIPad {
              return 10 * tableView.frame.height / 100
         } else {
-             return 15 * tableView.frame.height / 100
+            return 12.5 * tableView.frame.height / 100
         }
     }
     

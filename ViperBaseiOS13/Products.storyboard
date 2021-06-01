@@ -2755,7 +2755,7 @@ Percentage (%)</string>
                                         <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hbr-0i-CSW">
-                                                <rect key="frame" x="16" y="18.5" width="382" height="43.5"/>
+                                                <rect key="frame" x="16" y="12.5" width="382" height="43.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OA2-iX-vL2" userLabel="SORT">
                                                         <rect key="frame" x="0.0" y="0.0" width="187" height="43.5"/>
@@ -2784,7 +2784,7 @@ Percentage (%)</string>
                                         <constraints>
                                             <constraint firstItem="hbr-0i-CSW" firstAttribute="centerX" secondItem="i7t-yd-jY6" secondAttribute="centerX" id="8WM-YC-iOY"/>
                                             <constraint firstItem="hbr-0i-CSW" firstAttribute="height" secondItem="i7t-yd-jY6" secondAttribute="height" multiplier="43/80" id="IOe-Hz-Ims"/>
-                                            <constraint firstItem="hbr-0i-CSW" firstAttribute="centerY" secondItem="i7t-yd-jY6" secondAttribute="centerY" id="bFJ-Nf-Z9m"/>
+                                            <constraint firstItem="hbr-0i-CSW" firstAttribute="centerY" secondItem="i7t-yd-jY6" secondAttribute="centerY" multiplier="0.85" id="bFJ-Nf-Z9m"/>
                                             <constraint firstItem="hbr-0i-CSW" firstAttribute="leading" secondItem="i7t-yd-jY6" secondAttribute="leading" constant="16" id="caN-4i-lxJ"/>
                                             <constraint firstAttribute="trailing" secondItem="hbr-0i-CSW" secondAttribute="trailing" constant="16" id="wPo-c5-l1R"/>
                                         </constraints>

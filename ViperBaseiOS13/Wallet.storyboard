@@ -70,9 +70,9 @@
                                         <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="UhZ-go-KC3">
-                                                <rect key="frame" x="16" y="16" width="382" height="304"/>
+                                                <rect key="frame" x="16" y="16" width="382" height="185"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mrl-nJ-El1">
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mrl-nJ-El1">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="103"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icTokenInvestmentBg" translatesAutoresizingMaskIntoConstraints="NO" id="GVb-Ef-gsL">
@@ -109,7 +109,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rSg-wf-vvW">
-                                                        <rect key="frame" x="0.0" y="119" width="382" height="185"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="185"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sph-EW-AdL">
                                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="185"/>
@@ -192,7 +192,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3g-OQ-2D5">
-                                                <rect key="frame" x="16" y="336" width="382" height="136"/>
+                                                <rect key="frame" x="16" y="217" width="382" height="136"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7.5" translatesAutoresizingMaskIntoConstraints="NO" id="6i3-xp-lOa">
                                                         <rect key="frame" x="16" y="63" width="132.5" height="57"/>
@@ -260,7 +260,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="S2q-ht-ZRm">
-                                                <rect key="frame" x="16" y="488" width="382" height="64"/>
+                                                <rect key="frame" x="16" y="369" width="382" height="64"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDn-m1-WDb">
                                                         <rect key="frame" x="0.0" y="0.0" width="183" height="64"/>
@@ -336,13 +336,13 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOm-OD-MKp">
-                                        <rect key="frame" x="16" y="583" width="183" height="64"/>
+                                        <rect key="frame" x="16" y="464" width="183" height="64"/>
                                         <connections>
                                             <action selector="depositBtnAction:" destination="6LK-eK-0mJ" eventType="touchUpInside" id="xYK-Sw-Cpl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dtj-do-9qs">
-                                        <rect key="frame" x="215" y="583" width="183" height="64"/>
+                                        <rect key="frame" x="215" y="464" width="183" height="64"/>
                                         <connections>
                                             <action selector="withdrawlBtnAction:" destination="6LK-eK-0mJ" eventType="touchUpInside" id="hgU-2Z-ADJ"/>
                                         </connections>
@@ -354,16 +354,14 @@
                                             <action selector="overAllUserInvestmentBtnAction:" destination="6LK-eK-0mJ" eventType="touchUpInside" id="cZ4-9N-mYC"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5G-G5-2bD">
-                                        <rect key="frame" x="16" y="230" width="187" height="185"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5G-G5-2bD">
+                                        <rect key="frame" x="16" y="111" width="187" height="185"/>
                                         <connections>
                                             <action selector="totalProductsBtnAction:" destination="6LK-eK-0mJ" eventType="touchUpInside" id="t7t-BL-4mW"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAv-AT-hON">
-                                        <rect key="frame" x="211" y="230" width="187" height="185"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAv-AT-hON">
+                                        <rect key="frame" x="211" y="111" width="187" height="185"/>
                                         <connections>
                                             <action selector="totalAssetsBtnAction:" destination="6LK-eK-0mJ" eventType="touchUpInside" id="7w8-7e-6rI"/>
                                         </connections>
@@ -375,18 +373,26 @@
                                     <constraint firstItem="RrG-NJ-8Av" firstAttribute="top" secondItem="bfe-sK-n45" secondAttribute="bottom" id="5oH-sj-t9K"/>
                                     <constraint firstItem="Mrl-nJ-El1" firstAttribute="height" secondItem="imU-vO-fJh" secondAttribute="height" multiplier="0.114955" id="9Nx-sc-R5u"/>
                                     <constraint firstItem="DOm-OD-MKp" firstAttribute="trailing" secondItem="wDn-m1-WDb" secondAttribute="trailing" id="9lF-Qp-6qv"/>
+                                    <constraint firstItem="M5G-G5-2bD" firstAttribute="leading" secondItem="sph-EW-AdL" secondAttribute="leading" id="AuQ-gg-IXu"/>
                                     <constraint firstItem="DOm-OD-MKp" firstAttribute="bottom" secondItem="wDn-m1-WDb" secondAttribute="bottom" id="CVW-h9-bZh"/>
+                                    <constraint firstItem="BAv-AT-hON" firstAttribute="top" secondItem="tH2-dt-QS7" secondAttribute="top" id="FZO-aK-BEQ"/>
                                     <constraint firstItem="Dtj-do-9qs" firstAttribute="bottom" secondItem="P1O-4L-cSV" secondAttribute="bottom" id="IH9-Qx-2UH"/>
                                     <constraint firstItem="Dtj-do-9qs" firstAttribute="top" secondItem="P1O-4L-cSV" secondAttribute="top" id="KeT-nQ-Sad"/>
                                     <constraint firstItem="Dtj-do-9qs" firstAttribute="leading" secondItem="P1O-4L-cSV" secondAttribute="leading" id="Kkg-hg-Cc6"/>
                                     <constraint firstItem="rSg-wf-vvW" firstAttribute="height" secondItem="imU-vO-fJh" secondAttribute="height" multiplier="0.206473" id="La5-Lc-CfL"/>
                                     <constraint firstAttribute="trailing" secondItem="RrG-NJ-8Av" secondAttribute="trailing" id="RIQ-0B-xhx"/>
+                                    <constraint firstItem="M5G-G5-2bD" firstAttribute="top" secondItem="sph-EW-AdL" secondAttribute="top" id="X0r-Rv-cWT"/>
+                                    <constraint firstItem="BAv-AT-hON" firstAttribute="trailing" secondItem="tH2-dt-QS7" secondAttribute="trailing" id="csS-Yp-qtB"/>
+                                    <constraint firstItem="BAv-AT-hON" firstAttribute="leading" secondItem="tH2-dt-QS7" secondAttribute="leading" id="eZm-xj-d1k"/>
+                                    <constraint firstItem="M5G-G5-2bD" firstAttribute="trailing" secondItem="sph-EW-AdL" secondAttribute="trailing" id="gwZ-q0-SGV"/>
                                     <constraint firstItem="DOm-OD-MKp" firstAttribute="leading" secondItem="wDn-m1-WDb" secondAttribute="leading" id="hBT-w3-Lj4"/>
                                     <constraint firstItem="RrG-NJ-8Av" firstAttribute="leading" secondItem="imU-vO-fJh" secondAttribute="leading" id="leO-jm-wBC"/>
                                     <constraint firstAttribute="trailing" secondItem="bfe-sK-n45" secondAttribute="trailing" id="mCC-Iz-z4G"/>
                                     <constraint firstItem="DOm-OD-MKp" firstAttribute="top" secondItem="wDn-m1-WDb" secondAttribute="top" id="pzj-HS-sOQ"/>
+                                    <constraint firstItem="M5G-G5-2bD" firstAttribute="bottom" secondItem="sph-EW-AdL" secondAttribute="bottom" id="rlZ-Po-v5T"/>
                                     <constraint firstItem="Dtj-do-9qs" firstAttribute="trailing" secondItem="P1O-4L-cSV" secondAttribute="trailing" id="xXb-y3-Xqx"/>
                                     <constraint firstItem="bfe-sK-n45" firstAttribute="leading" secondItem="imU-vO-fJh" secondAttribute="leading" id="yPv-SG-f87"/>
+                                    <constraint firstItem="BAv-AT-hON" firstAttribute="bottom" secondItem="tH2-dt-QS7" secondAttribute="bottom" id="zDI-Uc-PAP"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -408,6 +414,7 @@
                         <outlet property="depositView" destination="wDn-m1-WDb" id="ShT-iM-FVQ"/>
                         <outlet property="dropdownView" destination="Qgf-yE-ext" id="hMi-6M-f4g"/>
                         <outlet property="middleView" destination="rSg-wf-vvW" id="0h3-Yp-8X6"/>
+                        <outlet property="overAllUserInvestmentBtn" destination="hic-xy-zGb" id="C8J-CN-2sS"/>
                         <outlet property="overUserInvestLbl" destination="0lX-M8-2rC" id="yOd-YD-YK7"/>
                         <outlet property="titleLbl" destination="pQp-0o-X99" id="CgS-NX-lT7"/>
                         <outlet property="topView" destination="Mrl-nJ-El1" id="LzY-Og-Qyu"/>

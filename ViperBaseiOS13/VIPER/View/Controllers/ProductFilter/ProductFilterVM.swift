@@ -25,7 +25,7 @@ class ProductFilterVM {
     var categoryListing: [CategoryModel] = []
     var selectedCategoryListing: [CategoryModel] = []
     var status: [String] = []
-    let allYieldTabsStr: [String] = [Constants.string.category.localize(),Constants.string.startDate.localize(),Constants.string.maturityDate.localize()]
+    let allYieldTabsStr: [String] = [Constants.string.category.localize(),Constants.string.investmentDate.localize(),Constants.string.maturityDate.localize()]
     let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(), Constants.string.status.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
     let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
      let allTabsStrWithoutStatus: [String] = [Constants.string.category.localize(),Constants.string.priceRange.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]

@@ -164,11 +164,13 @@ extension MyWalletSheetVC {
         self.walletHistoryBtn.setTitleColor(.red, for: .normal)
         self.investBuyHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
         if userType == UserType.campaigner.rawValue {
+            investBuyHistoryBtn.isHidden = true
             walletHistoryBtn.setTitle(Constants.string.walletHistory.localize(), for: .normal)
             investBuyHistoryBtn.setTitle(Constants.string.investBuyHistory.localize(), for: .normal)
         } else {
+            investBuyHistoryBtn.isHidden = false
             walletHistoryBtn.setTitle(Constants.string.walletHistory.localize(), for: .normal)
-            investBuyHistoryBtn.setTitle(Constants.string.transHistory.localize(), for: .normal)
+            investBuyHistoryBtn.setTitle(Constants.string.investBuyHistory.localize(), for: .normal)
         }
         [investBuyHistoryBtn,walletHistoryBtn].forEach { (lbl) in
             lbl?.titleLabel?.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)

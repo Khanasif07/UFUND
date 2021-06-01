@@ -14,6 +14,7 @@ class MyWalletVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var overAllUserInvestmentBtn: UIButton!
     @IBOutlet weak var withdrawlBtnLbl: UILabel!
     @IBOutlet weak var depositBtnLbl: UILabel!
     @IBOutlet weak var yourWalletBalanceTitleLbl: UILabel!
@@ -39,8 +40,9 @@ class MyWalletVC: UIViewController {
     @IBOutlet weak var walletBalanceView: UIView!
     // MARK: - Variables
     //===========================
+    var walletBalance = WalletBalance()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-    var selectedCurrencyType = "ETC"
+    var selectedCurrencyType = "ETH"
     let bottomSheetVC = MyWalletSheetVC()
     var  buttonView = UIButton()
     private lazy var loader  : UIView = {
@@ -135,7 +137,7 @@ extension MyWalletVC {
     private func initialSetup() {
         self.setUpBorder()
         self.setFont()
-        self.hitWalletAPI()
+        self.hitWalletCountAPI()
     }
     
     private func setUpBorder(){
@@ -156,6 +158,7 @@ extension MyWalletVC {
         self.currencyTextField.delegate = self
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         currencyTextField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
+        self.overAllUserInvestmentBtn.isHidden  = userType == UserType.campaigner.rawValue
         self.topView.isHidden = userType == UserType.campaigner.rawValue
         self.totalProductsTitlelbl.text = userType == UserType.campaigner.rawValue ? "Total Add Products" : "Total Invested Products"
         self.totalTokensTitleLbl.text = userType == UserType.campaigner.rawValue ? "Total Add Tokenized Assets" : "Total Invested Tokenized Assets"
@@ -182,11 +185,17 @@ extension MyWalletVC {
             currencyTextField.text =  self.selectedCurrencyType
             currencyTextField.isUserInteractionEnabled = true
             currencyTextField.isHidden = false
+            if selectedCurrencyType == "ETH"{
+                 self.yourWalletBalanceLbl.text = "\(walletBalance.eth ?? 0.0 )"
+            } else {
+                 self.yourWalletBalanceLbl.text = "\(walletBalance.btc ?? 0.0 )"
+            }
         } else {
             currencyTextField.rightView = nil
             currencyTextField.inputView = nil
             currencyTextField.text = " Dollar (USD)"
             currencyTextField.isUserInteractionEnabled = false
+            self.yourWalletBalanceLbl.text = "$ " + "\(walletBalance.wallet ?? 0.0 )"
         }
     }
     
@@ -209,9 +218,13 @@ extension MyWalletVC {
         self.view.layoutIfNeeded()
     }
     
-    private func hitWalletAPI(){
+    private func hitWalletCountAPI(){
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.investor_wallet_counts.rawValue, params: nil, methodType: .GET, modelClass: WalletModuleEntity.self, token: true)
+    }
+    
+    private func hitWalletBalanceAPI(){
+        self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil , methodType: .GET, modelClass: WalletEntity.self, token: true)
     }
 }
 
@@ -237,7 +250,7 @@ extension MyWalletVC : UITextFieldDelegate {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
         vc.usingForSort = .filter
-        vc.sortArray = [("ETC",false),("BITCOIN",false)]
+        vc.sortArray = [("ETH",false),("BTC",false)]
         vc.sortTypeApplied = self.selectedCurrencyType
         self.present(vc, animated: true, completion: nil)
     }
@@ -266,6 +279,13 @@ extension MyWalletVC: PresenterOutputProtocol {
                 self.userInvestmentValueLbl.text = "$ " + "\(data.overall_invest ?? 0)"
                 self.totalProductsValueLbl.text = "\(data.total_products ?? 0)"
                 self.totalAssetsValueLbl.text = "\(data.total_tokens ?? 0)"
+            }
+            hitWalletBalanceAPI()
+        case  Base.wallet.rawValue:
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                self.walletBalance = data
+                self.yourWalletBalanceLbl.text = "\(data.eth ?? 0.0 )"
             }
         default:
             break

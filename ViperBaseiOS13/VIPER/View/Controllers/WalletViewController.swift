@@ -152,7 +152,6 @@ extension WalletViewController : PresenterOutputProtocol {
         
        
         self.loader.isHidden = false
-        
         self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil , methodType: .GET, modelClass: WalletBalance.self, token: true)
         
     }

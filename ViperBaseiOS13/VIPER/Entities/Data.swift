@@ -46,6 +46,10 @@ struct WalletBalance : Mappable {
     init?(map: Map) {
 
     }
+    
+    init(){
+        
+    }
 
     mutating func mapping(map: Map) {
 
