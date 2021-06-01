@@ -14,6 +14,7 @@ class MyWalletSheetVC: UIViewController {
     // holdView can be UIImageView instead
     //MARK:- OUTLETS
     //==============
+    @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var investBuyHistoryBtn: UIButton!
     @IBOutlet weak var walletHistoryBtn: UIButton!
     @IBOutlet weak var mainCotainerView: UIView!
@@ -29,7 +30,8 @@ class MyWalletSheetVC: UIViewController {
      var menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
     lazy var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(closePullUp))
     var fullView: CGFloat {
-        return (isDeviceIPad ? 90.0 : 70.0)
+        return (UIApplication.shared.statusBarFrame.height +
+            (isDeviceIPad ? 65.0 : 51.0 ))
     }
     var textContainerHeight : CGFloat? {
         didSet{
@@ -67,29 +69,25 @@ class MyWalletSheetVC: UIViewController {
         mainCotainerView.addShadowToTopOrBottom(location: .top, color: UIColor.black.withAlphaComponent(0.5))
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func filterBtnAction(_ sender: Any) {
+        let filterVC = MyYieldFilterVC.instantiate(fromAppStoryboard: .Filter)
+        filterVC.modalPresentationStyle = .overCurrentContext
+        self.present(filterVC, animated: true, completion: nil)
     }
+    
+    
     @IBAction func walletHistoryBtnAction(_ sender: UIButton) {
         self.walletHistoryBtn.setTitleColor(.red, for: .normal)
         self.investBuyHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
+        self.menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[])]
+        self.mainTableView.reloadData()
     }
     
     @IBAction func investBuyHistoryBtnAciton(_ sender: UIButton) {
         self.walletHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
         self.investBuyHistoryBtn.setTitleColor(.red, for: .normal)
-    }
-    
-    @IBAction func rightButton(_ sender: AnyObject) {
-        print("clicked")
-    }
-    
-    @IBAction func close(_ sender: AnyObject) {
-        UIView.animate(withDuration: 0.3, animations: {
-            let frame = self.view.frame
-            self.view.frame = CGRect(x: 0, y: self.partialView, width: frame.width, height: frame.height)
-        })
+        self.menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
+        self.mainTableView.reloadData()
     }
     
     @objc func panGesture(_ recognizer: UIPanGestureRecognizer) {

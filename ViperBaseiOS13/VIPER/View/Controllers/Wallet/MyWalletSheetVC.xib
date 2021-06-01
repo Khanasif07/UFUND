@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyWalletSheetVC" customModule="UFUND" customModuleProvider="target">
             <connections>
                 <outlet property="bottomLayoutConstraint" destination="WMK-bn-qQt" id="LpG-uC-Gbh"/>
+                <outlet property="filterBtn" destination="EZ9-35-Hlu" id="QcD-z2-a0p"/>
                 <outlet property="investBuyHistoryBtn" destination="X1B-tJ-Lsp" id="azA-CL-IMt"/>
                 <outlet property="mainCotainerView" destination="ebb-mw-JeH" id="pSf-7a-qcd"/>
                 <outlet property="mainTableView" destination="e5r-9b-BBo" id="XZA-e8-oeV"/>
@@ -91,6 +92,9 @@
                                 <constraint firstAttribute="width" secondItem="EZ9-35-Hlu" secondAttribute="height" id="T1R-Ua-BMw"/>
                             </constraints>
                             <state key="normal" image="filter1"/>
+                            <connections>
+                                <action selector="filterBtnAction:" destination="-1" eventType="touchUpInside" id="MWK-km-ieh"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

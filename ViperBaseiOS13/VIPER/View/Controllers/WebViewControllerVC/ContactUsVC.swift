@@ -44,7 +44,6 @@ class ContactUsVC: UIViewController {
     @IBAction func backBtnAction(_ sender: UIButton) {
         self.popOrDismiss(animation: true)
     }
-
 }
 
 // MARK: - Extension For Functions
@@ -54,6 +53,8 @@ extension ContactUsVC {
     private func initialSetup() {
         self.setupTextAndFont()
         self.getContactUs()
+        self.setUpTapGestureForPhone()
+        self.setUpTapGestureForEmail()
     }
     
     func getContactUs() {
@@ -66,6 +67,42 @@ extension ContactUsVC {
             lbl.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x18) : .setCustomFont(name: .regular, size: .x14)
         }
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
+    }
+    
+    private func setUpTapGestureForPhone() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.phoneTap(_:)))
+        phoneLbl.isUserInteractionEnabled = true
+        phoneLbl.addGestureRecognizer(tap)
+    }
+    
+    private func setUpTapGestureForEmail() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.emailTap(_:)))
+        emailLbl.isUserInteractionEnabled = true
+        emailLbl.addGestureRecognizer(tap)
+    }
+    
+    @objc func phoneTap(_ sender: UITapGestureRecognizer? = nil){
+        var uc = URLComponents()
+        uc.scheme = "tel"
+        uc.path =  phoneLbl.text?.replacingOccurrences(of: " ", with: "%20") ?? ""
+        if let phoneURL = uc.url {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(phoneURL)
+            } else {
+                UIApplication.shared.openURL(phoneURL)
+            }
+        }
+    }
+    
+    @objc func emailTap(_ sender: UITapGestureRecognizer? = nil){
+        let email = emailLbl.text ?? ""
+        if let url = URL(string: "mailto:\(email)") {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
 }
 

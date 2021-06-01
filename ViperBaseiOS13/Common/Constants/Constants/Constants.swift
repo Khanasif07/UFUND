@@ -306,6 +306,7 @@ struct Constants {
     
     let myfiatBalance = "My Fiat Balance";
     let mycryptoBalance = "My Crypto Balance";
+    let myYield = "My Yield";
 }
 
 

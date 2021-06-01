@@ -326,7 +326,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.cryptoCurrency.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
-//              self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.pushViewController(vc, animated: true)
             default:
                 break
             }

@@ -39,6 +39,7 @@ class MyWalletVC: UIViewController {
     @IBOutlet weak var walletBalanceView: UIView!
     // MARK: - Variables
     //===========================
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCurrencyType = "ETC"
     let bottomSheetVC = MyWalletSheetVC()
     var  buttonView = UIButton()
@@ -98,10 +99,12 @@ class MyWalletVC: UIViewController {
     }
     
     @IBAction func overAllUserInvestmentBtnAction(_ sender: UIButton) {
+        if userType == UserType.investor.rawValue {
         let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
         vc.productTitle = Constants.string.overall_user_investment.localize()
         vc.productType = .AllProducts
         self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func totalProductsBtnAction(_ sender: UIButton) {
@@ -153,6 +156,9 @@ extension MyWalletVC {
         self.currencyTextField.delegate = self
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         currencyTextField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
+        self.topView.isHidden = userType == UserType.campaigner.rawValue
+        self.totalProductsTitlelbl.text = userType == UserType.campaigner.rawValue ? "Total Add Products" : "Total Invested Products"
+        self.totalTokensTitleLbl.text = userType == UserType.campaigner.rawValue ? "Total Add Tokenized Assets" : "Total Invested Tokenized Assets"
     }
     
     private func setFont(){

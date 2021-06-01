@@ -45,8 +45,8 @@ class SideMenuController: UIViewController {
                 sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icSubmitAssets"),[#imageLiteral(resourceName: "icSubmitAssets")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icWallet"),[#imageLiteral(resourceName: "icWallet")]),(#imageLiteral(resourceName: "icSendCoin"),[]),(#imageLiteral(resourceName: "Image"),[])]
                 
             } else {
-                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.send_coin.localize(),[]),(Constants.string.setting.localize(),[])]
-                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icInvestments"),[#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icInvestments")]),(#imageLiteral(resourceName: "icWallet"),[#imageLiteral(resourceName: "icWallet")]),(#imageLiteral(resourceName: "icSendCoin"),[]),(#imageLiteral(resourceName: "Image"),[])]
+                menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.send_coin.localize(),[]),(Constants.string.myYield.localize(),[]),(Constants.string.setting.localize(),[])]
+                sideMenuImg =   [(#imageLiteral(resourceName: "icProfile"),[#imageLiteral(resourceName: "icProfile")]),(#imageLiteral(resourceName: "icCategories"),[#imageLiteral(resourceName: "icCategories")]),(#imageLiteral(resourceName: "icProducts"),[#imageLiteral(resourceName: "icProducts"),#imageLiteral(resourceName: "icProducts")]),(#imageLiteral(resourceName: "icTokenized"),[#imageLiteral(resourceName: "icTokenized"),#imageLiteral(resourceName: "icTokenized")]),(#imageLiteral(resourceName: "icInvestments"),[#imageLiteral(resourceName: "icInvestments"),#imageLiteral(resourceName: "icInvestments")]),(#imageLiteral(resourceName: "icWallet"),[#imageLiteral(resourceName: "icWallet")]),(#imageLiteral(resourceName: "icSendCoin"),[]),(#imageLiteral(resourceName: "icSendCoin"),[]),(#imageLiteral(resourceName: "Image"),[])]
             }
         }
     }
@@ -558,6 +558,11 @@ extension  SideMenuController {
             self.push(to: Storyboard.Ids.PayClearHistoryViewController)
         case Constants.string.logout.localize():
             presentAlertViewController()
+            
+        case Constants.string.myYield.localize():
+            self.drawerController?.closeSide()
+            let myYieldVC = MyYieldVC.instantiate(fromAppStoryboard: .Wallet)
+            (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(myYieldVC, animated: true)
             
         default:
             break
