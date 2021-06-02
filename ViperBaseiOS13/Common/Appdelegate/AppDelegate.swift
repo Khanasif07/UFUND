@@ -15,6 +15,7 @@ import GoogleSignIn
 import TwitterKit
 import LinkedinSwift
 import FirebaseMessaging
+import AWSS3
 
 
 @UIApplicationMain
@@ -36,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GoogleLoginController.shared.configure(withClientId: AppConstants.googleId)
         setGoogleMapKey()
+        AWSS3Manager.shared.setupAmazonS3(withPoolID: AppConstants.awss3PoolId)
         setLocalization(language: Language.english)
         self.registerPush(forApp: application)
         UNUserNotificationCenter.current().delegate = self

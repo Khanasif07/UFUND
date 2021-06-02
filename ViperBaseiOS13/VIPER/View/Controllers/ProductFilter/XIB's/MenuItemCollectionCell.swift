@@ -61,4 +61,8 @@ class MenuItemCollectionCell: PagingCell {
             self.dataContainerView.backgroundColor = selected ? .red : #colorLiteral(red: 0.9568627451, green: 0.9333333333, blue: 0.937254902, alpha: 1)
         }
      }
+    
+    func configureCell(){
+        
+    }
 }

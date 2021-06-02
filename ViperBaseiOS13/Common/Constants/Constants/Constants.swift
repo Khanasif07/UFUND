@@ -259,6 +259,7 @@ struct Constants {
     let copyClipboard = "Address Copied"
     let sucessKYC = "You have been approved and now you can enjoy freely our services"
       let failedKyc = "Verification Failed. Please try again."
+     let failedImg = "Image Uploading Failed. Please try again."
       let pendingKyc = "We are still processing your document, please be patient."
     
     let selectEndDate = "Please select end date"

@@ -31,6 +31,7 @@ target 'ViperBaseiOS13' do
   pod 'RangeSeekSlider'
   pod  'Charts'
   pod 'MXParallaxHeader'
+  pod 'AWSS3'
   
   target 'ViperBaseiOS13Tests' do
     inherit! :search_paths

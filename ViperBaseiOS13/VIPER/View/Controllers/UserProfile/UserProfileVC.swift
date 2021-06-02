@@ -291,6 +291,18 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                         cell.profileImgView.image = proImg
                         selff.profileImg = proImg
                         selff.imageData = proImg.jpegData(compressionQuality: 0.2)!
+                        selff.loader.isHidden = false
+                        image?.upload(progress: { (progress) in
+                            print(progress)
+                        }, completion: { (response,error) in
+                            if let url = response {
+                                selff.loader.isHidden = true
+                                 print(url)
+                            }
+                            if let _ = error{
+                                ToastManager.show(title:  nullStringToEmpty(string: Constants.string.failedImg.localize()), state: .error)
+                            }
+                        })
                     }
                   }
                 }

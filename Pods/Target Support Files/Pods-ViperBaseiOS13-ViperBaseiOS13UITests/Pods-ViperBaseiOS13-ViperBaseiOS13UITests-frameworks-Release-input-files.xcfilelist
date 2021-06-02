@@ -1,5 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-ViperBaseiOS13-ViperBaseiOS13UITests/Pods-ViperBaseiOS13-ViperBaseiOS13UITests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
+${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework
+${BUILT_PRODUCTS_DIR}/AWSS3/AWSS3.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework
 ${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework

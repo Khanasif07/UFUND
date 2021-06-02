@@ -218,6 +218,9 @@
 		842CC6E026660BE700AA86BB /* MyYieldVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC6DF26660BE700AA86BB /* MyYieldVC.swift */; };
 		842CC6E32666111800AA86BB /* MyYieldFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC6E22666111800AA86BB /* MyYieldFilterVC.swift */; };
 		842CC6E5266625AD00AA86BB /* MyYieldFilterVC+Parchment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC6E4266625AD00AA86BB /* MyYieldFilterVC+Parchment.swift */; };
+		842CC6E92666613D00AA86BB /* YieldCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC6E72666613D00AA86BB /* YieldCollectionCell.swift */; };
+		842CC6EA2666613D00AA86BB /* YieldCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842CC6E82666613D00AA86BB /* YieldCollectionCell.xib */; };
+		842CC6ED26677C1400AA86BB /* AWSS3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CC6EC26677C1400AA86BB /* AWSS3Manager.swift */; };
 		8438C67125F5F72F00200270 /* MyInvestmentsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438C67025F5F72F00200270 /* MyInvestmentsDetailVC.swift */; };
 		8438C67525F5F7C300200270 /* InvestmentsProfitTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438C67325F5F7C300200270 /* InvestmentsProfitTableCell.swift */; };
 		8438C67625F5F7C300200270 /* InvestmentsProfitTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8438C67425F5F7C300200270 /* InvestmentsProfitTableCell.xib */; };
@@ -577,6 +580,9 @@
 		842CC6DF26660BE700AA86BB /* MyYieldVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYieldVC.swift; sourceTree = "<group>"; };
 		842CC6E22666111800AA86BB /* MyYieldFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyYieldFilterVC.swift; sourceTree = "<group>"; };
 		842CC6E4266625AD00AA86BB /* MyYieldFilterVC+Parchment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyYieldFilterVC+Parchment.swift"; sourceTree = "<group>"; };
+		842CC6E72666613D00AA86BB /* YieldCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YieldCollectionCell.swift; sourceTree = "<group>"; };
+		842CC6E82666613D00AA86BB /* YieldCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YieldCollectionCell.xib; sourceTree = "<group>"; };
+		842CC6EC26677C1400AA86BB /* AWSS3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSS3Manager.swift; sourceTree = "<group>"; };
 		8438C67025F5F72F00200270 /* MyInvestmentsDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvestmentsDetailVC.swift; sourceTree = "<group>"; };
 		8438C67325F5F7C300200270 /* InvestmentsProfitTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsProfitTableCell.swift; sourceTree = "<group>"; };
 		8438C67425F5F7C300200270 /* InvestmentsProfitTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentsProfitTableCell.xib; sourceTree = "<group>"; };
@@ -1106,6 +1112,7 @@
 		0824B06D2382847600F81A9B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				842CC6EB26677BE500AA86BB /* AWSS3Manager */,
 				8460971726171BAC00A9631F /* CustomTextView */,
 				84411E8B25D1098900718BD1 /* AppConstants */,
 				0824B06E2382847600F81A9B /* Cache */,
@@ -1845,6 +1852,7 @@
 		842CC6DE26660BD400AA86BB /* MyYieldVC */ = {
 			isa = PBXGroup;
 			children = (
+				842CC6E62666611A00AA86BB /* XIB's */,
 				842CC6DF26660BE700AA86BB /* MyYieldVC.swift */,
 			);
 			path = MyYieldVC;
@@ -1857,6 +1865,23 @@
 				842CC6E4266625AD00AA86BB /* MyYieldFilterVC+Parchment.swift */,
 			);
 			path = MyYieldFilterVC;
+			sourceTree = "<group>";
+		};
+		842CC6E62666611A00AA86BB /* XIB's */ = {
+			isa = PBXGroup;
+			children = (
+				842CC6E72666613D00AA86BB /* YieldCollectionCell.swift */,
+				842CC6E82666613D00AA86BB /* YieldCollectionCell.xib */,
+			);
+			path = "XIB's";
+			sourceTree = "<group>";
+		};
+		842CC6EB26677BE500AA86BB /* AWSS3Manager */ = {
+			isa = PBXGroup;
+			children = (
+				842CC6EC26677C1400AA86BB /* AWSS3Manager.swift */,
+			);
+			path = AWSS3Manager;
 			sourceTree = "<group>";
 		};
 		8438C66F25F5F6E200200270 /* MyInvestmentsDetailVC */ = {
@@ -2437,6 +2462,7 @@
 				842ABD122626BB42007AA9BA /* Poppins-BoldItalic.ttf in Resources */,
 				84D5660825DB9EC80047F052 /* CategoryListTableCell.xib in Resources */,
 				84E1F2DB26007483002B0062 /* MyWalletSectionView.xib in Resources */,
+				842CC6EA2666613D00AA86BB /* YieldCollectionCell.xib in Resources */,
 				842ABD1F2626BB42007AA9BA /* Poppins-SemiBold.ttf in Resources */,
 				844682D725D53DC900F44A53 /* ProductSortTableCell.xib in Resources */,
 				842ABD142626BB42007AA9BA /* Poppins-Medium.ttf in Resources */,
@@ -2677,6 +2703,7 @@
 				0824B0C12382847800F81A9B /* UIAplication+RLT.swift in Sources */,
 				0824B0D72382847800F81A9B /* Colors.swift in Sources */,
 				8460971926171BC200A9631F /* CustomTextView.swift in Sources */,
+				842CC6ED26677C1400AA86BB /* AWSS3Manager.swift in Sources */,
 				84D5660725DB9EC80047F052 /* CategoryListTableCell.swift in Sources */,
 				84D565F725DB84980047F052 /* StatusVC.swift in Sources */,
 				081E32DE2386A6CE009096DD /* SignInViewController.swift in Sources */,
@@ -2705,6 +2732,7 @@
 				083E73852387D07F00F3E90A /* ForgetViewController.swift in Sources */,
 				080FC59B238D5C000013B37D /* WalletViewController.swift in Sources */,
 				84E2A82B265B39E000872C22 /* DashboardSellHistroryView.swift in Sources */,
+				842CC6E92666613D00AA86BB /* YieldCollectionCell.swift in Sources */,
 				08730BD72473E27A005F9E74 /* Transactions.swift in Sources */,
 				84DD054E25D239AD003AC05C /* CountryCodeTableCell.swift in Sources */,
 				0824B0D32382847800F81A9B /* Constants.swift in Sources */,
