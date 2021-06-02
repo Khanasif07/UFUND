@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,40 +20,35 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="MyWalletTableCell" customModule="UFUND" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38d-oI-iTd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="1h2-Fl-VDc">
-                                <rect key="frame" x="50" y="13" width="180.5" height="18"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMG-T2-zhJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="18"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EU4-Xx-s1z">
-                                        <rect key="frame" x="156.5" y="0.0" width="24" height="18"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMG-T2-zhJ">
+                                <rect key="frame" x="42.5" y="14.5" width="100" height="15.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EU4-Xx-s1z">
+                                <rect key="frame" x="210" y="14.5" width="23" height="15.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                                <color key="textColor" name="tabUnSelected"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="1h2-Fl-VDc" secondAttribute="bottom" constant="13" id="LL6-lF-nSC"/>
-                            <constraint firstItem="1h2-Fl-VDc" firstAttribute="centerY" secondItem="38d-oI-iTd" secondAttribute="centerY" id="Q4K-Wt-b45"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1h2-Fl-VDc" secondAttribute="trailing" constant="32" id="Rke-BF-0ic"/>
-                            <constraint firstItem="1h2-Fl-VDc" firstAttribute="leading" secondItem="38d-oI-iTd" secondAttribute="leading" constant="50" id="VUt-ec-H9D"/>
-                            <constraint firstItem="1h2-Fl-VDc" firstAttribute="top" secondItem="38d-oI-iTd" secondAttribute="top" constant="13" id="XsM-Xa-2f5"/>
+                            <constraint firstItem="FMG-T2-zhJ" firstAttribute="leading" secondItem="38d-oI-iTd" secondAttribute="leading" constant="42.5" id="EdM-5a-xdr"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EU4-Xx-s1z" secondAttribute="trailing" constant="16" id="Jdm-l0-bkV"/>
+                            <constraint firstItem="EU4-Xx-s1z" firstAttribute="leading" secondItem="38d-oI-iTd" secondAttribute="leading" constant="210" id="Sn6-aV-Wc7"/>
+                            <constraint firstItem="FMG-T2-zhJ" firstAttribute="centerY" secondItem="38d-oI-iTd" secondAttribute="centerY" id="mlI-2I-Zns"/>
+                            <constraint firstItem="EU4-Xx-s1z" firstAttribute="centerY" secondItem="38d-oI-iTd" secondAttribute="centerY" id="pbv-b3-fCp"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -65,7 +61,16 @@
             </tableViewCellContentView>
             <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descLbl" destination="EU4-Xx-s1z" id="CgT-vk-cGg"/>
+                <outlet property="titleLbl" destination="FMG-T2-zhJ" id="tbj-Jy-pCW"/>
+            </connections>
             <point key="canvasLocation" x="139" y="125"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="tabUnSelected">
+            <color red="0.69999998807907104" green="0.69999998807907104" blue="0.69999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

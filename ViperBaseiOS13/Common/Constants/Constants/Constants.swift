@@ -340,6 +340,8 @@ struct Keys {
     let g2f_temp = "g2f_temp"
     let pin_status = "pin_status"
     let wallet_address = "wallet_address"
+    let eth_address = "eth_address"
+    let btc_address = "btc_address"
     
 }
 

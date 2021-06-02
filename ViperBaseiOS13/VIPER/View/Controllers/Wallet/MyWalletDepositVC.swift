@@ -19,6 +19,7 @@ class MyWalletDepositVC: UIViewController {
     @IBOutlet weak var qrCodeImgView: UIImageView!
     @IBOutlet weak var qrcodeView: UIView!
     @IBOutlet weak var addAmtLbl: UILabel!
+    @IBOutlet weak var qrCodeAddressLbl : SRCopyableLabel!
     @IBOutlet weak var depositToWalletLbl: UILabel!
     @IBOutlet weak var currencyTxtField: UITextField!
     @IBOutlet weak var descLbl: UILabel!
@@ -78,6 +79,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
     }
     
     private func setFont(){
+        self.qrCodeAddressLbl.text = "\(User.main.eth_address ?? "" )"
         self.currencyTxtField.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x20) : .setCustomFont(name: .medium, size: .x15)
         self.amtTxtField.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x28) : .setCustomFont(name: .regular, size: .x24)
         self.depositToWalletLbl.font =  isDeviceIPad ? .setCustomFont(name: .regular, size: .x20) : .setCustomFont(name: .regular, size: .x16)
@@ -120,7 +122,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
         vc.usingForSort = .filter
-        vc.sortArray = [("ETC",false),("Bitcoin",false)]
+        vc.sortArray = [("ETC",false),("BTH",false)]
         vc.sortTypeApplied = self.selectedCurrencyType
         self.present(vc, animated: true, completion: nil)
     }
@@ -142,5 +144,11 @@ extension MyWalletDepositVC: ProductSortVCDelegate{
     func sortingApplied(sortType: String){
         self.selectedCurrencyType = sortType
         currencyTxtField.text =  self.selectedCurrencyType
+        if selectedCurrencyType == "ETH"{
+            self.qrCodeAddressLbl.text = "\(User.main.eth_address ?? "" )"
+        } else {
+            self.qrCodeAddressLbl.text = "\(User.main.btc_address ?? "" )"
+        }
+        
     }
 }

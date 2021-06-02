@@ -25,5 +25,12 @@ class MyWalletSectionView: UITableViewHeaderFooterView {
         }
     }
     
+    open func populateData(model: History){
+        let date = (model.created_at)?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
+        self.dateLbl.text = date.convertToDefaultString()
+        self.sectionMiddleLbl.text = model.type ?? ""
+        self.sectionTitleLbl.text = model.via ?? ""
+    }
+    
 
 }

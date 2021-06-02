@@ -123,6 +123,8 @@ struct SignInModel : Mappable {
     var g2f_status: Int?
     var picture: String?
     var token_type: String?
+    var eth_address : String?
+    var btc_address : String?
 
     init?(map: Map) {
 
@@ -163,6 +165,8 @@ struct SignInModel : Mappable {
         access_token <- map["access_token"]
         g2f_status <- map["g2f_status"]
         token_type <- map["token_type"]
+        eth_address <- map["eth_address"]
+        btc_address <- map["btc_address"]
     }
 
 }
@@ -201,6 +205,8 @@ struct SignUpModel : Mappable {
     var updated_at : String?
     var access_token : String?
     var status: String?
+    var eth_address : String?
+    var btc_address : String?
 
     init?(map: Map) {
 
@@ -239,6 +245,8 @@ struct SignUpModel : Mappable {
         updated_at <- map["updated_at"]
         access_token <- map["access_token"]
         status <- map["status"]
+        eth_address <- map["eth_address"]
+        btc_address <- map["btc_address"]
     }
 
 }

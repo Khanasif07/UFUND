@@ -47,9 +47,14 @@ struct History : Mappable {
     var created_at : String?
     var updated_at : String?
     var user : UserHistory?
+    var isSelected: Bool = false
 
     init?(map: Map) {
 
+    }
+    
+    init(){
+        
     }
 
     mutating func mapping(map: Map) {

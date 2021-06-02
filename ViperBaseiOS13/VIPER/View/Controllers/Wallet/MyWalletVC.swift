@@ -41,6 +41,7 @@ class MyWalletVC: UIViewController {
     // MARK: - Variables
     //===========================
     var walletBalance = WalletBalance()
+    var walletModule = WalletModule()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCurrencyType = "ETH"
     let bottomSheetVC = MyWalletSheetVC()
@@ -158,6 +159,7 @@ extension MyWalletVC {
         self.currencyTextField.delegate = self
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         currencyTextField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
+        currencyTextField.text = self.selectedCurrencyType
         self.overAllUserInvestmentBtn.isHidden  = userType == UserType.campaigner.rawValue
         self.topView.isHidden = userType == UserType.campaigner.rawValue
         self.totalProductsTitlelbl.text = userType == UserType.campaigner.rawValue ? "Total Add Products" : "Total Invested Products"
@@ -276,6 +278,8 @@ extension MyWalletVC: PresenterOutputProtocol {
         case Base.investor_wallet_counts.rawValue:
             let walletData = dataDict as? WalletModuleEntity
             if let data = walletData?.data {
+                self.walletModule = data
+                self.bottomSheetVC.walletModule = self.walletModule
                 self.userInvestmentValueLbl.text = "$ " + "\(data.overall_invest ?? 0)"
                 self.totalProductsValueLbl.text = "\(data.total_products ?? 0)"
                 self.totalAssetsValueLbl.text = "\(data.total_tokens ?? 0)"
@@ -306,5 +310,10 @@ extension MyWalletVC: ProductSortVCDelegate{
     func sortingApplied(sortType: String){
         self.selectedCurrencyType = sortType
         currencyTextField.text =  self.selectedCurrencyType
+        if selectedCurrencyType == "ETH"{
+            self.yourWalletBalanceLbl.text = "\(walletBalance.eth ?? 0.0 )"
+        } else {
+            self.yourWalletBalanceLbl.text = "\(walletBalance.btc ?? 0.0 )"
+        }
     }
 }

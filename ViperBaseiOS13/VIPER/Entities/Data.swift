@@ -90,6 +90,7 @@ struct WalletModule : Mappable {
     
     var buy_histories  : [History]?
     var invest_histories : [History]?
+    var wallet_histories : [History]?
     var sell_histories: [History]?
     var overall_invest: Double?
     var total_products : Int?
@@ -97,6 +98,10 @@ struct WalletModule : Mappable {
     var wallet: Double?
     
     init?(map: Map) {
+    }
+    
+    init(){
+        
     }
 
     mutating func mapping(map: Map) {
@@ -107,6 +112,7 @@ struct WalletModule : Mappable {
         sell_histories <- map["sell_histories"]
         invest_histories <- map["invest_histories"]
         buy_histories <- map["buy_histories"]
+        wallet_histories <- map["wallet_histories"]
     }
 
 }

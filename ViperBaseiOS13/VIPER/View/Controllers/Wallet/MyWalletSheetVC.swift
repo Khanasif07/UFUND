@@ -12,6 +12,12 @@ import ObjectMapper
 
 class MyWalletSheetVC: UIViewController {
     // holdView can be UIImageView instead
+    
+    enum HistoryType{
+        case wallet
+        case investBuy
+        case sell
+    }
     //MARK:- OUTLETS
     //==============
     @IBOutlet weak var filterBtn: UIButton!
@@ -23,12 +29,11 @@ class MyWalletSheetVC: UIViewController {
     
     //MARK:- VARIABLE
     //================
-     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-    private lazy var loader  : UIView = {
-           return createActivityIndicator(self.view)
-       }()
-     var menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
+    var walletModule = WalletModule()
+    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
+    var historyType: HistoryType = .wallet
     lazy var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(closePullUp))
+    var investBuyCellData = [("Payment Method",""),("Category",""),("Amount",""),("Currency",""),("Invest. Date",""),("Maturity. Date",""),("Status","")]
     var fullView: CGFloat {
         return (UIApplication.shared.statusBarFrame.height +
             (isDeviceIPad ? 65.0 : 51.0 ))
@@ -38,8 +43,10 @@ class MyWalletSheetVC: UIViewController {
             self.mainTableView.reloadData()
         }
     }
+    private lazy var loader  : UIView = {
+              return createActivityIndicator(self.view)
+          }()
     var partialView: CGFloat {
-//        return UIScreen.main.bounds.height - (UIApplication.shared.statusBarFrame.height) - (textContainerHeight ?? 0.0)
         return (textContainerHeight ?? 0.0) + UIApplication.shared.statusBarFrame.height + (isDeviceIPad ? 78.0 : 64.0)
     }
     //MARK:- VIEW LIFE CYCLE
@@ -77,16 +84,16 @@ class MyWalletSheetVC: UIViewController {
     
     
     @IBAction func walletHistoryBtnAction(_ sender: UIButton) {
+        self.historyType = .wallet
         self.walletHistoryBtn.setTitleColor(.red, for: .normal)
         self.investBuyHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
-        self.menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[])]
         self.mainTableView.reloadData()
     }
     
     @IBAction func investBuyHistoryBtnAciton(_ sender: UIButton) {
+        self.historyType = .investBuy
         self.walletHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
         self.investBuyHistoryBtn.setTitleColor(.red, for: .normal)
-        self.menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
         self.mainTableView.reloadData()
     }
     
@@ -150,6 +157,8 @@ extension MyWalletSheetVC {
         self.mainTableView.isUserInteractionEnabled = true
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
+        self.mainTableView.emptyDataSetDelegate = self
+        self.mainTableView.emptyDataSetSource = self
         self.mainTableView.registerCell(with: MyWalletTableCell.self)
         self.mainTableView.registerHeaderFooter(with: MyWalletSectionView.self)
     }
@@ -173,7 +182,7 @@ extension MyWalletSheetVC {
             investBuyHistoryBtn.setTitle(Constants.string.investBuyHistory.localize(), for: .normal)
         }
         [investBuyHistoryBtn,walletHistoryBtn].forEach { (lbl) in
-            lbl?.titleLabel?.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
+            lbl?.titleLabel?.font  = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x18) : .setCustomFont(name: .semiBold, size: .x14)
         }
     }
     
@@ -198,30 +207,86 @@ extension MyWalletSheetVC {
 //========================
 extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  self.menuContent[section].1.endIndex
+        switch historyType {
+        case .wallet:
+            return (self.walletModule.wallet_histories?[section].isSelected ?? false) ? 5 : 0
+        case .investBuy:
+            return (self.walletModule.invest_histories?[section].isSelected ?? false) ? (investBuyCellData.endIndex) : 0
+        default:
+            return (self.walletModule.sell_histories?[section].isSelected ?? false) ? 5 : 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(with: MyWalletTableCell.self, indexPath: indexPath)
+        switch historyType {
+        case .wallet:
+            cell.titleLbl.text = investBuyCellData[indexPath.row].0
+        case .investBuy:
+            if let invest_histories = self.walletModule.invest_histories{
+                investBuyCellData = [("Payment Method",invest_histories[indexPath.section].type ?? ""),("Category",""),("Amount",String(invest_histories[indexPath.section].amount ?? 0.0)),("Currency",invest_histories[indexPath.section].payment_type ?? ""),("Invest. Date",invest_histories[indexPath.section].created_at ?? ""),("Maturity. Date",invest_histories[indexPath.section].created_at ?? ""),("Status",invest_histories[indexPath.section].status ?? "")]
+                 cell.titleLbl.text = investBuyCellData[indexPath.row].0
+                 cell.descLbl.text = investBuyCellData[indexPath.row].1
+            }
+        default:
+             cell.titleLbl.text = investBuyCellData[indexPath.row].0
+        }
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.menuContent.endIndex
+        switch historyType {
+        case .wallet:
+            return self.walletModule.wallet_histories?.endIndex ?? 0
+        case .investBuy:
+            return self.walletModule.invest_histories?.endIndex ?? 0
+        default:
+            return self.walletModule.sell_histories?.endIndex ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
+        switch historyType {
+        case .wallet:
+            view.populateData(model: self.walletModule.wallet_histories?[section] ?? History())
+        case .investBuy:
+            view.populateData(model: self.walletModule.invest_histories?[section] ??  History())
+        default:
+            view.populateData(model: self.walletModule.sell_histories?[section] ??  History())
+        }
         view.sectionTappedAction = { [weak self] (sender) in
             guard let selff = self else { return }
-            if selff.menuContent[section].1.endIndex == 0 {
-                selff.menuContent[section].1 = ["1","2","3","4","5","6"]
-            } else {
-                 selff.menuContent[section].1 = []
+            switch selff.historyType {
+            case .wallet:
+                if let wallet_histories = selff.walletModule.wallet_histories{
+                    selff.walletModule.wallet_histories?[section].isSelected = !(wallet_histories[section].isSelected)
+                }
+            case .investBuy:
+                if let invest_histories = selff.walletModule.invest_histories{
+                    selff.walletModule.invest_histories?[section].isSelected = !(invest_histories[section].isSelected)
+                }
+            default:
+                if let sell_histories = selff.walletModule.sell_histories{
+                    selff.walletModule.sell_histories?[section].isSelected = !(sell_histories[section].isSelected)
+                }
             }
             tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
         }
-        self.rotateLeft(dropdownView: view.dropdownBtn,left : (self.menuContent[section].1.isEmpty ) ? 0 : -1)
+        switch historyType {
+        case .wallet:
+            if let wallet_histories = self.walletModule.wallet_histories{
+                self.rotateLeft(dropdownView: view.dropdownBtn,left : (wallet_histories[section].isSelected) ? -1 : 0)
+            }
+        case .investBuy:
+            if let invest_histories = self.walletModule.invest_histories{
+                self.rotateLeft(dropdownView: view.dropdownBtn,left : (invest_histories[section].isSelected) ? -1 : 0)
+            }
+        default:
+            if let sell_histories = self.walletModule.sell_histories{
+                self.rotateLeft(dropdownView: view.dropdownBtn,left : (sell_histories[section].isSelected) ? -1 : 0)
+            }
+        }
         return view
     }
     
@@ -280,3 +345,32 @@ extension MyWalletSheetVC: PresenterOutputProtocol {
     }
 }
 
+
+
+//MARK:- Tableview Empty dataset delegates
+//========================================
+extension MyWalletSheetVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return  #imageLiteral(resourceName: "icNoData")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string:"", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return  NSAttributedString(string:"Looks Nothing Found", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
+    }
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+    
+    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+}

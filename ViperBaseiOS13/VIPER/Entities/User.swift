@@ -35,8 +35,10 @@ class User : NSObject, NSCoding, JSONSerializable {
     var email_token: String?
     var g2f_temp : Int?
     var pin_status : Int?
+    var eth_address : String?
+    var btc_address : String?
     
-    init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?){
+    init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?,eth_address : String?,btc_address : String?){
         
         self.id = id
         self.name = name
@@ -58,12 +60,15 @@ class User : NSObject, NSCoding, JSONSerializable {
         self.email_token = email_token
         self.g2f_temp = g2f_temp
         self.pin_status = pin_status
+        
+        self.eth_address = eth_address
+        self.btc_address = btc_address
     }
     
     convenience
     override init() {
         
-        self.init(id: nil, name: nil, accessToken: nil, latitude: nil, lontitude: nil, firstName: nil, lastName: nil, email: nil, phoneNumber:  nil, picture: nil, token: nil, balance: nil, buy_price: nil, sell_price: nil, kyc: nil, usd_bstk: nil, email_token: nil, g2f_temp: nil,pin_status: nil)
+        self.init(id: nil, name: nil, accessToken: nil, latitude: nil, lontitude: nil, firstName: nil, lastName: nil, email: nil, phoneNumber:  nil, picture: nil, token: nil, balance: nil, buy_price: nil, sell_price: nil, kyc: nil, usd_bstk: nil, email_token: nil, g2f_temp: nil,pin_status: nil,eth_address: nil,btc_address : nil)
         
     }
     
@@ -93,7 +98,10 @@ class User : NSObject, NSCoding, JSONSerializable {
         let pin_status = aDecoder.decodeObject(forKey: Keys.list.pin_status) as? Int
         let g2f_temp = aDecoder.decodeObject(forKey: Keys.list.g2f_temp) as? Int
         
-        self.init(id: id, name: name, accessToken: accessToken, latitude: latitude, lontitude: lontitude, firstName: firstNmae, lastName: lastName, email: email, phoneNumber: phoneNumber, picture: picture,token: token, balance: balance,buy_price: buy_price, sell_price: sell_price, kyc: kyc, usd_bstk: usd_bstk, email_token: email_token, g2f_temp: g2f_temp, pin_status: pin_status)
+        let eth_address = aDecoder.decodeObject(forKey: Keys.list.eth_address) as? String
+        let btc_address = aDecoder.decodeObject(forKey: Keys.list.btc_address) as? String
+        
+        self.init(id: id, name: name, accessToken: accessToken, latitude: latitude, lontitude: lontitude, firstName: firstNmae, lastName: lastName, email: email, phoneNumber: phoneNumber, picture: picture,token: token, balance: balance,buy_price: buy_price, sell_price: sell_price, kyc: kyc, usd_bstk: usd_bstk, email_token: email_token, g2f_temp: g2f_temp, pin_status: pin_status,eth_address: eth_address,btc_address : btc_address)
     }
     
     
@@ -118,6 +126,8 @@ class User : NSObject, NSCoding, JSONSerializable {
         aCoder.encode(self.email_token, forKey: Keys.list.email_token)
         aCoder.encode(self.g2f_temp, forKey: Keys.list.g2f_temp)
         aCoder.encode(self.pin_status, forKey: Keys.list.pin_status)
+        aCoder.encode(self.eth_address, forKey: Keys.list.eth_address)
+        aCoder.encode(self.btc_address, forKey: Keys.list.btc_address)
         
     }
     
