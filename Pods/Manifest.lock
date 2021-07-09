@@ -1,0 +1,304 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - Alamofire (4.9.1)
+  - AlamofireObjectMapper (5.2.1):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
+  - AWSCore (2.24.3)
+  - AWSS3 (2.24.3):
+    - AWSCore (= 2.24.3)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
+  - DZNEmptyDataSet (1.8.1)
+  - FBSDKCoreKit (11.0.1):
+    - FBSDKCoreKit/Core (= 11.0.1)
+  - FBSDKCoreKit/Core (11.0.1):
+    - FBSDKCoreKit_Basics (~> 11.0.1)
+  - FBSDKCoreKit_Basics (11.0.1):
+    - FBSDKCoreKit_Basics/Basics (= 11.0.1)
+  - FBSDKCoreKit_Basics/Basics (11.0.1)
+  - FBSDKLoginKit (11.0.1):
+    - FBSDKLoginKit/Login (= 11.0.1)
+  - FBSDKLoginKit/Login (11.0.1):
+    - FBSDKCoreKit (~> 11.0.1)
+    - FBSDKCoreKit_Basics (~> 11.0.1)
+  - Firebase/Analytics (8.3.0):
+    - Firebase/Core
+  - Firebase/Auth (8.3.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 8.3.0)
+  - Firebase/Core (8.3.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (~> 8.3.0)
+  - Firebase/CoreOnly (8.3.0):
+    - FirebaseCore (= 8.3.0)
+  - Firebase/Database (8.3.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 8.3.0)
+  - Firebase/Messaging (8.3.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 8.3.0)
+  - Firebase/Storage (8.3.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 8.3.0)
+  - FirebaseAnalytics (8.3.0):
+    - FirebaseAnalytics/AdIdSupport (= 8.3.0)
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/MethodSwizzler (~> 7.4)
+    - GoogleUtilities/Network (~> 7.4)
+    - "GoogleUtilities/NSData+zlib (~> 7.4)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseAnalytics/AdIdSupport (8.3.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleAppMeasurement (= 8.3.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/MethodSwizzler (~> 7.4)
+    - GoogleUtilities/Network (~> 7.4)
+    - "GoogleUtilities/NSData+zlib (~> 7.4)"
+    - nanopb (~> 2.30908.0)
+  - FirebaseAuth (8.3.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - FirebaseCore (8.3.0):
+    - FirebaseCoreDiagnostics (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/Logger (~> 7.4)
+  - FirebaseCoreDiagnostics (8.3.0):
+    - GoogleDataTransport (~> 9.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/Logger (~> 7.4)
+    - nanopb (~> 2.30908.0)
+  - FirebaseDatabase (8.3.0):
+    - FirebaseCore (~> 8.0)
+    - leveldb-library (~> 1.22)
+  - FirebaseInstallations (8.3.0):
+    - FirebaseCore (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/UserDefaults (~> 7.4)
+    - PromisesObjC (~> 1.2)
+  - FirebaseMessaging (8.3.0):
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/Environment (~> 7.4)
+    - GoogleUtilities/Reachability (~> 7.4)
+    - GoogleUtilities/UserDefaults (~> 7.4)
+  - FirebaseStorage (8.3.0):
+    - FirebaseCore (~> 8.0)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GoogleAppMeasurement (8.3.0):
+    - GoogleAppMeasurement/AdIdSupport (= 8.3.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/MethodSwizzler (~> 7.4)
+    - GoogleUtilities/Network (~> 7.4)
+    - "GoogleUtilities/NSData+zlib (~> 7.4)"
+    - nanopb (~> 2.30908.0)
+  - GoogleAppMeasurement/AdIdSupport (8.3.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
+    - GoogleUtilities/MethodSwizzler (~> 7.4)
+    - GoogleUtilities/Network (~> 7.4)
+    - "GoogleUtilities/NSData+zlib (~> 7.4)"
+    - nanopb (~> 2.30908.0)
+  - GoogleDataTransport (9.0.1):
+    - GoogleUtilities/Environment (~> 7.2)
+    - nanopb (~> 2.30908.0)
+    - PromisesObjC (~> 1.2)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleUtilities/AppDelegateSwizzler (7.4.3):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.4.3):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.4.3):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (7.4.3):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (7.4.3):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.4.3)"
+  - GoogleUtilities/Reachability (7.4.3):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.4.3):
+    - GoogleUtilities/Logger
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.6.1)
+  - iOSDropDown (0.3.4)
+  - IOSLinkedInAPIFix1 (2.0.7):
+    - AFNetworking (>= 3.0.0)
+  - IQKeyboardManagerSwift (6.5.6)
+  - KWDrawerController (4.2):
+    - KWDrawerController/Core (= 4.2)
+  - KWDrawerController/Core (4.2)
+  - leveldb-library (1.22.1)
+  - LinkedinSwift (1.8.1):
+    - AFNetworking (>= 3.5.0)
+    - IOSLinkedInAPIFix1 (>= 2.0.7)
+  - MXParallaxHeader (1.1.0)
+  - nanopb (2.30908.0):
+    - nanopb/decode (= 2.30908.0)
+    - nanopb/encode (= 2.30908.0)
+  - nanopb/decode (2.30908.0)
+  - nanopb/encode (2.30908.0)
+  - ObjectMapper (3.5.3)
+  - Parchment (3.0.1)
+  - PromisesObjC (1.2.12)
+  - QRCodeReader.swift (10.1.0)
+  - RangeSeekSlider (1.8.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - TwitterCore (3.2.0)
+  - TwitterKit5 (5.2.0):
+    - TwitterCore (>= 3.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.9.0)
+  - AlamofireObjectMapper (~> 5.2)
+  - AWSS3
+  - Charts
+  - DZNEmptyDataSet
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - Firebase/Analytics
+  - Firebase/Auth
+  - Firebase/Core
+  - Firebase/Database
+  - Firebase/Messaging
+  - Firebase/Storage
+  - GoogleSignIn
+  - iOSDropDown
+  - IQKeyboardManagerSwift
+  - KWDrawerController
+  - LinkedinSwift
+  - MXParallaxHeader
+  - Parchment
+  - QRCodeReader.swift
+  - RangeSeekSlider
+  - SDWebImage
+  - TwitterKit5
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - Alamofire
+    - AlamofireObjectMapper
+    - AppAuth
+    - AWSCore
+    - AWSS3
+    - Charts
+    - DZNEmptyDataSet
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseDatabase
+    - FirebaseInstallations
+    - FirebaseMessaging
+    - FirebaseStorage
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleSignIn
+    - GoogleUtilities
+    - GTMAppAuth
+    - GTMSessionFetcher
+    - iOSDropDown
+    - IOSLinkedInAPIFix1
+    - IQKeyboardManagerSwift
+    - KWDrawerController
+    - leveldb-library
+    - LinkedinSwift
+    - MXParallaxHeader
+    - nanopb
+    - ObjectMapper
+    - Parchment
+    - PromisesObjC
+    - QRCodeReader.swift
+    - RangeSeekSlider
+    - SDWebImage
+    - TwitterCore
+    - TwitterKit5
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  AWSCore: 759cbae2795ec192546187338bd21066c6b9ec0a
+  AWSS3: a44799bfd359be5810c253c1f8f7a51a9dce9e68
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FBSDKCoreKit: 38c9e29a3f1436362acacff6486d3a28628c288f
+  FBSDKCoreKit_Basics: 06780a4a12e16596bde8406add02c6aa1bf38616
+  FBSDKLoginKit: 8243e04c590c38b85c69fcf09d1234514d2475c3
+  Firebase: 817b9171d0d51dccc458b94a5e8edff6b1dd323d
+  FirebaseAnalytics: 456f2c51599870a15ded4548d1f1f7b2cabf65a7
+  FirebaseAuth: fd12c82de44e7ad3b821610c387b8251f03aa0f9
+  FirebaseCore: a6dba751680d7033b9d3831e1cfc95ead0605118
+  FirebaseCoreDiagnostics: 7e873baabcfaa9512f538554ae4fa0817aaafbdb
+  FirebaseDatabase: 3cb36bbf667be87d72cebc8dbe72e2e8cac1d615
+  FirebaseInstallations: b69db7680870dbac17bba7a51fc0b5c4b365baa7
+  FirebaseMessaging: 42252b79b860482021483748669ec32e22196462
+  FirebaseStorage: ff380720c204593d98c3e5482e62ccfbb522f0c5
+  GoogleAppMeasurement: de70802583dedceb0bca18172b345307e8f410b8
+  GoogleDataTransport: 04c3e9a480bbcaa2ec3f5d27f1cdeb6a92f20c8d
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
+  GoogleUtilities: 45dbb24a7f351d69d0a601482b39ad6c32e30dab
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
+  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
+  iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
+  IOSLinkedInAPIFix1: 3500bcb827ed39db15fe40bb8278568d66c809bd
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  KWDrawerController: 244ecb42378bd13a56826458647b76758db5cb67
+  leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  LinkedinSwift: 8801a880fb9c59e18c95f40c8bf44b07c5dd1a2d
+  MXParallaxHeader: de3c867e10ba46e8f6e20c8ee1f2a910372b3b94
+  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
+  Parchment: 466a1cfb6151780db8acb4bbedc2d9c6bfa1e2ff
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  QRCodeReader.swift: 373a389fe9a22d513c879a32a6f647c58f4ef572
+  RangeSeekSlider: 650b11fa1edcb92e1e0ede797669d98622570fb5
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit5: 64095dfefcf39be2355711ef27112d55e340d90e
+
+PODFILE CHECKSUM: d743b867857bd9777ca7c8fc051159ac36c24b5c
+
+COCOAPODS: 1.10.1
