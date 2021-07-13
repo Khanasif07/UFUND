@@ -109,7 +109,7 @@ public class ParallaxHeader: NSObject {
     private var _view: UIView?
     public var view: UIView {
         get {
-            return _view!
+            return _view ?? UIView()
         }
         set(view) {
             guard _view != view else {

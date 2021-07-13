@@ -120,7 +120,7 @@ extension ProductDetailVC {
         footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150.0)
         self.mainTableView.tableFooterView = footerView
         let imgEntity =  productModel?.product_image ?? ""
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        let url = URL(string: nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
         self.bottomView.isHidden = userType != UserType.investor.rawValue
     }
@@ -138,8 +138,9 @@ extension ProductDetailVC {
         self.mainTableView.parallaxHeader.view = self.headerView
         self.mainTableView.parallaxHeader.minimumHeight = 0.0 // 64
         self.mainTableView.parallaxHeader.height = parallexHeaderHeight
+        self.mainTableView.parallaxHeader.mode = .fill
 //        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.self
-        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
+//        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
         mainTableView.parallaxHeader.view?.widthAnchor.constraint(equalTo: mainTableView.widthAnchor).isActive = true
         self.headerView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {

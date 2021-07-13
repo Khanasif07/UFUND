@@ -17,7 +17,7 @@ class UploadDocumentTableCell: UITableViewCell {
     
     // MARK: - Variables
     //===========================
-    var imgDataArray = [(UIImage,Data,Bool)]()
+    var imgDataArray = [(String,UIImage,Data,Bool)]()
     var uploadBtnsTapped: ((IndexPath)->())?
     var investorDashboardData : DashboardEntity?{
         didSet{
@@ -85,8 +85,8 @@ extension UploadDocumentTableCell: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueCell(with: UploadDocumentCollCell.self, indexPath: indexPath)
-        cell.documentImgView.image = imgDataArray[indexPath.row].0
-        cell.documentImgView.isHidden = !imgDataArray[indexPath.row].2
+        cell.documentImgView.image = imgDataArray[indexPath.row].1
+        cell.documentImgView.isHidden = !imgDataArray[indexPath.row].3
         cell.documentBtnTapped = { [weak self] (sender)  in
             guard let selff = self else {return}
             if let handle = selff.uploadBtnsTapped{

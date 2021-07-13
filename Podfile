@@ -29,7 +29,7 @@ target 'ViperBaseiOS13' do
   pod 'DZNEmptyDataSet'
   pod 'Parchment'
   pod 'RangeSeekSlider'
-  pod  'Charts'
+  pod 'Charts'
   pod 'MXParallaxHeader'
   pod 'AWSS3'
   

@@ -22,7 +22,7 @@ class AddAssetsVC: UIViewController {
     // MARK: - Variables
     //===========================
     var addAssetModel = ProductModel(json: [:])
-    var imgDataArray = [(UIImage,Data,Bool)]()
+    var imgDataArray = [(String,UIImage,Data,Bool)]()
     var selectedIndexPath : IndexPath?
     var categoryListing = [CategoryModel]()
     var assetTypeListing = [AssetTokenTypeModel]()
@@ -65,7 +65,7 @@ class AddAssetsVC: UIViewController {
 //===========================
 extension AddAssetsVC {
     private func initialSetup() {
-        self.imgDataArray = [(#imageLiteral(resourceName: "checkOut"),Data(),false),(#imageLiteral(resourceName: "checkOut"),Data(),false),(#imageLiteral(resourceName: "checkOut"),Data(),false),(#imageLiteral(resourceName: "checkOut"),Data(),false)]
+        self.imgDataArray = [("",#imageLiteral(resourceName: "checkOut"),Data(),false),("",#imageLiteral(resourceName: "checkOut"),Data(),false),("",#imageLiteral(resourceName: "checkOut"),Data(),false),("",#imageLiteral(resourceName: "checkOut"),Data(),false)]
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.mainTableView.registerCell(with: UploadDocumentTableCell.self)
@@ -204,7 +204,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                         if image != nil {
                             let image : UIImage = image!
                             let data = image.jpegData(compressionQuality: 0.2)
-                            selff.imgDataArray[index.row] = (image,data!,true)
+                            selff.imgDataArray[index.row] = ("",image,data!,true)
                             selff.mainTableView.reloadData()
                         }
                     }
@@ -257,19 +257,19 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                      ToastManager.show(title: Constants.string.selectAsset, state: .warning)
             return false
                }
-        if !self.imgDataArray[2].2{
+        if !self.imgDataArray[2].3{
             ToastManager.show(title: Constants.string.uploadAssetImg, state: .warning)
             return false
         }
-        if !self.imgDataArray[3].2{
+        if !self.imgDataArray[3].3{
                    ToastManager.show(title: Constants.string.uploadTokenImage, state: .warning)
                    return false
                }
-        if !self.imgDataArray[0].2{
+        if !self.imgDataArray[0].3{
             ToastManager.show(title: Constants.string.uploadRegulatory, state: .warning)
             return false
         }
-        if !self.imgDataArray[1].2{
+        if !self.imgDataArray[1].3{
             ToastManager.show(title: Constants.string.uploadDocument, state: .warning)
             return false
                }
@@ -485,7 +485,7 @@ extension AddAssetsVC: UIDocumentPickerDelegate {
                     do{
                         let imageData: Data = try Data(contentsOf: myURL)
                         if let indexx = self.selectedIndexPath {
-                            self.imgDataArray[indexx.row] =  (#imageLiteral(resourceName: "pdfIcon"),imageData,true)
+                            self.imgDataArray[indexx.row] =  ("",#imageLiteral(resourceName: "pdfIcon"),imageData,true)
                         }
                         print(">>>",imageData)
                     } catch {

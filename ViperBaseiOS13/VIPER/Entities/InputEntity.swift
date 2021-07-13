@@ -73,6 +73,8 @@ struct ProductCreate {
     let asset_child_image = "asset_child_image"
     let brand = "brand"
     let ean_upc_code = "ean_upc_code"
+    let ean_code = "ean_code"
+    let upc_code = "upc_code"
     let hs_code = "hs_code"
     let products = "products"
     let token_type = "token_type"

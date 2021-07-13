@@ -146,7 +146,8 @@ extension AssetsDetailVC {
         self.mainTableView.parallaxHeader.view = self.headerView
         self.mainTableView.parallaxHeader.minimumHeight = 0.0 // 64
         self.mainTableView.parallaxHeader.height = parallexHeaderHeight
-        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
+        self.mainTableView.parallaxHeader.mode = .fill
+//        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
         mainTableView.parallaxHeader.view?.widthAnchor.constraint(equalTo: mainTableView.widthAnchor).isActive = true
         self.headerView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
