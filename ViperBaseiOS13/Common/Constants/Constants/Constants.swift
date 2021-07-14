@@ -211,6 +211,7 @@ struct Constants {
     let enterStartDate = "Please Enter Start Date"
     let enterEndDate = "Please Enter End Date"
     let enterInvestmentDate = "Please Enter Investment Date"
+    let please_select_request_for_deployment = "Please select request for deployment"
     let enterEAN = "Please Enter EAN/UPC Code"
     let enterHSCode = "Please Enter HS Code"
     let enterDesctription = "Please Enter Decription"

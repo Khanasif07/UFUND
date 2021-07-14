@@ -21,7 +21,10 @@ class SendCoinsTableCell: UITableViewCell {
     //===========================
     var investorDashboardData : DashboardEntity?{
         didSet{
-            self.tabsCollView.reloadData()
+            DispatchQueue.main.async {
+                self.tabsCollView.layoutIfNeeded()
+                self.tabsCollView.reloadData()
+            }
         }
     }
     var tabsTapped:((IndexPath)->())?
@@ -37,6 +40,9 @@ class SendCoinsTableCell: UITableViewCell {
                 headerCount = [
                     (Constants.string.categories.localize(),#colorLiteral(red: 1, green: 0.2588235294, blue: 0.3019607843, alpha: 1)),(Constants.string.Products.localize(),#colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)), (Constants.string.TokenizedAssets.localize(),#colorLiteral(red: 0.9725490196, green: 0.6980392157, blue: 0.2823529412, alpha: 1)),(Constants.string.allMyInvestment.localize(),#colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1)),(Constants.string.earning.localize(),#colorLiteral(red: 0.5843137255, green: 0.7764705882, blue: 0.137254902, alpha: 1)),(Constants.string.wallet.localize(),#colorLiteral(red: 0.5529411765, green: 0.2705882353, blue: 0.8274509804, alpha: 1))]
                 
+            }
+            DispatchQueue.main.async {
+                self.tabsCollView.reloadData()
             }
         }
     }

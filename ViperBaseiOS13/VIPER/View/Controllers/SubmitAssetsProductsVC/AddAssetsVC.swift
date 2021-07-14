@@ -272,7 +272,11 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
         if !self.imgDataArray[1].3{
             ToastManager.show(title: Constants.string.uploadDocument, state: .warning)
             return false
-               }
+        }
+        guard let isDeployment = self.addAssetModel.request_deploy , !(isDeployment == 0) else{
+            ToastManager.show(title: Constants.string.please_select_request_for_deployment, state: .warning)
+            return  false
+        }
         return true
     }
 }
@@ -485,7 +489,7 @@ extension AddAssetsVC: UIDocumentPickerDelegate {
                     do{
                         let imageData: Data = try Data(contentsOf: myURL)
                         if let indexx = self.selectedIndexPath {
-                            self.imgDataArray[indexx.row] =  ("",#imageLiteral(resourceName: "pdfIcon"),imageData,true)
+                            self.imgDataArray[indexx.row] =  (url.path,#imageLiteral(resourceName: "pdfIcon"),imageData,true)
                         }
                         print(">>>",imageData)
                     } catch {

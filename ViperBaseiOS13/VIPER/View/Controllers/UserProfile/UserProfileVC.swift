@@ -146,10 +146,23 @@ class UserProfileVC: UIViewController {
                 }
             }
             if imageData != nil {
-                var dataDic =  [String:(Data,String,String)]()
-                dataDic = [ProfileUpdate.keys.picture : (self.imageData!,"Profile.jpg",FileType.image.rawValue)]
+//                var dataDic =  [String:(Data,String,String)]()
+//                dataDic = [ProfileUpdate.keys.picture : (self.imageData!,"Profile.jpg",FileType.image.rawValue)]
+//                self.loader.isHidden = false
+//                self.presenter?.UploadData(api: Base.profile.rawValue, params: param, imageData: dataDic , methodType: .POST, modelClass: UserDetails.self, token: true)
                 self.loader.isHidden = false
-                self.presenter?.UploadData(api: Base.profile.rawValue, params: param, imageData: dataDic , methodType: .POST, modelClass: UserDetails.self, token: true)
+                AWSS3Manager.shared.uploadImage(image: profileImg ?? UIImage(), progress: { (progress) in
+                                    print(progress)
+                }) { (successUrl, error) in
+                    if let url = successUrl {
+                        self.param[ProfileUpdate.keys.picture] = url
+                        self.presenter?.HITAPI(api: Base.profile.rawValue, params: self.param, methodType: .POST, modelClass: UserDetails.self, token: true)
+                        print(url)
+                    }
+                    if let _ = error{
+                        ToastManager.show(title:  nullStringToEmpty(string: Constants.string.failedImg.localize()), state: .error)
+                    }
+                }
             } else {
                 self.loader.isHidden = false
                 self.presenter?.HITAPI(api: Base.profile.rawValue, params: param, methodType: .POST, modelClass: UserDetails.self, token: true)
@@ -291,18 +304,6 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                         cell.profileImgView.image = proImg
                         selff.profileImg = proImg
                         selff.imageData = proImg.jpegData(compressionQuality: 0.2)!
-                        selff.loader.isHidden = false
-                        image?.upload(progress: { (progress) in
-                            print(progress)
-                        }, completion: { (response,error) in
-                            if let url = response {
-                                selff.loader.isHidden = true
-                                 print(url)
-                            }
-                            if let _ = error{
-                                ToastManager.show(title:  nullStringToEmpty(string: Constants.string.failedImg.localize()), state: .error)
-                            }
-                        })
                     }
                   }
                 }

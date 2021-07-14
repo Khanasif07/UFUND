@@ -8,6 +8,7 @@
 
 
 import UIKit
+import ObjectMapper
 
 class SendCoinVC: UIViewController {
     
@@ -31,6 +32,11 @@ class SendCoinVC: UIViewController {
     //===========================
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var sections : [SendCoinCell] = [.tokensListing,.TransactionHistory]
+    var walletBalance = WalletBalance()
+    private lazy var loader  : UIView = {
+          return createActivityIndicator(self.view)
+      }()
+    
     
     // MARK: - Lifecycle
     //===========================
@@ -77,6 +83,8 @@ extension SendCoinVC {
         self.mainTableView.registerCell(with: SendCoinsTableCell.self)
         self.mainTableView.tableHeaderView = headerView
         self.mainTableView.tableFooterView?.height = isDeviceIPad ? 175.0 : 125.0
+        self.hitWalletBalanceAPI()
+        self.hitGetUserTokenAPI()
     }
     
     private func setUpFont(){
@@ -87,6 +95,17 @@ extension SendCoinVC {
             textFIeld?.applyEffectToView()
         }
     }
+    
+    private func hitWalletBalanceAPI(){
+        self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil , methodType: .GET, modelClass: WalletEntity.self, token: true)
+    }
+    
+    private func hitGetUserTokenAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.get_user_token.rawValue, params: nil, methodType: .GET, modelClass: InvestorDashboardEntity.self, token: true)
+        
+    }
+    
 }
 
 // MARK: - Extension For TableView
@@ -102,7 +121,6 @@ extension SendCoinVC : UITableViewDelegate, UITableViewDataSource {
 //            }
             cell.isFromCampainer = userType == UserType.investor.rawValue ? false : true
             cell.investorDashboardData = DashboardEntity()
-            cell.tabsCollView.layoutIfNeeded()
             return cell
         default:
             return UITableViewCell()
@@ -129,3 +147,37 @@ extension SendCoinVC : UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
 }
+
+
+//MARK: - PresenterOutputProtocol
+//===========================
+extension SendCoinVC: PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        switch api {
+        case Base.wallet.rawValue:
+            self.loader.isHidden = true
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                self.walletBalance = data
+                self.balanceLbl.text = "\(data.eth ?? 0.0 )" + "ETH"
+            }
+            self.mainTableView.reloadData()
+        case Base.get_user_token.rawValue:
+            self.loader.isHidden = true
+            let investorDashboardEntity = dataDict as? CampaignerDashboardEntity
+            if (investorDashboardEntity?.data) != nil {
+//                self.campaignerDashboardData = productData
+            }
+            self.mainTableView.reloadData()
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+}
+

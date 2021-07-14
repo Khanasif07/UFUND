@@ -90,65 +90,80 @@ class SubmitAssetsProductsVC: UIViewController {
         if isPruductSelected {
             if self.productVC.isCheckParamsData(){
                 self.loader.isHidden = false
+                let group = DispatchGroup()
                 for (index, imgData) in self.productVC.imgDataArray.enumerated() {
                     if index == 1 || index == 0  {
+                        group.enter()
                         let path = imgData.0
                         self.productVC.imgDataArray[index].0 = ""
                         let pdfUrl = URL(fileURLWithPath: path)
                         AWSS3Manager.shared.uploadOtherFile(fileUrl: pdfUrl, conentType: "pdf", progress: { (value) in
                             print(value)
                         }) { (sucessMsg, error) in
-                            print("sucessMsg")
-                            print(sucessMsg ?? "")
-                            self.productVC.imgDataArray[index].0 = sucessMsg ?? ""
-                            if !self.productVC.imgDataArray[0].0.isEmpty && !self.productVC.imgDataArray[1].0.isEmpty && !self.productVC.imgDataArray[2].0.isEmpty {
-                                self.loader.isHidden = false
-                                self.hitSendRequestApi()
+                           if let url = sucessMsg{
+                                print(sucessMsg ?? "")
+                                self.productVC.imgDataArray[index].0 = url
+                                group.leave()
                             }
                         }
                     }else{
+                        self.productVC.imgDataArray[index].0 = ""
+                        group.enter()
                         AWSS3Manager.shared.uploadImage(image: imgData.1, progress: { (value) in
                             print(value)
                         }) { (sucessMsg, error) in
-                            print("sucessMsg")
-                            print(sucessMsg ?? "")
-                            self.productVC.imgDataArray[index].0 = sucessMsg ?? ""
-                            if !self.productVC.imgDataArray[0].0.isEmpty && !self.productVC.imgDataArray[1].0.isEmpty && !self.productVC.imgDataArray[2].0.isEmpty {
-                                self.loader.isHidden = false
-                                self.hitSendRequestApi()
+                           if let url = sucessMsg{
+                                print(sucessMsg ?? "")
+                                self.productVC.imgDataArray[index].0 = url
+                                group.leave()
                             }
                         }
+                    }
+                }
+                group.notify(queue: DispatchQueue.main) {
+                    print(self.productVC.imgDataArray)
+                    if !self.productVC.imgDataArray[0].0.isEmpty && !self.productVC.imgDataArray[1].0.isEmpty && !self.productVC.imgDataArray[2].0.isEmpty {
+                        self.hitSendRequestApi()
                     }
                 }
             }
         } else {
             if self.tokenVC.isCheckParamsData(){
+                self.loader.isHidden = false
+                let group = DispatchGroup()
                 for (index, imgData) in self.tokenVC.imgDataArray.enumerated() {
                     if index == 1 || index == 0  {
+                        group.enter()
                         let path = imgData.0
                         self.tokenVC.imgDataArray[index].0 = ""
                         let pdfUrl = URL(fileURLWithPath: path)
                         AWSS3Manager.shared.uploadOtherFile(fileUrl: pdfUrl, conentType: "pdf", progress: { (value) in
                             print(value)
                         }) { (sucessMsg, error) in
-                            print("sucessMsg")
-                            print(sucessMsg ?? "")
-                            self.tokenVC.imgDataArray[index].0 = sucessMsg ?? ""
-                            if !self.tokenVC.imgDataArray[0].0.isEmpty && !self.tokenVC.imgDataArray[1].0.isEmpty && !self.tokenVC.imgDataArray[2].0.isEmpty && !self.tokenVC.imgDataArray[3].0.isEmpty{
-                                self.hitSendRequestApi()
+                            if let url = sucessMsg{
+                                print(sucessMsg ?? "")
+                                self.tokenVC.imgDataArray[index].0 = url
+                                group.leave()
                             }
                         }
-                    }else{
+                    }else if index == 2 || index == 3  {
+                        self.tokenVC.imgDataArray[index].0 = ""
+                        group.enter()
                         AWSS3Manager.shared.uploadImage(image: imgData.1, progress: { (value) in
                             print(value)
                         }) { (sucessMsg, error) in
-                            print("sucessMsg")
-                            print(sucessMsg ?? "")
-                            self.tokenVC.imgDataArray[index].0 = sucessMsg ?? ""
-                            if !self.tokenVC.imgDataArray[0].0.isEmpty && !self.tokenVC.imgDataArray[1].0.isEmpty && !self.tokenVC.imgDataArray[2].0.isEmpty && !self.tokenVC.imgDataArray[3].0.isEmpty{
-                                self.hitSendRequestApi()
+                            if let url = sucessMsg{
+                                print(sucessMsg ?? "")
+                                self.tokenVC.imgDataArray[index].0 = url
+                                group.leave()
                             }
                         }
+                    }
+                }
+                group.notify(queue: DispatchQueue.main) {
+                    print(self.tokenVC.imgDataArray)
+                    if !self.tokenVC.imgDataArray[0].0.isEmpty && !self.tokenVC.imgDataArray[1].0.isEmpty && !self.tokenVC.imgDataArray[2].0.isEmpty && !self.tokenVC.imgDataArray[3].0.isEmpty{
+                        self.hitSendRequestApi()
                     }
                 }
             }
@@ -325,85 +340,3 @@ extension SubmitAssetsProductsVC : PresenterOutputProtocol {
     }
     
 }
-
-
-//extension SubmitAssetsProductsVC {
-//    func uploadOfferImagesToS3() {
-//        let group = DispatchGroup()
-//
-//        for (index, image) in self.productVC.imgDataArray.enumerated() {
-//            group.enter()
-//
-//            self.saveImageToTemporaryDirectory(image: image, completionHandler: { (url, imgScalled) in
-//                if let urlImagePath = url,
-//                    let uploadRequest = AWSS3TransferManagerUploadRequest() {
-//                    uploadRequest.body          = urlImagePath
-//                    uploadRequest.key           = ProcessInfo.processInfo.globallyUniqueString + "." + "png"
-//                    uploadRequest.bucket        = Constants.AWS_S3.Image
-//                    uploadRequest.contentType   = "image/" + "png"
-//                    uploadRequest.uploadProgress = {(bytesSent:Int64, totalBytesSent:Int64, totalBytesExpectedToSend:Int64) in
-//                        let uploadProgress = Float(Double(totalBytesSent)/Double(totalBytesExpectedToSend))
-//
-//                        print("uploading image \(index) of \(arrOfImages.count) = \(uploadProgress)")
-//
-//                        //self.delegate?.amazonManager_uploadWithProgress(fProgress: uploadProgress)
-//                    }
-//
-//                    self.uploadImageStatus      = .inProgress
-//
-//                    AWSS3TransferManager.default()
-//                        .upload(uploadRequest)
-//                        .continueWith(executor: AWSExecutor.immediate(), block: { (task) -> Any? in
-//
-//                            group.leave()
-//
-//                            if let error = task.error {
-//                                print("\n\n=======================================")
-//                                print("❌ Upload image failed with error: (\(error.localizedDescription))")
-//                                print("=======================================\n\n")
-//
-//                                self.uploadImageStatus = .failed
-//                                self.delegate?.amazonManager_uploadWithFail()
-//
-//                                return nil
-//                            }
-//
-//                            //=>    Task completed successfully
-//                            let imgS3URL = Constants.AWS_S3.BucketPath + Constants.AWS_S3.Image + "/" + uploadRequest.key!
-//                            print("imgS3url = \(imgS3URL)")
-//                            NewOfferManager.shared.arrUrlsImagesNewOffer.append(imgS3URL)
-//
-//                            self.uploadImageStatus = .completed
-//                            self.delegate?.amazonManager_uploadWithSuccess(strS3ObjUrl: imgS3URL, imgSelected: imgScalled)
-//
-//                            return nil
-//                        })
-//                }
-//                else {
-//                    print(" Unable to save image to NSTemporaryDirectory")
-//                }
-//            })
-//        }
-//
-//        group.notify(queue: DispatchQueue.global(qos: .background)) {
-//            print("All network reqeusts completed")
-//        }
-//    }
-//
-//    class func saveImageToTemporaryDirectory(image: UIImage, completionHandler: @escaping (_ url: URL?, _ imgScalled: UIImage) -> Void) {
-//        let imgScalled              = ClaimitUtils.scaleImageDown(image)
-//        let data                    = UIImagePNGRepresentation(imgScalled)
-//
-//        let randomPath = "offerImage" + String.random(ofLength: 5)
-//
-//        let urlImgOfferDir = URL(fileURLWithPath: NSTemporaryDirectory().appending(randomPath))
-//        do {
-//            try data?.write(to: urlImgOfferDir)
-//            completionHandler(urlImgOfferDir, imgScalled)
-//        }
-//        catch (let error) {
-//            print(error)
-//            completionHandler(nil, imgScalled)
-//        }
-//    }
-//}
