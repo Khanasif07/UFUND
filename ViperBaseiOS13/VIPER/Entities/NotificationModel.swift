@@ -154,3 +154,67 @@ struct AssetTokenTypeModel : Mappable {
         name <- map["name"]
     }
 }
+
+
+struct SendTokenTypeModelEntity : Mappable {
+    var data : SendTokenEntity?
+    init?(map: Map) {
+
+    }
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+}
+
+struct SendTokenEntity : Mappable {
+    var current_page : Int?
+    var from: Int?
+    var path : String?
+    var total:Int?
+    var next_page_url: String?
+    var prev_page_url: String?
+    var last_page: Int?
+    var per_page: Int?
+    var last_page_url: String?
+    var first_page_url: String?
+    var data: [SendTokenTypeModel]?
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        current_page <- map["current_page"]
+        from <- map["from"]
+        path <- map["path"]
+        total <- map["total"]
+        next_page_url <- map["next_page_url"]
+        prev_page_url <- map["prev_page_url"]
+        last_page <- map["last_page"]
+        per_page <- map["per_page"]
+        last_page_url <- map["ast_page_url"]
+        first_page_url <- map["first_page_url"]
+        data <- map["data"]
+    }
+}
+ 
+struct SendTokenTypeModel : Mappable {
+    var avilable_token : Int?
+    var tokenname : String?
+    var id: Int?
+    var isSelected: Bool = false
+    
+    init?(map: Map) {
+
+    }
+    
+    init(){
+        
+    }
+
+    mutating func mapping(map: Map) {
+
+        id <- map["id"]
+        tokenname <- map["tokenname"]
+        avilable_token <- map["avilable_token"]
+    }
+}

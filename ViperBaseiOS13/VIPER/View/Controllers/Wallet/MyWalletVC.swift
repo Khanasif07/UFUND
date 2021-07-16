@@ -139,6 +139,7 @@ extension MyWalletVC {
         self.setUpBorder()
         self.setFont()
         self.hitWalletCountAPI()
+        self.getDepositUrl()
     }
     
     private func setUpBorder(){
@@ -228,6 +229,10 @@ extension MyWalletVC {
     private func hitWalletBalanceAPI(){
         self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil , methodType: .GET, modelClass: WalletEntity.self, token: true)
     }
+    private func getDepositUrl(){
+        self.presenter?.HITAPI(api: Base.deposit_Url.rawValue, params: nil , methodType: .GET, modelClass: DepositUrlModel.self, token: true)
+    }
+    
 }
 
 // MARK: - Extension For TableView
@@ -291,6 +296,12 @@ extension MyWalletVC: PresenterOutputProtocol {
                 self.walletBalance = data
                 self.yourWalletBalanceLbl.text = "\(data.eth ?? 0.0 )"
             }
+        case Base.deposit_Url.rawValue:
+            print(dataDict)
+            let walletData = dataDict as? DepositUrlModel
+            print(walletData)
+//            if let data = walletData?.balance {
+//            }
         default:
             break
         }

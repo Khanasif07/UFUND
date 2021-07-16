@@ -224,6 +224,8 @@
 		8438C67125F5F72F00200270 /* MyInvestmentsDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438C67025F5F72F00200270 /* MyInvestmentsDetailVC.swift */; };
 		8438C67525F5F7C300200270 /* InvestmentsProfitTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438C67325F5F7C300200270 /* InvestmentsProfitTableCell.swift */; };
 		8438C67625F5F7C300200270 /* InvestmentsProfitTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8438C67425F5F7C300200270 /* InvestmentsProfitTableCell.xib */; };
+		843F0B2D26A188BF00A296FD /* YieldSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843F0B2C26A188BF00A296FD /* YieldSectionHeaderView.swift */; };
+		843F0B2F26A188CC00A296FD /* YieldSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843F0B2E26A188CC00A296FD /* YieldSectionHeaderView.xib */; };
 		84411E8725D1044700718BD1 /* FacebookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8625D1044700718BD1 /* FacebookController.swift */; };
 		84411E8A25D1048900718BD1 /* GoogleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8925D1048900718BD1 /* GoogleController.swift */; };
 		84411E8D25D1099F00718BD1 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84411E8C25D1099F00718BD1 /* AppConstants.swift */; };
@@ -587,6 +589,8 @@
 		8438C67025F5F72F00200270 /* MyInvestmentsDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInvestmentsDetailVC.swift; sourceTree = "<group>"; };
 		8438C67325F5F7C300200270 /* InvestmentsProfitTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsProfitTableCell.swift; sourceTree = "<group>"; };
 		8438C67425F5F7C300200270 /* InvestmentsProfitTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvestmentsProfitTableCell.xib; sourceTree = "<group>"; };
+		843F0B2C26A188BF00A296FD /* YieldSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YieldSectionHeaderView.swift; sourceTree = "<group>"; };
+		843F0B2E26A188CC00A296FD /* YieldSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YieldSectionHeaderView.xib; sourceTree = "<group>"; };
 		84411E8625D1044700718BD1 /* FacebookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookController.swift; sourceTree = "<group>"; };
 		84411E8925D1048900718BD1 /* GoogleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleController.swift; sourceTree = "<group>"; };
 		84411E8C25D1099F00718BD1 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
@@ -1875,6 +1879,8 @@
 			children = (
 				842CC6E72666613D00AA86BB /* YieldCollectionCell.swift */,
 				842CC6E82666613D00AA86BB /* YieldCollectionCell.xib */,
+				843F0B2C26A188BF00A296FD /* YieldSectionHeaderView.swift */,
+				843F0B2E26A188CC00A296FD /* YieldSectionHeaderView.xib */,
 			);
 			path = "XIB's";
 			sourceTree = "<group>";
@@ -2499,6 +2505,7 @@
 				84411E9825D14C0400718BD1 /* UserProfileTableCell.xib in Resources */,
 				845C131A25FF8A320018A1E1 /* MyWalletSheetVC.xib in Resources */,
 				0825AB74238BD53C0083AC42 /* CategoriesCell.xib in Resources */,
+				843F0B2F26A188CC00A296FD /* YieldSectionHeaderView.xib in Resources */,
 				8493AFBD2600ACCC00000720 /* NewProductsCollCell.xib in Resources */,
 				84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */,
 				842ABD1C2626BB42007AA9BA /* Poppins-Bold.ttf in Resources */,
@@ -2854,6 +2861,7 @@
 				085AC03624AF1F0E00FFAD96 /* WebViewController.swift in Sources */,
 				0824B1042382A12000F81A9B /* String.swift in Sources */,
 				846F263E2613385E00FEB452 /* AddAssetsVC.swift in Sources */,
+				843F0B2D26A188BF00A296FD /* YieldSectionHeaderView.swift in Sources */,
 				8438C67525F5F7C300200270 /* InvestmentsProfitTableCell.swift in Sources */,
 				847C10F125DE0BF400D13A5C /* UserProfileVC+Enum.swift in Sources */,
 				0824B11C2382A13200F81A9B /* TextFieldEffects.swift in Sources */,

@@ -15,13 +15,16 @@ class MyYieldVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
-    @IBOutlet weak var searchBar: UISearchBar!
+//    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var titleLbl: UILabel!
     
     // MARK: - Variables
     //===========================
+    private lazy var loader  : UIView = {
+            return createActivityIndicator(self.view)
+        }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
     var sections = [("Overall User Earning",true),("Earning In Crypto",false),("Earning In Fiat",false)]
@@ -59,28 +62,30 @@ extension MyYieldVC {
     
     private func initialSetup() {
         self.setUpFont()
-        self.setSearchBar()
+//        self.setSearchBar()
         self.collectionSetUp()
         self.tableSetUp()
+        self.hitYieldWalletBalanceAPI()
+        self.hitYieldBuyInvestAPI()
     }
     
     private func setUpFont(){
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
     }
     
-    private func setSearchBar(){
-        self.searchBar.delegate = self
-        if #available(iOS 13.0, *) {
-            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
-            searchBar.tintColor = .white
-            searchBar.setIconColor(.white)
-            searchBar.setPlaceholderColor(.white)
-            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
-            self.searchBar.searchTextField.textColor = .lightGray
-        } else {
-            // Fallback on earlier versions
-        }
-    }
+//    private func setSearchBar(){
+//        self.searchBar.delegate = self
+//        if #available(iOS 13.0, *) {
+//            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
+//            searchBar.tintColor = .white
+//            searchBar.setIconColor(.white)
+//            searchBar.setPlaceholderColor(.white)
+//            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
+//            self.searchBar.searchTextField.textColor = .lightGray
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//    }
     
     private func collectionSetUp(){
         self.mainCollectionView.delegate = self
@@ -96,6 +101,7 @@ extension MyYieldVC {
         self.mainTableView.emptyDataSetDelegate  = self
         self.mainTableView.registerCell(with: MyWalletTableCell.self)
         self.mainTableView.registerHeaderFooter(with: MyWalletSectionView.self)
+        self.mainTableView.registerHeaderFooter(with: YieldSectionHeaderView.self)
     }
     
     func rotateLeft(dropdownView: UIView,left: CGFloat = -1) {
@@ -105,17 +111,33 @@ extension MyYieldVC {
         })
     }
     
+    private func hitYieldWalletBalanceAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.yieldBalance.rawValue, params: nil , methodType: .GET, modelClass: WalletEntity.self, token: true)
+    }
+    
+    private func hitYieldBuyInvestAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: SendTokenTypeModelEntity.self, token: true)
+    }
+    
 }
 
 // MARK: - Extension For TableView
 //===========================
 extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return menuContent.endIndex
+        return menuContent.endIndex + 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  menuContent[section].1.endIndex
+        switch section {
+        case 0:
+            return 0
+        default:
+            return  menuContent[section-1].1.endIndex
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -124,22 +146,33 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = mainTableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
-        view.sectionTappedAction = { [weak self] (sender) in
-            guard let selff = self else { return }
-            if selff.menuContent[section].1.endIndex == 0 {
-                selff.menuContent[section].1 = ["1","2","3","4","5","6"]
-            } else {
-                 selff.menuContent[section].1 = []
+        switch section {
+        case 0:
+            let view = mainTableView.dequeueHeaderFooter(with: YieldSectionHeaderView.self)
+            return view
+        default:
+            let view = mainTableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
+            view.sectionTappedAction = { [weak self] (sender) in
+                guard let selff = self else { return }
+                if selff.menuContent[section].1.endIndex == 0 {
+                    selff.menuContent[section].1 = ["1","2","3","4","5","6"]
+                } else {
+                    selff.menuContent[section].1 = []
+                }
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
-            tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+//            self.rotateLeft(dropdownView: view.dropdownBtn,left : (self.menuContent[section-1].1.isEmpty ) ? 0 : -1)
+            return view
         }
-        self.rotateLeft(dropdownView: view.dropdownBtn,left : (self.menuContent[section].1.isEmpty ) ? 0 : -1)
-        return view
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 48.0
+        switch section {
+        case 0:
+            return 55.0
+        default:
+            return 48.0
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -155,6 +188,10 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
 // MARK: - Extension For CollectionView
 //===========================
 extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sections.endIndex
@@ -233,10 +270,19 @@ extension MyYieldVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 extension MyYieldVC : PresenterOutputProtocol {
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
     }
     
     func showSuccessWithParams(statusCode:Int,params: [String : Any], api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        print(api)
+        self.loader.isHidden = true
+        switch api {
+        case Base.yieldBalance.rawValue:
+            print(api)
+        case Base.yieldBuyInvest.rawValue:
+            print(api)
+        default:
+            print(api)
+        }
         print(statusCode)
     }
     

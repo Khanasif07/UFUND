@@ -304,9 +304,19 @@ extension SubmitAssetsProductsVC : PresenterOutputProtocol {
         self.loader.isHidden = true
         switch api {
         case Base.campaigner_create_product.rawValue:
-            self.popOrDismiss(animation: true)
+            let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
+            popUpVC.editProfileSuccess = { [weak self] (sender) in
+                guard let selff = self else { return }
+                 selff.popOrDismiss(animation: true)
+            }
+            self.present(popUpVC, animated: true, completion: nil)
         case Base.campaigner_create_asset.rawValue:
-            self.popOrDismiss(animation: true)
+            let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
+            popUpVC.editProfileSuccess = { [weak self] (sender) in
+                guard let selff = self else { return }
+                selff.popOrDismiss(animation: true)
+            }
+            self.present(popUpVC, animated: true, completion: nil)
         case Base.categories.rawValue:
             if params[ProductCreate.keys.category_type] as? Int == 1 {
                 if let addionalModel = dataDict as? CategoriesModel{

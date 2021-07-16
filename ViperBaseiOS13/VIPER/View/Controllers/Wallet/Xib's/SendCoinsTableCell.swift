@@ -32,6 +32,14 @@ class SendCoinsTableCell: UITableViewCell {
     var campinerImage: [UIImage] = [#imageLiteral(resourceName: "add"),#imageLiteral(resourceName: "profile"),#imageLiteral(resourceName: "soild"), #imageLiteral(resourceName: "wallets"),#imageLiteral(resourceName: "vynil"),#imageLiteral(resourceName: "wallets")]
     var headerCount : [(String,UIColor)]?
     var silderImage = [SilderImage]()
+    var tokenListing : [SendTokenTypeModel]?{
+        didSet{
+            DispatchQueue.main.async {
+                self.tabsCollView.layoutIfNeeded()
+                self.tabsCollView.reloadData()
+            }
+        }
+    }
     var isFromCampainer = false {
         didSet {
             if isFromCampainer {
@@ -40,9 +48,6 @@ class SendCoinsTableCell: UITableViewCell {
                 headerCount = [
                     (Constants.string.categories.localize(),#colorLiteral(red: 1, green: 0.2588235294, blue: 0.3019607843, alpha: 1)),(Constants.string.Products.localize(),#colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)), (Constants.string.TokenizedAssets.localize(),#colorLiteral(red: 0.9725490196, green: 0.6980392157, blue: 0.2823529412, alpha: 1)),(Constants.string.allMyInvestment.localize(),#colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1)),(Constants.string.earning.localize(),#colorLiteral(red: 0.5843137255, green: 0.7764705882, blue: 0.137254902, alpha: 1)),(Constants.string.wallet.localize(),#colorLiteral(red: 0.5529411765, green: 0.2705882353, blue: 0.8274509804, alpha: 1))]
                 
-            }
-            DispatchQueue.main.async {
-                self.tabsCollView.reloadData()
             }
         }
     }
@@ -87,7 +92,8 @@ extension SendCoinsTableCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return isFromCampainer ? campinerImage.count : inversterImage.count
+        return tokenListing?.endIndex ?? 0
+//        return isFromCampainer ? campinerImage.count : inversterImage.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -96,9 +102,11 @@ extension SendCoinsTableCell: UICollectionViewDelegate, UICollectionViewDataSour
         cell.productValueLbll.isHidden = false
         cell.productImg.image = isFromCampainer ?  campinerImage[indexPath.row] : inversterImage[indexPath.row]
         cell.productNameLbl.textColor = .black
-        cell.productNameLbl.text = isFromCampainer ? nullStringToEmpty(string: headerCount?[indexPath.row].0) : nullStringToEmpty(string: headerCount?[indexPath.row].0)
+        cell.productNameLbl.text = tokenListing?[indexPath.row].tokenname ?? ""
+//        cell.productNameLbl.text = isFromCampainer ? nullStringToEmpty(string: headerCount?[indexPath.row].0) : nullStringToEmpty(string: headerCount?[indexPath.row].0)
         cell.productValueLbll.textColor = isFromCampainer ?  headerCount?[indexPath.row].1 :  headerCount?[indexPath.row].1
-        cell.configureCellForInvestorDashboard(indexPath: indexPath, model: investorDashboardData ?? DashboardEntity())
+        cell.productValueLbll.text = "\(tokenListing?[indexPath.row].avilable_token ?? 0)"
+//        cell.configureCellForInvestorDashboard(indexPath: indexPath, model: investorDashboardData ?? DashboardEntity())
         return cell
     }
     

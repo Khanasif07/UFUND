@@ -73,7 +73,23 @@ struct WalletEntity : Mappable{
     }
 }
 
-
+struct DepositUrlModel : Mappable{
+    
+    var code: Int?
+    var message: String?
+    var url: String?
+    init?(map: Map) {
+        
+    }
+    
+    init(){}
+    
+    mutating func mapping(map: Map) {
+        code <- map["code"]
+        message <- map["message"]
+        url <- map["url"]
+    }
+}
 
 struct WalletModuleEntity : Mappable {
     var data : WalletModule?

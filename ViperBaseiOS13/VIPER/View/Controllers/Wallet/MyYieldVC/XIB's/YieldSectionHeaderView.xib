@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YieldSectionHeaderView" customModule="UFUND" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUB-Um-xSN">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uej-yU-97U">
+                            <rect key="frame" x="16" y="7.5" width="343" height="40"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search product here" translatesAutoresizingMaskIntoConstraints="NO" id="60d-Go-2aH">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="60d-Go-2aH" secondAttribute="bottom" id="4eP-ns-DRg"/>
+                                <constraint firstItem="60d-Go-2aH" firstAttribute="top" secondItem="Uej-yU-97U" secondAttribute="top" id="Mln-0O-YYt"/>
+                                <constraint firstAttribute="trailing" secondItem="60d-Go-2aH" secondAttribute="trailing" id="Ty5-Su-bcN"/>
+                                <constraint firstAttribute="height" constant="40" id="bx4-zu-jyN"/>
+                                <constraint firstItem="60d-Go-2aH" firstAttribute="leading" secondItem="Uej-yU-97U" secondAttribute="leading" id="xiv-Z1-y0n"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="Uej-yU-97U" firstAttribute="leading" secondItem="cUB-Um-xSN" secondAttribute="leading" constant="16" id="6vY-R1-PP4"/>
+                        <constraint firstAttribute="trailing" secondItem="Uej-yU-97U" secondAttribute="trailing" constant="16" id="beN-lU-Oat"/>
+                        <constraint firstItem="Uej-yU-97U" firstAttribute="top" secondItem="cUB-Um-xSN" secondAttribute="top" constant="7.5" id="dql-TN-Oyp"/>
+                        <constraint firstAttribute="bottom" secondItem="Uej-yU-97U" secondAttribute="bottom" constant="7.5" id="tPc-pz-HCl"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cUB-Um-xSN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9tH-Zh-lw8"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cUB-Um-xSN" secondAttribute="trailing" id="IhX-Fm-1ZV"/>
+                <constraint firstItem="cUB-Um-xSN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Ngw-oo-Vq9"/>
+                <constraint firstAttribute="bottom" secondItem="cUB-Um-xSN" secondAttribute="bottom" id="xIJ-he-uqe"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-235" y="-69"/>
+        </view>
+    </objects>
+</document>
