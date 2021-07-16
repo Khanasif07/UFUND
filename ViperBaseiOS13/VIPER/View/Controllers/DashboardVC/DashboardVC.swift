@@ -238,7 +238,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch cellTypes[section]  {
         case .DashboardSellHistory:
-            return 211.0
+            return 155.0
         default:
             return 0.0
         }

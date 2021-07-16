@@ -61,6 +61,7 @@ struct ProductCreate {
     let tokenname = "tokenname"
     let tokenId = "tokenId"
     let amount = "amount"
+    let receiver_address = "receiver_address"
     let to_eth_address = "to_eth_address"
     let tokenDetail = "Token Details"
     let token = "Token"

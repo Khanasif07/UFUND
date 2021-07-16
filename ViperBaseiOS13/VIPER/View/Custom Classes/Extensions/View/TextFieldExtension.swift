@@ -29,6 +29,24 @@ extension UITextField {
         }
     }
     
+    // SET BUTTON TO Left VIEW
+    //=========================
+    func setButtonToLeftView(btn : UIButton, selectedImage : UIImage?, normalImage : UIImage?, size: CGSize?,isUserInteractionEnabled: Bool = true) {
+        
+        self.leftViewMode = .always
+        self.leftView = btn
+        
+        btn.isSelected = false
+        btn.isUserInteractionEnabled = isUserInteractionEnabled
+        if let selectedImg = selectedImage { btn.setImage(selectedImg, for: .selected) }
+        if let unselectedImg = normalImage { btn.setImage(unselectedImg, for: .normal) }
+        if let btnSize = size {
+            self.leftView?.frame.size = btnSize
+        } else {
+            self.leftView?.frame.size = CGSize(width: btn.intrinsicContentSize.width+10, height: self.frame.height)
+        }
+    }
+    
     func setLeftPaddingPoints(_ amount:CGFloat)
     {
         

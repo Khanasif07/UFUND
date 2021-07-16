@@ -20,6 +20,7 @@ class MyWalletSheetVC: UIViewController {
     }
     //MARK:- OUTLETS
     //==============
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterBtn: UIButton!
     @IBOutlet weak var investBuyHistoryBtn: UIButton!
     @IBOutlet weak var walletHistoryBtn: UIButton!
@@ -29,6 +30,7 @@ class MyWalletSheetVC: UIViewController {
     
     //MARK:- VARIABLE
     //================
+    var searchText = ""
     var walletModule = WalletModule()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var historyType: HistoryType = .wallet
@@ -199,6 +201,20 @@ extension MyWalletSheetVC {
             dropdownView.transform = CGAffineTransform(rotationAngle: ((180.0 * CGFloat(Double.pi)) / 180.0) * CGFloat(left))
             self.view.layoutIfNeeded()
         })
+    }
+    
+    private func setSearchBar(){
+        self.searchBar.delegate = self
+        if #available(iOS 13.0, *) {
+            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
+            searchBar.tintColor = .white
+            searchBar.setIconColor(.white)
+            searchBar.setPlaceholderColor(.white)
+            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
+            self.searchBar.searchTextField.textColor = .lightGray
+        } else {
+            // Fallback on earlier versions
+        }
     }
           
 }
@@ -374,3 +390,40 @@ extension MyWalletSheetVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
         return true
     }
 }
+
+
+//MARK:- UISearchBarDelegate
+//========================================
+extension MyWalletSheetVC: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
+        self.view.endEditing(true)
+//        self.searchProducts(searchValue: self.searchText)
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+        }else{
+        }
+        searchBar.resignFirstResponder()
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+//        self.searchProducts(searchValue: "")
+        self.view.endEditing(true)
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        if let text = searchBar.text,!text.byRemovingLeadingTrailingWhiteSpaces.isEmpty{
+        }else{
+        }
+        searchBar.resignFirstResponder()
+    }
+}
+

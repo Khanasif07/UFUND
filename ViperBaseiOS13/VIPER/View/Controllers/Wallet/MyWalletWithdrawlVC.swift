@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import iOSDropDown
+import ObjectMapper
+//import iOSDropDown
 
 class MyWalletWithdrawlVC: UIViewController {
     
@@ -26,7 +27,7 @@ class MyWalletWithdrawlVC: UIViewController {
     @IBOutlet weak var currencyControl: UISegmentedControl!
     // MARK: - Variables
     //===========================
-    var selectedCurrencyType = "ETC"
+    var selectedCurrencyType = "ETH"
     var  buttonView = UIButton()
     private lazy var loader  : UIView = {
            return createActivityIndicator(self.view)
@@ -49,7 +50,22 @@ class MyWalletWithdrawlVC: UIViewController {
     //===========================
     
     @IBAction func withdrawlBtnAction(_ sender: UIButton) {
-        
+        if currencyTxtField.isUserInteractionEnabled {
+            guard let amt = self.amtTxtField.text, !amt.isEmpty else {
+                ToastManager.show(title: Constants.string.amount, state: .warning)
+                return
+            }
+            guard let receiverAddress = self.addressTxtField.text, !receiverAddress.isEmpty else {
+                ToastManager.show(title: Constants.string.copyAddress, state: .warning)
+                return
+            }
+        }else{
+            guard let amt = self.amtTxtField.text, !amt.isEmpty else {
+                ToastManager.show(title: Constants.string.amount, state: .warning)
+                return
+            }
+        }
+        self.hitWithdrawlAPI()
     }
     
     @IBAction func crossBtnAction(_ sender: UIButton) {
@@ -108,7 +124,7 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
         vc.usingForSort = .filter
-        vc.sortArray = [("ETC",false),("BITCOIN",false)]
+        vc.sortArray = [("ETH",false),("BTC",false)]
         vc.sortTypeApplied = self.selectedCurrencyType
         self.present(vc, animated: true, completion: nil)
     }
@@ -119,6 +135,19 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
           }
           return true
       }
+    
+    private func hitWithdrawlAPI(){
+        self.loader.isHidden = false
+        var params = [String:Any]()
+        params[ProductCreate.keys.amount] = self.amtTxtField.text ?? ""
+        if currencyTxtField.isUserInteractionEnabled {
+            params[ProductCreate.keys.receiver_address] = self.addressTxtField.text ?? ""
+            params[ProductCreate.keys.type] = self.selectedCurrencyType
+        }else{
+            params[ProductCreate.keys.type] = "USD"
+        }
+        self.presenter?.HITAPI(api: Base.withdraw.rawValue, params: params, methodType: .POST, modelClass: WalletEntity.self, token: true)
+    }
     
 }
 
@@ -133,3 +162,30 @@ extension MyWalletWithdrawlVC: ProductSortVCDelegate{
     }
 }
 
+//MARK: - PresenterOutputProtocol
+//===========================
+extension MyWalletWithdrawlVC: PresenterOutputProtocol {
+    
+    func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
+        switch api {
+        case Base.wallet_sell_hisory.rawValue:
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                print(data)
+            }
+        case Base.wallet_buy_Invest_hisory.rawValue:
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                print(data)
+            }
+        default:
+            break
+        }
+    }
+    
+    func showError(error: CustomError) {
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+    }
+}

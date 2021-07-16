@@ -160,6 +160,7 @@ extension MyWalletVC {
         self.currencyTextField.delegate = self
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         currencyTextField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
+//        currencyTextField.setButtonToLeftView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "btc"), normalImage: #imageLiteral(resourceName: "btc"), size: CGSize(width: 20, height: 20))
         currencyTextField.text = self.selectedCurrencyType
         self.overAllUserInvestmentBtn.isHidden  = userType == UserType.campaigner.rawValue
         self.topView.isHidden = userType == UserType.campaigner.rawValue

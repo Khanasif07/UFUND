@@ -14,6 +14,7 @@
                 <outlet property="investBuyHistoryBtn" destination="X1B-tJ-Lsp" id="azA-CL-IMt"/>
                 <outlet property="mainCotainerView" destination="ebb-mw-JeH" id="pSf-7a-qcd"/>
                 <outlet property="mainTableView" destination="e5r-9b-BBo" id="XZA-e8-oeV"/>
+                <outlet property="searchBar" destination="2lS-NY-7iR" id="q0m-2z-edo"/>
                 <outlet property="view" destination="iN0-l3-epB" id="SLf-DP-CH8"/>
                 <outlet property="walletHistoryBtn" destination="HaF-AE-Xkz" id="Tyf-Ie-tns"/>
             </connections>
