@@ -29,7 +29,8 @@ class MyWalletDepositVC: UIViewController {
     @IBOutlet weak var currencyControl: UISegmentedControl!
     // MARK: - Variables
     //===========================
-    var selectedCurrencyType = "ETC"
+    var selectedCurrencyType = "ETH"
+    var depositUrl = ""
     var  buttonView = UIButton()
     private lazy var loader  : UIView = {
            return createActivityIndicator(self.view)
@@ -52,7 +53,15 @@ class MyWalletDepositVC: UIViewController {
     //===========================
     
     @IBAction func proceedBtnAction(_ sender: UIButton) {
-        
+        guard let amount = self.amtTxtField.text, !amount.isEmpty else {
+            ToastManager.show(title: Constants.string.enterTokenName, state: .warning)
+            return
+        }
+        let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
+        vc.webViewType = .deposit
+        vc.depositUrl = self.depositUrl
+        vc.amount = amount
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func crossBtnAction(_ sender: UIButton) {
@@ -122,7 +131,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
         vc.delegate = self
         vc.usingForSort = .filter
-        vc.sortArray = [("ETC",false),("BTH",false)]
+        vc.sortArray = [("ETH",false),("BTC",false)]
         vc.sortTypeApplied = self.selectedCurrencyType
         self.present(vc, animated: true, completion: nil)
     }

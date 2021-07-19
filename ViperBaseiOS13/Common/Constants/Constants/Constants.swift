@@ -68,6 +68,7 @@ struct Constants {
     let privacy = "Privacy "
     let terms = " Terms"
     let terms_conditions = "Terms & Condition"
+    let deposit = "Deposit"
     let signUp = "SIGN UP"
     let email = "Email"
     let name = "Name"

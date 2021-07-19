@@ -12,6 +12,7 @@ import WebKit
 class WebViewControllerVC: UIViewController {
     
     enum WebViewType {
+        case deposit
         case privacyPolicy
         case termsCondition
         var text :String {
@@ -20,6 +21,8 @@ class WebViewControllerVC: UIViewController {
                 return Constants.string.privacy_policy.localized
             case .termsCondition:
                 return Constants.string.terms_conditions.localized
+            case .deposit:
+                return Constants.string.deposit.localized
             }
         }
         
@@ -29,6 +32,8 @@ class WebViewControllerVC: UIViewController {
                 return "privacy-policy"
             case .termsCondition:
                 return "terms-and-conditions"
+            case .deposit:
+                return ""
             }
         }
     }
@@ -42,6 +47,8 @@ class WebViewControllerVC: UIViewController {
     //===========================
     var webViewType : WebViewType = .privacyPolicy
     private var isInjected: Bool = false
+    var depositUrl = ""
+    var amount = ""
     var webView : WKWebView!
     var request : URLRequest!
     
@@ -66,12 +73,23 @@ class WebViewControllerVC: UIViewController {
     // MARK: - Functions
     //===========================
     private func initialSetup() {
-        setupView()
-        loadUrl()
+        if webViewType == .deposit{
+            setupViewForDeposit()
+            loadUrlForDeposit()}
+        else{
+            setupView()
+            loadUrl()}
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
         titleLbl.text = webViewType.text
     }
     
+    
+    private func setupViewForDeposit() {
+        let webConfig = WKWebViewConfiguration()
+        webView = WKWebView(frame: self.view.bounds, configuration: webConfig)
+        webView.backgroundColor = .white
+        containerView.addSubview(webView)
+    }
     
     private func setupView() {
         let webConfig = WKWebViewConfiguration()
@@ -91,21 +109,31 @@ class WebViewControllerVC: UIViewController {
         webView.load(request)
     }
     
+    private func loadUrlForDeposit(){
+        guard let url = URL(string: self.depositUrl) else {return}
+        request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let postString = "amount=\(amount)"
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = postString.data(using: .utf8)
+        webView.load(request) //if your `webView` is `UIWebView`
+    }
+    
 }
 
 extension WebViewControllerVC : WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate {
     func webView(_ webView: WKWebView, shouldPreviewElement elementInfo: WKPreviewElementInfo) -> Bool {
         return true
     }
-    
+
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
              scrollView.pinchGestureRecognizer?.isEnabled = false
     }
-    
+
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return nil
     }
-    
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     if isInjected == true {
         return
@@ -118,12 +146,12 @@ extension WebViewControllerVC : WKUIDelegate,WKNavigationDelegate,UIScrollViewDe
         webView.loadHTMLString(headerString + (html as! String), baseURL: nil)
     }
     }
-    
-    
+
+
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         scrollView.setZoomScale(1.0, animated: false)
     }
-    
+
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
          scrollView.pinchGestureRecognizer?.isEnabled = false
     }

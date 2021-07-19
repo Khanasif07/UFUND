@@ -43,6 +43,7 @@ class MyWalletVC: UIViewController {
     var walletBalance = WalletBalance()
     var walletModule = WalletModule()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
+    var depositUrl : String = ""
     var selectedCurrencyType = "ETH"
     let bottomSheetVC = MyWalletSheetVC()
     var  buttonView = UIButton()
@@ -98,6 +99,7 @@ class MyWalletVC: UIViewController {
     
     @IBAction func depositBtnAction(_ sender: UIButton) {
         let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
+        vc.depositUrl = self.depositUrl
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -298,11 +300,9 @@ extension MyWalletVC: PresenterOutputProtocol {
                 self.yourWalletBalanceLbl.text = "\(data.eth ?? 0.0 )"
             }
         case Base.deposit_Url.rawValue:
-            print(dataDict)
             let walletData = dataDict as? DepositUrlModel
+            self.depositUrl = walletData?.url ?? ""
             print(walletData)
-//            if let data = walletData?.balance {
-//            }
         default:
             break
         }
