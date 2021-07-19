@@ -117,8 +117,8 @@ extension MyYieldVC {
     }
     
     private func hitYieldBuyInvestAPI(){
-        self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: SendTokenTypeModelEntity.self, token: true)
+//        self.loader.isHidden = false
+//        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: SendTokenTypeModelEntity.self, token: true)
     }
     
 }

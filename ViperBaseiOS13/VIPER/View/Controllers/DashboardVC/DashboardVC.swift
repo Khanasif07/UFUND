@@ -264,7 +264,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
 //===========================
 extension DashboardVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
-        if let cell = self.mainTableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? DashboardBarChartCell{
+        if let cell = self.mainTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? DashboardBarChartCell{
             if  self.isBuyHistoryTabSelected {
                  self.sortTypeForHistory = sortType
                  cell.buyHistoryTxtField.text = self.sortTypeForHistory

@@ -132,3 +132,36 @@ struct WalletModule : Mappable {
     }
 
 }
+
+
+//struct YieldModuleEntity : Mappable {
+//    var data : [WalletBalance]?
+//    var message : String?
+//    var code : Int?
+//    init?(map: Map) {
+//    }
+//    mutating func mapping(map: Map) {
+//        data <- map["data"]
+//        message <- map["message"]
+//        code <- map["code"]
+//    }
+//}
+//
+//
+//
+//struct YieldModule : Mappable {
+//
+//    var buy_histories  : [History]?
+//
+//    init?(map: Map) {
+//    }
+//
+//    init(){
+//
+//    }
+//
+//    mutating func mapping(map: Map) {
+//        buy_histories <- map["buy_histories"]
+//    }
+//
+//}
