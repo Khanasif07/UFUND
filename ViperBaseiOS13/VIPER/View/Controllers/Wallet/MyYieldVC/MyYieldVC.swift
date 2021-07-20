@@ -26,7 +26,7 @@ class MyYieldVC: UIViewController {
             return createActivityIndicator(self.view)
         }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-    var menuContent = [(Constants.string.myProfile.localize(),[]),(Constants.string.categories.localize(),[]),(Constants.string.Products.localize(),[]),(Constants.string.TokenizedAssets.localize(),[]),(Constants.string.allMyInvestment.localize(),[]),(Constants.string.wallet.localize(),[]),(Constants.string.changePassword.localize(),[]),(Constants.string.logout.localize(),[])]
+    var yieldData: YieldModule?
     var sections = [("Overall User Earning",true),("Earning In Crypto",false),("Earning In Fiat",false)]
     var searchText = ""
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
@@ -113,12 +113,12 @@ extension MyYieldVC {
     
     private func hitYieldWalletBalanceAPI(){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.yieldBalance.rawValue, params: nil , methodType: .GET, modelClass: WalletEntity.self, token: true)
+        self.presenter?.HITAPI(api: Base.yieldBalance.rawValue, params: nil , methodType: .GET, modelClass: YieldModuleEntity.self, token: true)
     }
     
     private func hitYieldBuyInvestAPI(){
-//        self.loader.isHidden = false
-//        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: SendTokenTypeModelEntity.self, token: true)
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: SendTokenTypeModelEntity.self, token: true)
     }
     
 }
@@ -128,7 +128,7 @@ extension MyYieldVC {
 extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return menuContent.endIndex + 1
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -136,7 +136,7 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 0
         default:
-            return  menuContent[section-1].1.endIndex
+            return 0
         }
     }
     
@@ -154,11 +154,6 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
             let view = mainTableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
             view.sectionTappedAction = { [weak self] (sender) in
                 guard let selff = self else { return }
-                if selff.menuContent[section].1.endIndex == 0 {
-                    selff.menuContent[section].1 = ["1","2","3","4","5","6"]
-                } else {
-                    selff.menuContent[section].1 = []
-                }
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
 //            self.rotateLeft(dropdownView: view.dropdownBtn,left : (self.menuContent[section-1].1.isEmpty ) ? 0 : -1)
@@ -199,6 +194,17 @@ extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: YieldCollectionCell.self, indexPath: indexPath)
+        switch indexPath.row {
+        case 0:
+            cell.midFirstLbl.text = "BTC" + " \(yieldData?.btc ?? 0.0)"
+            cell.midSecondLbl.text = "ETH" + " \(yieldData?.eth ?? 0.0)"
+            cell.bottomLbl.text = "$" + " \(yieldData?.usd ?? 0.0)"
+        case 1:
+            cell.midFirstLbl.text = "BTC" + " \(yieldData?.btc ?? 0.0)"
+            cell.bottomLbl.text = "ETH" + " \(yieldData?.eth ?? 0.0)"
+        default:
+            cell.bottomLbl.text = "$" + " \(yieldData?.usd ?? 0.0)"
+        }
         cell.topLbl.text = sections[indexPath.row].0
         cell.topLbl.font = sections[indexPath.row].1 ? .setCustomFont(name: .semiBold, size: .x15) : .setCustomFont(name: .semiBold, size: .x14)
         cell.midFirstLbl.textColor  = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
@@ -255,7 +261,7 @@ extension MyYieldVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     }
     
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
-        return true
+        return false
     }
     
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
@@ -267,6 +273,8 @@ extension MyYieldVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     }
 }
 
+//MARK:- PresenterOutputProtocol
+//========================================
 extension MyYieldVC : PresenterOutputProtocol {
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
@@ -277,7 +285,11 @@ extension MyYieldVC : PresenterOutputProtocol {
         self.loader.isHidden = true
         switch api {
         case Base.yieldBalance.rawValue:
-            print(api)
+            let productModelEntity = dataDict as? YieldModuleEntity
+            if let data = productModelEntity?.data{
+                yieldData = data
+                self.mainTableView.reloadData()
+            }
         case Base.yieldBuyInvest.rawValue:
             print(api)
         default:

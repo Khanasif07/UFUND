@@ -135,16 +135,23 @@ extension WebViewControllerVC : WKUIDelegate,WKNavigationDelegate,UIScrollViewDe
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-    if isInjected == true {
-        return
-    }
-    self.isInjected = true
-    // get HTML text
-    let js = "document.body.outerHTML"
-    webView.evaluateJavaScript(js) { (html, error) in
-        let headerString = "<head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></head>"
-        webView.loadHTMLString(headerString + (html as! String), baseURL: nil)
-    }
+        if let url = webView.url?.absoluteString{
+            if url.contains(s: "payment-successapi"){
+                //                NotificationCenter.default.post(name: Notification.Name.PaymentSucessfullyDone, object: nil)
+                self.popOrDismiss(animation: true)
+            }
+        }
+        print(webView.url?.absoluteString)
+        if isInjected == true {
+            return
+        }
+        self.isInjected = true
+        // get HTML text
+        let js = "document.body.outerHTML"
+        webView.evaluateJavaScript(js) { (html, error) in
+            let headerString = "<head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></head>"
+            webView.loadHTMLString(headerString + (html as! String), baseURL: nil)
+        }
     }
 
 
@@ -156,3 +163,4 @@ extension WebViewControllerVC : WKUIDelegate,WKNavigationDelegate,UIScrollViewDe
          scrollView.pinchGestureRecognizer?.isEnabled = false
     }
 }
+

@@ -107,6 +107,7 @@ struct WalletModule : Mappable {
     var buy_histories  : [History]?
     var invest_histories : [History]?
     var wallet_histories : [History]?
+    var transaction_histories: [History]?
     var sell_histories: [History]?
     var overall_invest: Double?
     var total_products : Int?
@@ -128,40 +129,64 @@ struct WalletModule : Mappable {
         sell_histories <- map["sell_histories"]
         invest_histories <- map["invest_histories"]
         buy_histories <- map["buy_histories"]
-        wallet_histories <- map["wallet_histories"]
+        wallet_histories <- map["transaction_histories"]
+        transaction_histories <- map["transaction_histories"]
     }
 
 }
 
 
-//struct YieldModuleEntity : Mappable {
-//    var data : [WalletBalance]?
-//    var message : String?
-//    var code : Int?
-//    init?(map: Map) {
-//    }
-//    mutating func mapping(map: Map) {
-//        data <- map["data"]
-//        message <- map["message"]
-//        code <- map["code"]
-//    }
-//}
-//
-//
-//
-//struct YieldModule : Mappable {
-//
-//    var buy_histories  : [History]?
-//
-//    init?(map: Map) {
-//    }
-//
-//    init(){
-//
-//    }
-//
-//    mutating func mapping(map: Map) {
-//        buy_histories <- map["buy_histories"]
-//    }
-//
-//}
+struct YieldModuleEntity : Mappable {
+    var data : YieldModule?
+    init?(map: Map) {
+    }
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+}
+
+
+
+struct YieldModule : Mappable {
+    var btc: Double?
+    var eth: Double?
+    var usd: Double?
+    var categories  : [Category]?
+    var currencies:Yield?
+
+    init?(map: Map) {
+    }
+
+    init(){
+
+    }
+
+    mutating func mapping(map: Map) {
+        categories <- map["categories"]
+        btc <- map["btc"]
+        eth <- map["eth"]
+        usd <- map["usd"]
+        currencies <- map["currencies"]
+    }
+
+}
+
+
+struct Yield : Mappable {
+    var btc: String?
+    var eth: String?
+    var usd: String?
+
+    init?(map: Map) {
+    }
+
+    init(){
+    }
+
+    mutating func mapping(map: Map) {
+        btc <- map["btc"]
+        eth <- map["eth"]
+        usd <- map["usd"]
+    }
+
+}

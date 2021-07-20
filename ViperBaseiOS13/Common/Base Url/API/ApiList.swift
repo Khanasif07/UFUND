@@ -116,7 +116,7 @@ enum Base : String {
     case withdraw = "/api/withdraw"
     case deposit_Url = "/api/get-deposit-url"
     case yieldBalance = "/api/yeild-getbalance"
-    case yieldBuyInvest = "/api/yeildbuy-invest"
+    case yieldBuyInvest = "/api/yieldbuy-invest"
     case get_user_token = "/api/get-user-token"
     case investor_wallet_counts = "/api/wallet-counts"
     case invest_buy_transaction =  "/api/invest-buy-transaction"

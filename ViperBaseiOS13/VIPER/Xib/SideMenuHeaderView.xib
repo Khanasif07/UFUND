@@ -22,18 +22,24 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QOa-Ps-Bdw">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icProducts" translatesAutoresizingMaskIntoConstraints="NO" id="TJw-D6-cy7">
-                            <rect key="frame" x="2.5" y="17" width="26" height="26"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="TJw-D6-cy7" secondAttribute="height" multiplier="1:1" id="z8H-mm-5NT"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Product" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cc-2h-cRe">
-                            <rect key="frame" x="31" y="21" width="69.5" height="18.5"/>
-                            <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
-                            <color key="textColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="0.70381585805694014" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="8AS-hY-Eoi">
+                            <rect key="frame" x="2.5" y="17" width="98" height="26"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icProducts" translatesAutoresizingMaskIntoConstraints="NO" id="TJw-D6-cy7">
+                                    <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="26" id="F5U-73-3c1"/>
+                                        <constraint firstAttribute="width" secondItem="TJw-D6-cy7" secondAttribute="height" multiplier="1:1" id="z8H-mm-5NT"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Product" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cc-2h-cRe">
+                                    <rect key="frame" x="28.5" y="0.0" width="69.5" height="26"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                                    <color key="textColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="0.70381585805694014" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BID-V9-mma">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <connections>
@@ -56,20 +62,18 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="8AS-hY-Eoi" firstAttribute="leading" secondItem="QOa-Ps-Bdw" secondAttribute="leading" constant="2.5" id="3LB-v0-B6O"/>
+                        <constraint firstItem="jrJ-87-9Ni" firstAttribute="leading" secondItem="0Cc-2h-cRe" secondAttribute="leading" id="CSg-Qs-UlH"/>
                         <constraint firstItem="TVE-dR-rjW" firstAttribute="centerY" secondItem="QOa-Ps-Bdw" secondAttribute="centerY" id="GPY-aZ-fMf"/>
-                        <constraint firstItem="0Cc-2h-cRe" firstAttribute="centerY" secondItem="TJw-D6-cy7" secondAttribute="centerY" id="HJ8-p3-hUx"/>
-                        <constraint firstItem="TJw-D6-cy7" firstAttribute="leading" secondItem="QOa-Ps-Bdw" secondAttribute="leading" constant="2.5" id="HMr-Zg-ASt"/>
                         <constraint firstAttribute="trailing" secondItem="TVE-dR-rjW" secondAttribute="trailing" constant="2.5" id="Hhr-Yr-0sA"/>
                         <constraint firstItem="BID-V9-mma" firstAttribute="leading" secondItem="QOa-Ps-Bdw" secondAttribute="leading" id="L1m-j4-zL3"/>
-                        <constraint firstItem="TVE-dR-rjW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0Cc-2h-cRe" secondAttribute="trailing" constant="2.5" id="WXy-cI-veZ"/>
-                        <constraint firstItem="0Cc-2h-cRe" firstAttribute="leading" secondItem="TJw-D6-cy7" secondAttribute="trailing" constant="2.5" id="YNO-oy-VZN"/>
-                        <constraint firstItem="jrJ-87-9Ni" firstAttribute="leading" secondItem="0Cc-2h-cRe" secondAttribute="leading" id="ZHd-kB-TTK"/>
-                        <constraint firstItem="TJw-D6-cy7" firstAttribute="centerY" secondItem="QOa-Ps-Bdw" secondAttribute="centerY" id="azB-wa-qAB"/>
+                        <constraint firstItem="8AS-hY-Eoi" firstAttribute="centerY" secondItem="QOa-Ps-Bdw" secondAttribute="centerY" id="ShD-JZ-GkR"/>
                         <constraint firstAttribute="trailing" secondItem="BID-V9-mma" secondAttribute="trailing" id="gQ5-pP-IFM"/>
                         <constraint firstAttribute="bottom" secondItem="jrJ-87-9Ni" secondAttribute="bottom" id="kVb-SV-Y7c"/>
                         <constraint firstAttribute="trailing" secondItem="jrJ-87-9Ni" secondAttribute="trailing" constant="10" id="mmt-ZC-nD2"/>
                         <constraint firstAttribute="bottom" secondItem="BID-V9-mma" secondAttribute="bottom" id="n0m-tz-aHN"/>
                         <constraint firstItem="BID-V9-mma" firstAttribute="top" secondItem="QOa-Ps-Bdw" secondAttribute="top" id="pRn-Y2-sjQ"/>
+                        <constraint firstItem="TVE-dR-rjW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8AS-hY-Eoi" secondAttribute="trailing" constant="2.5" id="xCp-MR-cSf"/>
                     </constraints>
                 </view>
             </subviews>

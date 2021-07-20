@@ -157,6 +157,7 @@ extension SendCoinVC : UITableViewDelegate, UITableViewDataSource {
 //                guard let selff = self else {return}
 //                selff.tabsRedirection(selectedIndex)
 //            }
+            cell.seeAllBtn.isHidden = !(self.tokenListing.endIndex >= 6)
             cell.isFromCampainer = userType == UserType.investor.rawValue ? false : true
             cell.tokenListing = self.tokenListing
             return cell
@@ -178,7 +179,7 @@ extension SendCoinVC : UITableViewDelegate, UITableViewDataSource {
         case .TransactionHistory:
             let view = tableView.dequeueHeaderFooter(with: SideMenuHeaderView.self)
             view.backgroundColor = .clear
-            view.imageView?.isHidden = true
+            view.imageView.alpha = 0.0
             view.dropdownView?.isHidden = true
             view.titleLbl.text = "Transaction history"
             view.titleLbl.font = .setCustomFont(name: .medium, size: .x14)
@@ -200,7 +201,16 @@ extension SendCoinVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        switch indexPath.section {
+        case 0:
+            if isDeviceIPad {
+                return 325.0
+            } else {
+                return 215.0
+            }
+        default:
+             return UITableView.automaticDimension
+        }
     }
 }
 
