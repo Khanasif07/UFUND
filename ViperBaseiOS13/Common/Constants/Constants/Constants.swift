@@ -222,6 +222,7 @@ struct Constants {
     let uploadTokenImage = "Please Upload Token Image"
     let enterAssetName = "Please Enter Asset Name"
     let enterTokenName = "Please Enter Token Name"
+    let enterAmountName = "Please Enter amount"
     let enterTokenValue = "Please Enter Token Value"
     let enterTokenSymbol = "Please Enter Token Symbol"
     let enterTotalToken = "Please Enter Total Token"

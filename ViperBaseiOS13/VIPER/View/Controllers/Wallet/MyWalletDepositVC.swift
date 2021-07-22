@@ -53,15 +53,19 @@ class MyWalletDepositVC: UIViewController {
     //===========================
     
     @IBAction func proceedBtnAction(_ sender: UIButton) {
-        guard let amount = self.amtTxtField.text, !amount.isEmpty else {
-            ToastManager.show(title: Constants.string.enterTokenName, state: .warning)
-            return
+        if amtTxtField.isHidden{
+            
+        }else {
+            guard let amount = self.amtTxtField.text, !amount.isEmpty else {
+                ToastManager.show(title: Constants.string.enterAmountName, state: .warning)
+                return
+            }
+            let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
+            vc.webViewType = .deposit
+            vc.depositUrl = self.depositUrl
+            vc.amount = amount
+            self.present(vc, animated: true, completion: nil)
         }
-        let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
-        vc.webViewType = .deposit
-        vc.depositUrl = self.depositUrl
-        vc.amount = amount
-        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func crossBtnAction(_ sender: UIButton) {
@@ -82,7 +86,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
         currencyTxtField.text =  self.selectedCurrencyType
-        qrCodeImgView.image = Common.CreateQrCodeForyourString(string: "Hacking with Swift is the best iOS coding tutorial I've ever read!")
+        qrCodeImgView.image = Common.CreateQrCodeForyourString(string: User.main.eth_address ?? "")
         addAmtLbl.isHidden = true
         amtTxtField.isHidden = true
     }
@@ -155,8 +159,10 @@ extension MyWalletDepositVC: ProductSortVCDelegate{
         currencyTxtField.text =  self.selectedCurrencyType
         if selectedCurrencyType == "ETH"{
             self.qrCodeAddressLbl.text = "\(User.main.eth_address ?? "" )"
+            qrCodeImgView.image = Common.CreateQrCodeForyourString(string: User.main.eth_address ?? "")
         } else {
             self.qrCodeAddressLbl.text = "\(User.main.btc_address ?? "" )"
+            qrCodeImgView.image = Common.CreateQrCodeForyourString(string: User.main.btc_address ?? "")
         }
         
     }

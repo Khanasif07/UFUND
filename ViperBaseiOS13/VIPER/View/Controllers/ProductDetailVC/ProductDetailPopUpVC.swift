@@ -116,7 +116,7 @@ class ProductDetailPopUpVC: UIViewController {
     // MARK: - IBActions
     //===========================
     @IBAction func buyNowAction(_ sender: Any) {
-        self.hitWalletAPI()
+        self.hitBuyInvestTransactionAPI()
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -143,7 +143,7 @@ class ProductDetailPopUpVC: UIViewController {
     }
     
     @IBAction func perPlusAction(_ sender: Any) {
-        if self.currentValInvPer !=  100{
+        if self.currentValInvPer !=  95{
         self.currentValInvPer +=  5
     }
     }
@@ -160,6 +160,7 @@ extension ProductDetailPopUpVC {
 //        self.getPaymentMethodListing()
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         paymentMethodTxtField.delegate = self
+        paymentMethodTxtField.text = ""
         paymentMethodTxtField.setButtonToRightView(btn: button, selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         self.cancelBtn.backgroundColor = .white
         self.cancelBtn.setTitleColor(#colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1), for: .normal)
@@ -176,7 +177,7 @@ extension ProductDetailPopUpVC {
     
     private func hitBuyInvestTransactionAPI(){
         self.loader.isHidden = false
-        var params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethod?.key ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
+        var params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethod?.value ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
         switch isForBuyAndToken{
         case .BuyProduct:
              params[ProductCreate.keys.type]  = "BUY"
@@ -317,13 +318,13 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
                 self.productModel?.payment_method_type = payment_methods
                 self.selectedPaymentMethod =
                     self.productModel?.payment_method_type?.first ?? Payment_method()
-                self.paymentMethodTxtField.text = self.selectedPaymentMethod?.key ?? ""
+                self.paymentMethodTxtField.text = self.selectedPaymentMethod?.value ?? ""
             }
         case Base.wallet.rawValue:
             let walletData = dataDict as? WalletEntity
             if let data = walletData?.balance {
                 self.walletBalance = data
-                switch selectedPaymentMethod?.key {
+                switch selectedPaymentMethod?.value {
                 case "ETH":
                     let ethBalance =  self.walletBalance?.eth ?? 0.0
                     if ethBalance >= self.totalPayableAmtValue{
