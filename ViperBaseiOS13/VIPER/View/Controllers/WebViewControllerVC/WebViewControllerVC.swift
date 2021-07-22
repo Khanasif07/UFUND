@@ -137,7 +137,7 @@ extension WebViewControllerVC : WKUIDelegate,WKNavigationDelegate,UIScrollViewDe
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let url = webView.url?.absoluteString{
             if url.contains(s: "payment-successapi"){
-                //                NotificationCenter.default.post(name: Notification.Name.PaymentSucessfullyDone, object: nil)
+                NotificationCenter.default.post(name: Notification.Name.PaymentSucessfullyDone, object: nil)
                 self.popOrDismiss(animation: true)
             }
         }

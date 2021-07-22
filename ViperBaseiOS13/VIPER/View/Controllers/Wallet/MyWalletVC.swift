@@ -138,6 +138,7 @@ class MyWalletVC: UIViewController {
 extension MyWalletVC {
     
     private func initialSetup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(purchaseDidFinish), name: .PaymentSucessfullyDone, object: nil)
         self.setUpBorder()
         self.setFont()
         self.hitWalletCountAPI()
@@ -205,6 +206,10 @@ extension MyWalletVC {
         }
     }
     
+    @objc func purchaseDidFinish(){
+        self.hitWalletCountAPI(loader:true)
+    }
+    
     func addBottomSheetView() {
         
         guard !self.children.contains(bottomSheetVC) else { return }
@@ -224,8 +229,8 @@ extension MyWalletVC {
         self.view.layoutIfNeeded()
     }
     
-    private func hitWalletCountAPI(){
-        self.loader.isHidden = false
+    private func hitWalletCountAPI(loader:Bool = false){
+        self.loader.isHidden = loader
         self.presenter?.HITAPI(api: Base.investor_wallet_counts.rawValue, params: nil, methodType: .GET, modelClass: WalletModuleEntity.self, token: true)
     }
     
