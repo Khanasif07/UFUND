@@ -814,6 +814,7 @@ struct Payment_method_type : Mappable {
 
 struct Payment_method : Mappable {
     var key : String?
+    var name : String?
     var value : String?
     var id : Int?
     var isSelected: Bool = false
@@ -830,6 +831,7 @@ struct Payment_method : Mappable {
         key <- map["key"]
         value <- map["value"]
         id <- map["id"]
+        name <- map["name"]
     }
 
 }

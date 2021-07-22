@@ -165,7 +165,7 @@ extension ProductSortVC {
     
     private func setSelectedSortingDataForPaymentType(){
         if let index =  self.sortTypePaymentListing.firstIndex(where: { (sortData) -> Bool in
-            return  sortData.id == self.selectedPaymentMethod.id
+            return  sortData.name == self.selectedPaymentMethod.name
         }){
             self.sortTypePaymentListing[index].isSelected =  true
         }
@@ -218,7 +218,7 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
             cell.sortTitleLbl.text = self.sortTypeTokenListing[indexPath.row].name
             cell.sortBtn.setImage(self.sortTypeTokenListing[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
         case .paymentMethods:
-            cell.sortTitleLbl.text = self.sortTypePaymentListing[indexPath.row].key
+            cell.sortTitleLbl.text = self.sortTypePaymentListing[indexPath.row].value
             cell.sortBtn.setImage(self.sortTypePaymentListing[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
         case .sendToken:
             cell.sortTitleLbl.text = self.sortDataSendTokenArray[indexPath.row].tokenname

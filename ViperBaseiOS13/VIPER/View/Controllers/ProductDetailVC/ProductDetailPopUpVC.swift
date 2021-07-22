@@ -60,22 +60,27 @@ class ProductDetailPopUpVC: UIViewController {
             case .BuyProduct:
                 self.buyNowBtnTitle = "Buy Now"
                 self.qtyValueLbl.text = "\(01)"
-                let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
+                let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0))
                 self.totalProductAmt.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
-                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 1)"
-                self.totalPayableAmtValue = percentageValue + 1
+                let adminCommissionPer = productModel?.commission_per ?? 0
+                let adminCommission = (Double(productModel?.total_product_value ?? 0.0) * Double(adminCommissionPer)) / 100
+                self.payableAmountValueLbl.text = "$ " + "\(adminCommission)"
+                self.totalPayableAmtValue = percentageValue + adminCommission
+                self.totalPayableAmt.text =  "$ " + "\(totalPayableAmtValue)"
                 self.incrView.isHidden = true
                 self.decrView.isHidden = true
             case .InvestProduct:
                  self.buyNowBtnTitle = "Invest"
-                self.incrView.isHidden = false
-                self.decrView.isHidden = false
-                self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
-                let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
-                self.totalProductAmt.text = "$ " + "\(percentageValue)"
-                self.payableAmountValueLbl.text = "$ " + "\(1)"
-                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 1)"
-                self.totalPayableAmtValue = percentageValue + 1
+                 self.incrView.isHidden = false
+                 self.decrView.isHidden = false
+                 self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
+                 let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
+                 self.totalProductAmt.text = "$ " + "\(percentageValue)"
+                 let adminCommissionPer = productModel?.commission_per ?? 0
+                 let adminCommission = (Double(percentageValue) * Double(adminCommissionPer)) / 100
+                 self.payableAmountValueLbl.text = "$ " + "\(adminCommission)"
+                 self.totalPayableAmtValue = percentageValue + adminCommission
+                 self.totalPayableAmt.text =  "$ " + "\(totalPayableAmtValue)"
             default:
                 self.buyNowBtnTitle = "Buy Now"
                 self.incrView.isHidden = false
@@ -83,9 +88,11 @@ class ProductDetailPopUpVC: UIViewController {
                 self.qtyTxtField.text = "\(currentValInvPer)"
                 let percentageValue = (Double(currentValInvPer) * (productModel?.tokenrequest?.asset?.asset_value ?? 0.0))
                 self.totalProductAmt.text = "$ " + "\(percentageValue)"
-                self.payableAmountValueLbl.text = "$ " + "\(1)"
-                self.totalPayableAmt.text =  "$ " + "\(percentageValue + 1)"
-                self.totalPayableAmtValue = percentageValue + 1
+                let adminCommissionPer = productModel?.commission_per ?? 0
+                let adminCommission = (Double(productModel?.total_product_value ?? 0.0) * Double(adminCommissionPer)) / 100
+                self.payableAmountValueLbl.text = "$ " + "\(adminCommission)"
+                self.totalPayableAmt.text =  "$ " + "\(percentageValue)"
+                self.totalPayableAmtValue = percentageValue
             }
         }
     }
@@ -150,7 +157,7 @@ extension ProductDetailPopUpVC {
     private func initialSetup() {
         self.dataSetUp()
         self.setFont()
-        self.getPaymentMethodListing()
+//        self.getPaymentMethodListing()
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         paymentMethodTxtField.delegate = self
         paymentMethodTxtField.setButtonToRightView(btn: button, selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
@@ -333,7 +340,7 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
                          let vc = MyWalletDepositVC.instantiate(fromAppStoryboard: .Wallet)
                         self.present(vc, animated: true, completion: nil)
                     }
-                case "PAYPAL":
+                case "WALLET":
                     let paypalBalance =  self.walletBalance?.wallet ?? 0.0
                     if paypalBalance >= self.totalPayableAmtValue{
                         self.hitBuyInvestTransactionAPI()
@@ -365,7 +372,7 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
 extension ProductDetailPopUpVC : ProductSortVCDelegate {
     func sortingAppliedInPaymentType(sortType: Payment_method) {
         self.selectedPaymentMethod = sortType
-        self.paymentMethodTxtField.text = self.selectedPaymentMethod?.key ?? ""
+        self.paymentMethodTxtField.text = self.selectedPaymentMethod?.value ?? ""
     }
 }
 
