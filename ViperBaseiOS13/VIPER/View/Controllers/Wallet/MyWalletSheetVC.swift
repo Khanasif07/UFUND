@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DZNEmptyDataSet
+//import DZNEmptyDataSet
 import ObjectMapper
 
 class MyWalletSheetVC: UIViewController {
@@ -159,8 +159,8 @@ extension MyWalletSheetVC {
         self.mainTableView.isUserInteractionEnabled = true
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
-        self.mainTableView.emptyDataSetDelegate = self
-        self.mainTableView.emptyDataSetSource = self
+//        self.mainTableView.emptyDataSetDelegate = self
+//        self.mainTableView.emptyDataSetSource = self
         self.mainTableView.registerCell(with: MyWalletTableCell.self)
         self.mainTableView.registerHeaderFooter(with: MyWalletSectionView.self)
     }
@@ -225,7 +225,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch historyType {
         case .wallet:
-            return (self.walletModule.wallet_histories?[section].isSelected ?? false) ? 5 : 0
+            return (self.walletModule.wallet_histories?[section].isSelected ?? false) ? 6 : 0
         case .investBuy:
             return (self.walletModule.invest_histories?[section].isSelected ?? false) ? (investBuyCellData.endIndex) : 0
         default:
@@ -237,12 +237,46 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueCell(with: MyWalletTableCell.self, indexPath: indexPath)
         switch historyType {
         case .wallet:
-            cell.titleLbl.text = investBuyCellData[indexPath.row].0
+            if let invest_histories = self.walletModule.wallet_histories{
+                investBuyCellData = [("Transaction Id",invest_histories[indexPath.section].payment_id ?? ""),("Amount",String(invest_histories[indexPath.section].amount ?? 0.0)),("Currency Type",String(invest_histories[indexPath.section].payment_type ?? "")),("Date",invest_histories[indexPath.section].created_at ?? ""),("Transaction Type",invest_histories[indexPath.section].type ?? ""),("Status",invest_histories[indexPath.section].status ?? "")]
+                switch investBuyCellData[indexPath.row].0 {
+                case "Date":
+                    let date = (investBuyCellData[indexPath.row].1).toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
+                    cell.titleLbl.text = investBuyCellData[indexPath.row].0
+                    cell.descLbl.text = date.convertToDefaultString()
+                    cell.descLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                case "Status":
+                    cell.titleLbl.text = investBuyCellData[indexPath.row].0
+                    cell.descLbl.text = investBuyCellData[indexPath.row].1.uppercased()
+                    cell.descLbl.textColor =   #colorLiteral(red: 0.09411764706, green: 0.7411764706, blue: 0.4705882353, alpha: 1)
+                default:
+                    cell.titleLbl.text = investBuyCellData[indexPath.row].0
+                    cell.descLbl.text = investBuyCellData[indexPath.row].1
+                    cell.descLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
+            }
         case .investBuy:
             if let invest_histories = self.walletModule.invest_histories{
                 investBuyCellData = [("Payment Method",invest_histories[indexPath.section].type ?? ""),("Category",""),("Amount",String(invest_histories[indexPath.section].amount ?? 0.0)),("Currency",invest_histories[indexPath.section].payment_type ?? ""),("Invest. Date",invest_histories[indexPath.section].created_at ?? ""),("Maturity. Date",invest_histories[indexPath.section].created_at ?? ""),("Status",invest_histories[indexPath.section].status ?? "")]
-                 cell.titleLbl.text = investBuyCellData[indexPath.row].0
-                 cell.descLbl.text = investBuyCellData[indexPath.row].1
+                switch investBuyCellData[indexPath.row].0 {
+                case "Invest. Date","Maturity. Date":
+                    let date = (investBuyCellData[indexPath.row].1).toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
+                    cell.titleLbl.text = investBuyCellData[indexPath.row].0
+                    cell.descLbl.text = date.convertToDefaultString()
+                    cell.descLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                case "Amount":
+                    cell.titleLbl.text = investBuyCellData[indexPath.row].0
+                    cell.descLbl.text = "$" + investBuyCellData[indexPath.row].1
+                    cell.descLbl.textColor =   #colorLiteral(red: 0.09411764706, green: 0.7411764706, blue: 0.4705882353, alpha: 1)
+                case "Status":
+                    cell.titleLbl.text = investBuyCellData[indexPath.row].0
+                    cell.descLbl.text = investBuyCellData[indexPath.row].1.uppercased()
+                    cell.descLbl.textColor =   #colorLiteral(red: 0.9490196078, green: 0.7725490196, blue: 0.137254902, alpha: 1)
+                default:
+                    cell.titleLbl.text = investBuyCellData[indexPath.row].0
+                    cell.descLbl.text = investBuyCellData[indexPath.row].1
+                    cell.descLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
             }
         default:
              cell.titleLbl.text = investBuyCellData[indexPath.row].0
@@ -265,7 +299,8 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
         let view = tableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
         switch historyType {
         case .wallet:
-            view.populateData(model: self.walletModule.wallet_histories?[section] ?? History())
+            view.populateDataForWallet(model: self.walletModule.wallet_histories?[section] ?? History())
+            view.dateLbl.textColor =  #colorLiteral(red: 0.09411764706, green: 0.7411764706, blue: 0.4705882353, alpha: 1)
         case .investBuy:
             view.populateData(model: self.walletModule.invest_histories?[section] ??  History())
         default:
@@ -365,31 +400,31 @@ extension MyWalletSheetVC: PresenterOutputProtocol {
 
 //MARK:- Tableview Empty dataset delegates
 //========================================
-extension MyWalletSheetVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        return  #imageLiteral(resourceName: "icNoData")
-    }
-    
-    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string:"", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
-    }
-    
-    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return  NSAttributedString(string:"Looks Nothing Found", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
-    }
-    
-    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
-        return true
-    }
-    
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
-        return true
-    }
-    
-    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
-        return true
-    }
-}
+//extension MyWalletSheetVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+//    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+//        return  #imageLiteral(resourceName: "icNoData")
+//    }
+//
+//    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+//        return NSAttributedString(string:"", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
+//    }
+//
+//    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+//        return  NSAttributedString(string:"Looks Nothing Found", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray,NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16.0)])
+//    }
+//
+//    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+//        return true
+//    }
+//
+//    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+//        return true
+//    }
+//
+//    func emptyDataSetShouldAllowTouch(_ scrollView: UIScrollView!) -> Bool {
+//        return true
+//    }
+//}
 
 
 //MARK:- UISearchBarDelegate

@@ -17,7 +17,7 @@ class MyWalletTableCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         titleLbl.font = .setCustomFont(name: .semiBold, size: .x13)
-        descLbl.font = .setCustomFont(name: .regular, size: .x13)
+        descLbl.font = .setCustomFont(name: .medium ,size: .x13)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

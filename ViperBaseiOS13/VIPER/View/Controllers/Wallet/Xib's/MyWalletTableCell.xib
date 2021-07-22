@@ -12,9 +12,6 @@
         <array key="Poppins-Medium.ttf">
             <string>Poppins-Medium</string>
         </array>
-        <array key="Poppins-Regular.ttf">
-            <string>Poppins-Regular</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -35,9 +32,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EU4-Xx-s1z">
-                                <rect key="frame" x="210" y="14.5" width="23" height="15.5"/>
-                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="13"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EU4-Xx-s1z">
+                                <rect key="frame" x="210" y="22" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
                                 <color key="textColor" name="tabUnSelected"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -45,7 +42,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="FMG-T2-zhJ" firstAttribute="leading" secondItem="38d-oI-iTd" secondAttribute="leading" constant="42.5" id="EdM-5a-xdr"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EU4-Xx-s1z" secondAttribute="trailing" constant="16" id="Jdm-l0-bkV"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EU4-Xx-s1z" secondAttribute="trailing" constant="15" id="Jdm-l0-bkV"/>
                             <constraint firstItem="EU4-Xx-s1z" firstAttribute="leading" secondItem="38d-oI-iTd" secondAttribute="leading" constant="210" id="Sn6-aV-Wc7"/>
                             <constraint firstItem="FMG-T2-zhJ" firstAttribute="centerY" secondItem="38d-oI-iTd" secondAttribute="centerY" id="mlI-2I-Zns"/>
                             <constraint firstItem="EU4-Xx-s1z" firstAttribute="centerY" secondItem="38d-oI-iTd" secondAttribute="centerY" id="pbv-b3-fCp"/>

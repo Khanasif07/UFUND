@@ -74,7 +74,7 @@ class WebViewControllerVC: UIViewController {
     //===========================
     private func initialSetup() {
         if webViewType == .deposit{
-            setupViewForDeposit()
+            setupView()
             loadUrlForDeposit()}
         else{
             setupView()
@@ -121,19 +121,26 @@ class WebViewControllerVC: UIViewController {
     
 }
 
+// MARK: - WKUIDelegate
+//===========================
 extension WebViewControllerVC : WKUIDelegate,WKNavigationDelegate,UIScrollViewDelegate {
     func webView(_ webView: WKWebView, shouldPreviewElement elementInfo: WKPreviewElementInfo) -> Bool {
+        if  webViewType != .deposit {
+            return true
+        }
         return true
     }
-
+    
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-             scrollView.pinchGestureRecognizer?.isEnabled = false
+        if  webViewType != .deposit {
+            scrollView.pinchGestureRecognizer?.isEnabled = false
+        }
     }
-
+    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return nil
     }
-
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if let url = webView.url?.absoluteString{
             if url.contains(s: "payment-successapi"){
@@ -142,25 +149,31 @@ extension WebViewControllerVC : WKUIDelegate,WKNavigationDelegate,UIScrollViewDe
             }
         }
         print(webView.url?.absoluteString)
-        if isInjected == true {
-            return
-        }
-        self.isInjected = true
-        // get HTML text
-        let js = "document.body.outerHTML"
-        webView.evaluateJavaScript(js) { (html, error) in
-            let headerString = "<head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></head>"
-            webView.loadHTMLString(headerString + (html as! String), baseURL: nil)
+        if  webViewType != .deposit {
+            if isInjected == true {
+                return
+            }
+            self.isInjected = true
+            // get HTML text
+            let js = "document.body.outerHTML"
+            webView.evaluateJavaScript(js) { (html, error) in
+                let headerString = "<head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'></head>"
+                webView.loadHTMLString(headerString + (html as! String), baseURL: nil)
+            }
         }
     }
-
-
+    
+    
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        scrollView.setZoomScale(1.0, animated: false)
+        if  webViewType != .deposit {
+            scrollView.setZoomScale(1.0, animated: false)
+        }
     }
-
+    
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
-         scrollView.pinchGestureRecognizer?.isEnabled = false
+        if  webViewType != .deposit {
+            scrollView.pinchGestureRecognizer?.isEnabled = false
+        }
     }
 }
 

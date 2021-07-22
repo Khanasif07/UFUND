@@ -34,6 +34,7 @@ struct History : Mappable {
     var id : Int?
     var user_id : Int?
     var payment_type : String?
+    var payment_id: String?
     var type : String?
     var status : String?
     var amount : Double?
@@ -75,6 +76,7 @@ struct History : Mappable {
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
         user <- map["user"]
+        payment_id <- map["payment_id"]
     }
 
 }
