@@ -10,6 +10,9 @@ import UIKit
 
 class DashboardSellHistroryView: UITableViewHeaderFooterView {
 
+    @IBOutlet weak var ethValueLbl: UILabel!
+    @IBOutlet weak var btcValueLbl: UILabel!
+    @IBOutlet weak var dollarValueLbl: UILabel!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

@@ -18,6 +18,7 @@ class DashboardVC: UIViewController {
         case DashboardSubmittedProductsCell
         case DashboardSubmittedAsssetsCell
         case DashboardSellHistory
+        case DashboardSellHistoryListing
     }
     
     // MARK: - IBOutlets
@@ -84,6 +85,7 @@ extension DashboardVC {
         } else {
             self.cellTypes = [.DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell,.DashboardSellHistory]
             self.hitCampaignerDashboardAPI()
+//            self.hitWalletCountAPI()
         }
     }
     
@@ -96,12 +98,19 @@ extension DashboardVC {
         self.mainTableView.registerCell(with: DashboardBarChartCell.self)
         self.mainTableView.registerCell(with: DashboardInvestmentCell.self)
         self.mainTableView.registerCell(with: DashboardSubmittedProductsCell.self)
+        self.mainTableView.registerCell(with: MyWalletTableCell.self)
+        self.mainTableView.registerHeaderFooter(with: MyWalletSectionView.self)
     }
     
     private func hitInvestorDashboardAPI(){
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.investor_dashboard.rawValue, params: nil, methodType: .GET, modelClass: InvestorDashboardEntity.self, token: true)
         
+    }
+    
+    private func hitWalletCountAPI(loader:Bool = false){
+        self.loader.isHidden = loader
+        self.presenter?.HITAPI(api: Base.investor_wallet_counts.rawValue, params: nil, methodType: .GET, modelClass: WalletModuleEntity.self, token: true)
     }
     
     private func hitInvestorDashboardGraphsAPI(params : [String:Any] = [ProductCreate.keys.type: "BUY",ProductCreate.keys.filter_type: 4]){
@@ -152,7 +161,14 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch self.cellTypes[section] {
+        case .DashboardSellHistoryListing:
+            return (self.campaignerDashboardData?.sell_histories?[section - 3].isSelected ?? false) ? 5 : 0
+        case .DashboardSellHistory:
+            return 0
+        default:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -221,6 +237,27 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardSellHistory:
             return UITableViewCell()
+        case .DashboardSellHistoryListing:
+              let cell = tableView.dequeueCell(with: MyWalletTableCell.self, indexPath: indexPath)
+              if let sell_histories = self.campaignerDashboardData?.sell_histories{
+               let sell_historiesData = [("Payment Method",sell_histories[indexPath.section - 3].type ?? ""),("Amount",String(sell_histories[indexPath.section - 3].amount ?? 0.0)),("Date",String(sell_histories[indexPath.section - 3].created_at ?? "")),("VIA",sell_histories[indexPath.section - 3].via ?? ""),("Status",sell_histories[indexPath.section - 3].status ?? "")]
+                switch sell_historiesData[indexPath.row].0 {
+                case "Date":
+                    let date = (sell_historiesData[indexPath.row].1).toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
+                    cell.titleLbl.text = sell_historiesData[indexPath.row].0
+                    cell.descLbl.text = date.convertToDefaultString()
+                    cell.descLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                case "Status":
+                    cell.titleLbl.text = sell_historiesData[indexPath.row].0
+                    cell.descLbl.text = sell_historiesData[indexPath.row].1.uppercased()
+                    cell.descLbl.textColor =   #colorLiteral(red: 0.09411764706, green: 0.7411764706, blue: 0.4705882353, alpha: 1)
+                default:
+                    cell.titleLbl.text = sell_historiesData[indexPath.row].0
+                    cell.descLbl.text = sell_historiesData[indexPath.row].1
+                    cell.descLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
+              }
+            return cell
         }
         
     }
@@ -229,7 +266,21 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
         switch cellTypes[section]  {
         case .DashboardSellHistory:
              let view  = tableView.dequeueHeaderFooter(with: DashboardSellHistroryView.self)
+             view.dollarValueLbl.text = campaignerDashboardData?.total_amount ?? ""
+             view.btcValueLbl.text = campaignerDashboardData?.btc_amount ?? ""
+             view.ethValueLbl.text = campaignerDashboardData?.eth_amount ?? ""
              return view
+        case .DashboardSellHistoryListing:
+            let view = tableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
+            view.populateDataForSell(model: self.campaignerDashboardData?.sell_histories?[section - 3] ??  History())
+            view.sectionTappedAction = { [weak self] (sender) in
+                guard let selff = self else { return }
+                if let sell_histories = selff.campaignerDashboardData?.sell_histories{
+                    selff.campaignerDashboardData?.sell_histories?[section - 3].isSelected = !(sell_histories[section - 3].isSelected)
+                }
+                tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+            }
+            return view
         default:
              return UITableViewHeaderFooterView()
         }
@@ -238,7 +289,9 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch cellTypes[section]  {
         case .DashboardSellHistory:
-            return 155.0
+            return 200.0
+        case .DashboardSellHistoryListing:
+            return 48.0
         default:
             return 0.0
         }
@@ -301,6 +354,9 @@ extension DashboardVC: PresenterOutputProtocol {
             let investorDashboardEntity = dataDict as? CampaignerDashboardEntity
             if let productData = investorDashboardEntity?.data {
                 self.campaignerDashboardData = productData
+                if (self.campaignerDashboardData?.sell_histories?.endIndex ?? 0) > 0{
+                    self.cellTypes = [.DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell,.DashboardSellHistory,.DashboardSellHistoryListing]
+                }
             }
             self.mainTableView.reloadData()
         case Base.investor_dashboard_graph.rawValue:
@@ -311,6 +367,16 @@ extension DashboardVC: PresenterOutputProtocol {
             }
             self.mainTableView.reloadData()
         default:
+            let walletData = dataDict as? WalletModuleEntity
+            if let data = walletData?.data {
+                print(data)
+//                self.walletModule = data
+//                self.bottomSheetVC.walletModule = self.walletModule
+//                self.userInvestmentValueLbl.text = "$ " + "\(data.overall_invest ?? 0)"
+//                self.totalProductsValueLbl.text = "\(data.total_products ?? 0)"
+//                self.totalAssetsValueLbl.text = "\(data.total_tokens ?? 0)"
+            }
+            self.mainTableView.reloadData()
             break
         }
     }

@@ -304,9 +304,9 @@ struct DashboardEntity : Mappable{
     //
     var submited_assets: Int?
     var submited_products: Int?
-    var total_amount: Int?
-    var btc_amount : Int?
-    var eth_amount : Int?
+    var total_amount: String?
+    var btc_amount : String?
+    var eth_amount : String?
     var asset : AssetTypes?
     var product : ProductTypes?
     //
