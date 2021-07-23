@@ -134,7 +134,7 @@ extension AssetsDetailVC {
         footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150.0)
         self.mainTableView.tableFooterView = footerView
         let imgEntity =  productModel?.token_image ?? ""
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        let url = URL(string: nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
         self.bottomView.isHidden = userType != UserType.investor.rawValue
     }
@@ -182,8 +182,8 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
             cell.productLbl.text = ProductCreate.keys.token
             cell.productDetailLbl.text = ProductCreate.keys.tokenDetail
             cell.productTitleLbl.text = productModel?.tokenname ?? ""
-            cell.priceLbl.text = "$ " + "\(productModel?.tokenrequest?.asset?.asset_value ?? 0.0)"
-            cell.productDescLbl.text = "\(productModel?.tokenrequest?.asset?.description ?? "")"
+//            cell.priceLbl.text = "$ " + "\(productModel?.asset.tok ?? 0.0)"
+            cell.productDescLbl.text = "\(productModel?.asset?.description ?? "")"
             return cell
         case AssetsDetailCellType.assetsDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
@@ -225,6 +225,7 @@ extension AssetsDetailVC : PresenterOutputProtocol {
             self.loader.isHidden = true
             if let productDetailData = dataDict as? ProductDetailsEntity {
                 self.productModel = productDetailData.data
+                self.setFooterView()
             }
             self.mainTableView.reloadData()
         default:

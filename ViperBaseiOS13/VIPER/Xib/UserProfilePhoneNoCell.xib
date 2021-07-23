@@ -2,8 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,41 +28,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1r-tl-qkd">
                                 <rect key="frame" x="16" y="37" width="264" height="51"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Po-mi-qW5">
-                                        <rect key="frame" x="8" y="15.5" width="70" height="20"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfR-51-zzZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="gfR-51-zzZ" secondAttribute="height" id="lkc-PG-neb"/>
-                                                    <constraint firstAttribute="height" constant="20" id="w5U-ux-ajh"/>
-                                                </constraints>
-                                                <state key="normal" image="dropDownButton"/>
-                                                <connections>
-                                                    <action selector="countryPickerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wXR-OS-dvS"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+91" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmz-NT-YbU">
-                                                <rect key="frame" x="20" y="0.0" width="49.5" height="20"/>
-                                                <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="14"/>
-                                                <color key="textColor" name="primaryColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vej-kG-vZ5">
-                                                <rect key="frame" x="69.5" y="0.0" width="0.5" height="20"/>
-                                                <color key="backgroundColor" red="0.45490196078431372" green="0.51372549019607838" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="0.5" id="7Cc-O8-Jqw"/>
-                                                    <constraint firstAttribute="height" constant="20" id="HhQ-9a-gs9"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="qVP-Iw-rvj"/>
-                                        </constraints>
-                                    </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jdS-iQ-Ckb">
-                                        <rect key="frame" x="93" y="5" width="155" height="41"/>
+                                        <rect key="frame" x="20" y="5" width="228" height="41"/>
                                         <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -77,11 +44,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="jdS-iQ-Ckb" firstAttribute="leading" secondItem="3Po-mi-qW5" secondAttribute="trailing" constant="15" id="C1D-fO-LmR"/>
                                     <constraint firstAttribute="height" constant="51" id="Ecz-wX-0Ko"/>
-                                    <constraint firstItem="3Po-mi-qW5" firstAttribute="centerY" secondItem="jdS-iQ-Ckb" secondAttribute="centerY" id="F11-en-aUW"/>
                                     <constraint firstItem="jdS-iQ-Ckb" firstAttribute="top" secondItem="H1r-tl-qkd" secondAttribute="top" constant="5" id="LzE-gO-QsW"/>
-                                    <constraint firstItem="3Po-mi-qW5" firstAttribute="leading" secondItem="H1r-tl-qkd" secondAttribute="leading" constant="8" id="TSf-Bm-Yta"/>
+                                    <constraint firstItem="jdS-iQ-Ckb" firstAttribute="leading" secondItem="H1r-tl-qkd" secondAttribute="leading" constant="20" id="kxY-Se-a9v"/>
                                     <constraint firstAttribute="bottom" secondItem="jdS-iQ-Ckb" secondAttribute="bottom" constant="5" id="xQx-1I-g4f"/>
                                     <constraint firstAttribute="trailing" secondItem="jdS-iQ-Ckb" secondAttribute="trailing" constant="16" id="zo1-Rn-yit"/>
                                 </constraints>
@@ -113,7 +78,6 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="countryCodeLbl" destination="Qmz-NT-YbU" id="Vf1-hC-2Ut"/>
                 <outlet property="dataContainerView" destination="NCo-B6-HUZ" id="Ngt-Uo-Pn4"/>
                 <outlet property="phoneTextField" destination="jdS-iQ-Ckb" id="uwC-uP-jJR"/>
                 <outlet property="textFieldView" destination="H1r-tl-qkd" id="naR-KK-MfX"/>
@@ -122,10 +86,4 @@
             <point key="canvasLocation" x="131.8840579710145" y="164.39732142857142"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="dropDownButton" width="20" height="20"/>
-        <namedColor name="primaryColor">
-            <color red="1" green="0.11999999731779099" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

@@ -138,19 +138,23 @@ struct WalletModule : Mappable {
 
 struct YieldModuleEntity : Mappable {
     var data : YieldModule?
+    var message: String?
+    var code: Int?
     init?(map: Map) {
     }
     mutating func mapping(map: Map) {
         data <- map["data"]
+        message <- map["message"]
+        code <- map["code"]
     }
 }
 
 
 
 struct YieldModule : Mappable {
-    var btc: Double?
-    var eth: Double?
-    var usd: Double?
+    var btc: String?
+    var eth: String?
+    var usd: String?
     var categories  : [Category]?
     var currencies:Yield?
 

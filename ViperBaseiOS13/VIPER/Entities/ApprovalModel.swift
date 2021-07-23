@@ -130,13 +130,14 @@ struct Category : Mappable {
     var created_at : String?
     var updated_at : String?
     var deleted_at : String?
+    var type : String?
 
     init?(map: Map) {
 
     }
 
     mutating func mapping(map: Map) {
-
+        type <-  map["type"]
         id <- map["id"]
         category_name <- map["category_name"]
         image <- map["image"]

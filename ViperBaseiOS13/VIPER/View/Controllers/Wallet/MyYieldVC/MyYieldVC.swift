@@ -117,8 +117,8 @@ extension MyYieldVC {
     }
     
     private func hitYieldBuyInvestAPI(){
-        self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: SendTokenTypeModelEntity.self, token: true)
+//        self.loader.isHidden = false
+//        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: SendTokenTypeModelEntity.self, token: true)
     }
     
 }
@@ -196,14 +196,14 @@ extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICol
         let cell = collectionView.dequeueCell(with: YieldCollectionCell.self, indexPath: indexPath)
         switch indexPath.row {
         case 0:
-            cell.midFirstLbl.text = "BTC" + " \(yieldData?.btc ?? 0.0)"
-            cell.midSecondLbl.text = "ETH" + " \(yieldData?.eth ?? 0.0)"
-            cell.bottomLbl.text = "$" + " \(yieldData?.usd ?? 0.0)"
+            cell.midFirstLbl.text = "BTC" + " \(yieldData?.btc ?? "")"
+            cell.midSecondLbl.text = "ETH" + " \(yieldData?.eth ?? "")"
+            cell.bottomLbl.text = "$" + " \(yieldData?.usd ?? "")"
         case 1:
-            cell.midFirstLbl.text = "BTC" + " \(yieldData?.btc ?? 0.0)"
-            cell.bottomLbl.text = "ETH" + " \(yieldData?.eth ?? 0.0)"
+            cell.midFirstLbl.text = "BTC" + " \(yieldData?.btc ?? "")"
+            cell.bottomLbl.text = "ETH" + " \(yieldData?.eth ?? "")"
         default:
-            cell.bottomLbl.text = "$" + " \(yieldData?.usd ?? 0.0)"
+            cell.bottomLbl.text = "$" + " \(yieldData?.usd ?? "")"
         }
         cell.topLbl.text = sections[indexPath.row].0
         cell.topLbl.font = sections[indexPath.row].1 ? .setCustomFont(name: .semiBold, size: .x15) : .setCustomFont(name: .semiBold, size: .x14)

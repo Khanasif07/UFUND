@@ -13,12 +13,14 @@ class UserProfileVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var editBtn: UIButton!
     
     // MARK: - Variables
     //===========================
+    var isKYCIncomplete: Bool = false
     let userProfileInfoo : [UserProfileAttributes] = UserProfileAttributes.allCases
     var param  =  [String:Any]()
     var imageData: Data?
@@ -187,14 +189,17 @@ extension UserProfileVC: PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         if isEnableEdit {
             if api == Base.profile.rawValue {
-            self.loader.isHidden = true
-            let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
-            popUpVC.editProfileSuccess = { [weak self] (sender) in
-                guard let selff = self else { return }
-                selff.navigationController?.popViewController(animated: true)
+                self.loader.isHidden = true
+                let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
+                popUpVC.editProfileSuccess = { [weak self] (sender) in
+                    guard let selff = self else { return }
+                    selff.navigationController?.popViewController(animated: true)
+                }
+                self.present(popUpVC, animated: true, completion: nil)
+                if User.main.kyc == 0{
+                    ToastManager.show(title:  nullStringToEmpty(string: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval."), state: .error)
+                }
             }
-            self.present(popUpVC, animated: true, completion: nil)
-        }
         } else {
             self.userDetails = dataDict as? UserDetails
             self.userProfile = self.userDetails?.user
@@ -221,11 +226,21 @@ extension UserProfileVC: PresenterOutputProtocol {
             User.main.name  = self.userProfile?.name
             User.main.email  = self.userProfile?.email
             User.main.mobile = self.userProfile?.mobile
+            User.main.kyc = self.userProfile?.kyc
             storeInUserDefaults()
+//            if !(self.userProfile?.picture?.isEmpty ?? true){
+//                self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
+//            }
             if !(self.userProfile?.picture?.isEmpty ?? true){
-                self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
+                self.profileImgUrl = URL(string: nullStringToEmpty(string: self.userProfile?.picture))
             }
             self.mainTableView.reloadData()
+            if User.main.kyc == 1 &&  isKYCIncomplete{
+                self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
+            }
+            if User.main.kyc == 0{
+                ToastManager.show(title:  nullStringToEmpty(string: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval."), state: .error)
+            }
         }
         
     }
@@ -237,6 +252,7 @@ extension UserProfileVC: PresenterOutputProtocol {
     
     private func initialSetup() {
         self.isEnableEdit = false
+        self.backBtn.isHidden = (User.main.kyc == 0)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         self.mainTableView.registerCell(with: UserProfilePhoneNoCell.self)
         self.mainTableView.registerCell(with: UserProfileImageCell.self)
@@ -328,7 +344,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                         selff.present(to: Storyboard.Ids.CountryPickerVC)
                         }
                     }
-                    cell.countryCodeLbl.text = self.countryCode
+//                    cell.countryCodeLbl.text = self.countryCode
                     cell.phoneTextField.delegate = self
                     cell.phoneTextField.keyboardType = .numberPad
                     cell.phoneTextField.isUserInteractionEnabled = isEnableEdit

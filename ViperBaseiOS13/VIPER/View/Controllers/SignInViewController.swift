@@ -336,23 +336,29 @@ extension SignInViewController: PresenterOutputProtocol {
             self.signInModel = dataDict as? SignInModel
             CommonUserDefaults.storeUserData(from: self.signInModel)
             storeInUserDefaults()
-            
             if self.signInModel?.kyc == 0 {
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
+                 self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
             } else {
-                
-                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
-
-                   guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
-                    vc.changePINStr = "changePINStr"
-                    self.navigationController?.pushViewController(vc, animated: true)
-
-                } else {
-                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-                    self.push(id: Storyboard.Ids.DrawerController, animation: true)
-                }
+                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+                self.push(id: Storyboard.Ids.DrawerController, animation: true)
             }
+            
+//            if self.signInModel?.kyc == 0 {
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            } else {
+//
+//                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
+//
+//                   guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
+//                    vc.changePINStr = "changePINStr"
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//
+//                } else {
+//                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+//                    self.push(id: Storyboard.Ids.DrawerController, animation: true)
+//                }
+//            }
             
         case Base.social_signup.rawValue:
             self.loader.isHidden = true
@@ -360,20 +366,26 @@ extension SignInViewController: PresenterOutputProtocol {
             CommonUserDefaults.storeUserData(from: self.signInModel)
             User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
             storeInUserDefaults()
+            if self.signInModel?.kyc == 0 {
+                 self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
+            } else {
+                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+                self.push(id: Storyboard.Ids.DrawerController, animation: true)
+            }
 //            if self.signInModel?.kyc == 0 {
 //                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
 //                self.navigationController?.pushViewController(vc, animated: true)
 //            } else {
-                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
-                    
-                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
-                    vc.changePINStr = "changePINStr"
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    
-                } else {
-                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-                    self.push(id: Storyboard.Ids.DrawerController, animation: true)
-                }
+//                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
+//
+//                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
+//                    vc.changePINStr = "changePINStr"
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//
+//                } else {
+//                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+//                    self.push(id: Storyboard.Ids.DrawerController, animation: true)
+//                }
 //            }
             // }
             
@@ -400,16 +412,22 @@ extension SignInViewController: PresenterOutputProtocol {
             let vc = LoginWithEmailVC.instantiate(fromAppStoryboard: .Products)
             vc.socialLoginSuccess = { [weak self] in
                 guard let selff = self else { return }
-                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
-                    
-                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
-                    vc.changePINStr = "changePINStr"
-                    selff.navigationController?.pushViewController(vc, animated: true)
-                    
+                if User.main.kyc == 0 {
+                    selff.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
                 } else {
                     ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                     selff.push(id: Storyboard.Ids.DrawerController, animation: true)
                 }
+//                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
+//
+//                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
+//                    vc.changePINStr = "changePINStr"
+//                    selff.navigationController?.pushViewController(vc, animated: true)
+//
+//                } else {
+//                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+//                    selff.push(id: Storyboard.Ids.DrawerController, animation: true)
+//                }
             }
             vc.socialLoginFailure = { [weak self] in
             guard let selff = self else { return }

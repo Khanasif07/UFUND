@@ -14,15 +14,14 @@ class UserProfilePhoneNoCell: UITableViewCell {
 
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var dataContainerView: UIView!
-    @IBOutlet weak var countryCodeLbl: UILabel!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var textFieldView: UIView!
     
-    @IBAction func countryPickerAction(_ sender: UIButton) {
-        if let handle = countryPickerTapped {
-            handle(sender)
-        }
-    }
+//    @IBAction func countryPickerAction(_ sender: UIButton) {
+//        if let handle = countryPickerTapped {
+//            handle(sender)
+//        }
+//    }
     
      override func layoutSubviews() {
            super.layoutSubviews()
@@ -31,7 +30,7 @@ class UserProfilePhoneNoCell: UITableViewCell {
        
     override func awakeFromNib() {
         super.awakeFromNib()
-        countryCodeLbl.font =   isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)
+//        countryCodeLbl.font =   isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x16) : .setCustomFont(name: .bold, size: .x12)
         self.phoneTextField.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)
         textFieldView.applyEffectToView()

@@ -12200,6 +12200,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <viewLayoutGuide key="safeArea" id="aTw-gd-308"/>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="dYx-V7-Mg6" id="Jnc-yW-hAi"/>
                         <outlet property="editBtn" destination="S5e-6f-65h" id="q6R-R4-Jo6"/>
                         <outlet property="mainTableView" destination="BYY-3G-j1D" id="hjl-cv-4Y5"/>
                         <outlet property="titleLbl" destination="NeI-6R-e0X" id="GIF-5D-U5v"/>

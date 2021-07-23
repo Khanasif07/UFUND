@@ -59,6 +59,12 @@ extension UIViewController {
         
     }
     
+    func pushToProfile(id : String, animation : Bool, from storyboard : UIStoryboard = Router.main){
+        let vc = storyboard.instantiateViewController(withIdentifier: id) as? UserProfileVC
+        vc?.isKYCIncomplete = true
+        self.navigationController?.pushViewController(vc ?? UIViewController(), animated: animation)
+       }
+    
     //MARK:- Push To Right
     
     func pushRight(toViewController viewController : UIViewController){

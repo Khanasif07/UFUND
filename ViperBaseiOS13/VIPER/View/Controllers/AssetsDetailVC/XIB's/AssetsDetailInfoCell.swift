@@ -40,15 +40,15 @@ class AssetsDetailInfoCell: UITableViewCell {
     }
     
     func configureCell(model:ProductModel){
-        self.coinLbl.text = model.tokensymbol ?? ""
+        self.coinLbl.text = model.tokensymbol ?? "N/A"
         self.rewardsLbl.text = (model.tokenrequest?.asset?.reward == 1 ) ? "Goods" : (model.tokenrequest?.asset?.reward == 2 ) ? "Interest" : "Share"
-        self.backedAssetsLbl.text = model.tokenrequest?.asset?.asset_title ?? ""
-        self.auditorsLbl.text = model.user?.name ?? ""
+        self.backedAssetsLbl.text = model.tokenrequest?.asset?.asset_title ?? "N/A"
+        self.auditorsLbl.text = model.user?.name ?? "N/A"
         self.tokenTypeLbl.text = "\(model.token_type ?? 0)"
-        self.contractAddressLbl.text = model.contract_address ?? ""
-        self.typeLbl.text = model.tokenrequest?.tokensymbol ?? ""
+        self.contractAddressLbl.text = model.contract_address ?? "N/A"
+        self.typeLbl.text = model.tokenrequest?.tokensymbol ?? "N/A"
         self.tokenDecimnalLbl.text = "\(model.decimal ?? 0)"
-        self.categorylbl.text = model.tokenrequest?.asset?.category?.category_name ?? ""
+        self.categorylbl.text = model.asset?.category?.category_name ?? "N/A"
         self.totalSupplyLbl.text = "\(model.tokensupply ?? 0)"
     }
     

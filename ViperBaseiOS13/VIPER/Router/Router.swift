@@ -28,7 +28,7 @@ class Router: PresenterToRouterProtocol{
         if retrieveUserData() {
             
             
-            let digitalId = UserDefaults.standard.value(forKey: "digitalId")  as? Int
+//            let digitalId = UserDefaults.standard.value(forKey: "digitalId")  as? Int
             
 //            if  User.main.kyc == 0 {
 //
@@ -41,20 +41,28 @@ class Router: PresenterToRouterProtocol{
 //
 //
 //            } else {
+            
+            if User.main.kyc == 0{
+                let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.UserProfileVC) as! UserProfileVC
+                vc.isKYCIncomplete = true
+                return vc
+            }else {
+                return main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+            }
                 
-                if  User.main.pin_status == 1  || digitalId == 1 {
-                    
-
-                    let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as! OtpController
-                     vc.changePINStr = "changePINStr"
-                    return vc
-                    
-                    
-                    
-                } else {
-                    
-                    return main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
-                }
+//                if  User.main.pin_status == 1  || digitalId == 1 {
+//
+//
+//                    let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as! OtpController
+//                     vc.changePINStr = "changePINStr"
+//                    return vc
+//
+//
+//
+//                } else {
+//
+//                    return main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+//                }
                 
                            
        // }
