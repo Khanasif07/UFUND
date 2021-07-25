@@ -132,7 +132,6 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
             content.isAbsolute = isAbsolute
         }
     }
-    
     /// Bring to Front
     public func getBringToFront(for side: DrawerSide) -> Bool {
         guard let content = contentMap[side] else { return false }
@@ -1110,6 +1109,12 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         return false
     }
     
+//    func pushToProfile(id : String, animation : Bool, from storyboard : UIStoryboard = Router.main){
+//        let vc = storyboard.instantiateViewController(withIdentifier: id) as? UserProfileVC
+//        vc?.isKYCIncomplete = true
+//        self.navigationController?.pushViewController(vc ?? UIViewController(), animated: animation)
+//    }
+    
     
     // MARK: - Lifecycle
     
@@ -1174,7 +1179,7 @@ open class DrawerController: UIViewController, UIGestureRecognizerDelegate {
         if let rightSegueID = rightSegueIdentifier {
             performSegue(withIdentifier: rightSegueID, sender: self)
         }
-        
+//        self.pushToProfile(id: "UserProfileVC", animation: true)
         /// Events
         #if swift(>=3.2)
             observeContext = view.observe(\.frame) { [weak self] (view, event) in

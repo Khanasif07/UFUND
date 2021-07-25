@@ -337,7 +337,7 @@ extension SignInViewController: PresenterOutputProtocol {
             CommonUserDefaults.storeUserData(from: self.signInModel)
             storeInUserDefaults()
             if self.signInModel?.kyc == 0 {
-                 self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
+                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
             } else {
                 ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
@@ -367,7 +367,7 @@ extension SignInViewController: PresenterOutputProtocol {
             User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
             storeInUserDefaults()
             if self.signInModel?.kyc == 0 {
-                 self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
+                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
             } else {
                 ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
@@ -413,7 +413,7 @@ extension SignInViewController: PresenterOutputProtocol {
             vc.socialLoginSuccess = { [weak self] in
                 guard let selff = self else { return }
                 if User.main.kyc == 0 {
-                    selff.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
+                    selff.push(id: Storyboard.Ids.DrawerController, animation: true)
                 } else {
                     ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                     selff.push(id: Storyboard.Ids.DrawerController, animation: true)

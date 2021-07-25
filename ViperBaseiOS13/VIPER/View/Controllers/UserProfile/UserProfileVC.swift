@@ -235,9 +235,9 @@ extension UserProfileVC: PresenterOutputProtocol {
                 self.profileImgUrl = URL(string: nullStringToEmpty(string: self.userProfile?.picture))
             }
             self.mainTableView.reloadData()
-            if User.main.kyc == 1 &&  isKYCIncomplete{
-                self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
-            }
+//            if User.main.kyc == 1 &&  isKYCIncomplete{
+//                self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
+//            }
             if User.main.kyc == 0{
                 ToastManager.show(title:  nullStringToEmpty(string: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval."), state: .error)
             }

@@ -15,8 +15,10 @@ class SideMenuController: UIViewController {
     
     @IBOutlet weak var profileLastName: UILabel!
     @IBAction func profileRedirect(_ sender: UIButton) {
-        self.drawerController?.closeSide()
-        self.push(to: Storyboard.Ids.UserProfileVC)
+        if !isKycIncompleted(){
+            self.drawerController?.closeSide()
+            self.push(to: Storyboard.Ids.UserProfileVC)
+        }
         //        self.push(to: Storyboard.Ids.EditProfileViewController)
     }
     @IBOutlet weak var topCloseBtn: UIButton!
@@ -157,30 +159,34 @@ class SideMenuController: UIViewController {
     
     
     @IBAction func campaignerButtonClickEvent(_ sender: UIButton) {
-        
+        if !isKycIncompleted(){
         UserDefaults.standard.set(UserType.campaigner.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
         setUpUserType()
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("UserTypeChanged"), object: nil)
+        }
         //        self.drawerController?.closeSide()
         //        self.push(to: Storyboard.Ids.HomeViewController)
         
     }
     
     @IBAction func investButtonClickEvent(_ sender: UIButton) {
-        
+        if !isKycIncompleted(){
         UserDefaults.standard.set(UserType.investor.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
         setUpUserType()
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("UserTypeChanged"), object: nil)
+        }
         //        self.drawerController?.closeSide()
         //        self.push(to: Storyboard.Ids.HomeViewController)
         
     }
     
     @IBAction func topCloseBtnAction(_ sender: UIButton) {
+        if !isKycIncompleted(){
         self.drawerController?.closeSide()
         self.push(to: Storyboard.Ids.HomeViewController)
+        }
     }
     
 }
@@ -390,21 +396,36 @@ extension SideMenuController: UITableViewDelegate, UITableViewDataSource {
 
 extension  SideMenuController {
     
+    private func isKycIncompleted()->Bool {
+        if User.main.kyc == 0{
+            ToastManager.show(title:  nullStringToEmpty(string: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval."), state: .error)
+            return true
+        }
+        return false
+    }
+    
     func sectionTappedAction(section: Int){
         //        let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row,section: 0)) as? SideMenuCell
         switch menuContent?[section].0 {
         case Constants.string.submit_assets.localize():
+            if !isKycIncompleted() {
             self.drawerController?.closeSide()
             let vc = SubmitAssetsProductsVC.instantiate(fromAppStoryboard: .Products)
             self.navigationController?.pushViewController(vc, animated: true)
+            }
         case Constants.string.send_coin.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             let vc = SendCoinVC.instantiate(fromAppStoryboard: .Wallet)
             self.navigationController?.pushViewController(vc, animated: true)
+            }
         case Constants.string.profile.localize(),Constants.string.myProfile.localize():
+            if !isKycIncompleted() {
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.UserProfileVC)
+            }
         case Constants.string.Products.localize():
+            if !isKycIncompleted(){
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.newProduct.localize(),Constants.string.allProduct.localize()]
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
@@ -412,30 +433,40 @@ extension  SideMenuController {
                 self.menuContent?[section].1 = []
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
+            }
         case Constants.string.changePassword.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             let vc = ChangePasswordVC.instantiate(fromAppStoryboard: .Products)
             (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            }
         case Constants.string.wallet.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
             (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+            }
         case Constants.string.categories.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.CategoriesVC)
+            }
         case Constants.string.TokenizedAssets.localize():
+            if !isKycIncompleted(){
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.newTokenizedAssets.localize(),Constants.string.allTokenizedAssets.localize()]
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             } else {
                 self.menuContent?[section].1 = []
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
+                }
             }
         case Constants.string.setting.localize():
             self.drawerController?.closeSide()
             let vc = SettingVC.instantiate(fromAppStoryboard: .Products)
             (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
         case Constants.string.allMyInvestment.localize():
+            if !isKycIncompleted(){
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.myProductInvestMents.localize(),Constants.string.myTokenInvestMents.localize()]
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
@@ -443,8 +474,10 @@ extension  SideMenuController {
                 self.menuContent?[section].1 = []
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
+            }
             
         case Constants.string.allMyProduct.localize():
+            if !isKycIncompleted(){
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.allProduct.localize(),Constants.string.liveProduct.localize(),Constants.string.pendingProduct.localize(),Constants.string.soldProduct.localize(),Constants.string.rejectedProduct.localize()]
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
@@ -452,7 +485,9 @@ extension  SideMenuController {
                 self.menuContent?[section].1 = []
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
+            }
         case Constants.string.allMyTokenizedAssets.localize():
+            if !isKycIncompleted(){
             if self.menuContent?[section].1.isEmpty ?? true{
                 self.menuContent?[section].1 = [Constants.string.allTokens.localize(),Constants.string.liveTokens.localize(),Constants.string.pendingTokens.localize(),Constants.string.soldTokens.localize(),Constants.string.rejectedTokens.localize()]
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
@@ -460,10 +495,14 @@ extension  SideMenuController {
                 self.menuContent?[section].1 = []
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
+            }
         case Constants.string.Investors.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.InvestmentViewController)
+            }
         case Constants.string.MyProducts.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             
             //
@@ -490,38 +529,42 @@ extension  SideMenuController {
                 }
                 
             }
+            }
             
             
         case Constants.string.wallet.localize():
-            
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.WalletViewController)
+            }
             
         case Constants.string.Notification.localize():
-            
-            
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.NotificationViewController)
+            }
             
         case Constants.string.security.localize():
-            
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.SecurityViewController)
+            }
             
         case Constants.string.dashboard.localize():
-            
-            
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.HomeViewController)
+            }
             
         case Constants.string.tokenRequests.localize():
-            
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.TokenRequestViewController)
+            }
             
         case Constants.string.allProduct.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
-            
             if isFromCampainer {
                 let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as! TokenProductViewController
                 viewController.tileStr = Constants.string.all.localize()
@@ -531,22 +574,25 @@ extension  SideMenuController {
                 viewController.tileStr = Constants.string.all.localize()
                 (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
             }
+            }
             
             
         case Constants.string.InvestorSide.localize():
-            
+            if !isKycIncompleted(){
             UserDefaults.standard.set(UserType.investor.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.HomeViewController)
+            }
             
         case Constants.string.campaignerSide.localize():
-            
+            if !isKycIncompleted(){
             UserDefaults.standard.set(UserType.campaigner.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.HomeViewController)
+            }
             
         case Constants.string.history.localize():
-            
+            if !isKycIncompleted(){
             UserDefaults.standard.set(UserType.investor.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
             if isFromCampainer {
                 self.drawerController?.closeSide()
@@ -555,16 +601,20 @@ extension  SideMenuController {
                 self.drawerController?.closeSide()
                 self.push(to: Storyboard.Ids.HistoryViewController)
             }
+            }
         case Constants.string.coinpay.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.PayClearHistoryViewController)
+            }
         case Constants.string.logout.localize():
             presentAlertViewController()
-            
         case Constants.string.myYield.localize():
+            if !isKycIncompleted(){
             self.drawerController?.closeSide()
             let myYieldVC = MyYieldVC.instantiate(fromAppStoryboard: .Wallet)
             (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(myYieldVC, animated: true)
+            }
             
         default:
             break

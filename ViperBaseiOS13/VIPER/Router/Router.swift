@@ -43,9 +43,10 @@ class Router: PresenterToRouterProtocol{
 //            } else {
             
             if User.main.kyc == 0{
-                let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.UserProfileVC) as! UserProfileVC
-                vc.isKYCIncomplete = true
-                return vc
+//                let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.UserProfileVC) as! UserProfileVC
+//                vc.isKYCIncomplete = true
+//                return vc
+                return  main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
             }else {
                 return main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
             }

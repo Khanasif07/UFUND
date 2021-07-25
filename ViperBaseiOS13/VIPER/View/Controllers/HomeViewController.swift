@@ -106,6 +106,9 @@ extension HomeViewController {
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(userTypeChanged), name: Notification.Name("UserTypeChanged"), object: nil)
         self.userTypeChanged()
+        if User.main.kyc == 0 {
+            self.push(to: Storyboard.Ids.UserProfileVC)
+        }
     }
     
     @objc func userTypeChanged(){
