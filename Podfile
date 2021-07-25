@@ -32,6 +32,7 @@ target 'ViperBaseiOS13' do
   pod 'Charts'
   pod 'MXParallaxHeader'
   pod 'AWSS3'
+  pod "TTGSnackbar"
   
   target 'ViperBaseiOS13Tests' do
     inherit! :search_paths

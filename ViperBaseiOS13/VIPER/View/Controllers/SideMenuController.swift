@@ -398,7 +398,7 @@ extension  SideMenuController {
     
     private func isKycIncompleted()->Bool {
         if User.main.kyc == 0{
-            ToastManager.show(title:  nullStringToEmpty(string: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval."), state: .error)
+             ToastManager.show(title: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval.",state: .error)
             return true
         }
         return false

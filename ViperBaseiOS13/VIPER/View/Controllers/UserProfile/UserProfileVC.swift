@@ -239,7 +239,7 @@ extension UserProfileVC: PresenterOutputProtocol {
 //                self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
 //            }
             if User.main.kyc == 0{
-                ToastManager.show(title:  nullStringToEmpty(string: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval."), state: .error)
+                ToastManager.show(title: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval." ,state: .error)
             }
         }
         
@@ -247,7 +247,7 @@ extension UserProfileVC: PresenterOutputProtocol {
     
     func showError(error: CustomError) {
         self.loader.isHidden = true
-        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+        ToastManager.show(title: nullStringToEmpty(string: error.localizedDescription.trimString()),state: .error)
     }
     
     private func initialSetup() {
