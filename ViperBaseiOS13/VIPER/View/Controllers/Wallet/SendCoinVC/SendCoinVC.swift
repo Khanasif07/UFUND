@@ -69,8 +69,8 @@ class SendCoinVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.headerContainerView.roundCorners([.layerMinXMinYCorner, .layerMaxXMinYCorner], radius: 10)
-        self.headerBottomContainerView.roundCorners([.layerMinXMaxYCorner, .layerMaxXMaxYCorner], radius: 10)
+        headerContainerView.addShadowRounded(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
+         headerBottomContainerView.addShadowRounded(cornerRadius: 10, color: UIColor.black16, offset: CGSize(width: 0.5, height: 0.5), opacity: 1, shadowRadius: 5)
         self.sendBtn.layer.cornerRadius = 4.0
     }
     
@@ -204,9 +204,9 @@ extension SendCoinVC : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             if isDeviceIPad {
-                return 325.0
+                return (self.tokenListing.isEmpty) ? 64.0 : (CGFloat(325 * self.tokenListing.endIndex))
             } else {
-                return 215.0
+                return (self.tokenListing.isEmpty) ? 64.0 : (CGFloat(215 * self.tokenListing.endIndex))
             }
         default:
              return UITableView.automaticDimension
