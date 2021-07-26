@@ -378,7 +378,7 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
             }
         case Base.invest_buy_transaction.rawValue:
             self.popOrDismiss(animation: true)
-            
+            ToastManager.show(title: "Product buy transaction successfully!!", state: .success)
         default:
             self.loader.isHidden = true
         }

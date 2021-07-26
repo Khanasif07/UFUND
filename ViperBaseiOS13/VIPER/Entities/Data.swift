@@ -252,3 +252,4 @@ struct YeildBuyInvestorArray: Mappable {
            data <- map["data"]
        }
 }
+
