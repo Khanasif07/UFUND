@@ -54,13 +54,13 @@ class AssetsSupplyTableCell: UITableViewCell,ChartViewDelegate {
     }
     
     public func configureCellForInvestor(model: ProductModel){
-        let totalSupply = model.tokenrequest?.tokensupply ?? 0
+        let totalSupply = model.tokensupply ?? 0
         if totalSupply != 0 {
-        let totalRemaining = model.tokenrequest?.avilable_token ?? 0
-        let myTokenValue = model.user_product?.amount ?? 0
-        let soldAssets = (totalSupply) - (totalRemaining) - (myTokenValue)
+        let totalRemaining = model.avilable_token ?? 0
+//        let myTokenValue = model.tokenvalue ?? 0.0
+        let soldAssets = (totalSupply) - (totalRemaining)
         let soldPerValue = ((soldAssets * 100) / totalSupply)
-        let myTokenValuePer = ((myTokenValue * 100) / totalSupply)
+//        let myTokenValuePer = ((myTokenValue * 100) / Double(totalSupply))
         let totalRemainingPerValue = ((totalRemaining * 100) / totalSupply)
         self.totalSupplyLbl.text = "\(totalSupply)"
         self.totalSupplyPieChartLbl.text = "\(totalSupply)"
@@ -68,9 +68,10 @@ class AssetsSupplyTableCell: UITableViewCell,ChartViewDelegate {
         self.totalSoldLbl.text = "\(soldAssets)"
         self.totalSoldPerLbl.text = "(\(soldPerValue)" + "%)"
         self.totalRemainingPerLbl.text = "(\(totalRemainingPerValue)" + "%)"
-        self.myTokenLbl.text =  "\(myTokenValue)"
-        self.myTokenPerLbl.text = "(\(myTokenValuePer)" + "%)"
-        self.partiesPercentage = [Double(soldAssets),Double(totalRemaining),Double(myTokenValue)]
+//        self.myTokenLbl.text =  "\(myTokenValue)"
+//        self.myTokenPerLbl.text = "(\(myTokenValuePer)" + "%)"
+//        self.partiesPercentage = [Double(soldAssets),Double(totalRemaining),Double(myTokenValue)]
+        self.partiesPercentage = [Double(soldAssets),Double(totalRemaining)]
         self.partiesPercentage.removeAll(where: {$0 == 0.0})
         self.setDataCount(partiesPercentage.endIndex, range: 100)
         }else {
@@ -79,7 +80,7 @@ class AssetsSupplyTableCell: UITableViewCell,ChartViewDelegate {
     }
     
     public func configureCellForCampaigner(model: Asset,productModel: ProductModel){
-        let totalSupply = productModel.tokenrequest?.tokensupply ?? 0
+        let totalSupply = productModel.tokensupply ?? 0
         if totalSupply != 0 {
             let totalRemaining = productModel.avilable_token ?? 0
             let myTokenValue = productModel.user_product?.amount ?? 0

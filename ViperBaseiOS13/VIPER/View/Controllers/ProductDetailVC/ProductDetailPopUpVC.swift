@@ -61,6 +61,7 @@ class ProductDetailPopUpVC: UIViewController {
             case .BuyProduct:
                 self.buyNowBtnTitle = "Buy Now"
                 self.qtyValueLbl.text = "\(01)"
+                self.adminCommTitleLbl.text = "Admin Commision" + " (\(productModel?.commission_per ?? 0)) " + "%"
                 let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0))
                 self.totalProductAmt.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
                 let adminCommissionPer = productModel?.commission_per ?? 0
@@ -74,6 +75,7 @@ class ProductDetailPopUpVC: UIViewController {
                  self.buyNowBtnTitle = "Invest"
                  self.incrView.isHidden = false
                  self.decrView.isHidden = false
+                 self.adminCommTitleLbl.text = "Admin Commision" + " (\(productModel?.commission_per ?? 0)) " + "%"
                  self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
                  let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
                  self.totalProductAmt.text = "$ " + "\(percentageValue)"
@@ -86,14 +88,17 @@ class ProductDetailPopUpVC: UIViewController {
                 self.buyNowBtnTitle = "Buy Now"
                 self.incrView.isHidden = false
                 self.decrView.isHidden = false
+                self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)"
+                self.adminCommTitleLbl.text = "Admin Commision" + " (\(productModel?.commission_per ?? 0)) " + "%"
                 self.qtyTxtField.text = "\(currentValInvPer)"
-                let percentageValue = (Double(currentValInvPer) * (productModel?.tokenrequest?.asset?.asset_value ?? 0.0))
+                let percentageValue = (Double(currentValInvPer) * (productModel?.tokenvalue ?? 0.0))
                 self.totalProductAmt.text = "$ " + "\(percentageValue)"
                 let adminCommissionPer = productModel?.commission_per ?? 0
-                let adminCommission = (Double(productModel?.total_product_value ?? 0.0) * Double(adminCommissionPer)) / 100
+                let adminCommission = ((percentageValue) * Double(adminCommissionPer)) / 100
                 self.payableAmountValueLbl.text = "$ " + "\(adminCommission)"
-                self.totalPayableAmt.text =  "$ " + "\(percentageValue)"
-                self.totalPayableAmtValue = percentageValue
+                let totalPayableAmt = adminCommission + percentageValue
+                self.totalPayableAmt.text =  "$ " + "\(totalPayableAmt)"
+                self.totalPayableAmtValue = totalPayableAmt
             }
         }
     }
@@ -158,7 +163,6 @@ extension ProductDetailPopUpVC {
     private func initialSetup() {
         self.dataSetUp()
         self.setFont()
-//        self.getPaymentMethodListing()
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         paymentMethodTxtField.delegate = self
         paymentMethodTxtField.text = ""
@@ -224,6 +228,9 @@ extension ProductDetailPopUpVC {
             self.tokenQtyLbl.text = "Product Quantity"
             self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
             self.currentValInvPer = 1
+            let imgEntity =  productModel?.product_image ?? ""
+            let url = URL(string: nullStringToEmpty(string: imgEntity))
+            self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         case .InvestProduct:
             self.currentValInvPer = 5
             self.investPerView.isHidden = false
@@ -233,6 +240,9 @@ extension ProductDetailPopUpVC {
             self.totalProductPriceTitleLbl.text = "Total Product Amount"
             self.tokenQtyLbl.text = "Product\nInvestment"
             self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
+            let imgEntity =  productModel?.product_image ?? ""
+            let url = URL(string: nullStringToEmpty(string: imgEntity))
+            self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         default:
             self.currentValInvPer = 1
             self.investPerView.isHidden = true
@@ -241,11 +251,11 @@ extension ProductDetailPopUpVC {
             self.tokenPriceLbl.text =  "Token Price"
             self.totalProductPriceTitleLbl.text = "Total Token Amount"
             self.tokenQtyLbl.text = "Token Quantity"
-            self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenrequest?.asset?.asset_value ?? 0.0)"
+            self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)"
+            let imgEntity =  productModel?.token_image ?? ""
+            let url = URL(string:  nullStringToEmpty(string: imgEntity))
+            self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         }
-        let imgEntity =  productModel?.product_image ?? ""
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
     }
     
     private func getPaymentMethodListing(){

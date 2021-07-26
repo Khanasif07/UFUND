@@ -182,7 +182,7 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
             cell.productLbl.text = ProductCreate.keys.token
             cell.productDetailLbl.text = ProductCreate.keys.tokenDetail
             cell.productTitleLbl.text = productModel?.tokenname ?? ""
-//            cell.priceLbl.text = "$ " + "\(productModel?.asset.tok ?? 0.0)"
+            cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)"
             cell.productDescLbl.text = "\(productModel?.asset?.description ?? "")"
             return cell
         case AssetsDetailCellType.assetsDateCell:

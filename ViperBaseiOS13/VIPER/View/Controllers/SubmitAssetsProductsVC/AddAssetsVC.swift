@@ -136,7 +136,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.text = self.addAssetModel.tokensupply == nil ?  "" : "\(self.addAssetModel.tokensupply ?? 0)"
             case 5:
                 cell.textFIeld.keyboardType = .numberPad
-                cell.textFIeld.text = self.addAssetModel.decimal == nil ? "" : "\(self.addAssetModel.decimal ?? 0)"
+                cell.textFIeld.text = (self.addAssetModel.decimal?.isEmpty ?? true) ? "" : "\(self.addAssetModel.decimal ?? "0")"
             default:
                 cell.textFIeld.keyboardType = .numberPad
                 cell.textFIeld.text = self.addAssetModel.asset_amount == nil ? "" : "\(self.addAssetModel.asset_amount ?? 0)"
@@ -233,7 +233,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
               ToastManager.show(title: Constants.string.enterTokenSymbol, state: .warning)
             return false
         }
-        guard let decimal = self.addAssetModel.decimal ,!(decimal == 0.0)  else {
+        guard let decimal = self.addAssetModel.decimal ,!(decimal == "0")  else {
               ToastManager.show(title: Constants.string.enterDecimal, state: .warning)
             return false
         }
@@ -306,7 +306,7 @@ extension AddAssetsVC : UITextFieldDelegate {
                             self.addAssetModel.tokensupply = Int(text)
                             cell.textFIeld.text = text
                         case 5:
-                            self.addAssetModel.decimal = Double(text)
+                            self.addAssetModel.decimal = (text)
                             cell.textFIeld.text = text
                         default:
                             self.addAssetModel.asset_amount = Int(text)

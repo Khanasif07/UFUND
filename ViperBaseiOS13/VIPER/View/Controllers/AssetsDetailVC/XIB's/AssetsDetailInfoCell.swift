@@ -44,10 +44,10 @@ class AssetsDetailInfoCell: UITableViewCell {
         self.rewardsLbl.text = (model.tokenrequest?.asset?.reward == 1 ) ? "Goods" : (model.tokenrequest?.asset?.reward == 2 ) ? "Interest" : "Share"
         self.backedAssetsLbl.text = model.tokenrequest?.asset?.asset_title ?? "N/A"
         self.auditorsLbl.text = model.user?.name ?? "N/A"
-        self.tokenTypeLbl.text = "\(model.token_type ?? 0)"
+        self.tokenTypeLbl.text = model.token_type?.name ?? "N/A"
         self.contractAddressLbl.text = model.contract_address ?? "N/A"
-        self.typeLbl.text = model.tokenrequest?.tokensymbol ?? "N/A"
-        self.tokenDecimnalLbl.text = "\(model.decimal ?? 0)"
+        self.typeLbl.text = model.asset?.asset_type?.name ?? "N/A"
+        self.tokenDecimnalLbl.text = "\(model.decimal ?? "N/A")"
         self.categorylbl.text = model.asset?.category?.category_name ?? "N/A"
         self.totalSupplyLbl.text = "\(model.tokensupply ?? 0)"
     }
