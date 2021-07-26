@@ -77,7 +77,7 @@ extension NotificationViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.NotificationCell, for: indexPath) as! NotificationCell
-        cell.ttileLbl.text = self.notificationList?[indexPath.row].title
+        cell.ttileLbl.text = self.notificationList?[indexPath.row].description ?? ""
         let date = (self.notificationList?[indexPath.row].created_at)?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
         cell.timeLbl.text = date.timeAgoSince
         cell.backgroundColor = .clear

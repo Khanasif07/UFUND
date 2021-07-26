@@ -324,6 +324,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
+            case Constants.string.earningInCrypto.localize():
+                let myYieldVC = MyYieldVC.instantiate(fromAppStoryboard: .Wallet)
+                self.navigationController?.pushViewController(myYieldVC, animated: true)
+            case Constants.string.earningInDollar.localize():
+                let myYieldVC = MyYieldVC.instantiate(fromAppStoryboard: .Wallet)
+                self.navigationController?.pushViewController(myYieldVC, animated: true)
             case Constants.string.fiatCurrency.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
                 self.navigationController?.pushViewController(vc, animated: true)
