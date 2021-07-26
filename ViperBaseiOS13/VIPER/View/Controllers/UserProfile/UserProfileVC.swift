@@ -193,7 +193,11 @@ extension UserProfileVC: PresenterOutputProtocol {
                 let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
                 popUpVC.editProfileSuccess = { [weak self] (sender) in
                     guard let selff = self else { return }
-                    selff.navigationController?.popViewController(animated: true)
+                    if User.main.kyc == 0{
+                        ToastManager.show(title:  nullStringToEmpty(string: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval."), state: .error)
+                    }else {
+                        selff.navigationController?.popViewController(animated: true)
+                    }
                 }
                 self.present(popUpVC, animated: true, completion: nil)
                 if User.main.kyc == 0{

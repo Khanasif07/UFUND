@@ -15,7 +15,7 @@ class MyYieldVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
-//    @IBOutlet weak var searchBar: UISearchBar!
+    //    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var titleLbl: UILabel!
@@ -23,10 +23,11 @@ class MyYieldVC: UIViewController {
     // MARK: - Variables
     //===========================
     private lazy var loader  : UIView = {
-            return createActivityIndicator(self.view)
-        }()
+        return createActivityIndicator(self.view)
+    }()
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var yieldData: YieldModule?
+    var yield_histories : [History]?
     var sections = [("Overall User Earning",true),("Earning In Crypto",false),("Earning In Fiat",false)]
     var searchText = ""
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
@@ -34,6 +35,15 @@ class MyYieldVC: UIViewController {
     var selectedInvestorStart_to : (String,Bool) = ("",false)
     var selectedInvestorMature_from : (String,Bool) = ("",false)
     var selectedInvestorMature_to : (String,Bool) = ("",false)
+    //Pagination
+    var hideLoader: Bool = false
+    var nextPageAvailable = true
+    var isRequestinApi = false
+    var showPaginationLoader: Bool {
+        return  hideLoader ? false : nextPageAvailable
+    }
+    var currentPage: Int = 0
+    var lastPage: Int  = 0
     
     // MARK: - Lifecycle
     //===========================
@@ -62,7 +72,7 @@ extension MyYieldVC {
     
     private func initialSetup() {
         self.setUpFont()
-//        self.setSearchBar()
+        //        self.setSearchBar()
         self.collectionSetUp()
         self.tableSetUp()
         self.hitYieldWalletBalanceAPI()
@@ -73,25 +83,24 @@ extension MyYieldVC {
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
     }
     
-//    private func setSearchBar(){
-//        self.searchBar.delegate = self
-//        if #available(iOS 13.0, *) {
-//            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
-//            searchBar.tintColor = .white
-//            searchBar.setIconColor(.white)
-//            searchBar.setPlaceholderColor(.white)
-//            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
-//            self.searchBar.searchTextField.textColor = .lightGray
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//    }
+    //    private func setSearchBar(){
+    //        self.searchBar.delegate = self
+    //        if #available(iOS 13.0, *) {
+    //            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
+    //            searchBar.tintColor = .white
+    //            searchBar.setIconColor(.white)
+    //            searchBar.setPlaceholderColor(.white)
+    //            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
+    //            self.searchBar.searchTextField.textColor = .lightGray
+    //        } else {
+    //            // Fallback on earlier versions
+    //        }
+    //    }
     
     private func collectionSetUp(){
         self.mainCollectionView.delegate = self
         self.mainCollectionView.dataSource = self
         self.mainCollectionView.registerCell(with: YieldCollectionCell.self)
-//        self.mainCollectionView.registerCell(with: MenuItemCollectionCell.self)
     }
     
     private func tableSetUp(){
@@ -117,8 +126,8 @@ extension MyYieldVC {
     }
     
     private func hitYieldBuyInvestAPI(){
-//        self.loader.isHidden = false
-//        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: SendTokenTypeModelEntity.self, token: true)
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: YieldsHistoryEntity.self, token: true)
     }
     
 }
@@ -128,7 +137,7 @@ extension MyYieldVC {
 extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 1 + (self.yield_histories?.endIndex ?? 0)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -136,13 +145,18 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 0
         default:
-            return 0
+            return (self.yield_histories?[section - 1].isSelected ?? false) ? 5 : 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueCell(with: MyWalletTableCell.self, indexPath: indexPath)
-        return cell
+        switch indexPath.row {
+            case 0:
+            return UITableViewCell()
+        default:
+            let cell = tableView.dequeueCell(with: MyWalletTableCell.self, indexPath: indexPath)
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -151,12 +165,16 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
             let view = mainTableView.dequeueHeaderFooter(with: YieldSectionHeaderView.self)
             return view
         default:
-            let view = mainTableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
+            let view = tableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
+            view.populateDataForYield(model: self.yield_histories?[section - 1] ??  History())
             view.sectionTappedAction = { [weak self] (sender) in
                 guard let selff = self else { return }
+                if let yield_histories = selff.yield_histories{
+                    selff.yield_histories?[section - 1].isSelected = !(yield_histories[section - 1].isSelected)
+                }
                 tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .fade)
             }
-//            self.rotateLeft(dropdownView: view.dropdownBtn,left : (self.menuContent[section-1].1.isEmpty ) ? 0 : -1)
+            self.rotateLeft(dropdownView: view.dropdownBtn,left : (self.yield_histories?[section-1].isSelected ?? false) ? 0 : -1)
             return view
         }
     }
@@ -219,14 +237,15 @@ extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: sections[indexPath.row].0.widthOfString(usingFont: isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)) + 35.0, height: 35.0)
-        let widtth  = (indexPath.row == 0) ? self.mainCollectionView.width - 16.0 : (self.mainCollectionView.width - 26.0)/2
-        return CGSize(width: widtth , height: (self.mainCollectionView.height - 24.0)/2)
+        //        return CGSize(width: sections[indexPath.row].0.widthOfString(usingFont: isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x16) : .setCustomFont(name: .semiBold, size: .x12)) + 35.0, height: 35.0)
+        //        let widtth  = (indexPath.row == 0) ? self.mainCollectionView.width - 16.0 : (self.mainCollectionView.width - 26.0)/2
+        let widtth  = self.mainCollectionView.width - 16.0
+        return CGSize(width: widtth , height: (self.mainCollectionView.height - 24.0)/3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-          return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-      }
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let indexx = self.sections.firstIndex(where: { (sortTuple) -> Bool in
@@ -238,7 +257,7 @@ extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICol
             self.sections[indexPath.row].1 = true
         }
         self.mainCollectionView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet)
-//        self.mainCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        //        self.mainCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         self.mainTableView.reloadData()
     }
     
@@ -287,22 +306,40 @@ extension MyYieldVC : PresenterOutputProtocol {
         case Base.yieldBalance.rawValue:
             let productModelEntity = dataDict as? YieldModuleEntity
             if let data = productModelEntity?.data{
-                yieldData = data
+                yieldData = data.first!
                 self.mainTableView.reloadData()
+                self.mainCollectionView.reloadData()
             }
         case Base.yieldBuyInvest.rawValue:
-            print(api)
+            let productModelEntity = dataDict as? YieldsHistoryEntity
+            if let data = productModelEntity?.data{
+                if let yieldDataArray = data.yeildBuyInvestorArray{
+                    self.currentPage = yieldDataArray.current_page ?? 0
+                    self.lastPage = yieldDataArray.last_page ?? 0
+                    isRequestinApi = false
+                    nextPageAvailable = self.lastPage > self.currentPage
+                    if self.currentPage == 1 {
+                        self.yield_histories = yieldDataArray.data ?? [History]()
+                    } else {
+                        self.yield_histories?.append(contentsOf: yieldDataArray.data ?? [History]())
+                    }
+                }
+                self.mainTableView.reloadData()
+                self.mainCollectionView.reloadData()
+            }
+            self.currentPage += 1
+            print(self.yield_histories)
         default:
             print(api)
         }
         print(statusCode)
     }
+
+func showError(error: CustomError) {
+    ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
     
-    func showError(error: CustomError) {
-        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .success)
-        
-    }
- 
+}
+
 }
 
 
@@ -311,7 +348,7 @@ extension MyYieldVC : PresenterOutputProtocol {
 extension MyYieldVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
-//        self.searchProducts(searchValue: self.searchText)
+        //        self.searchProducts(searchValue: self.searchText)
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -324,7 +361,7 @@ extension MyYieldVC: UISearchBarDelegate{
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
-//        self.searchProducts(searchValue: "")
+        //        self.searchProducts(searchValue: "")
         searchBar.resignFirstResponder()
     }
     
@@ -366,16 +403,16 @@ extension MyYieldVC: ProductFilterVCDelegate {
         var params  = ProductFilterVM.shared.paramsDictForProducts
         params[ProductCreate.keys.page] =  1
         params[ProductCreate.keys.search] = self.searchText
-//        switch (userType,false) {
-//        case (UserType.campaigner.rawValue,false):
-//            params[ProductCreate.keys.status] = campaignerProductType.titleValue
-//            self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-//        case (UserType.investor.rawValue,false):
-//             params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
-//             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-//        default:
-//            break
-//        }
-//        self.loader.isHidden = false
+        //        switch (userType,false) {
+        //        case (UserType.campaigner.rawValue,false):
+        //            params[ProductCreate.keys.status] = campaignerProductType.titleValue
+        //            self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        //        case (UserType.investor.rawValue,false):
+        //             params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
+        //             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
+        //        default:
+        //            break
+        //        }
+        //        self.loader.isHidden = false
     }
 }

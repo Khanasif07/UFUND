@@ -91,7 +91,7 @@ enum Base : String {
     case buyandinvesthistory = "/api/investor/buyandinvesthistory"
     case walletHistory = "/api/walletHistory"
     case sendAPI = "/api/getCoin"
-    case sendCoin = "/api/sendCoin"
+    case sendCoin = "/api/sendToken"
     
     //New APi
     case productsCurrencies = "/api/currencies"

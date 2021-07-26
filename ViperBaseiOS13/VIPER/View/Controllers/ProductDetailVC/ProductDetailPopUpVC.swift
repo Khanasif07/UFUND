@@ -54,6 +54,7 @@ class ProductDetailPopUpVC: UIViewController {
     var productModel: ProductModel?
     var walletBalance: WalletBalance?
     var selectedPaymentMethod: Payment_method?
+    var selectedPaymentMethodAssets: String?
     var currentValInvPer : Int = 5 {
         didSet{
             switch isForBuyAndToken {
@@ -177,12 +178,17 @@ extension ProductDetailPopUpVC {
     
     private func hitBuyInvestTransactionAPI(){
         self.loader.isHidden = false
-        var params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethod?.value ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
+        var params  = [String : Any]()
+        if isForBuyAndToken == .InvestToken {
+            params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethodAssets ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
+        }else {
+            params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethod?.value ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
+        }
         switch isForBuyAndToken{
         case .BuyProduct:
              params[ProductCreate.keys.type]  = "BUY"
         case .InvestToken:
-             params[ProductCreate.keys.type]  = "INVEST"
+             params[ProductCreate.keys.type]  = "BUY"
         case .InvestProduct:
             params[ProductCreate.keys.type]  = "INVEST"
         }
@@ -257,9 +263,15 @@ extension ProductDetailPopUpVC : UITextFieldDelegate {
             self.view.endEditing(true)
             guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
             vc.delegate = self
-            vc.usingForSort = .paymentMethods
-            vc.sortTypePaymentListing = self.productModel?.payment_method_type ?? []
-            vc.selectedPaymentMethod = self.selectedPaymentMethod ?? Payment_method()
+           if isForBuyAndToken == .InvestToken {
+                vc.usingForSort = .filter
+                vc.sortArray = [(Constants.string.btc,false),(Constants.string.eth,false),(Constants.string.walletCaps,false)]
+                vc.sortTypeApplied = self.selectedPaymentMethodAssets ?? ""
+            }else {
+                vc.usingForSort = .paymentMethods
+                vc.sortTypePaymentListing = self.productModel?.payment_method_type ?? []
+                vc.selectedPaymentMethod = self.selectedPaymentMethod ?? Payment_method()
+            }
             self.present(vc, animated: true, completion: nil)
         } else if textField == qtyTxtField {
             
@@ -374,6 +386,11 @@ extension ProductDetailPopUpVC : ProductSortVCDelegate {
     func sortingAppliedInPaymentType(sortType: Payment_method) {
         self.selectedPaymentMethod = sortType
         self.paymentMethodTxtField.text = self.selectedPaymentMethod?.value ?? ""
+    }
+    
+    func sortingApplied(sortType: String) {
+        self.selectedPaymentMethodAssets = sortType
+        self.paymentMethodTxtField.text = self.selectedPaymentMethodAssets ?? ""
     }
 }
 

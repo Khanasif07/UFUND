@@ -18,7 +18,7 @@ struct Constants {
     static let string = Constants()
     let disable = "Disable"
     let send = "Send"
-    let send_coin = "Send Coin"
+    let send_coin = "Send Token"
     let InvalidOTP = "Enter valid OTP"
     let history = "History"
     let submit_assets =  "Submit Assets/Products"
@@ -304,6 +304,9 @@ struct Constants {
     let sort_by_oldest = "Sort by Oldest"
     let sort_by = "Sort By"
     
+    let btc = "BTC"
+    let eth = "ETH"
+    let walletCaps = "WALLET"
     //change password vc
     let enterOldPassWord = "Enter Old Password";
     let enterNewPassWord = "Enter New Password";

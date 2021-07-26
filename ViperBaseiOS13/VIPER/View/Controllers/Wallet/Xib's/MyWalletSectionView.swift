@@ -46,5 +46,13 @@ class MyWalletSectionView: UITableViewHeaderFooterView {
         self.sectionTitleLbl.text = "$ " + String(model.amount ?? 0.0)
         self.dateLbl.textColor = #colorLiteral(red: 0.09411764706, green: 0.7411764706, blue: 0.4705882353, alpha: 1)
     }
+    
+    open func populateDataForYield(model: History){
+        let date = (model.created_at)?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
+        self.dateLbl.text =  date.convertToDefaultString()
+        self.sectionMiddleLbl.text = model.product?.product_title ?? ""
+        self.sectionTitleLbl.text = "$ " + String(model.amount ?? 0.0)
+        self.dateLbl.textColor = #colorLiteral(red: 0.09411764706, green: 0.7411764706, blue: 0.4705882353, alpha: 1)
+    }
 
 }

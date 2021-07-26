@@ -188,6 +188,7 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
         case AssetsDetailCellType.assetsDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
             cell.setCellForAssetsDetailPage()
+            cell.configureCellForAssetsDetailPage(model: productModel ?? ProductModel(json: [:]))
             return cell
         case AssetsDetailCellType.assetsInfoCell:
             let cell = tableView.dequeueCell(with: AssetsDetailInfoCell.self, indexPath: indexPath)

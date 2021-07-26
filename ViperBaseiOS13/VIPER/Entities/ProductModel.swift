@@ -230,6 +230,7 @@ struct ProductModel: Mappable {
         token_type <- map["token_type"]
         asset <- map["asset"]
         avilable_token <- map["avilable_token"]
+       
         
         if investment_product_total == nil {
             
@@ -591,7 +592,10 @@ struct Asset : Mappable {
     var category : Category?
     var asset_child_image : [AssetChildImage]?
     var reward: Int?
-
+    var offer_start: String?
+    var offer_end : String?
+    var reward_date : String?
+    
     init?(map: Map) {
 
     }
@@ -621,6 +625,9 @@ struct Asset : Mappable {
         reward <- map["reward"]
         tokensupply <- map["tokensupply"]
         avilable_token <- map["avilable_token"]
+        offer_start <- map["offer_start"]
+        offer_end <- map["offer_end"]
+        reward_date <- map["reward_date"]
     }
 
 }

@@ -14,6 +14,7 @@ extension Date {
     enum DateFormat : String {
         case yyyy_MM_dd = "yyyy-MM-dd"
         case dd_MM_yyyy = "dd-MM-yyyy"
+        case dd_MMMM_yyyy = "dd-MMMM-yyyy"
         case yyyyMMddHHmmss = "yyyy-MM-dd HH:mm:ss"
         case givenDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 //        yyyy-MM-dd'T'HH:mm:ss.SSSZ

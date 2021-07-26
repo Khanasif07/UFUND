@@ -12,6 +12,7 @@ class ProductDetailDateCell: UITableViewCell {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var maturityDateView: UIStackView!
     @IBOutlet weak var investmentStartDateTitlelbl: UILabel!
     @IBOutlet weak var investmentStartStackView: UIStackView!
     @IBOutlet weak var offerEndDateTitleLbl: UILabel!
@@ -44,9 +45,10 @@ class ProductDetailDateCell: UITableViewCell {
     }
     
     func setCellForAssetsDetailPage(){
-        self.bottomStackView.isHidden = true
+//        self.bottomStackView.isHidden = true
         self.offerEndDateTitleLbl.text = "End Date"
         self.offerStartDateTitleLbl.text = "Start Date"
+        self.maturityDateView.isHidden = true
     }
     
     
@@ -57,8 +59,9 @@ class ProductDetailDateCell: UITableViewCell {
     }
     
     func configureCellForAssetsDetailPage(model: ProductModel){
-        self.offerEndDateLbl.text = model.tokenrequest?.created_at?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue).isEmpty ?? true ? "N/A" : model.end_date?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
-        self.offerStartDateLbl.text = model.tokenrequest?.created_at?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue).isEmpty ?? true ? "N/A" : model.start_date?.breakCompletDate(outPutFormat:  Date.DateFormat.mmmmyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+        self.offerEndDateLbl.text = model.asset?.offer_end?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+        self.offerStartDateLbl.text = model.asset?.offer_start?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+        self.investmentStartDateLbl.text = model.asset?.reward_date?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyy_MM_dd.rawValue)
     }
     
     func configureCell(model: ProductModel){
