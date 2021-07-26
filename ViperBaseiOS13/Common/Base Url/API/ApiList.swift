@@ -120,6 +120,7 @@ enum Base : String {
     case get_user_token = "/api/get-user-token"
     case investor_wallet_counts = "/api/wallet-counts"
     case invest_buy_transaction =  "/api/invest-buy-transaction"
+    case buyTokens = "/api/buy-tokens"
     case wallet_sell_hisory =  "/api/wallet-sell-history"
     case wallet_buy_Invest_hisory =  "/api/investor/wallet-buy-invest-history"
 //    case campaigner_dashboard_sellHistory = "/api/campaigner-dashboard-sell-history"

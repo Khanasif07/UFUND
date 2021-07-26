@@ -228,6 +228,9 @@ extension UserProfileVC: PresenterOutputProtocol {
             self.bankInfoArray[6].1 = self.userProfile?.bank_address ?? ""
             User.main.picture  = self.userProfile?.picture
             User.main.name  = self.userProfile?.name
+            if self.userProfile?.id != nil {
+                User.main.id = self.userProfile?.id
+            }
             User.main.email  = self.userProfile?.email
             User.main.mobile = self.userProfile?.mobile
             User.main.kyc = self.userProfile?.kyc

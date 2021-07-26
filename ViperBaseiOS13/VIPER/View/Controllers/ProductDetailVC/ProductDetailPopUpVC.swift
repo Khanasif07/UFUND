@@ -184,19 +184,21 @@ extension ProductDetailPopUpVC {
         self.loader.isHidden = false
         var params  = [String : Any]()
         if isForBuyAndToken == .InvestToken {
-            params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethodAssets ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
+            params = [Constants.string.amount.localize(): "\(self.currentValInvPer)",Constants.string.payment_mode.localize(): self.selectedPaymentMethodAssets ?? "",ProductCreate.keys.token_id: self.productModel?.id ?? 0] as [String : Any]
         }else {
             params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethod?.value ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
         }
         switch isForBuyAndToken{
         case .BuyProduct:
-             params[ProductCreate.keys.type]  = "BUY"
+            params[ProductCreate.keys.type]  = "BUY"
+            self.presenter?.HITAPI(api: Base.invest_buy_transaction.rawValue, params: params, methodType: .POST, modelClass: SuccessDict.self, token: true)
         case .InvestToken:
-             params[ProductCreate.keys.type]  = "BUY"
+            params[ProductCreate.keys.type]  = "BUY"
+            self.presenter?.HITAPI(api: Base.buyTokens.rawValue, params: params, methodType: .POST, modelClass: SuccessDict.self, token: true)
         case .InvestProduct:
             params[ProductCreate.keys.type]  = "INVEST"
+            self.presenter?.HITAPI(api: Base.invest_buy_transaction.rawValue, params: params, methodType: .POST, modelClass: SuccessDict.self, token: true)
         }
-        self.presenter?.HITAPI(api: Base.invest_buy_transaction.rawValue, params: params, methodType: .POST, modelClass: WalletEntity.self, token: true)
     }
     
     
@@ -377,8 +379,27 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
                 print(data)
             }
         case Base.invest_buy_transaction.rawValue:
+            let data = dataDict as? SuccessDict
+            if data?.success != nil{
+                ToastManager.show(title: data?.success?.msg ?? "", state: .error)
+                return
+            }
+            if data?.error != nil{
+                ToastManager.show(title: data?.error?.msg ?? "", state: .error)
+                return
+            }
             self.popOrDismiss(animation: true)
-            ToastManager.show(title: "Product buy transaction successfully!!", state: .success)
+        case Base.buyTokens.rawValue:
+            let data = dataDict as? SuccessDict
+            if data?.success != nil{
+                ToastManager.show(title: data?.success?.msg ?? "", state: .error)
+                return
+            }
+            if data?.error != nil{
+                ToastManager.show(title: data?.error?.msg ?? "", state: .error)
+                return
+            }
+            self.popOrDismiss(animation: true)
         default:
             self.loader.isHidden = true
         }
@@ -386,6 +407,7 @@ extension ProductDetailPopUpVC : PresenterOutputProtocol {
     
     func showError(error: CustomError) {
         self.loader.isHidden = true
+        ToastManager.show(title: error.localizedDescription, state: .error)
     }
 }
  
