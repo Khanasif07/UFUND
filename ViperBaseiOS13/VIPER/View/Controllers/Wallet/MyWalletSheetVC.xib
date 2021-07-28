@@ -15,6 +15,8 @@
                 <outlet property="mainCotainerView" destination="ebb-mw-JeH" id="pSf-7a-qcd"/>
                 <outlet property="mainTableView" destination="e5r-9b-BBo" id="XZA-e8-oeV"/>
                 <outlet property="searchBar" destination="2lS-NY-7iR" id="q0m-2z-edo"/>
+                <outlet property="searchView" destination="G8V-7x-Ubd" id="LfO-r9-ToK"/>
+                <outlet property="searchViewHCst" destination="hCY-5G-afn" id="qLK-F9-bcG"/>
                 <outlet property="view" destination="iN0-l3-epB" id="SLf-DP-CH8"/>
                 <outlet property="walletHistoryBtn" destination="HaF-AE-Xkz" id="Tyf-Ie-tns"/>
             </connections>
@@ -78,45 +80,46 @@
                                 <constraint firstAttribute="height" constant="1.5" id="zOa-Tu-BiF"/>
                             </constraints>
                         </view>
-                        <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search candidate by their name" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lS-NY-7iR">
-                            <rect key="frame" x="8" y="76.5" width="331" height="44"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8V-7x-Ubd">
+                            <rect key="frame" x="8" y="76.5" width="359" height="44"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search candidate by their name" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lS-NY-7iR">
+                                    <rect key="frame" x="0.0" y="0.0" width="315" height="44"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZ9-35-Hlu">
+                                    <rect key="frame" x="315" y="0.0" width="44" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="EZ9-35-Hlu" secondAttribute="height" id="T1R-Ua-BMw"/>
+                                    </constraints>
+                                    <state key="normal" image="filter1"/>
+                                    <connections>
+                                        <action selector="filterBtnAction:" destination="-1" eventType="touchUpInside" id="MWK-km-ieh"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="44" id="UqP-jg-n2P">
-                                    <variation key="heightClass=regular-widthClass=regular" constant="64"/>
-                                </constraint>
+                                <constraint firstAttribute="height" constant="44" id="hCY-5G-afn"/>
                             </constraints>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZ9-35-Hlu">
-                            <rect key="frame" x="339" y="86.5" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="EZ9-35-Hlu" secondAttribute="height" id="T1R-Ua-BMw"/>
-                            </constraints>
-                            <state key="normal" image="filter1"/>
-                            <connections>
-                                <action selector="filterBtnAction:" destination="-1" eventType="touchUpInside" id="MWK-km-ieh"/>
-                            </connections>
-                        </button>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="e5r-9b-BBo" firstAttribute="leading" secondItem="ebb-mw-JeH" secondAttribute="leading" id="1ph-2g-wlE"/>
                         <constraint firstItem="FaP-Kc-GlH" firstAttribute="leading" secondItem="ebb-mw-JeH" secondAttribute="leading" id="3ii-EP-dEu"/>
-                        <constraint firstItem="e5r-9b-BBo" firstAttribute="top" secondItem="2lS-NY-7iR" secondAttribute="bottom" constant="12" id="6zu-fH-Umg"/>
                         <constraint firstItem="snK-S2-XVo" firstAttribute="height" secondItem="1EE-VT-DQa" secondAttribute="height" id="8Cp-y0-jdY"/>
-                        <constraint firstItem="2lS-NY-7iR" firstAttribute="top" secondItem="FaP-Kc-GlH" secondAttribute="bottom" constant="12" id="8pt-gq-K7Q"/>
                         <constraint firstAttribute="trailing" secondItem="1EE-VT-DQa" secondAttribute="trailing" constant="16" id="CBQ-dt-uca"/>
                         <constraint firstItem="snK-S2-XVo" firstAttribute="centerY" secondItem="1EE-VT-DQa" secondAttribute="centerY" id="Om9-Ss-GAF"/>
                         <constraint firstItem="snK-S2-XVo" firstAttribute="centerX" secondItem="1EE-VT-DQa" secondAttribute="centerX" id="RXD-HZ-4pw"/>
-                        <constraint firstItem="2lS-NY-7iR" firstAttribute="leading" secondItem="ebb-mw-JeH" secondAttribute="leading" constant="8" id="URM-O8-E6G"/>
                         <constraint firstAttribute="bottom" secondItem="e5r-9b-BBo" secondAttribute="bottom" id="WMK-bn-qQt"/>
                         <constraint firstItem="YLv-fc-YEe" firstAttribute="centerX" secondItem="ebb-mw-JeH" secondAttribute="centerX" id="YJ3-Oq-GSh"/>
-                        <constraint firstAttribute="trailing" secondItem="EZ9-35-Hlu" secondAttribute="trailing" constant="12" id="fvM-x6-q87"/>
+                        <constraint firstItem="e5r-9b-BBo" firstAttribute="top" secondItem="G8V-7x-Ubd" secondAttribute="bottom" constant="12" id="cdy-qL-Ii9"/>
                         <constraint firstAttribute="trailing" secondItem="FaP-Kc-GlH" secondAttribute="trailing" id="iTg-JW-hMc"/>
                         <constraint firstItem="YLv-fc-YEe" firstAttribute="top" secondItem="ebb-mw-JeH" secondAttribute="top" constant="16" id="jdl-Zl-fct"/>
-                        <constraint firstItem="EZ9-35-Hlu" firstAttribute="centerY" secondItem="2lS-NY-7iR" secondAttribute="centerY" id="mbK-BV-9y9"/>
+                        <constraint firstItem="G8V-7x-Ubd" firstAttribute="top" secondItem="FaP-Kc-GlH" secondAttribute="bottom" constant="12" id="ndY-X4-3qp"/>
+                        <constraint firstAttribute="trailing" secondItem="G8V-7x-Ubd" secondAttribute="trailing" constant="8" id="sAc-4S-mJx"/>
                         <constraint firstAttribute="trailing" secondItem="e5r-9b-BBo" secondAttribute="trailing" id="uRE-gd-nfC"/>
-                        <constraint firstItem="EZ9-35-Hlu" firstAttribute="leading" secondItem="2lS-NY-7iR" secondAttribute="trailing" id="xfV-x2-UYK"/>
+                        <constraint firstItem="G8V-7x-Ubd" firstAttribute="leading" secondItem="ebb-mw-JeH" secondAttribute="leading" constant="8" id="wOZ-Mo-MRx"/>
                         <constraint firstItem="1EE-VT-DQa" firstAttribute="leading" secondItem="ebb-mw-JeH" secondAttribute="leading" constant="16" id="yos-78-7ZO"/>
                         <constraint firstItem="FaP-Kc-GlH" firstAttribute="top" secondItem="1EE-VT-DQa" secondAttribute="bottom" constant="5" id="zRD-kL-o2z"/>
                         <constraint firstItem="1EE-VT-DQa" firstAttribute="top" secondItem="YLv-fc-YEe" secondAttribute="bottom" constant="10" id="zub-I6-uvs"/>

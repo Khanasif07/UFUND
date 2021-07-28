@@ -92,11 +92,15 @@ struct DepositUrlModel : Mappable{
 }
 
 struct WalletModuleEntity : Mappable {
+    var code: Int?
+    var message: String?
     var data : WalletModule?
     init?(map: Map) {
     }
     mutating func mapping(map: Map) {
         data <- map["data"]
+        code <- map["code"]
+        message <- map["message"]
     }
 }
 
@@ -106,7 +110,8 @@ struct WalletModule : Mappable {
     
     var buy_histories  : [History]?
     var invest_histories : [History]?
-    var wallet_histories : [History]?
+//    var wallet_histories : [History]?
+    var wallet_histories : WalletHistoryEntity?
     var transaction_histories: [History]?
     var sell_histories: [History]?
     var overall_invest: Double?
@@ -129,10 +134,40 @@ struct WalletModule : Mappable {
         sell_histories <- map["sell_histories"]
         invest_histories <- map["invest_histories"]
         buy_histories <- map["buy_histories"]
-        wallet_histories <- map["transaction_histories"]
+        wallet_histories <- map["wallet_histories"]
         transaction_histories <- map["transaction_histories"]
     }
 
+}
+
+struct WalletHistoryEntity : Mappable{
+    var current_page : Int?
+    var from: Int?
+    var path : String?
+    var total:Int?
+    var next_page_url: String?
+    var prev_page_url: String?
+    var last_page: Int?
+    var per_page: Int?
+    var last_page_url: String?
+    var first_page_url: String?
+    var data: [History]?
+    
+    init?(map: Map) {
+    }
+    mutating func mapping(map: Map) {
+        current_page <- map["current_page"]
+        from <- map["from"]
+        path <- map["path"]
+        total <- map["total"]
+        next_page_url <- map["next_page_url"]
+        prev_page_url <- map["prev_page_url"]
+        last_page <- map["last_page"]
+        per_page <- map["per_page"]
+        last_page_url <- map["ast_page_url"]
+        first_page_url <- map["first_page_url"]
+        data <- map["data"]
+    }
 }
 
 
@@ -197,29 +232,29 @@ struct Yield : Mappable {
 
 
 struct YieldsHistoryEntity : Mappable {
-    var data : YieldsHistory?
+    var data : YeildBuyInvestorArray?
     var message: String?
-    var recordsTotal: Int?
+    var code: Int?
     init?(map: Map) {
 
     }
     mutating func mapping(map: Map) {
         data <- map["data"]
-        recordsTotal <- map["recordsTotal"]
+        code <- map["code"]
         message <- map["message"]
     }
 }
 
-struct YieldsHistory : Mappable {
-    var yeildBuyInvestorArray:  YeildBuyInvestorArray?
-    init?(map: Map) {
-
-    }
-
-    mutating func mapping(map: Map) {
-        yeildBuyInvestorArray <- map["YeildBuyInvestorArray"]
-    }
-}
+//struct YieldsHistory : Mappable {
+//    var yeildBuyInvestorArray:  YeildBuyInvestorArray?
+//    init?(map: Map) {
+//
+//    }
+//
+//    mutating func mapping(map: Map) {
+//        yeildBuyInvestorArray <- map["YeildBuyInvestorArray"]
+//    }
+//}
 
 struct YeildBuyInvestorArray: Mappable {
     var current_page : Int?

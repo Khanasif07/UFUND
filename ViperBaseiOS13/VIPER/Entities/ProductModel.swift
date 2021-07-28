@@ -231,7 +231,7 @@ struct ProductModel: Mappable {
         token_type <- map["token_type"]
         asset <- map["asset"]
         avilable_token <- map["avilable_token"]
-        token_type <- map["token_type"]
+//        token_type <- map["token_type"]
         
         if investment_product_total == nil {
             
@@ -525,7 +525,7 @@ struct Tokenrequest : Mappable {
     var contract_address : String?
     var token_image : String?
     var decimal : String?
-    var token_type : Int?
+    var token_type : Asset_type?
     var security_type : Int?
     var trade_locked : Int?
     var trade_burn : Int?
@@ -852,3 +852,46 @@ struct Payment_method_Entity : Mappable {
         data <- map["data"]
     }
 }
+  
+
+struct BuyInvestHistoryEntity : Mappable {
+    var data : BuyInvestEntity?
+    init?(map: Map) {
+
+    }
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+    }
+}
+
+struct BuyInvestEntity : Mappable {
+    var current_page : Int?
+    var from: Int?
+    var path : String?
+    var total:Int?
+    var next_page_url: String?
+    var prev_page_url: String?
+    var last_page: Int?
+    var per_page: Int?
+    var last_page_url: String?
+    var first_page_url: String?
+    var data: [History]?
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        current_page <- map["current_page"]
+        from <- map["from"]
+        path <- map["path"]
+        total <- map["total"]
+        next_page_url <- map["next_page_url"]
+        prev_page_url <- map["prev_page_url"]
+        last_page <- map["last_page"]
+        per_page <- map["per_page"]
+        last_page_url <- map["ast_page_url"]
+        first_page_url <- map["first_page_url"]
+        data <- map["data"]
+    }
+}
+ 

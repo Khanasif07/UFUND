@@ -53,7 +53,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="107.5" height="56"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="2RM-4W-n28">
-                                            <rect key="frame" x="15.5" y="5" width="76.5" height="46.5"/>
+                                            <rect key="frame" x="15.5" y="17.5" width="76.5" height="21"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="RPM-5U-e72">
                                                     <rect key="frame" x="0.0" y="0.0" width="76.5" height="18"/>
@@ -79,8 +79,8 @@
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HL-Mw-K60">
-                                                    <rect key="frame" x="0.0" y="21" width="76.5" height="25.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HL-Mw-K60">
+                                                    <rect key="frame" x="0.0" y="21" width="76.5" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                     <color key="textColor" red="0.29803921568627451" green="0.58823529411764708" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -111,7 +111,7 @@
                                     <rect key="frame" x="118" y="0.0" width="107" height="56"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="T0J-ok-ikg">
-                                            <rect key="frame" x="15.5" y="5" width="76" height="46.5"/>
+                                            <rect key="frame" x="15.5" y="17.5" width="76" height="21"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Twt-5I-mn0">
                                                     <rect key="frame" x="0.0" y="0.0" width="76" height="18"/>
@@ -131,8 +131,8 @@
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thT-2m-cbA">
-                                                    <rect key="frame" x="0.0" y="21" width="76" height="25.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thT-2m-cbA">
+                                                    <rect key="frame" x="0.0" y="21" width="76" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                     <color key="textColor" red="0.52941176470588236" green="0.2627450980392157" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -163,7 +163,7 @@
                                     <rect key="frame" x="235.5" y="0.0" width="107.5" height="56"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="erk-es-2T7">
-                                            <rect key="frame" x="16" y="5" width="75.5" height="46.5"/>
+                                            <rect key="frame" x="16" y="17.5" width="75.5" height="21"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="9VI-pC-Gsr">
                                                     <rect key="frame" x="0.0" y="0.0" width="75.5" height="18"/>
@@ -183,8 +183,8 @@
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gds-po-JAe">
-                                                    <rect key="frame" x="0.0" y="21" width="75.5" height="25.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gds-po-JAe">
+                                                    <rect key="frame" x="0.0" y="21" width="75.5" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                     <color key="textColor" red="0.20392156862745098" green="0.78823529411764703" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>

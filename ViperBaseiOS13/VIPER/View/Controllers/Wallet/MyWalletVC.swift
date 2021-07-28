@@ -48,8 +48,18 @@ class MyWalletVC: UIViewController {
     let bottomSheetVC = MyWalletSheetVC()
     var  buttonView = UIButton()
     private lazy var loader  : UIView = {
-        return createActivityIndicator(self.view)
+        return createActivityIndicator(self.bottomSheetVC.view)
     }()
+    
+    //Pagination
+    var hideLoader: Bool = false
+    var nextPageAvailable = true
+    var isRequestinApi = false
+    var showPaginationLoader: Bool {
+        return  hideLoader ? false : nextPageAvailable
+    }
+    var currentPage: Int = 0
+    var lastPage: Int  = 0
        
     // MARK: - Lifecycle
     //===========================
@@ -296,6 +306,18 @@ extension MyWalletVC: PresenterOutputProtocol {
                 self.userInvestmentValueLbl.text = "$ " + "\(data.overall_invest ?? 0)"
                 self.totalProductsValueLbl.text = "\(data.total_products ?? 0)"
                 self.totalAssetsValueLbl.text = "\(data.total_tokens ?? 0)"
+                self.currentPage = data.wallet_histories?.current_page ?? 0
+                self.lastPage = data.wallet_histories?.last_page ?? 0
+                isRequestinApi = false
+                nextPageAvailable = self.lastPage > self.currentPage
+                if let productDict = data.wallet_histories?.data {
+                    if self.currentPage == 1 {
+                        self.walletModule.wallet_histories?.data = productDict
+                    } else {
+                        self.walletModule.wallet_histories?.data?.append(contentsOf: productDict)
+                    }
+                }
+                self.currentPage += 1
             }
             hitWalletBalanceAPI()
         case  Base.wallet.rawValue:
@@ -308,6 +330,8 @@ extension MyWalletVC: PresenterOutputProtocol {
             let walletData = dataDict as? DepositUrlModel
             self.depositUrl = walletData?.url ?? ""
             print(walletData)
+        case Base.invester_buy_Invest_hisory.rawValue:
+            print("invester_buy_Invest_hisory")
         default:
             break
         }

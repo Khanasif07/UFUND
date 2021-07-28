@@ -111,6 +111,7 @@ enum Base : String {
     case campaigner_create_product = "/api/campaigner-create-product"
     case productsDetail = "api/product-details"
     case tokensDetail = "api/get-tokenized-asset-detail"
+    case campaignerTokensDetail = "api/get-campaigner-tokenized-asset-detail"
     case paymentMethods = "/api/pay-methods"
     case wallet = "/api/get-balance"
     case withdraw = "/api/withdraw"
@@ -122,7 +123,7 @@ enum Base : String {
     case invest_buy_transaction =  "/api/invest-buy-transaction"
     case buyTokens = "/api/buy-tokens"
     case wallet_sell_hisory =  "/api/wallet-sell-history"
-    case wallet_buy_Invest_hisory =  "/api/investor/wallet-buy-invest-history"
+    case invester_buy_Invest_hisory =  "/api/investor-buy-invest-history"
 //    case campaigner_dashboard_sellHistory = "/api/campaigner-dashboard-sell-history"
     
     init(fromRawValue: String){

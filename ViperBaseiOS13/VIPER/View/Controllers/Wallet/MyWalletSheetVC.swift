@@ -27,6 +27,8 @@ class MyWalletSheetVC: UIViewController {
     @IBOutlet weak var mainCotainerView: UIView!
     @IBOutlet weak var bottomLayoutConstraint : NSLayoutConstraint!
     @IBOutlet weak var mainTableView: UITableView!
+    @IBOutlet weak var searchView: UIStackView!
+    @IBOutlet weak var searchViewHCst: NSLayoutConstraint!
     
     //MARK:- VARIABLE
     //================
@@ -51,6 +53,15 @@ class MyWalletSheetVC: UIViewController {
     var partialView: CGFloat {
         return (textContainerHeight ?? 0.0) + UIApplication.shared.statusBarFrame.height + (isDeviceIPad ? 78.0 : 64.0)
     }
+    //Pagination
+    var hideLoader: Bool = false
+    var nextPageAvailable = true
+    var isRequestinApi = false
+    var showPaginationLoader: Bool {
+        return  hideLoader ? false : nextPageAvailable
+    }
+    var currentPage: Int = 0
+    var lastPage: Int  = 0
     //MARK:- VIEW LIFE CYCLE
     //======================
     override func viewDidLoad() {
@@ -64,6 +75,7 @@ class MyWalletSheetVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.mainTableView.reloadData()
         guard self.isMovingToParent else { return }
         UIView.animate(withDuration: 0.6, animations: { [weak self] in
             let frame = self?.view.frame
@@ -87,6 +99,17 @@ class MyWalletSheetVC: UIViewController {
     
     @IBAction func walletHistoryBtnAction(_ sender: UIButton) {
         self.historyType = .wallet
+        if userType ==  UserType.investor.rawValue{
+            if historyType == .wallet {
+                searchViewHCst.constant = 0.0
+                searchView.isHidden = true
+                filterBtn.isHidden = true
+            }else {
+                searchViewHCst.constant = 44.0
+                searchView.isHidden = false
+                filterBtn.isHidden = false
+            }
+        }
         self.walletHistoryBtn.setTitleColor(.red, for: .normal)
         self.investBuyHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
         self.mainTableView.reloadData()
@@ -94,6 +117,17 @@ class MyWalletSheetVC: UIViewController {
     
     @IBAction func investBuyHistoryBtnAciton(_ sender: UIButton) {
         self.historyType = .investBuy
+        if userType ==  UserType.investor.rawValue{
+            if historyType == .wallet {
+                searchViewHCst.constant = 0.0
+                searchView.isHidden = true
+                filterBtn.isHidden = true
+            }else {
+                searchViewHCst.constant = 44.0
+                searchView.isHidden = false
+                filterBtn.isHidden = false
+            }
+        }
         self.walletHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
         self.investBuyHistoryBtn.setTitleColor(.red, for: .normal)
         self.mainTableView.reloadData()
@@ -136,8 +170,8 @@ class MyWalletSheetVC: UIViewController {
     }
     
     private func hitBuyInvestHistoryAPI(){
-        self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.wallet_buy_Invest_hisory.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
+//        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.invester_buy_Invest_hisory.rawValue, params: nil, methodType: .GET, modelClass: BuyInvestHistoryEntity.self, token: true)
     }
 }
 
@@ -163,6 +197,9 @@ extension MyWalletSheetVC {
 //        self.mainTableView.emptyDataSetSource = self
         self.mainTableView.registerCell(with: MyWalletTableCell.self)
         self.mainTableView.registerHeaderFooter(with: MyWalletSectionView.self)
+        let footerView = UIView(frame: CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.width, height: 100.0))
+        footerView.backgroundColor = .white
+        self.mainTableView.tableFooterView = footerView
     }
     
     private func setupSwipeGesture() {
@@ -176,9 +213,21 @@ extension MyWalletSheetVC {
         self.investBuyHistoryBtn.setTitleColor(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1), for: .normal)
         if userType == UserType.campaigner.rawValue {
             investBuyHistoryBtn.isHidden = true
+            searchViewHCst.constant = 0.0
+            searchView.isHidden = true
+            filterBtn.isHidden = true
             walletHistoryBtn.setTitle(Constants.string.walletHistory.localize(), for: .normal)
             investBuyHistoryBtn.setTitle(Constants.string.investBuyHistory.localize(), for: .normal)
         } else {
+            if historyType == .wallet {
+                searchViewHCst.constant = 0.0
+                searchView.isHidden = true
+                filterBtn.isHidden = true
+            }else {
+                searchViewHCst.constant = 44.0
+                searchView.isHidden = false
+                filterBtn.isHidden = false
+            }
             investBuyHistoryBtn.isHidden = false
             walletHistoryBtn.setTitle(Constants.string.walletHistory.localize(), for: .normal)
             investBuyHistoryBtn.setTitle(Constants.string.investBuyHistory.localize(), for: .normal)
@@ -225,7 +274,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch historyType {
         case .wallet:
-            return (self.walletModule.wallet_histories?[section].isSelected ?? false) ? 6 : 0
+            return (self.walletModule.wallet_histories?.data?[section].isSelected ?? false) ? 6 : 0
         case .investBuy:
             return (self.walletModule.invest_histories?[section].isSelected ?? false) ? (investBuyCellData.endIndex) : 0
         default:
@@ -237,7 +286,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueCell(with: MyWalletTableCell.self, indexPath: indexPath)
         switch historyType {
         case .wallet:
-            if let invest_histories = self.walletModule.wallet_histories{
+            if let invest_histories = self.walletModule.wallet_histories?.data{
                 investBuyCellData = [("Transaction Id",invest_histories[indexPath.section].payment_id ?? ""),("Amount",String(invest_histories[indexPath.section].amount ?? 0.0)),("Currency Type",String(invest_histories[indexPath.section].payment_type ?? "")),("Date",invest_histories[indexPath.section].created_at ?? ""),("Transaction Type",invest_histories[indexPath.section].type ?? ""),("Status",invest_histories[indexPath.section].status ?? "")]
                 switch investBuyCellData[indexPath.row].0 {
                 case "Date":
@@ -287,7 +336,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch historyType {
         case .wallet:
-            return self.walletModule.wallet_histories?.endIndex ?? 0
+            return self.walletModule.wallet_histories?.data?.endIndex  ?? 0
         case .investBuy:
             return self.walletModule.invest_histories?.endIndex ?? 0
         default:
@@ -299,7 +348,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
         let view = tableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
         switch historyType {
         case .wallet:
-            view.populateDataForWallet(model: self.walletModule.wallet_histories?[section] ?? History())
+            view.populateDataForWallet(model: self.walletModule.wallet_histories?.data?[section] ?? History())
             view.dateLbl.textColor =  #colorLiteral(red: 0.09411764706, green: 0.7411764706, blue: 0.4705882353, alpha: 1)
         case .investBuy:
             view.populateData(model: self.walletModule.invest_histories?[section] ??  History())
@@ -311,7 +360,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
             switch selff.historyType {
             case .wallet:
                 if let wallet_histories = selff.walletModule.wallet_histories{
-                    selff.walletModule.wallet_histories?[section].isSelected = !(wallet_histories[section].isSelected)
+                    selff.walletModule.wallet_histories?.data?[section].isSelected = !(wallet_histories.data?[section].isSelected ?? false)
                 }
             case .investBuy:
                 if let invest_histories = selff.walletModule.invest_histories{
@@ -326,7 +375,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
         }
         switch historyType {
         case .wallet:
-            if let wallet_histories = self.walletModule.wallet_histories{
+            if let wallet_histories = self.walletModule.wallet_histories?.data{
                 self.rotateLeft(dropdownView: view.dropdownBtn,left : (wallet_histories[section].isSelected) ? -1 : 0)
             }
         case .investBuy:
@@ -350,7 +399,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 34.0
     }
 }
 
@@ -380,11 +429,21 @@ extension MyWalletSheetVC: PresenterOutputProtocol {
             if let data = walletData?.balance {
                 print(data)
             }
-        case Base.wallet_buy_Invest_hisory.rawValue:
-            let walletData = dataDict as? WalletEntity
-            if let data = walletData?.balance {
-                print(data)
+        case Base.invester_buy_Invest_hisory.rawValue:
+            let productModelEntity = dataDict as? BuyInvestHistoryEntity
+            self.currentPage = productModelEntity?.data?.current_page ?? 0
+            self.lastPage = productModelEntity?.data?.last_page ?? 0
+            isRequestinApi = false
+            nextPageAvailable = self.lastPage > self.currentPage
+            if let productDict = productModelEntity?.data?.data {
+                if self.currentPage == 1 {
+                    self.walletModule.invest_histories = productDict
+                } else {
+                    self.walletModule.invest_histories?.append(contentsOf: productDict)
+                }
             }
+            self.currentPage += 1
+            self.mainTableView.reloadData()
         default:
             break
         }

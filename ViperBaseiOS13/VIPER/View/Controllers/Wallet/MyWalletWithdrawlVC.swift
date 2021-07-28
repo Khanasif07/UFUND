@@ -174,7 +174,7 @@ extension MyWalletWithdrawlVC: PresenterOutputProtocol {
             if let data = walletData?.balance {
                 print(data)
             }
-        case Base.wallet_buy_Invest_hisory.rawValue:
+        case Base.invester_buy_Invest_hisory.rawValue:
             let walletData = dataDict as? WalletEntity
             if let data = walletData?.balance {
                 print(data)

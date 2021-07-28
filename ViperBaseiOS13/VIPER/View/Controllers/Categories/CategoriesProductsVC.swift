@@ -72,7 +72,7 @@ extension CategoriesProductsVC: UICollectionViewDelegate, UICollectionViewDataSo
         cell.productName.text =  isSearchEnable ? (self.searchProductCategories?[indexPath.row].category_name ?? "") : (self.productCategories?[indexPath.row].category_name ?? "")
         let imgEntity =  isSearchEnable ? (self.searchProductCategories?[indexPath.row].image ?? "") : (self.productCategories?[indexPath.row].image ?? "")
 //        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        let url = URL(string: "" +  nullStringToEmpty(string: imgEntity))
+        let url = URL(string:  nullStringToEmpty(string: imgEntity))
         cell.productImg.sd_setImage(with: url , placeholderImage: nil)
         cell.backgroundColor = .clear
         return cell

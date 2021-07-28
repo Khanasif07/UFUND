@@ -163,7 +163,11 @@ extension AssetsDetailVC {
     
     private func hitTokensDetailAPI(){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: "/\(Base.tokensDetail.rawValue)/\(productModel?.id ?? 0)", params: nil, methodType: .GET, modelClass: ProductDetailsEntity.self, token: true)
+        if userType == (UserType.investor.rawValue){
+            self.presenter?.HITAPI(api: "/\(Base.tokensDetail.rawValue)/\(productModel?.id ?? 0)", params: nil, methodType: .GET, modelClass: ProductDetailsEntity.self, token: true)
+        }else{
+            self.presenter?.HITAPI(api: "/\(Base.campaignerTokensDetail.rawValue)/\(productModel?.id ?? 0)", params: nil, methodType: .GET, modelClass: ProductDetailsEntity.self, token: true)
+        }
     }
 }
 
@@ -179,20 +183,36 @@ extension AssetsDetailVC : UITableViewDelegate, UITableViewDataSource {
         switch cellTypes[indexPath.row] {
         case AssetsDetailCellType.assetsDescCell:
             let cell = tableView.dequeueCell(with: ProductDetailDescriptionCell.self, indexPath: indexPath)
+            if  userType == (UserType.investor.rawValue){
             cell.productLbl.text = ProductCreate.keys.token
             cell.productDetailLbl.text = ProductCreate.keys.tokenDetail
             cell.productTitleLbl.text = productModel?.tokenname ?? ""
             cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)"
-            cell.productDescLbl.text = "\(productModel?.asset?.description ?? "")"
+            cell.productDescLbl.text = "\(productModel?.tokenrequest?.asset?.description ?? "")"
+            }else{
+                cell.productLbl.text = ProductCreate.keys.token
+                cell.productDetailLbl.text = ProductCreate.keys.tokenDetail
+                cell.productTitleLbl.text = productModel?.tokenname ?? ""
+                cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)"
+                cell.productDescLbl.text = "\(productModel?.asset?.description ?? "")"
+            }
             return cell
         case AssetsDetailCellType.assetsDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)
             cell.setCellForAssetsDetailPage()
+            if  userType == (UserType.investor.rawValue){
             cell.configureCellForAssetsDetailPage(model: productModel ?? ProductModel(json: [:]))
+            }else {
+                cell.configureCellForAssetsDetailPageCampaigner(model: productModel ?? ProductModel(json: [:]))
+            }
             return cell
         case AssetsDetailCellType.assetsInfoCell:
             let cell = tableView.dequeueCell(with: AssetsDetailInfoCell.self, indexPath: indexPath)
+            if  userType == (UserType.investor.rawValue){
             cell.configureCell(model: productModel ?? ProductModel(json: [:]))
+            }else {
+            cell.configureCellCampaigner(model: productModel ?? ProductModel(json: [:]))
+            }
             return cell
         case AssetsDetailCellType.assetsInvestmentCell:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
@@ -223,6 +243,14 @@ extension AssetsDetailVC : PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         switch api {
         case "/\(Base.tokensDetail.rawValue)/\(productModel?.id ?? 0)":
+            self.loader.isHidden = true
+            if let productDetailData = dataDict as? ProductDetailsEntity {
+                self.productModel = productDetailData.data
+                self.setFooterView()
+            }
+            self.mainTableView.reloadData()
+            
+        case  "/\(Base.campaignerTokensDetail.rawValue)/\(productModel?.id ?? 0)":
             self.loader.isHidden = true
             if let productDetailData = dataDict as? ProductDetailsEntity {
                 self.productModel = productDetailData.data

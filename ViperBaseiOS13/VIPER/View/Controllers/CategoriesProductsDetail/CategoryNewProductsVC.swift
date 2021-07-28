@@ -81,7 +81,8 @@ extension CategoryNewProductsVC: UICollectionViewDelegate, UICollectionViewDataS
             let cell = collectionView.dequeueCell(with: AllProductsCollCell.self, indexPath: indexPath)
             cell.productNameLbl.text =  (self.newProductListing?[indexPath.row].product_title ?? "")
             let imgEntity =  (self.newProductListing?[indexPath.row].product_image ?? "")
-            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+//            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+            let url = URL(string: nullStringToEmpty(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
             cell.productTypeLbl.text =  (self.newProductListing?[indexPath.row].category?.category_name ?? "")
             cell.priceLbl.text =  "\((self.newProductListing?[indexPath.row].total_product_value ?? 0))"
@@ -92,10 +93,11 @@ extension CategoryNewProductsVC: UICollectionViewDelegate, UICollectionViewDataS
             let cell = collectionView.dequeueCell(with: NewProductsCollCell.self, indexPath: indexPath)
             cell.productNameLbl.text =   (self.newProductListing?[indexPath.row].tokenname ?? "")
             let imgEntity =   (self.newProductListing?[indexPath.row].token_image ?? "")
-            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+//            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+            let url = URL(string: nullStringToEmpty(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-            cell.categoryLbl.text =  (self.newProductListing?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
-            cell.priceLbl.text =  "\((self.newProductListing?[indexPath.row].tokenrequest?.asset?.asset_value ?? 0))"
+            cell.categoryLbl.text =  (self.newProductListing?[indexPath.row].asset?.category?.category_name ?? "")
+            cell.priceLbl.text =  "\((self.newProductListing?[indexPath.row].tokenvalue ?? 0))"
             cell.statusLbl.text = (self.newProductListing?[indexPath.row].product_status == 1) ? "Live" : "Live"
             return cell
         }

@@ -29,6 +29,7 @@ class MyYieldVC: UIViewController {
     var yieldData: YieldModule?
     var yield_histories : [History]?
     var sections = [("Overall User Earning",true),("Earning In Crypto",false),("Earning In Fiat",false)]
+     var cellData = [("Product",""),("Category",""),("Payment Method",""),("Spend Amount",""),("Currency Type",""),("Maturity. Date",""),("Investment Date","")]
     var searchText = ""
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
     var selectedInvestorStart_from : (String,Bool) = ("",false)
@@ -145,16 +146,34 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 0
         default:
-            return (self.yield_histories?[section - 1].isSelected ?? false) ? 5 : 0
+            return (self.yield_histories?[section - 1].isSelected ?? false) ? cellData.endIndex : 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        switch indexPath.section {
             case 0:
             return UITableViewCell()
         default:
             let cell = tableView.dequeueCell(with: MyWalletTableCell.self, indexPath: indexPath)
+            if let invest_histories = self.yield_histories{
+                cellData = [("Product",invest_histories[indexPath.section - 1].product?.product_title ?? "N/A"),("Category",invest_histories[indexPath.section - 1].product?.category?.category_name ?? "N/A"),("Payment Method",invest_histories[indexPath.section - 1].payment_type ?? "N/A"),("Spend Amount",String(invest_histories[indexPath.section - 1].profit_amount ?? 0.0)),("Currency Type","N/A"),("Maturity Date",invest_histories[indexPath.section - 1].product?.maturity_date ?? ""),("Investment Date",invest_histories[indexPath.section - 1].product?.start_date ?? "")]
+                switch cellData[indexPath.row].0 {
+                case "Maturity Date","Investment Date":
+                    let date = (cellData[indexPath.row].1).toDate(dateFormat: Date.DateFormat.yyyy_MM_dd.rawValue) ?? Date()
+                    cell.titleLbl.text = cellData[indexPath.row].0
+                    cell.descLbl.text = date.convertToDefaultString()
+                    cell.descLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                case "Spend Amount":
+                    cell.titleLbl.text = cellData[indexPath.row].0
+                    cell.descLbl.text = "$ " + "\(cellData[indexPath.row].1)"
+                    cell.descLbl.textColor = #colorLiteral(red: 0, green: 0.8132432103, blue: 0.5555605292, alpha: 1)
+                default:
+                    cell.titleLbl.text = cellData[indexPath.row].0
+                    cell.descLbl.text = cellData[indexPath.row].1
+                    cell.descLbl.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                }
+            }
             return cell
         }
     }
@@ -193,7 +212,7 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 34.0
     }
 }
 
@@ -313,22 +332,19 @@ extension MyYieldVC : PresenterOutputProtocol {
         case Base.yieldBuyInvest.rawValue:
             let productModelEntity = dataDict as? YieldsHistoryEntity
             if let data = productModelEntity?.data{
-                if let yieldDataArray = data.yeildBuyInvestorArray{
-                    self.currentPage = yieldDataArray.current_page ?? 0
-                    self.lastPage = yieldDataArray.last_page ?? 0
+                    self.currentPage = data.current_page ?? 0
+                    self.lastPage = data.last_page ?? 0
                     isRequestinApi = false
                     nextPageAvailable = self.lastPage > self.currentPage
                     if self.currentPage == 1 {
-                        self.yield_histories = yieldDataArray.data ?? [History]()
+                        self.yield_histories = data.data ?? [History]()
                     } else {
-                        self.yield_histories?.append(contentsOf: yieldDataArray.data ?? [History]())
+                        self.yield_histories?.append(contentsOf: data.data ?? [History]())
                     }
-                }
                 self.mainTableView.reloadData()
                 self.mainCollectionView.reloadData()
             }
             self.currentPage += 1
-            print(self.yield_histories)
         default:
             print(api)
         }

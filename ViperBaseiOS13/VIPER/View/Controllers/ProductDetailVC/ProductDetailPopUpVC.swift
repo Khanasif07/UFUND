@@ -249,7 +249,7 @@ extension ProductDetailPopUpVC {
             self.currentValInvPer = 1
             self.investPerView.isHidden = true
             self.quantityView.isHidden = false
-            self.titleLbl.text = self.productModel?.asset?.asset_title ?? ""
+            self.titleLbl.text = self.productModel?.tokenname ?? ""
             self.tokenPriceLbl.text =  "Token Price"
             self.totalProductPriceTitleLbl.text = "Total Token Amount"
             self.tokenQtyLbl.text = "Token Quantity"

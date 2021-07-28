@@ -56,7 +56,7 @@ class AssetsSupplyTableCell: UITableViewCell,ChartViewDelegate {
     public func configureCellForInvestor(model: ProductModel){
         let totalSupply = model.tokensupply ?? 0
         if totalSupply != 0 {
-        let totalRemaining = model.avilable_token ?? 0
+        let totalRemaining = model.tokenrequest?.avilable_token ?? 0
 //        let myTokenValue = model.tokenvalue ?? 0.0
         let soldAssets = (totalSupply) - (totalRemaining)
         let soldPerValue = ((soldAssets * 100) / totalSupply)

@@ -45,10 +45,10 @@ class ProductDetailDateCell: UITableViewCell {
     }
     
     func setCellForAssetsDetailPage(){
-//        self.bottomStackView.isHidden = true
-        self.offerEndDateTitleLbl.text = "End Date"
-        self.offerStartDateTitleLbl.text = "Start Date"
-        self.maturityDateView.isHidden = true
+        self.offerEndDateTitleLbl.text = "Offer End Date"
+        self.offerStartDateTitleLbl.text = "Offer Start Date"
+        self.investmentStartDateTitlelbl.text = "Reward Date"
+        self.maturityDateView.alpha = 0.0
     }
     
     
@@ -59,6 +59,12 @@ class ProductDetailDateCell: UITableViewCell {
     }
     
     func configureCellForAssetsDetailPage(model: ProductModel){
+        self.offerEndDateLbl.text = model.tokenrequest?.asset?.offer_end?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+        self.offerStartDateLbl.text = model.tokenrequest?.asset?.offer_start?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
+        self.investmentStartDateLbl.text = model.tokenrequest?.asset?.reward_date?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyy_MM_dd.rawValue)
+    }
+    
+    func configureCellForAssetsDetailPageCampaigner(model: ProductModel){
         self.offerEndDateLbl.text = model.asset?.offer_end?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
         self.offerStartDateLbl.text = model.asset?.offer_start?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)
         self.investmentStartDateLbl.text = model.asset?.reward_date?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyy_MM_dd.rawValue)

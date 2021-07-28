@@ -165,7 +165,8 @@ extension MyInvestmentsDetailVC {
         footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150.0)
         self.mainTableView.tableFooterView = footerView
         let imgEntity = investmentType == .MyProductInvestment ?  productModel?.product_image ?? "" : productModel?.token_image ?? ""
-        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+//        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+        let url = URL(string: nullStringToEmpty(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
     }
     
@@ -213,8 +214,8 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
                 cell.productLbl.text = ProductCreate.keys.token
                 cell.productDetailLbl.text = ProductCreate.keys.tokenDetail
                 cell.productTitleLbl.text = productModel?.tokenname ?? ""
-                cell.priceLbl.text = "$ " + "\(productModel?.tokenrequest?.asset?.asset_value ?? 0.0)"
-                cell.productDescLbl.text = "\(productModel?.tokenrequest?.asset?.description ?? "")"
+                cell.priceLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)"
+                cell.productDescLbl.text = "\(productModel?.asset?.description ?? "")"
             }
             return cell
         case .assetDetailInfoCell:
@@ -226,10 +227,11 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             switch investmentType {
             case .MyProductInvestment:
                 cell.setCellForInvestmentDetailPage()
+                cell.configureCell(model: self.productModel ?? ProductModel(json: [:]))
             default:
                 cell.bottomStackView.isHidden = true
+                cell.configureCellForAssetsDetailPage(model: self.productModel ?? ProductModel(json: [:]))
             }
-            cell.configureCell(model: self.productModel!)
             return cell
         case .productInvestmentCell:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)

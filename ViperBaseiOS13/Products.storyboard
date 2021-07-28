@@ -538,16 +538,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="313"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwU-Nb-yUb">
-                                    <rect key="frame" x="0.0" y="2.5" width="100" height="89"/>
+                                    <rect key="frame" x="0.0" y="24.5" width="82.5" height="44.5"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRadioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="bLb-lf-faf">
-                                            <rect key="frame" x="8" y="24.5" width="40" height="40"/>
+                                            <rect key="frame" x="8" y="12.5" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="bLb-lf-faf" secondAttribute="height" multiplier="1:1" id="APJ-zZ-yWk"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbv-xX-pus">
-                                            <rect key="frame" x="60" y="6" width="24" height="77"/>
+                                            <rect key="frame" x="40" y="6" width="26.5" height="32.5"/>
                                             <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -993,16 +993,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="313"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Du-M3H">
-                                    <rect key="frame" x="0.0" y="-3" width="100.5" height="100"/>
+                                    <rect key="frame" x="0.0" y="22" width="83" height="50"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRadioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="cIr-39-ree">
-                                            <rect key="frame" x="8" y="30" width="40" height="40"/>
+                                            <rect key="frame" x="8" y="15" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="cIr-39-ree" secondAttribute="height" multiplier="1:1" id="Hpw-Kh-F1l"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-jE-Jt6">
-                                            <rect key="frame" x="60.5" y="6" width="24" height="88"/>
+                                            <rect key="frame" x="40.5" y="6" width="26.5" height="38"/>
                                             <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -1991,16 +1991,16 @@ Percentage (%)</string>
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="313"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdt-6F-Qvl">
-                                    <rect key="frame" x="0.0" y="2.5" width="100" height="89"/>
+                                    <rect key="frame" x="0.0" y="24.5" width="82.5" height="44.5"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRadioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="Fo3-uo-rkV">
-                                            <rect key="frame" x="8" y="24.5" width="40" height="40"/>
+                                            <rect key="frame" x="8" y="12.5" width="20" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="Fo3-uo-rkV" secondAttribute="height" multiplier="1:1" id="CGf-gu-Htf"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsm-pF-ipC">
-                                            <rect key="frame" x="60" y="6" width="24" height="77"/>
+                                            <rect key="frame" x="40" y="6" width="26.5" height="32.5"/>
                                             <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -2252,16 +2252,16 @@ Percentage (%)</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Plg-GW-G4c">
-                                        <rect key="frame" x="0.0" y="197" width="414" height="699"/>
+                                        <rect key="frame" x="0.0" y="197" width="414" height="665"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ani-dB-gVj">
-                                                <rect key="frame" x="8" y="0.0" width="398" height="699"/>
+                                                <rect key="frame" x="8" y="0.0" width="398" height="665"/>
                                             </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="ani-dB-gVj" firstAttribute="top" secondItem="Plg-GW-G4c" secondAttribute="top" id="2Xc-jC-6PC"/>
-                                            <constraint firstAttribute="bottom" secondItem="ani-dB-gVj" secondAttribute="bottom" id="IrL-xN-CHh"/>
+                                            <constraint firstAttribute="bottom" secondItem="ani-dB-gVj" secondAttribute="bottom" id="ED6-PG-3ZG"/>
                                             <constraint firstItem="ani-dB-gVj" firstAttribute="leading" secondItem="Plg-GW-G4c" secondAttribute="leading" constant="8" id="ZRN-VG-OvU"/>
                                             <constraint firstAttribute="trailing" secondItem="ani-dB-gVj" secondAttribute="trailing" constant="8" id="vLx-3C-QQg"/>
                                         </constraints>
@@ -2275,7 +2275,6 @@ Percentage (%)</string>
                                     <constraint firstItem="jjt-AP-got" firstAttribute="leading" secondItem="kRl-tj-tyb" secondAttribute="leading" id="8gi-Ea-Id5"/>
                                     <constraint firstItem="Plg-GW-G4c" firstAttribute="top" secondItem="jjt-AP-got" secondAttribute="bottom" id="9Hp-Wk-9Ap"/>
                                     <constraint firstItem="YIT-dO-NVg" firstAttribute="top" secondItem="tQ0-hi-y9q" secondAttribute="bottom" id="D88-MB-qFL"/>
-                                    <constraint firstAttribute="bottom" secondItem="Plg-GW-G4c" secondAttribute="bottom" id="DgH-Yd-RMK"/>
                                     <constraint firstItem="jjt-AP-got" firstAttribute="top" secondItem="YIT-dO-NVg" secondAttribute="bottom" id="Ic7-kJ-Bkv"/>
                                     <constraint firstItem="YIT-dO-NVg" firstAttribute="leading" secondItem="kRl-tj-tyb" secondAttribute="leading" id="Oef-54-az0"/>
                                     <constraint firstItem="Plg-GW-G4c" firstAttribute="leading" secondItem="kRl-tj-tyb" secondAttribute="leading" id="QJm-q3-pBH"/>
@@ -2284,13 +2283,13 @@ Percentage (%)</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F9h-Ks-Lvy">
-                                <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
+                                <rect key="frame" x="0.0" y="799" width="414" height="63"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Kjo-YB-tdi">
-                                        <rect key="frame" x="0.0" y="20" width="414" height="40.5"/>
+                                        <rect key="frame" x="0.0" y="10" width="414" height="43"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8p6-JR-DQJ" userLabel="SORT">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="40.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="43"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  SORT" image="icSort">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2300,7 +2299,7 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-q6-8xP" userLabel="FILTER">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="40.5"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="43"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  FILTER" image="icFilter">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2315,34 +2314,44 @@ Percentage (%)</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="Kjo-YB-tdi" firstAttribute="centerY" secondItem="F9h-Ks-Lvy" secondAttribute="centerY" id="0hS-sN-s45"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kjo-YB-tdi" secondAttribute="bottom" constant="10" id="9A0-Fd-FAH"/>
                                     <constraint firstItem="Kjo-YB-tdi" firstAttribute="leading" secondItem="F9h-Ks-Lvy" secondAttribute="leading" id="NHA-6l-9IR"/>
+                                    <constraint firstAttribute="height" constant="63" id="VwN-Us-0sl"/>
                                     <constraint firstAttribute="trailing" secondItem="Kjo-YB-tdi" secondAttribute="trailing" id="W7w-mX-ac7"/>
-                                    <constraint firstItem="Kjo-YB-tdi" firstAttribute="height" secondItem="F9h-Ks-Lvy" secondAttribute="height" multiplier="43/85" id="Yav-Te-cO1"/>
+                                    <constraint firstItem="Kjo-YB-tdi" firstAttribute="top" secondItem="F9h-Ks-Lvy" secondAttribute="top" constant="10" id="gaF-k8-F8h"/>
                                     <constraint firstItem="Kjo-YB-tdi" firstAttribute="centerX" secondItem="F9h-Ks-Lvy" secondAttribute="centerX" id="l6q-TW-ulI"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zk2-RA-Vtw">
-                                <rect key="frame" x="206.5" y="825" width="1" height="61.5"/>
+                                <rect key="frame" x="206.5" y="815.5" width="1" height="30"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="7qA-bj-r1S"/>
                                 </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66F-lv-hWq">
+                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="1tp-XV-hD6" firstAttribute="leading" secondItem="kRl-tj-tyb" secondAttribute="leading" id="1nJ-g0-V5K"/>
                             <constraint firstItem="zk2-RA-Vtw" firstAttribute="centerY" secondItem="Kjo-YB-tdi" secondAttribute="centerY" id="3vy-bV-CKl"/>
+                            <constraint firstItem="Plg-GW-G4c" firstAttribute="bottom" secondItem="1tp-XV-hD6" secondAttribute="bottom" id="7ZA-CI-opJ"/>
                             <constraint firstItem="1tp-XV-hD6" firstAttribute="trailing" secondItem="kRl-tj-tyb" secondAttribute="trailing" id="8k0-OP-0X6"/>
-                            <constraint firstItem="zk2-RA-Vtw" firstAttribute="height" secondItem="Kjo-YB-tdi" secondAttribute="height" multiplier="1.5" id="CkK-Cj-hHC"/>
                             <constraint firstItem="zk2-RA-Vtw" firstAttribute="centerX" secondItem="Kjo-YB-tdi" secondAttribute="centerX" id="FPd-q6-HbL"/>
-                            <constraint firstAttribute="bottom" secondItem="F9h-Ks-Lvy" secondAttribute="bottom" id="MXJ-cT-HRE"/>
+                            <constraint firstItem="1tp-XV-hD6" firstAttribute="bottom" secondItem="F9h-Ks-Lvy" secondAttribute="bottom" id="MXJ-cT-HRE"/>
                             <constraint firstItem="F9h-Ks-Lvy" firstAttribute="leading" secondItem="1tp-XV-hD6" secondAttribute="leading" id="NJy-7M-Wm6"/>
-                            <constraint firstItem="F9h-Ks-Lvy" firstAttribute="height" secondItem="I4j-AS-tv2" secondAttribute="height" multiplier="0.0898438" id="XIQ-np-Ho5"/>
+                            <constraint firstItem="66F-lv-hWq" firstAttribute="top" secondItem="F9h-Ks-Lvy" secondAttribute="bottom" id="TFi-MF-ujH"/>
+                            <constraint firstItem="zk2-RA-Vtw" firstAttribute="height" secondItem="Kjo-YB-tdi" secondAttribute="height" multiplier="0.697674" id="VuE-WG-CRm"/>
+                            <constraint firstAttribute="bottom" secondItem="66F-lv-hWq" secondAttribute="bottom" id="Vzc-1Z-RT7"/>
                             <constraint firstAttribute="bottom" secondItem="kRl-tj-tyb" secondAttribute="bottom" id="XQG-5l-mpd"/>
                             <constraint firstAttribute="top" secondItem="kRl-tj-tyb" secondAttribute="top" id="ZV2-B7-r5w"/>
                             <constraint firstItem="1tp-XV-hD6" firstAttribute="trailing" secondItem="F9h-Ks-Lvy" secondAttribute="trailing" id="j9p-iL-CV4"/>
                             <constraint firstItem="tQ0-hi-y9q" firstAttribute="top" secondItem="1tp-XV-hD6" secondAttribute="top" id="mAG-Ru-X7A"/>
+                            <constraint firstItem="1tp-XV-hD6" firstAttribute="trailing" secondItem="66F-lv-hWq" secondAttribute="trailing" id="uGt-yP-3ib"/>
+                            <constraint firstItem="66F-lv-hWq" firstAttribute="leading" secondItem="1tp-XV-hD6" secondAttribute="leading" id="uJp-PS-e6k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1tp-XV-hD6"/>
                     </view>
@@ -2533,13 +2542,13 @@ Percentage (%)</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lm6-lM-xRt">
-                                <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
+                                <rect key="frame" x="0.0" y="799" width="414" height="63"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HS9-i3-lg4">
-                                        <rect key="frame" x="0.0" y="18.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="10" width="414" height="43"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDb-Uv-1Pd" userLabel="SORT">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="43"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  SORT" image="icSort">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2549,7 +2558,7 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaZ-gQ-3eE">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="43.5"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="43"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  FILTER" image="icFilter">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2563,15 +2572,17 @@ Percentage (%)</string>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="HS9-i3-lg4" firstAttribute="height" secondItem="Lm6-lM-xRt" secondAttribute="height" multiplier="43/80" id="5S0-u1-vA1"/>
+                                    <constraint firstAttribute="bottom" secondItem="HS9-i3-lg4" secondAttribute="bottom" constant="10" id="4kN-Ca-O24"/>
                                     <constraint firstItem="HS9-i3-lg4" firstAttribute="leading" secondItem="Lm6-lM-xRt" secondAttribute="leading" id="94T-sw-5Vc"/>
+                                    <constraint firstItem="HS9-i3-lg4" firstAttribute="top" secondItem="Lm6-lM-xRt" secondAttribute="top" constant="10" id="JLx-EM-FIy"/>
                                     <constraint firstAttribute="trailing" secondItem="HS9-i3-lg4" secondAttribute="trailing" id="Kuo-9f-mVv"/>
                                     <constraint firstItem="HS9-i3-lg4" firstAttribute="centerX" secondItem="Lm6-lM-xRt" secondAttribute="centerX" id="Nw0-Ge-HBS"/>
                                     <constraint firstItem="HS9-i3-lg4" firstAttribute="centerY" secondItem="Lm6-lM-xRt" secondAttribute="centerY" id="X14-xs-Bpl"/>
+                                    <constraint firstAttribute="height" constant="63" id="qCG-5y-tJh"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtM-eE-37a">
-                                <rect key="frame" x="206.5" y="834" width="1" height="43.5"/>
+                                <rect key="frame" x="206.5" y="809" width="1" height="43"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="Zdp-EN-FAR"/>
@@ -2580,16 +2591,15 @@ Percentage (%)</string>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Lm6-lM-xRt" firstAttribute="height" secondItem="Sm7-Xp-x1J" secondAttribute="height" multiplier="0.0898438" id="DqN-yv-BmB"/>
                             <constraint firstAttribute="top" secondItem="bHP-eM-ke8" secondAttribute="top" id="GOX-de-mcf"/>
+                            <constraint firstItem="dtM-eE-37a" firstAttribute="height" secondItem="HS9-i3-lg4" secondAttribute="height" id="Jx9-dO-kKk"/>
                             <constraint firstItem="xtH-Qq-nSI" firstAttribute="trailing" secondItem="Lm6-lM-xRt" secondAttribute="trailing" id="UNX-BQ-tPT"/>
                             <constraint firstItem="bHP-eM-ke8" firstAttribute="bottom" secondItem="Sm7-Xp-x1J" secondAttribute="bottom" id="W4V-26-4xI"/>
                             <constraint firstItem="dtM-eE-37a" firstAttribute="centerY" secondItem="HS9-i3-lg4" secondAttribute="centerY" id="Zaa-8f-Wx4"/>
                             <constraint firstItem="dtM-eE-37a" firstAttribute="centerX" secondItem="HS9-i3-lg4" secondAttribute="centerX" id="alP-sU-kEY"/>
                             <constraint firstItem="Lm6-lM-xRt" firstAttribute="leading" secondItem="xtH-Qq-nSI" secondAttribute="leading" id="bv1-Gs-2jc"/>
-                            <constraint firstAttribute="bottom" secondItem="Lm6-lM-xRt" secondAttribute="bottom" id="cvy-CF-9rr"/>
+                            <constraint firstItem="xtH-Qq-nSI" firstAttribute="bottom" secondItem="Lm6-lM-xRt" secondAttribute="bottom" id="cvy-CF-9rr"/>
                             <constraint firstItem="xtH-Qq-nSI" firstAttribute="trailing" secondItem="bHP-eM-ke8" secondAttribute="trailing" id="f5s-ah-17e"/>
-                            <constraint firstItem="dtM-eE-37a" firstAttribute="height" secondItem="HS9-i3-lg4" secondAttribute="height" id="gzo-OO-d65"/>
                             <constraint firstItem="bHP-eM-ke8" firstAttribute="leading" secondItem="xtH-Qq-nSI" secondAttribute="leading" id="krN-VB-g9W"/>
                             <constraint firstItem="hTB-Ky-x7l" firstAttribute="top" secondItem="xtH-Qq-nSI" secondAttribute="top" id="lF4-lw-8h5"/>
                         </constraints>
@@ -3252,10 +3262,10 @@ Percentage (%)</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Sb-0E-vMY">
-                                        <rect key="frame" x="0.0" y="153" width="414" height="699"/>
+                                        <rect key="frame" x="0.0" y="153" width="414" height="665"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fh-ZD-Orm">
-                                                <rect key="frame" x="8" y="0.0" width="398" height="699"/>
+                                                <rect key="frame" x="8" y="0.0" width="398" height="665"/>
                                             </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -3269,7 +3279,6 @@ Percentage (%)</string>
                                 </subviews>
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="6Sb-0E-vMY" secondAttribute="bottom" id="04F-CN-Ny4"/>
                                     <constraint firstAttribute="trailing" secondItem="X2A-NA-ySL" secondAttribute="trailing" id="0tA-lF-Wbo"/>
                                     <constraint firstItem="y2B-il-EIY" firstAttribute="leading" secondItem="tpV-wA-2EZ" secondAttribute="leading" id="1DL-77-KX8"/>
                                     <constraint firstAttribute="trailing" secondItem="6Sb-0E-vMY" secondAttribute="trailing" id="J99-mQ-Nr3"/>
@@ -3284,13 +3293,13 @@ Percentage (%)</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4O-FQ-f3g">
-                                <rect key="frame" x="0.0" y="815.5" width="414" height="80.5"/>
+                                <rect key="frame" x="0.0" y="799" width="414" height="63"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Up9-ec-gNX">
-                                        <rect key="frame" x="0.0" y="13.5" width="414" height="53.5"/>
+                                        <rect key="frame" x="0.0" y="16.5" width="414" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrm-Lb-DRn" userLabel="SORT">
-                                                <rect key="frame" x="0.0" y="0.0" width="207" height="53.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="207" height="30"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  SORT" image="icSort">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3301,7 +3310,7 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOS-yS-osO">
-                                                <rect key="frame" x="207" y="0.0" width="207" height="53.5"/>
+                                                <rect key="frame" x="207" y="0.0" width="207" height="30"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="14"/>
                                                 <state key="normal" title="  FILTER" image="icFilter">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3317,32 +3326,40 @@ Percentage (%)</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="Up9-ec-gNX" firstAttribute="centerY" secondItem="o4O-FQ-f3g" secondAttribute="centerY" id="0iV-gd-j5V"/>
+                                    <constraint firstAttribute="height" constant="63" id="66F-Gi-Bfc"/>
                                     <constraint firstAttribute="trailing" secondItem="Up9-ec-gNX" secondAttribute="trailing" id="8cB-ab-ujC"/>
                                     <constraint firstItem="Up9-ec-gNX" firstAttribute="leading" secondItem="o4O-FQ-f3g" secondAttribute="leading" id="Rzi-lY-73O"/>
-                                    <constraint firstItem="Up9-ec-gNX" firstAttribute="height" secondItem="o4O-FQ-f3g" secondAttribute="height" multiplier="53/80" id="h49-Na-4Uc"/>
                                     <constraint firstItem="Up9-ec-gNX" firstAttribute="centerX" secondItem="o4O-FQ-f3g" secondAttribute="centerX" id="pvB-hI-qwG"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-sU-r0f">
-                                <rect key="frame" x="206.5" y="829" width="1" height="53.5"/>
+                                <rect key="frame" x="206.5" y="815.5" width="1" height="30"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="0.1036536094" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="4mQ-Wj-qUB"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjd-Yf-6yg">
+                                <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="primaryColor"/>
                         <constraints>
+                            <constraint firstItem="tjd-Yf-6yg" firstAttribute="leading" secondItem="3DZ-gP-ymF" secondAttribute="leading" id="0Qd-P9-0ii"/>
                             <constraint firstItem="XFH-sU-r0f" firstAttribute="height" secondItem="Up9-ec-gNX" secondAttribute="height" id="2oI-TL-IM7"/>
                             <constraint firstItem="o4O-FQ-f3g" firstAttribute="leading" secondItem="3DZ-gP-ymF" secondAttribute="leading" id="36l-Dx-9Oh"/>
-                            <constraint firstItem="o4O-FQ-f3g" firstAttribute="height" secondItem="j8i-uA-bn1" secondAttribute="height" multiplier="0.0898438" id="3ge-5h-It9"/>
                             <constraint firstItem="XFH-sU-r0f" firstAttribute="centerY" secondItem="Up9-ec-gNX" secondAttribute="centerY" id="GeD-4v-VJs"/>
                             <constraint firstItem="3DZ-gP-ymF" firstAttribute="trailing" secondItem="HNv-iZ-zNn" secondAttribute="trailing" id="Jqn-dY-gXV"/>
+                            <constraint firstItem="3DZ-gP-ymF" firstAttribute="trailing" secondItem="tjd-Yf-6yg" secondAttribute="trailing" id="K1l-7D-BnI"/>
                             <constraint firstItem="HNv-iZ-zNn" firstAttribute="leading" secondItem="j8i-uA-bn1" secondAttribute="leading" id="LCA-RP-mDL"/>
                             <constraint firstAttribute="bottom" secondItem="HNv-iZ-zNn" secondAttribute="bottom" id="TOj-5b-svW"/>
                             <constraint firstItem="XFH-sU-r0f" firstAttribute="centerX" secondItem="Up9-ec-gNX" secondAttribute="centerX" id="ds2-aO-6lT"/>
+                            <constraint firstItem="6Sb-0E-vMY" firstAttribute="bottom" secondItem="3DZ-gP-ymF" secondAttribute="bottom" id="eSe-ez-6NK"/>
                             <constraint firstItem="3DZ-gP-ymF" firstAttribute="trailing" secondItem="o4O-FQ-f3g" secondAttribute="trailing" id="gW9-6I-Q7T"/>
-                            <constraint firstAttribute="bottom" secondItem="o4O-FQ-f3g" secondAttribute="bottom" id="jhM-18-1Ap"/>
+                            <constraint firstAttribute="bottom" secondItem="tjd-Yf-6yg" secondAttribute="bottom" id="gdg-Oe-Tu7"/>
+                            <constraint firstItem="3DZ-gP-ymF" firstAttribute="bottom" secondItem="o4O-FQ-f3g" secondAttribute="bottom" id="jhM-18-1Ap"/>
+                            <constraint firstItem="tjd-Yf-6yg" firstAttribute="top" secondItem="o4O-FQ-f3g" secondAttribute="bottom" id="pCY-Ea-yte"/>
                             <constraint firstItem="y2B-il-EIY" firstAttribute="top" secondItem="3DZ-gP-ymF" secondAttribute="top" id="pIG-0O-grG"/>
                             <constraint firstItem="HNv-iZ-zNn" firstAttribute="top" secondItem="3DZ-gP-ymF" secondAttribute="top" id="rBq-Ie-dpu"/>
                         </constraints>
