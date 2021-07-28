@@ -14,6 +14,7 @@ class MyWalletVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var currencyImgView: UIImageView!
     @IBOutlet weak var overAllUserInvestmentBtn: UIButton!
     @IBOutlet weak var withdrawlBtnLbl: UILabel!
     @IBOutlet weak var depositBtnLbl: UILabel!
@@ -60,6 +61,16 @@ class MyWalletVC: UIViewController {
     }
     var currentPage: Int = 0
     var lastPage: Int  = 0
+    
+    //Pagination
+    var hideLoader1: Bool = false
+    var nextPageAvailable1 = true
+    var isRequestinApi1 = false
+    var showPaginationLoader1: Bool {
+        return  hideLoader ? false : nextPageAvailable
+    }
+    var currentPage1: Int = 0
+    var lastPage1: Int  = 0
        
     // MARK: - Lifecycle
     //===========================
@@ -152,10 +163,13 @@ extension MyWalletVC {
         self.setUpBorder()
         self.setFont()
         self.hitWalletCountAPI()
+        self.hitBuyInvestHistoryAPI()
+        self.hitWalletBalanceAPI()
         self.getDepositUrl()
     }
     
     private func setUpBorder(){
+        currencyImgView.image = #imageLiteral(resourceName: "eth")
         self.titleLbl.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
         DispatchQueue.main.async {
             [self.userInvestmentImgView,self.totalAssetsImgView,self.totalProductImgView].forEach { (imgView) in
@@ -202,15 +216,19 @@ extension MyWalletVC {
             currencyTextField.text =  self.selectedCurrencyType
             currencyTextField.isUserInteractionEnabled = true
             currencyTextField.isHidden = false
+            currencyImgView.isHidden = false
             if selectedCurrencyType == "ETH"{
                  self.yourWalletBalanceLbl.text = "\(walletBalance.eth ?? 0.0 )"
+                 currencyImgView.image = #imageLiteral(resourceName: "eth")
             } else {
                  self.yourWalletBalanceLbl.text = "\(walletBalance.btc ?? 0.0 )"
+                 currencyImgView.image = #imageLiteral(resourceName: "btc")
             }
         } else {
             currencyTextField.rightView = nil
             currencyTextField.inputView = nil
             currencyTextField.text = " Dollar (USD)"
+            currencyImgView.isHidden = true
             currencyTextField.isUserInteractionEnabled = false
             self.yourWalletBalanceLbl.text = "$ " + "\(walletBalance.wallet ?? 0.0 )"
         }
@@ -249,6 +267,11 @@ extension MyWalletVC {
     }
     private func getDepositUrl(){
         self.presenter?.HITAPI(api: Base.deposit_Url.rawValue, params: nil , methodType: .GET, modelClass: DepositUrlModel.self, token: true)
+    }
+    
+    private func hitBuyInvestHistoryAPI(){
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.invester_buy_Invest_hisory.rawValue, params: nil, methodType: .GET, modelClass: BuyInvestHistoryEntity.self, token: true)
     }
     
 }
@@ -319,13 +342,28 @@ extension MyWalletVC: PresenterOutputProtocol {
                 }
                 self.currentPage += 1
             }
-            hitWalletBalanceAPI()
         case  Base.wallet.rawValue:
             let walletData = dataDict as? WalletEntity
             if let data = walletData?.balance {
                 self.walletBalance = data
                 self.yourWalletBalanceLbl.text = "\(data.eth ?? 0.0 )"
             }
+        case Base.invester_buy_Invest_hisory.rawValue:
+            let productModelEntity = dataDict as? BuyInvestHistoryEntity
+            self.currentPage1 = productModelEntity?.data?.current_page ?? 0
+            self.lastPage1 = productModelEntity?.data?.last_page ?? 0
+            isRequestinApi1 = false
+            nextPageAvailable1 = self.lastPage1 > self.currentPage1
+            if let productDict = productModelEntity?.data?.data {
+                if self.currentPage1 == 1 {
+                    self.walletModule.invest_histories = productDict
+                    self.bottomSheetVC.walletModule.invest_histories = productDict
+                } else {
+                    self.walletModule.invest_histories?.append(contentsOf: productDict)
+                    self.bottomSheetVC.walletModule.invest_histories?.append(contentsOf: productDict)
+                }
+            }
+            self.currentPage1 += 1
         case Base.deposit_Url.rawValue:
             let walletData = dataDict as? DepositUrlModel
             self.depositUrl = walletData?.url ?? ""
@@ -353,8 +391,10 @@ extension MyWalletVC: ProductSortVCDelegate{
         currencyTextField.text =  self.selectedCurrencyType
         if selectedCurrencyType == "ETH"{
             self.yourWalletBalanceLbl.text = "\(walletBalance.eth ?? 0.0 )"
+            currencyImgView.image = #imageLiteral(resourceName: "eth")
         } else {
             self.yourWalletBalanceLbl.text = "\(walletBalance.btc ?? 0.0 )"
+            currencyImgView.image = #imageLiteral(resourceName: "btc")
         }
     }
 }

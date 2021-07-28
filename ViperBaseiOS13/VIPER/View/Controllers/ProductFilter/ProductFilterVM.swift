@@ -240,6 +240,22 @@ class ProductFilterVM {
         return params
     }
     
+    var paramsDictForBuyHistory: [String:Any]{
+        
+        var params : [String:Any] = [:]
+        if self.selectedCategoryListing.endIndex > 0{
+            let category =  self.selectedCategoryListing.map { (model) -> String in
+                return String(model.id ?? 0)
+            }.joined(separator: ",")
+            params[ProductCreate.keys.category] = category
+        }
+        if !self.start_from.isEmpty{ params[ProductCreate.keys.offer_from] = self.start_from }
+        if !self.start_to.isEmpty{ params[ProductCreate.keys.offer_to] = self.start_to }
+        if !self.investmentMaturity_from.isEmpty{ params[ProductCreate.keys.maturity_from] = self.investmentMaturity_from }
+        if !self.investmentMaturity_to.isEmpty{ params[ProductCreate.keys.maturity_to] = self.investmentMaturity_to }
+        return params
+    }
+    
     public init() {
         resetToAllFilter()
     }

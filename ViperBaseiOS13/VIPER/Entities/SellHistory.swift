@@ -49,6 +49,7 @@ struct History : Mappable {
     var updated_at : String?
     var product : ProductModel?
     var user : UserHistory?
+    var ufund_txn_id: String?
     var profit_amount: Double?
     var isSelected: Bool = false
 
@@ -63,6 +64,7 @@ struct History : Mappable {
     mutating func mapping(map: Map) {
 
         id <- map["id"]
+        ufund_txn_id <- map["ufund_txn_id"]
         user_id <- map["user_id"]
         payment_type <- map["payment_type"]
         type <- map["type"]

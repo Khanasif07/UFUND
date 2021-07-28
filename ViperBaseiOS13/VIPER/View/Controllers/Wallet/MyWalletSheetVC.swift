@@ -32,8 +32,13 @@ class MyWalletSheetVC: UIViewController {
     
     //MARK:- VARIABLE
     //================
+    var searchTask: DispatchWorkItem?
     var searchText = ""
-    var walletModule = WalletModule()
+    var walletModule = WalletModule(){
+        didSet{
+            mainTableView.reloadData()
+        }
+    }
     let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var historyType: HistoryType = .wallet
     lazy var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(closePullUp))
@@ -53,6 +58,12 @@ class MyWalletSheetVC: UIViewController {
     var partialView: CGFloat {
         return (textContainerHeight ?? 0.0) + UIApplication.shared.statusBarFrame.height + (isDeviceIPad ? 78.0 : 64.0)
     }
+    //Filter
+    var selectedCategory : (([CategoryModel],Bool)) = ([],false)
+    var selectedInvestorStart_from : (String,Bool) = ("",false)
+    var selectedInvestorStart_to : (String,Bool) = ("",false)
+    var selectedInvestorMature_from : (String,Bool) = ("",false)
+    var selectedInvestorMature_to : (String,Bool) = ("",false)
     //Pagination
     var hideLoader: Bool = false
     var nextPageAvailable = true
@@ -93,6 +104,7 @@ class MyWalletSheetVC: UIViewController {
     @IBAction func filterBtnAction(_ sender: Any) {
         let filterVC = MyYieldFilterVC.instantiate(fromAppStoryboard: .Filter)
         filterVC.modalPresentationStyle = .overCurrentContext
+        filterVC.delegate = self
         self.present(filterVC, animated: true, completion: nil)
     }
     
@@ -169,9 +181,15 @@ class MyWalletSheetVC: UIViewController {
         self.presenter?.HITAPI(api: Base.wallet_sell_hisory.rawValue, params: nil, methodType: .GET, modelClass: WalletEntity.self, token: true)
     }
     
-    private func hitBuyInvestHistoryAPI(){
-//        self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.invester_buy_Invest_hisory.rawValue, params: nil, methodType: .GET, modelClass: BuyInvestHistoryEntity.self, token: true)
+    private func hitBuyInvestHistoryAPI(params: [String:Any]){
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            self?.loader.isHidden = false
+            self?.presenter?.HITAPI(api: Base.invester_buy_Invest_hisory.rawValue, params: params, methodType: .GET, modelClass: BuyInvestHistoryEntity.self, token: true)
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
+
     }
 }
 
@@ -182,6 +200,7 @@ extension MyWalletSheetVC {
     private func initialSetup() {
         setupTableView()
         setUpFont()
+        setSearchBar()
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetVC.panGesture))
         view.addGestureRecognizer(gesture)
         setupSwipeGesture()
@@ -255,7 +274,7 @@ extension MyWalletSheetVC {
     private func setSearchBar(){
         self.searchBar.delegate = self
         if #available(iOS 13.0, *) {
-            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
+//            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
             searchBar.tintColor = .white
             searchBar.setIconColor(.white)
             searchBar.setPlaceholderColor(.white)
@@ -287,7 +306,7 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
         switch historyType {
         case .wallet:
             if let invest_histories = self.walletModule.wallet_histories?.data{
-                investBuyCellData = [("Transaction Id",invest_histories[indexPath.section].payment_id ?? ""),("Amount",String(invest_histories[indexPath.section].amount ?? 0.0)),("Currency Type",String(invest_histories[indexPath.section].payment_type ?? "")),("Date",invest_histories[indexPath.section].created_at ?? ""),("Transaction Type",invest_histories[indexPath.section].type ?? ""),("Status",invest_histories[indexPath.section].status ?? "")]
+                investBuyCellData = [("Transaction Id",invest_histories[indexPath.section].ufund_txn_id ?? ""),("Amount",String(invest_histories[indexPath.section].amount ?? 0.0)),("Currency Type",String(invest_histories[indexPath.section].payment_type ?? "")),("Date",invest_histories[indexPath.section].created_at ?? ""),("Transaction Type",invest_histories[indexPath.section].type ?? ""),("Status",invest_histories[indexPath.section].status ?? "")]
                 switch investBuyCellData[indexPath.row].0 {
                 case "Date":
                     let date = (investBuyCellData[indexPath.row].1).toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
@@ -491,8 +510,7 @@ extension MyWalletSheetVC: PresenterOutputProtocol {
 extension MyWalletSheetVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
-        self.view.endEditing(true)
-//        self.searchProducts(searchValue: self.searchText)
+        self.hitBuyInvestHistoryAPI(params: [ProductCreate.keys.search: self.searchText])
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -508,7 +526,7 @@ extension MyWalletSheetVC: UISearchBarDelegate{
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
-//        self.searchProducts(searchValue: "")
+        self.hitBuyInvestHistoryAPI(params: [:])
         self.view.endEditing(true)
         searchBar.resignFirstResponder()
     }
@@ -521,3 +539,39 @@ extension MyWalletSheetVC: UISearchBarDelegate{
     }
 }
 
+
+// MARK: - ProductFilterVCDelegate
+
+extension MyWalletSheetVC: ProductFilterVCDelegate {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
+        ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
+        ProductFilterVM.shared.start_from = self.selectedInvestorStart_from.0
+        ProductFilterVM.shared.start_to = self.selectedInvestorStart_to.0
+        ProductFilterVM.shared.investmentMaturity_from = self.selectedInvestorMature_from.0
+        ProductFilterVM.shared.investmentMaturity_to = self.selectedInvestorMature_to.0
+    }
+    
+    func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
+        //
+        if category.1 {
+            ProductFilterVM.shared.selectedCategoryListing = category.0
+            self.selectedCategory = category
+        }else {
+            ProductFilterVM.shared.selectedCategoryListing = []
+            self.selectedCategory = ([],false)
+        }
+        ProductFilterVM.shared.investmentMaturity_from = maturity_from.1 ? maturity_from.0 : ""
+        ProductFilterVM.shared.investmentMaturity_to = maturity_to.1 ? maturity_to.0 : ""
+        ProductFilterVM.shared.start_from = start_from.1 ? start_from.0 : ""
+        ProductFilterVM.shared.start_to = start_to.1 ? start_to.0 : ""
+        if !start_from.1{self.selectedInvestorStart_from = ("",false) }
+        if !start_to.1{self.selectedInvestorStart_to = ("",false) }
+        if !maturity_from.1{self.selectedInvestorMature_from = ("",false) }
+        if !maturity_to.1{self.selectedInvestorMature_to = ("",false) }
+        //
+        var params  = ProductFilterVM.shared.paramsDictForBuyHistory
+        params[ProductCreate.keys.page] =  1
+        params[ProductCreate.keys.search] = self.searchText
+        self.hitBuyInvestHistoryAPI(params: params)
+    }
+}

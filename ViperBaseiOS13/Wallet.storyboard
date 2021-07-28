@@ -227,20 +227,32 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgf-yE-ext">
                                                         <rect key="frame" x="231" y="16" width="135" height="31"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Currency" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fqx-UF-5lE">
-                                                                <rect key="frame" x="0.0" y="-2" width="135" height="34"/>
-                                                                <color key="textColor" red="0.43137254901960786" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
-                                                            </textField>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9tr-v7-U6N">
+                                                                <rect key="frame" x="0.0" y="0.0" width="135" height="31"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eth" translatesAutoresizingMaskIntoConstraints="NO" id="uZ7-aE-Qbl">
+                                                                        <rect key="frame" x="0.0" y="3" width="25" height="25"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="25" id="FSb-FG-dBu"/>
+                                                                            <constraint firstAttribute="width" secondItem="uZ7-aE-Qbl" secondAttribute="height" id="ZX6-iO-WaR"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Currency" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fqx-UF-5lE">
+                                                                        <rect key="frame" x="25" y="7" width="110" height="17"/>
+                                                                        <color key="textColor" red="0.43137254901960786" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.87058823529411766" green="0.87058823529411766" blue="0.87058823529411766" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="Fqx-UF-5lE" secondAttribute="bottom" constant="-1" id="8it-Z4-oW3"/>
-                                                            <constraint firstItem="Fqx-UF-5lE" firstAttribute="leading" secondItem="Qgf-yE-ext" secondAttribute="leading" id="ChS-Yh-26l"/>
+                                                            <constraint firstAttribute="bottom" secondItem="9tr-v7-U6N" secondAttribute="bottom" id="Hxb-O0-wdX"/>
                                                             <constraint firstAttribute="width" constant="135" id="IgN-zt-DcY"/>
-                                                            <constraint firstItem="Fqx-UF-5lE" firstAttribute="top" secondItem="Qgf-yE-ext" secondAttribute="top" constant="-2" id="ImX-U6-vaW"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Fqx-UF-5lE" secondAttribute="trailing" id="iNb-GF-RIE"/>
+                                                            <constraint firstItem="9tr-v7-U6N" firstAttribute="top" secondItem="Qgf-yE-ext" secondAttribute="top" id="Ntp-7Y-A72"/>
+                                                            <constraint firstAttribute="trailing" secondItem="9tr-v7-U6N" secondAttribute="trailing" id="YFA-Vb-cGx"/>
+                                                            <constraint firstItem="9tr-v7-U6N" firstAttribute="leading" secondItem="Qgf-yE-ext" secondAttribute="leading" id="gE5-pW-lvY"/>
                                                             <constraint firstAttribute="height" constant="31" id="lF3-vG-61r">
                                                                 <variation key="heightClass=regular-widthClass=regular" constant="41"/>
                                                             </constraint>
@@ -251,6 +263,7 @@
                                                 <constraints>
                                                     <constraint firstItem="6i3-xp-lOa" firstAttribute="leading" secondItem="F3g-OQ-2D5" secondAttribute="leading" constant="16" id="91r-WM-rOM"/>
                                                     <constraint firstItem="atc-ok-1cJ" firstAttribute="top" secondItem="F3g-OQ-2D5" secondAttribute="top" constant="16" id="GcH-AL-kam"/>
+                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6i3-xp-lOa" secondAttribute="trailing" constant="16" id="UDZ-X0-BUe"/>
                                                     <constraint firstAttribute="bottom" secondItem="6i3-xp-lOa" secondAttribute="bottom" constant="16" id="YkC-sA-3As"/>
                                                     <constraint firstAttribute="trailing" secondItem="Qgf-yE-ext" secondAttribute="trailing" constant="16" id="ZAv-Dt-g8m"/>
                                                     <constraint firstItem="Qgf-yE-ext" firstAttribute="centerY" secondItem="atc-ok-1cJ" secondAttribute="centerY" id="j8x-sL-KHT"/>
@@ -409,6 +422,7 @@
                     <connections>
                         <outlet property="bottomStackView" destination="S2q-ht-ZRm" id="tom-GF-sdW"/>
                         <outlet property="currencyControl" destination="atc-ok-1cJ" id="7kB-IT-u5T"/>
+                        <outlet property="currencyImgView" destination="uZ7-aE-Qbl" id="Sk8-oj-tCS"/>
                         <outlet property="currencyTextField" destination="Fqx-UF-5lE" id="G7o-gM-eAP"/>
                         <outlet property="depositBtnLbl" destination="01t-fV-aAu" id="6B3-yL-wku"/>
                         <outlet property="depositView" destination="wDn-m1-WDb" id="ShT-iM-FVQ"/>
@@ -1565,6 +1579,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="eth" width="18" height="18"/>
         <image name="icClose" width="20" height="20"/>
         <image name="icCredit" width="20.5" height="19"/>
         <image name="icDropdown" width="14" height="10"/>
