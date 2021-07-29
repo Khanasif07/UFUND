@@ -33,7 +33,7 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
     var buyHistoryBtnTapped: ((UIButton)->())?
     var buyMonthlyBtnTapped: ((UIButton)->())?
     //
-    var firstBarValue: [Double] = [4.0,6.0,5.0,4.0,6.0,5.0,0.9]
+    var firstBarValue: [Double] = [1.0,0.4,5.0,4.0,6.0,5.0,0.9]
     var vertXValues : [String]?{
         didSet{
             self.awakeFromNib()
@@ -82,21 +82,29 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         self.setup(barLineChartView: barChartView)
         barChartView.drawBarShadowEnabled = false
         barChartView.drawValueAboveBarEnabled = false
-        barChartView.legend.enabled = false
+//        barChartView.legend.enabled = false
         barChartView.dragEnabled = false
         barChartView.doubleTapToZoomEnabled = false
         barChartView.pinchZoomEnabled = false
         barChartView.noDataTextColor  = .white
+        //
+        barChartView.xAxis.granularity = 1.0
+        barChartView.xAxis.granularityEnabled = true
+        barChartView.xAxis.centerAxisLabelsEnabled = true
+        barChartView.xAxis.setLabelCount(3, force: true)
+        barChartView.fitBars = true
+        //
         
         let legend = barChartView.legend
-        legend.enabled = false
-        legend.horizontalAlignment = .right
+        legend.enabled = true
+        legend.horizontalAlignment = .center
         legend.verticalAlignment = .top
         legend.orientation = .vertical
         legend.drawInside = true
-        legend.yOffset = 10.0
-        legend.xOffset = 10.0
-        legend.yEntrySpace = 0.0
+//        legend.yOffset =  -0.25
+//        legend.xOffset =  -0.25
+//        legend.yEntrySpace = 0.0
+        legend.xEntrySpace = 0.0
         
         let xAxis = barChartView.xAxis
         xAxis.labelCount = vertXValues?.count ?? 0
@@ -106,12 +114,13 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         xAxis.labelTextColor = .black
         xAxis.granularity = 1.0
         xAxis.labelFont = UIFont.systemFont(ofSize: 7.5)
+//        xAxis.labelCount = (vertXValues?.count ?? 0)
         xAxis.labelPosition = .bottom
-        xAxis.centerAxisLabelsEnabled = true
+        xAxis.centerAxisLabelsEnabled = false
         xAxis.granularityEnabled = true
         xAxis.drawLabelsEnabled = true
-        xAxis.axisMinimum = -0.25
-        xAxis.axisMaximum = Double(vertXValues?.count ?? 0) + 1.0//to increase length of x-axis more than content size
+//        xAxis.axisMinimum = 0
+        xAxis.axisMaximum = Double(vertXValues?.count ?? 0) - 1.0//to increase length of x-axis more than content size
         xAxis.valueFormatter = IndexAxisValueFormatter(values: vertXValues ?? [])
         
         let leftAxis = barChartView.leftAxis
@@ -130,17 +139,10 @@ class DashboardBarChartCell: UITableViewCell, ChartViewDelegate {
         
         let rightAxis = barChartView.rightAxis
         rightAxis.enabled = false
-        rightAxis.labelFont = .systemFont(ofSize: 10)
-        rightAxis.labelCount = 8
-        rightAxis.drawAxisLineEnabled = false
-        rightAxis.drawGridLinesEnabled = false
-        rightAxis.drawLabelsEnabled = false
-        rightAxis.spaceTop = 0.15
-        rightAxis.axisMinimum = 0
     }
     
     func drawVerticalChart() {
-        barChartView.noDataText = ""
+        barChartView.noDataText = "No Data Found"
         var dataEntries: [BarChartDataEntry] = []
         for i in 0..<(self.vertXValues?.count ?? 0) {
             let dataEntry = BarChartDataEntry(x: Double(i) , yValues: [self.firstBarValue[i]])

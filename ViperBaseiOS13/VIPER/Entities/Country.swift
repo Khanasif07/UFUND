@@ -396,12 +396,12 @@ struct InvestorGraphs: Mappable {
     }
     var data : [Double]?
     var name : String?
-    var stack : String?
+//    var stack : String?
     
     mutating func mapping(map: Map) {
         
         data <- map["data"]
         name <- map["name"]
-        stack <- map["stack"]
+//        stack <- map["stack"]
     }
 }
