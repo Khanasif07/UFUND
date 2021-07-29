@@ -14,6 +14,7 @@ class MyWalletWithdrawlVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var currencyImgView: UIImageView!
     @IBOutlet weak var toAddressLbl: UILabel!
     @IBOutlet weak var addresstxtView: UIView!
     @IBOutlet weak var addAmtLbl: UILabel!
@@ -84,7 +85,7 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
         self.amtTxtField.keyboardType = .numberPad
         currencyControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
-        currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
+        currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "arrowBottom"), normalImage: #imageLiteral(resourceName: "arrowBottom"), size: CGSize(width: 20, height: 20))
         currencyTxtField.text =  self.selectedCurrencyType
     }
     
@@ -102,11 +103,18 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
+            currencyImgView.isHidden = false
             currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
             currencyTxtField.text =  self.selectedCurrencyType
             currencyTxtField.isUserInteractionEnabled = true
             addresstxtView.isHidden = false
+            if selectedCurrencyType == "ETH"{
+                currencyImgView.image = #imageLiteral(resourceName: "eth")
+            } else {
+                currencyImgView.image = #imageLiteral(resourceName: "btc")
+            }
         } else {
+            currencyImgView.isHidden = true
             addresstxtView.isHidden = true
             currencyTxtField.rightView = nil
             currencyTxtField.inputView = nil
@@ -159,6 +167,11 @@ extension MyWalletWithdrawlVC: ProductSortVCDelegate{
     func sortingApplied(sortType: String){
         self.selectedCurrencyType = sortType
         currencyTxtField.text =  self.selectedCurrencyType
+        if selectedCurrencyType == "ETH"{
+            currencyImgView.image = #imageLiteral(resourceName: "eth")
+        } else {
+            currencyImgView.image = #imageLiteral(resourceName: "btc")
+        }
     }
 }
 

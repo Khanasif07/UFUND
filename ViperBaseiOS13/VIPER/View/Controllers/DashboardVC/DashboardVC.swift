@@ -210,8 +210,13 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardInvestmentCell:
             let cell = tableView.dequeueCell(with: DashboardInvestmentCell.self, indexPath: indexPath)
-            cell.dollarInvestmentValue.text = "$ " + "\(self.investorDashboardData?.my_investements ?? 0)"
-            cell.partiesPercentage = [1.0,0.0]
+            cell.dollarInvestmentValue.text = "$ " + "\(self.investorDashboardData?.investments?.usd ?? "")"
+            cell.btcInvestmentValue.text = "$ " + "\(self.investorDashboardData?.investments?.btc ?? "" )"
+            cell.ethInvestmentValue.text = "$ " + "\(self.investorDashboardData?.investments?.eth ?? "")"
+            let usdData = self.investorDashboardData?.investments?.usd ?? "0.0"
+            let btcData = self.investorDashboardData?.investments?.btc ?? "0.0"
+            let ethData = self.investorDashboardData?.investments?.eth ?? "0.0"
+            cell.partiesPercentage = [Double(usdData) ?? 0.0,Double(btcData) ?? 0.0,Double(ethData) ?? 0.0]
             return cell
         case .DashboardSubmittedProductsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
@@ -305,7 +310,9 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
         case .DashboardSubmittedProductsCell,.DashboardSubmittedAsssetsCell:
             return isDeviceIPad ? UITableView.automaticDimension : UITableView.automaticDimension
         case .DashboardInvestmentCell:
-            return isDeviceIPad ? 450.0 : 376.5
+            return isDeviceIPad ? UITableView.automaticDimension : UITableView.automaticDimension
+        case .DashboardSellHistoryListing:
+            return 34.0
         default:
             return UITableView.automaticDimension
         }
@@ -347,6 +354,11 @@ extension DashboardVC: PresenterOutputProtocol {
             let investorDashboardEntity = dataDict as? InvestorDashboardEntity
             if let productData = investorDashboardEntity?.data {
                 self.investorDashboardData = productData
+                let usdData = productData.total_earning?.usd ?? "0.0"
+                let btcData = productData.total_earning?.btc ?? "0.0"
+                let ethData = productData.total_earning?.eth ?? "0.0"
+                let totalEarning = (Double(usdData) ?? 0.0) + (Double(btcData) ?? 0.0) + (Double(ethData) ?? 0.0)
+                print(totalEarning)
             }
             self.mainTableView.reloadData()
         case Base.campaigner_dashboard.rawValue:

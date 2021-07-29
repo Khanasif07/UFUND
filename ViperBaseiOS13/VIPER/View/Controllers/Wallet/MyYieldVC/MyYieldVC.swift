@@ -15,7 +15,6 @@ class MyYieldVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
-    //    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var mainTableView: UITableView!
     @IBOutlet weak var titleLbl: UILabel!
@@ -62,6 +61,7 @@ class MyYieldVC: UIViewController {
     @IBAction func filterBtnAction(_ sender: UIButton) {
         let filterVC = MyYieldFilterVC.instantiate(fromAppStoryboard: .Filter)
         filterVC.modalPresentationStyle = .overCurrentContext
+        filterVC.delegate = self
         self.present(filterVC, animated: true, completion: nil)
     }
     
@@ -77,26 +77,26 @@ extension MyYieldVC {
         self.collectionSetUp()
         self.tableSetUp()
         self.hitYieldWalletBalanceAPI()
-        self.hitYieldBuyInvestAPI()
+        self.hitYieldBuyInvestAPI(params: [:])
     }
     
     private func setUpFont(){
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
     }
     
-    //    private func setSearchBar(){
-    //        self.searchBar.delegate = self
-    //        if #available(iOS 13.0, *) {
-    //            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
-    //            searchBar.tintColor = .white
-    //            searchBar.setIconColor(.white)
-    //            searchBar.setPlaceholderColor(.white)
-    //            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
-    //            self.searchBar.searchTextField.textColor = .lightGray
-    //        } else {
-    //            // Fallback on earlier versions
-    //        }
-    //    }
+//    private func setSearchBar(){
+//        self.searchBar.delegate = self
+//        if #available(iOS 13.0, *) {
+//            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
+//            searchBar.tintColor = .white
+//            searchBar.setIconColor(.white)
+//            searchBar.setPlaceholderColor(.white)
+//            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
+//            self.searchBar.searchTextField.textColor = .lightGray
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//    }
     
     private func collectionSetUp(){
         self.mainCollectionView.delegate = self
@@ -126,9 +126,9 @@ extension MyYieldVC {
         self.presenter?.HITAPI(api: Base.yieldBalance.rawValue, params: nil , methodType: .GET, modelClass: YieldModuleEntity.self, token: true)
     }
     
-    private func hitYieldBuyInvestAPI(){
+    private func hitYieldBuyInvestAPI(params: [String:Any]){
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: nil, methodType: .GET, modelClass: YieldsHistoryEntity.self, token: true)
+        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: params, methodType: .GET, modelClass: YieldsHistoryEntity.self, token: true)
     }
     
 }
@@ -196,6 +196,16 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
             self.rotateLeft(dropdownView: view.dropdownBtn,left : (self.yield_histories?[section-1].isSelected ?? false) ? 0 : -1)
             return view
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if !isRequestinApi {
+            guard nextPageAvailable, !isRequestinApi else { return }
+        } else {
+            guard !isRequestinApi else { return }
+        }
+        isRequestinApi = true
+        self.hitYieldBuyInvestAPI(params: [ProductCreate.keys.search: self.searchText,ProductCreate.keys.page: self.currentPage])
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -416,19 +426,9 @@ extension MyYieldVC: ProductFilterVCDelegate {
         if !maturity_from.1{self.selectedInvestorMature_from = ("",false) }
         if !maturity_to.1{self.selectedInvestorMature_to = ("",false) }
         //
-        var params  = ProductFilterVM.shared.paramsDictForProducts
+        var params  = ProductFilterVM.shared.paramsDictForBuyHistory
         params[ProductCreate.keys.page] =  1
         params[ProductCreate.keys.search] = self.searchText
-        //        switch (userType,false) {
-        //        case (UserType.campaigner.rawValue,false):
-        //            params[ProductCreate.keys.status] = campaignerProductType.titleValue
-        //            self.presenter?.HITAPI(api: Base.campaignerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-        //        case (UserType.investor.rawValue,false):
-        //             params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
-        //             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
-        //        default:
-        //            break
-        //        }
-        //        self.loader.isHidden = false
+        self.hitYieldBuyInvestAPI(params: params)
     }
 }

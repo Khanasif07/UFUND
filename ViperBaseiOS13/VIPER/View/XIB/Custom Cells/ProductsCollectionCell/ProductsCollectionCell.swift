@@ -60,7 +60,7 @@ class ProductsCollectionCell: UICollectionViewCell {
         case 3:
             productValueLbll.text = "\(model.my_investements ?? 0)"
         case 4:
-            productValueLbll.text = "$ " + "\(model.total_earning ?? 0)"
+            productValueLbll.text = "$ " + "\(model.total_earning?.usd ?? "")"
         case 5:
             productValueLbll.text = "$ " + "\(model.total_wallets ?? 0)"
         default:

@@ -14,6 +14,7 @@ class MyWalletDepositVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var currencyImgView: UIImageView!
     @IBOutlet weak var desWalletLastVIew: UIImageView!
     @IBOutlet weak var desWalletfirstVIew: UIImageView!
     @IBOutlet weak var qrCodeImgView: UIImageView!
@@ -103,6 +104,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
     
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
+            currencyImgView.isHidden = false
             currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
             currencyTxtField.text =  self.selectedCurrencyType
             currencyTxtField.isUserInteractionEnabled = true
@@ -112,7 +114,13 @@ extension MyWalletDepositVC: UITextFieldDelegate {
             desWalletfirstVIew.isHidden = true
             amtTxtField.isHidden = true
             descLbl.text = "Copy address or scan QR to add money to "
+            if selectedCurrencyType == "ETH"{
+                currencyImgView.image = #imageLiteral(resourceName: "eth")
+            } else {
+                currencyImgView.image = #imageLiteral(resourceName: "btc")
+            }
         } else {
+            currencyImgView.isHidden = true
             currencyTxtField.rightView = nil
             currencyTxtField.inputView = nil
             currencyTxtField.text = " Dollar (USD)"
@@ -158,14 +166,14 @@ extension MyWalletDepositVC: ProductSortVCDelegate{
         self.selectedCurrencyType = sortType
         currencyTxtField.text =  self.selectedCurrencyType
         if selectedCurrencyType == "ETH"{
+            currencyImgView.image = #imageLiteral(resourceName: "eth")
             self.qrCodeAddressLbl.text = "\(User.main.eth_address ?? "" )"
             qrCodeImgView.image = Common.CreateQrCodeForyourString(string: User.main.eth_address ?? "")
         } else {
+            currencyImgView.image = #imageLiteral(resourceName: "btc")
             self.qrCodeAddressLbl.text = "\(User.main.btc_address ?? "" )"
             qrCodeImgView.image = Common.CreateQrCodeForyourString(string: User.main.btc_address ?? "")
         }
         
     }
 }
-
-

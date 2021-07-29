@@ -409,6 +409,17 @@ extension MyWalletSheetVC : UITableViewDelegate,UITableViewDataSource {
         return view
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if !isRequestinApi {
+            guard nextPageAvailable, !isRequestinApi else { return }
+        } else {
+            guard !isRequestinApi else { return }
+        }
+        isRequestinApi = true
+        self.hitBuyInvestHistoryAPI(params: [ProductCreate.keys.search: self.searchText,ProductCreate.keys.page: self.currentPage])
+    }
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 48.0
     }

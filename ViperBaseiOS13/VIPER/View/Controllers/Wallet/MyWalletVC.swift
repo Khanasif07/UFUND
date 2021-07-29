@@ -159,6 +159,7 @@ class MyWalletVC: UIViewController {
 extension MyWalletVC {
     
     private func initialSetup() {
+        UISegmentedControl.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
         NotificationCenter.default.addObserver(self, selector: #selector(purchaseDidFinish), name: .PaymentSucessfullyDone, object: nil)
         self.setUpBorder()
         self.setFont()

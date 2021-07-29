@@ -293,11 +293,11 @@ struct DashboardEntity : Mappable{
         
     }
     
-    var investments : Int?
+    var investments : Yield?
     var my_investements : Int?
     var tokenized_assets : Int?
     var total_categories : Int?
-    var total_earning : Int?
+    var total_earning : Yield?
     var total_products : Int?
     var total_tokenizes_assets : Int?
     var total_wallets: Int?

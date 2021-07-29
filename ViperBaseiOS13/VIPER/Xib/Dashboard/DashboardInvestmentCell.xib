@@ -43,12 +43,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pb-Jr-wTu" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="51" width="343" height="225"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="225" id="1eF-ke-SjL">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="350"/>
+                                    </constraint>
+                                </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="5y1-2R-YyO">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5y1-2R-YyO">
                                 <rect key="frame" x="16" y="298" width="311" height="46.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="wgw-VL-WVE">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="46.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="97" height="46.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invested Dollar " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4p3-Il-1J9">
                                                 <rect key="frame" x="0.0" y="0.0" width="92.5" height="17"/>
@@ -57,16 +62,16 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="xDZ-7A-VDN">
-                                                <rect key="frame" x="0.0" y="21" width="87" height="25.5"/>
+                                                <rect key="frame" x="0.0" y="21" width="40.5" height="25.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3k-9h-meZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="44.5" height="25.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3k-9h-meZ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40.5" height="25.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                         <color key="textColor" red="0.16470588235294117" green="0.74509803921568629" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0.0%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9R-CO-YbP">
-                                                        <rect key="frame" x="47" y="0.0" width="40" height="25.5"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0.0%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9R-CO-YbP">
+                                                        <rect key="frame" x="40.5" y="0.0" width="0.0" height="25.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -76,25 +81,53 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Ecm-gG-MN0">
-                                        <rect key="frame" x="212.5" y="0.0" width="98.5" height="46.5"/>
+                                        <rect key="frame" x="107" y="0.0" width="97" height="46.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invested Crypto " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHC-3n-441">
-                                                <rect key="frame" x="0.0" y="0.0" width="98.5" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invested BTC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHC-3n-441">
+                                                <rect key="frame" x="0.0" y="0.0" width="77.5" height="17"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="cPf-jc-5Wg">
-                                                <rect key="frame" x="0.0" y="21" width="87" height="25.5"/>
+                                                <rect key="frame" x="0.0" y="21" width="44.5" height="25.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZL-1u-lZJ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0.0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZL-1u-lZJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="44.5" height="25.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                         <color key="textColor" red="0.52941176470588236" green="0.2627450980392157" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0.0%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsP-lu-ojT">
-                                                        <rect key="frame" x="47" y="0.0" width="40" height="25.5"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0.0%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsP-lu-ojT">
+                                                        <rect key="frame" x="44.5" y="0.0" width="0.0" height="25.5"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="BLf-aP-gfS">
+                                        <rect key="frame" x="214" y="0.0" width="97" height="46.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invested ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdd-Zk-q9A">
+                                                <rect key="frame" x="0.0" y="0.0" width="75.5" height="17"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="dd9-5p-Oha">
+                                                <rect key="frame" x="0.0" y="21" width="44.5" height="25.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0.0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rdb-rd-kKx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="44.5" height="25.5"/>
+                                                        <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
+                                                        <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0.0%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dX2-fp-fL1">
+                                                        <rect key="frame" x="44.5" y="0.0" width="0.0" height="25.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -131,11 +164,12 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="allMyInvestTitleLbl" destination="bke-YJ-gHD" id="tPz-Bh-mpb"/>
-                <outlet property="cryptoInvestmentValue" destination="QZL-1u-lZJ" id="g7n-R6-ZEH"/>
+                <outlet property="btcInvestmentValue" destination="QZL-1u-lZJ" id="54w-B2-kgK"/>
                 <outlet property="cryptoPercentageValue" destination="hsP-lu-ojT" id="SxP-xu-A2E"/>
                 <outlet property="dataContainerView" destination="hDL-Rd-G6G" id="JMr-MK-azA"/>
                 <outlet property="dollarInvestmentValue" destination="c3k-9h-meZ" id="zLN-aW-gLU"/>
                 <outlet property="dollarPercentageValue" destination="K9R-CO-YbP" id="MDD-5U-tuL"/>
+                <outlet property="ethInvestmentValue" destination="Rdb-rd-kKx" id="tLc-gJ-brt"/>
                 <outlet property="investCryptoTitleLbl" destination="fHC-3n-441" id="HzN-dB-LNc"/>
                 <outlet property="investDollarTitleLbl" destination="4p3-Il-1J9" id="xkg-Km-MsB"/>
                 <outlet property="pieChartView" destination="2Pb-Jr-wTu" id="fDL-N8-tMf"/>

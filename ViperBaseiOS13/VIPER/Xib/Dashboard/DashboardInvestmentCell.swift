@@ -19,7 +19,8 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var investCryptoTitleLbl: UILabel!
     @IBOutlet weak var investDollarTitleLbl: UILabel!
     @IBOutlet weak var dollarPercentageValue: UILabel!
-    @IBOutlet weak var cryptoInvestmentValue: UILabel!
+    @IBOutlet weak var btcInvestmentValue: UILabel!
+    @IBOutlet weak var ethInvestmentValue: UILabel!
     @IBOutlet weak var dollarInvestmentValue: UILabel!
     
     // MARK: - Variables
@@ -39,7 +40,7 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
         [investCryptoTitleLbl,investDollarTitleLbl].forEach { (lbl) in
             lbl.font  = isDeviceIPad ? .setCustomFont(name: .regular, size: .x16) : .setCustomFont(name: .regular, size: .x12)
         }
-        [cryptoInvestmentValue,dollarInvestmentValue].forEach { (lbl) in
+        [btcInvestmentValue,ethInvestmentValue,dollarInvestmentValue].forEach { (lbl) in
             lbl.font  = isDeviceIPad ? .setCustomFont(name: .bold, size: .x22) : .setCustomFont(name: .bold, size: .x18)
         }
         self.allMyInvestTitleLbl.font  = isDeviceIPad ? .setCustomFont(name: .semiBold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
@@ -77,7 +78,7 @@ class DashboardInvestmentCell: UITableViewCell, ChartViewDelegate {
         set.sliceSpace = 1
         
         
-        set.colors = [#colorLiteral(red: 0.1647058824, green: 0.7450980392, blue: 0.7843137255, alpha: 1),#colorLiteral(red: 0.5294117647, green: 0.262745098, blue: 0.9137254902, alpha: 1)]
+        set.colors = [#colorLiteral(red: 0.1647058824, green: 0.7450980392, blue: 0.7843137255, alpha: 1),#colorLiteral(red: 0.5294117647, green: 0.262745098, blue: 0.9137254902, alpha: 1),#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)]
         
         let data = PieChartData(dataSet: set)
         

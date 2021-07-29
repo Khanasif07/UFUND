@@ -101,7 +101,7 @@
         </view>
     </objects>
     <resources>
-        <image name="arrowBottom" width="20" height="20"/>
+        <image name="arrowBottom" width="24" height="24"/>
         <namedColor name="tabUnSelected">
             <color red="0.69999998807907104" green="0.69999998807907104" blue="0.69999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -125,7 +125,7 @@ class ToastManager {
         snackbar.messageTextFont = .setCustomFont(name: .semiBold, size: .x14)
         
         // Change snackbar background color
-        snackbar.backgroundColor = .systemRed
+        snackbar.backgroundColor = .systemYellow
         
         // Add icon image
         //        snackbar.iconImageView.frame = CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: 15.0, height: 15.0))
