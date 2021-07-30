@@ -21,19 +21,24 @@ class UserProfileVC: UIViewController {
     // MARK: - Variables
     //===========================
     var isKYCIncomplete: Bool = false
-    let userProfileInfoo : [UserProfileAttributes] = UserProfileAttributes.allCases
     var param  =  [String:Any]()
+    var tempIndexPath: IndexPath?
     var imageData: Data?
     var profileImg: UIImage?
     var profileImgUrl : URL?
     var userDetails: UserDetails?
     var userProfile: UserProfile?
     var countryCode: String  = "+91"
-    var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Address Line 1",""),("Address Line 2",""),("ZipCode",""),("City",""),("State",""),("Country","")]
-    var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Bank Address","")]
+    var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Investor Type",""),("Revenue",""),("Income",""),("Total Annual Revenue","")]
+    var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Account Type",""),("Bank Address","")]
+    var companyDetailArray = [("Company Name",""),("Email",""),("Telephone",""),("Company Address","")]
+    var addressDetailArray = [("Address Line 1",""),("Address Line 2",""),("ZipCode",""),("City",""),("State",""),("Country","")]
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
+    var customPickerIncome = WCCustomPickerView()
+    var customPickerInvestor =  WCCustomPickerView()
+    var customPickerAccount =  WCCustomPickerView()
     
     var isEnableEdit = false {
         didSet {
@@ -84,7 +89,27 @@ class UserProfileVC: UIViewController {
                     } else {
                         param[ProfileUpdate.keys.mobile] = userData.1
                     }
-                } else if userData.0 == "Address Line 1" {
+                } else if userData.0 == "Investor Type" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.account_type] = userData.1
+                    }
+                } else if userData.0 == "Revenue" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.revenue] = userData.1
+                    }
+                }else if userData.0 == "Income" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.income_type] = userData.1
+                    }
+                } else if userData.0 == "Total Annual Revenue" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.address2] = userData.1
+                    }
+                }
+            }
+            
+            self.addressDetailArray.forEach { (userData) in
+                 if userData.0 == "Address Line 1" {
                     if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.address1] = userData.1
                     }
@@ -128,7 +153,12 @@ class UserProfileVC: UIViewController {
                     if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.account_number] = userData.1
                     }
-                } else if userData.0 == "Routing Number" {
+                }  else if userData.0 == "Account Type" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.user_account_type] = userData.1
+                    }
+                }
+                else if userData.0 == "Routing Number" {
                     if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.routing_number] = userData.1
                     }
@@ -147,26 +177,48 @@ class UserProfileVC: UIViewController {
                     }
                 }
             }
+            
+            self.companyDetailArray.forEach { (userData) in
+                if userData.0 == "Company Name"{
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.company_name] = userData.1
+                    }
+                }else if userData.0 == "Email"{
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.company_email] = userData.1
+                    }
+                } else if userData.0 == "Telephone" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.company_telephone] = userData.1
+                    }
+                } else if userData.0 == "Company Address" {
+                    if  !userData.1.isEmpty {
+                        param[ProfileUpdate.keys.company_address] = userData.1
+                    }
+                }
+            }
+            
             if imageData != nil {
-                var dataDic =  [String:(Data,String,String)]()
-                dataDic = [ProfileUpdate.keys.picture : (self.imageData!,"Profile.jpg",FileType.image.rawValue)]
-                self.loader.isHidden = false
-                self.presenter?.UploadData(api: Base.profile.rawValue, params: param, imageData: dataDic , methodType: .POST, modelClass: UserDetails.self, token: true)
+                //                var dataDic =  [String:(Data,String,String)]()
+                //                dataDic = [ProfileUpdate.keys.picture : (self.imageData!,"Profile.jpg",FileType.image.rawValue)]
                 //                self.loader.isHidden = false
-                //                AWSS3Manager.shared.uploadImage(image: profileImg ?? UIImage(), progress: { (progress) in
-                //                                    print(progress)
-                //                }) { (successUrl, error) in
-                //                    if let url = successUrl {
-                //                        self.param[ProfileUpdate.keys.picture] = url
-                //                        self.presenter?.HITAPI(api: Base.profile.rawValue, params: self.param, methodType: .POST, modelClass: UserDetails.self, token: true)
-                //                        print(url)
-                //                    }
-                //                    if let _ = error{
-                //                        ToastManager.show(title:  nullStringToEmpty(string: Constants.string.failedImg.localize()), state: .error)
-                //                    }
-//            }
+                //                self.presenter?.UploadData(api: Base.profile.rawValue, params: param, imageData: dataDic , methodType: .POST, modelClass: UserDetails.self, token: true)
+                self.loader.isHidden = false
+                AWSS3Manager.shared.uploadImage(image: profileImg ?? UIImage(), progress: { (progress) in
+                    print(progress)
+                }) { (successUrl, error) in
+                    if let url = successUrl {
+                        self.param[ProfileUpdate.keys.picture] = url
+                        self.presenter?.HITAPI(api: Base.profile.rawValue, params: self.param, methodType: .POST, modelClass: UserDetails.self, token: true)
+                        print(url)
+                    }
+                    if let _ = error{
+                        ToastManager.show(title:  nullStringToEmpty(string: Constants.string.failedImg.localize()), state: .error)
+                    }
+                }
             } else {
                 self.loader.isHidden = false
+                self.param[ProfileUpdate.keys.picture] = self.userProfile?.picture ?? ""
                 self.presenter?.HITAPI(api: Base.profile.rawValue, params: param, methodType: .POST, modelClass: UserDetails.self, token: true)
             }
         } else {
@@ -212,12 +264,10 @@ extension UserProfileVC: PresenterOutputProtocol {
             self.generalInfoArray[1].1 = self.userProfile?.last_name ?? ""
             self.generalInfoArray[2].1 = self.userProfile?.mobile ?? ""
             self.generalInfoArray[3].1 = self.userProfile?.email ?? ""
-            self.generalInfoArray[4].1 = self.userProfile?.address1 ?? ""
-            self.generalInfoArray[5].1 = self.userProfile?.address2 ?? ""
-            self.generalInfoArray[6].1 = self.userProfile?.zip_code ?? ""
-            self.generalInfoArray[7].1 = self.userProfile?.city ?? ""
-            self.generalInfoArray[8].1 = self.userProfile?.state ?? ""
-            self.generalInfoArray[9].1 = self.userProfile?.country ?? ""
+            self.generalInfoArray[4].1 = "\(self.userProfile?.account_type ?? "")"
+            self.generalInfoArray[5].1 =  "\(self.userProfile?.revenue ?? 0.0)"
+            self.generalInfoArray[6].1 = self.userProfile?.income_type ?? ""
+            self.generalInfoArray[7].1 = "\(self.userProfile?.total_annual_revenue ?? 0.0)"
             
             self.bankInfoArray[0].1 = self.userProfile?.bank_name ?? ""
             self.bankInfoArray[1].1 = self.userProfile?.account_name ?? ""
@@ -225,7 +275,21 @@ extension UserProfileVC: PresenterOutputProtocol {
             self.bankInfoArray[3].1 = self.userProfile?.routing_number ?? ""
             self.bankInfoArray[4].1 = self.userProfile?.iban_number ?? ""
             self.bankInfoArray[5].1 = self.userProfile?.swift_number ?? ""
-            self.bankInfoArray[6].1 = self.userProfile?.bank_address ?? ""
+            self.bankInfoArray[6].1 = self.userProfile?.user_account_type ?? ""
+            self.bankInfoArray[7].1 = self.userProfile?.bank_address ?? ""
+            
+            self.addressDetailArray[0].1 = self.userProfile?.address1 ?? ""
+            self.addressDetailArray[1].1 = self.userProfile?.address2 ?? ""
+            self.addressDetailArray[2].1 = self.userProfile?.zip_code ?? ""
+            self.addressDetailArray[3].1 = self.userProfile?.city ?? ""
+            self.addressDetailArray[4].1 = self.userProfile?.state ?? ""
+            self.addressDetailArray[5].1 = self.userProfile?.country ?? ""
+            
+            self.companyDetailArray[0].1 = self.userProfile?.company_name ?? ""
+            self.companyDetailArray[1].1 = self.userProfile?.company_email ?? ""
+            self.companyDetailArray[2].1 = self.userProfile?.company_telephone ?? ""
+            self.companyDetailArray[3].1 = self.userProfile?.company_address ?? ""
+            
             User.main.picture  = self.userProfile?.picture
             User.main.name  = self.userProfile?.name
             if self.userProfile?.id != nil {
@@ -235,16 +299,10 @@ extension UserProfileVC: PresenterOutputProtocol {
             User.main.mobile = self.userProfile?.mobile
             User.main.kyc = self.userProfile?.kyc
             storeInUserDefaults()
-//            if !(self.userProfile?.picture?.isEmpty ?? true){
-//                self.profileImgUrl = URL(string: baseUrl + "/" +  nullStringToEmpty(string: self.userProfile?.picture))
-//            }
             if !(self.userProfile?.picture?.isEmpty ?? true){
                 self.profileImgUrl = URL(string: nullStringToEmpty(string: self.userProfile?.picture))
             }
             self.mainTableView.reloadData()
-//            if User.main.kyc == 1 &&  isKYCIncomplete{
-//                self.pushToProfile(id: Storyboard.Ids.UserProfileVC, animation: true)
-//            }
             if User.main.kyc == 0{
                 ToastManager.show(title: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval." ,state: .error)
             }
@@ -268,17 +326,21 @@ extension UserProfileVC: PresenterOutputProtocol {
         self.mainTableView.delegate = self
         self.mainTableView.dataSource = self
         self.getProfileDetails()
-    }
-    
-    private func present(to identifier : String) {
-        let viewController = self.storyboard!.instantiateViewController(withIdentifier: identifier) as? CountryPickerVC
-        viewController?.countryDelegate = self
-        self.present(viewController!, animated: true, completion: nil)
+        self.customPickerViewSetup()
     }
     
     func getProfileDetails(){
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.profile.rawValue, params: nil, methodType: .GET, modelClass: UserDetails.self, token: true)
+    }
+    
+    private func customPickerViewSetup(){
+        [customPickerIncome,customPickerAccount,customPickerInvestor].forEach { (pickerView) in
+            pickerView?.delegate = self
+        }
+        customPickerIncome.dataArray = ["Monthly","Yearly","Other"]
+        customPickerAccount.dataArray = ["Personal","Business"]
+        customPickerInvestor.dataArray = ["Individual","Business"]
     }
 }
 
@@ -287,23 +349,36 @@ extension UserProfileVC: PresenterOutputProtocol {
 extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-           return 2
+        return [generalInfoArray,addressDetailArray,companyDetailArray,bankInfoArray].endIndex
        }
        
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return generalInfoArray.endIndex + 1
+        case 1:
+            return addressDetailArray.endIndex
+        case 2:
+            return companyDetailArray.endIndex
         default:
             return bankInfoArray.endIndex
         }
        }
        
-       func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-           let view = tableView.dequeueHeaderFooter(with: UserProfileHeaderView.self)
-           view.titleLbl.text  = section == 0 ? "GENERAL" : "BANK DETAILS"
-           return view
-       }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueHeaderFooter(with: UserProfileHeaderView.self)
+        switch section {
+        case 0:
+            view.titleLbl.text = "GENERAL"
+        case 1:
+            view.titleLbl.text = "ADDRESS DETAILS"
+        case 2:
+            view.titleLbl.text = "COMPANY DETAILS"
+        default:
+            view.titleLbl.text  = "BANK DETAILS"
+        }
+        return view
+    }
        
        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44.0
@@ -343,15 +418,9 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                 cell.profileImgView.backgroundColor = .clear
                 return  cell
             default:
-                if generalInfoArray[indexPath.row - 1].0 == "Phone Number" {
+                switch generalInfoArray[indexPath.row - 1].0 {
+                case "Phone Number":
                     let cell = tableView.dequeueCell(with: UserProfilePhoneNoCell.self, indexPath: indexPath)
-                    cell.countryPickerTapped = { [weak self] (sender) in
-                        guard let selff = self else { return }
-                        if selff.isEnableEdit {
-                        selff.present(to: Storyboard.Ids.CountryPickerVC)
-                        }
-                    }
-//                    cell.countryCodeLbl.text = self.countryCode
                     cell.phoneTextField.delegate = self
                     cell.phoneTextField.keyboardType = .numberPad
                     cell.phoneTextField.isUserInteractionEnabled = isEnableEdit
@@ -359,30 +428,111 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                     cell.phoneTextField.placeholder = self.generalInfoArray[indexPath.row - 1].0
                     cell.phoneTextField.text = self.generalInfoArray[indexPath.row - 1].1
                     return  cell
-                } else {
+                case "Revenue","Total Annual Revenue":
                     let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+                    cell.textFIeld.delegate = self
+                    cell.textFIeld.keyboardType = .decimalPad
+                    cell.textFIeld.isUserInteractionEnabled = isEnableEdit
+                    cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
+                    cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row - 1].0
+                    cell.textFIeld.text = self.generalInfoArray[indexPath.row - 1].1
+                    return  cell
+                case "Email":
+                    let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+                    cell.textFIeld.delegate = self
+                    cell.textFIeld.isUserInteractionEnabled = false
+                    cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
+                    cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row - 1].0
+                    cell.textFIeld.text = self.generalInfoArray[indexPath.row - 1].1
+                    return  cell
+                case "Income":
+                    let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+                    cell.textFIeld.inputView = customPickerIncome
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
                     cell.textFIeld.delegate = self
                     cell.textFIeld.isUserInteractionEnabled = isEnableEdit
                     cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
                     cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row - 1].0
                     cell.textFIeld.text = self.generalInfoArray[indexPath.row - 1].1
                     return  cell
+                case "Investor Type":
+                    let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+                    cell.textFIeld.inputView = customPickerInvestor
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                    cell.textFIeld.delegate = self
+                    cell.textFIeld.isUserInteractionEnabled = isEnableEdit
+                    cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
+                    cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row - 1].0
+                    cell.textFIeld.text = self.generalInfoArray[indexPath.row - 1].1
+                    return  cell
+                default:
+                    let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+                    cell.textFIeld.delegate = self
+                    cell.textFIeld.keyboardType = .default
+                    cell.textFIeld.isUserInteractionEnabled = isEnableEdit
+                    cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
+                    cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row - 1].0
+                    cell.textFIeld.text = self.generalInfoArray[indexPath.row - 1].1
+                    cell.textFIeld.inputView = nil
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                    return  cell
                 }
             }
+        case 1:
+            let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+            cell.textFIeld.delegate = self
+            cell.textFIeld.keyboardType = .default
+            cell.titleLbl.text = self.addressDetailArray[indexPath.row ].0
+            cell.textFIeld.placeholder = self.addressDetailArray[indexPath.row].0
+            cell.textFIeld.isUserInteractionEnabled = isEnableEdit
+            cell.textFIeld.text = self.addressDetailArray[indexPath.row].1
+            return  cell
+        case 2:
+            let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
+            cell.textFIeld.delegate = self
+            switch bankInfoArray[indexPath.row].0 {
+            case "Telephone":
+                cell.textFIeld.keyboardType = .numberPad
+            default:
+                 cell.textFIeld.keyboardType = .emailAddress
+            }
+            cell.titleLbl.text = self.companyDetailArray[indexPath.row ].0
+            cell.textFIeld.placeholder = self.companyDetailArray[indexPath.row].0
+            cell.textFIeld.isUserInteractionEnabled = isEnableEdit
+            cell.textFIeld.text = self.companyDetailArray[indexPath.row].1
+            return  cell
         default:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
-            cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
-            cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
-//            if self.bankInfoArray[indexPath.row ].0 == "Account Currency"  {
-//                cell.textFIeld.inputView = customPickerViewYear
-//                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
-//            } else {
-//                 cell.textFIeld.inputView = nil
-//                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
-//            }
-            cell.textFIeld.isUserInteractionEnabled = isEnableEdit
-            cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
-            return  cell
+            switch bankInfoArray[indexPath.row].0 {
+            case "Account Type":
+                cell.textFIeld.inputView = customPickerAccount
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.delegate = self
+                cell.textFIeld.keyboardType = .default
+                cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
+                cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
+                cell.textFIeld.isUserInteractionEnabled = isEnableEdit
+                cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
+                return  cell
+            case "Account Number","Routing Number":
+                cell.textFIeld.delegate = self
+                cell.textFIeld.keyboardType = .numberPad
+                cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
+                cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
+                cell.textFIeld.isUserInteractionEnabled = isEnableEdit
+                cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
+                return  cell
+            default:
+                cell.textFIeld.delegate = self
+                cell.textFIeld.keyboardType = .emailAddress
+                cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
+                cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
+                cell.textFIeld.isUserInteractionEnabled = isEnableEdit
+                cell.textFIeld.text = self.bankInfoArray[indexPath.row].1
+                cell.textFIeld.inputView = nil
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                return  cell
+            }
         }
     }
 }
@@ -394,9 +544,14 @@ extension UserProfileVC : UITextFieldDelegate {
         let text = textField.text?.byRemovingLeadingTrailingWhiteSpaces ?? ""
         if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
             if  let indexPath = mainTableView.indexPath(forItem: cell){
-                if indexPath.section == 0 {
+                switch indexPath.section {
+                case 0:
                     self.generalInfoArray[indexPath.row - 1].1 = text
-                } else {
+                case 1:
+                    self.addressDetailArray[indexPath.row].1 = text
+                case 2:
+                    self.companyDetailArray[indexPath.row].1 = text
+                default:
                     self.bankInfoArray[indexPath.row].1 = text
                 }
             }
@@ -407,44 +562,71 @@ extension UserProfileVC : UITextFieldDelegate {
             }
         }
     }
-      
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
+        if  let indexPath = mainTableView.indexPath(forItem: cell){
+            switch indexPath.section {
+            case 0:
+                switch indexPath.row {
+                case 5,7:
+                    tempIndexPath = indexPath
+                default:
+                    tempIndexPath = nil
+                }
+            case 3:
+                switch indexPath.row {
+                case 6:
+                    tempIndexPath = indexPath
+                default:
+                    tempIndexPath = nil
+                }
+            default:
+                tempIndexPath = nil
+            }
+            }
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let currentString: NSString = textField.text! as NSString
-//        let newString: NSString =
-//            currentString.replacingCharacters(in: range, with: string) as NSString
-//        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
-//                if  let indexPath = mainTableView.indexPath(forItem: cell){
-//                     if indexPath.section  == 0 {
-//                    switch  self.generalInfoArray[indexPath.row - 1].0  {
-//                    case "First Name","Last Name":
-//                        return (string.checkIfValidCharaters(.name) || string.isEmpty) && newString.length <= 50
-                        //                case cell?.mobNoTxtField:
-                    //                    return (string.checkIfValidCharaters(.mobileNumber) || string.isEmpty) && newString.length <= 10
-//                    case "Email":
-//                        return (string.checkIfValidCharaters(.email) || string.isEmpty) && newString.length <= 50
-//                    default:
-//                        return false
-//                    }
-//                }
-//            }
-//        }
-         return true
+        //        let currentString: NSString = textField.text! as NSString
+        //        let newString: NSString =
+        //            currentString.replacingCharacters(in: range, with: string) as NSString
+        //        if let cell = mainTableView.cell(forItem: textField) as? UserProfileTableCell {
+        //                if  let indexPath = mainTableView.indexPath(forItem: cell){
+        //                     if indexPath.section  == 0 {
+        //                    switch  self.generalInfoArray[indexPath.row - 1].0  {
+        //                    case "First Name","Last Name":
+        //                        return (string.checkIfValidCharaters(.name) || string.isEmpty) && newString.length <= 50
+        //                case cell?.mobNoTxtField:
+        //                    return (string.checkIfValidCharaters(.mobileNumber) || string.isEmpty) && newString.length <= 10
+        //                    case "Email":
+        //                        return (string.checkIfValidCharaters(.email) || string.isEmpty) && newString.length <= 50
+        //                    default:
+        //                        return false
+        //                    }
+        //                }
+        //            }
+        //        }
+        return true
     }
 }
     
 
-extension UserProfileVC : CountryDelegate{
-    func sendCountryCode(code: String) {
-        self.countryCode = code
-        self.mainTableView.reloadData()
+//MARK:- WCCustomPickerViewDelegate
+//===========================
+
+extension UserProfileVC: WCCustomPickerViewDelegate {
+    func userDidSelectRow(_ text: String) {
+        switch tempIndexPath?.section {
+        case 0:
+            self.generalInfoArray[(tempIndexPath?.row ?? 0) - 1].1 = text
+            mainTableView.reloadRows(at: [tempIndexPath!], with: .none)
+        case 3:
+            self.bankInfoArray[tempIndexPath?.row ?? 0].1 = text
+            mainTableView.reloadRows(at: [tempIndexPath!], with: .none)
+        default:
+            print("Do Nothing")
+        }
     }
 }
-
-////MARK:- WCCustomPickerViewDelegate
-////===========================
-//
-//extension UserProfileVC: WCCustomPickerViewDelegate {
-//    func userDidSelectRow(_ text: AssetTokenTypeModel) {
-//        self.selectedCurrency = text
-//    }
-//}

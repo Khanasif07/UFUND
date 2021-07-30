@@ -61,6 +61,17 @@ struct UserProfile : Mappable {
     var swift_number : String?
     var account_currency : String?
     var bank_address : String?
+    //
+    var company_name: String?
+    var company_address: String?
+    var company_email: String?
+    var company_telephone: String?
+    //
+    var revenue: Double?
+    var total_annual_revenue: Double?
+    var income_type : String?
+    var account_type: String?
+    var user_account_type: String?
           
 	init?(map: Map) {
 
@@ -113,6 +124,17 @@ struct UserProfile : Mappable {
         swift_number <- map["swift_number"]
         account_currency <- map["account_currency"]
         bank_address <- map["bank_address"]
+        //
+        company_name <- map["company_name"]
+        company_address <- map["company_address"]
+        company_email <- map["company_email"]
+        company_telephone <- map["company_telephone"]
+        //
+        revenue <- map["revenue"]
+        total_annual_revenue <- map["total_annual_revenue"]
+        income_type <- map["income_type"]
+        account_type <- map["account_type"]
+        user_account_type <- map["user_account_type"]
 	}
 
 }

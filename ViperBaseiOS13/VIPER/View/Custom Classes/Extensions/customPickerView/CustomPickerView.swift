@@ -10,12 +10,12 @@ import UIKit
 
 protocol WCCustomPickerViewDelegate : class{
     
-    func userDidSelectRow(_ text : AssetTokenTypeModel)
+    func userDidSelectRow(_ text : String)
 }
 
 class WCCustomPickerView: UIView {
     
-    lazy var dataArray = [AssetTokenTypeModel]()
+    lazy var dataArray = [String]()
     var indexPath : IndexPath!
     weak var delegate : WCCustomPickerViewDelegate?
     
@@ -81,7 +81,7 @@ extension WCCustomPickerView : UIPickerViewDelegate, UIPickerViewDataSource{
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return dataArray[row].name
+        return dataArray[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

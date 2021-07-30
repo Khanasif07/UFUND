@@ -147,6 +147,15 @@ struct ProfileUpdate  {
     let   swift_number = "swift_number"
     let     account_currency = "account_currency"
     let     bank_address = "bank_address"
+    //
+    let     user_account_type = "user_account_type"
+    let     income_type = "income_type"
+    let     revenue = "revenue"
+    let     company_name = "company_name"
+    let     company_email = "company_email"
+    let     company_telephone = "company_telephone"
+    let     company_address = "company_address"
+    let     account_type = "account_type"
 }
 
 struct TransactionParam {

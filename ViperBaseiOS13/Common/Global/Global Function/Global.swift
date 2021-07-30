@@ -67,9 +67,6 @@ internal func createActivityIndicator(_ uiView : UIView)->UIView{
 
 
 internal func storeInUserDefaults(){
-    
-    
-    
     let data = NSKeyedArchiver.archivedData(withRootObject: User.main)
     UserDefaults.standard.set(data, forKey: Keys.list.userData)
     UserDefaults.standard.synchronize()
