@@ -831,6 +831,11 @@ struct Payment_method : Mappable {
         
     }
     
+    init(value: String){
+        self.value = value
+        self.key = value
+    }
+    
     init(){}
     init?(map: Map) {
 

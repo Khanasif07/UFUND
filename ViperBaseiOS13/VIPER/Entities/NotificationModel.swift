@@ -157,12 +157,12 @@ struct AssetTokenTypeModel : Mappable {
 
 
 struct SendTokenTypeModelEntity : Mappable {
-    var data : SendTokenEntity?
+    var tokens : SendTokenEntity?
     init?(map: Map) {
 
     }
     mutating func mapping(map: Map) {
-        data <- map["data"]
+        tokens <- map["tokens"]
     }
 }
 
@@ -200,6 +200,7 @@ struct SendTokenEntity : Mappable {
 struct SendTokenTypeModel : Mappable {
     var avilable_token : Int?
     var tokenname : String?
+    var token_details: Token_details?
     var id: Int?
     var isSelected: Bool = false
     
@@ -212,7 +213,7 @@ struct SendTokenTypeModel : Mappable {
     }
 
     mutating func mapping(map: Map) {
-
+        token_details <- map["token_details"]
         id <- map["id"]
         tokenname <- map["tokenname"]
         avilable_token <- map["avilable_token"]

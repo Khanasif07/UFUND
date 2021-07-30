@@ -102,7 +102,7 @@ extension SendCoinsTableCell: UICollectionViewDelegate, UICollectionViewDataSour
         cell.productValueLbll.isHidden = false
         cell.productImg.image = isFromCampainer ?  campinerImage[indexPath.row] : inversterImage[indexPath.row]
         cell.productNameLbl.textColor = .black
-        cell.productNameLbl.text = tokenListing?[indexPath.row].tokenname ?? ""
+        cell.productNameLbl.text = tokenListing?[indexPath.row].token_details?.tokenname ?? ""
 //        cell.productNameLbl.text = isFromCampainer ? nullStringToEmpty(string: headerCount?[indexPath.row].0) : nullStringToEmpty(string: headerCount?[indexPath.row].0)
         cell.productValueLbll.textColor = isFromCampainer ?  headerCount?[indexPath.row].1 :  headerCount?[indexPath.row].1
         cell.productValueLbll.text = "\(tokenListing?[indexPath.row].avilable_token ?? 0)"

@@ -82,11 +82,11 @@ class SendCoinVC: UIViewController {
              return
          }
          guard let numberOfToken =  self.numberToknsTxtField.text, !numberOfToken.isEmpty else{
-               ToastManager.show(title: Constants.string.enterBrand, state: .warning)
+               ToastManager.show(title:"Please enter token quantity.", state: .warning)
              return
          }
          guard let address =  self.addressTxtField.text, !address.isEmpty else{
-               ToastManager.show(title: Constants.string.enterProducts, state: .warning)
+               ToastManager.show(title: "Please enter address.", state: .warning)
              return
          }
         self.hitSendTokenAPI()
@@ -140,8 +140,8 @@ extension SendCoinVC {
     
     private func hitSendTokenAPI(){
           self.loader.isHidden = false
-        let params  = [ProductCreate.keys.tokenId: self.sortTypeAppliedCategory.id ?? 0,ProductCreate.keys.amount: self.numberToknsTxtField.text ?? "",ProductCreate.keys.to_eth_address: self.addressTxtField.text ?? ""] as [String : Any]
-          self.presenter?.HITAPI(api: Base.sendCoin.rawValue, params: params, methodType: .POST, modelClass: SendTokenTypeModelEntity.self, token: true)
+        let params  = [ProductCreate.keys.tokenId: self.sortTypeAppliedCategory.token_details?.id ?? 0,ProductCreate.keys.amount: self.numberToknsTxtField.text ?? "",ProductCreate.keys.to_eth_address: self.addressTxtField.text ?? ""] as [String : Any]
+          self.presenter?.HITAPI(api: Base.sendCoin.rawValue, params: params, methodType: .POST, modelClass: SuccessDict.self, token: true)
       }
     
 }
@@ -153,10 +153,6 @@ extension SendCoinVC : UITableViewDelegate, UITableViewDataSource {
         switch sections[indexPath.section] {
         case .tokensListing:
             let cell = tableView.dequeueCell(with: SendCoinsTableCell.self, indexPath: indexPath)
-//            cell.tabsTapped = {   [weak self]  (selectedIndex) in
-//                guard let selff = self else {return}
-//                selff.tabsRedirection(selectedIndex)
-//            }
             cell.seeAllBtn.isHidden = !(self.tokenListing.endIndex >= 6)
             cell.isFromCampainer = userType == UserType.investor.rawValue ? false : true
             cell.tokenListing = self.tokenListing
@@ -206,7 +202,8 @@ extension SendCoinVC : UITableViewDelegate, UITableViewDataSource {
             if isDeviceIPad {
                 return (self.tokenListing.isEmpty) ? 64.0 : (CGFloat(325 * self.tokenListing.endIndex))
             } else {
-                return (self.tokenListing.isEmpty) ? 64.0 : (CGFloat(215 * self.tokenListing.endIndex))
+                let halfTokenListing = self.tokenListing.endIndex / 2
+                return (self.tokenListing.isEmpty) ? 64.0 : (CGFloat(215 * (halfTokenListing)))
             }
         default:
              return UITableView.automaticDimension
@@ -232,11 +229,11 @@ extension SendCoinVC: PresenterOutputProtocol {
         case Base.get_user_token.rawValue:
             self.loader.isHidden = true
             let sendTokenModelEntity = dataDict as? SendTokenTypeModelEntity
-            self.currentPage = sendTokenModelEntity?.data?.current_page ?? 0
-            self.lastPage = sendTokenModelEntity?.data?.last_page ?? 0
+            self.currentPage = sendTokenModelEntity?.tokens?.current_page ?? 0
+            self.lastPage = sendTokenModelEntity?.tokens?.last_page ?? 0
             isRequestinApi = false
             nextPageAvailable = self.lastPage > self.currentPage
-            if let productDict = sendTokenModelEntity?.data?.data {
+            if let productDict = sendTokenModelEntity?.tokens?.data {
                 if self.currentPage == 1 {
                     self.tokenListing = productDict
                 } else {
@@ -245,6 +242,21 @@ extension SendCoinVC: PresenterOutputProtocol {
             }
             self.currentPage += 1
             self.mainTableView.reloadData()
+        case Base.sendCoin.rawValue:
+            self.loader.isHidden = true
+            if let data = dataDict as? SuccessDict{
+                if data.success != nil{
+                    ToastManager.show(title: data.success?.msg ?? "", state: .error)
+                    self.popOrDismiss(animation: true)
+                    return
+                }
+                if data.error != nil{
+                    ToastManager.show(title: data.error?.msg ?? "", state: .error)
+                    return
+                }
+                ToastManager.show(title: data.message ?? "", state: .success)
+                self.popOrDismiss(animation: true)
+            }
         default:
             self.loader.isHidden = true
             break
@@ -307,7 +319,7 @@ extension SendCoinVC : UITextFieldDelegate {
 extension SendCoinVC: ProductSortVCDelegate{
     func sortingAppliedInSendTokenType(sortType: SendTokenTypeModel) {
         self.sortTypeAppliedCategory = sortType
-        self.tokenTxtField.text =  sortType.tokenname
+        self.tokenTxtField.text =  sortType.token_details?.tokenname ?? ""
         self.mainTableView.reloadData()
     }
 }

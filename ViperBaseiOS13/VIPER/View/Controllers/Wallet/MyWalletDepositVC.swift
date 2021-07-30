@@ -82,6 +82,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
     private func initialSetup() {
         self.setFont()
         self.currencyTxtField.delegate = self
+        proceedBtn.setTitle("Done", for: .normal)
         self.amtTxtField.keyboardType = .numberPad
         currencyControl.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
@@ -105,6 +106,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             currencyImgView.isHidden = false
+            proceedBtn.setTitle("Done", for: .normal)
             currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "icDropdown"), normalImage: #imageLiteral(resourceName: "icDropdown"), size: CGSize(width: 20, height: 20))
             currencyTxtField.text =  self.selectedCurrencyType
             currencyTxtField.isUserInteractionEnabled = true
@@ -120,6 +122,7 @@ extension MyWalletDepositVC: UITextFieldDelegate {
                 currencyImgView.image = #imageLiteral(resourceName: "btc")
             }
         } else {
+            proceedBtn.setTitle("Proceed", for: .normal)
             currencyImgView.isHidden = true
             currencyTxtField.rightView = nil
             currencyTxtField.inputView = nil

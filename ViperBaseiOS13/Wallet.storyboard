@@ -718,7 +718,7 @@
                         <outlet property="desWalletLastVIew" destination="XdY-bH-XbN" id="iQc-Ku-MJe"/>
                         <outlet property="desWalletfirstVIew" destination="Sb9-sr-Coo" id="vWP-eB-QqN"/>
                         <outlet property="descLbl" destination="B5C-R0-aLx" id="2We-gA-Xe1"/>
-                        <outlet property="proceedBtn" destination="8Sv-Ki-mWf" id="wBg-fK-ru6"/>
+                        <outlet property="proceedBtn" destination="8Sv-Ki-mWf" id="ydp-sD-gKY"/>
                         <outlet property="qrCodeAddressLbl" destination="nro-nB-DmN" id="LMZ-Tg-XqO"/>
                         <outlet property="qrCodeImgView" destination="C2z-9C-s0p" id="Zxe-MT-ByG"/>
                         <outlet property="qrcodeView" destination="IeJ-3D-sFw" id="F0G-d9-7y2"/>

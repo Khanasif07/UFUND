@@ -197,6 +197,7 @@ extension ProductDetailVC : PresenterOutputProtocol {
         case "/\(Base.productsDetail.rawValue)/\(productModel?.id ?? 0)":
             self.loader.isHidden = true
             self.productModel = dataDict as? ProductModel
+            self.setFont()
             self.mainTableView.reloadData()
         default:
             break

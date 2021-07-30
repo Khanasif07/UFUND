@@ -155,6 +155,9 @@ struct UserDetails : Mappable {
 
 struct SuccessDict : Mappable {
     var success : Success?
+    var code: Int?
+    var status: Int?
+    var message: String?
     var error: Errors?
     var url : String?
     var amount: Double?
@@ -168,12 +171,14 @@ struct SuccessDict : Mappable {
     
     
     mutating func mapping(map: Map) {
+        code <- map["code"]
+        message <- map["message"]
         error <- map["error"]
         currency <- map["currency"]
-             item_name <- map["item_name"]
-             merchant <- map["merchant"]
-             amount <- map["amount"]
-         print("**amount",amount)
+        item_name <- map["item_name"]
+        merchant <- map["merchant"]
+        amount <- map["amount"]
+        print("**amount",amount)
         if amount == nil {
             
             var str : String?
@@ -183,7 +188,8 @@ struct SuccessDict : Mappable {
         
         print("**amount2",amount)
         success <- map["success"]
-          url <- map["url"]
+        url <- map["url"]
+        status <- map["status"]
     }
 
 }

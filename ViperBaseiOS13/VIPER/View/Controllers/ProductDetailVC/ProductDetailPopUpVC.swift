@@ -54,7 +54,7 @@ class ProductDetailPopUpVC: UIViewController {
     var productModel: ProductModel?
     var walletBalance: WalletBalance?
     var selectedPaymentMethod: Payment_method?
-    var selectedPaymentMethodAssets: String?
+    var selectedPaymentMethodAssets: String = "BTC"
     var currentValInvPer : Int = 5 {
         didSet{
             switch isForBuyAndToken {
@@ -165,7 +165,8 @@ extension ProductDetailPopUpVC {
         self.setFont()
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         paymentMethodTxtField.delegate = self
-        paymentMethodTxtField.text = ""
+        paymentMethodTxtField.text = "BTC"
+        self.selectedPaymentMethod = Payment_method(value: "BTC")
         paymentMethodTxtField.setButtonToRightView(btn: button, selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         self.cancelBtn.backgroundColor = .white
         self.cancelBtn.setTitleColor(#colorLiteral(red: 1, green: 0.1215686275, blue: 0.1764705882, alpha: 1), for: .normal)
@@ -222,6 +223,7 @@ extension ProductDetailPopUpVC {
     private func dataSetUp(){
         switch isForBuyAndToken {
         case .BuyProduct:
+            self.coinLbl.text = self.productModel?.category?.category_name ?? ""
             self.investPerView.isHidden = false
             self.quantityView.isHidden = true
             self.tokenPriceLbl.text = "Product Price"
@@ -234,6 +236,7 @@ extension ProductDetailPopUpVC {
             let url = URL(string: nullStringToEmpty(string: imgEntity))
             self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         case .InvestProduct:
+            self.coinLbl.text = self.productModel?.category?.category_name ?? ""
             self.currentValInvPer = 5
             self.investPerView.isHidden = false
             self.quantityView.isHidden = true
@@ -246,6 +249,7 @@ extension ProductDetailPopUpVC {
             let url = URL(string: nullStringToEmpty(string: imgEntity))
             self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         default:
+            self.coinLbl.text = self.productModel?.tokenrequest?.asset?.category?.category_name ?? ""
             self.currentValInvPer = 1
             self.investPerView.isHidden = true
             self.quantityView.isHidden = false

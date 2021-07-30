@@ -221,7 +221,7 @@ extension ProductSortVC : UITableViewDelegate, UITableViewDataSource {
             cell.sortTitleLbl.text = self.sortTypePaymentListing[indexPath.row].value
             cell.sortBtn.setImage(self.sortTypePaymentListing[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
         case .sendToken:
-            cell.sortTitleLbl.text = self.sortDataSendTokenArray[indexPath.row].tokenname
+            cell.sortTitleLbl.text = self.sortDataSendTokenArray[indexPath.row].token_details?.tokenname ?? ""
             cell.sortBtn.setImage(self.sortDataSendTokenArray[indexPath.row].isSelected ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioUnselected"), for: .normal)
         default:
             cell.sortTitleLbl.text = self.sortDataArray[indexPath.row].category_name

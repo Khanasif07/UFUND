@@ -87,6 +87,7 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
         buttonView.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 5)
         currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "arrowBottom"), normalImage: #imageLiteral(resourceName: "arrowBottom"), size: CGSize(width: 20, height: 20))
         currencyTxtField.text =  self.selectedCurrencyType
+        self.addressTxtField.text = User.main.eth_address ?? ""
     }
     
     private func setFont(){
@@ -110,8 +111,10 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
             addresstxtView.isHidden = false
             if selectedCurrencyType == "ETH"{
                 currencyImgView.image = #imageLiteral(resourceName: "eth")
+                self.addressTxtField.text = User.main.eth_address ?? ""
             } else {
                 currencyImgView.image = #imageLiteral(resourceName: "btc")
+                self.addressTxtField.text = User.main.btc_address ?? ""
             }
         } else {
             currencyImgView.isHidden = true
@@ -154,7 +157,7 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
         }else{
             params[ProductCreate.keys.type] = "USD"
         }
-        self.presenter?.HITAPI(api: Base.withdraw.rawValue, params: params, methodType: .POST, modelClass: WalletEntity.self, token: true)
+        self.presenter?.HITAPI(api: Base.withdraw.rawValue, params: params, methodType: .POST, modelClass: SuccessDict.self, token: true)
     }
     
 }
@@ -169,8 +172,10 @@ extension MyWalletWithdrawlVC: ProductSortVCDelegate{
         currencyTxtField.text =  self.selectedCurrencyType
         if selectedCurrencyType == "ETH"{
             currencyImgView.image = #imageLiteral(resourceName: "eth")
+            self.addressTxtField.text = User.main.eth_address ?? ""
         } else {
             currencyImgView.image = #imageLiteral(resourceName: "btc")
+            self.addressTxtField.text = User.main.btc_address ?? ""
         }
     }
 }
@@ -191,6 +196,24 @@ extension MyWalletWithdrawlVC: PresenterOutputProtocol {
             let walletData = dataDict as? WalletEntity
             if let data = walletData?.balance {
                 print(data)
+            }
+        case Base.withdraw.rawValue:
+            if let data = dataDict as? SuccessDict{
+                if data.success != nil{
+                    ToastManager.show(title: data.success?.msg ?? "", state: .error)
+                    self.dismiss(animated: true, completion: nil)
+                    return
+                }
+                if data.error != nil{
+                    ToastManager.show(title: data.error?.msg ?? "", state: .error)
+                    return
+                }
+                if data.status == 0 {
+                     ToastManager.show(title: "Insufficient funds!", state: .success)
+                     return
+                }
+                ToastManager.show(title: data.message ?? "", state: .success)
+                self.dismiss(animated: true, completion: nil)
             }
         default:
             break
