@@ -77,7 +77,8 @@ class WebViewControllerVC: UIViewController {
             setupView()
             loadUrlForDeposit()}
         else{
-            setupView()
+//            setupView()
+            setupViewForDeposit()
             loadUrl()}
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .semiBold, size: .x16)
         titleLbl.text = webViewType.text

@@ -141,7 +141,7 @@ extension ProductDetailVC {
         self.mainTableView.parallaxHeader.mode = .fill
 //        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.self
 //        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
-        mainTableView.parallaxHeader.view?.widthAnchor.constraint(equalTo: mainTableView.widthAnchor).isActive = true
+        mainTableView.parallaxHeader.view.widthAnchor.constraint(equalTo: mainTableView.widthAnchor).isActive = true
         self.headerView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
             mainTableView.contentInsetAdjustmentBehavior = .always

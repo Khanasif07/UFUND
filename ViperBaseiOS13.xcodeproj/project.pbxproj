@@ -261,6 +261,7 @@
 		846097162615CE3A00A9631F /* AddDescTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846097142615CE3A00A9631F /* AddDescTableCell.xib */; };
 		8460971926171BC200A9631F /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460971826171BC200A9631F /* CustomTextView.swift */; };
 		846218EF261C40F700062F2B /* CustomDashedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846218EE261C40F700062F2B /* CustomDashedView.swift */; };
+		8465F67E26C4F91500E97633 /* ContactsUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8465F67D26C4F91500E97633 /* ContactsUsVC.swift */; };
 		846F263C2613384E00FEB452 /* AddProductsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F263B2613384E00FEB452 /* AddProductsVC.swift */; };
 		846F263E2613385E00FEB452 /* AddAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F263D2613385E00FEB452 /* AddAssetsVC.swift */; };
 		846F264226143C8500FEB452 /* UploadDocumentCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846F264026143C8500FEB452 /* UploadDocumentCollCell.swift */; };
@@ -627,6 +628,7 @@
 		846097142615CE3A00A9631F /* AddDescTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddDescTableCell.xib; sourceTree = "<group>"; };
 		8460971826171BC200A9631F /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		846218EE261C40F700062F2B /* CustomDashedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDashedView.swift; sourceTree = "<group>"; };
+		8465F67D26C4F91500E97633 /* ContactsUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsUsVC.swift; sourceTree = "<group>"; };
 		846F263B2613384E00FEB452 /* AddProductsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductsVC.swift; sourceTree = "<group>"; };
 		846F263D2613385E00FEB452 /* AddAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAssetsVC.swift; sourceTree = "<group>"; };
 		846F264026143C8500FEB452 /* UploadDocumentCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadDocumentCollCell.swift; sourceTree = "<group>"; };
@@ -1820,6 +1822,7 @@
 				842763D526380E6500E0FE4A /* WebViewControllerVC.swift */,
 				842763D726382C8400E0FE4A /* SettingVC.swift */,
 				8455755926426B2200205092 /* ContactUsVC.swift */,
+				8465F67D26C4F91500E97633 /* ContactsUsVC.swift */,
 			);
 			path = WebViewControllerVC;
 			sourceTree = "<group>";
@@ -2770,6 +2773,7 @@
 				0824B0C02382847800F81A9B /* UIView+Blur.swift in Sources */,
 				0826E94723C86A92000D98D3 /* PdfViewController.swift in Sources */,
 				0825AB66238BB5250083AC42 /* EditProfileViewController.swift in Sources */,
+				8465F67E26C4F91500E97633 /* ContactsUsVC.swift in Sources */,
 				0824B1252382A97B00F81A9B /* Country.swift in Sources */,
 				0824B0D02382847800F81A9B /* ApiList.swift in Sources */,
 				0831EAC2241F6BB600AAC527 /* SideMenuController.swift in Sources */,
@@ -3050,7 +3054,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3104,7 +3108,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -3120,9 +3124,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20.0;
+				CURRENT_PROJECT_VERSION = 23.0;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
 				INFOPLIST_FILE = "$(SRCROOT)/ViperBaseiOS13/Common/Plist Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3131,7 +3135,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UFUND.app;
 				PRODUCT_NAME = UFUND;
-				PROVISIONING_PROFILE_SPECIFIER = Ufund_Dev_prov;
+				PROVISIONING_PROFILE_SPECIFIER = Ufund_AppStore;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3143,9 +3147,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20.0;
+				CURRENT_PROJECT_VERSION = 23.0;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
 				INFOPLIST_FILE = "$(SRCROOT)/ViperBaseiOS13/Common/Plist Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3154,7 +3158,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UFUND.app;
 				PRODUCT_NAME = UFUND;
-				PROVISIONING_PROFILE_SPECIFIER = Ufund_Dev_prov;
+				PROVISIONING_PROFILE_SPECIFIER = Ufund_AppStore;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

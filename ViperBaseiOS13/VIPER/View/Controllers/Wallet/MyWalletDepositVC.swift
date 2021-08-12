@@ -14,6 +14,7 @@ class MyWalletDepositVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var dropdownView: UIView!
     @IBOutlet weak var currencyImgView: UIImageView!
     @IBOutlet weak var desWalletLastVIew: UIImageView!
     @IBOutlet weak var desWalletfirstVIew: UIImageView!
@@ -91,6 +92,10 @@ extension MyWalletDepositVC: UITextFieldDelegate {
         qrCodeImgView.image = Common.CreateQrCodeForyourString(string: User.main.eth_address ?? "")
         addAmtLbl.isHidden = true
         amtTxtField.isHidden = true
+        dropdownView?.layer.masksToBounds = true
+        dropdownView?.layer.borderWidth = 2.0
+        dropdownView?.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
+        dropdownView?.layer.cornerRadius = 4.0
     }
     
     private func setFont(){

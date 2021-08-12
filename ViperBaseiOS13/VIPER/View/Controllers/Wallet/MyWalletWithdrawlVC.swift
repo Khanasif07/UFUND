@@ -14,6 +14,7 @@ class MyWalletWithdrawlVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var dropdownView: UIView!
     @IBOutlet weak var currencyImgView: UIImageView!
     @IBOutlet weak var toAddressLbl: UILabel!
     @IBOutlet weak var addresstxtView: UIView!
@@ -88,6 +89,12 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
         currencyTxtField.setButtonToRightView(btn: buttonView, selectedImage: #imageLiteral(resourceName: "arrowBottom"), normalImage: #imageLiteral(resourceName: "arrowBottom"), size: CGSize(width: 20, height: 20))
         currencyTxtField.text =  self.selectedCurrencyType
         self.addressTxtField.text = User.main.eth_address ?? ""
+        self.amtTxtField.placeholder = "Amount"
+        self.addAmtLbl.text = "Amount"
+        dropdownView?.layer.masksToBounds = true
+        dropdownView?.layer.borderWidth = 2.0
+        dropdownView?.layer.borderColor = UIColor.rgb(r: 237, g: 236, b: 255).cgColor
+        dropdownView?.layer.cornerRadius = 4.0
     }
     
     private func setFont(){
@@ -109,6 +116,7 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
             currencyTxtField.text =  self.selectedCurrencyType
             currencyTxtField.isUserInteractionEnabled = true
             addresstxtView.isHidden = false
+            self.amtTxtField.placeholder = "Amount"
             if selectedCurrencyType == "ETH"{
                 currencyImgView.image = #imageLiteral(resourceName: "eth")
                 self.addressTxtField.text = User.main.eth_address ?? ""
@@ -122,6 +130,7 @@ extension MyWalletWithdrawlVC: UITextFieldDelegate {
             currencyTxtField.rightView = nil
             currencyTxtField.inputView = nil
             currencyTxtField.text = " Dollar (USD)"
+            self.amtTxtField.placeholder = "$ Amount"
             currencyTxtField.isUserInteractionEnabled = false
         }
         UIView.animate(withDuration: 0.5) {

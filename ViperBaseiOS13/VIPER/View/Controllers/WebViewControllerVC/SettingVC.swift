@@ -100,7 +100,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
         case Constants.string.logout.localize():
             self.presentAlertViewController()
         case Constants.string.contactUs.localize():
-            let vc = ContactUsVC.instantiate(fromAppStoryboard: .Products)
+            let vc = ContactsUsVC.instantiate(fromAppStoryboard: .Products)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             let vc = WebViewControllerVC.instantiate(fromAppStoryboard: .Products)
