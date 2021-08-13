@@ -86,6 +86,10 @@ extension ContactsUsVC {
         nameTxtFld.delegate = self
         emailTxtFld.delegate = self
         messgaeTextView.delegate = self
+        self.nameTxtFld.text = User.main.name
+        self.nameTxtFld.isUserInteractionEnabled = false
+        self.emailTxtFld.text = User.main.email
+        self.emailTxtFld.isUserInteractionEnabled = false
     }
     
     func postContactUs() {
