@@ -66,6 +66,7 @@ class ContactsUsVC: UIViewController {
                 return
             }
         }
+        self.postContactUs()
     }
     
     @IBAction func backBtnAction(_ sender: UIButton) {
@@ -87,9 +88,10 @@ extension ContactsUsVC {
         messgaeTextView.delegate = self
     }
     
-    func getContactUs() {
+    func postContactUs() {
         self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.contact_Us.rawValue, params: nil, methodType: .GET, modelClass: ContactUsModelEntity.self, token: false)
+        let params:[String:Any] = ["description": self.messgaeTextView.text ?? "","userId": User.main.id]
+        self.presenter?.HITAPI(api: Base.contact_Us.rawValue, params: params, methodType: .POST, modelClass: SuccessDict.self, token: true)
     }
     
     private func setupTextAndFont(){
@@ -109,13 +111,10 @@ extension ContactsUsVC: PresenterOutputProtocol {
         switch api {
         case Base.contact_Us.rawValue:
             self.loader.isHidden = true
-            let productModelEntity = dataDict as? ContactUsModelEntity
-            if let productDict = productModelEntity?.data {
-//                self.emailLbl.text = productDict.first?.details ?? ""
-//                self.phoneLbl.text = productDict[1].details ?? ""
-//                self.skypeLbl.text = productDict.last?.details ?? ""
-//                self.contactUsLbl.text = productDict[2].details ?? ""
-            }
+            ToastManager.show(title: "You query has been sent to admin successfully.", state: .success)
+            self.nameTxtFld.text = ""
+            self.emailTxtFld.text = ""
+            self.messgaeTextView.text = ""
         default:
             break
         }
