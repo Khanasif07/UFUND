@@ -539,7 +539,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="313"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GwU-Nb-yUb">
-                                    <rect key="frame" x="0.0" y="24.5" width="80" height="44.5"/>
+                                    <rect key="frame" x="0.0" y="24.5" width="82.5" height="44.5"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRadioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="bLb-lf-faf">
                                             <rect key="frame" x="8" y="12.5" width="20" height="20"/>
@@ -548,7 +548,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbv-xX-pus">
-                                            <rect key="frame" x="40" y="6" width="24" height="32.5"/>
+                                            <rect key="frame" x="40" y="6" width="26.5" height="32.5"/>
                                             <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -994,7 +994,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="313"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Du-M3H">
-                                    <rect key="frame" x="0.0" y="22" width="80.5" height="50"/>
+                                    <rect key="frame" x="0.0" y="22" width="83" height="50"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRadioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="cIr-39-ree">
                                             <rect key="frame" x="8" y="15" width="20" height="20"/>
@@ -1003,7 +1003,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-jE-Jt6">
-                                            <rect key="frame" x="40.5" y="6" width="24" height="38"/>
+                                            <rect key="frame" x="40.5" y="6" width="26.5" height="38"/>
                                             <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -1992,7 +1992,7 @@ Percentage (%)</string>
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="313"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdt-6F-Qvl">
-                                    <rect key="frame" x="0.0" y="24.5" width="80" height="44.5"/>
+                                    <rect key="frame" x="0.0" y="24.5" width="82.5" height="44.5"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icRadioSelected" translatesAutoresizingMaskIntoConstraints="NO" id="Fo3-uo-rkV">
                                             <rect key="frame" x="8" y="12.5" width="20" height="20"/>
@@ -2001,7 +2001,7 @@ Percentage (%)</string>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsm-pF-ipC">
-                                            <rect key="frame" x="40" y="6" width="24" height="32.5"/>
+                                            <rect key="frame" x="40" y="6" width="26.5" height="32.5"/>
                                             <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="13"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>

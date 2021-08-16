@@ -17,6 +17,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     
   
     var kyc: Int?
+    var trulioo_kyc_status : Int?
     var token : String?
     var balance : String?
     var buy_price : Double?
@@ -38,7 +39,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     var eth_address : String?
     var btc_address : String?
     
-    init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?,eth_address : String?,btc_address : String?){
+    init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?,trulioo_kyc_status: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?,eth_address : String?,btc_address : String?){
         
         self.id = id
         self.name = name
@@ -56,6 +57,7 @@ class User : NSObject, NSCoding, JSONSerializable {
         self.buy_price = buy_price
         self.sell_price = sell_price
         self.kyc = kyc
+        self.trulioo_kyc_status = trulioo_kyc_status
         self.usd_bstk = usd_bstk
         self.email_token = email_token
         self.g2f_temp = g2f_temp
@@ -68,14 +70,14 @@ class User : NSObject, NSCoding, JSONSerializable {
     convenience
     override init() {
         
-        self.init(id: nil, name: nil, accessToken: nil, latitude: nil, lontitude: nil, firstName: nil, lastName: nil, email: nil, phoneNumber:  nil, picture: nil, token: nil, balance: nil, buy_price: nil, sell_price: nil, kyc: nil, usd_bstk: nil, email_token: nil, g2f_temp: nil,pin_status: nil,eth_address: nil,btc_address : nil)
+        self.init(id: nil, name: nil, accessToken: nil, latitude: nil, lontitude: nil, firstName: nil, lastName: nil, email: nil, phoneNumber:  nil, picture: nil, token: nil, balance: nil, buy_price: nil, sell_price: nil, kyc: nil,trulioo_kyc_status : nil, usd_bstk: nil, email_token: nil, g2f_temp: nil,pin_status: nil,eth_address: nil,btc_address : nil)
         
     }
     
     
     required convenience init?(coder aDecoder: NSCoder) {
         
-        
+        let trulioo_kyc_status = aDecoder.decodeObject(forKey: Keys.list.trulioo_kyc_status) as? Int
         let kyc = aDecoder.decodeObject(forKey: Keys.list.kyc) as? Int
         let id = aDecoder.decodeObject(forKey: Keys.list.id) as? Int
         let name = aDecoder.decodeObject(forKey: Keys.list.name) as? String
@@ -101,12 +103,12 @@ class User : NSObject, NSCoding, JSONSerializable {
         let eth_address = aDecoder.decodeObject(forKey: Keys.list.eth_address) as? String
         let btc_address = aDecoder.decodeObject(forKey: Keys.list.btc_address) as? String
         
-        self.init(id: id, name: name, accessToken: accessToken, latitude: latitude, lontitude: lontitude, firstName: firstNmae, lastName: lastName, email: email, phoneNumber: phoneNumber, picture: picture,token: token, balance: balance,buy_price: buy_price, sell_price: sell_price, kyc: kyc, usd_bstk: usd_bstk, email_token: email_token, g2f_temp: g2f_temp, pin_status: pin_status,eth_address: eth_address,btc_address : btc_address)
+        self.init(id: id, name: name, accessToken: accessToken, latitude: latitude, lontitude: lontitude, firstName: firstNmae, lastName: lastName, email: email, phoneNumber: phoneNumber, picture: picture,token: token, balance: balance,buy_price: buy_price, sell_price: sell_price, kyc: kyc,trulioo_kyc_status: trulioo_kyc_status, usd_bstk: usd_bstk, email_token: email_token, g2f_temp: g2f_temp, pin_status: pin_status,eth_address: eth_address,btc_address : btc_address)
     }
     
     
     func encode(with aCoder: NSCoder) {
-        
+        aCoder.encode(self.trulioo_kyc_status,forKey: Keys.list.trulioo_kyc_status)
         aCoder.encode(self.kyc, forKey: Keys.list.kyc)
         aCoder.encode(self.id, forKey: Keys.list.id)
         aCoder.encode(self.name, forKey: Keys.list.name)

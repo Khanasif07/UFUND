@@ -23,6 +23,7 @@ class CommonUserDefaults {
         User.main.g2f_temp = profile?.g2f_status
         User.main.pin_status = profile?.app_pin_status
         User.main.kyc = profile?.kyc
+        User.main.trulioo_kyc_status = profile?.trulioo_kyc_status
         User.main.picture = profile?.picture
         User.main.eth_address = profile?.eth_address
         User.main.btc_address = profile?.btc_address

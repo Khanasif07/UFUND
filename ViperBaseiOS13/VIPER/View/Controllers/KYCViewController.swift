@@ -66,7 +66,7 @@ class KYCViewController: UIViewController {
         
         param[RegisterParam.keys.name] = nullStringToEmpty(string: firstNameKycTxT.text) as AnyObject
         param[RegisterParam.keys.last_name] = nullStringToEmpty(string: lastNameKycTxT.text) as AnyObject
-        param[RegisterParam.keys.mobile] = nullStringToEmpty(string: mobileNumberTxtFld.text) as AnyObject
+//        param[RegisterParam.keys.mobile] = nullStringToEmpty(string: mobileNumberTxtFld.text) as AnyObject
     
         
         for (index,ids) in self.selectedDoc.enumerated() {
@@ -84,10 +84,11 @@ class KYCViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionHeight: NSLayoutConstraint!
+    @IBOutlet weak var docsTxtFld: UITextField!
     @IBOutlet weak var collectionParentView: UIView!
     @IBOutlet weak var lastNameKycTxT: UITextField!
     @IBOutlet weak var firstNameKycTxT: UITextField!
-    @IBOutlet weak var mobileNumberTxtFld: UITextField!
+    @IBOutlet weak var countryTxtFld: UITextField!
     @IBOutlet weak var KycSaveButton: UIButton!
     @IBOutlet weak var kycLbl: UILabel!
     var selectedDoc = [SelectedDoc]()
@@ -101,9 +102,7 @@ class KYCViewController: UIViewController {
             
             UIView.animate(withDuration: 0.1) {
                 for view in self.stackView.subviews {
-                    
-                    view.applyEffectToView()
-                    
+                    view.applyEffectToView(borderColor: UIColor.systemRed)
                 }
             }
         }
@@ -132,12 +131,13 @@ class KYCViewController: UIViewController {
         viewEffect = 0
         
         KycSaveButton.setGradientBackground()
-        mobileNumberTxtFld.keyboardType = .numberPad
-    
         firstNameKycTxT.applyEffectToTextField(placeHolderString: Constants.string.firstName.localize())
+        docsTxtFld.applyEffectToTextField(placeHolderString: Constants.string.documentType.localize())
+        lastNameKycTxT.applyEffectToTextField(placeHolderString: Constants.string.lastName.localize())
+        countryTxtFld.applyEffectToTextField(placeHolderString: Constants.string.country.localize())
         
-        lastNameKycTxT.applyEffectToTextField(placeHolderString: Constants.string.firstName.localize())
-        mobileNumberTxtFld.applyEffectToTextField(placeHolderString: Constants.string.MobileNumber.localize())
+        countryTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+        docsTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         
         let nibPost = UINib(nibName: XIB.Names.CollectionImageCell, bundle: nil)
         collectionView.register(nibPost, forCellWithReuseIdentifier: XIB.Names.CollectionImageCell)
@@ -154,7 +154,7 @@ class KYCViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-//        getKYC()
+        getKYC()
         
     }
             
@@ -184,8 +184,8 @@ class KYCViewController: UIViewController {
             
             @IBAction func goBack(_ sender: UIButton) {
                 
-                
-               presentAlertViewController()
+                self.popOrDismiss(animation: true)
+//               presentAlertViewController()
             }
             
            
@@ -245,54 +245,55 @@ extension KYCViewController: UICollectionViewDelegate, UICollectionViewDelegateF
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             
-            return kycVerifyDoc.count > 0 ? kycVerifyDoc.count  : 0
+//            return kycVerifyDoc.count > 0 ? kycVerifyDoc.count  : 0
+            return 2
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.CollectionImageCell, for: indexPath) as! CollectionImageCell
                 cell.backgroundColor = .clear
-                let entity = kycVerifyDoc[indexPath.row]
-            
-            
-                        cell.documNameLbl.text = nullStringToEmpty(string: entity.name) + "\n" + nullStringToEmpty(string: entity.status)
-                cell.uploadButton.tag = indexPath.row
-                cell.uploadButton.addTarget(self, action: #selector(uploadImagePicker), for: .touchUpInside)
+//                let entity = kycVerifyDoc[indexPath.row]
+//
+//
+//                        cell.documNameLbl.text = nullStringToEmpty(string: entity.name) + "\n" + nullStringToEmpty(string: entity.status)
+//                cell.uploadButton.tag = indexPath.row
+//                cell.uploadButton.addTarget(self, action: #selector(uploadImagePicker), for: .touchUpInside)
            
              
             
-            if isFromList {
-                
-                let url = URL.init(string: baseUrl + "/storage/" +  nullStringToEmpty(string: entity.url))
-                cell.imgView.sd_setImage(with: url , placeholderImage: nil)
-                print(">>>url",url)
-                
-                if nullStringToEmpty(string: entity.status) == "APPROVED" {
-                    
-                    cell.uploadButton.isHidden = true
-                    
-                } else {
-                    
-                     cell.uploadButton.isHidden = false
-                    
-                }
-            } else {
-                
-                 cell.uploadButton.isHidden = false
-            }
+//            if isFromList {
+//
+//                let url = URL.init(string: baseUrl + "/storage/" +  nullStringToEmpty(string: entity.url))
+//                cell.imgView.sd_setImage(with: url , placeholderImage: nil)
+//                print(">>>url",url)
+//
+//                if nullStringToEmpty(string: entity.status) == "APPROVED" {
+//
+//                    cell.uploadButton.isHidden = true
+//
+//                } else {
+//
+//                     cell.uploadButton.isHidden = false
+//
+//                }
+//            } else {
+//
+//                 cell.uploadButton.isHidden = false
+//            }
             
             
             
-            if selectedDoc.count > 0 {
-
-                for ids in selectedDoc {
-
-                    if ids.id == entity.id {
-
-                        cell.imgView.image = ids.img
-                    }
-                }
-            }
+//            if selectedDoc.count > 0 {
+//
+//                for ids in selectedDoc {
+//
+//                    if ids.id == entity.id {
+//
+//                        cell.imgView.image = ids.img
+//                    }
+//                }
+//            }
                 return cell
             
         }
@@ -300,7 +301,7 @@ extension KYCViewController: UICollectionViewDelegate, UICollectionViewDelegateF
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
        
-                return CGSize(width: collectionView.frame.width / 3, height: 120)
+                return CGSize(width: collectionView.frame.width / 2, height: 120)
            
             
         }
@@ -397,7 +398,7 @@ extension KYCViewController: PresenterOutputProtocol {
                 
                         firstNameKycTxT.text = nullStringToEmpty(string:  self.userProfile?.name)
                         lastNameKycTxT.text = nullStringToEmpty(string: self.userProfile?.last_name)
-                        mobileNumberTxtFld.text = nullStringToEmpty(string: self.userProfile?.mobile)
+//                        mobileNumberTxtFld.text = nullStringToEmpty(string: self.userProfile?.mobile)
 
             }
         

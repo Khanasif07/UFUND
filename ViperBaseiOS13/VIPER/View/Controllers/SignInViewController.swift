@@ -336,6 +336,17 @@ extension SignInViewController: PresenterOutputProtocol {
             self.signInModel = dataDict as? SignInModel
             CommonUserDefaults.storeUserData(from: self.signInModel)
             storeInUserDefaults()
+            switch User.main.trulioo_kyc_status! {
+            case 0:
+                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 1:
+                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            default:
+                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
 //            if self.signInModel?.kyc == 0 {
 //                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
 //            } else {
@@ -344,8 +355,8 @@ extension SignInViewController: PresenterOutputProtocol {
 //            }
             
 //            if self.signInModel?.kyc == 0 {
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
 //            } else {
 //
 //                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
@@ -366,12 +377,23 @@ extension SignInViewController: PresenterOutputProtocol {
             CommonUserDefaults.storeUserData(from: self.signInModel)
             User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
             storeInUserDefaults()
-            if self.signInModel?.kyc == 0 {
-                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
-            } else {
-                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-                self.push(id: Storyboard.Ids.DrawerController, animation: true)
+            switch User.main.trulioo_kyc_status! {
+            case 0:
+                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 1:
+                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            default:
+                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+                self.navigationController?.pushViewController(vc, animated: true)
             }
+//            if self.signInModel?.kyc == 0 {
+//                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
+//            } else {
+//                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+//                self.push(id: Storyboard.Ids.DrawerController, animation: true)
+//            }
 //            if self.signInModel?.kyc == 0 {
 //                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
 //                self.navigationController?.pushViewController(vc, animated: true)

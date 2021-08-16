@@ -32,9 +32,6 @@
         <array key="Poppins-SemiBold.ttf">
             <string>Poppins-SemiBold</string>
         </array>
-        <array key="SFUIText-Medium.ttf">
-            <string>SFUIText-Medium</string>
-        </array>
         <array key="SFUIText-Semibold.ttf">
             <string>SFUIText-Semibold</string>
         </array>
@@ -1054,70 +1051,8 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bgImg" translatesAutoresizingMaskIntoConstraints="NO" id="maY-Ii-7c9">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thW-65-nPc">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="hdQ-KR-zHM">
-                                                <rect key="frame" x="20" y="11" width="18" height="18"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="ZLE-df-hNf"/>
-                                                    <constraint firstAttribute="width" constant="18" id="sfv-he-Ux6"/>
-                                                </constraints>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nq5-gY-0bY">
-                                                <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="7qV-hn-1pa"/>
-                                                </constraints>
-                                                <connections>
-                                                    <action selector="goBack:" destination="Mcg-w2-yqV" eventType="touchUpInside" id="sHj-Kv-2hI"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlP-WY-6fg">
-                                                <rect key="frame" x="60" y="20" width="305" height="0.0"/>
-                                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoText" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-o7-OdR">
-                                                <rect key="frame" x="157.5" y="-2.5" width="60" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="cpn-yZ-6Nm"/>
-                                                    <constraint firstAttribute="width" constant="60" id="rmo-Ce-fT7"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Oee-o7-OdR" firstAttribute="centerX" secondItem="thW-65-nPc" secondAttribute="centerX" id="6xI-cu-uEB"/>
-                                            <constraint firstItem="Oee-o7-OdR" firstAttribute="centerY" secondItem="thW-65-nPc" secondAttribute="centerY" id="7sw-QO-b4l"/>
-                                            <constraint firstItem="hdQ-KR-zHM" firstAttribute="centerY" secondItem="thW-65-nPc" secondAttribute="centerY" id="Bp4-vT-HbC"/>
-                                            <constraint firstItem="nq5-gY-0bY" firstAttribute="leading" secondItem="thW-65-nPc" secondAttribute="leading" id="Iqu-JY-5B0"/>
-                                            <constraint firstAttribute="bottom" secondItem="nq5-gY-0bY" secondAttribute="bottom" id="KgM-c2-GuZ"/>
-                                            <constraint firstAttribute="height" constant="40" id="N74-FO-EwP"/>
-                                            <constraint firstItem="jlP-WY-6fg" firstAttribute="leading" secondItem="nq5-gY-0bY" secondAttribute="trailing" id="Z2I-Yd-jLk"/>
-                                            <constraint firstItem="jlP-WY-6fg" firstAttribute="centerY" secondItem="thW-65-nPc" secondAttribute="centerY" id="gql-JN-Cgn"/>
-                                            <constraint firstItem="nq5-gY-0bY" firstAttribute="top" secondItem="thW-65-nPc" secondAttribute="top" id="i6f-eE-iU2"/>
-                                            <constraint firstAttribute="trailing" secondItem="jlP-WY-6fg" secondAttribute="trailing" constant="10" id="lMM-lZ-E67"/>
-                                            <constraint firstItem="hdQ-KR-zHM" firstAttribute="leading" secondItem="thW-65-nPc" secondAttribute="leading" constant="20" id="ouU-yR-kUY"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="size" keyPath="offsetShadow">
-                                                <size key="value" width="0.0" height="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="opacityShadow">
-                                                <real key="value" value="0.29999999999999999"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="colorShadow">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="radiusShadow">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYe-8W-yXx">
-                                        <rect key="frame" x="0.0" y="40" width="375" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="SNc-M7-ow3">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
@@ -1237,7 +1172,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VG7-pn-VVj">
-                                        <rect key="frame" x="20" y="86" width="335" height="467"/>
+                                        <rect key="frame" x="20" y="46" width="335" height="467"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zqh-49-LQ9">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="140"/>
@@ -1412,30 +1347,27 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TFj-0E-xZc">
-                                        <rect key="frame" x="0.0" y="86" width="375" height="581"/>
+                                        <rect key="frame" x="0.0" y="46" width="375" height="621"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kycBG" translatesAutoresizingMaskIntoConstraints="NO" id="Dqa-Hn-gYS">
-                                                <rect key="frame" x="131.5" y="0.0" width="112.5" height="174.5"/>
+                                                <rect key="frame" x="131.5" y="0.0" width="112.5" height="186.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="hJ6-Ws-9HC">
-                                                <rect key="frame" x="25" y="194.5" width="325" height="192.5"/>
-                                                <string key="text">UFUND is against money laundering activities and does not want to deal with these persons or organizations for legal and moral reasons.
-
+                                                <rect key="frame" x="25" y="206.5" width="325" height="182"/>
+                                                <mutableString key="text">UFUND is against money laundering activities and does not want to deal with these persons or organizations for legal and moral reasons.
 We ask all our users to pass our KYC to enjoy all UFUND functionalities.
-
 It is a few step process and will take a few minutes, and you will need a:
-
 Valid ID (Passport, National ID or Driving License)
 Proof of residency (utility bill, bank statement, phone bill, etc.)
 Take a selfie
-We do not keep any documents on the platform for safety reasons; they are all stored on our KYC provider.</string>
-                                                <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="11"/>
+We do not keep any documents on the platform for safety reasons; they are all stored on our KYC provider.</mutableString>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqP-61-p6A">
-                                                <rect key="frame" x="62.5" y="511" width="250" height="45"/>
+                                                <rect key="frame" x="62.5" y="551" width="250" height="45"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="aA6-T1-8ph"/>
@@ -1443,7 +1375,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aax-7f-6oJ">
-                                                <rect key="frame" x="62.5" y="517" width="250" height="39"/>
+                                                <rect key="frame" x="62.5" y="557" width="250" height="39"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have been approved and now you can enjoy freely our services" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDl-V4-4hW">
                                                         <rect key="frame" x="20" y="5" width="210" height="29"/>
@@ -1490,13 +1422,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstAttribute="trailing" secondItem="TFj-0E-xZc" secondAttribute="trailing" id="8MQ-k9-e85"/>
                                     <constraint firstItem="VG7-pn-VVj" firstAttribute="top" secondItem="bYe-8W-yXx" secondAttribute="bottom" constant="6" id="ATK-4Q-PcE"/>
                                     <constraint firstAttribute="trailing" secondItem="VG7-pn-VVj" secondAttribute="trailing" constant="20" id="DGB-Zc-j8I"/>
-                                    <constraint firstItem="thW-65-nPc" firstAttribute="leading" secondItem="6cE-HN-5Bs" secondAttribute="leading" id="Jhf-gn-1Z2"/>
                                     <constraint firstItem="VG7-pn-VVj" firstAttribute="leading" secondItem="6cE-HN-5Bs" secondAttribute="leading" constant="20" id="LF0-As-6mA"/>
-                                    <constraint firstItem="thW-65-nPc" firstAttribute="top" secondItem="6cE-HN-5Bs" secondAttribute="top" id="PJG-1N-LcK"/>
                                     <constraint firstItem="TFj-0E-xZc" firstAttribute="top" secondItem="bYe-8W-yXx" secondAttribute="bottom" constant="6" id="Rx7-3f-ioF"/>
+                                    <constraint firstItem="bYe-8W-yXx" firstAttribute="top" secondItem="6cE-HN-5Bs" secondAttribute="top" id="anb-82-LyX"/>
                                     <constraint firstItem="maY-Ii-7c9" firstAttribute="top" secondItem="6cE-HN-5Bs" secondAttribute="top" id="baK-J4-2r3"/>
                                     <constraint firstAttribute="bottom" secondItem="Q6U-VQ-JGn" secondAttribute="bottom" id="cYw-gf-CvM"/>
-                                    <constraint firstAttribute="trailing" secondItem="thW-65-nPc" secondAttribute="trailing" id="eQa-Hl-UeW"/>
                                     <constraint firstAttribute="bottom" secondItem="TFj-0E-xZc" secondAttribute="bottom" id="fNY-OY-nMQ"/>
                                     <constraint firstItem="TFj-0E-xZc" firstAttribute="leading" secondItem="6cE-HN-5Bs" secondAttribute="leading" id="gK3-Ad-dFL"/>
                                     <constraint firstItem="Q6U-VQ-JGn" firstAttribute="height" secondItem="6cE-HN-5Bs" secondAttribute="height" multiplier="0.13" id="gb8-Lv-P6f"/>
@@ -1505,7 +1435,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <constraint firstAttribute="bottom" secondItem="maY-Ii-7c9" secondAttribute="bottom" id="pxf-7p-4gn"/>
                                     <constraint firstItem="VG7-pn-VVj" firstAttribute="height" secondItem="6cE-HN-5Bs" secondAttribute="height" multiplier="0.7" id="uY9-ES-dPe"/>
                                     <constraint firstItem="bYe-8W-yXx" firstAttribute="leading" secondItem="6cE-HN-5Bs" secondAttribute="leading" id="uZj-IV-fg8"/>
-                                    <constraint firstItem="bYe-8W-yXx" firstAttribute="top" secondItem="thW-65-nPc" secondAttribute="bottom" id="w9j-T1-wZp"/>
                                     <constraint firstAttribute="trailing" secondItem="bYe-8W-yXx" secondAttribute="trailing" id="xzn-OK-ITU"/>
                                     <constraint firstAttribute="trailing" secondItem="Q6U-VQ-JGn" secondAttribute="trailing" id="zkf-e1-AcC"/>
                                 </constraints>
@@ -1543,7 +1472,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="stackView" destination="5XU-8z-Nxs" id="iPk-We-UFa"/>
                         <outlet property="statusLbl" destination="zDl-V4-4hW" id="EYj-dc-TmD"/>
                         <outlet property="subNoteLbl" destination="hJ6-Ws-9HC" id="hkf-RR-cfW"/>
-                        <outlet property="titleLbl" destination="jlP-WY-6fg" id="PXG-jb-kf4"/>
                         <outlet property="verifiedView" destination="aax-7f-6oJ" id="SH6-d9-rb5"/>
                     </connections>
                 </viewController>
@@ -1581,33 +1509,24 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     <action selector="goBack:" destination="XdR-MS-G1a" eventType="touchUpInside" id="U6F-3X-NzS"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wzb-xi-CQy">
-                                                <rect key="frame" x="60" y="20" width="305" height="0.0"/>
-                                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trulioo KYC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wzb-xi-CQy">
+                                                <rect key="frame" x="10" y="10.5" width="355" height="19"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoText" translatesAutoresizingMaskIntoConstraints="NO" id="XXD-nj-QVK">
-                                                <rect key="frame" x="147.5" y="-2.5" width="80" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="QM8-gy-fxt"/>
-                                                    <constraint firstAttribute="width" constant="80" id="heQ-q1-wva"/>
-                                                </constraints>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Wzb-xi-CQy" firstAttribute="centerY" secondItem="LVA-6g-b26" secondAttribute="centerY" id="7Px-uW-jKW"/>
                                             <constraint firstAttribute="trailing" secondItem="Wzb-xi-CQy" secondAttribute="trailing" constant="10" id="BHL-k5-fBH"/>
-                                            <constraint firstItem="XXD-nj-QVK" firstAttribute="centerX" secondItem="LVA-6g-b26" secondAttribute="centerX" id="FBJ-Ok-8tw"/>
                                             <constraint firstItem="qfE-PF-6y1" firstAttribute="leading" secondItem="LVA-6g-b26" secondAttribute="leading" constant="20" id="HLR-6R-Cov"/>
                                             <constraint firstAttribute="height" constant="40" id="J8V-pA-qDV"/>
                                             <constraint firstItem="qfE-PF-6y1" firstAttribute="centerY" secondItem="LVA-6g-b26" secondAttribute="centerY" id="Jlk-GK-eMa"/>
-                                            <constraint firstItem="Wzb-xi-CQy" firstAttribute="leading" secondItem="YhM-I2-are" secondAttribute="trailing" id="Xso-Rh-UNB"/>
                                             <constraint firstAttribute="bottom" secondItem="YhM-I2-are" secondAttribute="bottom" id="ahx-LH-uv6"/>
                                             <constraint firstItem="YhM-I2-are" firstAttribute="top" secondItem="LVA-6g-b26" secondAttribute="top" id="eEr-9z-8Ir"/>
+                                            <constraint firstItem="Wzb-xi-CQy" firstAttribute="leading" secondItem="LVA-6g-b26" secondAttribute="leading" constant="10" id="iQa-8c-u5N"/>
                                             <constraint firstItem="YhM-I2-are" firstAttribute="leading" secondItem="LVA-6g-b26" secondAttribute="leading" id="yKF-Zi-oNq"/>
-                                            <constraint firstItem="XXD-nj-QVK" firstAttribute="centerY" secondItem="LVA-6g-b26" secondAttribute="centerY" id="zVx-5i-9HY"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="size" keyPath="offsetShadow">
@@ -1628,7 +1547,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nTR-OK-V8y">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="717"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S47-al-0FO">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
@@ -1648,19 +1567,19 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJS-vU-cqf">
-                                                        <rect key="frame" x="0.0" y="165" width="375" height="260"/>
+                                                        <rect key="frame" x="0.0" y="165" width="375" height="312"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plR-jX-dOE">
-                                                                <rect key="frame" x="20" y="0.0" width="335" height="260"/>
+                                                                <rect key="frame" x="20" y="0.0" width="335" height="312"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zMm-hz-Jm0">
-                                                                        <rect key="frame" x="0.0" y="32.5" width="335" height="195"/>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zMm-hz-Jm0">
+                                                                        <rect key="frame" x="0.0" y="39" width="335" height="234"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8S-Tl-bqj">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="51.5"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="51"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HdU-DP-TiN">
-                                                                                        <rect key="frame" x="15" y="0.0" width="305" height="51.5"/>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HdU-DP-TiN">
+                                                                                        <rect key="frame" x="15" y="0.0" width="305" height="51"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                                         <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
@@ -1670,14 +1589,15 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     <constraint firstAttribute="bottom" secondItem="HdU-DP-TiN" secondAttribute="bottom" id="9LI-VM-yNh"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="HdU-DP-TiN" secondAttribute="trailing" constant="15" id="AIe-zx-yIQ"/>
                                                                                     <constraint firstItem="HdU-DP-TiN" firstAttribute="leading" secondItem="h8S-Tl-bqj" secondAttribute="leading" constant="15" id="EX4-d6-bcy"/>
+                                                                                    <constraint firstAttribute="height" constant="51" id="HKK-db-0q8"/>
                                                                                     <constraint firstItem="HdU-DP-TiN" firstAttribute="top" secondItem="h8S-Tl-bqj" secondAttribute="top" id="mZN-FW-HFf"/>
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyK-KZ-vyb">
-                                                                                <rect key="frame" x="0.0" y="71.5" width="335" height="52"/>
+                                                                                <rect key="frame" x="0.0" y="61" width="335" height="51"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ba5-R0-8MH">
-                                                                                        <rect key="frame" x="15" y="0.0" width="305" height="52"/>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ba5-R0-8MH">
+                                                                                        <rect key="frame" x="15" y="0.0" width="305" height="51"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                                         <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
@@ -1691,10 +1611,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdj-dB-raX">
-                                                                                <rect key="frame" x="0.0" y="143.5" width="335" height="51.5"/>
+                                                                                <rect key="frame" x="0.0" y="122" width="335" height="51"/>
                                                                                 <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DDQ-07-NFh">
-                                                                                        <rect key="frame" x="15" y="0.0" width="305" height="51.5"/>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DDQ-07-NFh">
+                                                                                        <rect key="frame" x="15" y="0.0" width="305" height="51"/>
                                                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                                                                         <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
@@ -1705,6 +1625,23 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     <constraint firstItem="DDQ-07-NFh" firstAttribute="leading" secondItem="xdj-dB-raX" secondAttribute="leading" constant="15" id="Sil-En-M5n"/>
                                                                                     <constraint firstItem="DDQ-07-NFh" firstAttribute="top" secondItem="xdj-dB-raX" secondAttribute="top" id="WcO-xT-mgT"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="DDQ-07-NFh" secondAttribute="bottom" id="syQ-xT-xqT"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FX6-4D-qZ4">
+                                                                                <rect key="frame" x="0.0" y="183" width="335" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Document type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SuG-TQ-A0O">
+                                                                                        <rect key="frame" x="15" y="0.0" width="305" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="bottom" secondItem="SuG-TQ-A0O" secondAttribute="bottom" id="3Xe-JG-u9m"/>
+                                                                                    <constraint firstItem="SuG-TQ-A0O" firstAttribute="leading" secondItem="FX6-4D-qZ4" secondAttribute="leading" constant="15" id="B2E-T1-n43"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="SuG-TQ-A0O" secondAttribute="trailing" constant="15" id="EpV-3E-CF1"/>
+                                                                                    <constraint firstItem="SuG-TQ-A0O" firstAttribute="top" secondItem="FX6-4D-qZ4" secondAttribute="top" id="fPM-x2-g8G"/>
                                                                                 </constraints>
                                                                             </view>
                                                                         </subviews>
@@ -1725,12 +1662,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                             <constraint firstItem="plR-jX-dOE" firstAttribute="leading" secondItem="LJS-vU-cqf" secondAttribute="leading" constant="20" id="2sS-fR-ceE"/>
                                                             <constraint firstAttribute="bottom" secondItem="plR-jX-dOE" secondAttribute="bottom" id="EzC-tG-6p1"/>
                                                             <constraint firstAttribute="trailing" secondItem="plR-jX-dOE" secondAttribute="trailing" constant="20" id="TG6-n8-awn"/>
-                                                            <constraint firstAttribute="height" constant="260" id="oAN-ip-Aui"/>
                                                             <constraint firstItem="plR-jX-dOE" firstAttribute="top" secondItem="LJS-vU-cqf" secondAttribute="top" id="wa1-hb-6di"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHh-g8-TOL">
-                                                        <rect key="frame" x="0.0" y="425" width="375" height="160"/>
+                                                        <rect key="frame" x="0.0" y="477" width="375" height="160"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ysg-Ub-chk">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
@@ -1764,14 +1700,14 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-Ah-AYo">
-                                                        <rect key="frame" x="0.0" y="585" width="375" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="637" width="375" height="0.0"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" id="reR-xl-l62"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUf-Cz-p6M">
-                                                        <rect key="frame" x="0.0" y="585" width="375" height="80"/>
+                                                        <rect key="frame" x="0.0" y="637" width="375" height="80"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grR-zV-dwJ">
                                                                 <rect key="frame" x="20" y="15" width="335" height="50"/>
@@ -1848,10 +1784,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="collectionHeight" destination="oeN-t5-176" id="FiO-CK-Im3"/>
                         <outlet property="collectionParentView" destination="yHh-g8-TOL" id="NEg-EM-yS5"/>
                         <outlet property="collectionView" destination="ysg-Ub-chk" id="XUu-pH-rIr"/>
+                        <outlet property="countryTxtFld" destination="DDQ-07-NFh" id="wH1-wb-j5Z"/>
+                        <outlet property="docsTxtFld" destination="SuG-TQ-A0O" id="lME-zL-ADK"/>
                         <outlet property="firstNameKycTxT" destination="HdU-DP-TiN" id="H95-8p-f4h"/>
                         <outlet property="kycLbl" destination="Wzb-xi-CQy" id="go3-Qy-fS3"/>
                         <outlet property="lastNameKycTxT" destination="Ba5-R0-8MH" id="4gD-eY-pie"/>
-                        <outlet property="mobileNumberTxtFld" destination="DDQ-07-NFh" id="7dv-Fq-tqB"/>
                         <outlet property="stackView" destination="zMm-hz-Jm0" id="tdU-IV-TXC"/>
                     </connections>
                 </viewController>
@@ -12376,108 +12313,35 @@ We do not keep any documents on the platform for safety reasons; they are all st
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mE-h5-I04">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuS-qZ-kfG">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="E9S-Yg-nc2">
-                                                <rect key="frame" x="20" y="23.5" width="18" height="13"/>
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="18" id="4Kp-gh-6Gf"/>
-                                                    <constraint firstAttribute="height" constant="18" id="8Gc-eR-D68"/>
-                                                    <constraint firstAttribute="width" constant="18" id="PfL-dY-lTs"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="mPN-Gd-79l"/>
-                                                </constraints>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjj-tg-Xhj">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="60"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="GuC-2c-g8V"/>
-                                                </constraints>
-                                                <connections>
-                                                    <action selector="goBack:" destination="syy-hX-1BZ" eventType="touchUpInside" id="XZB-33-qVH"/>
-                                                    <action selector="goBack:" destination="ZUC-np-ld7" eventType="touchUpInside" id="m5n-FI-Ay9"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijg-LT-qCq">
-                                                <rect key="frame" x="365" y="30" width="0.0" height="0.0"/>
-                                                <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoText" translatesAutoresizingMaskIntoConstraints="NO" id="5R7-sA-nBp">
-                                                <rect key="frame" x="147.5" y="7.5" width="80" height="45"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="CTg-zs-0Gx"/>
-                                                    <constraint firstAttribute="height" constant="45" id="p3I-86-HUM"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="cjj-tg-Xhj" firstAttribute="leading" secondItem="ZuS-qZ-kfG" secondAttribute="leading" id="5g4-1g-gQ0"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ijg-LT-qCq" secondAttribute="trailing" constant="10" id="L7z-br-mZY"/>
-                                            <constraint firstItem="Ijg-LT-qCq" firstAttribute="centerY" secondItem="ZuS-qZ-kfG" secondAttribute="centerY" id="LL9-gu-0Ts"/>
-                                            <constraint firstItem="5R7-sA-nBp" firstAttribute="centerX" secondItem="ZuS-qZ-kfG" secondAttribute="centerX" id="VRo-Pg-M7d"/>
-                                            <constraint firstItem="E9S-Yg-nc2" firstAttribute="leading" secondItem="ZuS-qZ-kfG" secondAttribute="leading" constant="20" id="XZh-sR-ftp"/>
-                                            <constraint firstItem="cjj-tg-Xhj" firstAttribute="top" secondItem="ZuS-qZ-kfG" secondAttribute="top" id="aEQ-3J-ixN"/>
-                                            <constraint firstItem="E9S-Yg-nc2" firstAttribute="centerY" secondItem="ZuS-qZ-kfG" secondAttribute="centerY" id="eRK-qW-90G"/>
-                                            <constraint firstItem="5R7-sA-nBp" firstAttribute="centerY" secondItem="ZuS-qZ-kfG" secondAttribute="centerY" id="eiL-g3-EO1"/>
-                                            <constraint firstAttribute="bottom" secondItem="cjj-tg-Xhj" secondAttribute="bottom" id="hh1-VE-ZLT"/>
-                                            <constraint firstItem="E9S-Yg-nc2" firstAttribute="centerY" secondItem="ZuS-qZ-kfG" secondAttribute="centerY" id="p9w-t9-nXL"/>
-                                            <constraint firstAttribute="height" constant="60" id="xin-be-Vue"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="size" keyPath="offsetShadow">
-                                                <size key="value" width="0.0" height="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="opacityShadow">
-                                                <real key="value" value="0.29999999999999999"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="colorShadow">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="radiusShadow">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pv9-p2-yQk">
-                                        <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kycBG" translatesAutoresizingMaskIntoConstraints="NO" id="eKA-Da-6Sz">
-                                                <rect key="frame" x="131.5" y="0.0" width="112.5" height="182"/>
+                                                <rect key="frame" x="131.5" y="0.0" width="112.5" height="200"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="osd-Mc-Dvh">
-                                                <rect key="frame" x="25" y="202" width="325" height="192.5"/>
-                                                <string key="text">UFUND is against money laundering activities and does not want to deal with these persons or organizations for legal and moral reasons.
-
+                                                <rect key="frame" x="25" y="200" width="325" height="182"/>
+                                                <mutableString key="text">UFUND is against money laundering activities and does not want to deal with these persons or organizations for legal and moral reasons.
 We ask all our users to pass our KYC to enjoy all UFUND functionalities.
-
 It is a few step process and will take a few minutes, and you will need a:
-
 Valid ID (Passport, National ID or Driving License)
 Proof of residency (utility bill, bank statement, phone bill, etc.)
 Take a selfie
-We do not keep any documents on the platform for safety reasons; they are all stored on our KYC provider.</string>
-                                                <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="11"/>
+We do not keep any documents on the platform for safety reasons; they are all stored on our KYC provider.</mutableString>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-Kd-vwK">
-                                                <rect key="frame" x="62.5" y="537" width="250" height="45"/>
+                                                <rect key="frame" x="20" y="583" width="335" height="59"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="45" id="d75-lZ-V8p"/>
-                                                    <constraint firstAttribute="width" constant="250" id="otT-dj-Uib"/>
-                                                </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbP-Yt-KCZ">
-                                                <rect key="frame" x="62.5" y="543" width="250" height="39"/>
+                                                <rect key="frame" x="20" y="591" width="335" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have been approved and now you can enjoy freely our services" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPf-Yr-fz1">
-                                                        <rect key="frame" x="20" y="5" width="210" height="29"/>
+                                                        <rect key="frame" x="20" y="5" width="295" height="41"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -12497,9 +12361,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obh-2M-nWL">
-                                                <rect key="frame" x="62.5" y="543" width="250" height="39"/>
-                                                <color key="backgroundColor" name="facebookColor"/>
-                                                <state key="normal" title="Verify me">
+                                                <rect key="frame" x="20" y="591" width="335" height="51"/>
+                                                <color key="backgroundColor" name="primaryColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="51" id="cHB-a0-xSr"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="12"/>
+                                                <state key="normal" title="Verify your identity">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -12515,7 +12383,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="BbP-Yt-KCZ" secondAttribute="bottom" constant="25" id="0xm-1z-bv3"/>
-                                            <constraint firstItem="mtm-Kd-vwK" firstAttribute="centerX" secondItem="Pv9-p2-yQk" secondAttribute="centerX" id="Cfg-lu-hma"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="top" secondItem="Pv9-p2-yQk" secondAttribute="top" id="Con-a3-dzx"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="width" secondItem="Pv9-p2-yQk" secondAttribute="width" multiplier="0.3" id="JOe-yP-P39"/>
                                             <constraint firstItem="obh-2M-nWL" firstAttribute="trailing" secondItem="BbP-Yt-KCZ" secondAttribute="trailing" id="KAK-xG-Rh0"/>
@@ -12527,23 +12394,21 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="BbP-Yt-KCZ" firstAttribute="centerX" secondItem="mtm-Kd-vwK" secondAttribute="centerX" id="aDt-07-gPh"/>
                                             <constraint firstItem="obh-2M-nWL" firstAttribute="centerX" secondItem="BbP-Yt-KCZ" secondAttribute="centerX" id="eLR-wM-Dpx"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="centerX" secondItem="Pv9-p2-yQk" secondAttribute="centerX" id="hZL-8g-Zv4"/>
-                                            <constraint firstItem="osd-Mc-Dvh" firstAttribute="top" secondItem="eKA-Da-6Sz" secondAttribute="bottom" constant="20" id="kxE-Ok-IVJ"/>
+                                            <constraint firstItem="osd-Mc-Dvh" firstAttribute="top" secondItem="eKA-Da-6Sz" secondAttribute="bottom" id="kxE-Ok-IVJ"/>
                                             <constraint firstItem="obh-2M-nWL" firstAttribute="top" secondItem="BbP-Yt-KCZ" secondAttribute="top" id="l3H-3M-ZuB"/>
+                                            <constraint firstAttribute="trailing" secondItem="obh-2M-nWL" secondAttribute="trailing" constant="20" id="qvy-GO-MW4"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="height" secondItem="Pv9-p2-yQk" secondAttribute="height" multiplier="0.3" id="sws-Fn-76y"/>
                                             <constraint firstItem="osd-Mc-Dvh" firstAttribute="leading" secondItem="Pv9-p2-yQk" secondAttribute="leading" constant="25" id="uCy-Tw-W0G"/>
+                                            <constraint firstItem="obh-2M-nWL" firstAttribute="leading" secondItem="Pv9-p2-yQk" secondAttribute="leading" constant="20" id="vbl-gt-PtH"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" name="appBGColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ZuS-qZ-kfG" secondAttribute="trailing" id="2lH-f2-s6j"/>
-                                    <constraint firstItem="ZuS-qZ-kfG" firstAttribute="leading" secondItem="6mE-h5-I04" secondAttribute="leading" id="8fs-Yu-Owc"/>
-                                    <constraint firstItem="ZuS-qZ-kfG" firstAttribute="top" secondItem="6mE-h5-I04" secondAttribute="top" id="J62-Vy-tgw"/>
                                     <constraint firstItem="Pv9-p2-yQk" firstAttribute="leading" secondItem="6mE-h5-I04" secondAttribute="leading" id="LfS-ao-DRC"/>
                                     <constraint firstAttribute="trailing" secondItem="Pv9-p2-yQk" secondAttribute="trailing" id="O4Z-Ke-aXm"/>
                                     <constraint firstAttribute="bottom" secondItem="Pv9-p2-yQk" secondAttribute="bottom" id="T3O-KD-n8g"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZuS-qZ-kfG" secondAttribute="trailing" id="pQt-4H-c3M"/>
-                                    <constraint firstItem="Pv9-p2-yQk" firstAttribute="top" secondItem="ZuS-qZ-kfG" secondAttribute="bottom" id="v3l-BK-QIk"/>
+                                    <constraint firstItem="Pv9-p2-yQk" firstAttribute="top" secondItem="6mE-h5-I04" secondAttribute="top" id="uHP-p7-i9a"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -12559,7 +12424,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                     <navigationItem key="navigationItem" id="iCe-8H-81q"/>
                     <connections>
                         <outlet property="buttonView" destination="mtm-Kd-vwK" id="LQR-g2-l8l"/>
-                        <outlet property="imgBack" destination="E9S-Yg-nc2" id="3Sw-2m-byE"/>
                         <outlet property="statusLbl" destination="JPf-Yr-fz1" id="pQp-7M-Ukv"/>
                         <outlet property="verifiedView" destination="BbP-Yt-KCZ" id="sLM-vk-98g"/>
                         <outlet property="verifyMeBtn" destination="obh-2M-nWL" id="EcD-Yz-5O5"/>
@@ -12916,9 +12780,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
         </namedColor>
         <namedColor name="availableGrad1">
             <color red="0.99000000953674316" green="0.50999999046325684" blue="0.40999999642372131" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="facebookColor">
-            <color red="0.23000000417232513" green="0.34999999403953552" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="googleColor">
             <color red="0.92000001668930054" green="0.25999999046325684" blue="0.20999999344348907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
