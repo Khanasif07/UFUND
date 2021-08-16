@@ -115,7 +115,7 @@ class KYCViewController: UIViewController {
     
     var userProfile: UserProfile?
     var kycDetail: KYCDetail?
-    var kycDocument = [Document]()
+    var kycDocument = [Documents]()
     var kycDocumentAlreadyUploaded = [KYCUpdatedDocument]()
     var isFromList = false
     
@@ -154,7 +154,7 @@ class KYCViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        getKYC()
+//        getKYC()
         
     }
             

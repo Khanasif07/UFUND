@@ -136,12 +136,13 @@ public func getValueFrom( dictionary: [String: AnyObject], key:String) -> Any
         //        if val is String
         //        {
         
-        if  val is NSNumber {
-            return  (val as AnyObject).stringValue as AnyObject
-            
-        } else {
-            return val as Any
-        }
+//        if  val is NSNumber {
+//            return  (val as AnyObject).stringValue as AnyObject
+//
+//        } else {
+//            return val as Any
+//        }
+        return "" as Any
         //        }
         //        return COMMON_STRING.empty as Any
     } else {

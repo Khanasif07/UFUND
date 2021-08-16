@@ -101,6 +101,7 @@ struct SignInModel : Mappable {
     var city_id : String?
     var wallet : String?
     var kyc : Int?
+    var trulioo_kyc_status : Int?
     var social_unique_id : String?
     var login_with : String?
     var verified : Int?
@@ -144,6 +145,7 @@ struct SignInModel : Mappable {
         city_id <- map["city_id"]
         wallet <- map["wallet"]
         kyc <- map["kyc"]
+        trulioo_kyc_status <- map["trulio_kyc_status"]
         social_unique_id <- map["social_unique_id"]
         login_with <- map["login_with"]
         verified <- map["verified"]
@@ -185,6 +187,7 @@ struct SignUpModel : Mappable {
     var city_id : String?
     var wallet : String?
     var kyc : Int?
+    var trulioo_kyc_status : Int?
     var social_unique_id : String?
     var login_with : String?
     var verified : Int?
@@ -225,6 +228,7 @@ struct SignUpModel : Mappable {
         city_id <- map["city_id"]
         wallet <- map["wallet"]
         kyc <- map["kyc"]
+        trulioo_kyc_status <- map["trulio_kyc_status"]
         social_unique_id <- map["social_unique_id"]
         login_with <- map["login_with"]
         verified <- map["verified"]

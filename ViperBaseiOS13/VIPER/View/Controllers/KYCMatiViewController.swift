@@ -13,9 +13,31 @@
 import UIKit
 //import MatiGlobalIDSDK
 import ObjectMapper
+import ImageIO
+import MiSnapFacialCapture
+import CoreLocation
+import MiSnapSDKCamera
+
 
 //class KYCMatiViewController: UIViewController, MFKYCDelegate {
-class KYCMatiViewController: UIViewController {
+class KYCMatiViewController: UIViewController , MiSnapViewControllerDelegate, MiSnapFacialCaptureViewControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate{
+   
+    
+    
+    private var miSnapController: MiSnapSDKViewController!
+    private var livenessController: MiSnapFacialCaptureViewController!
+    private let countryDefaultArray:[String] = [
+           "US",
+           "CA"
+       ]
+       
+       private let documentTypeArray:[String] = [
+           "DrivingLicence",
+           "IdentityCard",
+           "ResidencePermit",
+           "Passport"
+       ]
+       private var countryArray:[String] = []
    
     @IBOutlet weak var verifyMeBtn: UIButton!
     @IBOutlet weak var verifiedView: UIView!
@@ -35,6 +57,7 @@ class KYCMatiViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadCountyPicker()
        
        
 //        MFKYC.register(clientId: MFKYC_CLIENTID)
@@ -75,6 +98,31 @@ class KYCMatiViewController: UIViewController {
         print("Mati Login Cancelled")
         self.loadProfileDetails()
     }
+    
+    func loadCountyPicker() {
+        let helper = TruliooHelper()
+        helper.getCountryList(onSuccess: { (data, statusCode, response) in
+            do{
+                self.countryArray = try JSONSerialization.jsonObject(with: data) as! [String]
+                print(self.countryArray)
+            } catch {
+                self.countryArray = self.countryDefaultArray
+                print(self.countryArray)
+            }
+//            self.refreshPicker()
+        }) { (error, statusCode, response) in
+            self.countryArray = self.countryDefaultArray
+//            self.refreshPicker()
+            let alert = UIAlertController(title: NSLocalizedString("Connection Error", comment: ""), message: NSLocalizedString("Unable to load country list from server. Using the default value", comment: ""), preferredStyle:UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+                { action -> Void in})
+            
+            OperationQueue.main.addOperation {
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+
 }
 
 //MARK: - PresenterOutputProtocol
@@ -139,5 +187,24 @@ extension KYCMatiViewController: PresenterOutputProtocol {
         
         self.loader.isHidden = true
         ToastManager.show(title: nullStringToEmpty(string: error.localizedDescription), state: .error)
+    }
+}
+
+
+extension KYCMatiViewController{
+    func miSnapFacialCaptureSuccess(_ results: MiSnapFacialCaptureResults) {
+        
+    }
+    
+    func miSnapFacialCaptureCancelled(_ results: MiSnapFacialCaptureResults) {
+        
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 2
     }
 }

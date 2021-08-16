@@ -14,7 +14,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 import Foundation
 import ObjectMapper
 
-struct Document : Mappable {
+struct Documents : Mappable {
     
         var id : Int?
         var name : String?
@@ -42,7 +42,7 @@ struct Document : Mappable {
 
 struct KYCDetail : Mappable {
     
-    var document : [Document]?
+    var document : [Documents]?
     var kyc_document : [KYCUpdatedDocument]?
     var user : UserProfile?
 

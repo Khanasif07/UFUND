@@ -336,21 +336,21 @@ extension SignInViewController: PresenterOutputProtocol {
             self.signInModel = dataDict as? SignInModel
             CommonUserDefaults.storeUserData(from: self.signInModel)
             storeInUserDefaults()
-            if self.signInModel?.kyc == 0 {
-                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
-            } else {
-                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-                self.push(id: Storyboard.Ids.DrawerController, animation: true)
-            }
+//            if self.signInModel?.kyc == 0 {
+//                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
+//            } else {
+//                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
+//                self.push(id: Storyboard.Ids.DrawerController, animation: true)
+//            }
             
 //            if self.signInModel?.kyc == 0 {
-//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
-//                self.navigationController?.pushViewController(vc, animated: true)
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
+                self.navigationController?.pushViewController(vc, animated: true)
 //            } else {
 //
 //                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
 //
-//                   guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
+//                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
 //                    vc.changePINStr = "changePINStr"
 //                    self.navigationController?.pushViewController(vc, animated: true)
 //
