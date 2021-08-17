@@ -20,7 +20,7 @@ import MiSnapSDKCamera
 
 
 //class KYCMatiViewController: UIViewController, MFKYCDelegate {
-class KYCMatiViewController: UIViewController , MiSnapViewControllerDelegate, MiSnapFacialCaptureViewControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, CLLocationManagerDelegate{
+class KYCMatiViewController: UIViewController {
    
     
     
