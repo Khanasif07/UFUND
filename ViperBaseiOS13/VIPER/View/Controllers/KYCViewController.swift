@@ -67,26 +67,26 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
   
     @IBAction func kycClickEvent(_ sender: UIButton) {
        
-        var param = [String: AnyObject]()
-        var imageArray = [String: Data]()
-                               
-        
-        param[RegisterParam.keys.name] = nullStringToEmpty(string: firstNameKycTxT.text) as AnyObject
-        param[RegisterParam.keys.last_name] = nullStringToEmpty(string: lastNameKycTxT.text) as AnyObject
+//        var param = [String: AnyObject]()
+//        var imageArray = [String: Data]()
+//
+//
+//        param[RegisterParam.keys.name] = nullStringToEmpty(string: firstNameKycTxT.text) as AnyObject
+//        param[RegisterParam.keys.last_name] = nullStringToEmpty(string: lastNameKycTxT.text) as AnyObject
 //        param[RegisterParam.keys.mobile] = nullStringToEmpty(string: mobileNumberTxtFld.text) as AnyObject
     
         
-        for (index,ids) in self.selectedDoc.enumerated() {
-            
-            param["document_ids[\(index)]"] = ids.id as AnyObject
-            imageArray["\(index)"] = ids.file
-            
-        }
-             
-        print("param",param)
-        print(">>>>>>>>>imageArray",imageArray)
-        
-        self.presenter?.IMAGEPOST(api: Base.kycUpdate.rawValue, params: param, methodType: .POST, imgData: imageArray, imgName: "", modelClass: SuccessDict.self, token: true)
+//        for (index,ids) in self.selectedDoc.enumerated() {
+//
+//            param["document_ids[\(index)]"] = ids.id as AnyObject
+//            imageArray["\(index)"] = ids.file
+//
+//        }
+//
+//        print("param",param)
+//        print(">>>>>>>>>imageArray",imageArray)
+//
+//        self.presenter?.IMAGEPOST(api: Base.kycUpdate.rawValue, params: param, methodType: .POST, imgData: imageArray, imgName: "", modelClass: SuccessDict.self, token: true)
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -146,6 +146,8 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     private var capturedBackMetaData: String?
     private var capturedSelfieMetaData: String?
     private let minSpaceRequired = 20
+    var piiInfo:PiiInfo? = nil
+    var transactionID: String = ""
     //
     
     @IBOutlet weak var stackView: UIStackView!
@@ -171,8 +173,8 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     var kycDocumentAlreadyUploaded = [KYCUpdatedDocument]()
     var isFromList = false
     
-    var kycVerifyDoc = [KYCVerifiyDoc]()
-    
+//    var kycVerifyDoc = [KYCVerifiyDoc]()
+    var kycVerifyDoc = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -198,6 +200,8 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
         lastNameKycTxT.delegate = self
         countryTxtFld.delegate = self
         docsTxtFld.delegate = self
+        lastNameKycTxT.isUserInteractionEnabled = false
+        firstNameKycTxT.isUserInteractionEnabled = false
         countryTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         docsTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         
@@ -272,29 +276,29 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
 
 extension  KYCViewController {
     
-    func presentAlertViewController() {
-        
-        
-        let alertController = UIAlertController(title: Constants.string.appName.localize(), message: Constants.string.areYouSureWantToLogout.localize(), preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: Constants.string.OK.localize(), style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-           
-            self.getLogout()
-        }
-        
-        let cancelAction = UIAlertAction(title: Constants.string.Cancel.localize(), style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-            self.drawerController?.closeSide()
-            self.dismiss(animated: true, completion: nil)
-        }
-        
-        
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
-        
-    }
+//    func presentAlertViewController() {
+//
+//
+//        let alertController = UIAlertController(title: Constants.string.appName.localize(), message: Constants.string.areYouSureWantToLogout.localize(), preferredStyle: UIAlertController.Style.alert)
+//
+//        let okAction = UIAlertAction(title: Constants.string.OK.localize(), style: UIAlertAction.Style.default) {
+//            (result : UIAlertAction) -> Void in
+//
+//            self.getLogout()
+//        }
+//
+//        let cancelAction = UIAlertAction(title: Constants.string.Cancel.localize(), style: UIAlertAction.Style.default) {
+//            (result : UIAlertAction) -> Void in
+//            self.drawerController?.closeSide()
+//            self.dismiss(animated: true, completion: nil)
+//        }
+//
+//
+//        alertController.addAction(okAction)
+//        alertController.addAction(cancelAction)
+//        self.present(alertController, animated: true, completion: nil)
+//
+//    }
     
     func loadCountyPicker() {
         let helper = TruliooHelper()
@@ -337,14 +341,40 @@ extension KYCViewController: UICollectionViewDelegate, UICollectionViewDelegateF
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.CollectionImageCell, for: indexPath) as! CollectionImageCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.CollectionImageCell, for: indexPath) as! CollectionImageCell
                 cell.backgroundColor = .clear
+            switch indexPath.row {
+            case 0:
+                if capturedFrontImage != nil {
+                    cell.imgView.image = capturedFrontImage
+                    cell.uploadButton.isHidden = true
+                }else {
+                    cell.uploadButton.isHidden = false
+                }
+            default:
+                if capturedBackImage != nil {
+                    cell.imgView.image = capturedBackImage
+                    cell.uploadButton.isHidden = true
+                }else {
+                    cell.uploadButton.isHidden = false
+                }
+            }
+            cell.uploadBtnTapped = {  [weak self] (sender) in
+                guard let selff = self else { return }
+                if indexPath.row == 0 {
+                    selff.currentImage = selff.frontImage
+                    selff.reset()
+                } else {
+                    selff.currentImage = selff.backImage
+                }
+                selff.uploadImagePicker(sender: sender)
+            }
 //                let entity = kycVerifyDoc[indexPath.row]
 //
 //
 //                        cell.documNameLbl.text = nullStringToEmpty(string: entity.name) + "\n" + nullStringToEmpty(string: entity.status)
 //                cell.uploadButton.tag = indexPath.row
-                cell.uploadButton.addTarget(self, action: #selector(uploadImagePicker), for: .touchUpInside)
+//                cell.uploadButton.addTarget(self, action: #selector(uploadImagePicker), for: .touchUpInside)
            
              
             
@@ -404,8 +434,10 @@ extension KYCViewController: UICollectionViewDelegate, UICollectionViewDelegateF
 
 extension KYCViewController {
     
-    @objc func uploadImagePicker(sender: UIButton) {
-        reset()
+    func uploadImagePicker(sender: UIButton) {
+//        reset()
+       
+        
 //        startButton.isEnabled = false
 //        progressView.isHidden = false
 //
@@ -501,51 +533,51 @@ extension KYCViewController: PresenterOutputProtocol {
 
             }
         
-            for dic in kycDocument {
-                
-                let newValue = self.kycDocumentAlreadyUploaded.filter( { Int($0.document_id ?? "") == dic.id})
-                 print(">>>>newValue",newValue)
-                
-                if newValue.isEmpty {
-                    
-                    let dict = KYCVerifiyDoc.init(id: dic.id, user_id: dic.id, document_id: dic.id, url: dic.image, unique_id: dic.id, status: dic.name, expires_at: "", created_at: "", updated_at: "", image: dic.image, name: dic.name)
-                    
-                    kycVerifyDoc.append(dict)
-                    
-                } else {
-         
-                    let dict = KYCVerifiyDoc.init(id: newValue.last?.id, user_id: newValue.last?.user_id, document_id: Int(newValue.last?.document_id ?? ""), url: newValue.last?.url, unique_id: Int(newValue.last?.unique_id ?? ""), status: newValue.last?.status, expires_at: newValue.last?.expires_at, created_at: newValue.last?.created_at, updated_at: newValue.last?.updated_at, image: newValue.last?.image, name: newValue.last?.name)
-                         kycVerifyDoc.append(dict)
-                   
-                }
-            }
+//            for dic in kycDocument {
+//
+//                let newValue = self.kycDocumentAlreadyUploaded.filter( { Int($0.document_id ?? "") == dic.id})
+//                 print(">>>>newValue",newValue)
+//
+//                if newValue.isEmpty {
+//
+//                    let dict = KYCVerifiyDoc.init(id: dic.id, user_id: dic.id, document_id: dic.id, url: dic.image, unique_id: dic.id, status: dic.name, expires_at: "", created_at: "", updated_at: "", image: dic.image, name: dic.name)
+//
+////                    kycVerifyDoc.append(dict)
+//
+//                } else {
+//
+//                    let dict = KYCVerifiyDoc.init(id: newValue.last?.id, user_id: newValue.last?.user_id, document_id: Int(newValue.last?.document_id ?? ""), url: newValue.last?.url, unique_id: Int(newValue.last?.unique_id ?? ""), status: newValue.last?.status, expires_at: newValue.last?.expires_at, created_at: newValue.last?.created_at, updated_at: newValue.last?.updated_at, image: newValue.last?.image, name: newValue.last?.name)
+////                         kycVerifyDoc.append(dict)
+//
+//                }
+//            }
             
                
-            if kycDocumentAlreadyUploaded.count >  0 {
-                
-                if self.kycVerifyDoc.filter( { $0.status == "DISAPPROVED" || $0.status == "" } ).count == 0 {
-                    
-                     let digitalId = UserDefaults.standard.value(forKey: "digitalId")  as? Int
-                    
-                    
-                    if User.main.g2f_temp == 1 || User.main.pin_status == 1  || digitalId == 1 {
-                        
-                        
-                        
-                        let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as! OtpController
-                        vc.changePINStr = "changePINStr"
-                        self.navigationController?.pushViewController(vc, animated: true)
-                        
-                        
-                        
-                    } else {
-                        
-                        self.push(id: Storyboard.Ids.DrawerController, animation: true)
-                    }
-                    
-                }
-                
-            }
+//            if kycDocumentAlreadyUploaded.count >  0 {
+//
+//                if self.kycVerifyDoc.filter( { $0.status == "DISAPPROVED" || $0.status == "" } ).count == 0 {
+//
+//                     let digitalId = UserDefaults.standard.value(forKey: "digitalId")  as? Int
+//
+//
+//                    if User.main.g2f_temp == 1 || User.main.pin_status == 1  || digitalId == 1 {
+//
+//
+//
+//                        let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as! OtpController
+//                        vc.changePINStr = "changePINStr"
+//                        self.navigationController?.pushViewController(vc, animated: true)
+//
+//
+//
+//                    } else {
+//
+//                        self.push(id: Storyboard.Ids.DrawerController, animation: true)
+//                    }
+//
+//                }
+//
+//            }
             
                             
         
@@ -829,34 +861,109 @@ extension KYCViewController{
 
     
     func goToConfirmView(image:UIImage) {
-//        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let confirmController = storyBoard.instantiateViewController(withIdentifier:"ConfirmViewController") as! ConfirmViewController
-//        confirmController.image = image
-//
-//        if (currentImage == selfieImage) {
-//            self.navigationController?.popViewController(animated: true)
-//        }
-//
-//        self.navigationController?.pushViewController(confirmController, animated: true)
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let confirmController = storyBoard.instantiateViewController(withIdentifier:"ConfirmViewController") as! ConfirmViewController
+        confirmController.image = image
+
+        if (currentImage == selfieImage) {
+            self.navigationController?.popViewController(animated: true)
+        }
+
+        self.navigationController?.pushViewController(confirmController, animated: true)
     }
     
     func goToVerify(){
-//        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let verifyConfrimController = storyBoard.instantiateViewController(withIdentifier:"VerifyConfirmViewController") as! VerifyConfirmViewController
-//
-//        verifyConfrimController.selectedCountry = sortTypeAppliedCountry
-//        verifyConfrimController.selectedDocType = sortTypeAppliedDoc
-//
-//        verifyConfrimController.frontImage = capturedFrontImage
-//        verifyConfrimController.backImage = capturedBackImage
-//        verifyConfrimController.selfieImage = capturedSelfieImage
-//
-//        verifyConfrimController.frontMetaData = capturedFrontMetaData
-//        verifyConfrimController.backMetaData = capturedBackMetaData
-//        verifyConfrimController.selfieMetaData = capturedSelfieMetaData
-//
-//
-//        self.navigationController?.pushViewController(verifyConfrimController, animated: true)
+        let pii = PiiInfo(firstName: User.main.firstName ?? "", lastName: User.main.lastName ?? "", countryCode: sortTypeAppliedCountry, documentType: sortTypeAppliedDoc,
+                          frontImage: capturedFrontImage ?? UIImage(), backImage: capturedBackImage, liveImage: capturedSelfieImage,
+                          frontMetaData: capturedFrontMetaData, backMetaData: capturedBackMetaData, liveMetaData: capturedSelfieMetaData)
+        self.piiInfo = pii
+        DispatchQueue.global(qos:.userInteractive).async{
+            if(self.piiInfo == nil){
+//                self.appendText(text: "Error, no info availble")
+//                self.endProcess()
+            }
+            else{
+                self.verify()
+            }
+        }
+    }
+    
+    public func verify(){
+        let helper = TruliooHelper()
+        helper.verify(piiInfo: self.piiInfo!, onSuccess: onSuccess, onFailure: { (error, statusCode, response) in
+            var displayString = ""
+            displayString += "Fail, Status Code: \(statusCode) \n"
+            displayString += "Error: \(error) \n"
+            if(response != nil){
+                displayString += "Response: \(String(describing: response)) \n"
+            }
+//            self.appendText(text: displayString)
+            self.endProcess()
+        })
+    }
+    
+    func onSuccess(data:Data, statusCode:Int, httpResponse:HTTPURLResponse?){
+        do{
+            // decode result object
+            let result = try JSONDecoder().decode(VerifyResult.self, from: data)
+            self.transactionID = result.TransactionID
+//            self.appendText(text: "Success")
+//            self.appendText(text: "TransactionID: \(result.TransactionID)")
+//            self.appendText(text: nil)
+            
+            let datasourceResult = result.Record.DatasourceResults.first
+            if(datasourceResult != nil){
+//                self.appendText(text:"\nOutput Fields: ")
+                let outputFields = datasourceResult!.DatasourceFields
+                for fieldRecord in outputFields{
+//                    self.appendText(text: "\(fieldRecord.FieldName): \(fieldRecord.Status)")
+                }
+                
+//                self.appendText(text:"\nAppended Fields: ")
+                let appendFields = datasourceResult!.AppendedFields
+                var authenticityDetailsString = ""
+                for fieldRecord in appendFields{
+                    if(fieldRecord.FieldName != "AuthenticityDetails"){
+//                        self.appendText(text: "\(fieldRecord.FieldName): \(fieldRecord.Data)")
+                    }
+                    else{
+                        do{
+                            let detailData = fieldRecord.Data.data(using: .utf8)!
+                            let authenticityDetailArray = try JSONDecoder().decode([AuthenticityDetail].self, from: detailData)
+                            for record in authenticityDetailArray{
+                                authenticityDetailsString += "Detail Name: \(record.Name) \n"
+                                authenticityDetailsString += "IsValid: \(record.IsValid) \n"
+                                authenticityDetailsString += "Value: \(record.Value) \n"
+                                authenticityDetailsString += "Description: \(record.Description) \n"
+                                //more info available, check TruliooResultClass for destail
+                                authenticityDetailsString += "\n"
+                            }
+                        }catch{
+                            authenticityDetailsString += "Error decoding AuthenticityDetails JSON \n"
+                            authenticityDetailsString += "Raw string: \(fieldRecord.Data)"
+                        }
+                    }
+                }
+                if(!authenticityDetailsString.isEmpty){
+                    ToastManager.show(title: "\nAuthenticity Details: \n", state: .success)
+//                    self.appendText(text: "\nAuthenticity Details: \n")
+//                    self.appendText(text:authenticityDetailsString)
+                }
+            }
+        }
+        catch{
+            let dataString = String(data:data, encoding: .utf8)!
+            ToastManager.show(title: "Error decoding JSON, printing raw data", state: .success)
+//            self.appendText(text:"Error decoding JSON, printing raw data")
+//            self.appendText(text: dataString)
+        }
+        self.endProcess()
+    }
+    
+    private func endProcess(){
+        DispatchQueue.main.async {
+            self.loader.isHidden = true
+        }
     }
     
     func miSnapCancelled(withResults results: [AnyHashable : Any]!) {
@@ -869,7 +976,7 @@ extension KYCViewController{
     }
     
     func reset(){
-        currentImage = frontImage
+//        currentImage = frontImage
         tempOriginalImage = nil
         tempEncodedImage = ""
         capturedFrontImage = nil
@@ -884,6 +991,55 @@ extension KYCViewController{
         capturedSelfieMetaData = nil
         currentLatitude = ""
         currentLongitude = ""
+    }
+    
+    public func confirmed(){
+        getMiSnapMIBIDataAsJsonString(tempMibiData, docType:currentImage, onResult: findNextView)
+    }
+    
+    func findNextView(_ newMetaData:String) {
+        if(currentImage == frontImage) {
+            capturedFrontImage = tempOriginalImage
+            capturedFrontMetaData = newMetaData
+            countryTxtFld.isUserInteractionEnabled = false
+            docsTxtFld.isUserInteractionEnabled = false
+        } else if ( currentImage == backImage) {
+            capturedBackImage = tempOriginalImage
+            capturedBackMetaData = newMetaData
+        } else {
+            capturedSelfieImage = tempOriginalImage
+            capturedSelfieMetaData = newMetaData
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            if (self.currentImage == self.frontImage && self.sortTypeAppliedDoc != "Passport") {
+                self.currentImage = self.backImage
+//                let alert = UIAlertController(title: NSLocalizedString("Back Side?", comment: ""), message: NSLocalizedString("Scan the back side of the ID document", comment: ""), preferredStyle:UIAlertController.Style.alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+//                { action -> Void in
+//                    self.startCapture(type: self.currentImage)
+//                })
+//                self.present(alert, animated: true, completion: nil)
+            } else if (self.currentImage == self.backImage || (self.currentImage == self.frontImage && self.sortTypeAppliedDoc == "Passport")) {
+                self.currentImage = self.selfieImage
+                let alert = UIAlertController(title: NSLocalizedString("Live Photo?", comment: ""), message: NSLocalizedString("Capture a live selfie photo", comment: ""), preferredStyle:UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+                { action -> Void in
+                    self.startCapture(type: self.currentImage)
+                })
+                alert.addAction(UIAlertAction(title: "Skip", style: UIAlertAction.Style.default)
+                { action -> Void in
+                    self.goToVerify()
+                })
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                self.goToVerify()
+            }
+        }
+    }
+    
+    public func retry(){
+        startCapture(type: currentImage)
     }
     
     func requestLocationPermision() {

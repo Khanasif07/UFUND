@@ -9,6 +9,8 @@
 import UIKit
 
 class CollectionImageCell: UICollectionViewCell {
+    
+    var uploadBtnTapped: ((UIButton)->())?
 
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var documNameLbl: UILabel!
@@ -18,5 +20,10 @@ class CollectionImageCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    @IBAction func uploadBtnAction(_ sender: UIButton) {
+        if let handle = uploadBtnTapped{
+            handle(sender)
+        }
+    }
+    
 }

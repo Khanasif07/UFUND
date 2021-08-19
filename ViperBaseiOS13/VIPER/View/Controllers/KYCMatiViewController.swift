@@ -88,8 +88,8 @@ class KYCMatiViewController: UIViewController {
 extension KYCMatiViewController: PresenterOutputProtocol {
     
     func loadProfileDetails() {
-        self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.profile.rawValue, params: nil, methodType: .GET, modelClass: UserDetails.self, token: true)
+//        self.loader.isHidden = false
+//        self.presenter?.HITAPI(api: Base.profile.rawValue, params: nil, methodType: .GET, modelClass: UserDetails.self, token: true)
     }
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
@@ -105,7 +105,7 @@ extension KYCMatiViewController: PresenterOutputProtocol {
             storeInUserDefaults()
             
             
-            if User.main.kyc == 1 {
+            if User.main.trulioo_kyc_status == 1 {
                 
                 buttonView.isHidden = true
                 verifiedView.isHidden = false

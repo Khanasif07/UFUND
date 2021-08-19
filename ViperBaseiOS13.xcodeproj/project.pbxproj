@@ -182,7 +182,6 @@
 		08DF504E23B2204600621C0E /* KYCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DF504D23B2204600621C0E /* KYCViewController.swift */; };
 		08E5CC1323CDA38000DCE77D /* AddAssetsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E5CC1223CDA38000DCE77D /* AddAssetsViewController+Extension.swift */; };
 		08FB487D238D2666006C18C5 /* FilterSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08FB487C238D2666006C18C5 /* FilterSetViewController.swift */; };
-		2C15ACBE0468F184BFD814DF /* Pods_ViperBaseiOS13.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56E8F9E745DA9752E1A9560 /* Pods_ViperBaseiOS13.framework */; };
 		841A917F2609A620008AA0A3 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A917E2609A620008AA0A3 /* DashboardVC.swift */; };
 		841A918E2609A8FF008AA0A3 /* AlignmentFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A918D2609A8FF008AA0A3 /* AlignmentFlowLayout.swift */; };
 		841A91972609A9FE008AA0A3 /* DashboardTabsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841A91952609A9FE008AA0A3 /* DashboardTabsTableCell.swift */; };
@@ -257,6 +256,21 @@
 		845C131825FF53F90018A1E1 /* MyWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131725FF53F90018A1E1 /* MyWalletVC.swift */; };
 		845C131A25FF8A320018A1E1 /* MyWalletSheetVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */; };
 		845C131C25FF8A940018A1E1 /* MyWalletSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */; };
+		845D7C6A26CE78A100B379C0 /* MiSnapFacialCapture.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3790A26CA3CBE009D0868 /* MiSnapFacialCapture.xcframework */; };
+		845D7C6B26CE78A100B379C0 /* MiSnapFacialCapture.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3790A26CA3CBE009D0868 /* MiSnapFacialCapture.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		845D7C6F26CE78A300B379C0 /* MiSnapSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776526CA3CB4009D0868 /* MiSnapSDK.xcframework */; };
+		845D7C7026CE78A300B379C0 /* MiSnapSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776526CA3CB4009D0868 /* MiSnapSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		845D7C7126CE78A500B379C0 /* MiSnapSDKCamera.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783726CA3CB5009D0868 /* MiSnapSDKCamera.xcframework */; };
+		845D7C7226CE78A500B379C0 /* MiSnapSDKCamera.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783726CA3CB5009D0868 /* MiSnapSDKCamera.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		845D7C7326CE78A700B379C0 /* MiSnapSDKMibiData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776726CA3CB4009D0868 /* MiSnapSDKMibiData.xcframework */; };
+		845D7C7426CE78A700B379C0 /* MiSnapSDKMibiData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776726CA3CB4009D0868 /* MiSnapSDKMibiData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		845D7C7526CE78A900B379C0 /* MiSnapSDKScience.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783626CA3CB5009D0868 /* MiSnapSDKScience.xcframework */; };
+		845D7C7626CE78A900B379C0 /* MiSnapSDKScience.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783626CA3CB5009D0868 /* MiSnapSDKScience.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		845D7C7926CE78AA00B379C0 /* MobileFlow.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776626CA3CB4009D0868 /* MobileFlow.xcframework */; };
+		845D7C7A26CE78AA00B379C0 /* MobileFlow.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776626CA3CB4009D0868 /* MobileFlow.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		845D7C7B26CE78AC00B379C0 /* Pods_ViperBaseiOS13.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56E8F9E745DA9752E1A9560 /* Pods_ViperBaseiOS13.framework */; };
+		845D7C7C26CE78AC00B379C0 /* Pods_ViperBaseiOS13.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E56E8F9E745DA9752E1A9560 /* Pods_ViperBaseiOS13.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		845D7C8026CE84C100B379C0 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D7C7F26CE84C100B379C0 /* ConfirmViewController.swift */; };
 		846097152615CE3A00A9631F /* AddDescTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846097132615CE3A00A9631F /* AddDescTableCell.swift */; };
 		846097162615CE3A00A9631F /* AddDescTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 846097142615CE3A00A9631F /* AddDescTableCell.xib */; };
 		8460971926171BC200A9631F /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460971826171BC200A9631F /* CustomTextView.swift */; };
@@ -301,9 +315,6 @@
 		84B451DC25CD3244001DD54A /* SideMenuHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B451DB25CD3244001DD54A /* SideMenuHeaderView.xib */; };
 		84C2106B25D634F000EE3BE7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2106A25D634F000EE3BE7 /* StringExtension.swift */; };
 		84C2106D25D6351500EE3BE7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C2106C25D6351500EE3BE7 /* DateExtension.swift */; };
-		84C3783826CA3CB5009D0868 /* MiSnapSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776526CA3CB4009D0868 /* MiSnapSDK.xcframework */; };
-		84C3783926CA3CB5009D0868 /* MobileFlow.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776626CA3CB4009D0868 /* MobileFlow.xcframework */; };
-		84C3783A26CA3CB5009D0868 /* MiSnapSDKMibiData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776726CA3CB4009D0868 /* MiSnapSDKMibiData.xcframework */; };
 		84C3783B26CA3CB5009D0868 /* misnap_powered_by_mitek.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C3776A26CA3CB4009D0868 /* misnap_powered_by_mitek.png */; };
 		84C3783C26CA3CB5009D0868 /* MiSnapSDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84C3776C26CA3CB4009D0868 /* MiSnapSDKLocalizable.strings */; };
 		84C3783D26CA3CB5009D0868 /* misnap_tutorial_id_with_background_portrait_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84C3776E26CA3CB4009D0868 /* misnap_tutorial_id_with_background_portrait_2.jpg */; };
@@ -485,8 +496,6 @@
 		84C378ED26CA3CB5009D0868 /* MiSnapSDKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C3783126CA3CB5009D0868 /* MiSnapSDKViewController.m */; };
 		84C378EE26CA3CB5009D0868 /* MiSnapSDKOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C3783326CA3CB5009D0868 /* MiSnapSDKOverlayView.m */; };
 		84C378EF26CA3CB5009D0868 /* MiSnapSDKTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C3783526CA3CB5009D0868 /* MiSnapSDKTutorialViewController.m */; };
-		84C378F026CA3CB5009D0868 /* MiSnapSDKScience.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783626CA3CB5009D0868 /* MiSnapSDKScience.xcframework */; };
-		84C378F126CA3CB5009D0868 /* MiSnapSDKCamera.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783726CA3CB5009D0868 /* MiSnapSDKCamera.xcframework */; };
 		84C3790B26CA3CBE009D0868 /* MiSnapFacialCaptureLocalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C378F726CA3CBE009D0868 /* MiSnapFacialCaptureLocalizer.swift */; };
 		84C3790C26CA3CBE009D0868 /* MiSnapFacialCaptureOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C378F826CA3CBE009D0868 /* MiSnapFacialCaptureOverlayView.swift */; };
 		84C3790D26CA3CBE009D0868 /* MiSnapFacialCaptureTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C378F926CA3CBE009D0868 /* MiSnapFacialCaptureTutorialViewController.swift */; };
@@ -503,7 +512,6 @@
 		84C3791826CA3CBE009D0868 /* misnap_facial_capture_cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C3790726CA3CBE009D0868 /* misnap_facial_capture_cancel.png */; };
 		84C3791926CA3CBE009D0868 /* misnap_facial_capture_instruction_image_smile.png in Resources */ = {isa = PBXBuildFile; fileRef = 84C3790826CA3CBE009D0868 /* misnap_facial_capture_instruction_image_smile.png */; };
 		84C3791A26CA3CBE009D0868 /* MiSnapFacialCaptureCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C3790926CA3CBE009D0868 /* MiSnapFacialCaptureCountdownView.swift */; };
-		84C3791B26CA3CBE009D0868 /* MiSnapFacialCapture.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3790A26CA3CBE009D0868 /* MiSnapFacialCapture.xcframework */; };
 		84C775022604B4DE00473E19 /* MyWalletDepositVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C775012604B4DE00473E19 /* MyWalletDepositVC.swift */; };
 		84D565EC25DB68C20047F052 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84D565EB25DB68C20047F052 /* Filter.storyboard */; };
 		84D565EF25DB69380047F052 /* ProductFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D565EE25DB69380047F052 /* ProductFilterVC.swift */; };
@@ -569,6 +577,26 @@
 			remoteInfo = ViperBaseiOS13;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		845D7C6C26CE78A100B379C0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				845D7C7026CE78A300B379C0 /* MiSnapSDK.xcframework in Embed Frameworks */,
+				845D7C7A26CE78AA00B379C0 /* MobileFlow.xcframework in Embed Frameworks */,
+				845D7C7426CE78A700B379C0 /* MiSnapSDKMibiData.xcframework in Embed Frameworks */,
+				845D7C7626CE78A900B379C0 /* MiSnapSDKScience.xcframework in Embed Frameworks */,
+				845D7C7C26CE78AC00B379C0 /* Pods_ViperBaseiOS13.framework in Embed Frameworks */,
+				845D7C7226CE78A500B379C0 /* MiSnapSDKCamera.xcframework in Embed Frameworks */,
+				845D7C6B26CE78A100B379C0 /* MiSnapFacialCapture.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		08045C7923E8062D00F0D440 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
@@ -830,6 +858,7 @@
 		845C131725FF53F90018A1E1 /* MyWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletVC.swift; sourceTree = "<group>"; };
 		845C131925FF8A320018A1E1 /* MyWalletSheetVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyWalletSheetVC.xib; sourceTree = "<group>"; };
 		845C131B25FF8A940018A1E1 /* MyWalletSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletSheetVC.swift; sourceTree = "<group>"; };
+		845D7C7F26CE84C100B379C0 /* ConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		846097132615CE3A00A9631F /* AddDescTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDescTableCell.swift; sourceTree = "<group>"; };
 		846097142615CE3A00A9631F /* AddDescTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddDescTableCell.xib; sourceTree = "<group>"; };
 		8460971826171BC200A9631F /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
@@ -1149,13 +1178,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84C3783826CA3CB5009D0868 /* MiSnapSDK.xcframework in Frameworks */,
-				84C378F126CA3CB5009D0868 /* MiSnapSDKCamera.xcframework in Frameworks */,
-				84C3783A26CA3CB5009D0868 /* MiSnapSDKMibiData.xcframework in Frameworks */,
-				84C378F026CA3CB5009D0868 /* MiSnapSDKScience.xcframework in Frameworks */,
-				84C3791B26CA3CBE009D0868 /* MiSnapFacialCapture.xcframework in Frameworks */,
-				84C3783926CA3CB5009D0868 /* MobileFlow.xcframework in Frameworks */,
-				2C15ACBE0468F184BFD814DF /* Pods_ViperBaseiOS13.framework in Frameworks */,
+				845D7C7926CE78AA00B379C0 /* MobileFlow.xcframework in Frameworks */,
+				845D7C7326CE78A700B379C0 /* MiSnapSDKMibiData.xcframework in Frameworks */,
+				845D7C6A26CE78A100B379C0 /* MiSnapFacialCapture.xcframework in Frameworks */,
+				845D7C6F26CE78A300B379C0 /* MiSnapSDK.xcframework in Frameworks */,
+				845D7C7B26CE78AC00B379C0 /* Pods_ViperBaseiOS13.framework in Frameworks */,
+				845D7C7526CE78A900B379C0 /* MiSnapSDKScience.xcframework in Frameworks */,
+				845D7C7126CE78A500B379C0 /* MiSnapSDKCamera.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1422,6 +1451,7 @@
 				086F1396246F094C00EA4355 /* SendViewController.swift */,
 				08730BD42473D8D8005F9E74 /* SendHistoryViewController.swift */,
 				0831D61924A9C82A00813C8A /* KYCMatiViewController.swift */,
+				845D7C7F26CE84C100B379C0 /* ConfirmViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2652,10 +2682,10 @@
 		84C3776426CA3CB4009D0868 /* MiSnapSDK */ = {
 			isa = PBXGroup;
 			children = (
+				84C3776826CA3CB4009D0868 /* MiSnapUX */,
 				84C3776526CA3CB4009D0868 /* MiSnapSDK.xcframework */,
 				84C3776626CA3CB4009D0868 /* MobileFlow.xcframework */,
 				84C3776726CA3CB4009D0868 /* MiSnapSDKMibiData.xcframework */,
-				84C3776826CA3CB4009D0868 /* MiSnapUX */,
 				84C3783626CA3CB5009D0868 /* MiSnapSDKScience.xcframework */,
 				84C3783726CA3CB5009D0868 /* MiSnapSDKCamera.xcframework */,
 			);
@@ -3139,6 +3169,7 @@
 				0824B020238280E700F81A9B /* Resources */,
 				07B6AC86C583EC4C016ACBF1 /* [CP] Embed Pods Frameworks */,
 				423115D3C3B30878B98A3201 /* [CP] Copy Pods Resources */,
+				845D7C6C26CE78A100B379C0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3757,6 +3788,7 @@
 				0824B0CC2382847800F81A9B /* CircularTransition.swift in Sources */,
 				08DF504323B1E66B00621C0E /* SecurityViewController.swift in Sources */,
 				08DF504C23B2126600621C0E /* OtpController.swift in Sources */,
+				845D7C8026CE84C100B379C0 /* ConfirmViewController.swift in Sources */,
 				0824B1022382A12000F81A9B /* ViewController.swift in Sources */,
 				0824B0DF2382849800F81A9B /* Protocol.swift in Sources */,
 				84E16F0125D50861004F37FA /* CategoriesProductsVC.swift in Sources */,
@@ -4136,7 +4168,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 23.0;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
@@ -4147,7 +4179,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UFUND.app;
 				PRODUCT_NAME = UFUND;
-				PROVISIONING_PROFILE_SPECIFIER = Ufund_AppStore;
+				PROVISIONING_PROFILE_SPECIFIER = Ufund_Dev_prov;
 				SWIFT_OBJC_BRIDGING_HEADER = "mitek-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4160,7 +4192,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 23.0;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
@@ -4171,7 +4203,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.UFUND.app;
 				PRODUCT_NAME = UFUND;
-				PROVISIONING_PROFILE_SPECIFIER = Ufund_AppStore;
+				PROVISIONING_PROFILE_SPECIFIER = Ufund_Dev_prov;
 				SWIFT_OBJC_BRIDGING_HEADER = "mitek-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
