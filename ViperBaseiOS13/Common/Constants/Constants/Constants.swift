@@ -347,6 +347,7 @@ struct Keys {
     let sell_price = "sell_price"
     let kyc = "kyc"
     let trulioo_kyc_status = "trulioo_kyc_status"
+    let transactionID = "transactionID"
     let usd_bstk = "usd_bstk"
     
     let g2f_temp = "g2f_temp"

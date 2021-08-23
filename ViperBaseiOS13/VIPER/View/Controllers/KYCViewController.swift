@@ -408,6 +408,10 @@ extension KYCViewController: UICollectionViewDelegate, UICollectionViewDelegateF
         cell.uploadBtnTapped = {  [weak self] (sender) in
             guard let selff = self else { return }
             if indexPath.row == 0 {
+                if (selff.dayOfBirth?.isEmpty ?? true) && (selff.monthOfBirth?.isEmpty ?? true) &&  (selff.yearOfBirth?.isEmpty ?? true) {
+                    ToastManager.show(title: "Please enter dob first.", state: .success)
+                    return
+                }
                 selff.currentImage = selff.frontImage
                 selff.reset()
                 selff.loader.isHidden = false
@@ -434,47 +438,6 @@ extension KYCViewController: UICollectionViewDelegate, UICollectionViewDelegateF
                 selff.startCapture(type: selff.currentImage)
             }
         }
-        //                let entity = kycVerifyDoc[indexPath.row]
-        //
-        //
-        //                        cell.documNameLbl.text = nullStringToEmpty(string: entity.name) + "\n" + nullStringToEmpty(string: entity.status)
-        //                cell.uploadButton.tag = indexPath.row
-        //                cell.uploadButton.addTarget(self, action: #selector(uploadImagePicker), for: .touchUpInside)
-        
-        
-        
-        //            if isFromList {
-        //
-        //                let url = URL.init(string: baseUrl + "/storage/" +  nullStringToEmpty(string: entity.url))
-        //                cell.imgView.sd_setImage(with: url , placeholderImage: nil)
-        //                print(">>>url",url)
-        //
-        //                if nullStringToEmpty(string: entity.status) == "APPROVED" {
-        //
-        //                    cell.uploadButton.isHidden = true
-        //
-        //                } else {
-        //
-        //                     cell.uploadButton.isHidden = false
-        //
-        //                }
-        //            } else {
-        //
-        //                 cell.uploadButton.isHidden = false
-        //            }
-        
-        
-        
-        //            if selectedDoc.count > 0 {
-        //
-        //                for ids in selectedDoc {
-        //
-        //                    if ids.id == entity.id {
-        //
-        //                        cell.imgView.image = ids.img
-        //                    }
-        //                }
-        //            }
         return cell
         
     }
@@ -501,8 +464,6 @@ extension KYCViewController {
     
     func uploadImagePicker(sender: UIButton) {
         //        reset()
-        
-        
         //        startButton.isEnabled = false
         //        progressView.isHidden = false
         //
@@ -515,41 +476,6 @@ extension KYCViewController {
         } else {
             startCapture(type: currentImage)
         }
-        //        selectedIndex = sender.tag
-        //
-        //        self.showImage { (image) in
-        //
-        //                   if image != nil {
-        //
-        //                    let entity = self.kycVerifyDoc[self.selectedIndex]
-        //                       let image : UIImage = image!
-        //                       let data = image.jpegData(compressionQuality: 0.2)
-        //
-        //
-        //                    let doc = SelectedDoc(id: entity.id, file: data, img: image)
-        //                    if self.selectedDoc.count > 0 {
-        //
-        //                        for ids in self.selectedDoc {
-        //
-        //                            print(">>>ids",ids)
-        //
-        //                            if ids.id == doc.id {
-        //                                self.selectedDoc.append(doc)
-        //                                self.collectionView.reloadData()
-        //                            } else {
-        //                                self.selectedDoc.append(doc)
-        //                                self.collectionView.reloadData()
-        //                            }
-        //                        }
-        //                    } else {
-        //                         self.selectedDoc.append(doc)
-        //                        self.collectionView.reloadData()
-        //                    }
-        //
-        //                }
-        //        }
-        
-        
     }
 }
 
@@ -588,14 +514,9 @@ extension KYCViewController: PresenterOutputProtocol {
             self.kycDocument = self.kycDetail?.document ?? []
             self.userProfile = self.kycDetail?.user
             self.kycDocumentAlreadyUploaded = self.kycDetail?.kyc_document ?? []
-            
-            
             if self.userProfile != nil {
-                
                 firstNameKycTxT.text = nullStringToEmpty(string:  self.userProfile?.name)
                 lastNameKycTxT.text = nullStringToEmpty(string: self.userProfile?.last_name)
-                //                        mobileNumberTxtFld.text = nullStringToEmpty(string: self.userProfile?.mobile)
-                
             }
             
             //            for dic in kycDocument {
@@ -646,18 +567,18 @@ extension KYCViewController: PresenterOutputProtocol {
             
             
             
-            let calVal = kycVerifyDoc.count % 3
-            print(">>>calVal",calVal)
-            
-            if calVal == 0 {
-                isFromList = false
-                //                collectionHeight.constant = CGFloat(kycVerifyDoc.count / 3 * 120)
-                
-            } else {
-                isFromList = true
-                let tableHeight : Int = Int(kycVerifyDoc.count / 3)
-                //                collectionHeight.constant = CGFloat(tableHeight * 120 + 120)
-            }
+//            let calVal = kycVerifyDoc.count % 3
+//            print(">>>calVal",calVal)
+//
+//            if calVal == 0 {
+//                isFromList = false
+//                //                collectionHeight.constant = CGFloat(kycVerifyDoc.count / 3 * 120)
+//
+//            } else {
+//                isFromList = true
+//                let tableHeight : Int = Int(kycVerifyDoc.count / 3)
+//                //                collectionHeight.constant = CGFloat(tableHeight * 120 + 120)
+//            }
             
             collectionView.reloadData()
             
@@ -986,6 +907,7 @@ extension KYCViewController{
             displayString += "Error: \(error) \n"
             if(response != nil){
                 displayString += "Response: \(String(describing: response)) \n"
+                print("Response: \(String(describing: response)) \n")
             }
             self.appendText(text: displayString)
             self.endProcess()
@@ -997,6 +919,7 @@ extension KYCViewController{
             // decode result object
             let result = try JSONDecoder().decode(VerifyResult.self, from: data)
             self.transactionID = result.TransactionID
+            User.main.transactionID = self.transactionID
             self.appendText(text: "Success")
             self.appendText(text: "TransactionID: \(result.TransactionID)")
             self.appendText(text: nil)
@@ -1048,6 +971,7 @@ extension KYCViewController{
             self.appendText(text: dataString)
         }
         self.endProcess()
+        
     }
     
     private func endProcess(){
@@ -1081,10 +1005,12 @@ extension KYCViewController{
     }
     
     public func confirmed(){
+        self.loader.isHidden = false
         getMiSnapMIBIDataAsJsonString(tempMibiData, docType:currentImage, onResult: findNextView)
     }
     
     func findNextView(_ newMetaData:String) {
+        self.loader.isHidden = true
         if(currentImage == frontImage) {
             capturedFrontImage = tempOriginalImage
             capturedFrontMetaData = newMetaData
@@ -1101,31 +1027,16 @@ extension KYCViewController{
             self.docsTxtFld.isUserInteractionEnabled = false
             if (self.currentImage == self.frontImage && self.sortTypeAppliedDoc != "Passport") {
                 self.currentImage = self.backImage
-                //                let alert = UIAlertController(title: NSLocalizedString("Back Side?", comment: ""), message: NSLocalizedString("Scan the back side of the ID document", comment: ""), preferredStyle:UIAlertController.Style.alert)
-                //                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
-                //                { action -> Void in
-                //                    self.startCapture(type: self.currentImage)
-                //                })
-                //                self.present(alert, animated: true, completion: nil)
             } else if (self.currentImage == self.backImage || (self.currentImage == self.frontImage && self.sortTypeAppliedDoc == "Passport")) {
                 self.currentImage = self.selfieImage
-//                let alert = UIAlertController(title: NSLocalizedString("Live Photo?", comment: ""), message: NSLocalizedString("Capture a live selfie photo", comment: ""), preferredStyle:UIAlertController.Style.alert)
-//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
-//                { action -> Void in
-//                    self.startCapture(type: self.currentImage)
-//                })
-//                alert.addAction(UIAlertAction(title: "Skip", style: UIAlertAction.Style.default)
-//                { action -> Void in
-////                    self.goToVerify()
-//                })
-//                self.present(alert, animated: true, completion: nil)
             } else {
-//                self.goToVerify()
+                self.collectionView.reloadData()
             }
         }
     }
     
     public func retry(){
+        self.loader.isHidden = false
         startCapture(type: currentImage)
     }
     
@@ -1153,12 +1064,10 @@ extension KYCViewController{
 extension KYCViewController: ConfirmViewControllerDelegate {
     func confirmBtnAction() {
         confirmed()
-        self.collectionView.reloadData()
     }
     
     func retryBtnAction() {
         retry()
-        self.collectionView.reloadData()
     }
 }
 

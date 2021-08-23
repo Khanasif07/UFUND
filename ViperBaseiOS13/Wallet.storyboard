@@ -1239,7 +1239,7 @@
                                             <color key="textColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzw-0B-DFU">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 ETH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mzw-0B-DFU">
                                             <rect key="frame" x="38.5" y="23.5" width="66" height="28"/>
                                             <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="24"/>
                                             <nil key="textColor"/>
@@ -1259,6 +1259,7 @@
                                 <constraint firstItem="JeD-kQ-ETh" firstAttribute="top" secondItem="OhR-9d-1vl" secondAttribute="top" constant="26.5" id="2W9-PS-lLb"/>
                                 <constraint firstItem="JeD-kQ-ETh" firstAttribute="leading" secondItem="OhR-9d-1vl" secondAttribute="leading" constant="16" id="F4g-cA-CjE"/>
                                 <constraint firstAttribute="trailing" secondItem="te7-8C-xkx" secondAttribute="trailing" constant="16" id="LLi-IR-d46"/>
+                                <constraint firstItem="te7-8C-xkx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JeD-kQ-ETh" secondAttribute="trailing" constant="20" id="THD-jw-L8n"/>
                                 <constraint firstAttribute="bottom" secondItem="JeD-kQ-ETh" secondAttribute="bottom" constant="26.5" id="cMI-lB-D3c"/>
                                 <constraint firstItem="te7-8C-xkx" firstAttribute="centerY" secondItem="JeD-kQ-ETh" secondAttribute="centerY" id="oSN-al-ebH"/>
                             </constraints>

@@ -17,6 +17,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     
   
     var kyc: Int?
+    var transactionID : String = ""
     var trulioo_kyc_status : Int?
     var token : String?
     var balance : String?
@@ -76,7 +77,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     
     
     required convenience init?(coder aDecoder: NSCoder) {
-        
+        let transactionID = aDecoder.decodeObject(forKey: Keys.list.transactionID) as? String
         let trulioo_kyc_status = aDecoder.decodeObject(forKey: Keys.list.trulioo_kyc_status) as? Int
         let kyc = aDecoder.decodeObject(forKey: Keys.list.kyc) as? Int
         let id = aDecoder.decodeObject(forKey: Keys.list.id) as? Int
@@ -108,6 +109,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     
     
     func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.transactionID,forKey: Keys.list.transactionID)
         aCoder.encode(self.trulioo_kyc_status,forKey: Keys.list.trulioo_kyc_status)
         aCoder.encode(self.kyc, forKey: Keys.list.kyc)
         aCoder.encode(self.id, forKey: Keys.list.id)

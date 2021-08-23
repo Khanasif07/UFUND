@@ -27,16 +27,16 @@ class Router: PresenterToRouterProtocol{
        
         if retrieveUserData() {
             
-            switch User.main.trulioo_kyc_status ?? 0 {
-            case 0:
-                let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
-                return vc
-            case 1:
-                let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
-                return vc
-            default:
+//            switch User.main.trulioo_kyc_status ?? 0 {
+//            case 0:
+//                let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+//                return vc
+//            case 1:
+//                let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+//                return vc
+//            default:
                 return  main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
-            }
+//            }
 //            let digitalId = UserDefaults.standard.value(forKey: "digitalId")  as? Int
             
 //            if  User.main.kyc == 0 {

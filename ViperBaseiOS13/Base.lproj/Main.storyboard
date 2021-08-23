@@ -1488,26 +1488,47 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nUG-IP-rfl">
-                                <rect key="frame" x="20" y="0.0" width="335" height="590"/>
+                                <rect key="frame" x="20" y="0.0" width="335" height="667"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Lq7-1O-N8Y">
-                                <rect key="frame" x="20" y="615" width="335" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Lq7-1O-N8Y">
+                                <rect key="frame" x="20" y="605" width="335" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRe-B6-XhP">
-                                        <rect key="frame" x="0.0" y="0.0" width="142.5" height="30"/>
-                                        <state key="normal" title="Confirm"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="157.5" height="40"/>
+                                        <color key="backgroundColor" name="primaryColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Confirm">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="confirmClicked:" destination="mEI-aq-2HF" eventType="touchUpInside" id="eaB-Vx-f81"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5R-WC-ZnS">
-                                        <rect key="frame" x="192.5" y="0.0" width="142.5" height="30"/>
-                                        <state key="normal" title="Retry"/>
+                                        <rect key="frame" x="177.5" y="0.0" width="157.5" height="40"/>
+                                        <color key="backgroundColor" name="primaryColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <state key="normal" title="Retry">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="retryClicked:" destination="mEI-aq-2HF" eventType="touchUpInside" id="a5R-SZ-Yrn"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="khZ-wQ-iv8"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hV9-9U-eRf"/>
@@ -1518,8 +1539,8 @@ We do not keep any documents on the platform for safety reasons; they are all st
                             <constraint firstAttribute="trailing" secondItem="nUG-IP-rfl" secondAttribute="trailing" constant="20" id="7qY-9s-Tox"/>
                             <constraint firstItem="hV9-9U-eRf" firstAttribute="trailing" secondItem="Lq7-1O-N8Y" secondAttribute="trailing" constant="20" id="P58-VW-XzR"/>
                             <constraint firstItem="hV9-9U-eRf" firstAttribute="bottom" secondItem="Lq7-1O-N8Y" secondAttribute="bottom" constant="22" id="Xlt-Ln-guL"/>
-                            <constraint firstItem="nUG-IP-rfl" firstAttribute="top" secondItem="oCq-7O-LY0" secondAttribute="top" id="jKV-SF-ysE"/>
-                            <constraint firstItem="Lq7-1O-N8Y" firstAttribute="top" secondItem="nUG-IP-rfl" secondAttribute="bottom" constant="25" id="lG6-EV-8Xo"/>
+                            <constraint firstItem="hV9-9U-eRf" firstAttribute="bottom" secondItem="nUG-IP-rfl" secondAttribute="bottom" id="ZFV-bI-iHv"/>
+                            <constraint firstItem="nUG-IP-rfl" firstAttribute="top" secondItem="hV9-9U-eRf" secondAttribute="top" id="jKV-SF-ysE"/>
                         </constraints>
                     </view>
                     <connections>

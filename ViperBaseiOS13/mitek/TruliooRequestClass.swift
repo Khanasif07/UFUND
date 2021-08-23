@@ -36,7 +36,8 @@ class DocumentVerificationRequest: Codable{
     var Timeout:Int
     //
    // var CallBackUrl:String = "https://api.globaldatacompany.com/connection/v1/async-callback"
-    var CallBackUrl:String = "https://ufunddevonline.appskeeper.in/trulioo_kyc_response/\(User.main.id ?? 0)"
+//    var CallBackUrl:String = "https://ufunddevonline.appskeeper.in/trulioo_kyc_response/\(User.main.id ?? 0)"
+    var CallBackUrl:String = "\(baseUrl)/trulioo_kyc_response/\(User.main.id ?? 0)"
     //
     init(countryCode:String, dataFields:DataFields){
         self.CountryCode = countryCode
