@@ -1598,7 +1598,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nTR-OK-V8y">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="767"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1012"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S47-al-0FO">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
@@ -1618,13 +1618,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJS-vU-cqf">
-                                                        <rect key="frame" x="0.0" y="165" width="375" height="312"/>
+                                                        <rect key="frame" x="0.0" y="165" width="375" height="347"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plR-jX-dOE">
-                                                                <rect key="frame" x="20" y="0.0" width="335" height="312"/>
+                                                                <rect key="frame" x="20" y="0.0" width="335" height="347"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zMm-hz-Jm0">
-                                                                        <rect key="frame" x="0.0" y="39" width="335" height="234"/>
+                                                                        <rect key="frame" x="0.0" y="26" width="335" height="295"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8S-Tl-bqj">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="51"/>
@@ -1661,8 +1661,26 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     <constraint firstItem="Ba5-R0-8MH" firstAttribute="leading" secondItem="zyK-KZ-vyb" secondAttribute="leading" constant="15" id="gWu-6l-3XL"/>
                                                                                 </constraints>
                                                                             </view>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdj-dB-raX">
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eb2-yY-KKL">
                                                                                 <rect key="frame" x="0.0" y="122" width="335" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WHC-NK-OEM">
+                                                                                        <rect key="frame" x="15" y="0.0" width="305" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="trailing" secondItem="WHC-NK-OEM" secondAttribute="trailing" constant="15" id="5RH-dY-Kgk"/>
+                                                                                    <constraint firstItem="WHC-NK-OEM" firstAttribute="leading" secondItem="eb2-yY-KKL" secondAttribute="leading" constant="15" id="5St-hs-1bQ"/>
+                                                                                    <constraint firstItem="WHC-NK-OEM" firstAttribute="top" secondItem="eb2-yY-KKL" secondAttribute="top" id="NUM-jk-iE5"/>
+                                                                                    <constraint firstAttribute="height" constant="51" id="lOk-0j-Lui"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="WHC-NK-OEM" secondAttribute="bottom" id="ukW-Mu-jdQ"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdj-dB-raX">
+                                                                                <rect key="frame" x="0.0" y="183" width="335" height="51"/>
                                                                                 <subviews>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DDQ-07-NFh">
                                                                                         <rect key="frame" x="15" y="0.0" width="305" height="51"/>
@@ -1679,7 +1697,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FX6-4D-qZ4">
-                                                                                <rect key="frame" x="0.0" y="183" width="335" height="51"/>
+                                                                                <rect key="frame" x="0.0" y="244" width="335" height="51"/>
                                                                                 <subviews>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Document type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SuG-TQ-A0O">
                                                                                         <rect key="frame" x="15" y="0.0" width="305" height="51"/>
@@ -1704,7 +1722,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                     <constraint firstItem="zMm-hz-Jm0" firstAttribute="centerX" secondItem="plR-jX-dOE" secondAttribute="centerX" id="0ui-Co-1bq"/>
                                                                     <constraint firstItem="zMm-hz-Jm0" firstAttribute="width" secondItem="plR-jX-dOE" secondAttribute="width" id="23h-jr-En9"/>
                                                                     <constraint firstItem="zMm-hz-Jm0" firstAttribute="centerY" secondItem="plR-jX-dOE" secondAttribute="centerY" id="4b0-zf-2Z1"/>
-                                                                    <constraint firstItem="zMm-hz-Jm0" firstAttribute="height" secondItem="plR-jX-dOE" secondAttribute="height" multiplier="0.75" id="oAd-8C-l1T"/>
+                                                                    <constraint firstItem="zMm-hz-Jm0" firstAttribute="height" secondItem="plR-jX-dOE" secondAttribute="height" multiplier="0.85" id="oAd-8C-l1T"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -1717,10 +1735,10 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHh-g8-TOL">
-                                                        <rect key="frame" x="0.0" y="477" width="375" height="210"/>
+                                                        <rect key="frame" x="0.0" y="512" width="375" height="420"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ysg-Ub-chk">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="420"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2cl-Fn-yiZ">
                                                                     <size key="itemSize" width="50" height="50"/>
@@ -1746,19 +1764,19 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                             <constraint firstAttribute="trailing" secondItem="ysg-Ub-chk" secondAttribute="trailing" id="2Pd-5j-fLD"/>
                                                             <constraint firstItem="ysg-Ub-chk" firstAttribute="leading" secondItem="yHh-g8-TOL" secondAttribute="leading" id="FDV-Sf-T1m"/>
                                                             <constraint firstAttribute="bottom" secondItem="ysg-Ub-chk" secondAttribute="bottom" id="jas-qk-hYL"/>
-                                                            <constraint firstAttribute="height" constant="210" id="oeN-t5-176"/>
+                                                            <constraint firstAttribute="height" constant="420" id="oeN-t5-176"/>
                                                             <constraint firstItem="ysg-Ub-chk" firstAttribute="top" secondItem="yHh-g8-TOL" secondAttribute="top" id="vKo-1H-Bbl"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-Ah-AYo">
-                                                        <rect key="frame" x="0.0" y="687" width="375" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="932" width="375" height="0.0"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" id="reR-xl-l62"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUf-Cz-p6M">
-                                                        <rect key="frame" x="0.0" y="687" width="375" height="80"/>
+                                                        <rect key="frame" x="0.0" y="932" width="375" height="80"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grR-zV-dwJ">
                                                                 <rect key="frame" x="20" y="15" width="335" height="50"/>
@@ -1836,6 +1854,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="collectionParentView" destination="yHh-g8-TOL" id="NEg-EM-yS5"/>
                         <outlet property="collectionView" destination="ysg-Ub-chk" id="XUu-pH-rIr"/>
                         <outlet property="countryTxtFld" destination="DDQ-07-NFh" id="wH1-wb-j5Z"/>
+                        <outlet property="dobTxtFld" destination="WHC-NK-OEM" id="cGE-Us-kno"/>
                         <outlet property="docsTxtFld" destination="SuG-TQ-A0O" id="lME-zL-ADK"/>
                         <outlet property="firstNameKycTxT" destination="HdU-DP-TiN" id="H95-8p-f4h"/>
                         <outlet property="kycLbl" destination="Wzb-xi-CQy" id="go3-Qy-fS3"/>
@@ -12368,11 +12387,11 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kycBG" translatesAutoresizingMaskIntoConstraints="NO" id="eKA-Da-6Sz">
-                                                <rect key="frame" x="131.5" y="0.0" width="112.5" height="200"/>
+                                                <rect key="frame" x="122" y="0.0" width="131" height="233.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="osd-Mc-Dvh">
-                                                <rect key="frame" x="25" y="200" width="325" height="182"/>
+                                                <rect key="frame" x="25" y="233.5" width="325" height="197"/>
                                                 <string key="text">UFUND is against money laundering activities and does not want to deal with these persons or organizations for legal and moral reasons.
 We ask all our users to pass our KYC to enjoy all UFUND functionalities.
 It is a few step process and will take a few minutes, and you will need a:
@@ -12380,7 +12399,7 @@ Valid ID (Passport, National ID or Driving License)
 Proof of residency (utility bill, bank statement, phone bill, etc.)
 Take a selfie
 We do not keep any documents on the platform for safety reasons; they are all stored on our KYC provider.</string>
-                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -12435,7 +12454,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="BbP-Yt-KCZ" secondAttribute="bottom" constant="25" id="0xm-1z-bv3"/>
                                             <constraint firstItem="eKA-Da-6Sz" firstAttribute="top" secondItem="Pv9-p2-yQk" secondAttribute="top" id="Con-a3-dzx"/>
-                                            <constraint firstItem="eKA-Da-6Sz" firstAttribute="width" secondItem="Pv9-p2-yQk" secondAttribute="width" multiplier="0.3" id="JOe-yP-P39"/>
+                                            <constraint firstItem="eKA-Da-6Sz" firstAttribute="width" secondItem="Pv9-p2-yQk" secondAttribute="width" multiplier="0.35" id="JOe-yP-P39"/>
                                             <constraint firstItem="obh-2M-nWL" firstAttribute="trailing" secondItem="BbP-Yt-KCZ" secondAttribute="trailing" id="KAK-xG-Rh0"/>
                                             <constraint firstAttribute="trailing" secondItem="osd-Mc-Dvh" secondAttribute="trailing" constant="25" id="Kv2-lE-rug"/>
                                             <constraint firstItem="obh-2M-nWL" firstAttribute="bottom" secondItem="BbP-Yt-KCZ" secondAttribute="bottom" id="Tli-AC-D5W"/>
@@ -12448,7 +12467,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="osd-Mc-Dvh" firstAttribute="top" secondItem="eKA-Da-6Sz" secondAttribute="bottom" id="kxE-Ok-IVJ"/>
                                             <constraint firstItem="obh-2M-nWL" firstAttribute="top" secondItem="BbP-Yt-KCZ" secondAttribute="top" id="l3H-3M-ZuB"/>
                                             <constraint firstAttribute="trailing" secondItem="obh-2M-nWL" secondAttribute="trailing" constant="20" id="qvy-GO-MW4"/>
-                                            <constraint firstItem="eKA-Da-6Sz" firstAttribute="height" secondItem="Pv9-p2-yQk" secondAttribute="height" multiplier="0.3" id="sws-Fn-76y"/>
+                                            <constraint firstItem="eKA-Da-6Sz" firstAttribute="height" secondItem="Pv9-p2-yQk" secondAttribute="height" multiplier="0.35" id="sws-Fn-76y"/>
                                             <constraint firstItem="osd-Mc-Dvh" firstAttribute="leading" secondItem="Pv9-p2-yQk" secondAttribute="leading" constant="25" id="uCy-Tw-W0G"/>
                                             <constraint firstItem="obh-2M-nWL" firstAttribute="leading" secondItem="Pv9-p2-yQk" secondAttribute="leading" constant="20" id="vbl-gt-PtH"/>
                                         </constraints>

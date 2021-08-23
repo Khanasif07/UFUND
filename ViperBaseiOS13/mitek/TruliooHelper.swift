@@ -280,7 +280,7 @@ public class TruliooHelper{
         let mutable: NSMutableDictionary = sourceImageProperties.mutableCopy() as! NSMutableDictionary
         let tiffData: NSMutableDictionary = (mutable[kCGImagePropertyTIFFDictionary as String] as? NSMutableDictionary)!
 
-        print("Original image properties: \(sourceImageProperties)")
+//        print("Original image properties: \(sourceImageProperties)")
 
         // tag it to tiff Software
         tiffData[kCGImagePropertyTIFFSoftware as String] = metaData
@@ -296,7 +296,7 @@ public class TruliooHelper{
         let newImage: CIImage = CIImage(data: imageDataWithExif as Data, options: nil)!
         let newImageProperties: NSDictionary = newImage.properties as NSDictionary
               
-        print("New image properties: \(newImageProperties)")
+//        print("New image properties: \(newImageProperties)")
         
         return newImage
     }

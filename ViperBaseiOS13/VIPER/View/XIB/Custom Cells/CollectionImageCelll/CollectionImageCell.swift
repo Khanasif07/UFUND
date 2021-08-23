@@ -18,7 +18,13 @@ class CollectionImageCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        imgView.layer.borderWidth = 1.0
+        imgView.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.imgView.layer.cornerRadius = 4.0
     }
     @IBAction func uploadBtnAction(_ sender: UIButton) {
         if let handle = uploadBtnTapped{

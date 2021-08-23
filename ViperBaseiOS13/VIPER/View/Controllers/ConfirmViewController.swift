@@ -7,11 +7,18 @@
 //
 
 import UIKit
+protocol ConfirmViewControllerDelegate: class {
+    func confirmBtnAction()
+    func retryBtnAction()
+}
 
 class ConfirmViewController: UIViewController {
 
     public var image : UIImage? = nil
+    weak var delegate:ConfirmViewControllerDelegate?
+    
     @IBOutlet weak var confirmImageView: UIImageView!
+    
     override func viewDidLoad() {
         self.navigationItem.hidesBackButton = true
         super.viewDidLoad()
@@ -19,16 +26,14 @@ class ConfirmViewController: UIViewController {
     }
 
     @IBAction func confirmClicked(_ sender: Any) {
-        let rootVC : KYCViewController = self.navigationController?.viewControllers[1] as! KYCViewController
-        self.navigationController?.popViewController(animated: true)
-        rootVC.confirmed()
+        self.delegate?.confirmBtnAction()
+        self.popOrDismiss(animation: true)
     }
     
 
     @IBAction func retryClicked(_ sender: Any) {
-        let rootVC : KYCViewController = self.navigationController?.viewControllers[1] as! KYCViewController
-        self.navigationController?.popViewController(animated: true)
-        rootVC.retry()
+        self.delegate?.retryBtnAction()
+        self.popOrDismiss(animation: true)
     }
 }
 

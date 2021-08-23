@@ -13,6 +13,9 @@ import UIKit
 public struct PiiInfo{
     public let firstName:String
     public let lastName:String
+    public let dayOfBirth:String
+    public let monthOfBirth:String
+    public let yearOfBirth:String
     public let countryCode:String
     public let documentType:String
     
@@ -31,7 +34,10 @@ class DocumentVerificationRequest: Codable{
     var CountryCode:String
     var DataFields:DataFields
     var Timeout:Int
-    
+    //
+   // var CallBackUrl:String = "https://api.globaldatacompany.com/connection/v1/async-callback"
+    var CallBackUrl:String = "https://ufunddevonline.appskeeper.in/trulioo_kyc_response/\(User.main.id ?? 0)"
+    //
     init(countryCode:String, dataFields:DataFields){
         self.CountryCode = countryCode
         self.DataFields = dataFields
@@ -52,10 +58,18 @@ class DataFields: Codable{
 class PersonInfo: Codable{
     var FirstGivenName:String?
     var FirstSurName:String?
+    var DayOfBirth: String?
+    var MonthOfBirth: String?
+    var YearOfBirth: String?
+    //
+//    var Day
     
     init(piiInfo:PiiInfo){
         self.FirstGivenName = piiInfo.firstName
         self.FirstSurName = piiInfo.lastName
+        self.DayOfBirth = piiInfo.dayOfBirth
+        self.MonthOfBirth = piiInfo.monthOfBirth
+        self.YearOfBirth = piiInfo.yearOfBirth
     }
 }
 

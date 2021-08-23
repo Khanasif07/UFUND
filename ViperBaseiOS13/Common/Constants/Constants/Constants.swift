@@ -75,6 +75,7 @@ struct Constants {
     let lastName = "Last name"
     let documentType = "Document Type"
     let country = "country"
+    let dob = "dob"
     let phoneNumber = "Phone number"
     let password = "Password"
     let emailOrName = "Username or email id"

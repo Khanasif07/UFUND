@@ -22,7 +22,7 @@ struct SelectedDoc {
     var id: Int?
     var file: Data?
     var img: UIImage?
-
+    
     init(id: Int?,file: Data?,img: UIImage?) {
         self.id = id
         self.file = file
@@ -34,16 +34,16 @@ struct SelectedDoc {
 class KYCVerifiyDoc {
     
     var id : Int?
-       var user_id : Int?
-       var document_id : Int?
-       var url : String?
-       var unique_id : Int?
-       var status : String?
-       var expires_at : String?
-       var created_at : String?
-       var updated_at : String?
-       var image : String?
-       var name : String?
+    var user_id : Int?
+    var document_id : Int?
+    var url : String?
+    var unique_id : Int?
+    var status : String?
+    var expires_at : String?
+    var created_at : String?
+    var updated_at : String?
+    var image : String?
+    var name : String?
     
     init(id : Int?, user_id : Int?,document_id : Int?,url : String?,unique_id : Int?, status : String?,expires_at : String?, created_at : String?,updated_at : String?, image : String?, name : String?) {
         
@@ -64,29 +64,42 @@ class KYCVerifiyDoc {
 
 
 class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapFacialCaptureViewControllerDelegate, CLLocationManagerDelegate {
-  
-    @IBAction func kycClickEvent(_ sender: UIButton) {
-       
-//        var param = [String: AnyObject]()
-//        var imageArray = [String: Data]()
-//
-//
-//        param[RegisterParam.keys.name] = nullStringToEmpty(string: firstNameKycTxT.text) as AnyObject
-//        param[RegisterParam.keys.last_name] = nullStringToEmpty(string: lastNameKycTxT.text) as AnyObject
-//        param[RegisterParam.keys.mobile] = nullStringToEmpty(string: mobileNumberTxtFld.text) as AnyObject
     
+    @IBAction func kycClickEvent(_ sender: UIButton) {
+        if self.capturedFrontImage == nil {
+            ToastManager.show(title: "Please upload front document.", state: .success)
+            return
+        }
+        if self.capturedBackImage == nil {
+            ToastManager.show(title: "Please upload back document.", state: .success)
+            return
+        }
+        if self.capturedSelfieImage == nil {
+            ToastManager.show(title: "Please upload selfie document.", state: .success)
+            return
+        }
+        goToVerify()
         
-//        for (index,ids) in self.selectedDoc.enumerated() {
-//
-//            param["document_ids[\(index)]"] = ids.id as AnyObject
-//            imageArray["\(index)"] = ids.file
-//
-//        }
-//
-//        print("param",param)
-//        print(">>>>>>>>>imageArray",imageArray)
-//
-//        self.presenter?.IMAGEPOST(api: Base.kycUpdate.rawValue, params: param, methodType: .POST, imgData: imageArray, imgName: "", modelClass: SuccessDict.self, token: true)
+        //        var param = [String: AnyObject]()
+        //        var imageArray = [String: Data]()
+        //
+        //
+        //        param[RegisterParam.keys.name] = nullStringToEmpty(string: firstNameKycTxT.text) as AnyObject
+        //        param[RegisterParam.keys.last_name] = nullStringToEmpty(string: lastNameKycTxT.text) as AnyObject
+        //        param[RegisterParam.keys.mobile] = nullStringToEmpty(string: mobileNumberTxtFld.text) as AnyObject
+        
+        
+        //        for (index,ids) in self.selectedDoc.enumerated() {
+        //
+        //            param["document_ids[\(index)]"] = ids.id as AnyObject
+        //            imageArray["\(index)"] = ids.file
+        //
+        //        }
+        //
+        //        print("param",param)
+        //        print(">>>>>>>>>imageArray",imageArray)
+        //
+        //        self.presenter?.IMAGEPOST(api: Base.kycUpdate.rawValue, params: param, methodType: .POST, imgData: imageArray, imgName: "", modelClass: SuccessDict.self, token: true)
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -97,6 +110,7 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     @IBOutlet weak var firstNameKycTxT: UITextField!
     @IBOutlet weak var countryTxtFld: UITextField!
     @IBOutlet weak var KycSaveButton: UIButton!
+    @IBOutlet weak var dobTxtFld: UITextField!
     @IBOutlet weak var kycLbl: UILabel!
     
     
@@ -106,18 +120,18 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     private var miSnapController: MiSnapSDKViewController!
     private var livenessController: MiSnapFacialCaptureViewController!
     private let countryDefaultArray:[String] = [
-           "US",
-           "CA"
-       ]
-       
-       private let documentTypeArray:[String] = [
-           "DrivingLicence",
-           "IdentityCard",
-           "ResidencePermit",
-           "Passport"
-       ]
+        "US",
+        "CA"
+    ]
+    
+    private let documentTypeArray:[String] = [
+        "DrivingLicence",
+        "IdentityCard",
+        "ResidencePermit",
+        "Passport"
+    ]
     private var countryArray:[String] = []
-    var sortTypeAppliedCountry: String = "IN"
+    var sortTypeAppliedCountry: String = "US"
     var sortTypeAppliedDoc: String = "DrivingLicence"
     var tempTxtField: UITextField?
     //
@@ -145,10 +159,16 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     private var capturedFrontMetaData: String?
     private var capturedBackMetaData: String?
     private var capturedSelfieMetaData: String?
+    
+    private var dayOfBirth: String?
+    private var monthOfBirth: String?
+    private var yearOfBirth: String?
+    
     private let minSpaceRequired = 20
     var piiInfo:PiiInfo? = nil
     var transactionID: String = ""
     //
+    var datePicker = CustomDatePicker()
     
     @IBOutlet weak var stackView: UIStackView!
     
@@ -164,7 +184,7 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     }
     
     private lazy var loader  : UIView = {
-               return createActivityIndicator(self.view)
+        return createActivityIndicator(self.view)
     }()
     
     var userProfile: UserProfile?
@@ -173,7 +193,7 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     var kycDocumentAlreadyUploaded = [KYCUpdatedDocument]()
     var isFromList = false
     
-//    var kycVerifyDoc = [KYCVerifiyDoc]()
+    //    var kycVerifyDoc = [KYCVerifiyDoc]()
     var kycVerifyDoc = [UIImage]()
     
     override func viewDidLoad() {
@@ -184,10 +204,7 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
             // Fallback on earlier versions
         }
         viewEffect = 0
-        //
         reset()
-//        progressView.isHidden = false
-//        startButton.isEnabled = false
         loadCountyPicker()
         requestLocationPermision()
         //
@@ -196,14 +213,24 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
         docsTxtFld.applyEffectToTextField(placeHolderString: Constants.string.documentType.localize())
         lastNameKycTxT.applyEffectToTextField(placeHolderString: Constants.string.lastName.localize())
         countryTxtFld.applyEffectToTextField(placeHolderString: Constants.string.country.localize())
+        dobTxtFld.applyEffectToTextField(placeHolderString: Constants.string.dob.localize())
         firstNameKycTxT.delegate = self
         lastNameKycTxT.delegate = self
         countryTxtFld.delegate = self
         docsTxtFld.delegate = self
+        dobTxtFld.delegate = self
         lastNameKycTxT.isUserInteractionEnabled = false
         firstNameKycTxT.isUserInteractionEnabled = false
         countryTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         docsTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+        dobTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
+        dobTxtFld.inputView = datePicker
+        countryTxtFld.text =   self.sortTypeAppliedCountry
+        docsTxtFld.text = self.sortTypeAppliedDoc
+        self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -100, to: Date())
+        self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+        self.datePicker.pickerMode = .date
+        
         
         let nibPost = UINib(nibName: XIB.Names.CollectionImageCell, bundle: nil)
         collectionView.register(nibPost, forCellWithReuseIdentifier: XIB.Names.CollectionImageCell)
@@ -223,40 +250,43 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
         getKYC()
         
     }
-            
-            override func viewDidLayoutSubviews() {
-                super.viewDidLayoutSubviews()
-                localize()
-            }
-            
-        }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        localize()
+    }
+    
+}
 
-        //MARK: - Localization
-        extension KYCViewController {
-            
-            func localize() {
-                
-                
-                KycSaveButton.setTitle(Constants.string.save.localize(), for: .normal)
-                KycSaveButton.setTitleColor(.white, for: .normal)
-                kycLbl.text = Constants.string.kyc.localize().uppercased()
-                
-            }
+//MARK: - Localization
+extension KYCViewController {
+    
+    func localize() {
+        KycSaveButton.setTitle(Constants.string.save.localize(), for: .normal)
+        KycSaveButton.setTitleColor(.white, for: .normal)
+        kycLbl.text = Constants.string.kyc.localize().uppercased()
+    }
+    
+    private func appendText(text:String?){
+        DispatchQueue.main.async {
+           print(text)
         }
+    }
+}
 
 
-        //MARK: - Button Action
-        extension KYCViewController {
-            
-            @IBAction func goBack(_ sender: UIButton) {
-                
-                self.popOrDismiss(animation: true)
-//               presentAlertViewController()
-            }
-            
-           
-            
-        }
+//MARK: - Button Action
+extension KYCViewController {
+    
+    @IBAction func goBack(_ sender: UIButton) {
+        
+        self.popOrDismiss(animation: true)
+        //               presentAlertViewController()
+    }
+    
+    
+    
+}
 
 //        //MARK: - UITextField Delegate
 //        extension KYCViewController: UITextFieldDelegate {
@@ -276,29 +306,29 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
 
 extension  KYCViewController {
     
-//    func presentAlertViewController() {
-//
-//
-//        let alertController = UIAlertController(title: Constants.string.appName.localize(), message: Constants.string.areYouSureWantToLogout.localize(), preferredStyle: UIAlertController.Style.alert)
-//
-//        let okAction = UIAlertAction(title: Constants.string.OK.localize(), style: UIAlertAction.Style.default) {
-//            (result : UIAlertAction) -> Void in
-//
-//            self.getLogout()
-//        }
-//
-//        let cancelAction = UIAlertAction(title: Constants.string.Cancel.localize(), style: UIAlertAction.Style.default) {
-//            (result : UIAlertAction) -> Void in
-//            self.drawerController?.closeSide()
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//
-//
-//        alertController.addAction(okAction)
-//        alertController.addAction(cancelAction)
-//        self.present(alertController, animated: true, completion: nil)
-//
-//    }
+    //    func presentAlertViewController() {
+    //
+    //
+    //        let alertController = UIAlertController(title: Constants.string.appName.localize(), message: Constants.string.areYouSureWantToLogout.localize(), preferredStyle: UIAlertController.Style.alert)
+    //
+    //        let okAction = UIAlertAction(title: Constants.string.OK.localize(), style: UIAlertAction.Style.default) {
+    //            (result : UIAlertAction) -> Void in
+    //
+    //            self.getLogout()
+    //        }
+    //
+    //        let cancelAction = UIAlertAction(title: Constants.string.Cancel.localize(), style: UIAlertAction.Style.default) {
+    //            (result : UIAlertAction) -> Void in
+    //            self.drawerController?.closeSide()
+    //            self.dismiss(animated: true, completion: nil)
+    //        }
+    //
+    //
+    //        alertController.addAction(okAction)
+    //        alertController.addAction(cancelAction)
+    //        self.present(alertController, animated: true, completion: nil)
+    //
+    //    }
     
     func loadCountyPicker() {
         let helper = TruliooHelper()
@@ -310,10 +340,10 @@ extension  KYCViewController {
                 self.countryArray = self.countryDefaultArray
                 print(self.countryArray)
             }
-//            self.refreshPicker()
+            //            self.refreshPicker()
         }) { (error, statusCode, response) in
             self.countryArray = self.countryDefaultArray
-//            self.refreshPicker()
+            //            self.refreshPicker()
             let alert = UIAlertController(title: NSLocalizedString("Connection Error", comment: ""), message: NSLocalizedString("Unable to load country list from server. Using the default value", comment: ""), preferredStyle:UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
                 { action -> Void in})
@@ -330,117 +360,152 @@ extension  KYCViewController {
 extension KYCViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return 1
+        return 1
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            
-//            return kycVerifyDoc.count > 0 ? kycVerifyDoc.count  : 0
-            return 2
-        }
+        //            return kycVerifyDoc.count > 0 ? kycVerifyDoc.count  : 0
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.CollectionImageCell, for: indexPath) as! CollectionImageCell
-                cell.backgroundColor = .clear
-            switch indexPath.row {
-            case 0:
-                if capturedFrontImage != nil {
-                    cell.imgView.image = capturedFrontImage
-                    cell.uploadButton.isHidden = true
-                }else {
-                    cell.uploadButton.isHidden = false
-                }
-            default:
-                if capturedBackImage != nil {
-                    cell.imgView.image = capturedBackImage
-                    cell.uploadButton.isHidden = true
-                }else {
-                    cell.uploadButton.isHidden = false
-                }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.CollectionImageCell, for: indexPath) as! CollectionImageCell
+        cell.backgroundColor = .clear
+        switch indexPath.row {
+        case 0:
+            cell.documNameLbl.text = "Front Document"
+            if capturedFrontImage != nil {
+                cell.imgView.image = capturedFrontImage
+                cell.uploadButton.isHidden = true
+                cell.imgView.isHidden = false
+            }else {
+                cell.uploadButton.isHidden = false
+                cell.imgView.isHidden = true
             }
-            cell.uploadBtnTapped = {  [weak self] (sender) in
-                guard let selff = self else { return }
-                if indexPath.row == 0 {
-                    selff.currentImage = selff.frontImage
-                    selff.reset()
-                } else {
-                    selff.currentImage = selff.backImage
-                }
+        case 1:
+            cell.documNameLbl.text = "Back Document"
+            if capturedBackImage != nil {
+                cell.imgView.image = capturedBackImage
+                cell.imgView.isHidden = false
+                cell.uploadButton.isHidden = true
+            }else {
+                cell.uploadButton.isHidden = false
+                cell.imgView.isHidden = true
+            }
+        default:
+            cell.documNameLbl.text = "Selfie Document"
+            if capturedSelfieImage != nil {
+                cell.imgView.image = capturedSelfieImage
+                cell.uploadButton.isHidden = true
+                cell.imgView.isHidden = false
+            }else {
+                cell.uploadButton.isHidden = false
+                cell.imgView.isHidden = true
+            }
+        }
+        cell.uploadBtnTapped = {  [weak self] (sender) in
+            guard let selff = self else { return }
+            if indexPath.row == 0 {
+                selff.currentImage = selff.frontImage
+                selff.reset()
+                selff.loader.isHidden = false
                 selff.uploadImagePicker(sender: sender)
+            } else if indexPath.row == 1{
+                if selff.capturedFrontImage == nil {
+                    ToastManager.show(title: "Please upload front document first.", state: .success)
+                    return
+                }
+                selff.currentImage = selff.backImage
+                selff.loader.isHidden = false
+                selff.uploadImagePicker(sender: sender)
+            } else {
+                if selff.capturedFrontImage == nil {
+                    ToastManager.show(title: "Please upload front document first.", state: .success)
+                    return
+                }
+                if selff.capturedBackImage == nil {
+                    ToastManager.show(title: "Please upload Back document first.", state: .success)
+                    return
+                }
+                selff.currentImage = selff.selfieImage
+                selff.loader.isHidden = false
+                selff.startCapture(type: selff.currentImage)
             }
-//                let entity = kycVerifyDoc[indexPath.row]
-//
-//
-//                        cell.documNameLbl.text = nullStringToEmpty(string: entity.name) + "\n" + nullStringToEmpty(string: entity.status)
-//                cell.uploadButton.tag = indexPath.row
-//                cell.uploadButton.addTarget(self, action: #selector(uploadImagePicker), for: .touchUpInside)
-           
-             
-            
-//            if isFromList {
-//
-//                let url = URL.init(string: baseUrl + "/storage/" +  nullStringToEmpty(string: entity.url))
-//                cell.imgView.sd_setImage(with: url , placeholderImage: nil)
-//                print(">>>url",url)
-//
-//                if nullStringToEmpty(string: entity.status) == "APPROVED" {
-//
-//                    cell.uploadButton.isHidden = true
-//
-//                } else {
-//
-//                     cell.uploadButton.isHidden = false
-//
-//                }
-//            } else {
-//
-//                 cell.uploadButton.isHidden = false
-//            }
-            
-            
-            
-//            if selectedDoc.count > 0 {
-//
-//                for ids in selectedDoc {
-//
-//                    if ids.id == entity.id {
-//
-//                        cell.imgView.image = ids.img
-//                    }
-//                }
-//            }
-                return cell
-            
         }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
-       
-            return CGSize(width: collectionView.frame.width / 2, height: 175.0)
-           
-            
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-            
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            
-        }
+        //                let entity = kycVerifyDoc[indexPath.row]
+        //
+        //
+        //                        cell.documNameLbl.text = nullStringToEmpty(string: entity.name) + "\n" + nullStringToEmpty(string: entity.status)
+        //                cell.uploadButton.tag = indexPath.row
+        //                cell.uploadButton.addTarget(self, action: #selector(uploadImagePicker), for: .touchUpInside)
         
         
-
+        
+        //            if isFromList {
+        //
+        //                let url = URL.init(string: baseUrl + "/storage/" +  nullStringToEmpty(string: entity.url))
+        //                cell.imgView.sd_setImage(with: url , placeholderImage: nil)
+        //                print(">>>url",url)
+        //
+        //                if nullStringToEmpty(string: entity.status) == "APPROVED" {
+        //
+        //                    cell.uploadButton.isHidden = true
+        //
+        //                } else {
+        //
+        //                     cell.uploadButton.isHidden = false
+        //
+        //                }
+        //            } else {
+        //
+        //                 cell.uploadButton.isHidden = false
+        //            }
+        
+        
+        
+        //            if selectedDoc.count > 0 {
+        //
+        //                for ids in selectedDoc {
+        //
+        //                    if ids.id == entity.id {
+        //
+        //                        cell.imgView.image = ids.img
+        //                    }
+        //                }
+        //            }
+        return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        
+        return CGSize(width: collectionView.frame.width / 2, height: 200.0)
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+    }
+    
+    
+    
 }
 
 extension KYCViewController {
     
     func uploadImagePicker(sender: UIButton) {
-//        reset()
-       
+        //        reset()
         
-//        startButton.isEnabled = false
-//        progressView.isHidden = false
-//
+        
+        //        startButton.isEnabled = false
+        //        progressView.isHidden = false
+        //
         // if we are using location, only request value on first capture
         // then use saved value for document back side / selfie
         if (self.shouldUseLocation && self.currentLatitude.isEmpty && CLLocationManager.locationServicesEnabled()) {
@@ -450,41 +515,41 @@ extension KYCViewController {
         } else {
             startCapture(type: currentImage)
         }
-//        selectedIndex = sender.tag
-//
-//        self.showImage { (image) in
-//
-//                   if image != nil {
-//
-//                    let entity = self.kycVerifyDoc[self.selectedIndex]
-//                       let image : UIImage = image!
-//                       let data = image.jpegData(compressionQuality: 0.2)
-//
-//
-//                    let doc = SelectedDoc(id: entity.id, file: data, img: image)
-//                    if self.selectedDoc.count > 0 {
-//
-//                        for ids in self.selectedDoc {
-//
-//                            print(">>>ids",ids)
-//
-//                            if ids.id == doc.id {
-//                                self.selectedDoc.append(doc)
-//                                self.collectionView.reloadData()
-//                            } else {
-//                                self.selectedDoc.append(doc)
-//                                self.collectionView.reloadData()
-//                            }
-//                        }
-//                    } else {
-//                         self.selectedDoc.append(doc)
-//                        self.collectionView.reloadData()
-//                    }
-//
-//                }
-//        }
+        //        selectedIndex = sender.tag
+        //
+        //        self.showImage { (image) in
+        //
+        //                   if image != nil {
+        //
+        //                    let entity = self.kycVerifyDoc[self.selectedIndex]
+        //                       let image : UIImage = image!
+        //                       let data = image.jpegData(compressionQuality: 0.2)
+        //
+        //
+        //                    let doc = SelectedDoc(id: entity.id, file: data, img: image)
+        //                    if self.selectedDoc.count > 0 {
+        //
+        //                        for ids in self.selectedDoc {
+        //
+        //                            print(">>>ids",ids)
+        //
+        //                            if ids.id == doc.id {
+        //                                self.selectedDoc.append(doc)
+        //                                self.collectionView.reloadData()
+        //                            } else {
+        //                                self.selectedDoc.append(doc)
+        //                                self.collectionView.reloadData()
+        //                            }
+        //                        }
+        //                    } else {
+        //                         self.selectedDoc.append(doc)
+        //                        self.collectionView.reloadData()
+        //                    }
+        //
+        //                }
+        //        }
         
-       
+        
     }
 }
 
@@ -492,29 +557,29 @@ extension KYCViewController {
 
 extension KYCViewController: PresenterOutputProtocol {
     
-  
+    
     func getKYC() {
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.kyc.rawValue, params: nil, methodType: .GET, modelClass: KYCDetail.self, token: true)
     }
     
     func getLogout() {
-           self.loader.isHidden = false
-           var param = [String: AnyObject]()
-           param[RegisterParam.keys.id] = User.main.id as AnyObject
-           self.presenter?.HITAPI(api: Base.logout.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
-       }
-       
+        self.loader.isHidden = false
+        var param = [String: AnyObject]()
+        param[RegisterParam.keys.id] = User.main.id as AnyObject
+        self.presenter?.HITAPI(api: Base.logout.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
+    }
+    
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         
         switch api {
-       
-
-            case Base.logout.rawValue:
-                self.loader.isHidden = true
-                self.drawerController?.closeSide()
-                forceLogout(with: SuccessMessage.string.logoutMsg.localize())
+        
+        
+        case Base.logout.rawValue:
+            self.loader.isHidden = true
+            self.drawerController?.closeSide()
+            forceLogout(with: SuccessMessage.string.logoutMsg.localize())
             
         case Base.kyc.rawValue:
             
@@ -523,80 +588,80 @@ extension KYCViewController: PresenterOutputProtocol {
             self.kycDocument = self.kycDetail?.document ?? []
             self.userProfile = self.kycDetail?.user
             self.kycDocumentAlreadyUploaded = self.kycDetail?.kyc_document ?? []
-        
-         
+            
+            
             if self.userProfile != nil {
                 
-                        firstNameKycTxT.text = nullStringToEmpty(string:  self.userProfile?.name)
-                        lastNameKycTxT.text = nullStringToEmpty(string: self.userProfile?.last_name)
-//                        mobileNumberTxtFld.text = nullStringToEmpty(string: self.userProfile?.mobile)
-
+                firstNameKycTxT.text = nullStringToEmpty(string:  self.userProfile?.name)
+                lastNameKycTxT.text = nullStringToEmpty(string: self.userProfile?.last_name)
+                //                        mobileNumberTxtFld.text = nullStringToEmpty(string: self.userProfile?.mobile)
+                
             }
-        
-//            for dic in kycDocument {
-//
-//                let newValue = self.kycDocumentAlreadyUploaded.filter( { Int($0.document_id ?? "") == dic.id})
-//                 print(">>>>newValue",newValue)
-//
-//                if newValue.isEmpty {
-//
-//                    let dict = KYCVerifiyDoc.init(id: dic.id, user_id: dic.id, document_id: dic.id, url: dic.image, unique_id: dic.id, status: dic.name, expires_at: "", created_at: "", updated_at: "", image: dic.image, name: dic.name)
-//
-////                    kycVerifyDoc.append(dict)
-//
-//                } else {
-//
-//                    let dict = KYCVerifiyDoc.init(id: newValue.last?.id, user_id: newValue.last?.user_id, document_id: Int(newValue.last?.document_id ?? ""), url: newValue.last?.url, unique_id: Int(newValue.last?.unique_id ?? ""), status: newValue.last?.status, expires_at: newValue.last?.expires_at, created_at: newValue.last?.created_at, updated_at: newValue.last?.updated_at, image: newValue.last?.image, name: newValue.last?.name)
-////                         kycVerifyDoc.append(dict)
-//
-//                }
-//            }
             
-               
-//            if kycDocumentAlreadyUploaded.count >  0 {
-//
-//                if self.kycVerifyDoc.filter( { $0.status == "DISAPPROVED" || $0.status == "" } ).count == 0 {
-//
-//                     let digitalId = UserDefaults.standard.value(forKey: "digitalId")  as? Int
-//
-//
-//                    if User.main.g2f_temp == 1 || User.main.pin_status == 1  || digitalId == 1 {
-//
-//
-//
-//                        let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as! OtpController
-//                        vc.changePINStr = "changePINStr"
-//                        self.navigationController?.pushViewController(vc, animated: true)
-//
-//
-//
-//                    } else {
-//
-//                        self.push(id: Storyboard.Ids.DrawerController, animation: true)
-//                    }
-//
-//                }
-//
-//            }
+            //            for dic in kycDocument {
+            //
+            //                let newValue = self.kycDocumentAlreadyUploaded.filter( { Int($0.document_id ?? "") == dic.id})
+            //                 print(">>>>newValue",newValue)
+            //
+            //                if newValue.isEmpty {
+            //
+            //                    let dict = KYCVerifiyDoc.init(id: dic.id, user_id: dic.id, document_id: dic.id, url: dic.image, unique_id: dic.id, status: dic.name, expires_at: "", created_at: "", updated_at: "", image: dic.image, name: dic.name)
+            //
+            ////                    kycVerifyDoc.append(dict)
+            //
+            //                } else {
+            //
+            //                    let dict = KYCVerifiyDoc.init(id: newValue.last?.id, user_id: newValue.last?.user_id, document_id: Int(newValue.last?.document_id ?? ""), url: newValue.last?.url, unique_id: Int(newValue.last?.unique_id ?? ""), status: newValue.last?.status, expires_at: newValue.last?.expires_at, created_at: newValue.last?.created_at, updated_at: newValue.last?.updated_at, image: newValue.last?.image, name: newValue.last?.name)
+            ////                         kycVerifyDoc.append(dict)
+            //
+            //                }
+            //            }
             
-                            
-        
+            
+            //            if kycDocumentAlreadyUploaded.count >  0 {
+            //
+            //                if self.kycVerifyDoc.filter( { $0.status == "DISAPPROVED" || $0.status == "" } ).count == 0 {
+            //
+            //                     let digitalId = UserDefaults.standard.value(forKey: "digitalId")  as? Int
+            //
+            //
+            //                    if User.main.g2f_temp == 1 || User.main.pin_status == 1  || digitalId == 1 {
+            //
+            //
+            //
+            //                        let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as! OtpController
+            //                        vc.changePINStr = "changePINStr"
+            //                        self.navigationController?.pushViewController(vc, animated: true)
+            //
+            //
+            //
+            //                    } else {
+            //
+            //                        self.push(id: Storyboard.Ids.DrawerController, animation: true)
+            //                    }
+            //
+            //                }
+            //
+            //            }
+            
+            
+            
             let calVal = kycVerifyDoc.count % 3
             print(">>>calVal",calVal)
             
             if calVal == 0 {
-               isFromList = false
-//                collectionHeight.constant = CGFloat(kycVerifyDoc.count / 3 * 120)
+                isFromList = false
+                //                collectionHeight.constant = CGFloat(kycVerifyDoc.count / 3 * 120)
                 
             } else {
                 isFromList = true
                 let tableHeight : Int = Int(kycVerifyDoc.count / 3)
-//                collectionHeight.constant = CGFloat(tableHeight * 120 + 120)
+                //                collectionHeight.constant = CGFloat(tableHeight * 120 + 120)
             }
-        
+            
             collectionView.reloadData()
-     
-           
+            
+            
             
         case Base.kycUpdate.rawValue:
             
@@ -607,17 +672,17 @@ extension KYCViewController: PresenterOutputProtocol {
                 ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
             }
-           
-          
-        
+            
+            
+            
         default:
             break
         }
     }
     
     func showError(error: CustomError) {
-         self.loader.isHidden = true
-         ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
+        self.loader.isHidden = true
+        ToastManager.show(title:  nullStringToEmpty(string: error.localizedDescription.trimString()), state: .error)
     }
 }
 
@@ -652,6 +717,26 @@ extension KYCViewController: UITextFieldDelegate{
             print("Do Nothing")
         }
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+        case dobTxtFld:
+            tempTxtField = dobTxtFld
+            self.view.endEditing(true)
+            self.dobTxtFld.text = datePicker.selectedDate()?.convertToStringDefault()
+            if let date = datePicker.selectedDate() {
+                let components = date.get(.day, .month, .year)
+                if let day = components.day, let month = components.month, let year = components.year {
+                    print("day: \(day), month: \(month), year: \(year)")
+                    self.dayOfBirth = "\(day)"
+                    self.monthOfBirth = "\(month)"
+                    self.yearOfBirth =   " \(year)"
+                }
+            }
+        default:
+            print("Do Nothing")
+        }
+    }
 }
 
 //MARK:- Sorting
@@ -677,13 +762,13 @@ extension KYCViewController{
         reset()
         let alert = UIAlertController(title: NSLocalizedString("Memory Error", comment: ""), message: NSLocalizedString("Not enough memory, please restart the app", comment: ""), preferredStyle:UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
-        { action -> Void in})
-
+            { action -> Void in})
+        
         OperationQueue.main.addOperation {
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
     private func startSelfieCapture() {
         let parameters = MiSnapFacialCaptureParameters.init()!
         parameters.selectOnSmile = true
@@ -697,8 +782,9 @@ extension KYCViewController{
         miSnapFacialCaptureVC.modalPresentationStyle = .fullScreen
         
         present(miSnapFacialCaptureVC, animated: true, completion: nil)
+        self.loader.isHidden = true
     }
-
+    
     private func startCapture(type:String) {
         // Clean up any previous instance
         self.miSnapController = nil
@@ -709,20 +795,22 @@ extension KYCViewController{
         } else {
             // Get the MiSnapViewController selected by the UIControl
             self.miSnapController = getMiSnapViewController()
-
+            
             if(self.miSnapController == nil || !self.miSnapController.hasMinDiskSpace(minSpaceRequired)) {
                 showOutOfMemoryError()
+                self.loader.isHidden = true
                 return
             }
             // Setup delegate, parameters, and transition style
             self.miSnapController.delegate = self
             self.miSnapController.shouldDissmissOnSuccess = true
             self.miSnapController.setupMiSnap(withParams: getMiSnapParameters(useAutoCapture: true, type: type) as? [AnyHashable : Any])
-
+            
             self.miSnapController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             self.miSnapController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             
             self.present(self.miSnapController, animated:true)
+            self.loader.isHidden = true
         }
     }
     
@@ -748,12 +836,12 @@ extension KYCViewController{
         }
         parameters!.setObject("0", forKey:kMiSnapTorchMode as NSString)
         parameters!.setObject(100, forKey:kMiSnapImageQuality as NSString)
-
+        
         if useAutoCapture == false
         {
             parameters!.setObject("1", forKey:kMiSnapCaptureMode as NSString)
         }
-
+        
         return parameters!
     }
     
@@ -765,7 +853,7 @@ extension KYCViewController{
         goToConfirmView(image: originalImage)
     }
     
-
+    
     func miSnapFacialCaptureSuccess(_ results: MiSnapFacialCaptureResults) {
         tempMibiData = (results.mibiDataString ?? "")
         tempOriginalImage = results.selectedImage
@@ -777,31 +865,31 @@ extension KYCViewController{
     }
     
     func getMiSnapMIBIDataAsJsonString(_ mibiData: String?, docType: String, onResult: @escaping (String) -> Void) -> Void {
-
+        
         var metatString = ""
-    
+        
         var metaData: Dictionary<String, Any> = [ "V" : "1", "SYSTEM" : "iOS"]
         
         if (mibiData != nil && !mibiData!.isEmpty) {
-           let data = Data(mibiData!.utf8);
-           do{
+            let data = Data(mibiData!.utf8);
+            do{
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any];
-
+                
                 let captureMode = json?["CaptureMode"] as! String?
                 let sdkVersion = json?["SDKVersion"] as! String?
                 let parameters = json?["Parameters"] as? [String: Any]?
                 let miSnapVersion = parameters??["MiSnapVersion"] as! String?
                 let selfieAutoCapture = json?["Autocapture"] as! String?
-            
+                
                 metaData["CAPTURESDK"] = "MiSnap " + (miSnapVersion ?? sdkVersion ?? "")
                 metaData["MODE"] = (captureMode == "2") || (selfieAutoCapture == "1") ? "AUTO" : "MANUAL"
                 metaData["TIMESTAMP"] = ISO8601DateFormatter().string(from: Date())
                 metaData["GPSLATITUDE"] = self.currentLatitude
                 metaData["GPSLONGITUDE"] = self.currentLongitude
-            
+                
                 var encodeDocType: String
                 if docType == self.selfieImage {
-                     encodeDocType = "SELFIE"
+                    encodeDocType = "SELFIE"
                 }
                 else {
                     let documentType = json?["Document"] as! String?
@@ -828,8 +916,8 @@ extension KYCViewController{
             let request = URLRequest(url: url)
             let config = URLSessionConfiguration.default
             let session = URLSession(configuration: config)
-        
-
+            
+            
             let task = session.dataTask(with: request as URLRequest, completionHandler: {(data, response, error) in
                 if let response = response as? HTTPURLResponse{
                     if(response.statusCode == 200){
@@ -841,7 +929,7 @@ extension KYCViewController{
                             catch {
                                 print("unable to get IP address")
                             }
-                           
+                            
                         }
                     }
                 }
@@ -858,29 +946,31 @@ extension KYCViewController{
             task.resume()
         }
     }
-
+    
     
     func goToConfirmView(image:UIImage) {
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         let confirmController = storyBoard.instantiateViewController(withIdentifier:"ConfirmViewController") as! ConfirmViewController
+        confirmController.delegate = self
         confirmController.image = image
-
-        if (currentImage == selfieImage) {
-            self.navigationController?.popViewController(animated: true)
-        }
-
+        
+//        if (currentImage == selfieImage) {
+//            self.navigationController?.popViewController(animated: true)
+//        }
+        
         self.navigationController?.pushViewController(confirmController, animated: true)
     }
     
     func goToVerify(){
-        let pii = PiiInfo(firstName: User.main.firstName ?? "", lastName: User.main.lastName ?? "", countryCode: sortTypeAppliedCountry, documentType: sortTypeAppliedDoc,
+        let pii = PiiInfo(firstName: User.main.firstName ?? "", lastName: User.main.lastName ?? "",dayOfBirth: self.dayOfBirth ?? "",monthOfBirth: self.monthOfBirth ?? "",yearOfBirth: self.yearOfBirth ?? "" , countryCode: sortTypeAppliedCountry, documentType: sortTypeAppliedDoc,
                           frontImage: capturedFrontImage ?? UIImage(), backImage: capturedBackImage, liveImage: capturedSelfieImage,
                           frontMetaData: capturedFrontMetaData, backMetaData: capturedBackMetaData, liveMetaData: capturedSelfieMetaData)
         self.piiInfo = pii
+        self.loader.isHidden = false
         DispatchQueue.global(qos:.userInteractive).async{
             if(self.piiInfo == nil){
-//                self.appendText(text: "Error, no info availble")
-//                self.endProcess()
+                                self.appendText(text: "Error, no info availble")
+                                self.endProcess()
             }
             else{
                 self.verify()
@@ -897,7 +987,7 @@ extension KYCViewController{
             if(response != nil){
                 displayString += "Response: \(String(describing: response)) \n"
             }
-//            self.appendText(text: displayString)
+            self.appendText(text: displayString)
             self.endProcess()
         })
     }
@@ -907,24 +997,24 @@ extension KYCViewController{
             // decode result object
             let result = try JSONDecoder().decode(VerifyResult.self, from: data)
             self.transactionID = result.TransactionID
-//            self.appendText(text: "Success")
-//            self.appendText(text: "TransactionID: \(result.TransactionID)")
-//            self.appendText(text: nil)
+            self.appendText(text: "Success")
+            self.appendText(text: "TransactionID: \(result.TransactionID)")
+            self.appendText(text: nil)
             
             let datasourceResult = result.Record.DatasourceResults.first
             if(datasourceResult != nil){
-//                self.appendText(text:"\nOutput Fields: ")
+                                self.appendText(text:"\nOutput Fields: ")
                 let outputFields = datasourceResult!.DatasourceFields
                 for fieldRecord in outputFields{
-//                    self.appendText(text: "\(fieldRecord.FieldName): \(fieldRecord.Status)")
+                                        self.appendText(text: "\(fieldRecord.FieldName): \(fieldRecord.Status)")
                 }
                 
-//                self.appendText(text:"\nAppended Fields: ")
+                self.appendText(text:"\nAppended Fields: ")
                 let appendFields = datasourceResult!.AppendedFields
                 var authenticityDetailsString = ""
                 for fieldRecord in appendFields{
                     if(fieldRecord.FieldName != "AuthenticityDetails"){
-//                        self.appendText(text: "\(fieldRecord.FieldName): \(fieldRecord.Data)")
+                                                self.appendText(text: "\(fieldRecord.FieldName): \(fieldRecord.Data)")
                     }
                     else{
                         do{
@@ -945,17 +1035,17 @@ extension KYCViewController{
                     }
                 }
                 if(!authenticityDetailsString.isEmpty){
-                    ToastManager.show(title: "\nAuthenticity Details: \n", state: .success)
-//                    self.appendText(text: "\nAuthenticity Details: \n")
-//                    self.appendText(text:authenticityDetailsString)
+//                    ToastManager.show(title: "\nAuthenticity Details: \n", state: .success)
+                    self.appendText(text: "\nAuthenticity Details: \n")
+                    self.appendText(text:authenticityDetailsString)
                 }
             }
         }
         catch{
             let dataString = String(data:data, encoding: .utf8)!
-            ToastManager.show(title: "Error decoding JSON, printing raw data", state: .success)
-//            self.appendText(text:"Error decoding JSON, printing raw data")
-//            self.appendText(text: dataString)
+//            ToastManager.show(title: "Error decoding JSON, printing raw data", state: .success)
+            self.appendText(text:"Error decoding JSON, printing raw data")
+            self.appendText(text: dataString)
         }
         self.endProcess()
     }
@@ -971,20 +1061,17 @@ extension KYCViewController{
     }
     
     func livenessCancelled() {
-//        progressView.isHidden = true
+        //        progressView.isHidden = true
         reset()
     }
     
     func reset(){
-//        currentImage = frontImage
+        //        currentImage = frontImage
         tempOriginalImage = nil
         tempEncodedImage = ""
         capturedFrontImage = nil
         capturedBackImage = nil
         capturedSelfieImage = nil
-//        startButton.isEnabled = true
-//        progressView.isHidden = true
-//
         tempOriginalMetaData = nil
         capturedFrontMetaData = nil
         capturedBackMetaData = nil
@@ -1001,8 +1088,6 @@ extension KYCViewController{
         if(currentImage == frontImage) {
             capturedFrontImage = tempOriginalImage
             capturedFrontMetaData = newMetaData
-            countryTxtFld.isUserInteractionEnabled = false
-            docsTxtFld.isUserInteractionEnabled = false
         } else if ( currentImage == backImage) {
             capturedBackImage = tempOriginalImage
             capturedBackMetaData = newMetaData
@@ -1012,28 +1097,30 @@ extension KYCViewController{
         }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.countryTxtFld.isUserInteractionEnabled = false
+            self.docsTxtFld.isUserInteractionEnabled = false
             if (self.currentImage == self.frontImage && self.sortTypeAppliedDoc != "Passport") {
                 self.currentImage = self.backImage
-//                let alert = UIAlertController(title: NSLocalizedString("Back Side?", comment: ""), message: NSLocalizedString("Scan the back side of the ID document", comment: ""), preferredStyle:UIAlertController.Style.alert)
+                //                let alert = UIAlertController(title: NSLocalizedString("Back Side?", comment: ""), message: NSLocalizedString("Scan the back side of the ID document", comment: ""), preferredStyle:UIAlertController.Style.alert)
+                //                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+                //                { action -> Void in
+                //                    self.startCapture(type: self.currentImage)
+                //                })
+                //                self.present(alert, animated: true, completion: nil)
+            } else if (self.currentImage == self.backImage || (self.currentImage == self.frontImage && self.sortTypeAppliedDoc == "Passport")) {
+                self.currentImage = self.selfieImage
+//                let alert = UIAlertController(title: NSLocalizedString("Live Photo?", comment: ""), message: NSLocalizedString("Capture a live selfie photo", comment: ""), preferredStyle:UIAlertController.Style.alert)
 //                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
 //                { action -> Void in
 //                    self.startCapture(type: self.currentImage)
 //                })
+//                alert.addAction(UIAlertAction(title: "Skip", style: UIAlertAction.Style.default)
+//                { action -> Void in
+////                    self.goToVerify()
+//                })
 //                self.present(alert, animated: true, completion: nil)
-            } else if (self.currentImage == self.backImage || (self.currentImage == self.frontImage && self.sortTypeAppliedDoc == "Passport")) {
-                self.currentImage = self.selfieImage
-                let alert = UIAlertController(title: NSLocalizedString("Live Photo?", comment: ""), message: NSLocalizedString("Capture a live selfie photo", comment: ""), preferredStyle:UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
-                { action -> Void in
-                    self.startCapture(type: self.currentImage)
-                })
-                alert.addAction(UIAlertAction(title: "Skip", style: UIAlertAction.Style.default)
-                { action -> Void in
-                    self.goToVerify()
-                })
-                self.present(alert, animated: true, completion: nil)
             } else {
-                self.goToVerify()
+//                self.goToVerify()
             }
         }
     }
@@ -1061,3 +1148,17 @@ extension KYCViewController{
     }
     
 }
+
+
+extension KYCViewController: ConfirmViewControllerDelegate {
+    func confirmBtnAction() {
+        confirmed()
+        self.collectionView.reloadData()
+    }
+    
+    func retryBtnAction() {
+        retry()
+        self.collectionView.reloadData()
+    }
+}
+
