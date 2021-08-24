@@ -172,11 +172,14 @@ struct ProductModel: Mappable {
     var asset_description: String?
     var invest_profit_percentage : String?
     var reward : String?
+    var reward_value : Int?
     var reward_date: String?
     var investment_date : String?
     var startDate: Date?
     var endDate: Date?
+    var investmentDate : Date?
     var rewardDate : Date?
+    var auditor_name: String?
 
     init?(map: Map) {
 
@@ -187,6 +190,8 @@ struct ProductModel: Mappable {
     }
 
     mutating func mapping(map: Map) {
+        auditor_name <- map["auditor_name"]
+        reward_value <- map["reward_value"]
         maturity_date <- map["maturity_date"]
         maturity_count <- map["maturity_count"]
         move_to_sale <- map["move_to_sale"]
@@ -295,6 +300,9 @@ struct ProductModel: Mappable {
         param[ProductCreate.keys.end_date] = self.end_date
         param[ProductCreate.keys.reward_date] = self.reward_date
         param[ProductCreate.keys.reward] = self.reward == "Interest" ? 2 : (self.reward == "Good" ? 1 : 3)
+        param[ProductCreate.keys.reward_value] = self.reward_value
+        param[ProductCreate.keys.auditor_name] = self.auditor_name
+        
         return param
     }
 

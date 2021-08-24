@@ -193,7 +193,7 @@ enum SocialLoginType: Int {
     var sectionCount: Int {
         switch self{
         case .basicDetailsAssets:
-            return 7
+            return 9
         case .basicDetailsProduct:
             return 6
         case .productSpecifics:
@@ -201,7 +201,7 @@ enum SocialLoginType: Int {
         case .assetsSpecifics:
             return 4
         case .dateSpecificsProducts:
-            return 4
+            return 5
         case .dateSpecificsAssets:
             return 4
         case .documentImage:

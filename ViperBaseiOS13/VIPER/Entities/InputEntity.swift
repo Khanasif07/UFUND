@@ -89,6 +89,8 @@ struct ProductCreate {
        let investment_date = "investment_date"
     let reward_date = "reward_date"
     let reward = "reward"
+    let reward_value = "reward_value"
+    let auditor_name = "auditor_name"
     
     //
     let tokens_assets = "Tokens & Assets"

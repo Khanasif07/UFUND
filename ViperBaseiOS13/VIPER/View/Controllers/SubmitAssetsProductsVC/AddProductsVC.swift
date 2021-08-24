@@ -259,11 +259,14 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
                 cell.textFIeld.text = self.addProductModel.investment_date
-            default:
+            case 3:
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
                 cell.textFIeld.keyboardType = .default
                 cell.textFIeld.text = self.addProductModel.maturity_count == nil ? "" :  "\(self.addProductModel.maturity_count ?? "")"
-                print("")
+            default:
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                cell.textFIeld.text = self.addProductModel.maturity_date
+                cell.textFIeld.inputView = nil
             }
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0
@@ -336,15 +339,34 @@ extension AddProductsVC : UITextFieldDelegate {
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
                         self.addProductModel.start_date = datePicker.selectedDate()?.convertToStringDefault()
                         self.addProductModel.startDate = datePicker.selectedDate()
+                        //
+                        self.addProductModel.endDate = nil
+                        self.addProductModel.end_date = ""
+                        self.addProductModel.investmentDate = nil
+                        self.addProductModel.investment_date = ""
+                        self.mainTableView.reloadData()
                     case 1:
+                        if self.addProductModel.startDate == nil {
+                             return
+                        }
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
                         self.addProductModel.end_date = datePicker.selectedDate()?.convertToStringDefault()
                         self.addProductModel.endDate = datePicker.selectedDate()
+                        //
+                        self.addProductModel.investmentDate = nil
+                        self.addProductModel.investment_date = ""
+                        self.mainTableView.reloadData()
                     case 2:
+                        if self.addProductModel.startDate == nil || self.addProductModel.endDate == nil{
+                            return
+                        }
+                        self.addProductModel.investmentDate = datePicker.selectedDate()
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
                         self.addProductModel.investment_date = datePicker.selectedDate()?.convertToStringDefault()
-                    default:
+                    case 3:
                         self.addProductModel.maturity_count = text
+                    default:
+                        print(text)
                     }
                 }
             }
@@ -376,14 +398,24 @@ extension AddProductsVC : UITextFieldDelegate {
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 1:
+                        if self.addProductModel.startDate == nil {
+                            self.view.endEditing(true)
+                            ToastManager.show(title: Constants.string.selectStartDate, state: .warning)
+                             return
+                        }
                         self.datePicker.datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: 1, to: self.addProductModel.startDate ?? Date())
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
                     case 2:
+                        if self.addProductModel.startDate == nil || self.addProductModel.endDate == nil{
+                            self.view.endEditing(true)
+                            ToastManager.show(title: Constants.string.selectStartEndDate, state: .warning)
+                            return
+                        }
                         self.datePicker.datePicker.minimumDate =  Calendar.current.date(byAdding: .day, value: 1, to: self.addProductModel.endDate ?? Date())
                         self.datePicker.datePicker.maximumDate = Calendar.current.date(byAdding: .year, value: 50, to: Date())
                         self.datePicker.pickerMode = .date
-                    default:
+                    case 3:
                         self.view.endEditing(true)
                         guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ProductSortVC) as? ProductSortVC else { return }
                         vc.delegate = self
@@ -391,6 +423,9 @@ extension AddProductsVC : UITextFieldDelegate {
                         vc.sortArray = [("30 days",false),("60 days",false),("90 days",false),("120 days",false),("180 days",false)]
                         vc.sortTypeApplied = self.sortTypeAppliedMaturityCount
                         self.present(vc, animated: true, completion: nil)
+                        print("Do Nothing")
+                    default:
+                        self.view.endEditing(true)
                         print("Do Nothing")
                     }
                 }
@@ -419,6 +454,10 @@ extension AddProductsVC: ProductSortVCDelegate{
     func sortingApplied(sortType: String){
         self.sortTypeAppliedMaturityCount = sortType
         self.addProductModel.maturity_count = sortType
+        if let maturityCountValue = self.addProductModel.maturity_count?.components(separatedBy: " ").first{
+            let date = self.addProductModel.investmentDate?.plus(days: UInt(maturityCountValue) ?? 0)
+            self.addProductModel.maturity_date = date?.convertToStringDefault()
+        }
         self.mainTableView.reloadData()
     }
 }

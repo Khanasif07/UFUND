@@ -88,9 +88,18 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.endIndex
        }
-       
+   
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return self.sections[section].sectionCount
+        switch self.sections[section] {
+        case .basicDetailsAssets:
+            return generalInfoArray.endIndex
+        case .assetsSpecifics:
+            return productSpecifics.endIndex
+        case  .dateSpecificsAssets:
+            return dateInfoArray.endIndex
+        default:
+            return self.sections[section].sectionCount
+        }
        }
        
        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -138,6 +147,12 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
             case 5:
                 cell.textFIeld.keyboardType = .numberPad
                 cell.textFIeld.text = (self.addAssetModel.decimal?.isEmpty ?? true) ? "" : "\(self.addAssetModel.decimal ?? "0")"
+            case 6:
+                cell.textFIeld.keyboardType = .default
+                cell.textFIeld.text = (self.addAssetModel.auditor_name?.isEmpty ?? true) ? "" : "\(self.addAssetModel.auditor_name ?? "")"
+            case 7:
+                cell.textFIeld.keyboardType = .numberPad
+//                cell.textFIeld.text = (self.addAssetModel.decimal?.isEmpty ?? true) ? "" : "\(self.addAssetModel.decimal ?? "0")"
             default:
                 cell.textFIeld.keyboardType = .numberPad
                 cell.textFIeld.text = self.addAssetModel.asset_amount == nil ? "" : "\(self.addAssetModel.asset_amount ?? 0)"
@@ -162,6 +177,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                     cell.textFIeld.text = self.sortTypeAppliedToken.name
                 } else {
                     cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                    //
                 }
                 cell.textFIeld.delegate = self
                 cell.titleLbl.text = self.productSpecifics[indexPath.row ].0
@@ -184,10 +200,13 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.text = self.addAssetModel.reward_date
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
-                
+            case 3:
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.text = self.addAssetModel.reward
             default:
-                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
-                 cell.textFIeld.text = self.addAssetModel.reward
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.text = "\(self.addAssetModel.reward_value ?? 0)"
             }
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0
@@ -238,14 +257,15 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
               ToastManager.show(title: Constants.string.enterDecimal, state: .warning)
             return false
         }
+        guard let auditor_name = self.addAssetModel.auditor_name ,!auditor_name.isEmpty  else {
+              ToastManager.show(title: Constants.string.enterAuditorName, state: .warning)
+            return false
+        }
         guard let assetValue = self.addAssetModel.asset_amount ,!(assetValue == 0) else{
               ToastManager.show(title: Constants.string.enterAssetValue, state: .warning)
             return false
         }
-        guard let decrip = self.addAssetModel.asset_description , !decrip.isEmpty else{
-              ToastManager.show(title: Constants.string.enterDesctription, state: .warning)
-            return false
-        }
+       
         guard let assetCategoryID = self.addAssetModel.category_id , !(assetCategoryID == 0) else{
               ToastManager.show(title: Constants.string.selectCategory, state: .warning)
             return false
@@ -258,6 +278,37 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                      ToastManager.show(title: Constants.string.selectAsset, state: .warning)
             return false
                }
+        
+        guard let decrip = self.addAssetModel.asset_description , !decrip.isEmpty else{
+              ToastManager.show(title: Constants.string.enterDesctription, state: .warning)
+            return false
+        }
+        //
+        guard let start_date = self.addAssetModel.start_date , !start_date.isEmpty else{
+              ToastManager.show(title: Constants.string.enterStartDate, state: .warning)
+            return false
+        }
+        
+        guard let end_date = self.addAssetModel.end_date , !end_date.isEmpty else{
+              ToastManager.show(title: Constants.string.enterEndDate, state: .warning)
+            return false
+        }
+        
+        guard let reward_date = self.addAssetModel.reward_date , !reward_date.isEmpty else{
+              ToastManager.show(title: Constants.string.enterRewardDate, state: .warning)
+            return false
+        }
+        
+        guard let reward = self.addAssetModel.reward , !reward.isEmpty else{
+              ToastManager.show(title: Constants.string.enterReward, state: .warning)
+            return false
+        }
+        
+        guard let reward_value = self.addAssetModel.reward_value , !(reward_value == 0) else{
+              ToastManager.show(title: Constants.string.enterRewardValue, state: .warning)
+            return false
+        }
+        //
         if !self.imgDataArray[2].3{
             ToastManager.show(title: Constants.string.uploadAssetImg, state: .warning)
             return false
@@ -309,6 +360,11 @@ extension AddAssetsVC : UITextFieldDelegate {
                         case 5:
                             self.addAssetModel.decimal = (text)
                             cell.textFIeld.text = text
+                        case 6:
+                            self.addAssetModel.auditor_name = (text)
+                            cell.textFIeld.text = text
+                        case 7:
+                            print("Do Nothing")
                         default:
                             self.addAssetModel.asset_amount = Int(text)
                             cell.textFIeld.text = text
@@ -342,6 +398,9 @@ extension AddAssetsVC : UITextFieldDelegate {
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
                         self.addAssetModel.rewardDate = datePicker.selectedDate()
                         self.addAssetModel.reward_date = datePicker.selectedDate()?.convertToStringDefault()
+                    case 4:
+                        self.addAssetModel.reward_value = Int(text) ?? 0
+                        cell.textFIeld.text = text
                     default:
                         print("")
                     }
@@ -474,6 +533,14 @@ extension AddAssetsVC: ProductSortVCDelegate{
     func sortingApplied(sortType: String) {
         self.sortTypeAppliedReward = sortType
         self.addAssetModel.reward =  sortType
+        switch self.sortTypeAppliedReward {
+        case "Share":
+            self.dateInfoArray = [(Constants.string.startDate,""),(Constants.string.endDate,""),("Reward Date",""),("Reward",""),("Number Of Shares","")]
+        case "Interest":
+            self.dateInfoArray = [(Constants.string.startDate,""),(Constants.string.endDate,""),("Reward Date",""),("Reward",""),("Interest Rate","")]
+        default:
+            self.dateInfoArray = [(Constants.string.startDate,""),(Constants.string.endDate,""),("Reward Date",""),("Reward",""),("Quantity Of Goods","")]
+        }
         self.mainTableView.reloadData()
     }
 }
