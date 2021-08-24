@@ -167,8 +167,9 @@ extension ProductDetailVC : UITableViewDelegate, UITableViewDataSource {
         case ProductDetailCellType.productDescCell:
             let cell = tableView.dequeueCell(with: ProductDetailDescriptionCell.self, indexPath: indexPath)
             cell.productTitleLbl.text = productModel?.product_title ?? ""
-            cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
+            cell.priceLbl.text = "$" + "\(productModel?.total_product_value ?? 0.0)"
             cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
+            cell.investmentProfitPerValueLbl.text = "\(productModel?.invest_profit_per ?? 0)"
             return cell
         case ProductDetailCellType.productDateCell:
             let cell = tableView.dequeueCell(with: ProductDetailDateCell.self, indexPath: indexPath)

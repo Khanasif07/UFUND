@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="225" id="KGk-i7-Jjw" customClass="ProductDetailDescriptionCell" customModule="UFUND" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="355" height="212.5"/>
+            <rect key="frame" x="0.0" y="0.0" width="355" height="263"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="355" height="212.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="355" height="263"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adh-B1-tN7">
-                        <rect key="frame" x="10" y="10" width="335" height="192.5"/>
+                        <rect key="frame" x="10" y="10" width="335" height="243"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmJ-iU-Pu5">
                                 <rect key="frame" x="6" y="16.5" width="38.5" height="12"/>
@@ -32,51 +41,74 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O2-eA-xlX">
-                                <rect key="frame" x="6" y="163" width="43" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="T14-IQ-eyC">
-                                <rect key="frame" x="6" y="68.5" width="313" height="78.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fWq-NU-JG4">
+                                <rect key="frame" x="6" y="75" width="309" height="158"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMd-Yr-5tp">
-                                        <rect key="frame" x="0.0" y="0.0" width="102" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
-                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2U-Cb-giv">
-                                        <rect key="frame" x="0.0" y="21" width="313" height="57.5"/>
-                                        <string key="text">Takes dictation in shorthand of correspondence, reports, and other matter, and operates typewriter to transcribe dictated material.May perform stenographic duties in professional office and be designated Legal </string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" red="0.43137254901960786" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="T14-IQ-eyC">
+                                        <rect key="frame" x="0.0" y="0.0" width="302.5" height="93"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMd-Yr-5tp">
+                                                <rect key="frame" x="0.0" y="0.0" width="102" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2U-Cb-giv">
+                                                <rect key="frame" x="0.0" y="21" width="302.5" height="72"/>
+                                                <string key="text">Takes dictation in shorthand of correspondence, reports, and other matter, and operates typewriter to transcribe dictated material.May perform stenographic duties in professional office and be designated Legal </string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.43137254901960786" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zgb-M9-C9S">
+                                        <rect key="frame" x="0.0" y="103" width="197" height="22.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Investment Profit (%):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Nh-UP-AvD">
+                                                <rect key="frame" x="0.0" y="0.0" width="173.5" height="22.5"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY8-nK-4rX">
+                                                <rect key="frame" x="176" y="0.0" width="21" height="22.5"/>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2.5" translatesAutoresizingMaskIntoConstraints="NO" id="SAA-J2-iFz">
+                                        <rect key="frame" x="0.0" y="135.5" width="102" height="22.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O2-eA-xlX">
+                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="22.5"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$8,500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnz-Tw-6AU">
+                                                <rect key="frame" x="46" y="0.0" width="56" height="22.5"/>
+                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                                <color key="textColor" systemColor="systemGreenColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 8,500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnz-Tw-6AU">
-                                <rect key="frame" x="57" y="163" width="59.5" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cYs-Al-xJD" firstAttribute="top" secondItem="NmJ-iU-Pu5" secondAttribute="bottom" id="1VI-Vr-bbs"/>
+                            <constraint firstItem="fWq-NU-JG4" firstAttribute="top" secondItem="cYs-Al-xJD" secondAttribute="bottom" constant="22.5" id="4mp-PM-pji"/>
                             <constraint firstItem="NmJ-iU-Pu5" firstAttribute="top" secondItem="adh-B1-tN7" secondAttribute="top" constant="16.5" id="EAc-61-cU1"/>
+                            <constraint firstItem="fWq-NU-JG4" firstAttribute="leading" secondItem="cYs-Al-xJD" secondAttribute="leading" id="I9J-Ge-eTR"/>
                             <constraint firstItem="NmJ-iU-Pu5" firstAttribute="leading" secondItem="adh-B1-tN7" secondAttribute="leading" constant="6" id="Jub-3k-sVy"/>
-                            <constraint firstItem="Tnz-Tw-6AU" firstAttribute="leading" secondItem="7O2-eA-xlX" secondAttribute="trailing" constant="8" id="LSt-HF-84C"/>
-                            <constraint firstItem="Tnz-Tw-6AU" firstAttribute="centerY" secondItem="7O2-eA-xlX" secondAttribute="centerY" id="OPg-gR-PGE"/>
-                            <constraint firstAttribute="bottom" secondItem="7O2-eA-xlX" secondAttribute="bottom" constant="10" id="PRA-Nm-0db"/>
-                            <constraint firstItem="7O2-eA-xlX" firstAttribute="leading" secondItem="T14-IQ-eyC" secondAttribute="leading" id="UbS-kd-iUb"/>
-                            <constraint firstAttribute="trailing" secondItem="T14-IQ-eyC" secondAttribute="trailing" constant="16" id="dDN-x6-Etg"/>
-                            <constraint firstItem="7O2-eA-xlX" firstAttribute="top" secondItem="T14-IQ-eyC" secondAttribute="bottom" constant="16" id="eK3-iZ-cH9"/>
-                            <constraint firstItem="T14-IQ-eyC" firstAttribute="leading" secondItem="cYs-Al-xJD" secondAttribute="leading" id="hB3-dG-iXk"/>
+                            <constraint firstAttribute="trailing" secondItem="fWq-NU-JG4" secondAttribute="trailing" constant="20" id="fwU-tc-uwI"/>
+                            <constraint firstAttribute="bottom" secondItem="fWq-NU-JG4" secondAttribute="bottom" constant="10" id="iVe-rL-lQ4"/>
                             <constraint firstItem="cYs-Al-xJD" firstAttribute="leading" secondItem="NmJ-iU-Pu5" secondAttribute="leading" id="jus-lh-467"/>
-                            <constraint firstItem="T14-IQ-eyC" firstAttribute="top" secondItem="cYs-Al-xJD" secondAttribute="bottom" constant="16" id="mt8-ZO-I36"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cYs-Al-xJD" secondAttribute="trailing" constant="16" id="owB-zq-F2F"/>
                         </constraints>
                     </view>
@@ -90,6 +122,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="investmentProfitPerValueLbl" destination="uY8-nK-4rX" id="6UQ-hq-VmL"/>
                 <outlet property="priceLbl" destination="Tnz-Tw-6AU" id="uiX-iz-zJ6"/>
                 <outlet property="priceTitleLbl" destination="7O2-eA-xlX" id="C24-WP-LNn"/>
                 <outlet property="productDescLbl" destination="B2U-Cb-giv" id="l2S-8f-WOP"/>
@@ -100,4 +133,12 @@
             <point key="canvasLocation" x="112.31884057971016" y="201.22767857142856"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

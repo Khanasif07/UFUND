@@ -43,6 +43,7 @@ class ProductDetailPopUpVC: UIViewController {
     @IBOutlet weak var coinLbl: UILabel!
     @IBOutlet weak var qtyValueLbl: UILabel!
     @IBOutlet weak var tokenQtyLbl: UILabel!
+    @IBOutlet weak var yourProfitValueLbl: UILabel!
     
     // MARK: - Variables
     //===========================

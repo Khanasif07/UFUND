@@ -44,9 +44,6 @@
                                                     <constraint firstAttribute="width" secondItem="Jbz-LI-QNL" secondAttribute="height" multiplier="1:1" id="T1k-gK-DQP"/>
                                                 </constraints>
                                                 <state key="normal" image="ic_back_Ipod"/>
-                                                <connections>
-                                                    <action selector="backBtnAction:" destination="6LK-eK-0mJ" eventType="touchUpInside" id="kCc-Fq-iyC"/>
-                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQp-0o-X99">
                                                 <rect key="frame" x="172" y="16" width="70" height="19"/>
@@ -54,6 +51,15 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9I-aW-Xpd">
+                                                <rect key="frame" x="-1" y="0.0" width="51" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="51" id="Vde-sM-6eb"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="backBtnAction:" destination="6LK-eK-0mJ" eventType="touchUpInside" id="cvO-oS-esf"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -64,7 +70,10 @@
                                             <constraint firstItem="pQp-0o-X99" firstAttribute="centerX" secondItem="bfe-sK-n45" secondAttribute="centerX" id="Y2b-mo-ig1"/>
                                             <constraint firstItem="Jbz-LI-QNL" firstAttribute="centerY" secondItem="bfe-sK-n45" secondAttribute="centerY" id="c5c-wD-bmU"/>
                                             <constraint firstItem="pQp-0o-X99" firstAttribute="centerY" secondItem="bfe-sK-n45" secondAttribute="centerY" id="dH1-f0-5xq"/>
+                                            <constraint firstItem="A9I-aW-Xpd" firstAttribute="centerX" secondItem="Jbz-LI-QNL" secondAttribute="centerX" id="eWw-jk-zFU"/>
+                                            <constraint firstItem="A9I-aW-Xpd" firstAttribute="centerY" secondItem="Jbz-LI-QNL" secondAttribute="centerY" id="enA-gg-hdT"/>
                                             <constraint firstItem="Jbz-LI-QNL" firstAttribute="leading" secondItem="bfe-sK-n45" secondAttribute="leading" constant="16" id="fxy-ak-Ca8"/>
+                                            <constraint firstItem="A9I-aW-Xpd" firstAttribute="height" secondItem="bfe-sK-n45" secondAttribute="height" id="xLO-DF-Hl7"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrG-NJ-8Av">

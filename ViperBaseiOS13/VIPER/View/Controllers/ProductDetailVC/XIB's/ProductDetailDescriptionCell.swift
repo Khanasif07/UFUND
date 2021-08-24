@@ -12,6 +12,7 @@ class ProductDetailDescriptionCell: UITableViewCell {
     
     // MARK: - IBOutlets
     //===========================
+    @IBOutlet weak var investmentProfitPerValueLbl: UILabel!
     @IBOutlet weak var priceTitleLbl: UILabel!
     @IBOutlet weak var productDetailLbl: UILabel!
     @IBOutlet weak var productLbl: UILabel!

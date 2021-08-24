@@ -85,7 +85,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return isDeviceIPad ? 60.0  :  UITableView.automaticDimension
+        return isDeviceIPad ? 65.0  :  51.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

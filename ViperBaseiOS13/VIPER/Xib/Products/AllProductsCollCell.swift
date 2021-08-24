@@ -21,6 +21,7 @@ class AllProductsCollCell: UICollectionViewCell {
     @IBOutlet weak var productNameLbl: UILabel!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var productImgView: UIImageView!
+    @IBOutlet weak var investmentPerValueLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

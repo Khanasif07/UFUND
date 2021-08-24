@@ -239,6 +239,30 @@ extension AllProductsVC {
         let totalValue =  (productModel?.total_product_value ?? 0.0)
         return (investValue / totalValue) * 100
     }
+    
+//    private func getInvestmentPercentageValue(productModel: ProductModel?) -> Double{
+//        let totalProductValue = productModel?.total_product_value
+//
+//        // User Earning on investment
+//        var investmentForDays = 0
+//        let maturityDate = productModel?.maturity_date?.toDate(dateFormat: Date.DateFormat.yyyyMMddTHHmmsssssz.rawValue) ?? Date()
+//        let investmentDate = Date()
+//        investmentForDays = Date.daysBetween(date1: maturityDate, date2: investmentDate)
+//
+//        var profitPercentage = productModel?.invest_profit_per ?? 0
+//        var investmentByUser = totalProductValue *
+//            {{ round($myproduct_detail->total_product_value, 2) }} * percentage / 100;
+//        var investmentByUser = {{ round($myproduct_detail->total_product_value, 2) }} * percentage / 100;
+//        var investmentForDays = {{ $investmentForDays}};
+//        var maturityDays = {{ $myproduct_detail->maturity_count }};
+//
+//        var totalUserEaringForFullDays = (investmentByUser * profitPercentage) / 100;
+//        var userEarningPerDay =  (totalUserEaringForFullDays / maturityDays);
+//        var userTotalEarings = (investmentForDays * userEarningPerDay);
+//
+//        // $('#total_buy_earning').text(userTotalEarings  + " @ " + profitPercentage + " % For " + investmentForDays + " days");
+//        $('#total_buy_earning').text(upto2Decimal(userTotalEarings));
+//    }
 }
 
 //MARK: - Collection view delegate
@@ -260,6 +284,7 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
         cell.productImgView.sd_setImage(with: url , placeholderImage: #imageLiteral(resourceName: "imgPlaceHolder"))
         cell.productTypeLbl.text = (self.investerProductList?[indexPath.row].category?.category_name ?? "")
         cell.priceLbl.text = "$" +  "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
+        cell.investmentPerValueLbl.text = "\(self.investerProductList?[indexPath.row].invest_profit_per ?? 0)"
         cell.liveView.isHidden =  (self.investerProductList?[indexPath.row].status == nil)
         cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
         cell.statusLbl.text = (self.investerProductList?[indexPath.row].product_status == 1) ? "Live" : (self.investerProductList?[indexPath.row].status == 2) ? "Closed" : "Matured"
@@ -270,7 +295,7 @@ extension AllProductsVC: UICollectionViewDelegate, UICollectionViewDataSource,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width / 2), height: 37.5 * collectionView.frame.height / 100)
+        return CGSize(width: (collectionView.frame.width / 2), height: 45.0 * collectionView.frame.height / 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

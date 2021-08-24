@@ -262,10 +262,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nB-og-Kts">
-                                        <rect key="frame" x="0.0" y="146" width="414" height="716"/>
+                                        <rect key="frame" x="0.0" y="146" width="414" height="653"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nGb-X3-ocA">
-                                                <rect key="frame" x="8" y="0.0" width="398" height="716"/>
+                                                <rect key="frame" x="8" y="0.0" width="398" height="653"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wW9-jX-fzv">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -360,11 +360,11 @@
                             <constraint firstItem="y8Z-7x-6A0" firstAttribute="top" secondItem="XHV-Da-GL0" secondAttribute="bottom" id="Ebb-Ln-x8W"/>
                             <constraint firstItem="EfM-0Q-itj" firstAttribute="bottom" secondItem="MuY-1k-uvY" secondAttribute="bottom" id="GGZ-sA-1IZ"/>
                             <constraint firstItem="XHV-Da-GL0" firstAttribute="leading" secondItem="MuY-1k-uvY" secondAttribute="leading" id="MBy-8x-nWb"/>
-                            <constraint firstItem="7nB-og-Kts" firstAttribute="bottom" secondItem="EfM-0Q-itj" secondAttribute="bottom" id="MwR-uv-qoX"/>
                             <constraint firstItem="XHV-Da-GL0" firstAttribute="bottom" secondItem="EfM-0Q-itj" secondAttribute="bottom" id="NQq-ZN-dKp"/>
                             <constraint firstItem="QkW-Zs-HQm" firstAttribute="top" secondItem="EfM-0Q-itj" secondAttribute="top" id="Vxu-fH-Och"/>
                             <constraint firstItem="EfM-0Q-itj" firstAttribute="trailing" secondItem="y8Z-7x-6A0" secondAttribute="trailing" id="Wp5-xm-8kp"/>
                             <constraint firstItem="MuY-1k-uvY" firstAttribute="leading" secondItem="EfM-0Q-itj" secondAttribute="leading" id="Yzj-N2-8pQ"/>
+                            <constraint firstItem="XHV-Da-GL0" firstAttribute="top" secondItem="7nB-og-Kts" secondAttribute="bottom" id="g86-sx-6cV"/>
                             <constraint firstItem="A39-OR-bdu" firstAttribute="centerX" secondItem="0Pv-RA-w3m" secondAttribute="centerX" id="lDk-d4-oyF"/>
                             <constraint firstAttribute="bottom" secondItem="y8Z-7x-6A0" secondAttribute="bottom" id="nrI-jP-Y7y"/>
                             <constraint firstItem="y8Z-7x-6A0" firstAttribute="leading" secondItem="8h5-G1-wad" secondAttribute="leading" id="uf8-gl-QZA"/>
@@ -438,7 +438,7 @@
                                         <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vfL-iM-I5K">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="767"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="704"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JcH-U1-ZQF">
@@ -487,6 +487,7 @@
                                             <constraint firstItem="vfL-iM-I5K" firstAttribute="top" secondItem="NQY-yL-xJC" secondAttribute="top" id="Lxe-MI-eky"/>
                                             <constraint firstAttribute="trailing" secondItem="vfL-iM-I5K" secondAttribute="trailing" id="fGd-Rb-cS1"/>
                                             <constraint firstItem="vfL-iM-I5K" firstAttribute="leading" secondItem="NQY-yL-xJC" secondAttribute="leading" id="gDw-jX-IfS"/>
+                                            <constraint firstItem="JcH-U1-ZQF" firstAttribute="top" secondItem="vfL-iM-I5K" secondAttribute="bottom" id="scV-xf-Znj"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -510,7 +511,6 @@
                             <constraint firstItem="dtn-tI-XMU" firstAttribute="trailing" secondItem="MQa-DA-3te" secondAttribute="trailing" id="Npx-Ez-Kq1"/>
                             <constraint firstItem="J46-1F-dnc" firstAttribute="top" secondItem="dtn-tI-XMU" secondAttribute="top" id="Pfb-DH-zaX"/>
                             <constraint firstItem="dtn-tI-XMU" firstAttribute="leading" secondItem="MQa-DA-3te" secondAttribute="leading" id="SUX-JZ-RQX"/>
-                            <constraint firstItem="dtn-tI-XMU" firstAttribute="bottom" secondItem="vfL-iM-I5K" secondAttribute="bottom" id="Zac-Pu-K7h"/>
                             <constraint firstAttribute="bottom" secondItem="MQa-DA-3te" secondAttribute="bottom" id="gQY-kd-hug"/>
                             <constraint firstItem="dtn-tI-XMU" firstAttribute="bottom" secondItem="JcH-U1-ZQF" secondAttribute="bottom" id="wvo-Qw-BeQ"/>
                         </constraints>
@@ -1057,7 +1057,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MR2-3c-2Pn">
-                                        <rect key="frame" x="16" y="217.5" width="382" height="461"/>
+                                        <rect key="frame" x="16" y="194" width="382" height="508"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icInformation" translatesAutoresizingMaskIntoConstraints="NO" id="URn-fv-5hr">
                                                 <rect key="frame" x="16" y="16" width="48" height="48"/>
@@ -1090,7 +1090,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NU3-KZ-aOg">
-                                                <rect key="frame" x="151" y="409" width="215" height="36"/>
+                                                <rect key="frame" x="151" y="456" width="215" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwn-36-u2d">
                                                         <rect key="frame" x="0.0" y="0.0" width="103.5" height="36"/>
@@ -1372,7 +1372,7 @@ Percentage (%)</string>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="uZM-Kn-Tue">
-                                                <rect key="frame" x="16" y="268" width="117" height="127"/>
+                                                <rect key="frame" x="16" y="268" width="117" height="174"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="XIx-dy-rHo">
                                                         <rect key="frame" x="0.0" y="0.0" width="116.5" height="33"/>
@@ -1421,6 +1421,23 @@ Percentage (%)</string>
                                                                 <rect key="frame" x="0.0" y="14" width="36" height="19"/>
                                                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                                                                 <color key="textColor" name="inversterGrad2"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="jAr-Dh-MBt">
+                                                        <rect key="frame" x="0.0" y="141" width="56" height="33"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Profit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rK-cl-QJW">
+                                                                <rect key="frame" x="0.0" y="0.0" width="56" height="14"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25R-i5-GDR">
+                                                                <rect key="frame" x="0.0" y="14" width="36" height="19"/>
+                                                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -1508,6 +1525,7 @@ Percentage (%)</string>
                         <outlet property="totalProductAmt" destination="HW3-Ug-RPC" id="EMu-If-wxF"/>
                         <outlet property="totalProductAmtTitlelbl" destination="hDe-5F-iVG" id="K5C-wC-DAN"/>
                         <outlet property="totalProductPriceTitleLbl" destination="hDe-5F-iVG" id="OIA-xn-l9M"/>
+                        <outlet property="yourProfitValueLbl" destination="25R-i5-GDR" id="3IZ-UU-HLR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ELQ-hh-ITS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
