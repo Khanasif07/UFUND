@@ -29,7 +29,8 @@ class AddProductsVC: UIViewController {
     var sortTypeAppliedMaturityCount = ""
     var generalInfoArray = [("Product Name",""),("Brand",""),("Number of Products",""),("HS Code",""),("EAN Code",""),("UPC Code",""),("ZipCode",""),("City",""),("State",""),("Country","")]
     var bankInfoArray = [("Category",""),("Value of Product",""),("Enter Investment (%)",""),("Description","")]
-    var dateInfoArray = [(Constants.string.startDate,""),(Constants.string.endDate,""),(Constants.string.investmentStartDate,""),(Constants.string.maturityCount,"")]
+//    var dateInfoArray = [(Constants.string.startDate,""),(Constants.string.endDate,""),(Constants.string.investmentStartDate,""),(Constants.string.maturityCount,"")]
+    var dateInfoArray = [(Constants.string.startDate,""),(Constants.string.endDate,""),(Constants.string.investmentStartDate,""),(Constants.string.maturityCount,""),(Constants.string.maturityDate,"")]
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()

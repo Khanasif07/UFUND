@@ -66,8 +66,17 @@ class KYCMatiViewController: UIViewController {
     }
     
     @IBAction func verifyMeBtnAction(_ sender: UIButton) {
-        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return }
-        self.navigationController?.pushViewController(vc, animated: true)
+        switch User.main.trulioo_kyc_status! {
+        case 0:
+            guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return }
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 1:
+            let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     //MARK: MFKYCDelegate
@@ -88,8 +97,8 @@ class KYCMatiViewController: UIViewController {
 extension KYCMatiViewController: PresenterOutputProtocol {
     
     func loadProfileDetails() {
-//        self.loader.isHidden = false
-//        self.presenter?.HITAPI(api: Base.profile.rawValue, params: nil, methodType: .GET, modelClass: UserDetails.self, token: true)
+        self.loader.isHidden = false
+        self.presenter?.HITAPI(api: Base.profile.rawValue, params: nil, methodType: .GET, modelClass: UserDetails.self, token: true)
     }
     
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
@@ -101,41 +110,50 @@ extension KYCMatiViewController: PresenterOutputProtocol {
                self.userDetails = dataDict as? UserDetails
                self.userProfile = self.userDetails?.user
                User.main.kyc = self.userProfile?.kyc
-               
-            storeInUserDefaults()
-            
-            
-            if User.main.trulioo_kyc_status == 1 {
-                
-                buttonView.isHidden = true
-                verifiedView.isHidden = false
-             
-                statusLbl.text = Constants.string.sucessKYC.localize()
-                statusLbl.textColor = .white
-                verifiedView.backgroundColor = UIColor(hex: "#34C759").withAlphaComponent(0.75)
-                
-            } else if User.main.kyc == 2 {
-                buttonView.isHidden = true
-                              verifiedView.isHidden = false
-                              
-                statusLbl.text = Constants.string.failedKyc.localize()
-                 statusLbl.textColor =  UIColor(hex: "#FA376B")
-                verifiedView.backgroundColor = UIColor(hex: "#FA376B").withAlphaComponent(0.75)
-                
-            }  else if User.main.kyc == 3 {
-                
-                buttonView.isHidden = true
-                              verifiedView.isHidden = false
-                             
-                 statusLbl.textColor =  UIColor(hex: "#FA376B")
-                 statusLbl.text = Constants.string.pendingKyc.localize()
-                 verifiedView.backgroundColor = UIColor(hex: "#FBFBE4")
-            } else {
-                verifyMeBtn.isHidden = false
-                buttonView.isHidden = false
-                verifiedView.isHidden = true
-               
+               User.main.trulioo_kyc_status = self.userProfile?.trulioo_kyc_status
+               storeInUserDefaults()
+            switch User.main.trulioo_kyc_status! {
+            case 0:
+                verifyMeBtn.setTitle("Verify your identity", for: .normal)
+            case 1:
+                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+                self.navigationController?.pushViewController(vc, animated: true)
+            default:
+                verifyMeBtn.setTitle("Verify your identity", for: .normal)
             }
+            
+            
+//            if User.main.trulioo_kyc_status == 1 {
+//
+//                buttonView.isHidden = true
+//                verifiedView.isHidden = false
+//
+//                statusLbl.text = Constants.string.sucessKYC.localize()
+//                statusLbl.textColor = .white
+//                verifiedView.backgroundColor = UIColor(hex: "#34C759").withAlphaComponent(0.75)
+//
+//            } else if User.main.kyc == 2 {
+//                buttonView.isHidden = true
+//                              verifiedView.isHidden = false
+//
+//                statusLbl.text = Constants.string.failedKyc.localize()
+//                 statusLbl.textColor =  UIColor(hex: "#FA376B")
+//                verifiedView.backgroundColor = UIColor(hex: "#FA376B").withAlphaComponent(0.75)
+//
+//            }  else if User.main.kyc == 3 {
+//
+//                buttonView.isHidden = true
+//                              verifiedView.isHidden = false
+//
+//                 statusLbl.textColor =  UIColor(hex: "#FA376B")
+//                 statusLbl.text = Constants.string.pendingKyc.localize()
+//                 verifiedView.backgroundColor = UIColor(hex: "#FBFBE4")
+//            } else {
+//                verifyMeBtn.isHidden = false
+//                buttonView.isHidden = false
+//                verifiedView.isHidden = true
+//
+//            }
         default:
             break
         }

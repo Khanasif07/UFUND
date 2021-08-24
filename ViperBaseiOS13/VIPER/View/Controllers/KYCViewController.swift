@@ -16,51 +16,51 @@ import MiSnapSDKCamera
 struct IpAddressResult: Codable{
     let ipAddress:String
 }
-
-struct SelectedDoc {
-    
-    var id: Int?
-    var file: Data?
-    var img: UIImage?
-    
-    init(id: Int?,file: Data?,img: UIImage?) {
-        self.id = id
-        self.file = file
-        self.img = img
-    }
-}
-
-
-class KYCVerifiyDoc {
-    
-    var id : Int?
-    var user_id : Int?
-    var document_id : Int?
-    var url : String?
-    var unique_id : Int?
-    var status : String?
-    var expires_at : String?
-    var created_at : String?
-    var updated_at : String?
-    var image : String?
-    var name : String?
-    
-    init(id : Int?, user_id : Int?,document_id : Int?,url : String?,unique_id : Int?, status : String?,expires_at : String?, created_at : String?,updated_at : String?, image : String?, name : String?) {
-        
-        
-        self.id = id
-        self.user_id = user_id
-        self.document_id = document_id
-        self.url = url
-        self.unique_id = unique_id
-        self.status = status
-        self.expires_at = status
-        self.created_at = created_at
-        self.updated_at = updated_at
-        self.image = image
-        self.name = name
-    }
-}
+//
+//struct SelectedDoc {
+//
+//    var id: Int?
+//    var file: Data?
+//    var img: UIImage?
+//
+//    init(id: Int?,file: Data?,img: UIImage?) {
+//        self.id = id
+//        self.file = file
+//        self.img = img
+//    }
+//}
+//
+//
+//class KYCVerifiyDoc {
+//
+//    var id : Int?
+//    var user_id : Int?
+//    var document_id : Int?
+//    var url : String?
+//    var unique_id : Int?
+//    var status : String?
+//    var expires_at : String?
+//    var created_at : String?
+//    var updated_at : String?
+//    var image : String?
+//    var name : String?
+//
+//    init(id : Int?, user_id : Int?,document_id : Int?,url : String?,unique_id : Int?, status : String?,expires_at : String?, created_at : String?,updated_at : String?, image : String?, name : String?) {
+//
+//
+//        self.id = id
+//        self.user_id = user_id
+//        self.document_id = document_id
+//        self.url = url
+//        self.unique_id = unique_id
+//        self.status = status
+//        self.expires_at = status
+//        self.created_at = created_at
+//        self.updated_at = updated_at
+//        self.image = image
+//        self.name = name
+//    }
+//}
 
 
 class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapFacialCaptureViewControllerDelegate, CLLocationManagerDelegate {
@@ -114,7 +114,7 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     @IBOutlet weak var kycLbl: UILabel!
     
     
-    var selectedDoc = [SelectedDoc]()
+//    var selectedDoc = [SelectedDoc]()
     var selectedIndex = 0
     var successDict: SuccessDict?
     private var miSnapController: MiSnapSDKViewController!
@@ -918,42 +918,43 @@ extension KYCViewController{
         do{
             // decode result object
             let result = try JSONDecoder().decode(VerifyResult.self, from: data)
-            self.transactionID = result.TransactionID
+            self.transactionID = result.TransactionID ?? ""
             User.main.transactionID = self.transactionID
             self.appendText(text: "Success")
-            self.appendText(text: "TransactionID: \(result.TransactionID)")
+            self.appendText(text: "TransactionID: \(result.TransactionID ?? "")")
             self.appendText(text: nil)
             
-            let datasourceResult = result.Record.DatasourceResults.first
+            let datasourceResult = result.Record?.DatasourceResults?.first
             if(datasourceResult != nil){
                                 self.appendText(text:"\nOutput Fields: ")
-                let outputFields = datasourceResult!.DatasourceFields
-                for fieldRecord in outputFields{
-                                        self.appendText(text: "\(fieldRecord.FieldName): \(fieldRecord.Status)")
-                }
-                
-                self.appendText(text:"\nAppended Fields: ")
-                let appendFields = datasourceResult!.AppendedFields
-                var authenticityDetailsString = ""
-                for fieldRecord in appendFields{
-                    if(fieldRecord.FieldName != "AuthenticityDetails"){
-                                                self.appendText(text: "\(fieldRecord.FieldName): \(fieldRecord.Data)")
+                if let outputFields = datasourceResult!.DatasourceFields {
+                    for fieldRecord in outputFields{
+                        self.appendText(text: "\(fieldRecord.FieldName ?? ""): \(fieldRecord.Status ?? "")")
                     }
-                    else{
-                        do{
-                            let detailData = fieldRecord.Data.data(using: .utf8)!
-                            let authenticityDetailArray = try JSONDecoder().decode([AuthenticityDetail].self, from: detailData)
-                            for record in authenticityDetailArray{
-                                authenticityDetailsString += "Detail Name: \(record.Name) \n"
-                                authenticityDetailsString += "IsValid: \(record.IsValid) \n"
-                                authenticityDetailsString += "Value: \(record.Value) \n"
-                                authenticityDetailsString += "Description: \(record.Description) \n"
-                                //more info available, check TruliooResultClass for destail
-                                authenticityDetailsString += "\n"
+                }
+                self.appendText(text:"\nAppended Fields: ")
+                var authenticityDetailsString = ""
+                if let appendFields = datasourceResult!.AppendedFields{
+                    for fieldRecord in appendFields{
+                        if(fieldRecord.FieldName != "AuthenticityDetails"){
+                            self.appendText(text: "\(fieldRecord.FieldName ?? ""): \(fieldRecord.Data)")
+                        }
+                        else{
+                            do{
+                                let detailData = fieldRecord.Data?.data(using: .utf8)!
+                                let authenticityDetailArray = try JSONDecoder().decode([AuthenticityDetail].self, from: detailData!)
+                                for record in authenticityDetailArray{
+                                    authenticityDetailsString += "Detail Name: \(record.Name) \n"
+                                    authenticityDetailsString += "IsValid: \(record.IsValid) \n"
+                                    authenticityDetailsString += "Value: \(record.Value) \n"
+                                    authenticityDetailsString += "Description: \(record.Description) \n"
+                                    //more info available, check TruliooResultClass for destail
+                                    authenticityDetailsString += "\n"
+                                }
+                            }catch{
+                                authenticityDetailsString += "Error decoding AuthenticityDetails JSON \n"
+                                authenticityDetailsString += "Raw string: \(fieldRecord.Data)"
                             }
-                        }catch{
-                            authenticityDetailsString += "Error decoding AuthenticityDetails JSON \n"
-                            authenticityDetailsString += "Raw string: \(fieldRecord.Data)"
                         }
                     }
                 }
@@ -977,6 +978,8 @@ extension KYCViewController{
     private func endProcess(){
         DispatchQueue.main.async {
             self.loader.isHidden = true
+            self.popOrDismiss(animation: true)
+            //MARK:- Need to manage verify button status after posting verify api
         }
     }
     
@@ -1010,7 +1013,6 @@ extension KYCViewController{
     }
     
     func findNextView(_ newMetaData:String) {
-        self.loader.isHidden = true
         if(currentImage == frontImage) {
             capturedFrontImage = tempOriginalImage
             capturedFrontMetaData = newMetaData
@@ -1022,6 +1024,7 @@ extension KYCViewController{
             capturedSelfieMetaData = newMetaData
         }
         DispatchQueue.main.async {
+            self.loader.isHidden = true
             self.collectionView.reloadData()
             self.countryTxtFld.isUserInteractionEnabled = false
             self.docsTxtFld.isUserInteractionEnabled = false

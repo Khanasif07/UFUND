@@ -341,10 +341,10 @@ extension SignInViewController: PresenterOutputProtocol {
                 let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             case 1:
-                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
-                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
 //            if self.signInModel?.kyc == 0 {
@@ -382,10 +382,10 @@ extension SignInViewController: PresenterOutputProtocol {
                 let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             case 1:
-                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
-                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
 //            if self.signInModel?.kyc == 0 {

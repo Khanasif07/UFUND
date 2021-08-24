@@ -32,7 +32,8 @@ class AddAssetsVC: UIViewController {
     var sortTypeAppliedToken = AssetTokenTypeModel()
     var sortTypeAppliedReward = ""
     let assetsByRewardsDetails : [(String,Bool)] =   [("Interest",false),("Share",false),("Goods",false)]
-    var generalInfoArray = [("Name of Asset",""),("Token Name",""),("Value of Token",""),("Token Symbol",""),("Token Supply",""),("Decimal",""),("Value of Asset","")]
+//    var generalInfoArray = [("Name of Asset",""),("Token Name",""),("Value of Token",""),("Token Symbol",""),("Token Supply",""),("Decimal",""),("Value of Asset","")]
+    var generalInfoArray = [("Name of Asset",""),("Token Name",""),("Value of Token",""),("Token Symbol",""),("Token Supply",""),("Decimal",""),("Auditor Name",""),("Admin Commission",""),("Value of Asset","")]
     var productSpecifics = [("Category",""),("Asset Type",""),("Token Type",""),("Description","")]
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)

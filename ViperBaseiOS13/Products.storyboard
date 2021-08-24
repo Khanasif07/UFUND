@@ -3806,7 +3806,7 @@ Percentage (%)</string>
                                         <rect key="frame" x="10" y="16" width="394" height="735"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKr-OV-cdV">
-                                                <rect key="frame" x="0.0" y="674" width="394" height="51"/>
+                                                <rect key="frame" x="16" y="674" width="362" height="51"/>
                                                 <color key="backgroundColor" name="primaryColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="k2v-hb-GWa"/>
@@ -3827,12 +3827,12 @@ Percentage (%)</string>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="4a3-ni-gd5" firstAttribute="top" secondItem="RgR-3R-Nuw" secondAttribute="top" id="KTa-gW-pty"/>
-                                            <constraint firstAttribute="trailing" secondItem="eKr-OV-cdV" secondAttribute="trailing" id="LtX-nC-a8Z"/>
+                                            <constraint firstAttribute="trailing" secondItem="eKr-OV-cdV" secondAttribute="trailing" constant="16" id="LtX-nC-a8Z"/>
                                             <constraint firstAttribute="bottom" secondItem="eKr-OV-cdV" secondAttribute="bottom" constant="10" id="MEy-t4-Wtd"/>
                                             <constraint firstItem="4a3-ni-gd5" firstAttribute="leading" secondItem="RgR-3R-Nuw" secondAttribute="leading" id="UxL-Z0-anb"/>
                                             <constraint firstAttribute="trailing" secondItem="4a3-ni-gd5" secondAttribute="trailing" id="XKf-Rf-LgW"/>
                                             <constraint firstItem="eKr-OV-cdV" firstAttribute="top" secondItem="4a3-ni-gd5" secondAttribute="bottom" id="emJ-a3-VdP"/>
-                                            <constraint firstItem="eKr-OV-cdV" firstAttribute="leading" secondItem="RgR-3R-Nuw" secondAttribute="leading" id="mL6-6w-G4v"/>
+                                            <constraint firstItem="eKr-OV-cdV" firstAttribute="leading" secondItem="RgR-3R-Nuw" secondAttribute="leading" constant="16" id="mL6-6w-G4v"/>
                                         </constraints>
                                     </view>
                                 </subviews>

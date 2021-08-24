@@ -30,6 +30,7 @@ struct UserProfile : Mappable {
 	var city_id : String?
 	var wallet : String?
 	var kyc : Int?
+    var trulioo_kyc_status : Int?
 	var social_unique_id : String?
 	var login_with : String?
 	var verified : Int?
@@ -92,6 +93,7 @@ struct UserProfile : Mappable {
 		city_id <- map["city_id"]
 		wallet <- map["wallet"]
 		kyc <- map["kyc"]
+        trulioo_kyc_status <- map["trulioo_kyc_status"]
 		social_unique_id <- map["social_unique_id"]
 		login_with <- map["login_with"]
 		verified <- map["verified"]
