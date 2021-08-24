@@ -97,7 +97,7 @@ struct Constants {
     let wallet = "Wallet"
     let mywallet = "My Wallet"
     let productInvestMent = "Product Investment"
-    let myProductInvestMents = "My Product Investments"
+    let myProductInvestMents = "My Products Investment"
     let myTokenInvestMents = "My Tokens & Assets"
     let newTokenizedAssets = "New Tokenized Assets"
     let allTokenizedAssets = "All Tokenized Assets"

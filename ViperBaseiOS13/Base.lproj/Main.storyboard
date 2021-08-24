@@ -9828,18 +9828,8 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Owu-mh-lCa">
                                         <rect key="frame" x="20" y="194" width="335" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGV-Z1-Hrx">
-                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="38"/>
-                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
-                                                <state key="normal" title="Campaigner">
-                                                    <color key="titleColor" red="0.16468328239999999" green="0.16471883649999999" blue="0.16468104720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="campaignerButtonClickEvent:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="60w-7A-OTg"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fct-Tg-em2">
-                                                <rect key="frame" x="167.5" y="0.0" width="167.5" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="38"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="BeF-tH-iv5"/>
                                                 </constraints>
@@ -9849,6 +9839,16 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 </state>
                                                 <connections>
                                                     <action selector="investButtonClickEvent:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="MI9-cN-nzL"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGV-Z1-Hrx">
+                                                <rect key="frame" x="167.5" y="0.0" width="167.5" height="38"/>
+                                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
+                                                <state key="normal" title="Campaigner">
+                                                    <color key="titleColor" red="0.16468328239999999" green="0.16471883649999999" blue="0.16468104720000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="campaignerButtonClickEvent:" destination="wYO-Q1-aEw" eventType="touchUpInside" id="60w-7A-OTg"/>
                                                 </connections>
                                             </button>
                                         </subviews>

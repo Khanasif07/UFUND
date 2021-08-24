@@ -257,7 +257,7 @@ extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICol
         cell.midFirstLbl.textColor  = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
         cell.midSecondLbl.textColor  = sections[indexPath.row].1 ?  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
         cell.topLbl.textColor = sections[indexPath.row].1 ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1)
-        cell.bottomLbl.textColor = (indexPath.row != 1) ? #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1) : #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        cell.bottomLbl.textColor = sections[indexPath.row].1 ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) :  #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         cell.middleView.isHidden  = (indexPath.row == 2)
         cell.midSecondLbl.isHidden  = (indexPath.row != 0)
         cell.midFirstLbl.isHidden  = (indexPath.row == 2)

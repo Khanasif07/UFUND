@@ -51,6 +51,8 @@ class MyWalletVC: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.bottomSheetVC.view)
     }()
+    var isComeFromHome: Bool = false
+    var selectedSegmentIndex: Int = 0
     
     //Pagination
     var hideLoader: Bool = false
@@ -151,7 +153,6 @@ class MyWalletVC: UIViewController {
         self.popOrDismiss(animation: true)
     }
     
-    
 }
 
 // MARK: - Extension For Functions
@@ -167,6 +168,7 @@ extension MyWalletVC {
         self.hitBuyInvestHistoryAPI()
         self.hitWalletBalanceAPI()
         self.getDepositUrl()
+        self.setupWalletBalance()
     }
     
     private func setUpBorder(){
@@ -194,6 +196,21 @@ extension MyWalletVC {
         self.topView.isHidden = userType == UserType.campaigner.rawValue
         self.totalProductsTitlelbl.text = userType == UserType.campaigner.rawValue ? "Total Add Products" : "Total Invested Products"
         self.totalTokensTitleLbl.text = userType == UserType.campaigner.rawValue ? "Total Add Tokenized Assets" : "Total Invested Tokenized Assets"
+    }
+    
+    private func setupWalletBalance(){
+        if isComeFromHome {
+            if selectedSegmentIndex == 0{
+                currencyControl.selectedSegmentIndex = 0
+                segmentedControlValueChanged(currencyControl)
+            }else {
+                currencyControl.selectedSegmentIndex = 1
+                segmentedControlValueChanged(currencyControl)
+            }
+        } else {
+            currencyControl.selectedSegmentIndex = selectedSegmentIndex
+            segmentedControlValueChanged(currencyControl)
+        }
     }
     
     private func setFont(){
@@ -347,7 +364,7 @@ extension MyWalletVC: PresenterOutputProtocol {
             let walletData = dataDict as? WalletEntity
             if let data = walletData?.balance {
                 self.walletBalance = data
-                self.yourWalletBalanceLbl.text = "\(data.eth ?? 0.0 )"
+                segmentedControlValueChanged(currencyControl)
             }
         case Base.invester_buy_Invest_hisory.rawValue:
             let productModelEntity = dataDict as? BuyInvestHistoryEntity

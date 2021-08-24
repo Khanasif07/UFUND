@@ -243,12 +243,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 }
             case Constants.string.myfiatBalance.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+                vc.isComeFromHome = true
+                vc.selectedSegmentIndex = 1
                 self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.mycryptoBalance.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+                vc.isComeFromHome = true
+                vc.selectedSegmentIndex = 0
                 self.navigationController?.pushViewController(vc, animated: true)
-                
-                
             default:
                 break
             }
@@ -332,14 +334,17 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 self.navigationController?.pushViewController(myYieldVC, animated: true)
             case Constants.string.fiatCurrency.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+                vc.isComeFromHome = true
+                vc.selectedSegmentIndex = 1
                 self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.cryptoCurrency.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
+                vc.isComeFromHome = true
+                vc.selectedSegmentIndex = 0
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
                 break
             }
-            
         }
     }
 }

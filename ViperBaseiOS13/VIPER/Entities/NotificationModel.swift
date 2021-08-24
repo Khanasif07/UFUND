@@ -199,6 +199,7 @@ struct SendTokenEntity : Mappable {
  
 struct SendTokenTypeModel : Mappable {
     var avilable_token : Int?
+    var token_acquire: Int?
     var tokenname : String?
     var token_details: Token_details?
     var id: Int?
@@ -213,6 +214,7 @@ struct SendTokenTypeModel : Mappable {
     }
 
     mutating func mapping(map: Map) {
+        token_acquire <- map["token_acquire"]
         token_details <- map["token_details"]
         id <- map["id"]
         tokenname <- map["tokenname"]

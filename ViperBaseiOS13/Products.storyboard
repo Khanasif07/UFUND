@@ -3803,10 +3803,10 @@ Percentage (%)</string>
                                 <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgR-3R-Nuw">
-                                        <rect key="frame" x="16" y="16" width="382" height="735"/>
+                                        <rect key="frame" x="10" y="16" width="394" height="735"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKr-OV-cdV">
-                                                <rect key="frame" x="16" y="674" width="350" height="51"/>
+                                                <rect key="frame" x="0.0" y="674" width="394" height="51"/>
                                                 <color key="backgroundColor" name="primaryColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="51" id="k2v-hb-GWa"/>
@@ -3820,27 +3820,27 @@ Percentage (%)</string>
                                                 </connections>
                                             </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4a3-ni-gd5">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="674"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="674"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="4a3-ni-gd5" firstAttribute="top" secondItem="RgR-3R-Nuw" secondAttribute="top" id="KTa-gW-pty"/>
-                                            <constraint firstAttribute="trailing" secondItem="eKr-OV-cdV" secondAttribute="trailing" constant="16" id="LtX-nC-a8Z"/>
+                                            <constraint firstAttribute="trailing" secondItem="eKr-OV-cdV" secondAttribute="trailing" id="LtX-nC-a8Z"/>
                                             <constraint firstAttribute="bottom" secondItem="eKr-OV-cdV" secondAttribute="bottom" constant="10" id="MEy-t4-Wtd"/>
                                             <constraint firstItem="4a3-ni-gd5" firstAttribute="leading" secondItem="RgR-3R-Nuw" secondAttribute="leading" id="UxL-Z0-anb"/>
                                             <constraint firstAttribute="trailing" secondItem="4a3-ni-gd5" secondAttribute="trailing" id="XKf-Rf-LgW"/>
                                             <constraint firstItem="eKr-OV-cdV" firstAttribute="top" secondItem="4a3-ni-gd5" secondAttribute="bottom" id="emJ-a3-VdP"/>
-                                            <constraint firstItem="eKr-OV-cdV" firstAttribute="leading" secondItem="RgR-3R-Nuw" secondAttribute="leading" constant="16" id="mL6-6w-G4v"/>
+                                            <constraint firstItem="eKr-OV-cdV" firstAttribute="leading" secondItem="RgR-3R-Nuw" secondAttribute="leading" id="mL6-6w-G4v"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="RgR-3R-Nuw" secondAttribute="trailing" constant="16" id="gRg-E5-80h"/>
+                                    <constraint firstAttribute="trailing" secondItem="RgR-3R-Nuw" secondAttribute="trailing" constant="10" id="gRg-E5-80h"/>
                                     <constraint firstItem="RgR-3R-Nuw" firstAttribute="top" secondItem="vBJ-fh-33d" secondAttribute="top" constant="16" id="pWz-9B-cra"/>
-                                    <constraint firstItem="RgR-3R-Nuw" firstAttribute="leading" secondItem="vBJ-fh-33d" secondAttribute="leading" constant="16" id="pu9-KQ-zsu"/>
+                                    <constraint firstItem="RgR-3R-Nuw" firstAttribute="leading" secondItem="vBJ-fh-33d" secondAttribute="leading" constant="10" id="pu9-KQ-zsu"/>
                                 </constraints>
                             </view>
                         </subviews>

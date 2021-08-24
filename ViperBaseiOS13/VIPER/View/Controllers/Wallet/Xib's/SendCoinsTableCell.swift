@@ -100,12 +100,13 @@ extension SendCoinsTableCell: UICollectionViewDelegate, UICollectionViewDataSour
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.ProductsCollectionCell, for: indexPath) as! ProductsCollectionCell
         cell.productValueLbll.isHidden = false
-        cell.productImg.image = isFromCampainer ?  campinerImage[indexPath.row] : inversterImage[indexPath.row]
+//        cell.productImg.image = isFromCampainer ?  campinerImage[indexPath.row] : inversterImage[indexPath.row]
+        cell.productImg.image = #imageLiteral(resourceName: "icTokenInvestmentBg")
         cell.productNameLbl.textColor = .black
-        cell.productNameLbl.text = tokenListing?[indexPath.row].token_details?.tokenname ?? ""
+        cell.productNameLbl.text = tokenListing?[indexPath.row].token_details?.tokensymbol ?? ""
 //        cell.productNameLbl.text = isFromCampainer ? nullStringToEmpty(string: headerCount?[indexPath.row].0) : nullStringToEmpty(string: headerCount?[indexPath.row].0)
         cell.productValueLbll.textColor = isFromCampainer ?  headerCount?[indexPath.row].1 :  headerCount?[indexPath.row].1
-        cell.productValueLbll.text = "\(tokenListing?[indexPath.row].avilable_token ?? 0)"
+        cell.productValueLbll.text = "\(tokenListing?[indexPath.row].token_acquire ?? 0)"
 //        cell.configureCellForInvestorDashboard(indexPath: indexPath, model: investorDashboardData ?? DashboardEntity())
         return cell
     }
