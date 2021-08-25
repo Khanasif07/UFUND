@@ -179,6 +179,9 @@ extension MyInvestmentsDetailVC {
     private func getProgressPerForYourInvestment() -> Double{
         let earnings =   (productModel?.earnings ?? 0.0 )
         let invested_amount =  (productModel?.invested_amount ?? 0.0)
+        if invested_amount == 0.0 {
+            return 0.0
+        }
         return ((earnings  * 100) / invested_amount)
     }
     

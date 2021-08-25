@@ -290,6 +290,7 @@ struct Constants {
     let closingDate = "Offer End Date"
     let priceRange = "Price Range"
     let maturityDate = "Maturity Date"
+    let payment_method = "Payment Method"
     let maturityCount = "Maturity Count"
     let earning = "Earning"
     let myearning = "My Earning"

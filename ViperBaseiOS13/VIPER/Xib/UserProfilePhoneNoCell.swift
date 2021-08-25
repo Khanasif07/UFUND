@@ -31,6 +31,10 @@ class UserProfilePhoneNoCell: UITableViewCell {
        
     override func awakeFromNib() {
         super.awakeFromNib()
+        countryTxtFld.contentVerticalAlignment = .center
+        // horizontal alignment
+        countryTxtFld.textAlignment = .center
+        countryTxtFld.isUserInteractionEnabled = false
         countryTxtFld.font =   isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x16) : .setCustomFont(name: .bold, size: .x12)
         self.phoneTextField.font =  isDeviceIPad ? .setCustomFont(name: .medium, size: .x16) : .setCustomFont(name: .regular, size: .x12)

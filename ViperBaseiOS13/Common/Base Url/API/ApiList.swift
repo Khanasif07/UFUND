@@ -125,6 +125,7 @@ enum Base : String {
     case wallet_sell_hisory =  "/api/wallet-sell-history"
     case invester_buy_Invest_hisory =  "/api/investor-buy-invest-history"
 //    case campaigner_dashboard_sellHistory = "/api/campaigner-dashboard-sell-history"
+    case transaction_types = "/api/transaction-types"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .signUp

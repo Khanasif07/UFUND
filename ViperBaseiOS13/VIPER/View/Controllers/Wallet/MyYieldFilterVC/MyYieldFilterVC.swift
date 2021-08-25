@@ -25,6 +25,7 @@ class MyYieldFilterVC: UIViewController {
     var categoryListingVC : CategoryListingVC!
     var startDateVC       : AssetsFilterDateVC!
     var maturityDateVC        : AssetsFilterDateVC!
+    var transactionTypeVC        : CurrencyVC!
     // Parchment View
     var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     var filtersTabs =  [MenuItem]()
@@ -112,10 +113,14 @@ extension MyYieldFilterVC {
                 self.startDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.startDateVC.filterDateType = .startDate
                 self.allChildVCs.append(startDateVC)
-            } else {
+            } else if i == 2 {
                 self.maturityDateVC = AssetsFilterDateVC.instantiate(fromAppStoryboard: .Filter)
                 self.maturityDateVC.filterDateType = .investmentMaturityDate
                 self.allChildVCs.append(maturityDateVC)
+            } else {
+                self.transactionTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
+                self.transactionTypeVC.tokenType = .transactionType
+                self.allChildVCs.append(transactionTypeVC)
             }
         }
         self.view.layoutIfNeeded()

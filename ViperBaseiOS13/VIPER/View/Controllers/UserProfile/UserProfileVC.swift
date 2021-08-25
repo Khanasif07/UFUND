@@ -28,7 +28,7 @@ class UserProfileVC: UIViewController {
     var profileImgUrl : URL?
     var userDetails: UserDetails?
     var userProfile: UserProfile?
-    var countryCode: String  = "+91"
+    var countryCode: String  = "+1"
     var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Investor Type",""),("Revenue",""),("Income",""),("Total Annual Revenue","")]
     var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Account Type",""),("Bank Address","")]
     var companyDetailArray = [("Company Name",""),("Email",""),("Telephone",""),("Company Address","")]
@@ -88,6 +88,13 @@ class UserProfileVC: UIViewController {
                         return
                     } else {
                         param[ProfileUpdate.keys.mobile] = userData.1
+                    }
+                } else if userData.0 == "Phone Number" {
+                    if  self.countryCode.isEmpty {
+                        ToastManager.show(title: "Please Enter Mobile Country Code", state: .warning)
+                        return
+                    } else {
+                        param[ProfileUpdate.keys.countryCode] = self.countryCode
                     }
                 } else if userData.0 == "Investor Type" {
                     if  !userData.1.isEmpty {
@@ -342,6 +349,13 @@ extension UserProfileVC: PresenterOutputProtocol {
         customPickerAccount.dataArray = ["Personal","Business"]
         customPickerInvestor.dataArray = ["Individual","Business"]
     }
+    
+    private func present(to identifier : String) {
+            let viewController = self.storyboard!.instantiateViewController(withIdentifier: identifier) as? CountryPickerVC
+            viewController?.countryDelegate = self
+            self.present(viewController!, animated: true, completion: nil)
+        }
+
 }
 
 // MARK: - Extension For TableView
@@ -424,12 +438,14 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                     cell.phoneTextField.delegate = self
                     cell.countryPickerTapped = { [weak self] (sender) in
                         guard let selff = self else { return }
-                        
+                        if selff.isEnableEdit {
+                            selff.present(to: Storyboard.Ids.CountryPickerVC)
+                        }
                         
                     }
                     cell.phoneTextField.keyboardType = .numberPad
                     cell.phoneTextField.isUserInteractionEnabled = isEnableEdit
-                    cell.countryTxtFld.text = self.userProfile?.country_id ?? "+1"
+                    cell.countryTxtFld.text = self.countryCode
                     cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
                     cell.phoneTextField.placeholder = self.generalInfoArray[indexPath.row - 1].0
                     cell.phoneTextField.text = self.generalInfoArray[indexPath.row - 1].1
@@ -634,5 +650,15 @@ extension UserProfileVC: WCCustomPickerViewDelegate {
         default:
             print("Do Nothing")
         }
+    }
+}
+
+//MARK:- UserProfileVC
+//===========================
+
+extension UserProfileVC : CountryDelegate{
+    func sendCountryCode(code: String) {
+        self.countryCode = code
+        self.mainTableView.reloadData()
     }
 }

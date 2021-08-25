@@ -43,7 +43,7 @@ class AllProductsVC: UIViewController {
                 case .PendingProduct:
                 return "pending"
                 case .Approve:
-                return "approve"
+                return "live"
             default:
                 return "sold"
             }
