@@ -66,7 +66,7 @@ class KYCMatiViewController: UIViewController {
     }
     
     @IBAction func verifyMeBtnAction(_ sender: UIButton) {
-        switch User.main.trulioo_kyc_status! {
+        switch User.main.trulioo_kyc_status ?? 0 {
         case 0:
             guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return }
             self.navigationController?.pushViewController(vc, animated: true)

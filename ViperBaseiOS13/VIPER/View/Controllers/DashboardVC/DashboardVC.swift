@@ -220,8 +220,37 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardSubmittedProductsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
-            cell.setupDescriptionForProducts()
-            cell.partiesPercentage = [self.campaignerDashboardData?.product?.pending ?? 0,self.campaignerDashboardData?.product?.approved ?? 0,self.campaignerDashboardData?.product?.reject ?? 0,self.campaignerDashboardData?.product?.sold ?? 0]
+            cell.valueBtnTapped = { [weak self] (sender) in
+                guard let sself = self else {return }
+                switch sender.tag {
+                case 1:
+                    let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.liveProduct.localize()
+                    vc.campaignerProductType = .LiveProduct
+                    vc.productType = .AllProducts
+                    sself.navigationController?.pushViewController(vc, animated: true)
+                case 2:
+                    let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.pendingProduct.localize()
+                    vc.campaignerProductType = .PendingProduct
+                    vc.productType = .AllProducts
+                    sself.navigationController?.pushViewController(vc, animated: true)
+                case 3:
+                    let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.rejectedProduct.localize()
+                    vc.campaignerProductType = .RejectedProduct
+                    vc.productType = .AllProducts
+                    sself.navigationController?.pushViewController(vc, animated: true)
+                default:
+                    let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.soldProduct.localize()
+                    vc.campaignerProductType = .SoldProduct
+                    vc.productType = .AllProducts
+                    sself.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            cell.setupDescriptionForProducts(product: self.campaignerDashboardData?.product ?? ProductTypes())
+            cell.partiesPercentage = [self.campaignerDashboardData?.product?.approved ?? 0,self.campaignerDashboardData?.product?.pending ?? 0,self.campaignerDashboardData?.product?.reject ?? 0,self.campaignerDashboardData?.product?.sold ?? 0]
             cell.submittedProductLbl.text = "Submitted Products"
             cell.submittedProductValue.textColor = #colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)
             cell.productImgView.image = #imageLiteral(resourceName: "icProductWithBg")
@@ -231,8 +260,33 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         case .DashboardSubmittedAsssetsCell:
             let cell = tableView.dequeueCell(with: DashboardSubmittedProductsCell.self, indexPath: indexPath)
-            cell.setupDescriptionForAssets()
-            cell.partiesPercentage = [self.campaignerDashboardData?.asset?.pending ?? 0,self.campaignerDashboardData?.asset?.approved ?? 0,self.campaignerDashboardData?.asset?.reject ?? 0,self.campaignerDashboardData?.asset?.sold ?? 0]
+            cell.valueBtnTapped = { [weak self] (sender) in
+                guard let sself = self else {return }
+                switch sender.tag {
+                case 1:
+                    let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.allTokens.localize()
+                    vc.campaignerAssetType = .LiveAssets
+                    sself.navigationController?.pushViewController(vc, animated: true)
+                case 2:
+                    let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.allTokens.localize()
+                    vc.campaignerAssetType = .PendingAssets
+                    sself.navigationController?.pushViewController(vc, animated: true)
+                case 3:
+                    let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.allTokens.localize()
+                    vc.campaignerAssetType = .RejectedAssets
+                    sself.navigationController?.pushViewController(vc, animated: true)
+                default:
+                    let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
+                    vc.productTitle = Constants.string.allTokens.localize()
+                    vc.campaignerAssetType = .SoldAssets
+                    sself.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            cell.setupDescriptionForAssets(asset: self.campaignerDashboardData?.asset ?? AssetTypes())
+            cell.partiesPercentage = [self.campaignerDashboardData?.asset?.approved ?? 0,self.campaignerDashboardData?.asset?.pending ?? 0,self.campaignerDashboardData?.asset?.reject ?? 0,self.campaignerDashboardData?.asset?.sold ?? 0]
             cell.productImgView.image = #imageLiteral(resourceName: "icTokenizedAssetBg")
             cell.submittedProductLbl.text = "Submitted Assets"
             cell.submittedProductValue.textColor = #colorLiteral(red: 0.9568627451, green: 0.6235294118, blue: 0.03921568627, alpha: 1)

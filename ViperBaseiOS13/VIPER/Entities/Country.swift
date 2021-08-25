@@ -351,6 +351,10 @@ struct AssetTypes: Mappable {
     init?(map: Map) {
         
     }
+    
+    init(){
+        
+    }
     var approved : Int?
     var pending : Int?
     var reject : Int?
@@ -367,6 +371,10 @@ struct AssetTypes: Mappable {
 
 struct ProductTypes: Mappable {
     init?(map: Map) {
+        
+    }
+    
+    init(){
         
     }
     var approved : Int?

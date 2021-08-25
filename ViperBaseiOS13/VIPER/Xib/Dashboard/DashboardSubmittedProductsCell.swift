@@ -20,15 +20,17 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var dataContainerView: UIView!
     @IBOutlet weak var submittedProductValue: UILabel!
+    @IBOutlet var valueLbls: [UIButton]!
     @IBOutlet var descLbls: [UILabel]!
     
     
     // MARK: - Variables
     //==========================
+    var valueBtnTapped: ((UIButton) -> ())?
     var parties = ["","","",""]
-    var partiesPercentage = [25,50,10,15]{
+    var partiesPercentage = [0,0,0,0]{
         didSet{
-            self.partiesPercentage.removeAll(where: {$0 == 0})
+//            self.partiesPercentage.removeAll(where: {$0 == 0})
             self.setDataCount(partiesPercentage.endIndex, range: 100)
         }
     }
@@ -49,6 +51,9 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
     private func setUpProductAssetLogo(){
         self.submittedProductValue.font  = isDeviceIPad ? .setCustomFont(name: .bold, size: .x28) : .setCustomFont(name: .bold, size: .x24)
         self.submittedProductLbl.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
+        self.valueLbls.forEach { (lbl) in
+            lbl.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .bold, size: .x18) : .setCustomFont(name: .bold, size: .x14)
+        }
         DispatchQueue.main.async {
             self.productImgView.layer.masksToBounds = true
             self.productImgView.layer.borderWidth = 8.0
@@ -69,18 +74,28 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
         self.setDataCount(partiesPercentage.endIndex, range: 100)
     }
     
-    public func setupDescriptionForProducts(){
+    public func setupDescriptionForProducts(product: ProductTypes){
         self.descLbls[0].text = "No of Approved Products"
         self.descLbls[1].text = "No of Products Pending for Approval"
         self.descLbls[2].text = "No of Rejected Products"
         self.descLbls[3].text = "No of sold Products"
+        
+        self.valueLbls[0].setTitle(String(product.approved  ?? 0), for: .normal)
+        self.valueLbls[1].setTitle(String(product.pending ?? 0), for: .normal)
+        self.valueLbls[2].setTitle(String(product.reject ?? 0), for: .normal)
+        self.valueLbls[3].setTitle(String(product.sold ?? 0), for: .normal)
     }
     
-    public func setupDescriptionForAssets(){
+    public func setupDescriptionForAssets(asset: AssetTypes){
         self.descLbls[0].text = "No of Approved Assets"
         self.descLbls[1].text = "No of Assets Pending for Approval"
         self.descLbls[2].text = "No of Rejected Assets"
         self.descLbls[3].text = "No of sold Assets"
+        
+        self.valueLbls[0].setTitle(String(asset.approved  ?? 0), for: .normal)
+        self.valueLbls[1].setTitle(String(asset.pending ?? 0), for: .normal)
+        self.valueLbls[2].setTitle(String(asset.reject ?? 0), for: .normal)
+        self.valueLbls[3].setTitle(String(asset.sold ?? 0), for: .normal)
     }
     
     func setDataCount(_ count: Int, range: UInt32) {
@@ -103,6 +118,7 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
         let pFormatter = NumberFormatter()
         pFormatter.numberStyle = .percent
         pFormatter.maximumFractionDigits = 1
+        pFormatter.zeroSymbol = ""
         pFormatter.multiplier = 1.0
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         data.setValueFont(isDeviceIPad  ? .setCustomFont(name: .bold, size: .x16) : .setCustomFont(name: .bold, size: .x12))
@@ -114,6 +130,11 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
     
     // MARK: - IBActions
     //===========================
+    @IBAction func valueBtnAction(_ sender: UIButton) {
+        if let handle = valueBtnTapped{
+            handle(sender)
+        }
+    }
     
     
 }

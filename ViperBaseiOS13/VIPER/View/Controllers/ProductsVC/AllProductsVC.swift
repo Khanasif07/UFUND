@@ -240,29 +240,6 @@ extension AllProductsVC {
         return (investValue / totalValue) * 100
     }
     
-//    private func getInvestmentPercentageValue(productModel: ProductModel?) -> Double{
-//        let totalProductValue = productModel?.total_product_value
-//
-//        // User Earning on investment
-//        var investmentForDays = 0
-//        let maturityDate = productModel?.maturity_date?.toDate(dateFormat: Date.DateFormat.yyyyMMddTHHmmsssssz.rawValue) ?? Date()
-//        let investmentDate = Date()
-//        investmentForDays = Date.daysBetween(date1: maturityDate, date2: investmentDate)
-//
-//        var profitPercentage = productModel?.invest_profit_per ?? 0
-//        var investmentByUser = totalProductValue *
-//            {{ round($myproduct_detail->total_product_value, 2) }} * percentage / 100;
-//        var investmentByUser = {{ round($myproduct_detail->total_product_value, 2) }} * percentage / 100;
-//        var investmentForDays = {{ $investmentForDays}};
-//        var maturityDays = {{ $myproduct_detail->maturity_count }};
-//
-//        var totalUserEaringForFullDays = (investmentByUser * profitPercentage) / 100;
-//        var userEarningPerDay =  (totalUserEaringForFullDays / maturityDays);
-//        var userTotalEarings = (investmentForDays * userEarningPerDay);
-//
-//        // $('#total_buy_earning').text(userTotalEarings  + " @ " + profitPercentage + " % For " + investmentForDays + " days");
-//        $('#total_buy_earning').text(upto2Decimal(userTotalEarings));
-//    }
 }
 
 //MARK: - Collection view delegate

@@ -72,6 +72,7 @@ class ProductDetailPopUpVC: UIViewController {
                 self.totalPayableAmt.text =  "$ " + "\(totalPayableAmtValue)"
                 self.incrView.isHidden = true
                 self.decrView.isHidden = true
+                
             case .InvestProduct:
                  self.buyNowBtnTitle = "Invest"
                  self.incrView.isHidden = false
@@ -85,6 +86,7 @@ class ProductDetailPopUpVC: UIViewController {
                  self.payableAmountValueLbl.text = "$ " + "\(adminCommission)"
                  self.totalPayableAmtValue = percentageValue + adminCommission
                  self.totalPayableAmt.text =  "$ " + "\(totalPayableAmtValue)"
+                 //getInvestmentPercentageValue(percentage: productModel?.commission_per ?? 0, productModel: productModel)
             default:
                 self.buyNowBtnTitle = "Buy Now"
                 self.incrView.isHidden = false
@@ -268,6 +270,32 @@ extension ProductDetailPopUpVC {
     private func getPaymentMethodListing(){
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.paymentMethods.rawValue, params: [:], methodType: .GET, modelClass: Payment_method_Entity.self, token: true)
+    }
+    
+    private func getInvestmentPercentageValue(percentage:Int = 0,productModel: ProductModel?) -> Double{
+        let totalProductValue = productModel?.total_product_value ?? 0.0
+        
+        // User Earning on investment
+        var investmentForDays = 0
+        let maturityDate = productModel?.maturity_date?.toDate(dateFormat: Date.DateFormat.yyyyMMddTHHmmsssssz.rawValue) ?? Date()
+        let investmentDate = Date()
+        investmentForDays = Date.daysBetween(date1: maturityDate, date2: investmentDate)
+        
+        var profitPercentage = productModel?.invest_profit_per ?? 0
+        var totalInvestmentByUser = (totalProductValue * Double(percentage))
+        var investmentByUser : Double =  totalInvestmentByUser / 100
+        var maturityDays = productModel?.maturity_count
+        
+        var totalUserEaringForFullDays = (investmentByUser * Double(profitPercentage)) / 100
+        print(totalUserEaringForFullDays)
+        return totalUserEaringForFullDays
+//        var userEarningPerDay =  (totalUserEaringForFullDays / Double(maturityDays))
+//        var userTotalEarings = (investmentForDays * userEarningPerDay);
+//        var totalUserEaringForFullDays = (investmentByUser * profitPercentage) / 100;
+//        var userEarningPerDay =  (totalUserEaringForFullDays / maturityDays);
+//        var userTotalEarings = (investmentForDays * userEarningPerDay);
+        
+        // $('#total_buy_earning').text(userTotalEarings  + " @ " + profitPercentage + " % For " + investmentForDays + " days");
     }
 }
 
