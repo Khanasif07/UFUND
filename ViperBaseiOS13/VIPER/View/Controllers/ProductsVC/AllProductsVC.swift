@@ -30,6 +30,7 @@ class AllProductsVC: UIViewController {
         case RejectedProduct
         case SoldProduct
         case PendingProduct
+        case Approve
         
         var titleValue:String {
             switch self {
@@ -41,6 +42,8 @@ class AllProductsVC: UIViewController {
                 return "reject"
                 case .PendingProduct:
                 return "pending"
+                case .Approve:
+                return "approve"
             default:
                 return "sold"
             }

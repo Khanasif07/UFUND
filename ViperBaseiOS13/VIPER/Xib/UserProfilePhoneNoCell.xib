@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="NunitoSans-Bold.ttf">
             <string>NunitoSans-Bold</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
         </array>
     </customFonts>
     <objects>
@@ -29,7 +33,7 @@
                                 <rect key="frame" x="16" y="37" width="264" height="51"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jdS-iQ-Ckb">
-                                        <rect key="frame" x="20" y="5" width="228" height="41"/>
+                                        <rect key="frame" x="61" y="5" width="193" height="41"/>
                                         <fontDescription key="fontDescription" name="NunitoSans-Bold" family="Nunito Sans" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
@@ -41,14 +45,46 @@
                                             <userDefinedRuntimeAttribute type="nil" keyPath="selectedTitleColor"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIu-jb-JzG">
+                                        <rect key="frame" x="5" y="5" width="40" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="VjR-Xj-7jJ"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2It-Ch-mwR">
+                                        <rect key="frame" x="5" y="5" width="40" height="41"/>
+                                        <connections>
+                                            <action selector="countryPickerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4J2-ZN-7GZ"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qij-uW-4Vd">
+                                        <rect key="frame" x="50" y="7.5" width="1" height="36"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="1" id="XEX-ZG-cTG"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="Ecz-wX-0Ko"/>
+                                    <constraint firstItem="eIu-jb-JzG" firstAttribute="top" secondItem="H1r-tl-qkd" secondAttribute="top" constant="5" id="GQd-cS-bkd"/>
                                     <constraint firstItem="jdS-iQ-Ckb" firstAttribute="top" secondItem="H1r-tl-qkd" secondAttribute="top" constant="5" id="LzE-gO-QsW"/>
-                                    <constraint firstItem="jdS-iQ-Ckb" firstAttribute="leading" secondItem="H1r-tl-qkd" secondAttribute="leading" constant="20" id="kxY-Se-a9v"/>
+                                    <constraint firstItem="2It-Ch-mwR" firstAttribute="leading" secondItem="eIu-jb-JzG" secondAttribute="leading" id="OBe-SD-TuM"/>
+                                    <constraint firstItem="Qij-uW-4Vd" firstAttribute="leading" secondItem="eIu-jb-JzG" secondAttribute="trailing" constant="5" id="OjG-46-6eO"/>
+                                    <constraint firstItem="2It-Ch-mwR" firstAttribute="trailing" secondItem="eIu-jb-JzG" secondAttribute="trailing" id="bQ7-Uh-6CM"/>
+                                    <constraint firstAttribute="bottom" secondItem="eIu-jb-JzG" secondAttribute="bottom" constant="5" id="f6J-na-gug"/>
+                                    <constraint firstItem="2It-Ch-mwR" firstAttribute="top" secondItem="eIu-jb-JzG" secondAttribute="top" id="ffA-G5-ZVW"/>
+                                    <constraint firstItem="jdS-iQ-Ckb" firstAttribute="leading" secondItem="Qij-uW-4Vd" secondAttribute="trailing" constant="10" id="hqS-au-zR3"/>
+                                    <constraint firstItem="eIu-jb-JzG" firstAttribute="leading" secondItem="H1r-tl-qkd" secondAttribute="leading" constant="5" id="qsl-zE-K1X"/>
+                                    <constraint firstItem="2It-Ch-mwR" firstAttribute="bottom" secondItem="eIu-jb-JzG" secondAttribute="bottom" id="soF-E2-sBh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qij-uW-4Vd" secondAttribute="bottom" constant="7.5" id="v3d-Pb-jdV"/>
+                                    <constraint firstItem="Qij-uW-4Vd" firstAttribute="top" secondItem="H1r-tl-qkd" secondAttribute="top" constant="7.5" id="v4z-Ry-n8b"/>
                                     <constraint firstAttribute="bottom" secondItem="jdS-iQ-Ckb" secondAttribute="bottom" constant="5" id="xQx-1I-g4f"/>
-                                    <constraint firstAttribute="trailing" secondItem="jdS-iQ-Ckb" secondAttribute="trailing" constant="16" id="zo1-Rn-yit"/>
+                                    <constraint firstAttribute="trailing" secondItem="jdS-iQ-Ckb" secondAttribute="trailing" constant="10" id="zo1-Rn-yit"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9p-vn-TsC">
@@ -58,7 +94,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="H1r-tl-qkd" firstAttribute="leading" secondItem="NCo-B6-HUZ" secondAttribute="leading" constant="16" id="5LD-f7-Bnx"/>
                             <constraint firstItem="p9p-vn-TsC" firstAttribute="leading" secondItem="H1r-tl-qkd" secondAttribute="leading" id="7lC-OV-MKi"/>
@@ -78,6 +114,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="countryTxtFld" destination="eIu-jb-JzG" id="sfI-d7-ath"/>
                 <outlet property="dataContainerView" destination="NCo-B6-HUZ" id="Ngt-Uo-Pn4"/>
                 <outlet property="phoneTextField" destination="jdS-iQ-Ckb" id="uwC-uP-jJR"/>
                 <outlet property="textFieldView" destination="H1r-tl-qkd" id="naR-KK-MfX"/>
@@ -86,4 +123,12 @@
             <point key="canvasLocation" x="131.8840579710145" y="164.39732142857142"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

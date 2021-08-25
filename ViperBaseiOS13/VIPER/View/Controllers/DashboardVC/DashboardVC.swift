@@ -226,7 +226,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
                 case 1:
                     let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
                     vc.productTitle = Constants.string.liveProduct.localize()
-                    vc.campaignerProductType = .LiveProduct
+                    vc.campaignerProductType = .Approve
                     vc.productType = .AllProducts
                     sself.navigationController?.pushViewController(vc, animated: true)
                 case 2:
@@ -266,7 +266,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
                 case 1:
                     let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)
                     vc.productTitle = Constants.string.allTokens.localize()
-                    vc.campaignerAssetType = .LiveAssets
+                    vc.campaignerAssetType = .Approve
                     sself.navigationController?.pushViewController(vc, animated: true)
                 case 2:
                     let vc = TokenizedAssetsVC.instantiate(fromAppStoryboard: .Products)

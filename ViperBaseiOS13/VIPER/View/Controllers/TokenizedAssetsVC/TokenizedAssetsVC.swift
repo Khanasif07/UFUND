@@ -25,17 +25,20 @@ class TokenizedAssetsVC: UIViewController {
         case RejectedAssets
         case SoldAssets
         case PendingAssets
+        case Approve
         
         var titleValue:String {
             switch self {
             case .AllAssets:
                 return ""
-                case .LiveAssets:
+            case .LiveAssets:
                 return "live"
-                case .RejectedAssets:
+            case .RejectedAssets:
                 return "reject"
-                case .PendingAssets:
+            case .PendingAssets:
                 return "pending"
+            case .Approve:
+                return "approve"
             default:
                 return "sold"
             }

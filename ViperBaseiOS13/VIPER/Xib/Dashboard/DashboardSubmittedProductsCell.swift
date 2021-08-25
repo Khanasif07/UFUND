@@ -30,7 +30,6 @@ class DashboardSubmittedProductsCell: UITableViewCell, ChartViewDelegate {
     var parties = ["","","",""]
     var partiesPercentage = [0,0,0,0]{
         didSet{
-//            self.partiesPercentage.removeAll(where: {$0 == 0})
             self.setDataCount(partiesPercentage.endIndex, range: 100)
         }
     }

@@ -422,8 +422,14 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                 case "Phone Number":
                     let cell = tableView.dequeueCell(with: UserProfilePhoneNoCell.self, indexPath: indexPath)
                     cell.phoneTextField.delegate = self
+                    cell.countryPickerTapped = { [weak self] (sender) in
+                        guard let selff = self else { return }
+                        
+                        
+                    }
                     cell.phoneTextField.keyboardType = .numberPad
                     cell.phoneTextField.isUserInteractionEnabled = isEnableEdit
+                    cell.countryTxtFld.text = self.userProfile?.country_id ?? "+1"
                     cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
                     cell.phoneTextField.placeholder = self.generalInfoArray[indexPath.row - 1].0
                     cell.phoneTextField.text = self.generalInfoArray[indexPath.row - 1].1
