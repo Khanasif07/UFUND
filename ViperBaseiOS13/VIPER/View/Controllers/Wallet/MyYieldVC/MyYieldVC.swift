@@ -77,7 +77,7 @@ extension MyYieldVC {
         self.collectionSetUp()
         self.tableSetUp()
         self.hitYieldWalletBalanceAPI()
-        self.hitYieldBuyInvestAPI(params: [:])
+        self.hitYieldBuyInvestAPI(params: [ProductCreate.keys.payMethod:"ETH,BTC,USD"])
     }
     
     private func setUpFont(){
@@ -286,6 +286,15 @@ extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICol
             self.sections[indexPath.row].1 = true
         }
         self.mainCollectionView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet)
+        switch indexPath.row {
+        case 0:
+            self.hitYieldBuyInvestAPI(params: [ProductCreate.keys.payMethod:"ETH,BTC,USD"])
+        case 1:
+            self.hitYieldBuyInvestAPI(params: [ProductCreate.keys.payMethod:"ETH,BTC"])
+        default:
+            self.hitYieldBuyInvestAPI(params: [ProductCreate.keys.payMethod:"USD"])
+        }
+       
         //        self.mainCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         self.mainTableView.reloadData()
     }

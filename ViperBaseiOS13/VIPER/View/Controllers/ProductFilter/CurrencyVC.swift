@@ -32,6 +32,9 @@ class CurrencyVC: UIViewController {
     var searchedTokenListing = [AssetTokenTypeModel]()
     var selectedTokenListing : [AssetTokenTypeModel] = ProductFilterVM.shared.selectedTokenListing
     var tokenListing: [AssetTokenTypeModel] = ProductFilterVM.shared.tokenListing
+    var searchedTransactionListing = [TransactionTypeModel]()
+    var selectedTransactionListing : [TransactionTypeModel] = ProductFilterVM.shared.selectedTransactionTypeListing
+    var transactionListing: [TransactionTypeModel] = ProductFilterVM.shared.transactionTypeListing
     var searchText: String? {
         didSet{
             if tokenType == .Asset {
@@ -43,12 +46,21 @@ class CurrencyVC: UIViewController {
                         self.tableView.reloadData()
                     }
                 }
-            } else {
+            } else if tokenType == .Token{
                 if let searchedText = searchText{
                     if searchedText.isEmpty{
                         self.tableView.reloadData()
                     } else {
                         self.searchedTokenListing = tokenListing.filter({(($0.name?.lowercased().contains(s: searchedText.lowercased()))!)})
+                        self.tableView.reloadData()
+                    }
+                }
+            } else {
+                if let searchedText = searchText{
+                    if searchedText.isEmpty{
+                        self.tableView.reloadData()
+                    } else {
+                        self.searchedTransactionListing = transactionListing.filter({(($0.type?.lowercased().contains(s: searchedText.lowercased()))!)})
                         self.tableView.reloadData()
                     }
                 }
@@ -108,11 +120,23 @@ class CurrencyVC: UIViewController {
             }
         }
     }
+    
+    func removeSelectedTransaction(model : TransactionTypeModel) {
+            if self.selectedTransactionListing.count != 0 {
+                for power in self.selectedTransactionListing.enumerated() {
+                    if power.element.type == model.type {
+                        self.selectedTransactionListing.remove(at: power.offset)
+                        ProductFilterVM.shared.selectedTransactionTypeListing.remove(at: power.offset)
+                        break
+                    }
+                }
+            }
+    }
 
     //MARK:- PRDUCTS LIST API CALL
     private func getProductsCurrenciesList() {
         if tokenType == .transactionType {
-        self.presenter?.HITAPI(api: Base.transaction_types.rawValue, params: nil, methodType: .GET, modelClass: AssetTokenTypeEntity.self, token: true)
+        self.presenter?.HITAPI(api: Base.transaction_types.rawValue, params: nil, methodType: .GET, modelClass: TransactionTypeEntity.self, token: true)
         } else {
         self.presenter?.HITAPI(api: Base.asset_token_types.rawValue, params: [ProductCreate.keys.type: tokenType == .Asset ? 1 : 2], methodType: .GET, modelClass: AssetTokenTypeEntity.self, token: true)
         }
@@ -123,26 +147,51 @@ class CurrencyVC: UIViewController {
 
 extension CurrencyVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tokenType == .Asset {
+        switch tokenType {
+        case .Asset:
             if isSearchOn { return self.searchedAssetsListing.count }
             else { return assetsListing.count }
-        } else {
+        case .Token:
             if isSearchOn { return self.searchedTokenListing.count }
             else { return tokenListing.count }
+        default:
+            if isSearchOn { return self.searchedTransactionListing.count }
+            else { return transactionListing.count }
         }
+//        if tokenType == .Asset {
+//            if isSearchOn { return self.searchedAssetsListing.count }
+//            else { return assetsListing.count }
+//        } else {
+//            if isSearchOn { return self.searchedTokenListing.count }
+//            else { return tokenListing.count }
+//        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(with: CategoryListTableCell.self, indexPath: indexPath)
-        if tokenType == .Asset {
+        switch tokenType {
+        case .Asset:
             cell.currency = isSearchOn ? self.searchedAssetsListing[indexPath.row] : assetsListing[indexPath.row]
             let isPowerSelected = self.selectedAssetsListing.contains(where: {$0.id == (isSearchOn ? self.searchedAssetsListing[indexPath.row].id : assetsListing[indexPath.row].id)})
               cell.statusButton.isSelected = isPowerSelected
-        } else {
+        case .Token:
             cell.currency = isSearchOn ? self.searchedTokenListing[indexPath.row] : tokenListing[indexPath.row]
             let isPowerSelected = self.selectedTokenListing.contains(where: {$0.id == (isSearchOn ? self.searchedTokenListing[indexPath.row].id : tokenListing[indexPath.row].id)})
               cell.statusButton.isSelected = isPowerSelected
+        default:
+            cell.transactionType = isSearchOn ? self.searchedTransactionListing[indexPath.row] : transactionListing[indexPath.row]
+            let isPowerSelected = self.selectedTransactionListing.contains(where: {$0.type == (isSearchOn ? self.searchedTransactionListing[indexPath.row].type : transactionListing[indexPath.row].type)})
+              cell.statusButton.isSelected = isPowerSelected
         }
+//        if tokenType == .Asset {
+//            cell.currency = isSearchOn ? self.searchedAssetsListing[indexPath.row] : assetsListing[indexPath.row]
+//            let isPowerSelected = self.selectedAssetsListing.contains(where: {$0.id == (isSearchOn ? self.searchedAssetsListing[indexPath.row].id : assetsListing[indexPath.row].id)})
+//              cell.statusButton.isSelected = isPowerSelected
+//        } else {
+//            cell.currency = isSearchOn ? self.searchedTokenListing[indexPath.row] : tokenListing[indexPath.row]
+//            let isPowerSelected = self.selectedTokenListing.contains(where: {$0.id == (isSearchOn ? self.searchedTokenListing[indexPath.row].id : tokenListing[indexPath.row].id)})
+//              cell.statusButton.isSelected = isPowerSelected
+//        }
         return cell
     }
 
@@ -178,7 +227,7 @@ extension CurrencyVC: UITableViewDataSource, UITableViewDelegate {
                 }
             }
         }
-        } else {
+        } else if tokenType == .Token  {
             if self.selectedTokenListing.contains(where: {$0.id == (isSearchOn ? self.searchedTokenListing[indexPath.row].id : tokenListing[indexPath.row].id)}){
                 if isSearchOn ? self.searchedTokenListing[indexPath.row].id == 0 : tokenListing[indexPath.row].id == 0  {
                     self.selectedTokenListing = []
@@ -202,6 +251,33 @@ extension CurrencyVC: UITableViewDataSource, UITableViewDelegate {
                     } else{
                         ProductFilterVM.shared.selectedTokenListing.append(isSearchOn ? self.searchedTokenListing[indexPath.row] : tokenListing[indexPath.row] )
                         self.selectedTokenListing.append(isSearchOn ? self.searchedTokenListing[indexPath.row] : tokenListing[indexPath.row] )
+                    }
+                }
+            }
+        } else {
+            if self.selectedTransactionListing.contains(where: {$0.type == (isSearchOn ? self.searchedTransactionListing[indexPath.row].type : transactionListing[indexPath.row].type)}){
+                if isSearchOn ? self.searchedTransactionListing[indexPath.row].type == "All" : transactionListing[indexPath.row].type == "All"  {
+                    self.selectedTransactionListing = []
+                    ProductFilterVM.shared.selectedTransactionTypeListing = []
+                    self.selectedTransactionListing = []
+                } else {
+                    self.removeSelectedTransaction(model: isSearchOn ? self.searchedTransactionListing[indexPath.row] : transactionListing[indexPath.row] )
+                    if ProductFilterVM.shared.selectedTransactionTypeListing.endIndex == (transactionListing.endIndex ) - 1 && ProductFilterVM.shared.selectedTransactionTypeListing.contains(where: {$0.type == "All"}){
+                        ProductFilterVM.shared.selectedTransactionTypeListing.remove(at: ProductFilterVM.shared.selectedTransactionTypeListing.firstIndex(where: {$0.type == "All"}) ?? 0)
+                        self.selectedTransactionListing.remove(at: ProductFilterVM.shared.selectedTransactionTypeListing.firstIndex(where: {$0.type == "All"}) ?? 0)
+                    } else{}
+                }
+            } else {
+                if isSearchOn ? self.searchedTransactionListing[indexPath.row].type == "All" : transactionListing[indexPath.row].type == "All"  {
+                    ProductFilterVM.shared.selectedTransactionTypeListing = transactionListing
+                    self.selectedTransactionListing = transactionListing
+                } else {
+                    if ProductFilterVM.shared.selectedTransactionTypeListing.endIndex == (transactionListing.endIndex ) - 2{
+                        ProductFilterVM.shared.selectedTransactionTypeListing = transactionListing
+                        self.selectedTransactionListing = transactionListing
+                    } else{
+                        ProductFilterVM.shared.selectedTransactionTypeListing.append(isSearchOn ? self.searchedTransactionListing[indexPath.row] : transactionListing[indexPath.row] )
+                        self.selectedTransactionListing.append(isSearchOn ? self.searchedTransactionListing[indexPath.row] : transactionListing[indexPath.row] )
                     }
                 }
             }
@@ -255,18 +331,30 @@ extension CurrencyVC: UISearchBarDelegate{
 extension CurrencyVC : PresenterOutputProtocol {
 
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        if let addionalModel = dataDict as? AssetTokenTypeEntity{
-            var category = AssetTokenTypeModel()
-            category.id = 0
-            category.name = "All"
-            if tokenType == .Asset {
-                assetsListing = addionalModel.data ?? []
-                assetsListing.insert(category, at: 0)
-                ProductFilterVM.shared.assetsListing = assetsListing
-            } else {
-                tokenListing = addionalModel.data ?? []
-                tokenListing.insert(category, at: 0)
-                ProductFilterVM.shared.tokenListing = tokenListing
+        switch api {
+        case Base.transaction_types.rawValue:
+            if let addionalModel = dataDict as? TransactionTypeEntity{
+                var category = TransactionTypeModel()
+                category.type = "All"
+                var transactionListing = addionalModel.data ?? []
+                transactionListing.insert(category, at: 0)
+                self.transactionListing = transactionListing
+                ProductFilterVM.shared.transactionTypeListing = transactionListing
+            }
+        default:
+            if let addionalModel = dataDict as? AssetTokenTypeEntity{
+                var category = AssetTokenTypeModel()
+                category.id = 0
+                category.name = "All"
+                if tokenType == .Asset {
+                    assetsListing = addionalModel.data ?? []
+                    assetsListing.insert(category, at: 0)
+                    ProductFilterVM.shared.assetsListing = assetsListing
+                } else {
+                    tokenListing = addionalModel.data ?? []
+                    tokenListing.insert(category, at: 0)
+                    ProductFilterVM.shared.tokenListing = tokenListing
+                }
             }
         }
         self.tableView.reloadData()

@@ -47,6 +47,13 @@ class CategoryListTableCell: UITableViewCell {
         }
     }
     
+    var transactionType: TransactionTypeModel? {
+        didSet {
+            self.populateTransactionData()
+        }
+    }
+    
+    
     // MARK: - View Life cycle
     
     override func awakeFromNib() {
@@ -68,6 +75,10 @@ class CategoryListTableCell: UITableViewCell {
     
     private func populateCurrencyData() {
         self.categoryTitleLabel.text = currency?.name
+    }
+    
+    private func populateTransactionData() {
+        self.categoryTitleLabel.text = transactionType?.type
     }
     
     private func populatebyRewardsData(){

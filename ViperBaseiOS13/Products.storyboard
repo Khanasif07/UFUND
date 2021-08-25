@@ -1910,7 +1910,7 @@ Percentage (%)</string>
                                         <rect key="frame" x="0.0" y="95" width="414" height="801"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TRj-SL-t3Y">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="767"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="704"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RjD-z3-kld">
@@ -1958,6 +1958,7 @@ Percentage (%)</string>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="TRj-SL-t3Y" secondAttribute="trailing" id="7CD-jS-fGn"/>
                                             <constraint firstItem="TRj-SL-t3Y" firstAttribute="leading" secondItem="hEq-gO-2Ou" secondAttribute="leading" id="PpS-rq-JqS"/>
+                                            <constraint firstItem="RjD-z3-kld" firstAttribute="top" secondItem="TRj-SL-t3Y" secondAttribute="bottom" id="YS3-hN-apN"/>
                                             <constraint firstItem="TRj-SL-t3Y" firstAttribute="top" secondItem="hEq-gO-2Ou" secondAttribute="top" id="wjA-at-QDk"/>
                                         </constraints>
                                     </view>
@@ -1979,7 +1980,6 @@ Percentage (%)</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Y4J-St-Yxm" firstAttribute="trailing" secondItem="RU7-LZ-Yge" secondAttribute="trailing" id="6H4-gf-hbh"/>
-                            <constraint firstItem="TRj-SL-t3Y" firstAttribute="bottom" secondItem="Y4J-St-Yxm" secondAttribute="bottom" id="FTF-0D-pXe"/>
                             <constraint firstAttribute="bottom" secondItem="RU7-LZ-Yge" secondAttribute="bottom" id="LU2-3f-wf4"/>
                             <constraint firstItem="Y4J-St-Yxm" firstAttribute="bottom" secondItem="RjD-z3-kld" secondAttribute="bottom" id="RWM-2g-gJn"/>
                             <constraint firstAttribute="top" secondItem="RU7-LZ-Yge" secondAttribute="top" id="VE0-7k-wIM"/>
@@ -2060,7 +2060,7 @@ Percentage (%)</string>
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="5920" y="38"/>
+            <point key="canvasLocation" x="5918.840579710145" y="37.5"/>
         </scene>
         <!--Category Tokens DetailVC-->
         <scene sceneID="QcQ-w7-NcC">
@@ -2400,7 +2400,7 @@ Percentage (%)</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHP-eM-ke8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="799"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-Ky-x7l">
                                         <rect key="frame" x="0.0" y="44" width="414" height="51"/>
@@ -2524,10 +2524,10 @@ Percentage (%)</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YL3-W8-1J9">
-                                        <rect key="frame" x="0.0" y="146" width="414" height="770"/>
+                                        <rect key="frame" x="0.0" y="146" width="414" height="653"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="40N-2H-0s6">
-                                                <rect key="frame" x="8" y="0.0" width="398" height="770"/>
+                                                <rect key="frame" x="8" y="0.0" width="398" height="653"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GHr-UL-hZv">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -2551,13 +2551,13 @@ Percentage (%)</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="V3o-qC-pqH" secondAttribute="trailing" id="3Em-iG-d0N"/>
                                     <constraint firstItem="V3o-qC-pqH" firstAttribute="leading" secondItem="bHP-eM-ke8" secondAttribute="leading" id="4ud-Dr-PL3"/>
-                                    <constraint firstAttribute="bottom" secondItem="YL3-W8-1J9" secondAttribute="bottom" constant="-20" id="Sr3-BX-MA9"/>
                                     <constraint firstItem="hTB-Ky-x7l" firstAttribute="leading" secondItem="bHP-eM-ke8" secondAttribute="leading" id="SwV-fK-7FK"/>
                                     <constraint firstAttribute="trailing" secondItem="hTB-Ky-x7l" secondAttribute="trailing" id="ZZ5-cq-8QG"/>
                                     <constraint firstAttribute="trailing" secondItem="YL3-W8-1J9" secondAttribute="trailing" id="aPu-N1-LeH"/>
                                     <constraint firstItem="YL3-W8-1J9" firstAttribute="leading" secondItem="bHP-eM-ke8" secondAttribute="leading" id="aiS-un-z1x"/>
                                     <constraint firstItem="V3o-qC-pqH" firstAttribute="top" secondItem="hTB-Ky-x7l" secondAttribute="bottom" id="dWe-bx-yZ1"/>
                                     <constraint firstItem="YL3-W8-1J9" firstAttribute="top" secondItem="V3o-qC-pqH" secondAttribute="bottom" id="nia-yR-6jk"/>
+                                    <constraint firstAttribute="bottom" secondItem="YL3-W8-1J9" secondAttribute="bottom" id="pU6-Q6-j1n"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lm6-lM-xRt">
@@ -2614,7 +2614,6 @@ Percentage (%)</string>
                             <constraint firstAttribute="top" secondItem="bHP-eM-ke8" secondAttribute="top" id="GOX-de-mcf"/>
                             <constraint firstItem="dtM-eE-37a" firstAttribute="height" secondItem="HS9-i3-lg4" secondAttribute="height" id="Jx9-dO-kKk"/>
                             <constraint firstItem="xtH-Qq-nSI" firstAttribute="trailing" secondItem="Lm6-lM-xRt" secondAttribute="trailing" id="UNX-BQ-tPT"/>
-                            <constraint firstItem="bHP-eM-ke8" firstAttribute="bottom" secondItem="Sm7-Xp-x1J" secondAttribute="bottom" id="W4V-26-4xI"/>
                             <constraint firstItem="dtM-eE-37a" firstAttribute="centerY" secondItem="HS9-i3-lg4" secondAttribute="centerY" id="Zaa-8f-Wx4"/>
                             <constraint firstItem="dtM-eE-37a" firstAttribute="centerX" secondItem="HS9-i3-lg4" secondAttribute="centerX" id="alP-sU-kEY"/>
                             <constraint firstItem="Lm6-lM-xRt" firstAttribute="leading" secondItem="xtH-Qq-nSI" secondAttribute="leading" id="bv1-Gs-2jc"/>
@@ -2622,6 +2621,7 @@ Percentage (%)</string>
                             <constraint firstItem="xtH-Qq-nSI" firstAttribute="trailing" secondItem="bHP-eM-ke8" secondAttribute="trailing" id="f5s-ah-17e"/>
                             <constraint firstItem="bHP-eM-ke8" firstAttribute="leading" secondItem="xtH-Qq-nSI" secondAttribute="leading" id="krN-VB-g9W"/>
                             <constraint firstItem="hTB-Ky-x7l" firstAttribute="top" secondItem="xtH-Qq-nSI" secondAttribute="top" id="lF4-lw-8h5"/>
+                            <constraint firstItem="Lm6-lM-xRt" firstAttribute="top" secondItem="bHP-eM-ke8" secondAttribute="bottom" id="oQC-mU-X9E"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2636,7 +2636,7 @@ Percentage (%)</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHC-67-uzw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7360" y="40"/>
+            <point key="canvasLocation" x="7359.420289855073" y="39.508928571428569"/>
         </scene>
         <!--Submit Assets ProductsVC-->
         <scene sceneID="GmI-nG-9Ob">

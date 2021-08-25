@@ -46,6 +46,7 @@ struct ProductCreate {
     
     static let keys = ProductCreate()
     
+    let payMethod = "payMethod"
     let invest_profit_percentage = "invest_profit_percentage"
     let maturity_count = "maturity_count"
     let product_title = "product_title"

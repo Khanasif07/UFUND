@@ -221,3 +221,39 @@ struct SendTokenTypeModel : Mappable {
         avilable_token <- map["avilable_token"]
     }
 }
+
+struct TransactionTypeEntity : Mappable {
+    var data : [TransactionTypeModel]?
+    var message: String?
+    var code : Int?
+
+    init?(map: Map) {
+
+    }
+
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+        message <- map["message"]
+        code <- map["code"]
+    }
+
+}
+
+struct TransactionTypeModel : Mappable {
+    var type : String?
+    var isSelected: Bool = false
+    
+    init?(map: Map) {
+
+    }
+    
+    init(){
+        
+    }
+
+    mutating func mapping(map: Map) {
+
+        type <- map["type"]
+      
+    }
+}

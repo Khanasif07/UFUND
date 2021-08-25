@@ -34,6 +34,8 @@ class ProductFilterVM {
     var selectedAssetsListing = [AssetTokenTypeModel]()
     var selectedTokenListing = [AssetTokenTypeModel]()
     var assetsListing = [AssetTokenTypeModel]()
+    var transactionTypeListing = [TransactionTypeModel]()
+    var selectedTransactionTypeListing = [TransactionTypeModel]()
     var tokenListing = [AssetTokenTypeModel]()
     var start_from : String = ""
     var start_to : String = ""
@@ -73,6 +75,8 @@ class ProductFilterVM {
         self.categoryListing  = isCategorySelected ? [] : self.categoryListing
         self.tokenListing  = isCategorySelected ? [] : self.tokenListing
         self.assetsListing  = isCategorySelected ? [] : self.assetsListing
+        self.transactionTypeListing = []
+        self.selectedTransactionTypeListing = []
         self.status = []
         //Assets
         self.byRewards = []
