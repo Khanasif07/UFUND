@@ -32,15 +32,16 @@ class AddAssetsVC: UIViewController {
     var sortTypeAppliedToken = AssetTokenTypeModel()
     var sortTypeAppliedReward = ""
     let assetsByRewardsDetails : [(String,Bool)] =   [("Interest",false),("Share",false),("Goods",false)]
-//    var generalInfoArray = [("Name of Asset",""),("Token Name",""),("Value of Token",""),("Token Symbol",""),("Token Supply",""),("Decimal",""),("Value of Asset","")]
     var generalInfoArray = [("Name of Asset",""),("Token Name",""),("Value of Token",""),("Token Symbol",""),("Token Supply",""),("Decimal",""),("Auditor Name",""),("Admin Commission",""),("Value of Asset","")]
     var productSpecifics = [("Category",""),("Asset Type",""),("Token Type",""),("Description","")]
-    private lazy var loader  : UIView = {
-        return createActivityIndicator(self.view)
-    }()
     var dateInfoArray = [(Constants.string.startDate,""),(Constants.string.endDate,""),("Reward Date",""),("Reward","")]
     var datePicker = CustomDatePicker()
     var sections : [AddProductCell] = [.basicDetailsAssets,.assetsSpecifics,.dateSpecificsAssets,.documentImage]
+    private lazy var loader  : UIView = {
+        return createActivityIndicator(self.view)
+    }()
+    var min_eth : Double = 0.0
+    var eth_balance : Double = 0.0
     
     // MARK: - LifecycleAddProductCell
     //===========================
@@ -74,11 +75,13 @@ extension AddAssetsVC {
         self.mainTableView.registerCell(with: UserProfileImageCell.self)
         self.mainTableView.registerCell(with: UserProfileTableCell.self)
         self.mainTableView.registerCell(with: AddDescTableCell.self)
+        self.mainTableView.registerCell(with: AddAssetEmptyCell.self)
         self.mainTableView.registerHeaderFooter(with: UserProfileHeaderView.self)
         self.mainTableView.tableFooterView = footerView
         self.mainTableView.tableFooterView?.height = isDeviceIPad ? 175.0 : 125.0
       
     }
+    
 }
 
 // MARK: - Extension For TableView
@@ -97,6 +100,8 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
             return productSpecifics.endIndex
         case  .dateSpecificsAssets:
             return dateInfoArray.endIndex
+        case .emptyAssetsCell:
+            return self.sections[section].sectionCount
         default:
             return self.sections[section].sectionCount
         }
@@ -104,7 +109,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
        
        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
            let view = tableView.dequeueHeaderFooter(with: UserProfileHeaderView.self)
-        view.titleLbl.text  = sections[section].titleValue
+           view.titleLbl.text  = sections[section].titleValue
            return view
        }
        
@@ -122,8 +127,12 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          switch sections[indexPath.section] {
-            case .basicDetailsAssets:
+        switch sections[indexPath.section] {
+        case .emptyAssetsCell:
+            let cell = tableView.dequeueCell(with: AddAssetEmptyCell.self, indexPath: indexPath)
+            cell.minLbl.text = "Min \(self.min_eth ?? 0.0) ETH required."
+            return cell
+        case .basicDetailsAssets:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
             cell.textFIeld.delegate = self
             cell.titleLbl.text = self.generalInfoArray[indexPath.row].0
@@ -152,7 +161,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.text = (self.addAssetModel.auditor_name?.isEmpty ?? true) ? "" : "\(self.addAssetModel.auditor_name ?? "")"
             case 7:
                 cell.textFIeld.keyboardType = .numberPad
-//                cell.textFIeld.text = (self.addAssetModel.decimal?.isEmpty ?? true) ? "" : "\(self.addAssetModel.decimal ?? "0")"
+            //                cell.textFIeld.text = (self.addAssetModel.decimal?.isEmpty ?? true) ? "" : "\(self.addAssetModel.decimal ?? "0")"
             default:
                 cell.textFIeld.keyboardType = .numberPad
                 cell.textFIeld.text = self.addAssetModel.asset_amount == nil ? "" : "\(self.addAssetModel.asset_amount ?? 0)"
@@ -167,13 +176,13 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
             } else {
                 let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
                 if indexPath.row == 0 {
-                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                     cell.textFIeld.text = self.sortTypeAppliedCategory.category_name
                 }else if  indexPath.row == 1 {
-                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                     cell.textFIeld.text = self.sortTypeAppliedAsset.name
                 }else if indexPath.row == 2 {
-                     cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                     cell.textFIeld.text = self.sortTypeAppliedToken.name
                 } else {
                     cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
@@ -184,7 +193,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.placeholder = self.productSpecifics[indexPath.row].0
                 return  cell
             }
-          case .dateSpecificsAssets:
+        case .dateSpecificsAssets:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
             cell.textFIeld.delegate = self
             switch indexPath.row {
@@ -201,7 +210,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.inputView = datePicker
             case 3:
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.text = self.addAssetModel.reward
             default:
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))

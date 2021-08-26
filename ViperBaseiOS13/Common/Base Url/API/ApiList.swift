@@ -190,6 +190,7 @@ enum SocialLoginType: Int {
      case dateSpecificsProducts
      case dateSpecificsAssets
      case documentImage
+     case emptyAssetsCell
      
     var sectionCount: Int {
         switch self{
@@ -207,6 +208,8 @@ enum SocialLoginType: Int {
             return 4
         case .documentImage:
             return 1
+        case .emptyAssetsCell:
+           return 1
         }
     }
      
@@ -222,6 +225,8 @@ enum SocialLoginType: Int {
              return "Date Specifics"
          case .documentImage:
              return "Document & Image"
+         case .emptyAssetsCell:
+            return ""
          }
      }
  }

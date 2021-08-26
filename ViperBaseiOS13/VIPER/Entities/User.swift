@@ -39,6 +39,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     var pin_status : Int?
     var eth_address : String?
     var btc_address : String?
+    var min_eth : Double?
     
     init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?,trulioo_kyc_status: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?,eth_address : String?,btc_address : String?){
         
@@ -77,6 +78,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     
     
     required convenience init?(coder aDecoder: NSCoder) {
+        let min_eth = aDecoder.decodeObject(forKey: Keys.list.min_eth) as? Double
         let transactionID = aDecoder.decodeObject(forKey: Keys.list.transactionID) as? String
         let trulioo_kyc_status = aDecoder.decodeObject(forKey: Keys.list.trulioo_kyc_status) as? Int
         let kyc = aDecoder.decodeObject(forKey: Keys.list.kyc) as? Int
@@ -110,6 +112,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(self.transactionID,forKey: Keys.list.transactionID)
+        aCoder.encode(self.min_eth,forKey: Keys.list.min_eth)
         aCoder.encode(self.trulioo_kyc_status,forKey: Keys.list.trulioo_kyc_status)
         aCoder.encode(self.kyc, forKey: Keys.list.kyc)
         aCoder.encode(self.id, forKey: Keys.list.id)

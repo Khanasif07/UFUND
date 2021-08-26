@@ -356,6 +356,7 @@ struct Keys {
     let kyc = "kyc"
     let trulioo_kyc_status = "trulioo_kyc_status"
     let transactionID = "transactionID"
+    let min_eth = "min_eth"
     let usd_bstk = "usd_bstk"
     
     let g2f_temp = "g2f_temp"

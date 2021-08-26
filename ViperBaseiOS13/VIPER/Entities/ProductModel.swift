@@ -146,7 +146,8 @@ struct ProductModel: Mappable {
     var end_date : String?
     var start_date: String?
     var maturity_date : String?
-    var maturity_count : String?
+    var maturity_count_String : String?
+    var maturity_count : Int?
     var token_type : Asset_type?
     //TokenizedAssets Key
     var asset : Asset?
@@ -271,9 +272,10 @@ struct ProductModel: Mappable {
         dict[ProductCreate.keys.ean_code] = (self.ean_upc_code ?? "")
         dict[ProductCreate.keys.upc_code] = (self.upc_code ?? "")
         dict[ProductCreate.keys.hs_code] = self.hs_code
-        if let maturityCountValue = self.maturity_count?.components(separatedBy: " ").first{
+        if let maturityCountValue = self.maturity_count_String?.components(separatedBy: " ").first{
              dict[ProductCreate.keys.maturity_count] = maturityCountValue
         }
+        dict[ProductCreate.keys.maturity_count] = self.maturity_count
         dict[ProductCreate.keys.start_date] = self.start_date
         dict[ProductCreate.keys.end_date] = self.end_date
         dict[ProductCreate.keys.investment_date] = self.investment_date

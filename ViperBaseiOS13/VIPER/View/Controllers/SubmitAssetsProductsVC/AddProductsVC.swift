@@ -226,10 +226,10 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
                 switch indexPath.row {
                 case 0:
                     cell.textFIeld.keyboardType = .default
-                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                    cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                     cell.textFIeld.text = self.sortTypeAppliedCategory.category_name
                 case 1:
-                     cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
+                     cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0),isUserInteractionEnabled: false)
                     cell.textFIeld.keyboardType = .numberPad
                     cell.textFIeld.text = self.addProductModel.product_value == nil ? "" :  "\(self.addProductModel.product_value ?? 0)"
                 case 2:
@@ -260,9 +260,10 @@ extension AddProductsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.inputView = datePicker
                 cell.textFIeld.text = self.addProductModel.investment_date
             case 3:
-                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
+                cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
                 cell.textFIeld.keyboardType = .default
-                cell.textFIeld.text = self.addProductModel.maturity_count == nil ? "" :  "\(self.addProductModel.maturity_count ?? "")"
+//                cell.textFIeld.text = self.addProductModel.maturity_count == nil ? "" :  "\(self.addProductModel.maturity_count ?? "")"
+                cell.textFIeld.text = self.addProductModel.maturity_count == nil ? "" :  "\(self.addProductModel.maturity_count ?? 0)"
             default:
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
                 cell.textFIeld.text = self.addProductModel.maturity_date
@@ -364,7 +365,11 @@ extension AddProductsVC : UITextFieldDelegate {
                         cell.textFIeld.text = datePicker.selectedDate()?.convertToStringDefault()
                         self.addProductModel.investment_date = datePicker.selectedDate()?.convertToStringDefault()
                     case 3:
-                        self.addProductModel.maturity_count = text
+//                        self.addProductModel.maturity_count = text
+                        self.addProductModel.maturity_count_String = text
+                        if let maturityCountValue = self.addProductModel.maturity_count_String?.components(separatedBy: " ").first{
+                            self.addProductModel.maturity_count = Int(maturityCountValue) ?? 0
+                        }
                     default:
                         print(text)
                     }
@@ -453,12 +458,19 @@ extension AddProductsVC: ProductSortVCDelegate{
     
     func sortingApplied(sortType: String){
         self.sortTypeAppliedMaturityCount = sortType
-        self.addProductModel.maturity_count = sortType
-        if let maturityCountValue = self.addProductModel.maturity_count?.components(separatedBy: " ").first{
+        self.addProductModel.maturity_count_String = sortType
+        //        self.addProductModel.maturity_count = sortType
+        //        if let maturityCountValue = self.addProductModel.maturity_count?.components(separatedBy: " ").first{
+        //            let date = self.addProductModel.investmentDate?.plus(days: UInt(maturityCountValue) ?? 0)
+        //            self.addProductModel.maturity_date = date?.convertToStringDefault()
+        //        }
+        if let maturityCountValue = self.addProductModel.maturity_count_String?.components(separatedBy: " ").first{
             let date = self.addProductModel.investmentDate?.plus(days: UInt(maturityCountValue) ?? 0)
+            self.addProductModel.maturity_count = Int(maturityCountValue) ?? 0
             self.addProductModel.maturity_date = date?.convertToStringDefault()
+            //        }
+            self.mainTableView.reloadData()
         }
-        self.mainTableView.reloadData()
     }
 }
 

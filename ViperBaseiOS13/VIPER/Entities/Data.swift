@@ -40,6 +40,8 @@ struct WalletBalance : Mappable {
     var total_amount : Double?
     var btc : Double?
     var wallet: Double?
+    var min_eth: Double?
+    
     
 //    var data : [DataAssets]?
 
@@ -57,6 +59,7 @@ struct WalletBalance : Mappable {
         wallet <- map["wallet"]
         eth <- map["eth"]
         btc <- map["btc"]
+        min_eth <- map["min_eth"]
     }
 
 }

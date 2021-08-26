@@ -28,6 +28,8 @@ class SubmitAssetsProductsVC: UIViewController {
     //===========================
     var tokenVC : AddAssetsVC!
     var productVC : AddProductsVC!
+    var min_eth : Double = 0.0
+    var eth_balance : Double = 0.0
     lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
@@ -78,6 +80,7 @@ class SubmitAssetsProductsVC: UIViewController {
     //===========================
     @IBAction func addProductBtnAction(_ sender: UIButton) {
         self.view.endEditing(true)
+        self.bottomBtnView.isHidden = false
         self.mainScrollView.setContentOffset(CGPoint(x: UIScreen.main.bounds.width,y: 0), animated: true)
         self.view.layoutIfNeeded()
     }
@@ -172,6 +175,11 @@ class SubmitAssetsProductsVC: UIViewController {
     
     @IBAction func addBtnAction(_ sender: Any) {
         self.view.endEditing(true)
+        if self.eth_balance >  self.min_eth {
+            self.bottomBtnView.isHidden = false
+        } else {
+            self.bottomBtnView.isHidden = true
+        }
         self.mainScrollView.setContentOffset(CGPoint.zero, animated: true)
         self.view.layoutIfNeeded()
     }
@@ -187,11 +195,16 @@ class SubmitAssetsProductsVC: UIViewController {
 extension SubmitAssetsProductsVC {
     
     private func initialSetup(){
+        self.hitWalletBalanceAPI()
         self.setUpFont()
         self.configureScrollView()
         self.instantiateViewController()
         self.getCategoryList()
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    private func hitWalletBalanceAPI(){
+        self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil , methodType: .GET, modelClass: WalletEntity.self, token: true)
     }
     
     private func configureScrollView(){
@@ -249,6 +262,10 @@ extension SubmitAssetsProductsVC {
         self.presenter?.HITAPI(api: Base.asset_token_types.rawValue, params: [ProductCreate.keys.type: 2], methodType: .GET, modelClass: AssetTokenTypeEntity.self, token: true)
     }
     
+//    private func hitWalletBalanceAPI(){
+//        self.presenter?.HITAPI(api: Base.wallet.rawValue, params: nil , methodType: .GET, modelClass: WalletEntity.self, token: true)
+//    }
+//    
     public func hitSendRequestApi(){
         self.loader.isHidden = false
         if isPruductSelected {
@@ -303,6 +320,24 @@ extension SubmitAssetsProductsVC : PresenterOutputProtocol {
     func showSuccessWithParams(statusCode: Int,params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){
         self.loader.isHidden = true
         switch api {
+        case Base.wallet.rawValue:
+            let walletData = dataDict as? WalletEntity
+            if let data = walletData?.balance {
+                User.main.min_eth = data.min_eth ?? 0.0
+                self.min_eth = data.min_eth ?? 0.0
+                self.eth_balance = data.eth ?? 0.0
+                if self.eth_balance >=  self.min_eth {
+                    self.tokenVC.sections =  [.basicDetailsAssets,.assetsSpecifics,.dateSpecificsAssets,.documentImage]
+                    self.bottomBtnView.isHidden = false
+                    self.tokenVC.mainTableView.reloadData()
+                } else {
+                    self.tokenVC.sections =  [.emptyAssetsCell]
+                    self.bottomBtnView.isHidden = true
+                    self.tokenVC.min_eth =  self.min_eth
+                    self.tokenVC.mainTableView.tableFooterView = nil
+                    self.tokenVC.mainTableView.reloadData()
+                }
+            }
         case Base.campaigner_create_product.rawValue:
             let popUpVC = EditProfilePopUpVC.instantiate(fromAppStoryboard: .Main)
             popUpVC.editProfileSuccess = { [weak self] (sender) in

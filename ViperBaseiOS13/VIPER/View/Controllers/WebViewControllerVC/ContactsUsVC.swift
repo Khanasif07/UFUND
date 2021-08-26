@@ -23,7 +23,7 @@ class ContactsUsVC: UIViewController {
              return createActivityIndicator(self.view)
          }()
     var descText : String?
-    var sections : [String] = ["Name","Email will be send on this email","Description"]
+    var sections : [String] = ["Subject","Email will be send on this email","Description"]
     // MARK: - Lifecycle
     //===========================
     override func viewDidLoad() {
@@ -150,7 +150,7 @@ extension ContactsUsVC : UITableViewDelegate, UITableViewDataSource {
             cell.textFIeld.placeholder = self.sections[indexPath.row]
             cell.textFIeld.keyboardType = .default
             cell.textFIeld.isUserInteractionEnabled = false
-            cell.textFIeld.text = User.main.name
+            cell.textFIeld.text = "UFUND || Contact us Query"
             return cell
         case 1:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)

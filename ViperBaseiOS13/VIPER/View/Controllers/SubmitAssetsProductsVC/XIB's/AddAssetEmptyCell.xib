@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="287" id="KGk-i7-Jjw" customClass="AddAssetEmptyCell" customModule="UFUND" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="452" height="273.5"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="452" height="273.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LnH-BV-12U">
+                        <rect key="frame" x="10" y="10" width="432" height="253.5"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="zPl-uu-jcJ">
+                                <rect key="frame" x="20" y="10" width="392" height="73.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min 0.0 ETH required." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NpE-Ov-AT3">
+                                        <rect key="frame" x="0.0" y="0.0" width="135.5" height="18.5"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You do not have enough balance to deploy token,Please recharge your wallet." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0D-zI-iO3">
+                                        <rect key="frame" x="0.0" y="18.5" width="372" height="36.5"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet Address : AAA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZo-M8-u9H">
+                                        <rect key="frame" x="0.0" y="55" width="136" height="18.5"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fZd-Jf-iCe">
+                                <rect key="frame" x="20" y="93.5" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fZd-Jf-iCe" secondAttribute="height" id="5LO-aE-1UY"/>
+                                    <constraint firstAttribute="height" constant="150" id="dfr-sE-fwZ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zPl-uu-jcJ" firstAttribute="leading" secondItem="LnH-BV-12U" secondAttribute="leading" constant="20" id="4Dw-hM-hWL"/>
+                            <constraint firstAttribute="bottom" secondItem="fZd-Jf-iCe" secondAttribute="bottom" constant="10" id="7gV-PS-eQa"/>
+                            <constraint firstAttribute="trailing" secondItem="zPl-uu-jcJ" secondAttribute="trailing" constant="20" id="Ber-vr-EMj"/>
+                            <constraint firstItem="fZd-Jf-iCe" firstAttribute="leading" secondItem="zPl-uu-jcJ" secondAttribute="leading" id="TF1-Eu-Q1f"/>
+                            <constraint firstItem="zPl-uu-jcJ" firstAttribute="top" secondItem="LnH-BV-12U" secondAttribute="top" constant="10" id="Um8-Ap-wNR"/>
+                            <constraint firstItem="fZd-Jf-iCe" firstAttribute="top" secondItem="zPl-uu-jcJ" secondAttribute="bottom" constant="10" id="x3C-yq-Zuy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="LnH-BV-12U" secondAttribute="trailing" constant="10" id="C2C-0n-yMB"/>
+                    <constraint firstItem="LnH-BV-12U" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aed-fB-vj2"/>
+                    <constraint firstAttribute="bottom" secondItem="LnH-BV-12U" secondAttribute="bottom" constant="10" id="mUn-OC-yIT"/>
+                    <constraint firstItem="LnH-BV-12U" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="nmO-Em-zpx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="minLbl" destination="NpE-Ov-AT3" id="xha-gR-ceh"/>
+                <outlet property="qrCodeImgView" destination="fZd-Jf-iCe" id="h4H-6h-avN"/>
+                <outlet property="walletAddressLbl" destination="yZo-M8-u9H" id="fY1-SK-GD8"/>
+            </connections>
+            <point key="canvasLocation" x="284.05797101449275" y="94.754464285714278"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

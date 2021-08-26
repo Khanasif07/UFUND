@@ -72,6 +72,7 @@ class ProductDetailPopUpVC: UIViewController {
                 self.totalPayableAmt.text =  "$ " + "\(totalPayableAmtValue)"
                 self.incrView.isHidden = true
                 self.decrView.isHidden = true
+                self.yourProfitValueLbl.text =  "$ " + "\(getInvestmentPercentageValue(percentage: 100, productModel: productModel))"
                 
             case .InvestProduct:
                  self.buyNowBtnTitle = "Invest"
@@ -86,7 +87,8 @@ class ProductDetailPopUpVC: UIViewController {
                  self.payableAmountValueLbl.text = "$ " + "\(adminCommission)"
                  self.totalPayableAmtValue = percentageValue + adminCommission
                  self.totalPayableAmt.text =  "$ " + "\(totalPayableAmtValue)"
-                 //getInvestmentPercentageValue(percentage: productModel?.commission_per ?? 0, productModel: productModel)
+                 self.yourProfitValueLbl.text =  "$ " + "\(getInvestmentPercentageValue(percentage: currentValInvPer, productModel: productModel))"
+                 
             default:
                 self.buyNowBtnTitle = "Buy Now"
                 self.incrView.isHidden = false
@@ -188,7 +190,7 @@ extension ProductDetailPopUpVC {
         self.loader.isHidden = false
         var params  = [String : Any]()
         if isForBuyAndToken == .InvestToken {
-            params = [Constants.string.amount.localize(): "\(self.currentValInvPer)",Constants.string.payment_mode.localize(): self.selectedPaymentMethodAssets ?? "",ProductCreate.keys.token_id: self.productModel?.id ?? 0] as [String : Any]
+            params = [Constants.string.amount.localize(): "\(self.currentValInvPer)",Constants.string.payment_mode.localize(): self.selectedPaymentMethodAssets ,ProductCreate.keys.token_id: self.productModel?.id ?? 0] as [String : Any]
         }else {
             params = [Constants.string.amount.localize(): "\(self.totalPayableAmtValue)",Constants.string.payment_mode.localize(): self.selectedPaymentMethod?.value ?? "",ProductCreate.keys.product_id: self.productModel?.id ?? 0] as [String : Any]
         }
@@ -277,25 +279,20 @@ extension ProductDetailPopUpVC {
         
         // User Earning on investment
         var investmentForDays = 0
-        let maturityDate = productModel?.maturity_date?.toDate(dateFormat: Date.DateFormat.yyyyMMddTHHmmsssssz.rawValue) ?? Date()
+        let maturityDate = productModel?.maturity_date?.toDate(dateFormat: Date.DateFormat.yyyyMMdd.rawValue) ?? Date()
         let investmentDate = Date()
         investmentForDays = Date.daysBetween(date1: maturityDate, date2: investmentDate)
         
-        var profitPercentage = productModel?.invest_profit_per ?? 0
-        var totalInvestmentByUser = (totalProductValue * Double(percentage))
-        var investmentByUser : Double =  totalInvestmentByUser / 100
-        var maturityDays = productModel?.maturity_count
+        let profitPercentage = productModel?.invest_profit_per ?? 0
+        let totalInvestmentByUser = (totalProductValue * Double(percentage))
+        let investmentByUser : Double =  totalInvestmentByUser / 100
+        let maturityDays = Double(productModel?.maturity_count ?? 0)
         
-        var totalUserEaringForFullDays = (investmentByUser * Double(profitPercentage)) / 100
-        print(totalUserEaringForFullDays)
-        return totalUserEaringForFullDays
-//        var userEarningPerDay =  (totalUserEaringForFullDays / Double(maturityDays))
-//        var userTotalEarings = (investmentForDays * userEarningPerDay);
-//        var totalUserEaringForFullDays = (investmentByUser * profitPercentage) / 100;
-//        var userEarningPerDay =  (totalUserEaringForFullDays / maturityDays);
-//        var userTotalEarings = (investmentForDays * userEarningPerDay);
-        
-        // $('#total_buy_earning').text(userTotalEarings  + " @ " + profitPercentage + " % For " + investmentForDays + " days");
+        let totalUserEaringForFullDays = (investmentByUser * Double(profitPercentage)) / 100
+        let userEarningPerDay =  (totalUserEaringForFullDays / (maturityDays))
+        let userTotalEarings = (Double(abs(investmentForDays)) * userEarningPerDay)
+        print(userTotalEarings)
+        return userTotalEarings.round(to: 2)
     }
 }
 

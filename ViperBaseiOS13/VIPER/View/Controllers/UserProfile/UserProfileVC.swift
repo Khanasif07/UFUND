@@ -514,7 +514,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
             cell.textFIeld.delegate = self
             switch bankInfoArray[indexPath.row].0 {
             case "Telephone":
-                cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.keyboardType = .default
             default:
                  cell.textFIeld.keyboardType = .emailAddress
             }
@@ -538,7 +538,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                 return  cell
             case "Account Number","Routing Number":
                 cell.textFIeld.delegate = self
-                cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.keyboardType = .namePhonePad
                 cell.titleLbl.text = self.bankInfoArray[indexPath.row ].0
                 cell.textFIeld.placeholder = self.bankInfoArray[indexPath.row].0
                 cell.textFIeld.isUserInteractionEnabled = isEnableEdit
