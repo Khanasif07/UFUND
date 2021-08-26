@@ -65,7 +65,6 @@ class ProductViewController: UIViewController {
         
     }()
     var successDict: SuccessDict?
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     
     
     var isFromMyProduct = false

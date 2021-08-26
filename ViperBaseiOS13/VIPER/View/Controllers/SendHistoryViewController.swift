@@ -18,7 +18,6 @@ class SendHistoryViewController: UIViewController {
     private lazy var loader  : UIView = {
                  return createActivityIndicator(self.view)
      }()
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var sendEntity: SendEntity?
       var tokenList = [Transactions]()
     

@@ -39,7 +39,6 @@ class MyWalletSheetVC: UIViewController {
             mainTableView.reloadData()
         }
     }
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var historyType: HistoryType = .wallet
     lazy var swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(closePullUp))
     var investBuyCellData = [("Payment Method",""),("Category",""),("Amount",""),("Currency",""),("Invest. Date",""),("Maturity. Date",""),("Status","")]
@@ -202,7 +201,7 @@ extension MyWalletSheetVC {
         setupTableView()
         setUpFont()
         setSearchBar()
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetVC.panGesture))
+        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(MyWalletSheetVC.panGesture))
         view.addGestureRecognizer(gesture)
         setupSwipeGesture()
 //        hitWalletHistoryAPI()

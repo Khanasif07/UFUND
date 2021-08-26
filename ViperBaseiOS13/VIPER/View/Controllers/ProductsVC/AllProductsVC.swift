@@ -76,7 +76,6 @@ class AllProductsVC: UIViewController {
     private lazy var loader  : UIView = {
            return createActivityIndicator(self.view)
        }()
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
     var selectedCurrency : (([AssetTokenTypeModel],Bool)) = ([],false)
     var selectedMinPrice: (CGFloat,Bool) = (0.0,false)

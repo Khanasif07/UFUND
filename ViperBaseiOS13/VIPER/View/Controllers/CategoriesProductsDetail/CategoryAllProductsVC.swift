@@ -47,10 +47,12 @@ class CategoryAllProductsVC: UIViewController {
     }
     
     private func getProgressPercentage(productModel: ProductModel?) -> Double{
-           let investValue =   (productModel?.investment_product_total ?? 0.0 )
-           let totalValue =  (productModel?.total_product_value ?? 0.0)
-           return (investValue / totalValue) * 100
-       }
+        //           let investValue =   (productModel?.investment_product_total ?? 0.0 )
+        //           let totalValue =  (productModel?.total_product_value ?? 0.0)
+        //           return (investValue / totalValue) * 100
+        let pending_invest_per =  (productModel?.pending_invest_per ?? 0 )
+        return 100.0 - Double(pending_invest_per)
+    }
 
 }
 
@@ -78,15 +80,23 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
             cell.priceLbl.text =  "\((self.allProductListing?[indexPath.row].total_product_value ?? 0))"
             cell.investmentLbl.text =  "\(self.getProgressPercentage(productModel: (self.allProductListing?[indexPath.row])).round(to: 1))" + "%"
             cell.statusLbl.text = (self.allProductListing?[indexPath.row].product_status == 1) ? "Live" : (self.allProductListing?[indexPath.row].status == 2) ? "Closed" : "Matured"
+            cell.investmentPerValueLbl.text = "\(self.allProductListing?[indexPath.row].invest_profit_per ?? 0)"
             return cell
         default:
             let cell = collectionView.dequeueCell(with: NewProductsCollCell.self, indexPath: indexPath)
-            cell.productNameLbl.text =   (self.allProductListing?[indexPath.row].tokenname ?? "")
+//            cell.productNameLbl.text =   (self.allProductListing?[indexPath.row].tokenname ?? "")
             let imgEntity =    (self.allProductListing?[indexPath.row].token_image ?? "")
 //             let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
+            if userType == UserType.investor.rawValue {
+                cell.categoryLbl.text =  (self.allProductListing?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
+                cell.productNameLbl.text =  (self.allProductListing?[indexPath.row].tokenname ?? "")
+            } else{
+                cell.categoryLbl.text =  (self.allProductListing?[indexPath.row].asset?.category?.category_name ?? "")
+                cell.productNameLbl.text =  (self.allProductListing?[indexPath.row].asset?.asset_title ?? "")
+            }
             let url = URL(string:  nullStringToEmpty(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
-            cell.categoryLbl.text = (self.allProductListing?[indexPath.row].asset?.category?.category_name ?? "")
+//            cell.categoryLbl.text = (self.allProductListing?[indexPath.row].asset?.category?.category_name ?? "")
             cell.priceLbl.text =  "\((self.allProductListing?[indexPath.row].tokenvalue ?? 0))"
             cell.statusLbl.text = (self.allProductListing?[indexPath.row].token_status == 1) ? "Live" : "Live"
             cell.backgroundColor = .clear

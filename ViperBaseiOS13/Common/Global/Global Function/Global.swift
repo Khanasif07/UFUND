@@ -197,3 +197,5 @@ extension UIActivityIndicatorView {
         self.color = color
     }
 }
+ 
+let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String

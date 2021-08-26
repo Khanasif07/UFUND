@@ -48,7 +48,6 @@ class ProductFilterVC: UIViewController {
     var parchmentView : PagingViewController?
     
     //  MARK: - Variables
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var allChildVCs: [UIViewController] = [UIViewController]()
     weak var delegate : ProductFilterVCDelegate?
     private lazy var loader  : UIView = {

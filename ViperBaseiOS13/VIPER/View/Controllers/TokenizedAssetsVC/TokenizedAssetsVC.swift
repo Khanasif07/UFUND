@@ -73,7 +73,6 @@ class TokenizedAssetsVC: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
     var selectedAssetsListing : (([AssetTokenTypeModel],Bool)) = ([],false)
     var selectedTokenListing : (([AssetTokenTypeModel],Bool)) = ([],false)

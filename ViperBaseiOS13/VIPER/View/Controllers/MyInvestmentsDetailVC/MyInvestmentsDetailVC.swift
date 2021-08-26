@@ -38,7 +38,6 @@ class MyInvestmentsDetailVC: UIViewController {
     
     // MARK: - Variables
     //===========================
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var productModel: ProductModel?
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)

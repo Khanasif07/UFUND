@@ -69,7 +69,6 @@ class ProductListViewController: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var productList = [1,2,3,4,5,6,7,8]
     var tokenOrProduct: String?
     var isTokenAssets = true {

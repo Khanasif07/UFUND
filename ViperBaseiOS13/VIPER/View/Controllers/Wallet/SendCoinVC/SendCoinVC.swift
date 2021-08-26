@@ -30,7 +30,6 @@ class SendCoinVC: UIViewController {
     
     // MARK: - Variables
     //===========================
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var sections : [SendCoinCell] = [.tokensListing,.TransactionHistory]
     var walletBalance = WalletBalance()
     var tokenListing = [SendTokenTypeModel]()

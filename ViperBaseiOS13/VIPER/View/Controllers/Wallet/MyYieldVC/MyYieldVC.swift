@@ -25,7 +25,6 @@ class MyYieldVC: UIViewController {
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var yieldData: YieldModule?
     var yield_histories : [History]?
     var sections = [("Overall User Earning",true),("Earning In Crypto",false),("Earning In Fiat",false)]

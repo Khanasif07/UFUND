@@ -44,6 +44,7 @@ class ProductDetailPopUpVC: UIViewController {
     @IBOutlet weak var qtyValueLbl: UILabel!
     @IBOutlet weak var tokenQtyLbl: UILabel!
     @IBOutlet weak var yourProfitValueLbl: UILabel!
+    @IBOutlet weak var yourProfitView: UIStackView!
     
     // MARK: - Variables
     //===========================
@@ -93,7 +94,7 @@ class ProductDetailPopUpVC: UIViewController {
                 self.buyNowBtnTitle = "Buy Now"
                 self.incrView.isHidden = false
                 self.decrView.isHidden = false
-                self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)"
+                self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)" + "/ Token"
                 self.adminCommTitleLbl.text = "Admin Commision" + " (\(productModel?.commission_per ?? 0)) " + "%"
                 self.qtyTxtField.text = "\(currentValInvPer)"
                 let percentageValue = (Double(currentValInvPer) * (productModel?.tokenvalue ?? 0.0))
@@ -254,6 +255,7 @@ extension ProductDetailPopUpVC {
             let url = URL(string: nullStringToEmpty(string: imgEntity))
             self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         default:
+            self.yourProfitView.isHidden = true
             self.coinLbl.text = self.productModel?.tokenrequest?.asset?.category?.category_name ?? ""
             self.currentValInvPer = 1
             self.investPerView.isHidden = true
@@ -262,7 +264,7 @@ extension ProductDetailPopUpVC {
             self.tokenPriceLbl.text =  "Token Price"
             self.totalProductPriceTitleLbl.text = "Total Token Amount"
             self.tokenQtyLbl.text = "Token Quantity"
-            self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)"
+            self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)" + "/ Token"
             let imgEntity =  productModel?.token_image ?? ""
             let url = URL(string:  nullStringToEmpty(string: imgEntity))
             self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
@@ -308,7 +310,7 @@ extension ProductDetailPopUpVC : UITextFieldDelegate {
            if isForBuyAndToken == .InvestToken {
                 vc.usingForSort = .filter
                 vc.sortArray = [(Constants.string.btc,false),(Constants.string.eth,false),(Constants.string.walletCaps,false)]
-                vc.sortTypeApplied = self.selectedPaymentMethodAssets ?? ""
+            vc.sortTypeApplied = self.selectedPaymentMethodAssets 
             }else {
                 vc.usingForSort = .paymentMethods
                 vc.sortTypePaymentListing = self.productModel?.payment_method_type ?? []
@@ -452,7 +454,7 @@ extension ProductDetailPopUpVC : ProductSortVCDelegate {
     
     func sortingApplied(sortType: String) {
         self.selectedPaymentMethodAssets = sortType
-        self.paymentMethodTxtField.text = self.selectedPaymentMethodAssets ?? ""
+        self.paymentMethodTxtField.text = self.selectedPaymentMethodAssets 
     }
 }
 

@@ -43,7 +43,6 @@ class MyWalletVC: UIViewController {
     //===========================
     var walletBalance = WalletBalance()
     var walletModule = WalletModule()
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var depositUrl : String = ""
     var selectedCurrencyType = "ETH"
     let bottomSheetVC = MyWalletSheetVC()

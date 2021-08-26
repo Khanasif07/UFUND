@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,19 +32,19 @@
                                 <rect key="frame" x="96.5" y="25" width="82.5" height="83"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGF-Jj-L0b">
-                                <rect key="frame" x="10" y="126" width="255" height="22"/>
+                                <rect key="frame" x="10" y="126" width="255" height="19"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIx-qi-7Th">
-                                <rect key="frame" x="10" y="158" width="255" height="19.5"/>
+                                <rect key="frame" x="10" y="155" width="255" height="16.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tzq-7I-6x7">
-                                <rect key="frame" x="124" y="207.5" width="27.5" height="14"/>
+                                <rect key="frame" x="124" y="201.5" width="27.5" height="14"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7Uh-fp-xkq">
                                         <rect key="frame" x="0.0" y="0.0" width="27.5" height="14"/>
@@ -152,6 +153,7 @@
                     </view>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="Tzq-7I-6x7" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="HsX-9Y-ldZ"/>
                 <constraint firstItem="TFo-vL-Giu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="RZZ-r7-s0t"/>
@@ -159,7 +161,6 @@
                 <constraint firstItem="TFo-vL-Giu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="lkg-IB-woE"/>
                 <constraint firstAttribute="bottom" secondItem="TFo-vL-Giu" secondAttribute="bottom" constant="5" id="r5m-3F-zgI"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="285" height="287"/>
             <connections>
                 <outlet property="contentLabel" destination="VIx-qi-7Th" id="Ykl-FQ-9fK"/>
@@ -167,7 +168,7 @@
                 <outlet property="stackView" destination="7Uh-fp-xkq" id="jEW-hT-ZUt"/>
                 <outlet property="walkThroughImage" destination="0w1-aN-vcR" id="4qp-lF-s6H"/>
             </connections>
-            <point key="canvasLocation" x="224.80000000000001" y="213.64317841079463"/>
+            <point key="canvasLocation" x="145" y="56"/>
         </collectionViewCell>
     </objects>
 </document>

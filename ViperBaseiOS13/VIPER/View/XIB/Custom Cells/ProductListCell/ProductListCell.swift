@@ -32,10 +32,10 @@ class ProductListCell: UICollectionViewCell {
         
         // Initialization code
         applyShadowView(view: bgView)
-
-        statusStack.addBackground(color: UIColor(hex: primaryColor))
-        stackView.addBackground(color: UIColor(hex: primaryColor))
-        statusView.frame.size = CGSize(width: self.labelProductAmount.frame.width + 20.0, height: 13)
+//
+//        statusStack.addBackground(color: UIColor(hex: primaryColor))
+//        stackView.addBackground(color: UIColor(hex: primaryColor))
+//        statusView.frame.size = CGSize(width: self.labelProductAmount.frame.width + 20.0, height: 13)
         
     }
 

@@ -90,9 +90,6 @@ class ProdDetailViewController: UIViewController {
     
     var imageURLArray =  [String]()
     @IBOutlet weak var labelProductName: UILabel!
-       
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
-     
     @IBOutlet weak var totlPriceLbl: UILabel!
     @IBOutlet weak var price: UIStackView!
     var webUrlImages :[UIImage] = [#imageLiteral(resourceName: "notifyBg"),#imageLiteral(resourceName: "bg3"),#imageLiteral(resourceName: "bg2")]

@@ -35,7 +35,6 @@ class DashboardVC: UIViewController {
     var isBuyHistoryTabSelected: Bool = false
     var sortTypeForMonthly: String = Constants.string.yearly
     var sortTypeForHistory : String = Constants.string.buyHistory
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     private lazy var loader  : UIView = {
           return createActivityIndicator(self.view)
       }()

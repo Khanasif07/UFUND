@@ -40,7 +40,6 @@ class MyInvestmentVC: UIViewController {
     private lazy var loader  : UIView = {
            return createActivityIndicator(self.view)
        }()
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
     var selectedInvestorStart_from : (String,Bool) = ("",false)
     var selectedInvestorStart_to : (String,Bool) = ("",false)

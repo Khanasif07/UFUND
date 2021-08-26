@@ -30,7 +30,6 @@ class ProductTokenInvestmentVC: UIViewController {
     var searchText : String = ""
     var searchTask: DispatchWorkItem?
     var investmentType: MyInvestmentType = .MyProductInvestment
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isPruductSelected = true {
         didSet {
             if isPruductSelected {

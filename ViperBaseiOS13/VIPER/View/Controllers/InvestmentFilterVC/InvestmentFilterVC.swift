@@ -46,7 +46,6 @@ class InvestmentFilterVC: UIViewController {
     var parchmentView : PagingViewController?
     
     //  MARK: - Variables
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var isFilterApplied:Bool = false
     var allChildVCs: [UIViewController] = [UIViewController]()
     weak var delegate : InvestmentFilterVCDelegate?

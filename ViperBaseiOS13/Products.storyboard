@@ -1526,6 +1526,7 @@ Percentage (%)</string>
                         <outlet property="totalProductAmtTitlelbl" destination="hDe-5F-iVG" id="K5C-wC-DAN"/>
                         <outlet property="totalProductPriceTitleLbl" destination="hDe-5F-iVG" id="OIA-xn-l9M"/>
                         <outlet property="yourProfitValueLbl" destination="25R-i5-GDR" id="3IZ-UU-HLR"/>
+                        <outlet property="yourProfitView" destination="jAr-Dh-MBt" id="BSV-XN-ye9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ELQ-hh-ITS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

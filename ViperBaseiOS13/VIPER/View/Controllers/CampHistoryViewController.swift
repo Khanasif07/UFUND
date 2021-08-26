@@ -18,7 +18,6 @@ class CampHistoryViewController: UIViewController {
     private lazy var loader  : UIView = {
                  return createActivityIndicator(self.view)
      }()
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var sellHistoryDict : SellHistoryEntity?
     var historySell = [History]()
     

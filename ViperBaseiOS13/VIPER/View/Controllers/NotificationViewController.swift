@@ -21,8 +21,6 @@ class NotificationViewController: UIViewController {
        }()
     
     var notificationList : [NotificationList]?
-    
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     var url = String()
 
     override func viewDidLoad()

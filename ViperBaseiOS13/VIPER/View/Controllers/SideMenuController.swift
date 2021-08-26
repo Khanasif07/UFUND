@@ -507,26 +507,26 @@ extension  SideMenuController {
             
             //
             if let isFromCamp = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as?  String {
-                switch  isFromCamp
-                {
-                case UserType.investor.rawValue:
-                    UserDefaults.standard.set(UserType.investor.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
-                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
-                    vc.tileStr = Constants.string.my.localize()
-                    vc.toInvestesrAllProducts = true
-                    
-                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
-                    
-                    
-                    
-                default:
-                    UserDefaults.standard.set(UserType.campaigner.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
-                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
-                    vc.tileStr = Constants.string.my.localize()
-                    vc.toInvestesrAllProducts = false
-                    
-                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
-                }
+//                switch  isFromCamp
+//                {
+//                case UserType.investor.rawValue:
+//                    UserDefaults.standard.set(UserType.investor.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
+//                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
+//                    vc.tileStr = Constants.string.my.localize()
+//                    vc.toInvestesrAllProducts = true
+//
+//                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+//
+//
+//
+//                default:
+//                    UserDefaults.standard.set(UserType.campaigner.rawValue, forKey: UserDefaultsKey.key.isFromInvestor)
+//                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
+//                    vc.tileStr = Constants.string.my.localize()
+//                    vc.toInvestesrAllProducts = false
+//
+//                    (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
+//                }
                 
             }
             }
@@ -562,19 +562,19 @@ extension  SideMenuController {
             self.push(to: Storyboard.Ids.TokenRequestViewController)
             }
             
-        case Constants.string.allProduct.localize():
-            if !isKycIncompleted(){
-            self.drawerController?.closeSide()
-            if isFromCampainer {
-                let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as! TokenProductViewController
-                viewController.tileStr = Constants.string.all.localize()
-                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
-            } else {
-                let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as! ProductListViewController
-                viewController.tileStr = Constants.string.all.localize()
-                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
-            }
-            }
+//        case Constants.string.allProduct.localize():
+//            if !isKycIncompleted(){
+//            self.drawerController?.closeSide()
+//            if isFromCampainer {
+//                let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as! TokenProductViewController
+//                viewController.tileStr = Constants.string.all.localize()
+//                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
+//            } else {
+//                let viewController = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.ProductListViewController) as! ProductListViewController
+//                viewController.tileStr = Constants.string.all.localize()
+//                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
+//            }
+//            }
             
             
         case Constants.string.InvestorSide.localize():

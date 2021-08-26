@@ -365,8 +365,6 @@ extension SignUpViewController {
             ToastManager.show(title:  ErrorMessage.list.correctPassowrd.localize(), state: .error)
             return
         }
-        
-        let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
         self.loader.isHidden = false
         param[RegisterParam.keys.device_type] = nullStringToEmpty(string: deviceType.rawValue) as AnyObject
         param[RegisterParam.keys.email] =  nullStringToEmpty(string: email) as AnyObject

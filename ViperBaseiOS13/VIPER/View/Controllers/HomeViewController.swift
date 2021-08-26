@@ -47,11 +47,15 @@ class HomeViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad() 
         self.initialSetup()
-        if #available(iOS 13.0, *) {
-            overrideUserInterfaceStyle = .light
-        } else {
-            // Fallback on earlier versions
-        }
+//        if #available(iOS 13.0, *) {
+//            overrideUserInterfaceStyle = .light
+//        } else {
+//            // Fallback on earlier versions
+//        }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+            return .lightContent
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -202,25 +206,25 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             case  Constants.string.categories.localize():
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.CategoriesVC) as? CategoriesVC else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.add.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.AddAssetsViewController) as? AddAssetsViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.MyProducts.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
-                vc.tileStr = Constants.string.my.localize()
+//            case Constants.string.add.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.AddAssetsViewController) as? AddAssetsViewController else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            case Constants.string.MyProducts.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
+//                vc.tileStr = Constants.string.my.localize()
+//
+//                self.navigationController?.pushViewController(vc, animated: true)
+//
+//            case Constants.string.profile.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
                 
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-            case Constants.string.profile.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-            case Constants.string.wallet.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.WalletViewController) as? WalletViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.send.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SendViewController) as? SendViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
+//            case Constants.string.wallet.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.WalletViewController) as? WalletViewController else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            case Constants.string.send.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SendViewController) as? SendViewController else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.allMyProduct.localize():
                 let vc = AllProductsVC.instantiate(fromAppStoryboard: .Products)
                 vc.productTitle = Constants.string.allProducts.localize()
@@ -232,15 +236,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 vc.productTitle = Constants.string.allTokens.localize()
                 vc.campaignerAssetType = .AllAssets
                 self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.requests.localize():
-                if #available(iOS 13.0, *) {
-                    guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    // Fallback on earlier versions
-                }
+//            case Constants.string.requests.localize():
+//                if #available(iOS 13.0, *) {
+//                    guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                } else {
+//                    let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                    // Fallback on earlier versions
+//                }
             case Constants.string.myfiatBalance.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)
                 vc.isComeFromHome = true
@@ -281,9 +285,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 vc.productTitle = Constants.string.allTokenizedAssets.localize()
                 vc.assetType = .AllAssets
                 self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.investment.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.InvestmentListViewController) as? InvestmentListViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
+//            case Constants.string.investment.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.InvestmentListViewController) as? InvestmentListViewController else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
             case Constants.string.myProductInvestMents.localize():
                 let vc = MyInvestmentVC.instantiate(fromAppStoryboard: .Products)
                 vc.investmentType = .MyProductInvestment
@@ -294,12 +298,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 vc.investmentType = .MyTokenInvestment
                 vc.productTitle = Constants.string.myTokenInvestMents.localize()
                 self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.MyProducts.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
-                vc.tileStr = Constants.string.my.localize()
-                vc.toInvestesrAllProducts = true
-                
-                self.navigationController?.pushViewController(vc, animated: true)
+//            case Constants.string.MyProducts.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.TokenProductViewController) as? TokenProductViewController else { return }
+//                vc.tileStr = Constants.string.my.localize()
+//                vc.toInvestesrAllProducts = true
+//
+//                self.navigationController?.pushViewController(vc, animated: true)
                 
             case Constants.string.profile.localize():
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.UserProfileVC) as? UserProfileVC else { return }
@@ -309,23 +313,23 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.CategoriesVC) as? CategoriesVC else { return }
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-            case Constants.string.wallet.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.WalletViewController) as? WalletViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
-            case Constants.string.send.localize():
-                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SendViewController) as? SendViewController else { return }
-                self.navigationController?.pushViewController(vc, animated: true)
-                
-            case Constants.string.tokenRequests.localize():
-                
-                if #available(iOS 13.0, *) {
-                    guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    // Fallback on earlier versions
-                    let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+//            case Constants.string.wallet.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.WalletViewController) as? WalletViewController else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            case Constants.string.send.localize():
+//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SendViewController) as? SendViewController else { return }
+//                self.navigationController?.pushViewController(vc, animated: true)
+//                
+//            case Constants.string.tokenRequests.localize():
+//                
+//                if #available(iOS 13.0, *) {
+//                    guard let vc = Router.main.instantiateViewController(identifier: Storyboard.Ids.TokenRequestViewController) as? TokenRequestViewController else { return }
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                } else {
+//                    // Fallback on earlier versions
+//                    let vc = TokenRequestViewController.instantiate(fromAppStoryboard: .Main)
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                }
             case Constants.string.earningInCrypto.localize():
                 let myYieldVC = MyYieldVC.instantiate(fromAppStoryboard: .Wallet)
                 self.navigationController?.pushViewController(myYieldVC, animated: true)

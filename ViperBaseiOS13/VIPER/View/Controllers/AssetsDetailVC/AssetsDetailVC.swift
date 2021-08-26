@@ -38,7 +38,6 @@ class AssetsDetailVC: UIViewController {
     //===========================
     var productModel: ProductModel?
     var assetsType: TokenizedAssetsType = .AllAssets
-    let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
