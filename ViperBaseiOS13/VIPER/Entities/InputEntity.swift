@@ -96,6 +96,7 @@ struct ProductCreate {
     //
     let tokens_assets = "Tokens & Assets"
     let category = "category"
+    let txn_types = "txn_types"
     let search = "search"
     let min = "min"
     let max = "max"

@@ -13,6 +13,7 @@ class StatusVC: UIViewController {
         case status
         case type
         case byRewards
+        case currencyType
     }
     // MARK: - IB Outlet
     @IBOutlet weak var tableView: UITableView!
@@ -22,6 +23,7 @@ class StatusVC: UIViewController {
     let statusDetails: [Status] = Status.allCases
     let typeDetails  : [AssetsType] = AssetsType.allCases
     let assetsByRewardsDetails : [AssetsByReward] =  AssetsByReward.allCases
+    let currencyDetails : [CurrencyType] =  CurrencyType.allCases
     
     // MARK: - View Lifecycle
     
@@ -62,6 +64,8 @@ extension StatusVC: UITableViewDataSource, UITableViewDelegate {
             return self.typeDetails.endIndex
         case .byRewards:
             return self.assetsByRewardsDetails.endIndex
+        case .currencyType:
+            return self.currencyDetails.endIndex
         }
     }
     
@@ -77,6 +81,9 @@ extension StatusVC: UITableViewDataSource, UITableViewDelegate {
         case .byRewards:
             cell.byRewards = assetsByRewardsDetails[indexPath.row]
             cell.statusButton.isSelected = ProductFilterVM.shared.byRewards.contains(assetsByRewardsDetails[indexPath.row].title)
+        case .currencyType:
+            cell.byCurrency = currencyDetails[indexPath.row]
+            cell.statusButton.isSelected = ProductFilterVM.shared.byCurrency.contains(currencyDetails[indexPath.row].title)
         }
         return cell
     }
@@ -130,7 +137,27 @@ extension StatusVC: UITableViewDataSource, UITableViewDelegate {
                     }
                 }
             }
-            
+        case .currencyType:
+            if ProductFilterVM.shared.byCurrency.contains(currencyDetails[indexPath.row].title) {
+                if currencyDetails[indexPath.row].title == "All" {
+                    ProductFilterVM.shared.byCurrency = []
+                } else {
+                    ProductFilterVM.shared.byCurrency.remove(at: ProductFilterVM.shared.byCurrency.firstIndex(of: currencyDetails[indexPath.row].title)!)
+                    if ProductFilterVM.shared.byCurrency.endIndex == currencyDetails.endIndex - 1 && ProductFilterVM.shared.byCurrency.contains("All"){
+                        ProductFilterVM.shared.byCurrency.remove(at: ProductFilterVM.shared.byCurrency.firstIndex(of: "All")!)
+                    } else{}
+                }
+            } else {
+                if currencyDetails[indexPath.row].title == "All" {
+                    ProductFilterVM.shared.byCurrency = currencyDetails.map({$0.title})
+                } else {
+                    if ProductFilterVM.shared.byCurrency.endIndex == currencyDetails.endIndex - 2{
+                        ProductFilterVM.shared.byCurrency = currencyDetails.map({$0.title})
+                    } else{
+                        ProductFilterVM.shared.byCurrency.append(currencyDetails[indexPath.row].title)
+                    }
+                }
+            }
         default:
             if ProductFilterVM.shared.byRewards.contains(assetsByRewardsDetails[indexPath.row].title) {
                 if assetsByRewardsDetails[indexPath.row].title == "All" {

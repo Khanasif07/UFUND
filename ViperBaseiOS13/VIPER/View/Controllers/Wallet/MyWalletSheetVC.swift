@@ -59,6 +59,7 @@ class MyWalletSheetVC: UIViewController {
         return (textContainerHeight ?? 0.0) + UIApplication.shared.statusBarFrame.height + (isDeviceIPad ? 78.0 : 64.0)
     }
     //Filter
+    var selectedTranactionType : (([TransactionTypeModel],Bool)) = ([],false)
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
     var selectedInvestorStart_from : (String,Bool) = ("",false)
     var selectedInvestorStart_to : (String,Bool) = ("",false)
@@ -553,8 +554,9 @@ extension MyWalletSheetVC: UISearchBarDelegate{
 
 // MARK: - ProductFilterVCDelegate
 
-extension MyWalletSheetVC: ProductFilterVCDelegate {
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
+extension MyWalletSheetVC: MyYieldFilterVCDelegate {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool), _ transactionType: ([TransactionTypeModel], Bool), _ currencyType: ([String], Bool) ) {
+        ProductFilterVM.shared.selectedTransactionTypeListing = self.selectedTranactionType.0
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
         ProductFilterVM.shared.start_from = self.selectedInvestorStart_from.0
         ProductFilterVM.shared.start_to = self.selectedInvestorStart_to.0
@@ -562,7 +564,14 @@ extension MyWalletSheetVC: ProductFilterVCDelegate {
         ProductFilterVM.shared.investmentMaturity_to = self.selectedInvestorMature_to.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool), _ transactionType: ([TransactionTypeModel], Bool), _ currencyType: ([String], Bool) ) {
+        if transactionType.1 {
+            ProductFilterVM.shared.selectedTransactionTypeListing = transactionType.0
+            self.selectedTranactionType = transactionType
+        }else {
+            ProductFilterVM.shared.selectedTransactionTypeListing = []
+            self.selectedTranactionType = ([],false)
+        }
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0

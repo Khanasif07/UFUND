@@ -557,6 +557,8 @@
 		84FA6EBD25E60A560053E618 /* AssetsFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EBC25E60A560053E618 /* AssetsFilterVC.swift */; };
 		84FA6EBF25E60C810053E618 /* AssetsFilterVC+Parchment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EBE25E60C810053E618 /* AssetsFilterVC+Parchment.swift */; };
 		84FA6EC125E630940053E618 /* AssetsFilterDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA6EC025E630940053E618 /* AssetsFilterDateVC.swift */; };
+		84FF067826D7545700F1B767 /* WalletHistoryFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF067726D7545700F1B767 /* WalletHistoryFilterVC.swift */; };
+		84FF067C26D754EA00F1B767 /* WalletHistoryFilterVC+Parchment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF067B26D754EA00F1B767 /* WalletHistoryFilterVC+Parchment.swift */; };
 		B2DACB3B1FC2E9E285069987 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */; };
 		DCEC9E4C4E18C05651097B83 /* Pods_ViperBaseiOS13Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464373271FCE0B49B1C910A /* Pods_ViperBaseiOS13Tests.framework */; };
 /* End PBXBuildFile section */
@@ -1164,6 +1166,8 @@
 		84FA6EBC25E60A560053E618 /* AssetsFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsFilterVC.swift; sourceTree = "<group>"; };
 		84FA6EBE25E60C810053E618 /* AssetsFilterVC+Parchment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetsFilterVC+Parchment.swift"; sourceTree = "<group>"; };
 		84FA6EC025E630940053E618 /* AssetsFilterDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsFilterDateVC.swift; sourceTree = "<group>"; };
+		84FF067726D7545700F1B767 /* WalletHistoryFilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHistoryFilterVC.swift; sourceTree = "<group>"; };
+		84FF067B26D754EA00F1B767 /* WalletHistoryFilterVC+Parchment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletHistoryFilterVC+Parchment.swift"; sourceTree = "<group>"; };
 		85623B6EAEE831F86E5BD1D3 /* Pods-ViperBaseiOS13Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.debug.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF23C120B0DB3AD60CE1CE6 /* Pods-ViperBaseiOS13Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ViperBaseiOS13Tests.release.xcconfig"; path = "Target Support Files/Pods-ViperBaseiOS13Tests/Pods-ViperBaseiOS13Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2488,6 +2492,7 @@
 			isa = PBXGroup;
 			children = (
 				842CC6E1266610FD00AA86BB /* MyYieldFilterVC */,
+				84FF067626D7543B00F1B767 /* WalletHistoryFilterVC */,
 				842CC6DE26660BD400AA86BB /* MyYieldVC */,
 				84E2A81E2653731D00872C22 /* SendCoinVC */,
 				84E1F2D5260073DF002B0062 /* Xib's */,
@@ -3143,6 +3148,15 @@
 			path = AssetsFilterVC;
 			sourceTree = "<group>";
 		};
+		84FF067626D7543B00F1B767 /* WalletHistoryFilterVC */ = {
+			isa = PBXGroup;
+			children = (
+				84FF067726D7545700F1B767 /* WalletHistoryFilterVC.swift */,
+				84FF067B26D754EA00F1B767 /* WalletHistoryFilterVC+Parchment.swift */,
+			);
+			path = WalletHistoryFilterVC;
+			sourceTree = "<group>";
+		};
 		89196D8F9C9E5D67BCD9FDBD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3750,6 +3764,7 @@
 				0824B0DD2382847800F81A9B /* RTLExtensions.swift in Sources */,
 				84C3790B26CA3CBE009D0868 /* MiSnapFacialCaptureLocalizer.swift in Sources */,
 				84D565EF25DB69380047F052 /* ProductFilterVC.swift in Sources */,
+				84FF067826D7545700F1B767 /* WalletHistoryFilterVC.swift in Sources */,
 				0824B0BA2382847800F81A9B /* Formatter.swift in Sources */,
 				08E5CC1323CDA38000DCE77D /* AddAssetsViewController+Extension.swift in Sources */,
 				84E2A8202653733800872C22 /* SendCoinVC.swift in Sources */,
@@ -3917,6 +3932,7 @@
 				08730BD52473D8D8005F9E74 /* SendHistoryViewController.swift in Sources */,
 				842CC6E32666111800AA86BB /* MyYieldFilterVC.swift in Sources */,
 				0825AB73238BD53C0083AC42 /* CategoriesCell.swift in Sources */,
+				84FF067C26D754EA00F1B767 /* WalletHistoryFilterVC+Parchment.swift in Sources */,
 				84C378EF26CA3CB5009D0868 /* MiSnapSDKTutorialViewController.m in Sources */,
 				84D565FB25DB8B500047F052 /* ProductFilterVM.swift in Sources */,
 				0824B11E2382A13200F81A9B /* ImageView.swift in Sources */,

@@ -30,6 +30,7 @@ class MyYieldVC: UIViewController {
     var sections = [("Overall User Earning",true),("Earning In Crypto",false),("Earning In Fiat",false)]
      var cellData = [("Product",""),("Category",""),("Payment Method",""),("Spend Amount",""),("Currency Type",""),("Maturity. Date",""),("Investment Date","")]
     var searchText = ""
+    var selectedCurrency : (([String],Bool)) = ([],false)
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)
     var selectedInvestorStart_from : (String,Bool) = ("",false)
     var selectedInvestorStart_to : (String,Bool) = ("",false)
@@ -59,7 +60,7 @@ class MyYieldVC: UIViewController {
     }
     
     @IBAction func filterBtnAction(_ sender: UIButton) {
-        let filterVC = MyYieldFilterVC.instantiate(fromAppStoryboard: .Filter)
+        let filterVC = WalletHistoryFilterVC.instantiate(fromAppStoryboard: .Filter)
         filterVC.modalPresentationStyle = .overCurrentContext
         filterVC.delegate = self
         self.present(filterVC, animated: true, completion: nil)
@@ -408,8 +409,9 @@ extension MyYieldVC: UISearchBarDelegate{
 
 // MARK: - Hotel filter Delegate methods
 
-extension MyYieldVC: ProductFilterVCDelegate {
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
+extension MyYieldVC: MyYieldFilterVCDelegate {
+    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool), _ transactionType: ([TransactionTypeModel], Bool), _ currencyType: ([String], Bool)) {
+        ProductFilterVM.shared.byCurrency = self.selectedCurrency.0
         ProductFilterVM.shared.selectedCategoryListing = self.selectedCategory.0
         ProductFilterVM.shared.start_from = self.selectedInvestorStart_from.0
         ProductFilterVM.shared.start_to = self.selectedInvestorStart_to.0
@@ -417,7 +419,14 @@ extension MyYieldVC: ProductFilterVCDelegate {
         ProductFilterVM.shared.investmentMaturity_to = self.selectedInvestorMature_to.0
     }
     
-    func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
+    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool), _ transactionType: ([TransactionTypeModel], Bool), _ currencyType: ([String], Bool)) {
+        if currencyType.1 {
+            ProductFilterVM.shared.byCurrency = currencyType.0
+            self.selectedCurrency = currencyType
+        }else {
+            ProductFilterVM.shared.byCurrency = []
+            self.selectedCurrency = ([],false)
+        }
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0

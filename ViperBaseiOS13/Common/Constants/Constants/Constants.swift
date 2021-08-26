@@ -297,6 +297,7 @@ struct Constants {
     let yield = "My Yield"
     let status = "Status"
     let currency = "Currency"
+    let currencyType = "Currency Type"
     let payment_mode = "payment_mode"
     
     //Sort

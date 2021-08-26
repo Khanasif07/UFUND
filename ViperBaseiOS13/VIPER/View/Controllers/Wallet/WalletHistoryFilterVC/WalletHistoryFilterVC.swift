@@ -1,22 +1,15 @@
 //
-//  MyYieldFilterVC.swift
+//  WalletHistoryFilterVC.swift
 //  ViperBaseiOS13
 //
-//  Created by Admin on 01/06/21.
+//  Created by Admin on 26/08/21.
 //  Copyright © 2021 CSS. All rights reserved.
 //
 
 import UIKit
 import Parchment
 
-protocol MyYieldFilterVCDelegate: class {
-    func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool), _ transactionType: ([TransactionTypeModel], Bool), _ currencyType: ([String], Bool) )
-    
-    func filterDataWithoutFilter(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool), _ transactionType: ([TransactionTypeModel], Bool), _ currencyType: ([String], Bool) )
-    
-}
-
-class MyYieldFilterVC: UIViewController {
+class WalletHistoryFilterVC: UIViewController {
     
     // MARK: - IBOutlets
     //===========================
@@ -32,7 +25,7 @@ class MyYieldFilterVC: UIViewController {
     var categoryListingVC : CategoryListingVC!
     var startDateVC       : AssetsFilterDateVC!
     var maturityDateVC        : AssetsFilterDateVC!
-    var transactionTypeVC        : CurrencyVC!
+    var currencyVC        : StatusVC!
     // Parchment View
     var selectedIndex: Int = ProductFilterVM.shared.lastSelectedIndex
     var filtersTabs =  [MenuItem]()
@@ -96,7 +89,7 @@ class MyYieldFilterVC: UIViewController {
 
 // MARK: - Extension For Functions
 //===========================
-extension MyYieldFilterVC {
+extension WalletHistoryFilterVC {
     
     private func initialSetup() {
         self.setUpFont()
@@ -112,7 +105,7 @@ extension MyYieldFilterVC {
     
     private func setupPagerView(isMenuReload:Bool = true) {
         self.allChildVCs.removeAll()
-        for i in 0..<ProductFilterVM.shared.allYieldTabsStr.count {
+        for i in 0..<ProductFilterVM.shared.allWalletHistoryTabsStr.count {
             if i == 0 {
                 self.categoryListingVC = CategoryListingVC.instantiate(fromAppStoryboard: .Filter)
                 self.allChildVCs.append(categoryListingVC)
@@ -125,9 +118,9 @@ extension MyYieldFilterVC {
                 self.maturityDateVC.filterDateType = .investmentMaturityDate
                 self.allChildVCs.append(maturityDateVC)
             } else {
-                self.transactionTypeVC = CurrencyVC.instantiate(fromAppStoryboard: .Filter)
-                self.transactionTypeVC.tokenType = .transactionType
-                self.allChildVCs.append(transactionTypeVC)
+                self.currencyVC = StatusVC.instantiate(fromAppStoryboard: .Filter)
+                self.currencyVC.statusType = .currencyType
+                self.allChildVCs.append(currencyVC)
             }
         }
         self.view.layoutIfNeeded()
@@ -166,8 +159,8 @@ extension MyYieldFilterVC {
     
     private func initiateFilterTabs() {
            filtersTabs.removeAll()
-           for i in 0..<(ProductFilterVM.shared.allYieldTabsStr.count){
-               let obj = MenuItem(title: ProductFilterVM.shared.allYieldTabsStr[i], index: i, isSelected: (ProductFilterVM.shared.lastSelectedIndex == i))
+           for i in 0..<(ProductFilterVM.shared.allWalletHistoryTabsStr.count){
+               let obj = MenuItem(title: ProductFilterVM.shared.allWalletHistoryTabsStr[i], index: i, isSelected: (ProductFilterVM.shared.lastSelectedIndex == i))
                filtersTabs.append(obj)
            }
        }

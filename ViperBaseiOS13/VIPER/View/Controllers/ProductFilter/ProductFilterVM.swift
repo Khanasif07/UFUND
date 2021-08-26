@@ -26,7 +26,7 @@ class ProductFilterVM {
     var selectedCategoryListing: [CategoryModel] = []
     var status: [String] = []
     let allYieldTabsStr: [String] = [Constants.string.category.localize(),Constants.string.investmentDate.localize(),Constants.string.maturityDate.localize(),Constants.string.payment_method.localize()]
-    let allWalletHistoryTabsStr: [String] = [Constants.string.category.localize(),Constants.string.investmentDate.localize(),Constants.string.maturityDate.localize(),Constants.string.payment_method.localize()]
+    let allWalletHistoryTabsStr: [String] = [Constants.string.category.localize(),Constants.string.investmentDate.localize(),Constants.string.maturityDate.localize(),Constants.string.currencyType.localize()]
     let allTabsStr: [String] = [Constants.string.category.localize(), Constants.string.priceRange.localize(), Constants.string.status.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
     let allTabsStrWithoutCategory: [String] = [ Constants.string.priceRange.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
      let allTabsStrWithoutStatus: [String] = [Constants.string.category.localize(),Constants.string.priceRange.localize(),Constants.string.startDate.localize(),Constants.string.endDate.localize(),Constants.string.maturityDate.localize()]
@@ -43,6 +43,7 @@ class ProductFilterVM {
     var close_to : String = ""
     var types : [String] = []
     var byRewards : [String] = []
+    var byCurrency : [String] = []
     let allTabsStrForAssets: [String] = [Constants.string.category.localize(),Constants.string.price.localize(),Constants.string.asset_type.localize(),Constants.string.token_type.localize(), Constants.string.startDate.localize(),Constants.string.closingDate.localize(),Constants.string.byReward.localize()]
     let allTabsStrForAssetsWithoutCategory: [String] = [Constants.string.price.localize(),Constants.string.asset_type.localize(),Constants.string.token_type.localize(), Constants.string.startDate.localize(),Constants.string.closingDate.localize(),Constants.string.byReward.localize()]
     //Investment
@@ -75,11 +76,12 @@ class ProductFilterVM {
         self.categoryListing  = isCategorySelected ? [] : self.categoryListing
         self.tokenListing  = isCategorySelected ? [] : self.tokenListing
         self.assetsListing  = isCategorySelected ? [] : self.assetsListing
-        self.transactionTypeListing = []
+        self.transactionTypeListing = isCategorySelected ? [] : self.transactionTypeListing
         self.selectedTransactionTypeListing = []
         self.status = []
         //Assets
         self.byRewards = []
+        self.byCurrency = []
         self.types = []
         self.start_from = ""
         self.start_to = ""
@@ -248,11 +250,25 @@ class ProductFilterVM {
     var paramsDictForBuyHistory: [String:Any]{
         
         var params : [String:Any] = [:]
+        if self.byCurrency.endIndex > 0{
+            if !self.byCurrency.contains(CurrencyType.All.title){
+                let byCurrency =  self.byCurrency.map { (model) -> String in
+                    return model
+                }.joined(separator: ",")
+                params[ProductCreate.keys.payMethod] = byCurrency
+            }
+        }
         if self.selectedCategoryListing.endIndex > 0{
             let category =  self.selectedCategoryListing.map { (model) -> String in
                 return String(model.id ?? 0)
             }.joined(separator: ",")
             params[ProductCreate.keys.category] = category
+        }
+        if self.selectedTransactionTypeListing.endIndex > 0{
+            let category =  self.selectedTransactionTypeListing.map { (model) -> String in
+                return String(model.type ?? "")
+            }.joined(separator: ",")
+            params[ProductCreate.keys.txn_types] = category
         }
         if !self.start_from.isEmpty{ params[ProductCreate.keys.offer_from] = self.start_from }
         if !self.start_to.isEmpty{ params[ProductCreate.keys.offer_to] = self.start_to }
@@ -294,6 +310,25 @@ enum AssetsType : String ,CaseIterable {
             return "Token"
         case .Assets:
             return "Assets"
+        }
+    }
+}
+
+enum CurrencyType : String ,CaseIterable {
+    case All
+    case ETH
+    case BTC
+    case USD
+    var title: String {
+        switch self {
+        case .All:
+            return "All"
+        case .ETH:
+            return "ETH"
+        case .BTC:
+            return "BTC"
+        case .USD:
+            return "USD"
         }
     }
 }
