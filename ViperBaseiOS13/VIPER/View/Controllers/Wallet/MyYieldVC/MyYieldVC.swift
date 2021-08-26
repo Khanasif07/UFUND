@@ -271,6 +271,7 @@ extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.view.endEditing(true)
         if let indexx = self.sections.firstIndex(where: { (sortTuple) -> Bool in
             return sortTuple.1
         }){
@@ -280,16 +281,20 @@ extension MyYieldVC : UICollectionViewDelegate, UICollectionViewDataSource,UICol
             self.sections[indexPath.row].1 = true
         }
         self.mainCollectionView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet)
+        var params  = ProductFilterVM.shared.paramsDictForBuyHistory
+        params[ProductCreate.keys.page] =  1
+        params[ProductCreate.keys.search] = self.searchText
         switch indexPath.row {
         case 0:
-            self.hitYieldBuyInvestAPI(params: [ProductCreate.keys.payMethod:"ETH,BTC,USD"])
+            params[ProductCreate.keys.payMethod] = "ETH,BTC,USD"
+            self.hitYieldBuyInvestAPI(params: params)
         case 1:
-            self.hitYieldBuyInvestAPI(params: [ProductCreate.keys.payMethod:"ETH,BTC"])
+            params[ProductCreate.keys.payMethod] = "ETH,BTC"
+            self.hitYieldBuyInvestAPI(params: params)
         default:
-            self.hitYieldBuyInvestAPI(params: [ProductCreate.keys.payMethod:"USD"])
+            params[ProductCreate.keys.payMethod] = "USD"
+            self.hitYieldBuyInvestAPI(params: params)
         }
-       
-        //        self.mainCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         self.mainTableView.reloadData()
     }
     
