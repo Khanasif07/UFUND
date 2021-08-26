@@ -47,16 +47,18 @@ class HomeViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad() 
         self.initialSetup()
-//        if #available(iOS 13.0, *) {
-//            overrideUserInterfaceStyle = .light
-//        } else {
-//            // Fallback on earlier versions
-//        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-            return .lightContent
+            return .default
     }
+    
+    var statusBarStyle: UIStatusBarStyle = .lightContent {
+           didSet {
+               setNeedsStatusBarAppearanceUpdate()
+           }
+       }
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
