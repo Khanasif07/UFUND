@@ -21,6 +21,7 @@ class MyYieldVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var searchTask: DispatchWorkItem?
     private lazy var loader  : UIView = {
         return createActivityIndicator(self.view)
     }()
@@ -85,20 +86,6 @@ extension MyYieldVC {
         self.titleLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x20) : .setCustomFont(name: .bold, size: .x16)
     }
     
-//    private func setSearchBar(){
-//        self.searchBar.delegate = self
-//        if #available(iOS 13.0, *) {
-//            self.searchBar.backgroundColor = #colorLiteral(red: 1, green: 0.3843137255, blue: 0.4235294118, alpha: 1)
-//            searchBar.tintColor = .white
-//            searchBar.setIconColor(.white)
-//            searchBar.setPlaceholderColor(.white)
-//            self.searchBar.searchTextField.font = .setCustomFont(name: .medium, size: isDeviceIPad ? .x18 : .x14)
-//            self.searchBar.searchTextField.textColor = .lightGray
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//    }
-    
     private func collectionSetUp(){
         self.mainCollectionView.delegate = self
         self.mainCollectionView.dataSource = self
@@ -128,8 +115,13 @@ extension MyYieldVC {
     }
     
     private func hitYieldBuyInvestAPI(params: [String:Any]){
-        self.loader.isHidden = false
-        self.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: params, methodType: .GET, modelClass: YieldsHistoryEntity.self, token: true)
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            self?.loader.isHidden = false
+            self?.presenter?.HITAPI(api: Base.yieldBuyInvest.rawValue, params: params, methodType: .GET, modelClass: YieldsHistoryEntity.self, token: true)
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
     }
     
 }
@@ -183,6 +175,7 @@ extension MyYieldVC : UITableViewDelegate, UITableViewDataSource {
         switch section {
         case 0:
             let view = mainTableView.dequeueHeaderFooter(with: YieldSectionHeaderView.self)
+            view.searchBar.delegate = self
             return view
         default:
             let view = tableView.dequeueHeaderFooter(with: MyWalletSectionView.self)
@@ -384,7 +377,10 @@ func showError(error: CustomError) {
 extension MyYieldVC: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
-        //        self.searchProducts(searchValue: self.searchText)
+        var params  = ProductFilterVM.shared.paramsDictForBuyHistory
+        params[ProductCreate.keys.page] =  1
+        params[ProductCreate.keys.search] = self.searchText
+        self.hitYieldBuyInvestAPI(params: params)
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -397,7 +393,11 @@ extension MyYieldVC: UISearchBarDelegate{
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
-        //        self.searchProducts(searchValue: "")
+        var params  = ProductFilterVM.shared.paramsDictForBuyHistory
+        self.searchText = ""
+        params[ProductCreate.keys.page] =  1
+        params[ProductCreate.keys.search] = self.searchText
+        self.hitYieldBuyInvestAPI(params: params)
         searchBar.resignFirstResponder()
     }
     
