@@ -236,11 +236,19 @@ extension AllProductsVC {
         self.searchTask = task
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.75, execute: task)
     }
-    
+//
+//    private func getProgressPercentage(productModel: ProductModel?) -> Double{
+//        let investValue =   (productModel?.investment_product_total ?? 0.0 )
+//        let totalValue =  (productModel?.total_product_value ?? 0.0)
+//        return (investValue / totalValue) * 100
+//    }
     private func getProgressPercentage(productModel: ProductModel?) -> Double{
-        let investValue =   (productModel?.investment_product_total ?? 0.0 )
-        let totalValue =  (productModel?.total_product_value ?? 0.0)
-        return (investValue / totalValue) * 100
+//        let investValue =   (productModel?.investment_product_total ?? 0.0 )
+//        let totalValue =  (productModel?.total_product_value ?? 0.0)
+//        return (investValue / totalValue) * 100
+        let pending_invest_per =  (productModel?.pending_invest_per ?? 0 )
+        return 100.0 - Double(pending_invest_per)
+        //pending_invest_per
     }
     
 }

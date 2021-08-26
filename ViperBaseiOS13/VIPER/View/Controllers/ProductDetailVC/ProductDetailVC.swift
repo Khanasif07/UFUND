@@ -108,7 +108,8 @@ extension ProductDetailVC {
         self.buyProductBtn.setTitleColor(.white, for: .normal)
         self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
         : UIColor.rgb(r: 255, g: 31, b: 45)
-        self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
+//        self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
+        self.buyProductBtn.isUserInteractionEnabled = (productModel?.pending_invest_per ?? 0) == 0 ?  false
         : true
         self.statusLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x17) : .setCustomFont(name: .bold, size: .x13)
         self.buyProductBtn.titleLabel?.font = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
@@ -126,10 +127,14 @@ extension ProductDetailVC {
     }
     
     private func getProgressPercentage() -> Double{
-        let investValue =   (productModel?.investment_product_total ?? 0.0 )
-        let totalValue =  (productModel?.total_product_value ?? 0.0)
-        return (investValue / totalValue) * 100
+//        let investValue =   (productModel?.investment_product_total ?? 0.0 )
+//        let totalValue =  (productModel?.total_product_value ?? 0.0)
+//        return (investValue / totalValue) * 100
+        let pending_invest_per =  (productModel?.pending_invest_per ?? 0 )
+        return 100.0 - Double(pending_invest_per)
     }
+    
+   
     
     private func parallelHeaderSetUp() {
         let parallexHeaderHeight = isDeviceIPad ? CGFloat(450.0) : CGFloat(325.0)
@@ -177,7 +182,7 @@ extension ProductDetailVC : UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
-            cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
+            cell.overAllInvestmentLbl.text = "$ " + "\(getProgressPercentage())"
             cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
             cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
             return cell

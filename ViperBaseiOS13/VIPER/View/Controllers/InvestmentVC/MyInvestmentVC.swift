@@ -205,9 +205,12 @@ extension MyInvestmentVC {
     }
     
     private func getProgressPercentage(productModel: ProductModel?) -> Double{
-        let investValue =   (productModel?.investment_product_total ?? 0.0 )
-        let totalValue =  (productModel?.total_product_value ?? 0.0)
-        return (investValue / totalValue) * 100
+//        let investValue =   (productModel?.investment_product_total ?? 0.0 )
+//        let totalValue =  (productModel?.total_product_value ?? 0.0)
+//        return (investValue / totalValue) * 100
+        let pending_invest_per =  (productModel?.pending_invest_per ?? 0 )
+        return 100.0 - Double(pending_invest_per)
+        //pending_invest_per
     }
 }
 
@@ -238,6 +241,7 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             cell.investmentLbl.text = "\(self.getProgressPercentage(productModel: (self.investerProductList?[indexPath.row])).round(to: 1))" + "%"
             cell.liveView.backgroundColor = (self.investerProductList?[indexPath.row].product_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (self.investerProductList?[indexPath.row].status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
             cell.statusRadioImgView.image = (self.investerProductList?[indexPath.row].product_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (self.investerProductList?[indexPath.row].status == 2) ? #imageLiteral(resourceName: "radioCheckSelected") : #imageLiteral(resourceName: "radioCheckSelected")
+            cell.investmentPerValueLbl.text = "\(self.investerProductList?[indexPath.row].invest_profit_per ?? 0)"
             cell.backgroundColor = .clear
             return cell
         default:

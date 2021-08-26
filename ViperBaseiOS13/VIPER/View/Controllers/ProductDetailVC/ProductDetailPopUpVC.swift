@@ -61,12 +61,12 @@ class ProductDetailPopUpVC: UIViewController {
             switch isForBuyAndToken {
             case .BuyProduct:
                 self.buyNowBtnTitle = "Buy Now"
-                self.qtyValueLbl.text = "\(01)"
+                self.qtyValueLbl.text = "\(productModel?.products ?? 0)"
                 self.adminCommTitleLbl.text = "Admin Commision" + " (\(productModel?.commission_per ?? 0)) " + "%"
-                let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0))
-                self.totalProductAmt.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
+                let percentageValue = (Double(currentValInvPer) * Double(productModel?.product_value ?? 0))
+                self.totalProductAmt.text = "$ " + "\(productModel?.product_value ?? 0)"
                 let adminCommissionPer = productModel?.commission_per ?? 0
-                let adminCommission = (Double(productModel?.total_product_value ?? 0.0) * Double(adminCommissionPer)) / 100
+                let adminCommission = (Double(productModel?.product_value ?? 0) * Double(adminCommissionPer)) / 100
                 self.payableAmountValueLbl.text = "$ " + "\(adminCommission)"
                 self.totalPayableAmtValue = percentageValue + adminCommission
                 self.totalPayableAmt.text =  "$ " + "\(totalPayableAmtValue)"
@@ -80,7 +80,7 @@ class ProductDetailPopUpVC: UIViewController {
                  self.decrView.isHidden = false
                  self.adminCommTitleLbl.text = "Admin Commision" + " (\(productModel?.commission_per ?? 0)) " + "%"
                  self.qtyValueLbl.text = "\(currentValInvPer)" + "%"
-                 let percentageValue = (Double(currentValInvPer) * (productModel?.total_product_value ?? 0.0)) / 100
+                 let percentageValue = (Double(currentValInvPer) * Double(productModel?.product_value ?? 0)) / 100
                  self.totalProductAmt.text = "$ " + "\(percentageValue)"
                  let adminCommissionPer = productModel?.commission_per ?? 0
                  let adminCommission = (Double(percentageValue) * Double(adminCommissionPer)) / 100
@@ -235,7 +235,7 @@ extension ProductDetailPopUpVC {
             self.titleLbl.text = self.productModel?.product_title ?? ""
             self.totalProductPriceTitleLbl.text = "Total Product Amount"
             self.tokenQtyLbl.text = "Product Quantity"
-            self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
+            self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.product_value ?? Int(0.0))"
             self.currentValInvPer = 1
             let imgEntity =  productModel?.product_image ?? ""
             let url = URL(string: nullStringToEmpty(string: imgEntity))
@@ -249,7 +249,7 @@ extension ProductDetailPopUpVC {
             self.tokenPriceLbl.text = "Product Price"
             self.totalProductPriceTitleLbl.text = "Total Product Amount"
             self.tokenQtyLbl.text = "Product\nInvestment"
-            self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0.0)"
+            self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.product_value ?? 0)"
             let imgEntity =  productModel?.product_image ?? ""
             let url = URL(string: nullStringToEmpty(string: imgEntity))
             self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)

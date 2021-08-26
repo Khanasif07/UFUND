@@ -105,6 +105,7 @@ extension MyInvestmentsDetailVC {
     }
     
     private func setUpForProductAndTokenPage(){
+        bottomView.isHidden = true
         if investmentType == .MyProductInvestment {
             investBtn.isHidden = false
             self.liveView.backgroundColor = (productModel?.product_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.product_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
@@ -132,7 +133,6 @@ extension MyInvestmentsDetailVC {
         self.mainTableView.parallaxHeader.minimumHeight = 0.0 // 64
         self.mainTableView.parallaxHeader.height = parallexHeaderHeight
         self.mainTableView.parallaxHeader.mode = .fill
-//        self.mainTableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
         mainTableView.parallaxHeader.view.widthAnchor.constraint(equalTo: mainTableView.widthAnchor).isActive = true
         self.headerView.translatesAutoresizingMaskIntoConstraints = false
         if #available(iOS 11.0, *) {
@@ -145,9 +145,9 @@ extension MyInvestmentsDetailVC {
         self.investBtn.borderLineWidth = 1.0
         self.buyProductBtn.setTitleColor(.white, for: .normal)
         if  investmentType == .MyProductInvestment {
-            self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
+            self.buyProductBtn.backgroundColor = (productModel?.pending_invest_per ?? 0) == 0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
                 : UIColor.rgb(r: 255, g: 31, b: 45)
-            self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
+            self.buyProductBtn.isUserInteractionEnabled = (productModel?.pending_invest_per ?? 0) == 0 ?  false
                 : true
         } else {
             self.buyProductBtn.backgroundColor = (productModel?.tokenrequest?.avilable_token ?? 0) == 0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
@@ -171,9 +171,11 @@ extension MyInvestmentsDetailVC {
     }
     
     private func getProgressPercentage() -> Double{
-        let investValue =   (productModel?.investment_product_total ?? 0.0 )
-        let totalValue =  (productModel?.total_product_value ?? 0.0)
-        return (investValue / totalValue) * 100
+//        let investValue =   (productModel?.investment_product_total ?? 0.0 )
+//        let totalValue =  (productModel?.total_product_value ?? 0.0)
+//        return (investValue / totalValue) * 100
+        let pending_invest_per =  (productModel?.pending_invest_per ?? 0 )
+        return 100.0 - Double(pending_invest_per)
     }
     
     private func getProgressPerForYourInvestment() -> Double{
@@ -240,7 +242,7 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueCell(with: ProductDetailInvestmentCell.self, indexPath: indexPath)
             switch investmentType {
             case .MyProductInvestment:
-                cell.overAllInvestmentLbl.text = "$ " + "\(productModel?.investment_product_total ?? 0.0)"
+                cell.overAllInvestmentLbl.text = "$ " + "\(getProgressPercentage())"
                 cell.progressPercentageValue = self.getProgressPercentage().round(to: 2)
                 cell.progressValue.text = "\(self.getProgressPercentage().round(to: 1))" + "%"
             default:

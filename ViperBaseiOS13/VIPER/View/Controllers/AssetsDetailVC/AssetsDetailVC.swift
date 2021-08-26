@@ -56,7 +56,7 @@ class AssetsDetailVC: UIViewController {
         super.viewDidLayoutSubviews()
         self.liveView.roundCorners([.layerMaxXMaxYCorner,.layerMaxXMinYCorner], radius: liveView.frame.height / 2.0)
         bottomView.addShadowToTopOrBottom(location: .top, color: UIColor.black16)
-        investBtn.setCornerRadius(cornerR: 4.0)
+//        investBtn.setCornerRadius(cornerR: 4.0)
         buyProductBtn.setCornerRadius(cornerR: 4.0)
     }
     
@@ -117,14 +117,24 @@ extension AssetsDetailVC {
         self.liveView.backgroundColor = (productModel?.token_status == 1) ? #colorLiteral(red: 0.1411764706, green: 0.6352941176, blue: 0.6666666667, alpha: 1) : (productModel?.token_status == 2) ? #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1) : #colorLiteral(red: 0.09019607843, green: 0.6705882353, blue: 0.3568627451, alpha: 1)
         self.statusRadioImgView.image = (productModel?.token_status == 1) ? #imageLiteral(resourceName: "icRadioSelected") : (productModel?.token_status == 2) ? #imageLiteral(resourceName: "icRadioSelected") : #imageLiteral(resourceName: "icRadioSelected")
         self.statusLbl.text = (productModel?.product_status == 1) ? "Live" : "Live"
-        self.investBtn.borderColor = UIColor.rgb(r: 255, g: 31, b: 45)
-        self.investBtn.borderLineWidth = 1.0
+//        self.investBtn.borderColor = UIColor.rgb(r: 255, g: 31, b: 45)
+//        self.investBtn.borderLineWidth = 1.0
         self.buyProductBtn.setTitleColor(.white, for: .normal)
         self.buyProductBtn.setTitle(" Buy " + ProductCreate.keys.tokens_assets, for: .normal)
         self.buyProductBtn.backgroundColor = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  UIColor.rgb(r: 235, g: 235, b: 235)
         : UIColor.rgb(r: 255, g: 31, b: 45)
-        self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
-        : true
+//        self.buyProductBtn.isUserInteractionEnabled = (productModel?.investment_product_total ?? 0.0) != 0.0 ?  false
+//        : true
+        
+        let startDate = productModel?.tokenrequest?.asset?.offer_start?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
+        let endDate = productModel?.tokenrequest?.asset?.offer_end?.toDate(dateFormat: Date.DateFormat.yyyyMMddHHmmss.rawValue) ?? Date()
+        if  (Date() == startDate ||  Date() > startDate) && (Date() == endDate ||  Date() < endDate){
+            self.buyProductBtn.isUserInteractionEnabled = true
+            self.buyProductBtn.backgroundColor = UIColor.rgb(r: 255, g: 31, b: 45)
+        }else{
+            self.buyProductBtn.isUserInteractionEnabled = false
+            self.buyProductBtn.backgroundColor = UIColor.rgb(r: 235, g: 235, b: 235)
+        }
         self.buyProductBtn.titleLabel?.font  = isDeviceIPad ? .setCustomFont(name: .medium, size: .x18) : .setCustomFont(name: .medium, size: .x14)
         self.statusLbl.font =  isDeviceIPad ? .setCustomFont(name: .bold, size: .x17) : .setCustomFont(name: .bold, size: .x13)
     }
@@ -246,6 +256,7 @@ extension AssetsDetailVC : PresenterOutputProtocol {
             self.loader.isHidden = true
             if let productDetailData = dataDict as? ProductDetailsEntity {
                 self.productModel = productDetailData.data
+                self.setFont()
                 self.setFooterView()
             }
             self.mainTableView.reloadData()
@@ -254,6 +265,7 @@ extension AssetsDetailVC : PresenterOutputProtocol {
             self.loader.isHidden = true
             if let productDetailData = dataDict as? ProductDetailsEntity {
                 self.productModel = productDetailData.data
+                self.setFont()
                 self.setFooterView()
             }
             self.mainTableView.reloadData()
