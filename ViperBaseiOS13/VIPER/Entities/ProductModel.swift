@@ -176,6 +176,7 @@ struct ProductModel: Mappable {
     var reward_value : Int?
     var reward_date: String?
     var investment_date : String?
+    var investment_start : String?
     var startDate: Date?
     var endDate: Date?
     var investmentDate : Date?
@@ -191,6 +192,7 @@ struct ProductModel: Mappable {
     }
 
     mutating func mapping(map: Map) {
+        investment_start <- map["investment_start"]
         auditor_name <- map["auditor_name"]
         reward_value <- map["reward_value"]
         maturity_date <- map["maturity_date"]

@@ -198,4 +198,7 @@ extension UIActivityIndicatorView {
     }
 }
  
-let userType = UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String
+var userType: String {
+    return  UserDefaults.standard.value(forKey: UserDefaultsKey.key.isFromInvestor) as? String ?? "1"
+}
+   

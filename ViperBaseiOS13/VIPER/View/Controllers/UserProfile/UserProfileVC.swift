@@ -28,7 +28,6 @@ class UserProfileVC: UIViewController {
     var profileImgUrl : URL?
     var userDetails: UserDetails?
     var userProfile: UserProfile?
-    var countryCode: String  = "+1"
     var generalInfoArray = [("First Name",""),("Last Name",""),("Phone Number",""),("Email",""),("Investor Type",""),("Revenue",""),("Income",""),("Total Annual Revenue","")]
     var bankInfoArray = [("Bank Name",""),("Account Name",""),("Account Number",""),("Routing Number",""),("IBAN Number",""),("Swift Number",""),("Account Type",""),("Bank Address","")]
     var companyDetailArray = [("Company Name",""),("Email",""),("Telephone",""),("Company Address","")]
@@ -89,13 +88,6 @@ class UserProfileVC: UIViewController {
                     } else {
                         param[ProfileUpdate.keys.mobile] = userData.1
                     }
-                } else if userData.0 == "Phone Number" {
-                    if  self.countryCode.isEmpty {
-                        ToastManager.show(title: "Please Enter Mobile Country Code", state: .warning)
-                        return
-                    } else {
-                        param[ProfileUpdate.keys.countryCode] = self.countryCode
-                    }
                 } else if userData.0 == "Investor Type" {
                     if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.account_type] = userData.1
@@ -110,7 +102,7 @@ class UserProfileVC: UIViewController {
                     }
                 } else if userData.0 == "Total Annual Revenue" {
                     if  !userData.1.isEmpty {
-                        param[ProfileUpdate.keys.address2] = userData.1
+                        param[ProfileUpdate.keys.total_annual_revenue] = userData.1
                     }
                 }
             }
@@ -128,12 +120,7 @@ class UserProfileVC: UIViewController {
                     if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.zip_code] = userData.1
                     }
-                } else if userData.0 == "Address Line2" {
-                    if  !userData.1.isEmpty {
-                        param[ProfileUpdate.keys.address2] = userData.1
-                    }
-                }
-                else if userData.0 == "City" {
+                }else if userData.0 == "City" {
                     if  !userData.1.isEmpty {
                         param[ProfileUpdate.keys.city] = userData.1
                     }
@@ -204,12 +191,8 @@ class UserProfileVC: UIViewController {
                     }
                 }
             }
-            
+            param[ProfileUpdate.keys.countryCode] = userProfile?.countryCode ?? ""
             if imageData != nil {
-                //                var dataDic =  [String:(Data,String,String)]()
-                //                dataDic = [ProfileUpdate.keys.picture : (self.imageData!,"Profile.jpg",FileType.image.rawValue)]
-                //                self.loader.isHidden = false
-                //                self.presenter?.UploadData(api: Base.profile.rawValue, params: param, imageData: dataDic , methodType: .POST, modelClass: UserDetails.self, token: true)
                 self.loader.isHidden = false
                 AWSS3Manager.shared.uploadImage(image: profileImg ?? UIImage(), progress: { (progress) in
                     print(progress)
@@ -445,7 +428,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                     }
                     cell.phoneTextField.keyboardType = .numberPad
                     cell.phoneTextField.isUserInteractionEnabled = isEnableEdit
-                    cell.countryTxtFld.text = self.countryCode
+                    cell.countryTxtFld.text = self.userProfile?.countryCode ?? ""
                     cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
                     cell.phoneTextField.placeholder = self.generalInfoArray[indexPath.row - 1].0
                     cell.phoneTextField.text = self.generalInfoArray[indexPath.row - 1].1
@@ -658,7 +641,7 @@ extension UserProfileVC: WCCustomPickerViewDelegate {
 
 extension UserProfileVC : CountryDelegate{
     func sendCountryCode(code: String) {
-        self.countryCode = code
+        self.userProfile.countryCode = code
         self.mainTableView.reloadData()
     }
 }

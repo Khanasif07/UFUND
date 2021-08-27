@@ -53,7 +53,7 @@ class ProductDetailDateCell: UITableViewCell {
     
     
     func setCellForInvestmentDetailPage(){
-        self.investmentStartStackView.isHidden = true
+        self.investmentStartStackView.isHidden = false
         self.offerEndDateTitleLbl.text = "End Date"
         self.offerStartDateTitleLbl.text = "Start Date"
     }
@@ -74,7 +74,7 @@ class ProductDetailDateCell: UITableViewCell {
         self.offerEndDateLbl.text = model.end_date?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyy_MM_dd.rawValue) ?? "N/A"
         self.offerStartDateLbl.text = model.start_date?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyy_MM_dd.rawValue)  ?? "N/A"
         self.maturityDateLbl.text = model.maturity_date?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyy_MM_dd.rawValue)  ?? "N/A"
-        self.investmentStartDateLbl.text = model.updated_at?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)  ?? "N/A"
+        self.investmentStartDateLbl.text = model.investment_start?.breakCompletDate(outPutFormat:  Date.DateFormat.dd_MMMM_yyyy.rawValue, inputFormat:  Date.DateFormat.yyyyMMddHHmmss.rawValue)  ?? "N/A"
     }
     
     // MARK: - IBActions

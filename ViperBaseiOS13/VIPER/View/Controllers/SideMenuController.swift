@@ -165,7 +165,7 @@ class SideMenuController: UIViewController {
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("UserTypeChanged"), object: nil)
         }
-        //        self.drawerController?.closeSide()
+        //  2      self.drawerController?.closeSide()
         //        self.push(to: Storyboard.Ids.HomeViewController)
         
     }
@@ -177,7 +177,7 @@ class SideMenuController: UIViewController {
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("UserTypeChanged"), object: nil)
         }
-        //        self.drawerController?.closeSide()
+        //   1     self.drawerController?.closeSide()
         //        self.push(to: Storyboard.Ids.HomeViewController)
         
     }

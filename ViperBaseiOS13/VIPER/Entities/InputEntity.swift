@@ -140,6 +140,7 @@ struct ProfileUpdate  {
     let countryCode = "countryCode"
     let address1 = "address1"
     let address2 = "address2"
+    let total_annual_revenue = "total_annual_revenue"
     let zip_code = "zip_code"
     let city = "city"
     let state = "state"

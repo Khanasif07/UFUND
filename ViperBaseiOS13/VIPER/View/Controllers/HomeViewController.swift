@@ -82,7 +82,8 @@ class HomeViewController: UIViewController{
     }
     
     @IBAction func notificationBtnTapped(_ sender: UIButton) {
-        self.push(to: Storyboard.Ids.NotificationViewController)
+        let vc = NotificationVC.instantiate(fromAppStoryboard: .Products)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func menuOpener(_ sender: UIButton){

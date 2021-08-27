@@ -73,6 +73,7 @@ struct UserProfile : Mappable {
     var income_type : String?
     var account_type: String?
     var user_account_type: String?
+    var countryCode: String? = "+1"
           
 	init?(map: Map) {
 
@@ -88,6 +89,7 @@ struct UserProfile : Mappable {
         address1 <- map["address1"]
         address2 <- map["address2"]
 		mobile <- map["mobile"]
+        countryCode <- map["countryCode"]
 		user_type <- map["user_type"]
 		country_id <- map["country_id"]
 		city_id <- map["city_id"]
