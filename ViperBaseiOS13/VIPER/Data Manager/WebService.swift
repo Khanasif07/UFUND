@@ -55,7 +55,7 @@ extension Webservice : WebServiceProtocol {
             let accessToken = User.main.accessToken ?? ""
             headers.updateValue("\(WebConstants.string.bearer) \(accessToken)", forKey: WebConstants.string.Authorization)
         }
-          print("User.main.accessToken",User.main.accessToken)
+        print("User.main.accessToken",User.main.accessToken ?? "")
         let httpMethod = HTTPMethod(rawValue: type.rawValue) //GET or POST
     
         switch imageData { //GET or POST

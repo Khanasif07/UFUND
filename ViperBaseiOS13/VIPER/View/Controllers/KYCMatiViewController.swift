@@ -22,6 +22,7 @@ class KYCMatiViewController: UIViewController {
     
     
    
+    @IBOutlet weak var infoLbl: UILabel!
     @IBOutlet weak var verifyMeBtn: UIButton!
     @IBOutlet weak var verifiedView: UIView!
     @IBOutlet weak var statusLbl: UILabel!
@@ -40,13 +41,6 @@ class KYCMatiViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadCountyPicker()
-       
-       
-//        MFKYC.register(clientId: MFKYC_CLIENTID)
-//        matiButton.frame = CGRect(x: 0, y:0, width: buttonView.frame.width, height: buttonView.frame.height)
-//        self.buttonView.addSubview(matiButton)
-//        MFKYC.instance.delegate = self
     }
     
     override func viewWillLayoutSubviews() {
@@ -68,8 +62,12 @@ class KYCMatiViewController: UIViewController {
     @IBAction func verifyMeBtnAction(_ sender: UIButton) {
         switch User.main.trulioo_kyc_status ?? 0 {
         case 0:
-            guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return }
-            self.navigationController?.pushViewController(vc, animated: true)
+            if verifyMeBtn.titleLabel?.text == "Check Status" {
+                self.loadProfileDetails()
+            } else {
+                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return }
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         case 1:
             let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
             self.navigationController?.pushViewController(vc, animated: true)
@@ -112,14 +110,20 @@ extension KYCMatiViewController: PresenterOutputProtocol {
                User.main.kyc = self.userProfile?.kyc
                User.main.trulioo_kyc_status = self.userProfile?.trulioo_kyc_status
                storeInUserDefaults()
-            switch User.main.trulioo_kyc_status! {
+            switch User.main.trulioo_kyc_status ?? 0 {
             case 0:
-                verifyMeBtn.setTitle("Verify your identity", for: .normal)
+                if  User.main.is_document_submitted == true {
+                    verifyMeBtn.setTitle("Check Status", for: .normal)
+                    infoLbl.text = "Document verification is under process. This process will take upto 20 minutes."
+                }else {
+                    verifyMeBtn.setTitle("Verify your identity", for: .normal)
+                }
             case 1:
-                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
-                self.navigationController?.pushViewController(vc, animated: true)
+                verifyMeBtn.setTitle("Finish", for: .normal)
+                infoLbl.text =   "Document verification is completed."
             default:
-                verifyMeBtn.setTitle("Verify your identity", for: .normal)
+                verifyMeBtn.setTitle("Retry", for: .normal)
+                infoLbl.text =  "Document verification is failed. Please initiate verification again."
             }
             
             

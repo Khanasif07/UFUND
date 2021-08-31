@@ -61,6 +61,10 @@ struct IpAddressResult: Codable{
 //        self.name = name
 //    }
 //}
+protocol KYCViewControllerDelegate : class {
+    func mfKYCLoginSuccess()
+    func mfKYCLoginfailed()
+}
 
 
 class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapFacialCaptureViewControllerDelegate, CLLocationManagerDelegate {
@@ -115,6 +119,7 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     
     
 //    var selectedDoc = [SelectedDoc]()
+    weak var delegate : KYCViewControllerDelegate?
     var selectedIndex = 0
     var successDict: SuccessDict?
     private var miSnapController: MiSnapSDKViewController!
@@ -279,7 +284,6 @@ extension KYCViewController {
 extension KYCViewController {
     
     @IBAction func goBack(_ sender: UIButton) {
-        
         self.popOrDismiss(animation: true)
         //               presentAlertViewController()
     }
@@ -305,30 +309,6 @@ extension KYCViewController {
 
 
 extension  KYCViewController {
-    
-    //    func presentAlertViewController() {
-    //
-    //
-    //        let alertController = UIAlertController(title: Constants.string.appName.localize(), message: Constants.string.areYouSureWantToLogout.localize(), preferredStyle: UIAlertController.Style.alert)
-    //
-    //        let okAction = UIAlertAction(title: Constants.string.OK.localize(), style: UIAlertAction.Style.default) {
-    //            (result : UIAlertAction) -> Void in
-    //
-    //            self.getLogout()
-    //        }
-    //
-    //        let cancelAction = UIAlertAction(title: Constants.string.Cancel.localize(), style: UIAlertAction.Style.default) {
-    //            (result : UIAlertAction) -> Void in
-    //            self.drawerController?.closeSide()
-    //            self.dismiss(animated: true, completion: nil)
-    //        }
-    //
-    //
-    //        alertController.addAction(okAction)
-    //        alertController.addAction(cancelAction)
-    //        self.present(alertController, animated: true, completion: nil)
-    //
-    //    }
     
     func loadCountyPicker() {
         let helper = TruliooHelper()
@@ -920,6 +900,8 @@ extension KYCViewController{
             let result = try JSONDecoder().decode(VerifyResult.self, from: data)
             self.transactionID = result.TransactionID ?? ""
             User.main.transactionID = self.transactionID
+            User.main.is_document_submitted = true
+            storeInUserDefaults()
             self.appendText(text: "Success")
             self.appendText(text: "TransactionID: \(result.TransactionID ?? "")")
             self.appendText(text: nil)
@@ -971,14 +953,23 @@ extension KYCViewController{
             self.appendText(text:"Error decoding JSON, printing raw data")
             self.appendText(text: dataString)
         }
-        self.endProcess()
+        self.documentSentSuccessfully()
         
+    }
+    
+    
+    private func documentSentSuccessfully(){
+        DispatchQueue.main.async {
+            self.loader.isHidden = true
+            self.delegate?.mfKYCLoginSuccess()
+            self.popOrDismiss(animation: true)
+            //MARK:- Need to manage verify button status after posting verify api
+        }
     }
     
     private func endProcess(){
         DispatchQueue.main.async {
             self.loader.isHidden = true
-            self.popOrDismiss(animation: true)
             //MARK:- Need to manage verify button status after posting verify api
         }
     }

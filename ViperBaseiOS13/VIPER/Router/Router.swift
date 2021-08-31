@@ -27,7 +27,7 @@ class Router: PresenterToRouterProtocol{
        
         if retrieveUserData() {
             
-            switch User.main.trulioo_kyc_status ?? 0 {
+            switch User.main.trulioo_kyc_status {
             case 0:
                 let vc = main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
                 return vc

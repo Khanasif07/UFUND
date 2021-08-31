@@ -641,7 +641,7 @@ extension UserProfileVC: WCCustomPickerViewDelegate {
 
 extension UserProfileVC : CountryDelegate{
     func sendCountryCode(code: String) {
-        self.userProfile.countryCode = code
+        self.userProfile?.countryCode = code
         self.mainTableView.reloadData()
     }
 }

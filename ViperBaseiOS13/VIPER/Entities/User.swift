@@ -18,6 +18,7 @@ class User : NSObject, NSCoding, JSONSerializable {
   
     var kyc: Int?
     var transactionID : String = ""
+    var is_document_submitted: Bool?
     var trulioo_kyc_status : Int?
     var token : String?
     var balance : String?
@@ -41,7 +42,7 @@ class User : NSObject, NSCoding, JSONSerializable {
     var btc_address : String?
     var min_eth : Double?
     
-    init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?,trulioo_kyc_status: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?,eth_address : String?,btc_address : String?){
+    init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?,trulioo_kyc_status: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?,eth_address : String?,btc_address : String?,is_document_submitted: Bool?){
         
         self.id = id
         self.name = name
@@ -53,7 +54,6 @@ class User : NSObject, NSCoding, JSONSerializable {
         self.mobile = phoneNumber
         self.email = email
         self.picture = picture
-        
         self.token =  token
         self.balance = balance
         self.buy_price = buy_price
@@ -67,12 +67,13 @@ class User : NSObject, NSCoding, JSONSerializable {
         
         self.eth_address = eth_address
         self.btc_address = btc_address
+        self.is_document_submitted = is_document_submitted
     }
     
     convenience
     override init() {
         
-        self.init(id: nil, name: nil, accessToken: nil, latitude: nil, lontitude: nil, firstName: nil, lastName: nil, email: nil, phoneNumber:  nil, picture: nil, token: nil, balance: nil, buy_price: nil, sell_price: nil, kyc: nil,trulioo_kyc_status : nil, usd_bstk: nil, email_token: nil, g2f_temp: nil,pin_status: nil,eth_address: nil,btc_address : nil)
+        self.init(id: nil, name: nil, accessToken: nil, latitude: nil, lontitude: nil, firstName: nil, lastName: nil, email: nil, phoneNumber:  nil, picture: nil, token: nil, balance: nil, buy_price: nil, sell_price: nil, kyc: nil,trulioo_kyc_status : nil, usd_bstk: nil, email_token: nil, g2f_temp: nil,pin_status: nil,eth_address: nil,btc_address : nil, is_document_submitted: nil)
         
     }
     
@@ -105,12 +106,14 @@ class User : NSObject, NSCoding, JSONSerializable {
         
         let eth_address = aDecoder.decodeObject(forKey: Keys.list.eth_address) as? String
         let btc_address = aDecoder.decodeObject(forKey: Keys.list.btc_address) as? String
+        let is_document_submitted = aDecoder.decodeObject(forKey: Keys.list.is_document_submitted) as? Bool
         
-        self.init(id: id, name: name, accessToken: accessToken, latitude: latitude, lontitude: lontitude, firstName: firstNmae, lastName: lastName, email: email, phoneNumber: phoneNumber, picture: picture,token: token, balance: balance,buy_price: buy_price, sell_price: sell_price, kyc: kyc,trulioo_kyc_status: trulioo_kyc_status, usd_bstk: usd_bstk, email_token: email_token, g2f_temp: g2f_temp, pin_status: pin_status,eth_address: eth_address,btc_address : btc_address)
+        self.init(id: id, name: name, accessToken: accessToken, latitude: latitude, lontitude: lontitude, firstName: firstNmae, lastName: lastName, email: email, phoneNumber: phoneNumber, picture: picture,token: token, balance: balance,buy_price: buy_price, sell_price: sell_price, kyc: kyc,trulioo_kyc_status: trulioo_kyc_status, usd_bstk: usd_bstk, email_token: email_token, g2f_temp: g2f_temp, pin_status: pin_status,eth_address: eth_address,btc_address : btc_address, is_document_submitted: is_document_submitted)
     }
     
     
     func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.is_document_submitted,forKey: Keys.list.is_document_submitted)
         aCoder.encode(self.transactionID,forKey: Keys.list.transactionID)
         aCoder.encode(self.min_eth,forKey: Keys.list.min_eth)
         aCoder.encode(self.trulioo_kyc_status,forKey: Keys.list.trulioo_kyc_status)

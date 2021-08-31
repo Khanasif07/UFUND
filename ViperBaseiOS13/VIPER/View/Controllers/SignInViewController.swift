@@ -336,7 +336,7 @@ extension SignInViewController: PresenterOutputProtocol {
             self.signInModel = dataDict as? SignInModel
             CommonUserDefaults.storeUserData(from: self.signInModel)
             storeInUserDefaults()
-            switch User.main.trulioo_kyc_status! {
+            switch User.main.trulioo_kyc_status {
             case 0:
                 let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
                 self.navigationController?.pushViewController(vc, animated: true)

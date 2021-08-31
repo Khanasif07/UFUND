@@ -3804,7 +3804,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                 <rect key="frame" x="134.5" y="0.0" width="145" height="286.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="osd-Mc-Dvh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="osd-Mc-Dvh">
                                                 <rect key="frame" x="25" y="286.5" width="364" height="182"/>
                                                 <string key="text">UFUND is against money laundering activities and does not want to deal with these persons or organizations for legal and moral reasons.
 We ask all our users to pass our KYC to enjoy all UFUND functionalities.
@@ -3908,6 +3908,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                     <navigationItem key="navigationItem" id="iCe-8H-81q"/>
                     <connections>
                         <outlet property="buttonView" destination="mtm-Kd-vwK" id="LQR-g2-l8l"/>
+                        <outlet property="infoLbl" destination="osd-Mc-Dvh" id="ldU-NK-38i"/>
                         <outlet property="statusLbl" destination="JPf-Yr-fz1" id="pQp-7M-Ukv"/>
                         <outlet property="verifiedView" destination="BbP-Yt-KCZ" id="sLM-vk-98g"/>
                         <outlet property="verifyMeBtn" destination="obh-2M-nWL" id="EcD-Yz-5O5"/>

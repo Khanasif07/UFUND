@@ -358,6 +358,7 @@ struct Keys {
     let transactionID = "transactionID"
     let min_eth = "min_eth"
     let usd_bstk = "usd_bstk"
+    let is_document_submitted = "is_document_submitted"
     
     let g2f_temp = "g2f_temp"
     let pin_status = "pin_status"
