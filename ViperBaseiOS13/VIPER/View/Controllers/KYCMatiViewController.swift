@@ -22,6 +22,7 @@ class KYCMatiViewController: UIViewController {
     
     
    
+    @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var infoLbl: UILabel!
     @IBOutlet weak var verifyMeBtn: UIButton!
     @IBOutlet weak var verifiedView: UIView!
@@ -58,6 +59,9 @@ class KYCMatiViewController: UIViewController {
         self.loadProfileDetails()
         
     }
+    @IBAction func closeBtnAction(_ sender: UIButton) {
+        presentAlertViewController()
+    }
     
     @IBAction func verifyMeBtnAction(_ sender: UIButton) {
         switch User.main.trulioo_kyc_status ?? 0 {
@@ -87,6 +91,32 @@ class KYCMatiViewController: UIViewController {
     func mfKYCLoginCancelled() {
         print("Mati Login Cancelled")
         self.loadProfileDetails()
+    }
+    
+    func presentAlertViewController() {
+        let alertController = UIAlertController(title: Constants.string.appName.localize(), message: Constants.string.areYouSureWantToLogout.localize(), preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: Constants.string.OK.localize(), style: UIAlertAction.Style.default) {
+            (result : UIAlertAction) -> Void in
+            self.getLogout()
+        }
+        
+        let cancelAction = UIAlertAction(title: Constants.string.Cancel.localize(), style: UIAlertAction.Style.default) {
+            (result : UIAlertAction) -> Void in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func getLogout() {
+        self.loader.isHidden = false
+        var param = [String: AnyObject]()
+        param[RegisterParam.keys.id] = User.main.id as AnyObject
+        self.presenter?.HITAPI(api: Base.logout.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
     }
 
 }
@@ -125,7 +155,10 @@ extension KYCMatiViewController: PresenterOutputProtocol {
                 verifyMeBtn.setTitle("Retry", for: .normal)
                 infoLbl.text =  "Document verification is failed. Please initiate verification again."
             }
-            
+        case Base.logout.rawValue:
+            self.loader.isHidden = true
+            self.drawerController?.closeSide()
+            forceLogout(with: SuccessMessage.string.logoutMsg.localize())
             
 //            if User.main.trulioo_kyc_status == 1 {
 //

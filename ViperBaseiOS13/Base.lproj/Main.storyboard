@@ -3886,12 +3886,35 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                             <constraint firstItem="obh-2M-nWL" firstAttribute="leading" secondItem="Pv9-p2-yQk" secondAttribute="leading" constant="20" id="vbl-gt-PtH"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7v-r9-Wt9">
+                                        <rect key="frame" x="329" y="5" width="65" height="41"/>
+                                        <color key="backgroundColor" name="primaryColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="6Ym-6T-k5q"/>
+                                            <constraint firstAttribute="width" constant="65" id="clK-OF-yz6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="closeBtnAction:" destination="syy-hX-1BZ" eventType="touchUpInside" id="ylS-ps-KDh"/>
+                                            <action selector="verifyMeBtnAction:" destination="syy-hX-1BZ" eventType="touchUpInside" id="ydu-NK-isr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="appBGColor"/>
                                 <constraints>
                                     <constraint firstItem="Pv9-p2-yQk" firstAttribute="leading" secondItem="6mE-h5-I04" secondAttribute="leading" id="LfS-ao-DRC"/>
                                     <constraint firstAttribute="trailing" secondItem="Pv9-p2-yQk" secondAttribute="trailing" id="O4Z-Ke-aXm"/>
+                                    <constraint firstAttribute="trailing" secondItem="g7v-r9-Wt9" secondAttribute="trailing" constant="20" symbolic="YES" id="OFt-er-vDp"/>
                                     <constraint firstAttribute="bottom" secondItem="Pv9-p2-yQk" secondAttribute="bottom" id="T3O-KD-n8g"/>
+                                    <constraint firstItem="g7v-r9-Wt9" firstAttribute="top" secondItem="6mE-h5-I04" secondAttribute="top" constant="5" id="cPU-Fx-JpK"/>
                                     <constraint firstItem="Pv9-p2-yQk" firstAttribute="top" secondItem="6mE-h5-I04" secondAttribute="top" id="uHP-p7-i9a"/>
                                 </constraints>
                             </view>
@@ -3908,6 +3931,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                     <navigationItem key="navigationItem" id="iCe-8H-81q"/>
                     <connections>
                         <outlet property="buttonView" destination="mtm-Kd-vwK" id="LQR-g2-l8l"/>
+                        <outlet property="closeBtn" destination="g7v-r9-Wt9" id="3uv-8q-SVm"/>
                         <outlet property="infoLbl" destination="osd-Mc-Dvh" id="ldU-NK-38i"/>
                         <outlet property="statusLbl" destination="JPf-Yr-fz1" id="pQp-7M-Ukv"/>
                         <outlet property="verifiedView" destination="BbP-Yt-KCZ" id="sLM-vk-98g"/>

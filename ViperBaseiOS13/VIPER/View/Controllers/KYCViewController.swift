@@ -284,8 +284,8 @@ extension KYCViewController {
 extension KYCViewController {
     
     @IBAction func goBack(_ sender: UIButton) {
+        self.delegate?.mfKYCLoginfailed()
         self.popOrDismiss(animation: true)
-        //               presentAlertViewController()
     }
     
     
