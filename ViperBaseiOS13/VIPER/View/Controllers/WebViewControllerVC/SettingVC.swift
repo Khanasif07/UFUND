@@ -20,7 +20,8 @@ class SettingVC: UIViewController {
     private lazy var loader  : UIView = {
           return createActivityIndicator(self.view)
       }()
-    var dataArray = [(Constants.string.changePassword.localize(),#imageLiteral(resourceName: "icChnagePassword")),(Constants.string.terms_conditions.localize(),#imageLiteral(resourceName: "icTermCondition")),(Constants.string.privacy_policy.localize(),#imageLiteral(resourceName: "icPrivacyPolicy")),(Constants.string.contactUs.localize(),#imageLiteral(resourceName: "icContactUs")),(Constants.string.logout.localize(),#imageLiteral(resourceName: "icLogout"))]
+//    var dataArray = [(Constants.string.changePassword.localize(),#imageLiteral(resourceName: "icChnagePassword")),(Constants.string.terms_conditions.localize(),#imageLiteral(resourceName: "icTermCondition")),(Constants.string.privacy_policy.localize(),#imageLiteral(resourceName: "icPrivacyPolicy")),(Constants.string.contactUs.localize(),#imageLiteral(resourceName: "icContactUs")),(Constants.string.logout.localize(),#imageLiteral(resourceName: "icLogout"))]
+    var dataArray = [(Constants.string.changePassword.localize(),#imageLiteral(resourceName: "icChnagePassword")),(Constants.string.terms_conditions.localize(),#imageLiteral(resourceName: "icTermCondition")),(Constants.string.privacy_policy.localize(),#imageLiteral(resourceName: "icPrivacyPolicy"))]
     
     // MARK: - Lifecycle
     //===========================

@@ -214,7 +214,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.text = self.addAssetModel.reward
             default:
                 cell.textFIeld.setButtonToRightView(btn: UIButton(), selectedImage: nil, normalImage: nil, size: CGSize(width: 0, height: 0))
-                cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.keyboardType = .default
                 cell.textFIeld.text = "\(self.addAssetModel.reward_value ?? 0)"
             }
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0

@@ -28,7 +28,7 @@ class MyYieldVC: UIViewController {
     var yieldData: YieldModule?
     var yield_histories : [History]?
     var sections = [("Overall User Earning",true),("Earning In Crypto",false),("Earning In Fiat",false)]
-     var cellData = [("Product",""),("Category",""),("Payment Method",""),("Spend Amount",""),("Currency Type",""),("Maturity. Date",""),("Investment Date","")]
+    var cellData = [("Product",""),("Category",""),("Payment Method",""),("Spend Amount",""),("Currency Type",""),("Maturity. Date",""),("Investment Date","")]
     var searchText = ""
     var selectedCurrency : (([String],Bool)) = ([],false)
     var selectedCategory : (([CategoryModel],Bool)) = ([],false)

@@ -335,9 +335,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //                }
             case Constants.string.earningInCrypto.localize():
                 let myYieldVC = MyYieldVC.instantiate(fromAppStoryboard: .Wallet)
+                myYieldVC.sections = [("Overall User Earning",false),("Earning In Crypto",true),("Earning In Fiat",false)]
                 self.navigationController?.pushViewController(myYieldVC, animated: true)
             case Constants.string.earningInDollar.localize():
                 let myYieldVC = MyYieldVC.instantiate(fromAppStoryboard: .Wallet)
+                myYieldVC.sections = [("Overall User Earning",false),("Earning In Crypto",false),("Earning In Fiat",true)]
                 self.navigationController?.pushViewController(myYieldVC, animated: true)
             case Constants.string.fiatCurrency.localize():
                 let vc = MyWalletVC.instantiate(fromAppStoryboard: .Wallet)

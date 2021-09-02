@@ -426,7 +426,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                         }
                         
                     }
-                    cell.phoneTextField.keyboardType = .numberPad
+                    cell.phoneTextField.keyboardType = .default
                     cell.phoneTextField.isUserInteractionEnabled = isEnableEdit
                     cell.countryTxtFld.text = self.userProfile?.countryCode ?? ""
                     cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
