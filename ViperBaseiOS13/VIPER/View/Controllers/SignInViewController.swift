@@ -378,7 +378,7 @@ extension SignInViewController: PresenterOutputProtocol {
             CommonUserDefaults.storeUserData(from: self.signInModel)
             User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
             storeInUserDefaults()
-            switch User.main.trulioo_kyc_status! {
+            switch User.main.trulioo_kyc_status ?? -1{
             case 0:
                 let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -386,8 +386,7 @@ extension SignInViewController: PresenterOutputProtocol {
                 let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
-                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
-                self.navigationController?.pushViewController(vc, animated: true)
+                print("Do Nothing")
             }
 //            if self.signInModel?.kyc == 0 {
 //                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
