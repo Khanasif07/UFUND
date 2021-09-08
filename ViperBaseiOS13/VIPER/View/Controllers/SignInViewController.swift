@@ -374,6 +374,7 @@ extension SignInViewController: PresenterOutputProtocol {
         case Base.social_signup.rawValue:
             self.loader.isHidden = true
             self.signInModel = (dataDict as? SocialLoginEntity)?.user_info
+            ToastManager.show(title:  nullStringToEmpty(string: (dataDict as? SocialLoginEntity)?.message), state: .error)
             CommonUserDefaults.storeUserData(from: self.signInModel)
             User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
             storeInUserDefaults()

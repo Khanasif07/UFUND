@@ -79,7 +79,7 @@ extension ContactsUsVC {
     
     func postContactUs() {
         self.loader.isHidden = false
-        let params:[String:Any] = ["description": descText ?? "","userId": User.main.id]
+        let params:[String:Any] = ["description": descText ?? "","userId": User.main.id ?? ""]
         self.presenter?.HITAPI(api: Base.contact_Us.rawValue, params: params, methodType: .POST, modelClass: SuccessDict.self, token: true)
     }
     
