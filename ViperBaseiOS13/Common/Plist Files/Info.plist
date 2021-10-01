@@ -27,7 +27,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1368229543515063</string>
+				<string>fb508134256488944</string>
 			</array>
 		</dict>
 		<dict>
@@ -45,14 +45,14 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>twitterkit-i9VUBLUWBBLg4tg2XBbXoTh5a</string>
+				<string>twitterkit-IYruAGYhsN3xM5Ef4NvOImso9</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
-	<string>1368229543515063</string>
+	<string>508134256488944</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>

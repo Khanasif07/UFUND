@@ -17,13 +17,13 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>twitterkit-i9VUBLUWBBLg4tg2XBbXoTh5a</string>
+				<string>twitterkit-IYruAGYhsN3xM5Ef4NvOImso9</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1368229543515063</string>
+				<string>fb508134256488944</string>
 			</array>
 		</dict>
 	</array>
@@ -103,11 +103,11 @@
 		<string>twitter</string>
 		<string>twitterauth</string>
 		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
+		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
 	<key>FacebookAppID</key>
-	<string>1368229543515063</string>
+	<string>508134256488944</string>
 </dict>
 </plist>

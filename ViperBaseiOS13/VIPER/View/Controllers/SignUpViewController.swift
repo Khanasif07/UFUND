@@ -100,7 +100,7 @@ class SignUpViewController: UIViewController {
         passwordTxtFld.delegate = self
         setFont()
         emailIdTxtFld.keyboardType = .emailAddress
-        phoneNumberTxtFld.keyboardType = .numberPad
+        phoneNumberTxtFld.keyboardType = .default
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         } else {
