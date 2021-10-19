@@ -49,13 +49,21 @@ enum AppConstants {
 
     static var defaultDate          = "0000-00-00"
     static var emptyString          = ""
-    static var awss3PoolId          =  "us-east-1:b1f250f2-66a7-4d07-96e9-01817149a439"
-    static var AWS_BUCKET         = "appinventiv-development"
+    static var awss3PoolId          = "us-east-1:30b832a4-eacb-44ca-84e7-2abad1501218"
+        //"us-east-1:b1f250f2-66a7-4d07-96e9-01817149a439"
+    static var AWS_BUCKET         = "ufund-env"
+        //"appinventiv-development"
     static var AWS_DEFAULT_REGION          = "us-east-1"
     static var AWS_SECRET_ACCESS_KEY          = "Vs2iIUpFZkSdkXSxLc4g+CWS/iunhq4Ex/gnf15e"
-    static var AWS_URL = "https://appinventiv-development.s3.amazonaws.com/"
+    static var AWS_URL = "https://ufund-env.s3.amazonaws.com/env.production"
+        //"https://appinventiv-development.s3.amazonaws.com/"
     static var AWS_ACCESS_KEY_ID = "AKIA6DQMUBGGZSBCXSFA"
-    
+     // Identity pool ID
+//        Regions.US_EAST_1 // Region
+//    ufund-env // bucket
+
+
+
 }
 
 
