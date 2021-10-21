@@ -506,17 +506,17 @@
 		84FF06CD26D89EF400F1B767 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF06CC26D89EF400F1B767 /* NotificationVC.swift */; };
 		84FF0B9826DE329E00F1B767 /* Pods_ViperBaseiOS13.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56E8F9E745DA9752E1A9560 /* Pods_ViperBaseiOS13.framework */; };
 		84FF0BEB26DF1ACC00F1B767 /* MiSnapFacialCapture.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3790A26CA3CBE009D0868 /* MiSnapFacialCapture.xcframework */; };
-		84FF0BEC26DF1ACC00F1B767 /* MiSnapFacialCapture.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3790A26CA3CBE009D0868 /* MiSnapFacialCapture.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84FF0BEC26DF1ACC00F1B767 /* MiSnapFacialCapture.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3790A26CA3CBE009D0868 /* MiSnapFacialCapture.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84FF0BF026DF1ACE00F1B767 /* MiSnapSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776526CA3CB4009D0868 /* MiSnapSDK.xcframework */; };
-		84FF0BF126DF1ACE00F1B767 /* MiSnapSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776526CA3CB4009D0868 /* MiSnapSDK.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84FF0BF126DF1ACE00F1B767 /* MiSnapSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776526CA3CB4009D0868 /* MiSnapSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84FF0BF226DF1ACF00F1B767 /* MiSnapSDKCamera.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783726CA3CB5009D0868 /* MiSnapSDKCamera.xcframework */; };
-		84FF0BF326DF1ACF00F1B767 /* MiSnapSDKCamera.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783726CA3CB5009D0868 /* MiSnapSDKCamera.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84FF0BF326DF1ACF00F1B767 /* MiSnapSDKCamera.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783726CA3CB5009D0868 /* MiSnapSDKCamera.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84FF0BF426DF1AD100F1B767 /* MiSnapSDKMibiData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776726CA3CB4009D0868 /* MiSnapSDKMibiData.xcframework */; };
-		84FF0BF526DF1AD100F1B767 /* MiSnapSDKMibiData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776726CA3CB4009D0868 /* MiSnapSDKMibiData.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84FF0BF526DF1AD100F1B767 /* MiSnapSDKMibiData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776726CA3CB4009D0868 /* MiSnapSDKMibiData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84FF0BF626DF1AD200F1B767 /* MiSnapSDKScience.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783626CA3CB5009D0868 /* MiSnapSDKScience.xcframework */; };
-		84FF0BF726DF1AD200F1B767 /* MiSnapSDKScience.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783626CA3CB5009D0868 /* MiSnapSDKScience.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84FF0BF726DF1AD200F1B767 /* MiSnapSDKScience.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3783626CA3CB5009D0868 /* MiSnapSDKScience.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84FF0BF826DF1AD400F1B767 /* MobileFlow.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776626CA3CB4009D0868 /* MobileFlow.xcframework */; };
-		84FF0BF926DF1AD400F1B767 /* MobileFlow.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776626CA3CB4009D0868 /* MobileFlow.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		84FF0BF926DF1AD400F1B767 /* MobileFlow.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 84C3776626CA3CB4009D0868 /* MobileFlow.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B2DACB3B1FC2E9E285069987 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B68FBE9A1C351BDBE0BC93 /* Pods_ViperBaseiOS13_ViperBaseiOS13UITests.framework */; };
 		DCEC9E4C4E18C05651097B83 /* Pods_ViperBaseiOS13Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F464373271FCE0B49B1C910A /* Pods_ViperBaseiOS13Tests.framework */; };
 /* End PBXBuildFile section */
@@ -541,7 +541,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		84FF0BED26DF1ACC00F1B767 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (

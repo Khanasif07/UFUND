@@ -34,35 +34,37 @@ enum AppConstants {
     static let TWITTER_BEARER_TOKEN = "AAAAAAAAAAAAAAAAAAAAAFAbMgEAAAAAhXyX8TO%2Fo9CsguJKmkGUte7DS2w%3D8cZOeaPtFFeaviDNoL257kWr7mWqhAhllZgmPBZQfE94OLLhNW"
     
     //MARK:- Twitter
-    static let TWITTER_API_KEY = "IYruAGYhsN3xM5Ef4NvOImso9"
-    static let TWITTER_API_SECRET = "Fc54prvuIBpgnIcyoZ3shMTdlyc7zBk4Q2nldV48PqPgkTdL4O"
-    static let CALLBACK_URL = "https://ufundqaonline.appskeeper.in/social-signup/twitter"
+    static let TWITTER_API_KEY = "N18q0p96Knqs61AOSBVdjROLS"
+        //"IYruAGYhsN3xM5Ef4NvOImso9"
+    static let TWITTER_API_SECRET = "CpyMthIkiNvzK0pctkzdT3SUcju2OgoLFN582f5oL7vE59PUP4"
+        //"Fc54prvuIBpgnIcyoZ3shMTdlyc7zBk4Q2nldV48PqPgkTdL4O"
+    static let CALLBACK_URL = "https://web.ufund.online/social-signup/twitter"
     //
     
     //MARK:- Linkedin
     static let linkedIn_Client_Id = "77ue796477p0qt"
     static let linkedIn_ClientSecret = "FnHDWxiFMAcp6IhG"
-    static let linkedIn_redirectUri = "https://ufundqaonline.appskeeper.in/social-signup/linkedin"
+    static let linkedIn_redirectUri = "https://web.ufund.online/social-signup/linkedin"
     static let linkedIn_AUTHURL = "https://www.linkedin.com/oauth/v2/authorization"
     static let linkedIn_TOKENURL = "https://www.linkedin.com/oauth/v2/accessToken"
-
+    
 
     static var defaultDate          = "0000-00-00"
     static var emptyString          = ""
     static var awss3PoolId          = "us-east-1:30b832a4-eacb-44ca-84e7-2abad1501218"
         //"us-east-1:b1f250f2-66a7-4d07-96e9-01817149a439"
-    static var AWS_BUCKET         = "ufund-env"
+    static var AWS_BUCKET         = "ufund-static-images"
         //"appinventiv-development"
     static var AWS_DEFAULT_REGION          = "us-east-1"
     static var AWS_SECRET_ACCESS_KEY          = "Vs2iIUpFZkSdkXSxLc4g+CWS/iunhq4Ex/gnf15e"
-    static var AWS_URL = "https://ufund-env.s3.amazonaws.com/env.production"
+    static var AWS_URL = "https://ufund-static-images.s3.amazonaws.com/"
         //"https://appinventiv-development.s3.amazonaws.com/"
     static var AWS_ACCESS_KEY_ID = "AKIA6DQMUBGGZSBCXSFA"
      // Identity pool ID
 //        Regions.US_EAST_1 // Region
 //    ufund-env // bucket
 
-
+    
 
 }
 

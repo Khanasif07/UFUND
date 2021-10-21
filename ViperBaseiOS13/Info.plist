@@ -17,7 +17,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>twitterkit-IYruAGYhsN3xM5Ef4NvOImso9</string>
+				<string>twitterkit-N18q0p96Knqs61AOSBVdjROLS</string>
 			</array>
 		</dict>
 		<dict>
@@ -31,6 +31,16 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>api.twitter.com</key>
+			<dict>
+				<key>NSThirdPartyExceptionRequired</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
 	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

@@ -212,7 +212,7 @@ extension MyInvestmentsDetailVC : UITableViewDelegate, UITableViewDataSource {
             switch investmentType {
             case .MyProductInvestment:
                 cell.productTitleLbl.text = productModel?.product_title ?? ""
-                cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0.0)"
+                cell.priceLbl.text = "$ " + "\(productModel?.total_product_value ?? 0)"
                 cell.productDescLbl.text = "\(productModel?.product_description ?? "")"
             default:
                 cell.productLbl.text = ProductCreate.keys.token
