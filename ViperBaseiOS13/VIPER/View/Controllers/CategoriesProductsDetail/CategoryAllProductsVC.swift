@@ -105,7 +105,7 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width / 2), height: 36 * collectionView.frame.height / 100)
+        return CGSize(width: (collectionView.frame.width / 2), height: 45.0 * collectionView.frame.height / 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
