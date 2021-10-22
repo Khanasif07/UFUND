@@ -1165,7 +1165,6 @@
 			children = (
 				085AC03324AF1EB000FFAD96 /* coin_payment.html */,
 				082BF4B62477CFB3002F6A7F /* UFUND.entitlements */,
-				08808A2B247262B100564CA2 /* GoogleService-Info.plist */,
 				0824B06C2382842C00F81A9B /* Common */,
 				84C3776426CA3CB4009D0868 /* MiSnapSDK */,
 				849642A026CA51F000801CA6 /* mitek */,
@@ -1177,9 +1176,9 @@
 				845C131525FF53970018A1E1 /* Wallet.storyboard */,
 				84D565EB25DB68C20047F052 /* Filter.storyboard */,
 				84A6C31A25DA3A3A00C00EB1 /* Products.storyboard */,
-				0824B031238280E800F81A9B /* Assets.xcassets */,
 				0824B033238280E800F81A9B /* LaunchScreen.storyboard */,
 				0824B036238280E800F81A9B /* Info.plist */,
+				08808A2B247262B100564CA2 /* GoogleService-Info.plist */,
 				0824B02E238280E700F81A9B /* ViperBaseiOS13.xcdatamodeld */,
 			);
 			path = ViperBaseiOS13;
@@ -2894,6 +2893,7 @@
 		84FA6EAB25E4BE440053E618 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0824B031238280E800F81A9B /* Assets.xcassets */,
 				842ABCFB2626BB42007AA9BA /* Fonts */,
 			);
 			path = Resources;
