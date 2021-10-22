@@ -118,10 +118,10 @@ struct ProductModel: Mappable {
     var product_amount : Double?
     var total_product_value : Double?
     var commission_amount : Int?
-    var commission_per : Int?
+    var commission_per : Double?
     var pending_invest_per : Int?
     var final_profit_invest_per : Int?
-    var invest_profit_per : Int?
+    var invest_profit_per : Double?
     var product_value : Double?
     var brand : String?
     var ean_upc_code : String?
@@ -212,10 +212,10 @@ struct ProductModel: Mappable {
         product_amount <- (map["product_amount"], DoubleTransform())
         total_product_value <- (map["total_product_value"], DoubleTransform())
         commission_amount <- map["commission_amount"]
-        commission_per <- map["commission_per"]
+        commission_per <- (map["commission_per"], DoubleTransform())
         pending_invest_per <- map["pending_invest_per"]
         final_profit_invest_per <- map["final_profit_invest_per"]
-        invest_profit_per <- map["invest_profit_per"]
+        invest_profit_per <- (map["invest_profit_per"],DoubleTransform())
         product_value <- (map["product_value"], DoubleTransform())
         brand <- map["brand"]
         ean_upc_code <- map["ean_upc_code"]
