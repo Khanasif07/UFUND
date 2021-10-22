@@ -41,13 +41,13 @@ class Button : UIButton {
     
     //MARK:- Border Width
     
-    @IBInspectable var borderWidth : CGFloat = 0{
-        
-        didSet{
-            self.layer.borderWidth = borderWidth
-        }
-        
-    }
+//    @IBInspectable var borderWidth : CGFloat = 0{
+//        
+//        didSet{
+//            self.layer.borderWidth = borderWidth
+//        }
+//        
+//    }
     
     
     //MARK:- Primary Button

@@ -328,10 +328,12 @@ extension SignInViewController: PresenterOutputProtocol {
     
      
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        
+    }
+    
+    func showSuccessWithParams(statusCode: Int, params: [String : Any], api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        //
         switch api {
         case Base.signIn.rawValue:
-            
             self.loader.isHidden = true
             self.signInModel = dataDict as? SignInModel
             CommonUserDefaults.storeUserData(from: self.signInModel)
@@ -347,85 +349,62 @@ extension SignInViewController: PresenterOutputProtocol {
                 let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-//            if self.signInModel?.kyc == 0 {
-//                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
-//            } else {
-//                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-//                self.push(id: Storyboard.Ids.DrawerController, animation: true)
-//            }
-            
-//            if self.signInModel?.kyc == 0 {
-//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            } else {
-//
-//                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
-//
-//                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
-//                    vc.changePINStr = "changePINStr"
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//
-//                } else {
-//                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-//                    self.push(id: Storyboard.Ids.DrawerController, animation: true)
-//                }
-//            }
-            
-        case Base.social_signup.rawValue:
+        case  Base.social_signup.rawValue:
             self.loader.isHidden = true
-            self.signInModel = (dataDict as? SocialLoginEntity)?.user_info
-            ToastManager.show(title:  nullStringToEmpty(string: (dataDict as? SocialLoginEntity)?.message), state: .error)
-            CommonUserDefaults.storeUserData(from: self.signInModel)
-            User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
-            storeInUserDefaults()
-            switch User.main.trulioo_kyc_status ?? -1{
-            case 0:
-                let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
-                self.navigationController?.pushViewController(vc, animated: true)
-            case 1:
-                let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
-                self.navigationController?.pushViewController(vc, animated: true)
-            default:
-                print("Do Nothing")
+            if statusCode == StatusCode.success.rawValue {
+                self.signInModel = (dataDict as? SocialLoginEntity)?.user_info
+                ToastManager.show(title:  nullStringToEmpty(string: (dataDict as? SocialLoginEntity)?.message), state: .error)
+                CommonUserDefaults.storeUserData(from: self.signInModel)
+                User.main.accessToken = (dataDict as? SocialLoginEntity)?.access_token
+                storeInUserDefaults()
+                switch User.main.trulioo_kyc_status ?? -1{
+                case 0:
+                    let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
+                case 1:
+                    let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
+                default:
+                    print("Do Nothing")
+                }
+            } else {
+                if  statusCode == StatusCode.socialSignupSuccessCode.rawValue{
+                    let vc = LoginWithEmailVC.instantiate(fromAppStoryboard: .Products)
+                    vc.socialLoginSuccess = { [weak self] in
+                        guard let selff = self else { return }
+                        switch User.main.trulioo_kyc_status {
+                        case 0:
+                            let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                            self?.navigationController?.pushViewController(vc, animated: true)
+                        case 1:
+                            let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+                            self?.navigationController?.pushViewController(vc, animated: true)
+                        default:
+                            let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                            self?.navigationController?.pushViewController(vc, animated: true)
+                        }
+                    }
+                    vc.socialLoginFailure = { [weak self] in
+                    guard let selff = self else { return }
+                        //Sonu will let us know
+                        print("")
+                    }
+                    vc.socialLoginType = self.socialLoginType
+                    vc.name = params[RegisterParam.keys.name] as? String ?? ""
+                    vc.email = params[RegisterParam.keys.email] as? String ?? ""
+                    vc.socialId = params[RegisterParam.keys.social_id] as? String ?? ""
+                    self.present(vc, animated: true, completion: nil)
+                } else{
+                    ToastManager.show(title:  nullStringToEmpty(string: (dataDict as? SocialLoginEntity)?.message), state: .error)
+                }
             }
-//            if self.signInModel?.kyc == 0 {
-//                 self.push(id: Storyboard.Ids.DrawerController, animation: true)
-//            } else {
-//                ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-//                self.push(id: Storyboard.Ids.DrawerController, animation: true)
-//            }
-//            if self.signInModel?.kyc == 0 {
-//                guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as? KYCMatiViewController  else { return }
-//                self.navigationController?.pushViewController(vc, animated: true)
-//            } else {
-//                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
-//
-//                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
-//                    vc.changePINStr = "changePINStr"
-//                    self.navigationController?.pushViewController(vc, animated: true)
-//
-//                } else {
-//                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-//                    self.push(id: Storyboard.Ids.DrawerController, animation: true)
-//                }
-//            }
-            // }
-            
-            
         default:
             break
         }
-    }
-    
-    func showSuccessWithParams(statusCode: Int, params: [String : Any], api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        if statusCode == StatusCode.socialSignupSuccessCode.rawValue {
-            let vc = LoginWithEmailVC.instantiate(fromAppStoryboard: .Products)
-            vc.socialLoginType = socialLoginType
-            vc.name = params[RegisterParam.keys.name] as? String ?? ""
-            vc.email = params[RegisterParam.keys.email] as? String ?? ""
-            vc.socialId = params[RegisterParam.keys.social_id] as? String ?? ""
-            self.present(vc, animated: true, completion: nil)
-        }
+        //
+        
     }
     
     func showError(error: CustomError) {
@@ -434,27 +413,22 @@ extension SignInViewController: PresenterOutputProtocol {
             let vc = LoginWithEmailVC.instantiate(fromAppStoryboard: .Products)
             vc.socialLoginSuccess = { [weak self] in
                 guard let selff = self else { return }
-                if User.main.kyc == 0 {
-                    selff.push(id: Storyboard.Ids.DrawerController, animation: true)
-                } else {
-                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-                    selff.push(id: Storyboard.Ids.DrawerController, animation: true)
+                switch User.main.trulioo_kyc_status {
+                case 0:
+                    let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                    selff.navigationController?.pushViewController(vc, animated: true)
+                case 1:
+                    let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
+                    selff.navigationController?.pushViewController(vc, animated: true)
+                default:
+                    let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
+                    selff.navigationController?.pushViewController(vc, animated: true)
                 }
-//                if User.main.g2f_temp == 1 || User.main.pin_status == 1  {
-//
-//                    guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.OtpController) as? OtpController else { return }
-//                    vc.changePINStr = "changePINStr"
-//                    selff.navigationController?.pushViewController(vc, animated: true)
-//
-//                } else {
-//                    ToastManager.show(title:  SuccessMessage.string.loginSucess.localize(), state: .success)
-//                    selff.push(id: Storyboard.Ids.DrawerController, animation: true)
-//                }
             }
             vc.socialLoginFailure = { [weak self] in
             guard let selff = self else { return }
                 //Sonu will let us know
-                print("")
+                print(selff)
             }
             vc.socialLoginType = socialLoginType
             vc.name = socialLoginParams[RegisterParam.keys.name] as? String ?? ""

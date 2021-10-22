@@ -52,10 +52,6 @@ class KYCMatiViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        
-        
-        
         self.loadProfileDetails()
         
     }
@@ -198,7 +194,6 @@ extension KYCMatiViewController: PresenterOutputProtocol {
     }
     
     func showError(error: CustomError) {
-        
         self.loader.isHidden = true
         ToastManager.show(title: nullStringToEmpty(string: error.localizedDescription), state: .error)
     }
