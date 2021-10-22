@@ -23,6 +23,7 @@ target 'ViperBaseiOS13' do
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Crashlytics'
   pod 'Firebase/Analytics'
   pod 'GoogleSignIn'
   pod 'LinkedinSwift'
