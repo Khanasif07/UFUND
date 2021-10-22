@@ -234,20 +234,20 @@ extension MyWalletVC {
             currencyTextField.isUserInteractionEnabled = true
             currencyTextField.isHidden = false
             currencyImgView.isHidden = false
-            if selectedCurrencyType == "ETH"{
-                 self.yourWalletBalanceLbl.text = "\(walletBalance.eth ?? 0.0 )"
-                 currencyImgView.image = #imageLiteral(resourceName: "eth")
-            } else {
-                 self.yourWalletBalanceLbl.text = "\(walletBalance.btc ?? 0.0 )"
-                 currencyImgView.image = #imageLiteral(resourceName: "btc")
-            }
+//            if selectedCurrencyType == "ETH"{
+//                 self.yourWalletBalanceLbl.text = "\(walletBalance.eth ?? 0.0 )"
+//                 currencyImgView.image = #imageLiteral(resourceName: "eth")
+//            } else {
+//                 self.yourWalletBalanceLbl.text = "\(walletBalance.btc ?? 0.0 )"
+//                 currencyImgView.image = #imageLiteral(resourceName: "btc")
+//            }
         } else {
             currencyTextField.rightView = nil
             currencyTextField.inputView = nil
             currencyTextField.text = " Dollar (USD)"
             currencyImgView.isHidden = true
             currencyTextField.isUserInteractionEnabled = false
-            self.yourWalletBalanceLbl.text = "$ " + "\(walletBalance.wallet ?? 0.0 )"
+//            self.yourWalletBalanceLbl.text = "$ " + "\(walletBalance.wallet ?? 0.0 )"
         }
     }
     

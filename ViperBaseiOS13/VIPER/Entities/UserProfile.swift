@@ -134,8 +134,8 @@ struct UserProfile : Mappable {
         company_email <- map["company_email"]
         company_telephone <- map["company_telephone"]
         //
-        revenue <- map["revenue"]
-        total_annual_revenue <- map["total_annual_revenue"]
+        revenue <- (map["revenue"],DoubleTransform())
+        total_annual_revenue <- (map["total_annual_revenue"],DoubleTransform())
         income_type <- map["income_type"]
         account_type <- map["account_type"]
         user_account_type <- map["user_account_type"]
@@ -181,7 +181,7 @@ struct SuccessDict : Mappable {
         currency <- map["currency"]
         item_name <- map["item_name"]
         merchant <- map["merchant"]
-        amount <- map["amount"]
+        amount <- (map["amount"],DoubleTransform())
         print("**amount",amount)
         if amount == nil {
             
@@ -268,7 +268,7 @@ struct PayHistory : Mappable {
         request <- map["request"]
         type <- map["type"]
         transaction_id <- map["transaction_id"]
-        amount <- map["amount"]
+        amount <- (map["amount"],DoubleTransform())
         status <- map["status"]
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]

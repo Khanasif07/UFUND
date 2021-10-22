@@ -69,10 +69,10 @@ struct History : Mappable {
         payment_type <- map["payment_type"]
         type <- map["type"]
         status <- map["status"]
-        amount <- map["amount"]
+        amount <- (map["amount"],DoubleTransform())
         exchange_usd_value <- map["exchange_usd_value"]
-        btc_amount <- map["btc_amount"]
-        eth_amount <- map["eth_amount"]
+        btc_amount <- (map["btc_amount"],DoubleTransform())
+        eth_amount <- (map["eth_amount"],DoubleTransform())
         via <- map["via"]
         tx_hash <- map["tx_hash"]
         token_id <- map["token_id"]
@@ -82,7 +82,7 @@ struct History : Mappable {
         user <- map["user"]
         payment_id <- map["payment_id"]
         product <- map["product"]
-        profit_amount <- map["profit_amount"]
+        profit_amount <- (map["profit_amount"],DoubleTransform())
     }
 
 }
@@ -150,9 +150,9 @@ struct UserHistory : Mappable {
         user_type <- map["user_type"]
         country_id <- map["country_id"]
         city_id <- map["city_id"]
-        wallet <- map["wallet"]
-        eth <- map["eth"]
-        btc <- map["btc"]
+        wallet <- (map["wallet"],DoubleTransform())
+        eth <- (map["eth"],DoubleTransform())
+        btc <- (map["btc"],DoubleTransform())
         btc_wallet <- map["btc_wallet"]
         eth_wallet <- map["eth_wallet"]
         kyc <- map["kyc"]
@@ -227,10 +227,10 @@ struct Invest_history : Mappable {
         payment_type <- map["payment_type"]
         type <- map["type"]
         status <- map["status"]
-        amount <- map["amount"]
+        amount <- (map["amount"],DoubleTransform())
         exchange_usd_value <- map["exchange_usd_value"]
-        btc_amount <- map["btc_amount"]
-        eth_amount <- map["eth_amount"]
+        btc_amount <- (map["btc_amount"],DoubleTransform())
+        eth_amount <- (map["eth_amount"],DoubleTransform())
         via <- map["via"]
         tx_hash <- map["tx_hash"]
         token_id <- map["token_id"]
@@ -271,10 +271,10 @@ struct Buyhistory : Mappable {
         payment_type <- map["payment_type"]
         type <- map["type"]
         status <- map["status"]
-        amount <- map["amount"]
+        amount <- (map["amount"],DoubleTransform())
         exchange_usd_value <- map["exchange_usd_value"]
-        btc_amount <- map["btc_amount"]
-        eth_amount <- map["eth_amount"]
+        btc_amount <- (map["btc_amount"],DoubleTransform())
+        eth_amount <- (map["eth_amount"],DoubleTransform())
         via <- map["via"]
         tx_hash <- map["tx_hash"]
         token_id <- map["token_id"]

@@ -236,7 +236,7 @@ extension ProductDetailPopUpVC {
             self.titleLbl.text = self.productModel?.product_title ?? ""
             self.totalProductPriceTitleLbl.text = "Total Product Amount"
             self.tokenQtyLbl.text = "Product Quantity"
-            self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.product_value ?? Int(0.0))"
+            self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.product_value ?? (0.0))"
             self.currentValInvPer = 1
             let imgEntity =  productModel?.product_image ?? ""
             let url = URL(string: nullStringToEmpty(string: imgEntity))

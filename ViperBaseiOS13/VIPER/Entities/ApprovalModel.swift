@@ -78,8 +78,8 @@ struct InvestementEntity : Mappable {
         token_image <- map["token_image"]
         category_id <- map["category_id"]
         product_description <- map["product_description"]
-        product_amount <- map["product_amount"]
-        product_value <- map["total_product_value"]
+        product_amount <- (map["product_amount"],DoubleTransform())
+        product_value <- (map["total_product_value"],DoubleTransform())
         brand <- map["brand"]
         ean_upc_code <- map["ean_upc_code"]
         hs_code <- map["hs_code"]

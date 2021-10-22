@@ -39,7 +39,7 @@ struct Transactions : Mappable {
 		user_token_id <- map["user_token_id"]
 		address <- map["address"]
 		txHash <- map["txHash"]
-		amount <- map["amount"]
+		amount <- (map["amount"],DoubleTransform())
 		status <- map["status"]
 		created_at <- map["created_at"]
 		updated_at <- map["updated_at"]

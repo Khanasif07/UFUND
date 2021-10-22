@@ -326,7 +326,8 @@ extension AddProductsVC : UITextFieldDelegate {
                     case 0:
                         self.addProductModel.category_id = Int(text)
                     case 1:
-                        self.addProductModel.product_value = Int(text)
+//                        self.addProductModel.product_value = Int(text)
+                        self.addProductModel.product_value = Double(text)
                     case 2:
                         self.addProductModel.invest_profit_per = Int(text)
                     case 3:

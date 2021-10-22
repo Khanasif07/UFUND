@@ -47,9 +47,9 @@ struct Get_token : Mappable {
 		user_id <- map["user_id"]
 		tokenname <- map["tokenname"]
 		tokensymbol <- map["tokensymbol"]
-		tokenvalue <- map["tokenvalue"]
-		total_token_value <- map["total_token_value"]
-		commission_amount <- map["commission_amount"]
+		tokenvalue <- (map["tokenvalue"],DoubleTransform())
+		total_token_value <- (map["total_token_value"],DoubleTransform())
+		commission_amount <- (map["commission_amount"],DoubleTransform())
 		commission_per <- map["commission_per"]
 		tokensupply <- map["tokensupply"]
 		avilable_token <- map["avilable_token"]

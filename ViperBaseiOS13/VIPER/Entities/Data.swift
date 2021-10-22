@@ -55,11 +55,11 @@ struct WalletBalance : Mappable {
 
     mutating func mapping(map: Map) {
 
-        total_amount <- map["total_amount"]
-        wallet <- map["wallet"]
-        eth <- map["eth"]
-        btc <- map["btc"]
-        min_eth <- map["min_eth"]
+        total_amount <- (map["total_amount"], DoubleTransform())
+        wallet <- (map["wallet"], DoubleTransform())
+        eth <- (map["eth"], DoubleTransform())
+        btc <- (map["btc"], DoubleTransform())
+        min_eth <- (map["min_eth"], DoubleTransform())
     }
 
 }
@@ -291,3 +291,39 @@ struct YeildBuyInvestorArray: Mappable {
        }
 }
 
+
+
+public class DoubleTransform: TransformType {
+  
+    public typealias Object = Double
+    public typealias JSON = Any?
+
+    public init() {}
+
+    public func transformFromJSON(_ value: Any?) -> Double? {
+
+        var result: Double?
+
+        guard let json = value else {
+            return result
+        }
+
+        if json is Double {
+            result = (json as! Double)
+        }
+        if json is String {
+            result = Double(json as! String)
+        }
+
+        return result
+    }
+
+    public func transformToJSON(_ value: Double?) -> Any?? {
+
+        guard let object = value else {
+            return nil
+        }
+
+        return String(object)
+    }
+}

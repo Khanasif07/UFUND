@@ -122,7 +122,7 @@ struct ProductModel: Mappable {
     var pending_invest_per : Int?
     var final_profit_invest_per : Int?
     var invest_profit_per : Int?
-    var product_value : Int?
+    var product_value : Double?
     var brand : String?
     var ean_upc_code : String?
     var hs_code : String?
@@ -209,14 +209,14 @@ struct ProductModel: Mappable {
         token_image <- map["token_image"]
         category_id <- map["category_id"]
         product_description <- map["product_description"]
-        product_amount <- map["product_amount"]
-        total_product_value <- map["total_product_value"]
+        product_amount <- (map["product_amount"], DoubleTransform())
+        total_product_value <- (map["total_product_value"], DoubleTransform())
         commission_amount <- map["commission_amount"]
         commission_per <- map["commission_per"]
         pending_invest_per <- map["pending_invest_per"]
         final_profit_invest_per <- map["final_profit_invest_per"]
         invest_profit_per <- map["invest_profit_per"]
-        product_value <- map["product_value"]
+        product_value <- (map["product_value"], DoubleTransform())
         brand <- map["brand"]
         ean_upc_code <- map["ean_upc_code"]
         hs_code <- map["hs_code"]
@@ -227,12 +227,12 @@ struct ProductModel: Mappable {
         request_deploy <- map["request_deploy"]
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
-        investment_product_total <- map["investment_product_total"]
+        investment_product_total <- (map["investment_product_total"], DoubleTransform())
         tokenrequest <- map["tokenrequest"]
         tokenname <- map["tokenname"]
         tokensupply <- map["tokensupply"]
         tokensymbol <- map["tokensymbol"]
-        tokenvalue <- map["tokenvalue"]
+        tokenvalue <- (map["tokenvalue"], DoubleTransform())
         user <- map["user"]
         decimal <- map["decimal"]
         contract_address <- map["contract_address"]
@@ -253,8 +253,8 @@ struct ProductModel: Mappable {
         assettype <- map["assettype"]
         tokentype <- map["tokentype"]
         product_child_image <- map["product_child_image"]
-        invested_amount <- map["invested_amount"]
-        earnings <- map ["earnings"]
+        invested_amount <- (map["invested_amount"], DoubleTransform())
+        earnings <- (map["earnings"], DoubleTransform())
         product_investment_count <- map["product_investment_count"]
         product_status <- map["product_status"]
         token_status <- map["token_status"]
@@ -443,8 +443,8 @@ struct  TokenRequest : Mappable {
         user_id <- map["user_id"]
         tokenname <- map["tokenname"]
         tokensymbol <- map["tokensymbol"]
-        tokenvalue <- map["total_token_value"]
-        tokensupply <- map["tokensupply"]
+        tokenvalue <- (map["total_token_value"], DoubleTransform())
+        tokensupply <- (map["tokensupply"], DoubleTransform())
         decimal <- map["decimal"]
         contract_address <- map["contract_address"]
         tokenimage <- map["tokenimage"]
@@ -495,12 +495,12 @@ struct TokenDetailsEntity : Mappable {
     mutating func mapping(map: Map) {
        payment_method_type <- map["payment_method_type"]
 //        print("**payment_method_type",payment_method_type)
-        avilable_token <- map["avilable_token"]
+        avilable_token <- (map["avilable_token"], DoubleTransform())
         id <- map["id"]
         user_id <- map["user_id"]
         tokenname <- map["tokenname"]
         tokensymbol <- map["tokensymbol"]
-        tokenvalue <- map["total_token_value"]
+        tokenvalue <- (map["total_token_value"], DoubleTransform())
         tokensupply <- map["tokensupply"]
         contract_address <- map["contract_address"]
         token_image <- map["token_image"]
@@ -564,7 +564,7 @@ struct Tokenrequest : Mappable {
         tokenname <- map["tokenname"]
         tokensymbol <- map["tokensymbol"]
         tokenvalue <- map["tokenvalue"]
-        total_token_value <- map["total_token_value"]
+        total_token_value <- (map["total_token_value"], DoubleTransform())
         commission_amount <- map["commission_amount"]
         commission_per <- map["commission_per"]
         tokensupply <- map["tokensupply"]
@@ -625,7 +625,7 @@ struct Asset : Mappable {
         asset_title <- map["asset_title"]
         asset_image <- map["asset_image"]
         description <- map["description"]
-        asset_value <- map["asset_value"]
+        asset_value <- (map["asset_value"], DoubleTransform())
         rating <- map["rating"]
         category_id <- map["category_id"]
         asset_type <- map["asset_type"]
@@ -728,7 +728,7 @@ var transactions : [Transactions]?
     mutating func mapping(map: Map) {
 
         user <- map["user"]
-        eth_balance <- map["eth_balance"]
+        eth_balance <- (map["eth_balance"], DoubleTransform())
         tokens <- map["tokens"]
         transactions <- map["transactions"]
     }
@@ -768,9 +768,9 @@ struct Token_details : Mappable {
         user_id <- map["user_id"]
         tokenname <- map["tokenname"]
         tokensymbol <- map["tokensymbol"]
-        tokenvalue <- map["tokenvalue"]
-        total_token_value <- map["total_token_value"]
-        commission_amount <- map["commission_amount"]
+        tokenvalue <- (map["tokenvalue"], DoubleTransform())
+        total_token_value <- (map["total_token_value"], DoubleTransform())
+        commission_amount <- (map["commission_amount"], DoubleTransform())
         commission_per <- map["commission_per"]
         tokensupply <- map["tokensupply"]
         decimal <- map["decimal"]
@@ -807,7 +807,7 @@ struct Tokens : Mappable {
         id <- map["id"]
         user_id <- map["user_id"]
         user_contract_id <- map["user_contract_id"]
-        token_acquire <- map["token_acquire"]
+        token_acquire <- (map["token_acquire"], DoubleTransform())
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
         token_details <- map["token_details"]

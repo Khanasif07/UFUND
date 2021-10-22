@@ -106,8 +106,8 @@ struct FilterDataEntity : Mappable {
     mutating func mapping(map: Map) {
 
         categories <- map["categories"]
-        range_min <- map["range_min"]
-        range_max <- map["range_max"]
+        range_min <- (map["range_min"], DoubleTransform())
+        range_max <- (map["range_max"], DoubleTransform())
     }
 
 }
