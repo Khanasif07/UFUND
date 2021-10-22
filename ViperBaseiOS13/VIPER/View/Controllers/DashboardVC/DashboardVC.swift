@@ -253,7 +253,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             cell.submittedProductLbl.text = "Submitted Products"
             cell.submittedProductValue.textColor = #colorLiteral(red: 0.3176470588, green: 0.3450980392, blue: 0.7333333333, alpha: 1)
             cell.productImgView.image = #imageLiteral(resourceName: "icProductWithBg")
-            cell.bottomStackView.isHidden = (self.campaignerDashboardData?.submited_products ?? 0 == 0)
+//            cell.bottomStackView.isHidden = (self.campaignerDashboardData?.submited_products ?? 0 == 0)
             cell.chartStackView.isHidden = (self.campaignerDashboardData?.submited_products ?? 0 == 0)
             cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_products ?? 0)"
             return cell
@@ -289,7 +289,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             cell.productImgView.image = #imageLiteral(resourceName: "icTokenizedAssetBg")
             cell.submittedProductLbl.text = "Submitted Assets"
             cell.submittedProductValue.textColor = #colorLiteral(red: 0.9568627451, green: 0.6235294118, blue: 0.03921568627, alpha: 1)
-            cell.bottomStackView.isHidden = (self.campaignerDashboardData?.submited_assets ?? 0 == 0)
+//            cell.bottomStackView.isHidden = (self.campaignerDashboardData?.submited_assets ?? 0 == 0)
             cell.chartStackView.isHidden = (self.campaignerDashboardData?.submited_assets ?? 0 == 0)
             cell.submittedProductValue.text = "\(self.campaignerDashboardData?.submited_assets ?? 0)"
             return cell
