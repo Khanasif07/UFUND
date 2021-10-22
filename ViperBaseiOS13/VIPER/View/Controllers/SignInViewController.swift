@@ -377,19 +377,19 @@ extension SignInViewController: PresenterOutputProtocol {
                         switch User.main.trulioo_kyc_status {
                         case 0:
                             let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
-                            self?.navigationController?.pushViewController(vc, animated: true)
+                            selff.navigationController?.pushViewController(vc, animated: true)
                         case 1:
                             let vc =  Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.DrawerController)
-                            self?.navigationController?.pushViewController(vc, animated: true)
+                            selff.navigationController?.pushViewController(vc, animated: true)
                         default:
                             let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCMatiViewController) as! KYCMatiViewController
-                            self?.navigationController?.pushViewController(vc, animated: true)
+                            selff.navigationController?.pushViewController(vc, animated: true)
                         }
                     }
                     vc.socialLoginFailure = { [weak self] in
                     guard let selff = self else { return }
                         //Sonu will let us know
-                        print("")
+                        print(selff)
                     }
                     vc.socialLoginType = self.socialLoginType
                     vc.name = params[RegisterParam.keys.name] as? String ?? ""
