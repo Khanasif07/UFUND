@@ -67,7 +67,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) requires access to the camera in order to take photos for upload.</string>
+	<string>$(PRODUCT_NAME) requires access to the camera in order to take photos for uploading your profile photo as well as uploading Assets  and products photo.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) requires access to the photo library to upload your profile photo as well as upload Assets  and products photo.</string>
 	<key>NSUbiquitousContainers</key>
