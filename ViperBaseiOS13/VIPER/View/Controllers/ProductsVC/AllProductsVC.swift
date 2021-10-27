@@ -193,6 +193,7 @@ extension AllProductsVC {
     
     //MARK:- PRDUCTS LIST API CALL
     private func getProductList(page:Int = 1,search: String = "") {
+        self.loader.isHidden = false
         switch (userType,false) {
         case (UserType.campaigner.rawValue,false):
             var params = ProductFilterVM.shared.paramsDictForProducts
@@ -215,9 +216,9 @@ extension AllProductsVC {
             }
             self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
+            self.loader.isHidden = true
             break
         }
-        self.loader.isHidden = false
     }
     
     func showFilterVC(_ vc: UIViewController, index: Int = 0) {
@@ -518,6 +519,7 @@ extension AllProductsVC: ProductFilterVCDelegate {
     }
     
     func filterApplied(_ category: ([CategoryModel], Bool), _ status: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool)) {
+        self.loader.isHidden = false
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0
@@ -570,6 +572,7 @@ extension AllProductsVC: ProductFilterVCDelegate {
             params[ProductCreate.keys.sort_order] = "DESC"
             params[ProductCreate.keys.sort_by]  = "created_at"
         default:
+            self.loader.isHidden = true
             print("Add Nothing")
         }
         switch (userType,false) {
@@ -580,9 +583,9 @@ extension AllProductsVC: ProductFilterVCDelegate {
              params[ProductCreate.keys.new_products] = productType == .AllProducts ? 0 : 1
              self.presenter?.HITAPI(api: Base.investerProductsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
+            self.loader.isHidden = true
             break
         }
-        self.loader.isHidden = false
     }
 }
 

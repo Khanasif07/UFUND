@@ -515,11 +515,11 @@ extension ProductTokenInvestmentVC: InvestmentFilterVCDelegate {
             print("Add Nothing")
         }
         params[ProductCreate.keys.search] = self.searchText
+        self.loader.isHidden = false
         if investmentType == .MyProductInvestment {
             self.presenter?.HITAPI(api: Base.myProductInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         } else {
             self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         }
-        self.loader.isHidden = false
     }
 }

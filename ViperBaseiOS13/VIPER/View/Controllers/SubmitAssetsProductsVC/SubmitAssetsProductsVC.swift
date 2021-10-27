@@ -295,7 +295,6 @@ extension SubmitAssetsProductsVC {
             self.presenter?.HITAPI(api: Base.campaigner_create_asset.rawValue, params: params, methodType: .POST, modelClass: SuccessDict.self, token: true)
 //            self.presenter?.UploadData(api: Base.campaigner_create_asset.rawValue, params: params, imageData: documentData , methodType: .POST, modelClass: SuccessDict.self, token: true)
         }
-        self.loader.isHidden = false
         
     }
 }

@@ -317,6 +317,7 @@ extension MyInvestmentVC : DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 //===========================
 extension MyInvestmentVC: ProductSortVCDelegate  {
     func sortingApplied(sortType: String) {
+        self.loader.isHidden = false
         var params :[String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
         params[ProductCreate.keys.page] = 1
         params[ProductCreate.keys.search] = self.searchText
@@ -335,6 +336,7 @@ extension MyInvestmentVC: ProductSortVCDelegate  {
             params[ProductCreate.keys.sort_order] = "DESC"
             params[ProductCreate.keys.sort_by]  = "created_at"
         default:
+            self.loader.isHidden = true
             print("Add nothing")
         }
         if investmentType == .MyProductInvestment {
@@ -342,7 +344,7 @@ extension MyInvestmentVC: ProductSortVCDelegate  {
         } else {
             self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         }
-        self.loader.isHidden = false
+//        self.loader.isHidden = false
     }
 }
 
@@ -403,6 +405,7 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
     }
     
     func filterApplied(_ category: ([CategoryModel], Bool), _ start_from: (String, Bool), _ start_to: (String, Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool), _ maturity_from: (String, Bool), _ maturity_to: (String, Bool),_ min_earning: (CGFloat, Bool), _ max_earning: (CGFloat, Bool), _ byRewards: ([String], Bool), _ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool)) {
+        self.loader.isHidden = false
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0
@@ -489,6 +492,7 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
             params[ProductCreate.keys.sort_order] = "DESC"
             params[ProductCreate.keys.sort_by]  = "created_at"
         default:
+            self.loader.isHidden = true
             print("Add Nothing")
         }
         params[ProductCreate.keys.search] = self.searchText
@@ -497,7 +501,6 @@ extension MyInvestmentVC: InvestmentFilterVCDelegate {
         } else {
             self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         }
-        self.loader.isHidden = false
     }
 }
 

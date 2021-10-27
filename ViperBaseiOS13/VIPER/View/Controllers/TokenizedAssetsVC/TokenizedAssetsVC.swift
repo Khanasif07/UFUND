@@ -174,6 +174,7 @@ extension TokenizedAssetsVC {
     
     //MARK:- PRDUCTS LIST API CALL
     private func getTokenizedAssets(page:Int = 1,search: String = "") {
+        self.loader.isHidden = false
         switch (userType,true) {
         case (UserType.investor.rawValue,true):
             var params = ProductFilterVM.shared.paramsDictForAssets
@@ -202,9 +203,10 @@ extension TokenizedAssetsVC {
             }
             self.presenter?.HITAPI(api: Base.campaignerTokenizedAssetsDefault.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
         default:
+            self.loader.isHidden = true
             break
         }
-        self.loader.isHidden = false
+        
     }
     
     func showFilterVC(_ vc: UIViewController, index: Int = 0) {
@@ -467,6 +469,7 @@ extension TokenizedAssetsVC: UISearchBarDelegate{
 
 extension TokenizedAssetsVC: AssetsFilterVCDelegate {
     func filterApplied(_ category: ([CategoryModel], Bool),_ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
+        self.loader.isHidden = false
         //
         if category.1 {
             ProductFilterVM.shared.selectedCategoryListing = category.0
@@ -539,9 +542,10 @@ extension TokenizedAssetsVC: AssetsFilterVCDelegate {
                 self.presenter?.HITAPI(api: Base.new_tokenized_asset.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             }
         default:
+            self.loader.isHidden = true
             break
         }
-        self.loader.isHidden = false
+//        self.loader.isHidden = false
     }
     
     func filterDataWithoutFilter(_ category: ([CategoryModel], Bool),_ asset_types: ([AssetTokenTypeModel], Bool), _ token_types: ([AssetTokenTypeModel], Bool), _ byRewards: ([String], Bool), _ min: (CGFloat, Bool), _ max: (CGFloat, Bool),_ start_from: (String, Bool), _ start_to: (String, Bool), _ close_from: (String, Bool), _ close_to: (String, Bool)) {
