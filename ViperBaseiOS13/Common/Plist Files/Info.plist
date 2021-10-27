@@ -67,13 +67,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like to access camera</string>
-	<key>NSContactsUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like to access contacts</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>need aces</string>
+	<string>$(PRODUCT_NAME) requires access to the camera in order to take photos for upload.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like to access photo library</string>
+	<string>$(PRODUCT_NAME) requires access to the photo library to upload your profile photo as well as upload Assets  and products photo.</string>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.$(PRODUCT_BUNDLE_IDENTIFIER)</key>

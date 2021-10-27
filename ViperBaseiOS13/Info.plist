@@ -4,12 +4,6 @@
 <dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) need permission for access</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) need permission for access</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) need permission for access</string>
 	<key>FacebookDisplayName</key>
 	<string>UFUND</string>
 	<key>CFBundleURLTypes</key>
@@ -63,13 +57,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) need permission for access</string>
-	<key>NSContactsUsageDescription</key>
-	<string>$(PRODUCT_NAME) need permission for access</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>$(PRODUCT_NAME) need permission for access</string>
+	<string>$(PRODUCT_NAME) requires access to the camera in order to take photos for upload.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) need permission for access</string>
+	<string>$(PRODUCT_NAME) requires access to the photo library to upload your profile photo as well as upload Assets  and products photo. </string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-BoldItalic.ttf</string>
