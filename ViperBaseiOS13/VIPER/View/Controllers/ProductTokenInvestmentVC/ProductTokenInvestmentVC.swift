@@ -207,6 +207,7 @@ extension ProductTokenInvestmentVC {
     
     //MARK:- PRDUCTS LIST API CALL
     public func getProductList(page:Int = 1,loader:Bool = false,searchValue:String = "") {
+        self.loader.isHidden = loader
         switch (userType,false) {
         case (UserType.investor.rawValue,false):
             var params : [String:Any] =  ProductFilterVM.shared.paramsDictForInvestment
@@ -226,6 +227,7 @@ extension ProductTokenInvestmentVC {
                 params[ProductCreate.keys.sort_order] = "DESC"
                 params[ProductCreate.keys.sort_by]  = "created_at"
             default:
+                self.loader.isHidden = true
                 print("Add Nothing")
             }
             if investmentType == .MyProductInvestment {
@@ -234,9 +236,10 @@ extension ProductTokenInvestmentVC {
                 self.presenter?.HITAPI(api: Base.myTokenInvestment.rawValue, params: params, methodType: .GET, modelClass: ProductsModelEntity.self, token: true)
             }
         default:
+            self.loader.isHidden = true
             break
         }
-        self.loader.isHidden = loader
+        
     }
     
     private func searchProducts(searchValue: String,page:Int = 1){
