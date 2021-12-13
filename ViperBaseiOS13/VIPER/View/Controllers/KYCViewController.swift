@@ -116,7 +116,18 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     @IBOutlet weak var KycSaveButton: UIButton!
     @IBOutlet weak var dobTxtFld: UITextField!
     @IBOutlet weak var kycLbl: UILabel!
-    
+    @IBOutlet weak var buildingNumberTxtFld: UITextField!
+    @IBOutlet weak var buildingNameTxtFld: UITextField!
+    @IBOutlet weak var distrcitTxtFld: UITextField!
+    @IBOutlet weak var citytxtFld: UITextField!
+    @IBOutlet weak var streetTypeTxtFld: UITextField!
+    @IBOutlet weak var streetNameTxtFld: UITextField!
+    @IBOutlet weak var unitNumberTxtFld: UITextField!
+    @IBOutlet weak var postalCodeTxtFld: UITextField!
+    @IBOutlet weak var poBoxTxtFld: UITextField!
+    @IBOutlet weak var addressTxtFld: UITextField!
+    @IBOutlet weak var nationalIdTxtFld: UITextField!
+    @IBOutlet weak var typeTxtFld: UITextField!
     
 //    var selectedDoc = [SelectedDoc]()
     weak var delegate : KYCViewControllerDelegate?
@@ -219,11 +230,9 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
         lastNameKycTxT.applyEffectToTextField(placeHolderString: Constants.string.lastName.localize())
         countryTxtFld.applyEffectToTextField(placeHolderString: Constants.string.country.localize())
         dobTxtFld.applyEffectToTextField(placeHolderString: Constants.string.dob.localize())
-        firstNameKycTxT.delegate = self
-        lastNameKycTxT.delegate = self
-        countryTxtFld.delegate = self
-        docsTxtFld.delegate = self
-        dobTxtFld.delegate = self
+        [firstNameKycTxT,lastNameKycTxT,countryTxtFld,docsTxtFld,dobTxtFld,buildingNumberTxtFld,buildingNameTxtFld,distrcitTxtFld,citytxtFld,unitNumberTxtFld,postalCodeTxtFld,streetTypeTxtFld,streetNameTxtFld,poBoxTxtFld,addressTxtFld,nationalIdTxtFld,typeTxtFld].forEach { (txtfld) in
+            txtfld?.delegate = self
+        }
         lastNameKycTxT.isUserInteractionEnabled = false
         firstNameKycTxT.isUserInteractionEnabled = false
         countryTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
@@ -465,12 +474,12 @@ extension KYCViewController: PresenterOutputProtocol {
     
     
     func getKYC() {
-        self.loader.isHidden = false
+        self.loader.isHidden = true
         self.presenter?.HITAPI(api: Base.kyc.rawValue, params: nil, methodType: .GET, modelClass: KYCDetail.self, token: true)
     }
     
     func getLogout() {
-        self.loader.isHidden = false
+        self.loader.isHidden = true
         var param = [String: AnyObject]()
         param[RegisterParam.keys.id] = User.main.id as AnyObject
         self.presenter?.HITAPI(api: Base.logout.rawValue, params: param, methodType: .POST, modelClass: SuccessDict.self, token: true)
@@ -577,6 +586,7 @@ extension KYCViewController: PresenterOutputProtocol {
             
             
         default:
+            self.loader.isHidden = true
             break
         }
     }
@@ -634,6 +644,30 @@ extension KYCViewController: UITextFieldDelegate{
                     self.yearOfBirth =   " \(year)"
                 }
             }
+        case buildingNumberTxtFld:
+            print(textField.text ?? "")
+        case buildingNameTxtFld:
+            print(textField.text ?? "")
+        case unitNumberTxtFld:
+            print(textField.text ?? "")
+        case streetNameTxtFld:
+            print(textField.text ?? "")
+        case streetTypeTxtFld:
+            print(textField.text ?? "")
+        case citytxtFld:
+            print(textField.text ?? "")
+        case distrcitTxtFld:
+            print(textField.text ?? "")
+        case postalCodeTxtFld:
+            print(textField.text ?? "")
+        case poBoxTxtFld:
+            print(textField.text ?? "")
+        case addressTxtFld:
+            print(textField.text ?? "")
+        case nationalIdTxtFld:
+            print(textField.text ?? "")
+        case typeTxtFld:
+            print(textField.text ?? "")
         default:
             print("Do Nothing")
         }
@@ -867,7 +901,7 @@ extension KYCViewController{
                           frontImage: capturedFrontImage ?? UIImage(), backImage: capturedBackImage, liveImage: capturedSelfieImage,
                           frontMetaData: capturedFrontMetaData, backMetaData: capturedBackMetaData, liveMetaData: capturedSelfieMetaData)
         self.piiInfo = pii
-        self.loader.isHidden = false
+        self.loader.isHidden = true
         DispatchQueue.global(qos:.userInteractive).async{
             if(self.piiInfo == nil){
                                 self.appendText(text: "Error, no info availble")
@@ -999,7 +1033,7 @@ extension KYCViewController{
     }
     
     public func confirmed(){
-        self.loader.isHidden = false
+//        self.loader.isHidden = false
         getMiSnapMIBIDataAsJsonString(tempMibiData, docType:currentImage, onResult: findNextView)
     }
     

@@ -59,7 +59,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ARE YOU AN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaz-0t-yDy">
-                                        <rect key="frame" x="25" y="122.5" width="364" height="23.5"/>
+                                        <rect key="frame" x="25" y="120.5" width="364" height="28"/>
                                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -103,7 +103,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="95.5"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Campaigner?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2F-mp-hUj">
-                                                        <rect key="frame" x="0.0" y="115.5" width="187.5" height="21"/>
+                                                        <rect key="frame" x="0.0" y="115.5" width="187.5" height="25.5"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -1613,7 +1613,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="40" width="414" height="778"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nTR-OK-V8y">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1012"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1873"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S47-al-0FO">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="165"/>
@@ -1633,13 +1633,13 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJS-vU-cqf">
-                                                        <rect key="frame" x="0.0" y="165" width="414" height="347"/>
+                                                        <rect key="frame" x="0.0" y="165" width="414" height="1208"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plR-jX-dOE">
-                                                                <rect key="frame" x="20" y="0.0" width="374" height="347"/>
+                                                                <rect key="frame" x="20" y="0.0" width="374" height="1208"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zMm-hz-Jm0">
-                                                                        <rect key="frame" x="0.0" y="26" width="374" height="295"/>
+                                                                        <rect key="frame" x="0.0" y="90.5" width="374" height="1027"/>
                                                                         <subviews>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8S-Tl-bqj">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="51"/>
@@ -1728,6 +1728,210 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     <constraint firstItem="SuG-TQ-A0O" firstAttribute="top" secondItem="FX6-4D-qZ4" secondAttribute="top" id="fPM-x2-g8G"/>
                                                                                 </constraints>
                                                                             </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uju-jO-61d">
+                                                                                <rect key="frame" x="0.0" y="305" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Building Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YA5-cM-7Jz">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="bottom" secondItem="YA5-cM-7Jz" secondAttribute="bottom" id="EWz-9V-LbH"/>
+                                                                                    <constraint firstItem="YA5-cM-7Jz" firstAttribute="top" secondItem="Uju-jO-61d" secondAttribute="top" id="IC1-FG-oVC"/>
+                                                                                    <constraint firstItem="YA5-cM-7Jz" firstAttribute="leading" secondItem="Uju-jO-61d" secondAttribute="leading" constant="15" id="XFD-QG-7Pa"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="YA5-cM-7Jz" secondAttribute="trailing" constant="15" id="r7w-Kx-c2F"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxB-xc-J9g">
+                                                                                <rect key="frame" x="0.0" y="366" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Building Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9hE-9I-bIg">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="bottom" secondItem="9hE-9I-bIg" secondAttribute="bottom" id="HFU-JF-4Z7"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="9hE-9I-bIg" secondAttribute="trailing" constant="15" id="Lo5-IP-2i7"/>
+                                                                                    <constraint firstItem="9hE-9I-bIg" firstAttribute="leading" secondItem="dxB-xc-J9g" secondAttribute="leading" constant="15" id="TrJ-KO-XZ5"/>
+                                                                                    <constraint firstItem="9hE-9I-bIg" firstAttribute="top" secondItem="dxB-xc-J9g" secondAttribute="top" id="kLP-aw-7BI"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RFH-Tt-DeK">
+                                                                                <rect key="frame" x="0.0" y="427" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Unit Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EvQ-tb-n0k">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="trailing" secondItem="EvQ-tb-n0k" secondAttribute="trailing" constant="15" id="2Sx-Mp-CDO"/>
+                                                                                    <constraint firstItem="EvQ-tb-n0k" firstAttribute="top" secondItem="RFH-Tt-DeK" secondAttribute="top" id="7n5-Xy-Vwf"/>
+                                                                                    <constraint firstItem="EvQ-tb-n0k" firstAttribute="leading" secondItem="RFH-Tt-DeK" secondAttribute="leading" constant="15" id="QZa-PC-4i4"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="EvQ-tb-n0k" secondAttribute="bottom" id="b47-Tb-hR9"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eP-yg-g5K">
+                                                                                <rect key="frame" x="0.0" y="488" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KF8-L5-udY">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="KF8-L5-udY" firstAttribute="top" secondItem="3eP-yg-g5K" secondAttribute="top" id="8hi-VR-R37"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="KF8-L5-udY" secondAttribute="trailing" constant="15" id="coQ-TJ-hqB"/>
+                                                                                    <constraint firstItem="KF8-L5-udY" firstAttribute="leading" secondItem="3eP-yg-g5K" secondAttribute="leading" constant="15" id="v4S-0s-zcz"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="KF8-L5-udY" secondAttribute="bottom" id="zsM-8Z-Jbj"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ao-jh-IZX">
+                                                                                <rect key="frame" x="0.0" y="549" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Street Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jJd-ir-Tim">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="jJd-ir-Tim" firstAttribute="leading" secondItem="0ao-jh-IZX" secondAttribute="leading" constant="15" id="A3h-uY-4TO"/>
+                                                                                    <constraint firstItem="jJd-ir-Tim" firstAttribute="top" secondItem="0ao-jh-IZX" secondAttribute="top" id="U27-CG-ocs"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="jJd-ir-Tim" secondAttribute="trailing" constant="15" id="kO1-XY-uXY"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="jJd-ir-Tim" secondAttribute="bottom" id="lUU-n6-g4H"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4BF-th-aOi">
+                                                                                <rect key="frame" x="0.0" y="610" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="51l-bu-Brf">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="51l-bu-Brf" firstAttribute="leading" secondItem="4BF-th-aOi" secondAttribute="leading" constant="15" id="1Z5-IK-f4P"/>
+                                                                                    <constraint firstItem="51l-bu-Brf" firstAttribute="top" secondItem="4BF-th-aOi" secondAttribute="top" id="Cts-rI-FDx"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="51l-bu-Brf" secondAttribute="bottom" id="OnU-NB-1Bw"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="51l-bu-Brf" secondAttribute="trailing" constant="15" id="q8v-64-MkE"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNN-ky-6eO">
+                                                                                <rect key="frame" x="0.0" y="671" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="District" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LdT-ym-P4y">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="trailing" secondItem="LdT-ym-P4y" secondAttribute="trailing" constant="15" id="BJ0-Za-FTH"/>
+                                                                                    <constraint firstItem="LdT-ym-P4y" firstAttribute="top" secondItem="wNN-ky-6eO" secondAttribute="top" id="Fgx-gL-t5c"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="LdT-ym-P4y" secondAttribute="bottom" id="MVK-j0-wXK"/>
+                                                                                    <constraint firstItem="LdT-ym-P4y" firstAttribute="leading" secondItem="wNN-ky-6eO" secondAttribute="leading" constant="15" id="v3z-fq-X5W"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCW-BD-1i0">
+                                                                                <rect key="frame" x="0.0" y="732" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Postal Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Af-tA-JQq">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="bottom" secondItem="5Af-tA-JQq" secondAttribute="bottom" id="2Hm-Mh-xeZ"/>
+                                                                                    <constraint firstItem="5Af-tA-JQq" firstAttribute="top" secondItem="RCW-BD-1i0" secondAttribute="top" id="NkU-QL-1cM"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="5Af-tA-JQq" secondAttribute="trailing" constant="15" id="cIP-eH-Q7k"/>
+                                                                                    <constraint firstItem="5Af-tA-JQq" firstAttribute="leading" secondItem="RCW-BD-1i0" secondAttribute="leading" constant="15" id="tqL-IV-s8s"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyZ-iI-WjG">
+                                                                                <rect key="frame" x="0.0" y="793" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PO Box" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1d-Yp-PRd">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="g1d-Yp-PRd" firstAttribute="top" secondItem="HyZ-iI-WjG" secondAttribute="top" id="8WR-DL-sBD"/>
+                                                                                    <constraint firstItem="g1d-Yp-PRd" firstAttribute="leading" secondItem="HyZ-iI-WjG" secondAttribute="leading" constant="15" id="g6C-P9-ygU"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="g1d-Yp-PRd" secondAttribute="bottom" id="gb4-L2-Pzz"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="g1d-Yp-PRd" secondAttribute="trailing" constant="15" id="ujN-1C-MtT"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5d3-iR-Q6a">
+                                                                                <rect key="frame" x="0.0" y="854" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Ga-nG-tyq">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="9Ga-nG-tyq" firstAttribute="top" secondItem="5d3-iR-Q6a" secondAttribute="top" id="Ckb-32-pvw"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="9Ga-nG-tyq" secondAttribute="bottom" id="TFg-LS-oQg"/>
+                                                                                    <constraint firstItem="9Ga-nG-tyq" firstAttribute="leading" secondItem="5d3-iR-Q6a" secondAttribute="leading" constant="15" id="k1x-og-ALm"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="9Ga-nG-tyq" secondAttribute="trailing" constant="15" id="thX-3o-xAo"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEv-I5-gTZ">
+                                                                                <rect key="frame" x="0.0" y="915" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="National ID Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G1b-AT-jhF">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="G1b-AT-jhF" firstAttribute="top" secondItem="bEv-I5-gTZ" secondAttribute="top" id="SoY-jk-80q"/>
+                                                                                    <constraint firstItem="G1b-AT-jhF" firstAttribute="leading" secondItem="bEv-I5-gTZ" secondAttribute="leading" constant="15" id="TsS-GL-B6u"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="G1b-AT-jhF" secondAttribute="trailing" constant="15" id="Vwv-z3-sfc"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="G1b-AT-jhF" secondAttribute="bottom" id="ZtK-L0-Azi"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldg-sb-cfg">
+                                                                                <rect key="frame" x="0.0" y="976" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2v-PM-BaM">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="a2v-PM-BaM" firstAttribute="leading" secondItem="ldg-sb-cfg" secondAttribute="leading" constant="15" id="C6x-FT-rA5"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="a2v-PM-BaM" secondAttribute="trailing" constant="15" id="Nts-sD-zTa"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="a2v-PM-BaM" secondAttribute="bottom" id="NzB-kP-KcT"/>
+                                                                                    <constraint firstItem="a2v-PM-BaM" firstAttribute="top" secondItem="ldg-sb-cfg" secondAttribute="top" id="P1B-94-TXO"/>
+                                                                                </constraints>
+                                                                            </view>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </stackView>
@@ -1750,7 +1954,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHh-g8-TOL">
-                                                        <rect key="frame" x="0.0" y="512" width="414" height="420"/>
+                                                        <rect key="frame" x="0.0" y="1373" width="414" height="420"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ysg-Ub-chk">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="420"/>
@@ -1784,14 +1988,14 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkD-Ah-AYo">
-                                                        <rect key="frame" x="0.0" y="932" width="414" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="1793" width="414" height="0.0"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" id="reR-xl-l62"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUf-Cz-p6M">
-                                                        <rect key="frame" x="0.0" y="932" width="414" height="80"/>
+                                                        <rect key="frame" x="0.0" y="1793" width="414" height="80"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grR-zV-dwJ">
                                                                 <rect key="frame" x="20" y="15" width="374" height="50"/>
@@ -1865,16 +2069,28 @@ We do not keep any documents on the platform for safety reasons; they are all st
                     </view>
                     <connections>
                         <outlet property="KycSaveButton" destination="grR-zV-dwJ" id="Bqw-l1-ARF"/>
+                        <outlet property="addressTxtFld" destination="9Ga-nG-tyq" id="EaA-Yq-S1E"/>
+                        <outlet property="buildingNameTxtFld" destination="9hE-9I-bIg" id="xHM-Nf-tJI"/>
+                        <outlet property="buildingNumberTxtFld" destination="YA5-cM-7Jz" id="g9i-n5-Wxg"/>
+                        <outlet property="citytxtFld" destination="51l-bu-Brf" id="PCq-Hg-Qlh"/>
                         <outlet property="collectionHeight" destination="oeN-t5-176" id="FiO-CK-Im3"/>
                         <outlet property="collectionParentView" destination="yHh-g8-TOL" id="NEg-EM-yS5"/>
                         <outlet property="collectionView" destination="ysg-Ub-chk" id="XUu-pH-rIr"/>
                         <outlet property="countryTxtFld" destination="DDQ-07-NFh" id="wH1-wb-j5Z"/>
+                        <outlet property="distrcitTxtFld" destination="LdT-ym-P4y" id="mDX-za-28B"/>
                         <outlet property="dobTxtFld" destination="WHC-NK-OEM" id="cGE-Us-kno"/>
                         <outlet property="docsTxtFld" destination="SuG-TQ-A0O" id="lME-zL-ADK"/>
                         <outlet property="firstNameKycTxT" destination="HdU-DP-TiN" id="H95-8p-f4h"/>
                         <outlet property="kycLbl" destination="Wzb-xi-CQy" id="go3-Qy-fS3"/>
                         <outlet property="lastNameKycTxT" destination="Ba5-R0-8MH" id="4gD-eY-pie"/>
+                        <outlet property="nationalIdTxtFld" destination="G1b-AT-jhF" id="6BY-I0-dXf"/>
+                        <outlet property="poBoxTxtFld" destination="g1d-Yp-PRd" id="BO4-2X-D9x"/>
+                        <outlet property="postalCodeTxtFld" destination="5Af-tA-JQq" id="bts-TC-fFJ"/>
                         <outlet property="stackView" destination="zMm-hz-Jm0" id="tdU-IV-TXC"/>
+                        <outlet property="streetNameTxtFld" destination="KF8-L5-udY" id="Krg-TZ-GRO"/>
+                        <outlet property="streetTypeTxtFld" destination="jJd-ir-Tim" id="cTJ-uH-h81"/>
+                        <outlet property="typeTxtFld" destination="a2v-PM-BaM" id="mfN-bQ-Haq"/>
+                        <outlet property="unitNumberTxtFld" destination="EvQ-tb-n0k" id="Jnm-y8-LhH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvG-eb-2rh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2612,7 +2828,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                         <rect key="frame" x="0.0" y="498" width="414" height="398"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCp-Qv-Nxf">
-                                                <rect key="frame" x="16" y="15" width="53.5" height="19"/>
+                                                <rect key="frame" x="16" y="15" width="56" height="22.5"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
