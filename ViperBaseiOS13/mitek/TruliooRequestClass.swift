@@ -26,6 +26,18 @@ public struct PiiInfo{
     public let frontMetaData:String?
     public let backMetaData:String?
     public let liveMetaData:String?
+    
+    public let city:String?
+    public let state:String?
+    public let postalCode:String?
+    
+    public let buildingNumber:String?
+    public let buildingName:String?
+    public let unitNumber:String?
+    public let streetName:String?
+    public let streetType:String?
+    public let poBox:String?
+    public let address:String?
 }
 
 class DocumentVerificationRequest: Codable{
@@ -49,10 +61,12 @@ class DocumentVerificationRequest: Codable{
 class DataFields: Codable{
     var PersonInfo: PersonInfo
     var Document: Document
+    var Location : Location
     
-    init(personInfo: PersonInfo, documentInfo: Document){
+    init(personInfo: PersonInfo, documentInfo: Document, locationInfo: Location){
         self.PersonInfo = personInfo
         self.Document = documentInfo
+        self.Location = locationInfo
     }
 }
 
@@ -89,5 +103,20 @@ class Document: Codable{
         if(livePhoto != nil){
             self.LivePhoto = livePhoto
         }
+    }
+}
+
+class Location: Codable{
+    var City:String?
+    var StateProvinceode:String?
+    var PostalCode: String?
+   
+    //
+//    var Day
+    
+    init(piiInfo:PiiInfo){
+        self.City = piiInfo.firstName
+        self.StateProvinceode = piiInfo.lastName
+        self.PostalCode = piiInfo.dayOfBirth
     }
 }
