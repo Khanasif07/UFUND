@@ -28,9 +28,12 @@ public struct PiiInfo{
     public let liveMetaData:String?
     
     public let city:String?
-    public let state:String?
+    public let country:String?
+    public let suburb : String?
+    public let county: String?
+    public let stateProvinceCode:String?
     public let postalCode:String?
-    
+
     public let buildingNumber:String?
     public let buildingName:String?
     public let unitNumber:String?
@@ -38,6 +41,7 @@ public struct PiiInfo{
     public let streetType:String?
     public let poBox:String?
     public let address:String?
+    public let nationalID:String?
 }
 
 class DocumentVerificationRequest: Codable{
@@ -62,11 +66,13 @@ class DataFields: Codable{
     var PersonInfo: PersonInfo
     var Document: Document
     var Location : Location
+    var NationalId : NationalId
     
-    init(personInfo: PersonInfo, documentInfo: Document, locationInfo: Location){
+    init(personInfo: PersonInfo, documentInfo: Document,locationInfo: Location,nationalIdInfo:NationalId){
         self.PersonInfo = personInfo
         self.Document = documentInfo
         self.Location = locationInfo
+        self.NationalId = nationalIdInfo
     }
 }
 
@@ -77,7 +83,6 @@ class PersonInfo: Codable{
     var MonthOfBirth: String?
     var YearOfBirth: String?
     //
-//    var Day
     
     init(piiInfo:PiiInfo){
         self.FirstGivenName = piiInfo.firstName
@@ -108,15 +113,46 @@ class Document: Codable{
 
 class Location: Codable{
     var City:String?
-    var StateProvinceode:String?
+    var Country: String?
+    var StateProvinceCode:String?
     var PostalCode: String?
+    var BuildingNumber : String?
+    var buildingName : String?
+    var UnitNumber : String?
+    var StreetName : String?
+    var StreetType : String?
+    var Suburb : String?
+    var County: String?
+    var POBox : String?
+    var AdditionalFields: AdditionalFields
    
-    //
-//    var Day
-    
+    init(piiInfo:PiiInfo,additionalFields: AdditionalFields){
+        self.City = piiInfo.city
+        self.StateProvinceCode = piiInfo.stateProvinceCode
+        self.PostalCode = piiInfo.postalCode
+        self.buildingName =  piiInfo.buildingName
+        self.BuildingNumber =  piiInfo.buildingNumber
+        self.StreetName =  piiInfo.streetName
+        self.StreetType =  piiInfo.streetType
+        self.Country =  piiInfo.country
+        self.County =  piiInfo.county
+        self.Suburb = piiInfo.suburb
+        self.POBox = piiInfo.poBox
+        self.AdditionalFields = additionalFields
+    }
+}
+
+class AdditionalFields: Codable{
+    var Address1:String?
+   
     init(piiInfo:PiiInfo){
-        self.City = piiInfo.firstName
-        self.StateProvinceode = piiInfo.lastName
-        self.PostalCode = piiInfo.dayOfBirth
+        self.Address1 = piiInfo.address
+    }
+}
+class NationalId: Codable {
+    var number:String?
+   
+    init(piiInfo:PiiInfo){
+        self.number = piiInfo.nationalID
     }
 }

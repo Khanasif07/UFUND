@@ -16,51 +16,6 @@ import MiSnapSDKCamera
 struct IpAddressResult: Codable{
     let ipAddress:String
 }
-//
-//struct SelectedDoc {
-//
-//    var id: Int?
-//    var file: Data?
-//    var img: UIImage?
-//
-//    init(id: Int?,file: Data?,img: UIImage?) {
-//        self.id = id
-//        self.file = file
-//        self.img = img
-//    }
-//}
-//
-//
-//class KYCVerifiyDoc {
-//
-//    var id : Int?
-//    var user_id : Int?
-//    var document_id : Int?
-//    var url : String?
-//    var unique_id : Int?
-//    var status : String?
-//    var expires_at : String?
-//    var created_at : String?
-//    var updated_at : String?
-//    var image : String?
-//    var name : String?
-//
-//    init(id : Int?, user_id : Int?,document_id : Int?,url : String?,unique_id : Int?, status : String?,expires_at : String?, created_at : String?,updated_at : String?, image : String?, name : String?) {
-//
-//
-//        self.id = id
-//        self.user_id = user_id
-//        self.document_id = document_id
-//        self.url = url
-//        self.unique_id = unique_id
-//        self.status = status
-//        self.expires_at = status
-//        self.created_at = created_at
-//        self.updated_at = updated_at
-//        self.image = image
-//        self.name = name
-//    }
-//}
 protocol KYCViewControllerDelegate : class {
     func mfKYCLoginSuccess()
     func mfKYCLoginfailed()
@@ -70,6 +25,18 @@ protocol KYCViewControllerDelegate : class {
 class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapFacialCaptureViewControllerDelegate, CLLocationManagerDelegate {
     
     @IBAction func kycClickEvent(_ sender: UIButton) {
+        if self.firstName.isEmpty {
+            ToastManager.show(title: "Please enter first name.", state: .success)
+            return
+        }
+        if self.lastName.isEmpty {
+            ToastManager.show(title: "Please enter last name.", state: .success)
+            return
+        }
+        if  self.dayOfBirth?.isEmpty ?? true {
+            ToastManager.show(title: "Please enter dob.", state: .success)
+            return
+        }
         if self.capturedFrontImage == nil {
             ToastManager.show(title: "Please upload front document.", state: .success)
             return
@@ -83,27 +50,6 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
             return
         }
         goToVerify()
-        
-        //        var param = [String: AnyObject]()
-        //        var imageArray = [String: Data]()
-        //
-        //
-        //        param[RegisterParam.keys.name] = nullStringToEmpty(string: firstNameKycTxT.text) as AnyObject
-        //        param[RegisterParam.keys.last_name] = nullStringToEmpty(string: lastNameKycTxT.text) as AnyObject
-        //        param[RegisterParam.keys.mobile] = nullStringToEmpty(string: mobileNumberTxtFld.text) as AnyObject
-        
-        
-        //        for (index,ids) in self.selectedDoc.enumerated() {
-        //
-        //            param["document_ids[\(index)]"] = ids.id as AnyObject
-        //            imageArray["\(index)"] = ids.file
-        //
-        //        }
-        //
-        //        print("param",param)
-        //        print(">>>>>>>>>imageArray",imageArray)
-        //
-        //        self.presenter?.IMAGEPOST(api: Base.kycUpdate.rawValue, params: param, methodType: .POST, imgData: imageArray, imgName: "", modelClass: SuccessDict.self, token: true)
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -126,8 +72,8 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     @IBOutlet weak var postalCodeTxtFld: UITextField!
     @IBOutlet weak var poBoxTxtFld: UITextField!
     @IBOutlet weak var addressTxtFld: UITextField!
+    @IBOutlet weak var stateTxtfld: UITextField!
     @IBOutlet weak var nationalIdTxtFld: UITextField!
-    @IBOutlet weak var typeTxtFld: UITextField!
     
 //    var selectedDoc = [SelectedDoc]()
     weak var delegate : KYCViewControllerDelegate?
@@ -179,6 +125,21 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
     private var dayOfBirth: String?
     private var monthOfBirth: String?
     private var yearOfBirth: String?
+     
+    private var city: String?
+    private var state: String?
+    private var postalCode: String?
+    
+    private var firstName: String = ""
+    private var lastName: String = ""
+    private var address: String?
+    private var buildingNumber: String?
+    private var buildingName: String?
+    private var unitNumber: String?
+    private var streetName: String?
+    private var streetType: String?
+    private var poBox: String?
+    
     
     private let minSpaceRequired = 20
     var piiInfo:PiiInfo? = nil
@@ -230,11 +191,9 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
         lastNameKycTxT.applyEffectToTextField(placeHolderString: Constants.string.lastName.localize())
         countryTxtFld.applyEffectToTextField(placeHolderString: Constants.string.country.localize())
         dobTxtFld.applyEffectToTextField(placeHolderString: Constants.string.dob.localize())
-        [firstNameKycTxT,lastNameKycTxT,countryTxtFld,docsTxtFld,dobTxtFld,buildingNumberTxtFld,buildingNameTxtFld,distrcitTxtFld,citytxtFld,unitNumberTxtFld,postalCodeTxtFld,streetTypeTxtFld,streetNameTxtFld,poBoxTxtFld,addressTxtFld,nationalIdTxtFld,typeTxtFld].forEach { (txtfld) in
+        [firstNameKycTxT,lastNameKycTxT,countryTxtFld,docsTxtFld,dobTxtFld,buildingNumberTxtFld,buildingNameTxtFld,distrcitTxtFld,citytxtFld,unitNumberTxtFld,postalCodeTxtFld,streetTypeTxtFld,streetNameTxtFld,poBoxTxtFld,addressTxtFld,nationalIdTxtFld,stateTxtfld].forEach { (txtfld) in
             txtfld?.delegate = self
         }
-        lastNameKycTxT.isUserInteractionEnabled = false
-        firstNameKycTxT.isUserInteractionEnabled = false
         countryTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         docsTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "dropDownButton"), normalImage: #imageLiteral(resourceName: "dropDownButton"), size: CGSize(width: 20, height: 20))
         dobTxtFld.setButtonToRightView(btn: UIButton(), selectedImage: #imageLiteral(resourceName: "icCalendar"), normalImage: #imageLiteral(resourceName: "icCalendar"), size: CGSize(width: 20, height: 20),isUserInteractionEnabled: false)
@@ -296,26 +255,7 @@ extension KYCViewController {
         self.delegate?.mfKYCLoginfailed()
         self.popOrDismiss(animation: true)
     }
-    
-    
-    
 }
-
-//        //MARK: - UITextField Delegate
-//        extension KYCViewController: UITextFieldDelegate {
-//            
-//            func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//                view.endEditingForce()
-//                return true
-//            }
-//            
-//            func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//                view.endEditingForce()
-//                return true
-//            }
-//        }
-
-
 
 extension  KYCViewController {
     
@@ -644,30 +584,34 @@ extension KYCViewController: UITextFieldDelegate{
                     self.yearOfBirth =   " \(year)"
                 }
             }
+        case firstNameKycTxT:
+            self.firstName =  textField.text ?? ""
+        case lastNameKycTxT:
+            self.lastName = textField.text ?? ""
         case buildingNumberTxtFld:
-            print(textField.text ?? "")
+            self.buildingNumber = textField.text ?? ""
         case buildingNameTxtFld:
-            print(textField.text ?? "")
+            self.buildingName = textField.text ?? ""
         case unitNumberTxtFld:
-            print(textField.text ?? "")
+            self.unitNumber = textField.text ?? ""
         case streetNameTxtFld:
-            print(textField.text ?? "")
+            self.streetName = textField.text ?? ""
         case streetTypeTxtFld:
-            print(textField.text ?? "")
+            self.streetType = textField.text ?? ""
         case citytxtFld:
-            print(textField.text ?? "")
+            self.city = textField.text ?? ""
         case distrcitTxtFld:
             print(textField.text ?? "")
         case postalCodeTxtFld:
-            print(textField.text ?? "")
+            self.postalCode = textField.text ?? ""
         case poBoxTxtFld:
-            print(textField.text ?? "")
+            self.poBox = textField.text ?? ""
         case addressTxtFld:
-            print(textField.text ?? "")
+            self.address = textField.text ?? ""
         case nationalIdTxtFld:
             print(textField.text ?? "")
-        case typeTxtFld:
-            print(textField.text ?? "")
+        case stateTxtfld:
+            self.state = textField.text ?? ""
         default:
             print("Do Nothing")
         }
@@ -897,9 +841,10 @@ extension KYCViewController{
     }
     
     func goToVerify(){
-        let pii = PiiInfo(firstName: User.main.firstName ?? "", lastName: User.main.lastName ?? "",dayOfBirth: self.dayOfBirth ?? "",monthOfBirth: self.monthOfBirth ?? "",yearOfBirth: self.yearOfBirth ?? "" , countryCode: sortTypeAppliedCountry, documentType: sortTypeAppliedDoc,
-                          frontImage: capturedFrontImage ?? UIImage(), backImage: capturedBackImage, liveImage: capturedSelfieImage,
-                          frontMetaData: capturedFrontMetaData, backMetaData: capturedBackMetaData, liveMetaData: capturedSelfieMetaData)
+//        let pii = PiiInfo(firstName: User.main.firstName ?? "", lastName: User.main.lastName ?? "",dayOfBirth: self.dayOfBirth ?? "",monthOfBirth: self.monthOfBirth ?? "",yearOfBirth: self.yearOfBirth ?? "" , countryCode: sortTypeAppliedCountry, documentType: sortTypeAppliedDoc,
+//                          frontImage: capturedFrontImage ?? UIImage(), backImage: capturedBackImage, liveImage: capturedSelfieImage,
+//                          frontMetaData: capturedFrontMetaData, backMetaData: capturedBackMetaData, liveMetaData: capturedSelfieMetaData)
+        let pii = PiiInfo(firstName: firstNameKycTxT.text ?? "", lastName: lastNameKycTxT.text ?? "", dayOfBirth: self.dayOfBirth ?? "", monthOfBirth: self.monthOfBirth ?? "", yearOfBirth: self.yearOfBirth ?? "", countryCode: sortTypeAppliedCountry, documentType: sortTypeAppliedDoc, frontImage: capturedFrontImage ?? UIImage(), backImage: capturedBackImage, liveImage: capturedSelfieImage, frontMetaData: capturedFrontMetaData, backMetaData: capturedBackMetaData, liveMetaData: capturedSelfieMetaData, city: citytxtFld.text ?? "", country: countryTxtFld.text ?? "", suburb: stateTxtfld.text ?? "", county: distrcitTxtFld.text ?? "", stateProvinceCode: "", postalCode: postalCodeTxtFld.text ?? "", buildingNumber: buildingNumberTxtFld.text ?? "", buildingName: buildingNameTxtFld.text ?? "", unitNumber: unitNumberTxtFld.text ?? "", streetName: streetNameTxtFld.text ?? "", streetType: streetTypeTxtFld.text ?? "", poBox: poBoxTxtFld.text ?? "", address: addressTxtFld.text ?? "", nationalID: nationalIdTxtFld.text ?? "")
         self.piiInfo = pii
         self.loader.isHidden = true
         DispatchQueue.global(qos:.userInteractive).async{

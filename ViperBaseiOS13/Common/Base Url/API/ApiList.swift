@@ -39,11 +39,12 @@ enum StatusCode : Int {
 
 
 enum Base : String {
-    
+    case new_social_signup = "/api/new-social-signup"
+    case email_update = "/api/email-update"
     case signIn = "/api/login"
     case signUp = "/api/signup"
     case social_signup = "/api/social-signup"
-    case profile = "/api/profile"
+    case profile = "/api/new-profile"
     case product = "/api/product"
     case category = "/api/category"
     case forgotPassword = "/api/forgot/password"

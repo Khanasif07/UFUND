@@ -81,6 +81,13 @@ class UserProfileVC: UIViewController {
                     } else {
                         param[ProfileUpdate.keys.last_name] = userData.1
                     }
+                }else if userData.0 == "Email"{
+                    if  userData.1.isEmpty {
+                        ToastManager.show(title: "Please Enter email", state: .warning)
+                        return
+                    } else {
+                        param[ProfileUpdate.keys.email] = userData.1
+                    }
                 } else if userData.0 == "Phone Number" {
                     if  userData.1.isEmpty {
                         ToastManager.show(title: "Please Enter Mobile Number", state: .warning)
@@ -445,7 +452,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                 case "Email":
                     let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
                     cell.textFIeld.delegate = self
-                    cell.textFIeld.isUserInteractionEnabled = false
+                    cell.textFIeld.isUserInteractionEnabled = true
                     cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
                     cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row - 1].0
                     cell.textFIeld.text = self.generalInfoArray[indexPath.row - 1].1

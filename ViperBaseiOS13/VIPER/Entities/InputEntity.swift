@@ -135,6 +135,7 @@ struct ProfileUpdate  {
 
     let name = "name"
     let last_name = "last_name"
+    let email = "email"
     let picture = "picture"
     let mobile = "mobile"
     let countryCode = "countryCode"

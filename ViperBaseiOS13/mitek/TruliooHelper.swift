@@ -240,7 +240,7 @@ public class TruliooHelper{
         let backImageString = convertAndCompressImageToBase64(image: piiInfo.backImage, metaData: piiInfo.backMetaData)
         let liveImageString = convertAndCompressImageToBase64(image: piiInfo.liveImage, metaData: piiInfo.liveMetaData)
         
-        let dataFields = DataFields(personInfo: PersonInfo(piiInfo: piiInfo), documentInfo: Document(frontImage: frontImageString!, backImage: backImageString, livePhoto: liveImageString, documentType: piiInfo.documentType))
+        let dataFields = DataFields(personInfo: PersonInfo(piiInfo: piiInfo), documentInfo: Document(frontImage: frontImageString!, backImage: backImageString, livePhoto: liveImageString, documentType: piiInfo.documentType),locationInfo: Location(piiInfo: piiInfo, additionalFields: AdditionalFields(piiInfo: piiInfo)), nationalIdInfo: NationalId(piiInfo: piiInfo))
         return DocumentVerificationRequest(countryCode: piiInfo.countryCode, dataFields: dataFields)
     }
     

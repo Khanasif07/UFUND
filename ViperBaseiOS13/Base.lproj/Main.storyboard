@@ -1847,8 +1847,25 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     <constraint firstItem="LdT-ym-P4y" firstAttribute="leading" secondItem="wNN-ky-6eO" secondAttribute="leading" constant="15" id="v3z-fq-X5W"/>
                                                                                 </constraints>
                                                                             </view>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCW-BD-1i0">
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttp-3j-5b2">
                                                                                 <rect key="frame" x="0.0" y="732" width="374" height="51"/>
+                                                                                <subviews>
+                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Sh-Ys-QvT">
+                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
+                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
+                                                                                        <textInputTraits key="textInputTraits"/>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="1Sh-Ys-QvT" firstAttribute="leading" secondItem="ttp-3j-5b2" secondAttribute="leading" constant="15" id="NIG-pd-TFT"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="1Sh-Ys-QvT" secondAttribute="bottom" id="Oqv-Fc-Ll1"/>
+                                                                                    <constraint firstItem="1Sh-Ys-QvT" firstAttribute="top" secondItem="ttp-3j-5b2" secondAttribute="top" id="bF9-N7-tXV"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="1Sh-Ys-QvT" secondAttribute="trailing" constant="15" id="kzz-QH-EX4"/>
+                                                                                </constraints>
+                                                                            </view>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCW-BD-1i0">
+                                                                                <rect key="frame" x="0.0" y="793" width="374" height="51"/>
                                                                                 <subviews>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Postal Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Af-tA-JQq">
                                                                                         <rect key="frame" x="15" y="0.0" width="344" height="51"/>
@@ -1865,7 +1882,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyZ-iI-WjG">
-                                                                                <rect key="frame" x="0.0" y="793" width="374" height="51"/>
+                                                                                <rect key="frame" x="0.0" y="854" width="374" height="51"/>
                                                                                 <subviews>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PO Box" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g1d-Yp-PRd">
                                                                                         <rect key="frame" x="15" y="0.0" width="344" height="51"/>
@@ -1882,7 +1899,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5d3-iR-Q6a">
-                                                                                <rect key="frame" x="0.0" y="854" width="374" height="51"/>
+                                                                                <rect key="frame" x="0.0" y="915" width="374" height="51"/>
                                                                                 <subviews>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Ga-nG-tyq">
                                                                                         <rect key="frame" x="15" y="0.0" width="344" height="51"/>
@@ -1899,7 +1916,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                 </constraints>
                                                                             </view>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEv-I5-gTZ">
-                                                                                <rect key="frame" x="0.0" y="915" width="374" height="51"/>
+                                                                                <rect key="frame" x="0.0" y="976" width="374" height="51"/>
                                                                                 <subviews>
                                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="National ID Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G1b-AT-jhF">
                                                                                         <rect key="frame" x="15" y="0.0" width="344" height="51"/>
@@ -1913,23 +1930,6 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                                                     <constraint firstItem="G1b-AT-jhF" firstAttribute="leading" secondItem="bEv-I5-gTZ" secondAttribute="leading" constant="15" id="TsS-GL-B6u"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="G1b-AT-jhF" secondAttribute="trailing" constant="15" id="Vwv-z3-sfc"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="G1b-AT-jhF" secondAttribute="bottom" id="ZtK-L0-Azi"/>
-                                                                                </constraints>
-                                                                            </view>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldg-sb-cfg">
-                                                                                <rect key="frame" x="0.0" y="976" width="374" height="51"/>
-                                                                                <subviews>
-                                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a2v-PM-BaM">
-                                                                                        <rect key="frame" x="15" y="0.0" width="344" height="51"/>
-                                                                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
-                                                                                        <textInputTraits key="textInputTraits"/>
-                                                                                    </textField>
-                                                                                </subviews>
-                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <constraints>
-                                                                                    <constraint firstItem="a2v-PM-BaM" firstAttribute="leading" secondItem="ldg-sb-cfg" secondAttribute="leading" constant="15" id="C6x-FT-rA5"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="a2v-PM-BaM" secondAttribute="trailing" constant="15" id="Nts-sD-zTa"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="a2v-PM-BaM" secondAttribute="bottom" id="NzB-kP-KcT"/>
-                                                                                    <constraint firstItem="a2v-PM-BaM" firstAttribute="top" secondItem="ldg-sb-cfg" secondAttribute="top" id="P1B-94-TXO"/>
                                                                                 </constraints>
                                                                             </view>
                                                                         </subviews>
@@ -2087,9 +2087,9 @@ We do not keep any documents on the platform for safety reasons; they are all st
                         <outlet property="poBoxTxtFld" destination="g1d-Yp-PRd" id="BO4-2X-D9x"/>
                         <outlet property="postalCodeTxtFld" destination="5Af-tA-JQq" id="bts-TC-fFJ"/>
                         <outlet property="stackView" destination="zMm-hz-Jm0" id="tdU-IV-TXC"/>
+                        <outlet property="stateTxtfld" destination="1Sh-Ys-QvT" id="bWd-QQ-FKd"/>
                         <outlet property="streetNameTxtFld" destination="KF8-L5-udY" id="Krg-TZ-GRO"/>
                         <outlet property="streetTypeTxtFld" destination="jJd-ir-Tim" id="cTJ-uH-h81"/>
-                        <outlet property="typeTxtFld" destination="a2v-PM-BaM" id="mfN-bQ-Haq"/>
                         <outlet property="unitNumberTxtFld" destination="EvQ-tb-n0k" id="Jnm-y8-LhH"/>
                     </connections>
                 </viewController>
