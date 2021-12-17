@@ -139,6 +139,20 @@ extension HomeViewController {
         let viewController = self.storyboard!.instantiateViewController(withIdentifier: identifier)
         (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
     }
+    
+    private func isKycIncompleted()->Bool {
+        if User.main.kyc == 0{
+             ToastManager.show(title: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval.",state: .error)
+            return true
+        }
+        if (User.main.signup_by ?? "") == "5" {
+            if !(User.main.social_email_verify ?? true) {
+                ToastManager.show(title: "Please verify your email first." ,state: .error)
+                return true
+            }
+        }
+        return false
+    }
 }
 
 //MARK: - Collection view delegate
@@ -199,7 +213,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: IndexPath(row: indexPath.row, section: 0)) as? ProductsCollectionCell
         
-        
+        if isKycIncompleted() {
+            return
+        }
         if isFromCampainer {
             
             switch nullStringToEmpty(string: cell?.productNameLbl.text) {

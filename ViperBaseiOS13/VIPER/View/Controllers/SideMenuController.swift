@@ -401,6 +401,12 @@ extension  SideMenuController {
              ToastManager.show(title: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval.",state: .error)
             return true
         }
+        if (User.main.signup_by ?? "") == "5" {
+            if !(User.main.social_email_verify ?? true) {
+                ToastManager.show(title: "Please verify your email first." ,state: .error)
+                return true
+            }
+        }
         return false
     }
     

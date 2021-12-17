@@ -335,7 +335,7 @@ extension SignInViewController: PresenterOutputProtocol {
         switch api {
         case Base.new_social_signup.rawValue:
             self.loader.isHidden = true
-            if statusCode == StatusCode.success.rawValue {
+            if statusCode == StatusCode.success.rawValue || statusCode == StatusCode.successCode.rawValue{
                 self.signInModel = (dataDict as? SocialLoginEntity)?.user_info
                 ToastManager.show(title:  nullStringToEmpty(string: (dataDict as? SocialLoginEntity)?.message), state: .error)
                 CommonUserDefaults.storeUserData(from: self.signInModel)
@@ -402,7 +402,7 @@ extension SignInViewController: PresenterOutputProtocol {
             }
         case  Base.social_signup.rawValue:
             self.loader.isHidden = true
-            if statusCode == StatusCode.success.rawValue {
+            if statusCode == StatusCode.success.rawValue || statusCode == StatusCode.successCode.rawValue{
                 self.signInModel = (dataDict as? SocialLoginEntity)?.user_info
                 ToastManager.show(title:  nullStringToEmpty(string: (dataDict as? SocialLoginEntity)?.message), state: .error)
                 CommonUserDefaults.storeUserData(from: self.signInModel)
