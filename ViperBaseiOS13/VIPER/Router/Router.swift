@@ -14,8 +14,8 @@ class Router: PresenterToRouterProtocol{
     
     
     static func createModule() -> UIViewController {
-        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return UIViewController() }
-        return vc
+//        guard let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.KYCViewController) as? KYCViewController  else { return UIViewController() }
+//        return vc
         let view = main.instantiateViewController(withIdentifier: Storyboard.Ids.TutorialViewController) as?  TutorialViewController
         view?.presenter = mainPresenter
         mainPresenter.view = view

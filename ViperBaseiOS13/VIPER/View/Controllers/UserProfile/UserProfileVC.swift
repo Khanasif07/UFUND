@@ -206,7 +206,7 @@ class UserProfileVC: UIViewController {
                 }) { (successUrl, error) in
                     if let url = successUrl {
                         self.param[ProfileUpdate.keys.picture] = url
-                        self.presenter?.HITAPI(api: Base.profile.rawValue, params: self.param, methodType: .POST, modelClass: UserDetails.self, token: true)
+                        self.presenter?.HITAPI(api: Base.new_profile.rawValue, params: self.param, methodType: .POST, modelClass: UserDetails.self, token: true)
                         print(url)
                     }
                     if let _ = error{
@@ -216,7 +216,7 @@ class UserProfileVC: UIViewController {
             } else {
                 self.loader.isHidden = false
                 self.param[ProfileUpdate.keys.picture] = self.userProfile?.picture ?? ""
-                self.presenter?.HITAPI(api: Base.profile.rawValue, params: param, methodType: .POST, modelClass: UserDetails.self, token: true)
+                self.presenter?.HITAPI(api: Base.new_profile.rawValue, params: param, methodType: .POST, modelClass: UserDetails.self, token: true)
             }
         } else {
             self.isEnableEdit = true
@@ -295,6 +295,8 @@ extension UserProfileVC: PresenterOutputProtocol {
             User.main.email  = self.userProfile?.email
             User.main.mobile = self.userProfile?.mobile
             User.main.kyc = self.userProfile?.kyc
+            User.main.signup_by = self.userProfile?.signup_by
+            User.main.social_email_verify = self.userProfile?.social_email_verify
             storeInUserDefaults()
             if !(self.userProfile?.picture?.isEmpty ?? true){
                 self.profileImgUrl = URL(string: nullStringToEmpty(string: self.userProfile?.picture))
@@ -302,6 +304,12 @@ extension UserProfileVC: PresenterOutputProtocol {
             self.mainTableView.reloadData()
             if User.main.kyc == 0{
                 ToastManager.show(title: "Your profile KYC is not verified! Please update your details for KYC. If already submitted please wait for KYC Approval." ,state: .error)
+            }
+            if (User.main.signup_by ?? "") == "5" {
+                if !(User.main.social_email_verify ?? true) {
+                    ToastManager.show(title: "Please verify your email first." ,state: .error)
+                    return
+                }
             }
         }
         
@@ -452,7 +460,7 @@ extension UserProfileVC : UITableViewDelegate, UITableViewDataSource {
                 case "Email":
                     let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
                     cell.textFIeld.delegate = self
-                    cell.textFIeld.isUserInteractionEnabled = true
+                    cell.textFIeld.isUserInteractionEnabled = isEnableEdit
                     cell.titleLbl.text = self.generalInfoArray[indexPath.row - 1].0
                     cell.textFIeld.placeholder = self.generalInfoArray[indexPath.row - 1].0
                     cell.textFIeld.text = self.generalInfoArray[indexPath.row - 1].1

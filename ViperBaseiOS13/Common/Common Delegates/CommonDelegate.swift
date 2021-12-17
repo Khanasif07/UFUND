@@ -27,6 +27,9 @@ class CommonUserDefaults {
         User.main.picture = profile?.picture
         User.main.eth_address = profile?.eth_address
         User.main.btc_address = profile?.btc_address
+        //
+        User.main.signup_by = profile?.signup_by
+        User.main.social_email_verify = profile?.social_email_verify
     }
 }
 

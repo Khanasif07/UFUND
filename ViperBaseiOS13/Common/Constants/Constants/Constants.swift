@@ -359,12 +359,14 @@ struct Keys {
     let min_eth = "min_eth"
     let usd_bstk = "usd_bstk"
     let is_document_submitted = "is_document_submitted"
+    let social_email_verify = "social_email_verify"
     
     let g2f_temp = "g2f_temp"
     let pin_status = "pin_status"
     let wallet_address = "wallet_address"
     let eth_address = "eth_address"
     let btc_address = "btc_address"
+    let signup_by  = "signup_by"
     
 }
 

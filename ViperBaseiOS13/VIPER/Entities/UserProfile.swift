@@ -74,6 +74,9 @@ struct UserProfile : Mappable {
     var account_type: String?
     var user_account_type: String?
     var countryCode: String? = "+1"
+    //
+    var social_email_verify: Bool?
+    var signup_by: String?
           
 	init?(map: Map) {
 
@@ -139,6 +142,8 @@ struct UserProfile : Mappable {
         income_type <- map["income_type"]
         account_type <- map["account_type"]
         user_account_type <- map["user_account_type"]
+        social_email_verify <- map["social_email_verify"]
+        signup_by <- map["signup_by"]
 	}
 
 }

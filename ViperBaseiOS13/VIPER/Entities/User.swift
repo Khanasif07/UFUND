@@ -41,8 +41,12 @@ class User : NSObject, NSCoding, JSONSerializable {
     var eth_address : String?
     var btc_address : String?
     var min_eth : Double?
+    //
+    var social_email_verify :Bool?
+    var signup_by :String?
+   
     
-    init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?,trulioo_kyc_status: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?,eth_address : String?,btc_address : String?,is_document_submitted: Bool?){
+    init(id : Int?, name : String?, accessToken: String?, latitude: Double?, lontitude: Double?, firstName: String?, lastName : String?, email : String?, phoneNumber: String?,picture: String?,token : String?, balance : String?, buy_price : Double?, sell_price : Double?, kyc: Int?,trulioo_kyc_status: Int?, usd_bstk : Double?, email_token: String?,  g2f_temp : Int?, pin_status : Int?,eth_address : String?,btc_address : String?,is_document_submitted: Bool?,social_email_verify:Bool?,signup_by:String?){
         
         self.id = id
         self.name = name
@@ -68,12 +72,14 @@ class User : NSObject, NSCoding, JSONSerializable {
         self.eth_address = eth_address
         self.btc_address = btc_address
         self.is_document_submitted = is_document_submitted
+        self.social_email_verify = social_email_verify
+        self.signup_by = signup_by
     }
     
     convenience
     override init() {
         
-        self.init(id: nil, name: nil, accessToken: nil, latitude: nil, lontitude: nil, firstName: nil, lastName: nil, email: nil, phoneNumber:  nil, picture: nil, token: nil, balance: nil, buy_price: nil, sell_price: nil, kyc: nil,trulioo_kyc_status : nil, usd_bstk: nil, email_token: nil, g2f_temp: nil,pin_status: nil,eth_address: nil,btc_address : nil, is_document_submitted: nil)
+        self.init(id: nil, name: nil, accessToken: nil, latitude: nil, lontitude: nil, firstName: nil, lastName: nil, email: nil, phoneNumber:  nil, picture: nil, token: nil, balance: nil, buy_price: nil, sell_price: nil, kyc: nil,trulioo_kyc_status : nil, usd_bstk: nil, email_token: nil, g2f_temp: nil,pin_status: nil,eth_address: nil,btc_address : nil, is_document_submitted: nil,social_email_verify: nil,signup_by:nil)
         
     }
     
@@ -107,8 +113,11 @@ class User : NSObject, NSCoding, JSONSerializable {
         let eth_address = aDecoder.decodeObject(forKey: Keys.list.eth_address) as? String
         let btc_address = aDecoder.decodeObject(forKey: Keys.list.btc_address) as? String
         let is_document_submitted = aDecoder.decodeObject(forKey: Keys.list.is_document_submitted) as? Bool
+        //
+        let signup_by = aDecoder.decodeObject(forKey: Keys.list.signup_by) as? String
+        let social_email_verify = aDecoder.decodeObject(forKey: Keys.list.social_email_verify) as? Bool
         
-        self.init(id: id, name: name, accessToken: accessToken, latitude: latitude, lontitude: lontitude, firstName: firstNmae, lastName: lastName, email: email, phoneNumber: phoneNumber, picture: picture,token: token, balance: balance,buy_price: buy_price, sell_price: sell_price, kyc: kyc,trulioo_kyc_status: trulioo_kyc_status, usd_bstk: usd_bstk, email_token: email_token, g2f_temp: g2f_temp, pin_status: pin_status,eth_address: eth_address,btc_address : btc_address, is_document_submitted: is_document_submitted)
+        self.init(id: id, name: name, accessToken: accessToken, latitude: latitude, lontitude: lontitude, firstName: firstNmae, lastName: lastName, email: email, phoneNumber: phoneNumber, picture: picture,token: token, balance: balance,buy_price: buy_price, sell_price: sell_price, kyc: kyc,trulioo_kyc_status: trulioo_kyc_status, usd_bstk: usd_bstk, email_token: email_token, g2f_temp: g2f_temp, pin_status: pin_status,eth_address: eth_address,btc_address : btc_address, is_document_submitted: is_document_submitted,social_email_verify:social_email_verify, signup_by:signup_by)
     }
     
     
@@ -138,7 +147,9 @@ class User : NSObject, NSCoding, JSONSerializable {
         aCoder.encode(self.pin_status, forKey: Keys.list.pin_status)
         aCoder.encode(self.eth_address, forKey: Keys.list.eth_address)
         aCoder.encode(self.btc_address, forKey: Keys.list.btc_address)
-        
+        //
+        aCoder.encode(self.eth_address, forKey: Keys.list.social_email_verify)
+        aCoder.encode(self.btc_address, forKey: Keys.list.signup_by)
     }
     
 }

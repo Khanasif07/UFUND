@@ -126,6 +126,9 @@ struct SignInModel : Mappable {
     var token_type: String?
     var eth_address : String?
     var btc_address : String?
+    //
+    var social_email_verify :Bool?
+    var signup_by :String?
 
     init?(map: Map) {
 
@@ -169,6 +172,10 @@ struct SignInModel : Mappable {
         token_type <- map["token_type"]
         eth_address <- map["eth_address"]
         btc_address <- map["btc_address"]
+        //
+        social_email_verify <- map["social_email_verify"]
+        signup_by <- map["signup_by"]
+
     }
 
 }
@@ -210,6 +217,9 @@ struct SignUpModel : Mappable {
     var status: String?
     var eth_address : String?
     var btc_address : String?
+    //
+    var social_email_verify :Bool?
+    var signup_by :String?
 
     init?(map: Map) {
 
@@ -251,6 +261,9 @@ struct SignUpModel : Mappable {
         status <- map["status"]
         eth_address <- map["eth_address"]
         btc_address <- map["btc_address"]
+        //
+        social_email_verify <- map["social_email_verify"]
+        signup_by <- map["signup_by"]
     }
 
 }
