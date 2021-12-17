@@ -15,10 +15,10 @@ class SideMenuController: UIViewController {
     
     @IBOutlet weak var profileLastName: UILabel!
     @IBAction func profileRedirect(_ sender: UIButton) {
-        if !isKycIncompleted(){
+//        if !isKycIncompleted(){
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.UserProfileVC)
-        }
+//        }
         //        self.push(to: Storyboard.Ids.EditProfileViewController)
     }
     @IBOutlet weak var topCloseBtn: UIButton!

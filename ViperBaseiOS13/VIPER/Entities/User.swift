@@ -72,6 +72,7 @@ class User : NSObject, NSCoding, JSONSerializable {
         self.eth_address = eth_address
         self.btc_address = btc_address
         self.is_document_submitted = is_document_submitted
+        //
         self.social_email_verify = social_email_verify
         self.signup_by = signup_by
     }
@@ -148,8 +149,8 @@ class User : NSObject, NSCoding, JSONSerializable {
         aCoder.encode(self.eth_address, forKey: Keys.list.eth_address)
         aCoder.encode(self.btc_address, forKey: Keys.list.btc_address)
         //
-        aCoder.encode(self.eth_address, forKey: Keys.list.social_email_verify)
-        aCoder.encode(self.btc_address, forKey: Keys.list.signup_by)
+        aCoder.encode(self.social_email_verify, forKey: Keys.list.social_email_verify)
+        aCoder.encode(self.signup_by, forKey: Keys.list.signup_by)
     }
     
 }
