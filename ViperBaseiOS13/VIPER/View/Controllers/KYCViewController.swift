@@ -49,6 +49,10 @@ class KYCViewController: UIViewController, MiSnapViewControllerDelegate, MiSnapF
             ToastManager.show(title: "Please upload selfie document.", state: .success)
             return
         }
+        if (self.nationalIdTxtFld.text ?? "").isEmpty {
+            ToastManager.show(title: "Please enter nationalId.", state: .success)
+            return
+        }
         goToVerify()
     }
     
