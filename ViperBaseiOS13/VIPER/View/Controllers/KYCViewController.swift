@@ -850,7 +850,7 @@ extension KYCViewController{
 //                          frontMetaData: capturedFrontMetaData, backMetaData: capturedBackMetaData, liveMetaData: capturedSelfieMetaData)
         let pii = PiiInfo(firstName: firstNameKycTxT.text ?? "", lastName: lastNameKycTxT.text ?? "", dayOfBirth: self.dayOfBirth ?? "", monthOfBirth: self.monthOfBirth ?? "", yearOfBirth: self.yearOfBirth ?? "", countryCode: sortTypeAppliedCountry, documentType: sortTypeAppliedDoc, frontImage: capturedFrontImage ?? UIImage(), backImage: capturedBackImage, liveImage: capturedSelfieImage, frontMetaData: capturedFrontMetaData, backMetaData: capturedBackMetaData, liveMetaData: capturedSelfieMetaData, city: citytxtFld.text ?? "", country: countryTxtFld.text ?? "", suburb: stateTxtfld.text ?? "", county: distrcitTxtFld.text ?? "", stateProvinceCode: "", postalCode: postalCodeTxtFld.text ?? "", buildingNumber: buildingNumberTxtFld.text ?? "", buildingName: buildingNameTxtFld.text ?? "", unitNumber: unitNumberTxtFld.text ?? "", streetName: streetNameTxtFld.text ?? "", streetType: streetTypeTxtFld.text ?? "", poBox: poBoxTxtFld.text ?? "", address: addressTxtFld.text ?? "", nationalID: nationalIdTxtFld.text ?? "")
         self.piiInfo = pii
-        self.loader.isHidden = true
+        self.loader.isHidden = false
         DispatchQueue.global(qos:.userInteractive).async{
             if(self.piiInfo == nil){
                                 self.appendText(text: "Error, no info availble")

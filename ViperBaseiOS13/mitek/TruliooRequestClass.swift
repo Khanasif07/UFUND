@@ -53,7 +53,8 @@ class DocumentVerificationRequest: Codable{
     //
    // var CallBackUrl:String = "https://api.globaldatacompany.com/connection/v1/async-callback"
 //    var CallBackUrl:String = "https://ufunddevonline.appskeeper.in/trulioo_kyc_response/\(User.main.id ?? 0)"
-    var CallBackUrl:String = "\(baseUrl)/trulioo_kyc_response/\(User.main.id ?? 0)"
+//    var CallBackUrl:String = "\(baseUrl)/trulioo_kyc_response/\(User.main.id ?? 0)"
+    var CallBackUrl:String = "https://webhook.site/23babe19-557f-4c74-8cc3-490de850eac0"
     //
     init(countryCode:String, dataFields:DataFields){
         self.CountryCode = countryCode
@@ -66,13 +67,13 @@ class DataFields: Codable{
     var PersonInfo: PersonInfo
     var Document: Document
     var Location : Location
-    var NationalId : NationalId
+    var NationalIds : [NationalIds]
     
-    init(personInfo: PersonInfo, documentInfo: Document,locationInfo: Location,nationalIdInfo:NationalId){
+    init(personInfo: PersonInfo, documentInfo: Document,locationInfo: Location,nationalIdInfo:[NationalIds]){
         self.PersonInfo = personInfo
         self.Document = documentInfo
         self.Location = locationInfo
-        self.NationalId = nationalIdInfo
+        self.NationalIds = nationalIdInfo
     }
 }
 
@@ -117,7 +118,7 @@ class Location: Codable{
     var StateProvinceCode:String?
     var PostalCode: String?
     var BuildingNumber : String?
-    var buildingName : String?
+    var BuildingName : String?
     var UnitNumber : String?
     var StreetName : String?
     var StreetType : String?
@@ -130,7 +131,7 @@ class Location: Codable{
         self.City = piiInfo.city
         self.StateProvinceCode = piiInfo.stateProvinceCode
         self.PostalCode = piiInfo.postalCode
-        self.buildingName =  piiInfo.buildingName
+        self.BuildingName =  piiInfo.buildingName
         self.BuildingNumber =  piiInfo.buildingNumber
         self.StreetName =  piiInfo.streetName
         self.StreetType =  piiInfo.streetType
@@ -149,10 +150,10 @@ class AdditionalFields: Codable{
         self.Address1 = piiInfo.address
     }
 }
-class NationalId: Codable {
-    var number:String?
+class NationalIds: Codable {
+    var Number:String?
    
     init(piiInfo:PiiInfo){
-        self.number = piiInfo.nationalID
+        self.Number = piiInfo.nationalID
     }
 }
