@@ -236,6 +236,7 @@ class UserProfileVC: UIViewController {
 //===========================
 extension UserProfileVC: PresenterOutputProtocol {
     func showSuccess(api: String, dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.loader.isHidden = true
         if isEnableEdit {
             if api == Base.profile.rawValue {
                 self.loader.isHidden = true
