@@ -178,7 +178,7 @@ extension Webservice : WebServiceProtocol {
     //MARK: Handle Error:
     func handleError(responseError: (DataResponse<Any>)?, modelClass: Any) {
         
-        if responseError?.response?.statusCode == StatusCode.unAuthorized.rawValue  { // Validation For UnAuthorized Login:
+        if responseError?.response?.statusCode == StatusCode.unAuthorized.rawValue || responseError?.response?.statusCode == StatusCode.adminBlocked.rawValue { // Validation For UnAuthorized Login:
             
             self.completion?(CustomError(description: responseError?.error?.localizedDescription ?? "", code: (responseError!.response?.statusCode) ?? StatusCode.ServerError.rawValue), nil)
             

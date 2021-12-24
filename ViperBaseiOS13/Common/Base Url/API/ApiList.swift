@@ -30,6 +30,7 @@ enum StatusCode : Int {
     case socialSignupSuccessCode = 422
     case multipleResponse = 300
     case unAuthorized = 401
+    case adminBlocked = 400
     case notFound = 404
     case ServerError = 500
     case errorServer = 420

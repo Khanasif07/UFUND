@@ -426,10 +426,10 @@ extension  SideMenuController {
             self.navigationController?.pushViewController(vc, animated: true)
             }
         case Constants.string.profile.localize(),Constants.string.myProfile.localize():
-            if !isKycIncompleted() {
+//            if !isKycIncompleted() {
             self.drawerController?.closeSide()
             self.push(to: Storyboard.Ids.UserProfileVC)
-            }
+//            }
         case Constants.string.Products.localize():
             if !isKycIncompleted(){
             if self.menuContent?[section].1.isEmpty ?? true{

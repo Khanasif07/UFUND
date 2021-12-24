@@ -3942,7 +3942,7 @@
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32.0;
+				CURRENT_PROJECT_VERSION = 33.0;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
 				INFOPLIST_FILE = "$(SRCROOT)/ViperBaseiOS13/Common/Plist Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3966,7 +3966,7 @@
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32.0;
+				CURRENT_PROJECT_VERSION = 33.0;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
 				INFOPLIST_FILE = "$(SRCROOT)/ViperBaseiOS13/Common/Plist Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
