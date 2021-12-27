@@ -427,7 +427,7 @@ extension HomeViewController: PresenterOutputProtocol {
             self.loader.isHidden = true
             self.silderImage = dataArray as? [SilderImage] ?? []
             
-            let url = URL.init(string: storageUrl + nullStringToEmpty(string: silderImage.first?.image))
+            let url = URL.init(string: storageUrl + nullStringToEmptyForImg(string: silderImage.first?.image))
         //            self.campImgBG.sd_setImage(with: url , placeholderImage: nil)
         
         default:

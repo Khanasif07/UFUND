@@ -84,7 +84,7 @@ class SideMenuController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 //        let url = URL.init(string: baseUrl + "/" +  nullStringToEmpty(string: User.main.picture))
-        let url = URL.init(string: nullStringToEmpty(string: User.main.picture))
+        let url = URL.init(string: nullStringToEmptyForImg(string: User.main.picture))
         profileImg.sd_setImage(with: url , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
         profileImg.contentMode = .scaleAspectFill
         profileImg.clipsToBounds = true
@@ -140,7 +140,7 @@ class SideMenuController: UIViewController {
             }
         }
 //        let url = URL.init(string: baseUrl + "/" +  nullStringToEmpty(string: User.main.picture))
-        let url = URL.init(string: nullStringToEmpty(string: User.main.picture))
+        let url = URL.init(string: nullStringToEmptyForImg(string: User.main.picture))
         profileImg.sd_setImage(with: url , placeholderImage: #imageLiteral(resourceName: "icPlaceHolder"))
         profileImg.contentMode = .scaleAspectFill
         profileImg.clipsToBounds = true

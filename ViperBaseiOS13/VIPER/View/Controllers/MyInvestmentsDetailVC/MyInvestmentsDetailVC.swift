@@ -165,7 +165,7 @@ extension MyInvestmentsDetailVC {
         self.mainTableView.tableFooterView = footerView
         let imgEntity = investmentType == .MyProductInvestment ?  productModel?.product_image ?? "" : productModel?.token_image ?? ""
 //        let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-        let url = URL(string: nullStringToEmpty(string: imgEntity))
+        let url = URL(string: nullStringToEmptyForImg(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
     }
     

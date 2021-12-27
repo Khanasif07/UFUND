@@ -1430,7 +1430,6 @@
 				84411E8525D1040B00718BD1 /* FacebookManager */,
 				082F7C1723CD93CB001475EA /* SocialLogin */,
 				0826B7722386745900867CD5 /* Fonts */,
-				08918BB12385866700F274C2 /* SceneDelegate */,
 				08918BA62385151000F274C2 /* ToastView */,
 				0824B1212382A19300F81A9B /* Common Delegates */,
 				0824B0932382847700F81A9B /* Appdelegate */,
@@ -1993,13 +1992,6 @@
 				08918BA72385151000F274C2 /* ToastView.swift */,
 			);
 			path = ToastView;
-			sourceTree = "<group>";
-		};
-		08918BB12385866700F274C2 /* SceneDelegate */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SceneDelegate;
 			sourceTree = "<group>";
 		};
 		089C287A23F18E5D00230AB3 /* EmptyResultCell */ = {
@@ -3942,7 +3934,7 @@
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33.0;
+				CURRENT_PROJECT_VERSION = 34.0;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
 				INFOPLIST_FILE = "$(SRCROOT)/ViperBaseiOS13/Common/Plist Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3966,7 +3958,7 @@
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33.0;
+				CURRENT_PROJECT_VERSION = 34.0;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
 				INFOPLIST_FILE = "$(SRCROOT)/ViperBaseiOS13/Common/Plist Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

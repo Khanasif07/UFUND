@@ -239,7 +239,7 @@ extension ProductDetailPopUpVC {
             self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? (0.0))"
             self.currentValInvPer = 1
             let imgEntity =  productModel?.product_image ?? ""
-            let url = URL(string: nullStringToEmpty(string: imgEntity))
+            let url = URL(string: nullStringToEmptyForImg(string: imgEntity))
             self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         case .InvestProduct:
             self.coinLbl.text = self.productModel?.category?.category_name ?? ""
@@ -252,7 +252,7 @@ extension ProductDetailPopUpVC {
             self.tokenQtyLbl.text = "Product\nInvestment"
             self.tokenPriceValueLbl.text = "$ " +  "\(productModel?.total_product_value ?? 0)"
             let imgEntity =  productModel?.product_image ?? ""
-            let url = URL(string: nullStringToEmpty(string: imgEntity))
+            let url = URL(string: nullStringToEmptyForImg(string: imgEntity))
             self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         default:
             self.yourProfitView.isHidden = true
@@ -266,7 +266,7 @@ extension ProductDetailPopUpVC {
             self.tokenQtyLbl.text = "Token Quantity"
             self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)" + "/ Token"
             let imgEntity =  productModel?.token_image ?? ""
-            let url = URL(string:  nullStringToEmpty(string: imgEntity))
+            let url = URL(string:  nullStringToEmptyForImg(string: imgEntity))
             self.tokenImgView?.sd_setImage(with: url , placeholderImage: nil)
         }
     }

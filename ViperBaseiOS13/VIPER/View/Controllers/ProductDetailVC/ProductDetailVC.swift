@@ -120,7 +120,7 @@ extension ProductDetailVC {
         footerView.frame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150.0)
         self.mainTableView.tableFooterView = footerView
         let imgEntity =  productModel?.product_image ?? ""
-        let url = URL(string: nullStringToEmpty(string: imgEntity))
+        let url = URL(string: nullStringToEmptyForImg(string: imgEntity))
         self.headerImgView.sd_setImage(with: url , placeholderImage: nil)
         self.bottomView.isHidden = userType != UserType.investor.rawValue
     }

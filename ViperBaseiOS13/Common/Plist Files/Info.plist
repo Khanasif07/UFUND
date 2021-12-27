@@ -68,6 +68,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) requires access to the camera in order to take photos for uploading your profile photo as well as uploading Assets  and products photo.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) collects location when capturing ID documents.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) collects location when capturing ID documents.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) collects location when capturing ID documents.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) requires access to the photo library to upload your profile photo as well as upload Assets  and products photo.</string>
 	<key>NSUbiquitousContainers</key>

@@ -247,7 +247,7 @@ extension TokenizedAssetsVC: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(with: NewProductsCollCell.self, indexPath: indexPath)
         let imgEntity =   (self.investerProductList?[indexPath.row].token_image ?? "")
-        let url = URL(string: nullStringToEmpty(string: imgEntity))
+        let url = URL(string: nullStringToEmptyForImg(string: imgEntity))
         cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
         if userType == UserType.investor.rawValue {
             cell.categoryLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")

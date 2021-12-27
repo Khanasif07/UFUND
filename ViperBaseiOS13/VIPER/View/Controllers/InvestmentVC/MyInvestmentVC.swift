@@ -233,7 +233,7 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             cell.productNameLbl.text =  (self.investerProductList?[indexPath.row].product_title ?? "")
             let imgEntity =   (self.investerProductList?[indexPath.row].product_image ?? "")
 //            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-            let url = URL(string: nullStringToEmpty(string: imgEntity))
+            let url = URL(string: nullStringToEmptyForImg(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
             cell.productTypeLbl.text =  (self.investerProductList?[indexPath.row].category?.category_name ?? "")
             cell.priceLbl.text = "$" +  "\((self.investerProductList?[indexPath.row].total_product_value ?? 0))"
@@ -250,7 +250,7 @@ extension MyInvestmentVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             cell.productNameLbl.text =   (self.investerProductList?[indexPath.row].tokenname ?? "")
             let imgEntity =   (self.investerProductList?[indexPath.row].token_image ?? "")
 //            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-            let url = URL(string: nullStringToEmpty(string: imgEntity))
+            let url = URL(string: nullStringToEmptyForImg(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
             cell.categoryLbl.text =  (self.investerProductList?[indexPath.row].tokenrequest?.asset?.category?.category_name ?? "")
             cell.priceLbl.text = "$" + ( "\((self.investerProductList?[indexPath.row].tokenvalue ?? 0.0))")

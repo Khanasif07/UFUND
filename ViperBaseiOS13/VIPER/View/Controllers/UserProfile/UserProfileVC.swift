@@ -300,7 +300,7 @@ extension UserProfileVC: PresenterOutputProtocol {
             User.main.social_email_verify = self.userProfile?.social_email_verify
             storeInUserDefaults()
             if !(self.userProfile?.picture?.isEmpty ?? true){
-                self.profileImgUrl = URL(string: nullStringToEmpty(string: self.userProfile?.picture))
+                self.profileImgUrl = URL(string: nullStringToEmptyForImg(string: self.userProfile?.picture))
             }
             self.mainTableView.reloadData()
             if User.main.kyc == 0{

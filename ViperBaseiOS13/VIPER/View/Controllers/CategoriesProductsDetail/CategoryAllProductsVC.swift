@@ -74,7 +74,7 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
             cell.productNameLbl.text =   (self.allProductListing?[indexPath.row].product_title ?? "")
             let imgEntity =   (self.allProductListing?[indexPath.row].product_image ?? "")
 //            let url = URL(string: baseUrl + "/" +  nullStringToEmpty(string: imgEntity))
-            let url = URL(string: nullStringToEmpty(string: imgEntity))
+            let url = URL(string: nullStringToEmptyForImg(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
             cell.productTypeLbl.text =  (self.allProductListing?[indexPath.row].category?.category_name ?? "")
             cell.priceLbl.text =  "\((self.allProductListing?[indexPath.row].total_product_value ?? 0))"
@@ -94,7 +94,7 @@ extension CategoryAllProductsVC: UICollectionViewDelegate, UICollectionViewDataS
                 cell.categoryLbl.text =  (self.allProductListing?[indexPath.row].asset?.category?.category_name ?? "")
                 cell.productNameLbl.text =  (self.allProductListing?[indexPath.row].asset?.asset_title ?? "")
             }
-            let url = URL(string:  nullStringToEmpty(string: imgEntity))
+            let url = URL(string:  nullStringToEmptyForImg(string: imgEntity))
             cell.productImgView.sd_setImage(with: url , placeholderImage: nil)
 //            cell.categoryLbl.text = (self.allProductListing?[indexPath.row].asset?.category?.category_name ?? "")
             cell.priceLbl.text =  "\((self.allProductListing?[indexPath.row].tokenvalue ?? 0))"

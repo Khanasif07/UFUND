@@ -182,6 +182,15 @@ public func nullStringToEmpty(string: String?) -> String {
     }
 }
 
+public func nullStringToEmptyForImg(string: String?) -> String {
+    
+    if string == nil {
+        return ""
+    }
+    else {
+        return (string?.replacingOccurrences(of: " ", with: "%20"))!
+    }
+}
 
 //MARK: Timestamp fomater
 extension Date {
