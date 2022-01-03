@@ -175,7 +175,7 @@ class SubmitAssetsProductsVC: UIViewController {
     
     @IBAction func addBtnAction(_ sender: Any) {
         self.view.endEditing(true)
-        if self.eth_balance >  self.min_eth {
+        if self.eth_balance >=  self.min_eth {
             self.bottomBtnView.isHidden = false
         } else {
             self.bottomBtnView.isHidden = true
