@@ -133,9 +133,12 @@ class SideMenuController: UIViewController {
             {
             case UserType.investor.rawValue:
                 isFromCampainer = false
+                
+                AppConstants.isFromCampaigner = false
                 isSelectInvester = true
             default:
                 isSelectInvester = false
+                AppConstants.isFromCampaigner = true
                 isFromCampainer = true
             }
         }

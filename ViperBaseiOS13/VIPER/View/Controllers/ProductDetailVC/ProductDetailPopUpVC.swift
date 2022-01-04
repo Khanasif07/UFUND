@@ -61,7 +61,7 @@ class ProductDetailPopUpVC: UIViewController {
         didSet{
             switch isForBuyAndToken {
             case .BuyProduct:
-                self.buyNowBtnTitle = "Buy Now"
+                self.buyNowBtnTitle = "Invest"
                 self.qtyValueLbl.text = "\(productModel?.products ?? 0)"
                 self.adminCommTitleLbl.text = "Admin Commision" + " (\(productModel?.commission_per ?? 0)) " + "%"
                 let percentageValue = (Double(currentValInvPer) * Double(productModel?.total_product_value ?? 0))
@@ -91,7 +91,7 @@ class ProductDetailPopUpVC: UIViewController {
                  self.yourProfitValueLbl.text =  "$ " + "\(getInvestmentPercentageValue(percentage: currentValInvPer, productModel: productModel))"
                  
             default:
-                self.buyNowBtnTitle = "Buy Now"
+                self.buyNowBtnTitle = "Invest"
                 self.incrView.isHidden = false
                 self.decrView.isHidden = false
                 self.tokenPriceValueLbl.text = "$ " + "\(productModel?.tokenvalue ?? 0.0)" + "/ Token"
@@ -108,7 +108,7 @@ class ProductDetailPopUpVC: UIViewController {
             }
         }
     }
-    var buyNowBtnTitle: String = "Buy Now"
+    var buyNowBtnTitle: String = "Invest"
     var button = UIButton()
     // MARK: - Lifecycle
     //===========================

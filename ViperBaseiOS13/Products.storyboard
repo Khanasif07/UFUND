@@ -1123,7 +1123,7 @@
                                                             </constraint>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
-                                                        <state key="normal" title="Buy Now">
+                                                        <state key="normal" title="Invest">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>

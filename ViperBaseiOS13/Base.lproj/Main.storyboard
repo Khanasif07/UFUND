@@ -2182,17 +2182,17 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJP-ar-D0e">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmH-1f-oga">
-                                                                    <rect key="frame" x="20" y="41" width="375.5" height="42"/>
+                                                                    <rect key="frame" x="20" y="45.5" width="377.5" height="67.5"/>
                                                                     <string key="text">The leap into business in the global real economy through our unique platform. trade, buy and sell goods and tokens in partnership with us, we do sales you do or share the purchases.</string>
                                                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Funding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjN-KP-60a">
-                                                                    <rect key="frame" x="20" y="16" width="143.5" height="21"/>
+                                                                    <rect key="frame" x="20" y="16" width="162.5" height="25.5"/>
                                                                     <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>

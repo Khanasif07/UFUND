@@ -63,6 +63,7 @@ enum AppConstants {
      // Identity pool ID
 //        Regions.US_EAST_1 // Region
 //    ufund-env // bucket
+    static var isFromCampaigner = false
 
     
 
