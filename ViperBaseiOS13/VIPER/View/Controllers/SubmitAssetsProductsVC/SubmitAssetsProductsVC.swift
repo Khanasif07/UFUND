@@ -28,6 +28,7 @@ class SubmitAssetsProductsVC: UIViewController {
     //===========================
     var tokenVC : AddAssetsVC!
     var productVC : AddProductsVC!
+    var adminCommission: Double = 0.0
     var min_eth : Double = 0.0
     var eth_balance : Double = 0.0
     lazy var loader  : UIView = {
@@ -200,6 +201,7 @@ extension SubmitAssetsProductsVC {
         self.configureScrollView()
         self.instantiateViewController()
         self.getCategoryList()
+        self.getAdminCommission()
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -255,6 +257,10 @@ extension SubmitAssetsProductsVC {
         self.loader.isHidden = false
         self.presenter?.HITAPI(api: Base.categories.rawValue, params: [ProductCreate.keys.category_type: 1], methodType: .GET, modelClass: CategoriesModel.self, token: true)
         self.presenter?.HITAPI(api: Base.categories.rawValue, params: [ProductCreate.keys.category_type: 2], methodType: .GET, modelClass: CategoriesModel.self, token: true)
+    }
+    
+    private func getAdminCommission(){
+        self.presenter?.HITAPI(api: Base.settings.rawValue, params: [:], methodType: .GET, modelClass: AdminCommissionModel.self, token: true)
     }
     
     private func getAssetTokenTypeList() {
@@ -319,6 +325,13 @@ extension SubmitAssetsProductsVC : PresenterOutputProtocol {
     func showSuccessWithParams(statusCode: Int,params: [String:Any],api: String, dataArray: [Mappable]?, dataDict: Mappable?,modelClass: Any){
         self.loader.isHidden = true
         switch api {
+        case Base.settings.rawValue:
+            let adminData = dataDict as? AdminCommissionModel
+            if let data = adminData?.data {
+                self.adminCommission = Double(data.token_buy_comission ?? "") ?? 0.0
+                self.tokenVC.adminCommission = self.adminCommission
+                self.tokenVC.mainTableView.reloadData()
+            }
         case Base.wallet.rawValue:
             let walletData = dataDict as? WalletEntity
             if let data = walletData?.balance {

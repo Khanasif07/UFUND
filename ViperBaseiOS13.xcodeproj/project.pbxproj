@@ -3934,13 +3934,14 @@
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34.0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
 				INFOPLIST_FILE = "$(SRCROOT)/ViperBaseiOS13/Common/Plist Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.UFUND.app;
 				PRODUCT_NAME = UFUND;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3958,13 +3959,14 @@
 				CODE_SIGN_ENTITLEMENTS = ViperBaseiOS13/UFUND.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34.0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LQ377U7YKS;
 				INFOPLIST_FILE = "$(SRCROOT)/ViperBaseiOS13/Common/Plist Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.UFUND.app;
 				PRODUCT_NAME = UFUND;

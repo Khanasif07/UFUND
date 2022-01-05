@@ -119,3 +119,50 @@ struct CategoriesModel : Mappable {
     
 
 }
+
+
+struct AdminCommissionModel : Mappable {
+
+    var data : CommissionModel?
+    var code: Int?
+    var  message: String?
+
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        data <- map["data"]
+        code <- map["code"]
+        message <- map["message"]
+    }
+    
+
+}
+
+struct CommissionModel: Mappable {
+    
+    var btcdeposit_commission : String?
+    var ethdeposit_commission : String?
+    var min_eth : String?
+    var product_buy_comission : String?
+    var token_buy_comission: String?
+    
+    init?(map: Map)
+    {
+           
+     }
+    
+    init(){
+        
+    }
+       
+       mutating func mapping(map: Map){
+        btcdeposit_commission <- map["btcdeposit_commission"]
+        ethdeposit_commission <- map["ethdeposit_commission"]
+        min_eth <- map["min_eth"]
+        product_buy_comission <- map["product_buy_comission"]
+        token_buy_comission <- map["token_buy_comission"]
+       }
+
+}

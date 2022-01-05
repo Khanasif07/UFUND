@@ -21,6 +21,7 @@ class AddAssetsVC: UIViewController {
     
     // MARK: - Variables
     //===========================
+    var adminCommission: Double = 0.0
     var addAssetModel = ProductModel(json: [:])
     var imgDataArray = [(String,UIImage,Data,Bool)]()
     var selectedIndexPath : IndexPath?
@@ -130,7 +131,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
         switch sections[indexPath.section] {
         case .emptyAssetsCell:
             let cell = tableView.dequeueCell(with: AddAssetEmptyCell.self, indexPath: indexPath)
-            cell.minLbl.text = "Min \(self.min_eth ?? 0.0) ETH required."
+            cell.minLbl.text = "Min \(self.min_eth ) ETH required."
             return cell
         case .basicDetailsAssets:
             let cell = tableView.dequeueCell(with: UserProfileTableCell.self, indexPath: indexPath)
@@ -140,29 +141,39 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 cell.textFIeld.keyboardType = .default
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.textFIeld.text = self.addAssetModel.asset_title
             case 1:
                 cell.textFIeld.keyboardType = .default
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.textFIeld.text = self.addAssetModel.tokenname
             case 2:
                 cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.textFIeld.text =  self.addAssetModel.tokenvalue == nil ? "" :  "\(self.addAssetModel.tokenvalue ?? 0)"
             case 3:
                 cell.textFIeld.keyboardType = .default
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.textFIeld.text = self.addAssetModel.tokensymbol
             case 4:
                 cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.textFIeld.text = self.addAssetModel.tokensupply == nil ?  "" : "\(self.addAssetModel.tokensupply ?? 0)"
             case 5:
                 cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.textFIeld.text = (self.addAssetModel.decimal?.isEmpty ?? true) ? "" : "\(self.addAssetModel.decimal ?? "0")"
             case 6:
                 cell.textFIeld.keyboardType = .default
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.textFIeld.text = (self.addAssetModel.auditor_name?.isEmpty ?? true) ? "" : "\(self.addAssetModel.auditor_name ?? "")"
             case 7:
                 cell.textFIeld.keyboardType = .numberPad
+                cell.textFIeld.isUserInteractionEnabled = false
+                cell.textFIeld.text = "\(self.adminCommission )"
             //                cell.textFIeld.text = (self.addAssetModel.decimal?.isEmpty ?? true) ? "" : "\(self.addAssetModel.decimal ?? "0")"
             default:
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.textFIeld.keyboardType = .numberPad
                 cell.textFIeld.text = self.addAssetModel.asset_amount == nil ? "" : "\(self.addAssetModel.asset_amount ?? 0)"
             }
@@ -189,6 +200,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                     //
                 }
                 cell.textFIeld.delegate = self
+                cell.textFIeld.isUserInteractionEnabled = true
                 cell.titleLbl.text = self.productSpecifics[indexPath.row ].0
                 cell.textFIeld.placeholder = self.productSpecifics[indexPath.row].0
                 return  cell
@@ -217,6 +229,7 @@ extension AddAssetsVC : UITableViewDelegate, UITableViewDataSource {
                 cell.textFIeld.keyboardType = .default
                 cell.textFIeld.text = "\(self.addAssetModel.reward_value ?? 0)"
             }
+            cell.textFIeld.isUserInteractionEnabled = true
             cell.titleLbl.text = self.dateInfoArray[indexPath.row ].0
             cell.textFIeld.placeholder = self.dateInfoArray[indexPath.row].0
             return  cell

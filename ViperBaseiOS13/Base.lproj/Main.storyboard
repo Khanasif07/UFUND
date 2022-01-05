@@ -2111,8 +2111,8 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-EC-CQT">
                                         <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLogo-1" translatesAutoresizingMaskIntoConstraints="NO" id="vN2-oN-XRe">
-                                                <rect key="frame" x="172" y="15" width="70" height="21"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLogo1" translatesAutoresizingMaskIntoConstraints="NO" id="vN2-oN-XRe">
+                                                <rect key="frame" x="167" y="9.5" width="80" height="32"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL3-Qb-06d">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="51"/>
@@ -2182,17 +2182,17 @@ We do not keep any documents on the platform for safety reasons; they are all st
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xJP-ar-D0e">
-                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmH-1f-oga">
-                                                                    <rect key="frame" x="20" y="45.5" width="377.5" height="67.5"/>
+                                                                    <rect key="frame" x="20" y="41" width="375.5" height="42"/>
                                                                     <string key="text">The leap into business in the global real economy through our unique platform. trade, buy and sell goods and tokens in partnership with us, we do sales you do or share the purchases.</string>
                                                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="12"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business Funding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjN-KP-60a">
-                                                                    <rect key="frame" x="20" y="16" width="162.5" height="25.5"/>
+                                                                    <rect key="frame" x="20" y="16" width="143.5" height="21"/>
                                                                     <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="18"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -4352,7 +4352,7 @@ We do not keep any documents on the platform for safety reasons; they are all st
         <image name="icEdit" width="18" height="18"/>
         <image name="icFilter" width="16" height="15"/>
         <image name="icInformation" width="86" height="86"/>
-        <image name="icLogo-1" width="70" height="21"/>
+        <image name="icLogo1" width="80" height="32"/>
         <image name="icNotification" width="20" height="24"/>
         <image name="icPlaceHolder" width="64" height="64"/>
         <image name="icSort" width="16" height="15"/>
